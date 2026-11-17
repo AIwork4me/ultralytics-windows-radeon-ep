@@ -26,7 +26,7 @@ jobs:
     runs-on: [self-hosted, windows, gpu]
     environment: trusted-gpu
     steps:
-      - name: Guard: refuse untrusted refs
+      - name: "Guard: refuse untrusted refs"
         run: |
           echo "ref=${{ github.ref }} sha=${{ github.sha }}"
           # Self-hosted GPU runners must only execute reviewed branches.
