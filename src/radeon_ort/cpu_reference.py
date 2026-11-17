@@ -23,17 +23,42 @@ def run_reference(session, feeds: dict) -> dict:
                                            session.run(None, feeds))}
 
 
-def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float) -> dict:
-    """By-name comparison; every output of the reference must be present & close."""
+def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float,
+                    expected: dict | None = None, thresholds_source: str = "configs/thresholds.yaml") -> dict:
+    """By-name comparison with an optional expected-output manifest (v2).
+
+    v2 semantics when ``expected`` is given: the compared name set must equal the
+    expected set in BOTH directions (missing AND unexpected both fail); dtype must
+    match the expected contract; per-output sha256 fingerprints recorded; the
+    declared thresholds block is embedded so the strict validator can re-derive
+    the PASS against predeclared values.
+    """
+    import hashlib
+
     import numpy as np
 
     results = []
     all_ok = True
+    names = list(ref.keys())
+    if expected is not None:
+        exp_names = list(expected.keys())
+        for n in exp_names:
+            if n not in ref:
+                results.append({"name": n, "missing_in_reference": True, "allclose": False,
+                                "finite": False, "max_abs_diff": None,
+                                "mean_abs_diff": None})
+                all_ok = False
+        for n in names:
+            if n not in expected:
+                results.append({"name": n, "unexpected_in_candidate": True, "allclose": False,
+                                "finite": False, "max_abs_diff": None,
+                                "mean_abs_diff": None})
+                all_ok = False
     for name, ref_arr in ref.items():
         if name not in cand:
             results.append({"name": name, "missing_in_candidate": True, "allclose": False,
-                            "finite": False, "max_abs_diff": float("inf"),
-                            "mean_abs_diff": float("inf")})
+                            "finite": False, "max_abs_diff": None,
+                            "mean_abs_diff": None})
             all_ok = False
             continue
         c = np.asarray(cand[name])
@@ -41,7 +66,7 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float) -> dict:
         if c.shape != r.shape:
             results.append({"name": name, "shape": list(c.shape), "shape_mismatch": list(r.shape),
                             "allclose": False, "finite": False,
-                            "max_abs_diff": float("inf"), "mean_abs_diff": float("inf")})
+                            "max_abs_diff": None, "mean_abs_diff": None})
             all_ok = False
             continue
         finite = bool(np.isfinite(c).all() and np.isfinite(r).all())
@@ -49,7 +74,7 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float) -> dict:
         with np.errstate(invalid="ignore"):
             rel = diff / np.maximum(np.abs(r.astype(np.float64)), 1e-12)
         close = bool(np.allclose(c, r, atol=atol, rtol=rtol)) if finite else False
-        results.append({
+        item = {
             "name": name, "shape": list(c.shape),
             "dtype": str(c.dtype), "finite": finite,
             "max_abs_diff": float(diff.max()) if diff.size else 0.0,
@@ -57,6 +82,16 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float) -> dict:
             "max_rel_diff": float(rel.max()) if rel.size else 0.0,
             "p99_abs_diff": float(np.percentile(diff, 99)) if diff.size else 0.0,
             "allclose": close, "threshold_used": atol,
-        })
+            "candidate_sha256": hashlib.sha256(np.ascontiguousarray(c).tobytes()).hexdigest(),
+            "ref_sha256": hashlib.sha256(np.ascontiguousarray(r).tobytes()).hexdigest(),
+        }
+        if expected is not None and name in expected:
+            want_dtype = expected[name].get("dtype")
+            if want_dtype and str(c.dtype) != want_dtype:
+                item["dtype_mismatch"] = want_dtype
+                all_ok = False
+        results.append(item)
         all_ok = all_ok and close and finite
-    return {"outputs": results, "all_outputs_allclose": all_ok, "by_name_matching": True}
+    out = {"outputs": results, "all_outputs_allclose": all_ok, "by_name_matching": True,
+           "thresholds": {"atol": atol, "rtol": rtol, "source": thresholds_source}}
+    return out
