@@ -344,8 +344,18 @@ def derive_verdicts(receipt: dict) -> dict:
     out: dict = {"identity": "BLOCKED", "amdgpu": {}, "dml": {}}
     db = receipt.get("device_binding") or {}
     host_ok = bool((receipt.get("host") or {}).get("verified_device_identity"))
+    # the receipt's active EP (receipts are per-EP; one is NOT_RUN)
+    active_ep = "amdgpu" if receipt["status"]["amdgpu"] != "NOT_RUN" else "dml"
+
+    def _binding_evidence(ep: str) -> bool:
+        """EP-appropriate probe evidence that the bound device executed."""
+        if ep == "amdgpu":
+            return (db.get("probe") or {}).get("amdgpu_nodes", 0) > 0
+        counts = ((db.get("final_profile") or {}).get("provider_node_counts")) or {}
+        return counts.get("DmlExecutionProvider", 0) > 0
+
     if db.get("state") in ("EP_DEVICE_SELECTED", "PHYSICAL_GPU_IDENTITY_CORROBORATED") \
-            and (db.get("probe") or {}).get("amdgpu_nodes", 0) > 0 and host_ok:
+            and _binding_evidence(active_ep) and host_ok:
         out["identity"] = db["state"]
     elif db.get("state") == "IDENTITY_BINDING_UNPROVEN":
         out["identity"] = "IDENTITY_BINDING_UNPROVEN"

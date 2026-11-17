@@ -344,3 +344,28 @@ def test_v2_invalid_status_tamper():
     r["status"]["amdgpu"] = "DEFINITELY_PASSED"
     v = validate_receipt_strict(r)
     assert not v["ok"]
+
+
+# 33. DML identity derivation must use DML evidence (regression: probe.amdgpu_nodes
+#     gate wrongly blocked every DML receipt as BLOCKED_IDENTITY)
+def test_v2_dml_identity_uses_dml_evidence():
+    r = make_receipt_v2(ep="dml", ep_nodes=1, binding_state="EP_DEVICE_SELECTED",
+                        exec_status=FULL)
+    r["device_binding"]["probe"]["amdgpu_nodes"] = 0  # DML probe has no AMDGPU nodes
+    r["device_binding"]["final_profile"]["provider_node_counts"] = {
+        "DmlExecutionProvider": 1}
+    r["session"]["provider_node_counts"] = {"DmlExecutionProvider": 1}
+    v = validate_receipt_strict(r)
+    assert v["ok"], v["problems"]
+    assert v["derived_verdicts"]["identity"] == "EP_DEVICE_SELECTED"
+    assert v["derived"]["dml"] == FULL
+
+
+# 33b. DML with zero DML nodes must NOT claim pass
+def test_v2_dml_zero_nodes_blocked():
+    r = make_receipt_v2(ep="dml", ep_nodes=0, binding_state="EP_DEVICE_SELECTED",
+                        exec_status=FULL)
+    r["status"]["dml"] = FULL  # re-forge
+    v = validate_receipt_strict(r)
+    assert not v["ok"]
+    assert v["derived"]["dml"] in ("FAIL_NO_GPU_COMPUTE", "BLOCKED_IDENTITY")
