@@ -1,0 +1,3 @@
+
+---STDERR---
+[0;93m2026-11-17 22:49:57.0517571 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m

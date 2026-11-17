@@ -34,20 +34,29 @@ def build_compatibility_matrix(receipts: list[dict], out_csv: str | Path) -> Pat
     return out
 
 
-def coverage_summary(receipts: list[dict], catalog_entries: list[dict]) -> dict:
+def coverage_summary(receipts: list[dict], catalog_entries) -> dict:
+    # catalog_entries may be a list of entries OR a {checkpoint: entry} dict
+    if isinstance(catalog_entries, dict):
+        entries = list(catalog_entries.values())
+    else:
+        entries = list(catalog_entries or [])
     covered = {r["case_id"] for r in receipts}
-    total = len(catalog_entries)
+    total = len(entries)
     by_status: dict[str, int] = {}
     for rc in receipts:
         s = rc["status"]
         key = f"amdgpu={s['amdgpu']}|dml={s['dml']}"
         by_status[key] = by_status.get(key, 0) + 1
-    not_run = [e for e in catalog_entries if e.get("case_id") not in covered]
+    # entry-level disposition: model base case covered if any receipt exists for its checkpoint+ep pair
+    ckpts_covered = {r["model"]["checkpoint"] for r in receipts}
+    not_run = [e.get("checkpoint", "?") for e in entries
+               if e.get("checkpoint") not in ckpts_covered]
     return {
         "catalog_entries": total,
         "receipts": len(receipts),
-        "covered": len(covered),
+        "covered_checkpoints": len(ckpts_covered),
         "not_run_count": len(not_run),
+        "not_run_sample": not_run[:25],
         "status_histogram": by_status,
         "full_coverage_claim_allowed": len(not_run) == 0,
     }

@@ -89,7 +89,9 @@ def run_one_case(entry: dict, ep: str, *, run_id: str, out_dir: Path, registry: 
                            out_dir=out_dir, case_id=case_id, max_minutes=max_minutes,
                            reference_outputs=None, do_benchmark=False)
     ref_outputs = (frag_cpu or {}).get("outputs")
-    if frag_cpu and frag_cpu.get("session", {}).get("provider_node_counts", {}).get("CPU", 0) > 0:
+    # ORT profiler key is the real provider name (CPUExecutionProvider)
+    cpu_counts = ((frag_cpu or {}).get("session", {}) or {}).get("provider_node_counts", {})
+    if cpu_counts.get("CPUExecutionProvider", cpu_counts.get("CPU", 0)) > 0:
         st.cpu_oracle = "PASS_CPU_REFERENCE"
     else:
         st.cpu_oracle = "FAIL_CPU_REFERENCE"
@@ -101,16 +103,18 @@ def run_one_case(entry: dict, ep: str, *, run_id: str, out_dir: Path, registry: 
                           out_dir=out_dir, case_id=case_id, max_minutes=max_minutes,
                           reference_outputs=ref_outputs, do_benchmark=do_benchmark)
     ep_key = "amdgpu" if ep == "amdgpu" else "dml"
+    ort_provider_key = "AMDGPU" if ep == "amdgpu" else "DmlExecutionProvider"
     if frag_ep is None:
         setattr(st, ep_key, "FAIL_RUNTIME")
         errors.append({"stage": ep.upper(), "type": "RUNTIME", "message": "worker failed/timeout"})
     else:
         counts = frag_ep.get("session", {}).get("provider_node_counts", {})
-        ep_nodes = counts.get(ep.upper(), 0)
+        ep_nodes = counts.get(ort_provider_key, counts.get(ep.upper(), 0))
         if ep_nodes == 0:
             setattr(st, ep_key, "FAIL_NO_GPU_COMPUTE")
         elif frag_ep.get("parity") and frag_ep["parity"].get("all_outputs_allclose"):
-            setattr(st, ep_key, "PASS_GPU_EXECUTED_FULL" if counts.get("CPU", 0) == 0
+            setattr(st, ep_key, "PASS_GPU_EXECUTED_FULL"
+                    if counts.get("CPUExecutionProvider", counts.get("CPU", 0)) == 0
                     else "PASS_GPU_EXECUTED_PARTIAL")
         else:
             setattr(st, ep_key, "FAIL_GPU_PARITY")
@@ -257,11 +261,31 @@ def main() -> int:
     ap.add_argument("--limit", type=int, default=0)
     a = ap.parse_args()
 
-    from radeon_ort import host_probe
+    from radeon_ort import device_identity, host_probe
     run_id = a.run_id or ("RUN_" + utc_now_iso().replace("-", "").replace(":", "").replace("T", "_").replace("Z", ""))
     out_dir = Path(a.reports_root) / a.host / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
     host = host_probe.collect_host(gpu_name_needle="8060S", gfx=a.host)
+    # complete the identity chain (DXGI -> LUID) so HOST status reflects reality
+    try:
+        adapters = device_identity.enum_dxgi_adapters()
+        res = device_identity.resolve_target_adapter(adapters, gfx=a.host)
+        if res.get("ok"):
+            host["gpu_target"].update({
+                "verified": True,
+                "identity_method": res["identity_method"] + "; " + res.get("dedup_note", "unique"),
+                "luid": res["adapter"].luid_str,
+                "dedicated_vram_mb": res["adapter"].dedicated_video_mb,
+                "shared_memory_mb": res["adapter"].shared_sys_mb,
+            })
+            host["_dxgi"] = {"adapters": [
+                {"i": x.index, "desc": x.description, "vid": f"0x{x.vendor_id:04X}",
+                 "did": f"0x{x.device_id:04X}", "luid": x.luid_str} for x in adapters],
+                "selected_luid": res["adapter"].luid_str}
+        else:
+            host["gpu_target"]["identity_method"] = res.get("reason", "dxgi-failed")
+    except OSError as e:
+        host["gpu_target"]["identity_method"] = f"dxgi-error: {e}"
 
     cat = load_catalog(Path(a.catalog))
     entries = list(cat["entries"].values())
