@@ -167,27 +167,37 @@ def compare(pt_json, pt_npz, cand_json, cand_npz, task: str, th: dict,
         if len(rr) == 0 and len(pr) == 0:
             passed, reason = True, "both-empty agreement"
         else:
-            pred = [{"box": list(p), "score": s, "cls": c, "i": i}
-                    for i, (p, s, c) in enumerate(zip(pr, cand_json.get("scores", []),
-                                                      cand_json.get("classes", [])))]
-            ref = [{"box": list(r), "score": s, "cls": c, "i": i}
-                   for i, (r, s, c) in enumerate(zip(rr, pt_json.get("scores", []),
-                                                     pt_json.get("classes", [])))]
-            m = _match_boxes(pred, ref, t.get("iou_thres", 0.5))
-            # match_boxes uses axis-aligned IoU for pairing; rotated IoU measured after
-            rious, angles = [], []
-            for mm in m["matches"]:
-                a = np.array(mm["pred"]["box"], dtype=np.float32)
-                b = np.array(mm["ref"]["box"], dtype=np.float32)
-                ri = _rotated_iou(a, b)
-                rious.append(ri)
-                angles.append(abs(float(a[4] - b[4])) * 180.0 / np.pi)
-            metrics.update({"matched": len(m["matches"]), "fp": m["fp"], "fn": m["fn"],
-                            "precision": m["precision"], "recall": m["recall"],
-                            "rotated_iou_mean": float(np.mean(rious)) if rious else float("nan"),
-                            "angle_absdiff_mean_deg": float(np.mean(angles)) if angles else float("nan")})
-            passed = bool(m["precision"] >= t.get("min_precision", 0.90)
-                          and m["recall"] >= t.get("min_recall", 0.90)
+            # pair by ROTATED IoU (xywhr); class-aware, greedy by score
+            pmeta = list(zip(cand_json.get("scores", []), cand_json.get("classes", [])))
+            rmeta = list(zip(pt_json.get("scores", []), pt_json.get("classes", [])))
+            used, matches = set(), []
+            for i in sorted(range(len(pr)), key=lambda k: -(pmeta[k][0] if k < len(pmeta) else 0)):
+                if i >= len(pmeta):
+                    continue
+                s, c = pmeta[i]
+                best, best_ri = None, t.get("iou_thres", 0.5)
+                for j in range(len(rr)):
+                    if j in used or j >= len(rmeta) or rmeta[j][1] != c:
+                        continue
+                    ri = _rotated_iou(pr[i], rr[j])
+                    if ri >= best_ri:
+                        best, best_ri = j, ri
+                if best is not None:
+                    used.add(best)
+                    matches.append((i, best, best_ri))
+            fp = len(pr) - len(matches)
+            fn = len(rr) - len(used)
+            rious = [ri for (_, _, ri) in matches]
+            angles = [abs(float(pr[i][4] - rr[j][4])) * 180.0 / np.pi
+                      for (i, j, _) in matches]
+            prec = len(matches) / (len(matches) + fp) if (len(matches) + fp) else 1.0
+            rec = len(matches) / (len(matches) + fn) if (len(matches) + fn) else 1.0
+            metrics.update({"matched": len(matches), "fp": fp, "fn": fn,
+                            "precision": prec, "recall": rec,
+                            "rotated_iou_mean": float(np.mean(rious)) if rious else None,
+                            "angle_absdiff_mean_deg": float(np.mean(angles)) if angles else None})
+            passed = bool(prec >= t.get("min_precision", 0.90)
+                          and rec >= t.get("min_recall", 0.90)
                           and (not rious or metrics["rotated_iou_mean"] >= t.get("min_rotated_iou", 0.70)))
     elif task == "semantic":
         pm = pt_npz["semantic"].astype(np.int64)
@@ -225,6 +235,10 @@ def compare(pt_json, pt_npz, cand_json, cand_npz, task: str, th: dict,
                 "metrics": metrics, "thresholds_declared": t,
                 "not_implemented_reason": f"no comparator for task {task}"}
 
+    # JSON-safe metrics: NaN/Inf -> null (a metric that cannot be computed is
+    # absent, never a forged number; receipts dump with allow_nan=False)
+    metrics = {k: (None if isinstance(v, float) and not np.isfinite(v) else v)
+               for k, v in metrics.items()}
     block = {
         "oracle_kind": "TASK_PARITY",
         "task": task,

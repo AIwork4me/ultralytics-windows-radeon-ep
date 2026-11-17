@@ -1,0 +1,21 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-winml\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\runner\_ep_worker.py --case reports\gfx1151\R1_20261117T215114Z\raw\case_yolo26n-cls__classify_amdgpu.json --out reports\gfx1151\R1_20261117T215114Z\raw\frag_yolo26n-cls__classify_amdgpu.json
+rc=0 elapsed=106.1s
+--- stdout ---
+
+--- stderr ---
+[0;93m2026-11-18 07:18:35.7699444 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
+2026-11-18 07:18:43.196374 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:18:43.196490 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:18:43.196513 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:18:43.196538 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:18.372641 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:18.372706 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:18.372733 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:18.372761 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:53.737805 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:53.737856 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:53.737880 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=pointwise,additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:19:53.737902 [WARN] [:0] output buffer doesn't match output for gpu::precompile_op[op=gpu::mlir_op[op=convolution[padding={1, 1, 1, 1},stride={1, 1},dilation={1, 1},group=1,padding_mode=0]],additional_args=1,ignore_modules=0,output_shape=nullopt]
+2026-11-18 07:20:21.013825 [WARN] [:0] auto_save_problem_cache: save failed: C:\j\AMDMIGraphX\src\file_buffer.cpp:77: write_buffer: Failure opening file: C:\Program Files\WindowsApps\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\ExecutionProvider\problem_cache.json
+2026-11-18 07:20:21.057610 [WARN] [:0] auto_save_problem_cache: save failed: C:\j\AMDMIGraphX\src\file_buffer.cpp:77: write_buffer: Failure opening file: C:\Program Files\WindowsApps\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\ExecutionProvider\problem_cache.json
+2026-11-18 07:20:21.181519 [WARN] [:0] auto_save_problem_cache: save failed: C:\j\AMDMIGraphX\src\file_buffer.cpp:77: write_buffer: Failure opening file: C:\Program Files\WindowsApps\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\ExecutionProvider\problem_cache.json

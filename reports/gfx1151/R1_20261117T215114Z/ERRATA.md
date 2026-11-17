@@ -8,3 +8,17 @@
    then removed from the run dir so the official matrix starts from a clean,
    consistent denominator. Not counted in any reported denominator. The case
    was re-run fresh by the official matrix with the fixed harness.
+
+2. 2026-11-18: all six DML receipts of the first matrix pass derived
+   BLOCKED_IDENTITY due to a validator defect (identity gate required
+   probe.amdgpu_nodes>0 for every EP). Preserved in git history at the commit
+   preceding this note, then deleted and re-run with the fixed validator
+   (per-EP binding evidence). DML numeric/task evidence itself was unaffected
+   (parity True in the fragments).
+
+3. 2026-11-18: yolo26n-obb receipts of the first pass FAILED TO SAVE
+   (fail-closed JSON NaN refusal) and were never written; the obb comparator
+   paired rotated boxes with an axis-aligned matcher (0 matches) and emitted
+   NaN means. Comparator fixed (rotated-IoU pairing + non-finite->null);
+   obb re-run fresh. Fragments of the failed first pass remain in raw/ as
+   honest failure evidence.
