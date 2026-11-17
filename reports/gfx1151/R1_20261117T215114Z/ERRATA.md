@@ -22,3 +22,12 @@
    NaN means. Comparator fixed (rotated-IoU pairing + non-finite->null);
    obb re-run fresh. Fragments of the failed first pass remain in raw/ as
    honest failure evidence.
+
+4. 2026-11-18: obb/cls/seg receipts of the earlier passes carried decoder
+   defects (obb: vendor rotated-NMS column order — conf read as angle; cls:
+   double softmax vs in-graph-normalized export; seg: 4D protos into 3D
+   vendor process_mask). All three were harness decode bugs, NOT GPU faults —
+   numeric parity GPU-vs-CPU was allclose in every case. Defective receipts
+   preserved in git history at commit preceding this note, deleted, and the
+   cases re-run with the fixed decoders. obb after fix: 15/15 matched,
+   rotated IoU 0.99999998, angle diff 4.5e-6 deg (both EPs).

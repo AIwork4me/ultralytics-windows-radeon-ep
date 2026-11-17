@@ -3,4 +3,4 @@ rc=0 elapsed=0.7s
 --- stdout ---
 
 --- stderr ---
-[0;93m2026-11-18 07:03:47.6939275 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
+[0;93m2026-11-18 07:45:21.2506896 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m

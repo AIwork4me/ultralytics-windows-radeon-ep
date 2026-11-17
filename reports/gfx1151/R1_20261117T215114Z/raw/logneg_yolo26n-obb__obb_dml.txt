@@ -3,5 +3,5 @@ rc=0 elapsed=0.9s
 --- stdout ---
 
 --- stderr ---
-[0;93m2026-11-18 07:38:07.9439653 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
-[0;93m2026-11-18 07:38:08.0614305 [W:onnxruntime:Default, config_options.cc:45 onnxruntime::ConfigOptions::AddConfigEntry] Config with key [ep.dmlexecutionprovider.device_id] already exists with value [0]. It will be overwritten[m
+[0;93m2026-11-18 07:46:13.0646800 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
+[0;93m2026-11-18 07:46:13.1958041 [W:onnxruntime:Default, config_options.cc:45 onnxruntime::ConfigOptions::AddConfigEntry] Config with key [ep.dmlexecutionprovider.device_id] already exists with value [0]. It will be overwritten[m

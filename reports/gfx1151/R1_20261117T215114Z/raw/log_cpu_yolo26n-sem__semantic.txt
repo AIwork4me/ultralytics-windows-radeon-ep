@@ -1,6 +1,6 @@
 $ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-winml\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\runner\_ep_worker.py --case reports\gfx1151\R1_20261117T215114Z\raw\case_yolo26n-sem__semantic_cpu.json --out reports\gfx1151\R1_20261117T215114Z\raw\frag_yolo26n-sem__semantic_cpu.json
-rc=0 elapsed=0.4s
+rc=0 elapsed=0.5s
 --- stdout ---
 
 --- stderr ---
-[0;93m2026-11-18 07:12:34.4024639 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
+[0;93m2026-11-18 07:45:33.3095809 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m

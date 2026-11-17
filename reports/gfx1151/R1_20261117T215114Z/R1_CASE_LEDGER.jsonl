@@ -11,3 +11,11 @@
 {"case": "yolo26n-cls__classify__dml", "model": "yolo26n-cls.pt", "task": "PASS_TASK", "ep": "dml", "exec": "BLOCKED_IDENTITY", "parity": true, "rc": 0, "secs": 0, "problems": ["expected-empty pass without a discriminating negative control"], "neg": null}
 {"case": "yolo26n-pose__pose__amdgpu", "model": "yolo26n-pose.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
 {"case": "yolo26n-pose__pose__dml", "model": "yolo26n-pose.pt", "task": "PASS_TASK", "ep": "dml", "exec": "BLOCKED_IDENTITY", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n__detect__dml", "model": "yolo26n.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
+{"case": "yolo26n-seg__segment__dml", "model": "yolo26n-seg.pt", "task": "TASK_ORACLE_BLOCKED", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
+{"case": "yolo26n-sem__semantic__dml", "model": "yolo26n-sem.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n-depth__depth__dml", "model": "yolo26n-depth.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n-cls__classify__dml", "model": "yolo26n-cls.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": ["PASS_TASK but metric score_drift=0.7680758237838745 > max 0.05"], "neg": null}
+{"case": "yolo26n-pose__pose__dml", "model": "yolo26n-pose.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n-obb__obb__dml", "model": "yolo26n-obb.pt", "task": "FAIL_TASK", "ep": "dml", "exec": "FAIL_TASK", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
+{"case": "yolo26n-obb__obb__amdgpu", "model": "yolo26n-obb.pt", "task": "FAIL_TASK", "ep": "amdgpu", "exec": "FAIL_TASK", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}

@@ -1,5 +1,5 @@
 $ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz reports\gfx1151\R1_20261117T215114Z\raw\cand_yolo26n-seg__segment_dml.npz --task segment --imgsz 640 --out-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-seg__segment_dml.json --out-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-seg__segment_dml.npz
-rc=1 elapsed=2.1s
+rc=1 elapsed=2.4s
 --- stdout ---
 
 --- stderr ---

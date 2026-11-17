@@ -99,12 +99,14 @@ def main() -> int:
         heavy["keypoints"] = kpts
         out["kpt_shape"] = list(kpts.shape)
     elif a.task == "obb":
-        raw = z["output0"]                       # [1, 4+1angle+nc, N]
+        raw = z["output0"]                       # [1, 4 + nc + 1 angle, N] (angle LAST, ch 19)
         nc = raw.shape[1] - 5
-        dets = _nms(raw, nc, rotated=True)       # (n, 6+1) xywh + angle last
-        heavy["obb_xywhr"] = dets[:, :5].astype(np.float32)  # x,y,w,h,r
-        out["scores"] = dets[:, 5].tolist()
-        out["classes"] = dets[:, 6].astype(int).tolist()
+        # vendor rotated NMS output rows: (x, y, w, h, conf, cls, angle) — the
+        # angle is the extra channel AFTER cls (verified live: ch19 == PT angle)
+        dets = _nms(raw, nc, rotated=True)
+        heavy["obb_xywhr"] = dets[:, [0, 1, 2, 3, 6]].astype(np.float32)  # x,y,w,h,r
+        out["scores"] = dets[:, 4].tolist()
+        out["classes"] = dets[:, 5].astype(int).tolist()
         out["n"] = int(len(dets))
     elif a.task == "semantic":
         arr = z["output0"]                       # [1, H, W] uint8 (argmax in-graph)

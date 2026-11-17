@@ -3,14 +3,14 @@
   "receipt_version": 2,
   "run_id": "R1_20261117T215114Z",
   "case_id": "yolo26n-seg__segment__dml",
-  "created_utc": "2026-11-17T23:12:33Z",
+  "created_utc": "2026-11-17T23:45:32Z",
   "rerun_of": null,
   "status": {
     "model_asset": "AVAILABLE",
     "export": "PASS_ONNX_EXPORT",
     "cpu_oracle": "PASS_CPU_REFERENCE",
     "amdgpu": "NOT_RUN",
-    "dml": "BLOCKED_IDENTITY",
+    "dml": "PASS_GPU_EXECUTED_FULL",
     "task_oracle": "TASK_ORACLE_BLOCKED",
     "benchmark": "PASS_MEASURED",
     "host": "VERIFIED_GFX1151"
@@ -78,7 +78,7 @@
     "routing_notes": "",
     "stderr_fallback_signals": [],
     "stdout_fallback_signals": [],
-    "worker_pid": 115780
+    "worker_pid": 112740
   },
   "parity": {
     "outputs": [
@@ -130,11 +130,11 @@
   },
   "task": null,
   "benchmark_data": {
-    "warm_run_ms_p50": 3.83075,
-    "warm_run_ms_p95": 4.1937050000000005,
-    "warm_run_ms_p99": 4.388007,
-    "warm_run_ms_mean": 3.864746666666667,
-    "warm_run_ms_std": 0.24619465297921392,
+    "warm_run_ms_p50": 4.542949999999999,
+    "warm_run_ms_p95": 6.174874999999998,
+    "warm_run_ms_p99": 6.7317670000000005,
+    "warm_run_ms_mean": 4.76655,
+    "warm_run_ms_std": 0.6572700164316033,
     "warm_run_samples": 30,
     "timer": "time.perf_counter_ns"
   },
@@ -148,7 +148,7 @@
     "raw_log_path_redacted": "reports/gfx1151/R1_20261117T215114Z/raw/log_yolo26n-seg__segment_dml.txt"
   },
   "verdicts": {
-    "identity": "IDENTITY_BINDING_UNPROVEN",
+    "identity": "EP_DEVICE_SELECTED",
     "amdgpu": {
       "execution": "NOT_RUN",
       "numeric_parity": "PASS",
@@ -158,7 +158,7 @@
       "benchmark": "MEASURED"
     },
     "dml": {
-      "execution": "BLOCKED_IDENTITY",
+      "execution": "PASS_FULL",
       "numeric_parity": "PASS",
       "task_parity": "NOT_RUN",
       "pt_app_smoke": "NOT_RUN",
@@ -176,14 +176,14 @@
     "preprocess": {
       "method": "letterbox",
       "params": {
-        "ratio": 0.5925925925925926,
+        "bottom": 0,
+        "imgsz": 640,
+        "left": 80,
         "new_h": 640,
         "new_w": 480,
-        "top": 0,
-        "left": 80,
-        "bottom": 0,
+        "ratio": 0.5925925925925926,
         "right": 80,
-        "imgsz": 640
+        "top": 0
       },
       "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
       "tensor_dtype": "float32",
@@ -223,8 +223,8 @@
   ],
   "worker": {
     "exit_code": 0,
-    "pid": 115780,
-    "parent_pid": 114028,
+    "pid": 112740,
+    "parent_pid": 105332,
     "python": "3.13"
   },
   "device_binding": {
