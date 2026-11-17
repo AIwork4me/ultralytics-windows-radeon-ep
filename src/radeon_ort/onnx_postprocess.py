@@ -63,7 +63,9 @@ def main() -> int:
         out["classes"] = dets[:, 5].astype(int).tolist()
         from ultralytics.utils.ops import crop_mask, process_mask
         if len(dets):
-            masks = process_mask(torch.from_numpy(proto), torch.from_numpy(dets[:, 6:]),
+            # vendor process_mask expects 3D protos (dim, mh, mw); ONNX emits [1,dim,mh,mw]
+            proto3 = proto.reshape(proto.shape[-3], proto.shape[-2], proto.shape[-1])
+            masks = process_mask(torch.from_numpy(proto3), torch.from_numpy(dets[:, 6:]),
                                  torch.from_numpy(dets[:, :4]), (a.imgsz, a.imgsz),
                                  upsample=True)
             masks = crop_mask(masks, torch.from_numpy(dets[:, :4]))
@@ -72,9 +74,15 @@ def main() -> int:
             heavy["masks"] = np.zeros((0, a.imgsz, a.imgsz), dtype=np.uint8)
         out["mask_shape"] = list(heavy["masks"].shape)
     elif a.task == "classify":
-        logits = z["output0"].reshape(-1)        # [1, 1000]
-        e = np.exp(logits - logits.max())
-        vec = (e / e.sum()).astype(np.float32)
+        vec = z["output0"].reshape(-1).astype(np.float32)  # [1, 1000]
+        # Ultralytics classify export applies softmax IN-GRAPH (verified live:
+        # output sums to 1.0, min>0). Normalize only if the graph emitted raw
+        # logits; never double-softmax.
+        s = float(vec.sum())
+        if not (0.999 < s < 1.001 and float(vec.min()) >= 0.0):
+            e = np.exp(vec - vec.max())
+            vec = (e / e.sum()).astype(np.float32)
+            out["softmax_applied_by_postprocess"] = True
         heavy["probs"] = vec
         top = np.argsort(vec)[::-1][:10]
         out["top1"] = int(top[0])
