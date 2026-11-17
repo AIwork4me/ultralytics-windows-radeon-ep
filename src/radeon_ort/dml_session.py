@@ -26,12 +26,12 @@ def create_dml_session(onnx_path: str | Path, *, device_id: int,
     so = ort.SessionOptions()
     if enable_profiling:
         so.enable_profiling = True
-        so.profile_file_profile_prefix = profile_prefix
+        so.profile_file_prefix = profile_prefix
     so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
     so.enable_mem_pattern = False
     so.log_severity_level = 3
 
-    pov = [{"device_id": int(device_id)}]
+    pov = [{"device_id": int(device_id)}, {}]
     return ort.InferenceSession(
         str(onnx_path), sess_options=so,
         providers=["DmlExecutionProvider", "CPUExecutionProvider"],

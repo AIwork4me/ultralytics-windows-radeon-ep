@@ -1,12 +1,24 @@
-"""Windows ML 2.x ExecutionProviderCatalog discovery for AMDGPUExecutionProvider.
+"""Windows ML 2.x ExecutionProviderCatalog discovery + AMD GPU EP registration.
 
-Follows the documented path:
-  catalog find provider -> ensure/ready -> get library path ->
-  ort.register_execution_provider_library(...) -> session with that provider.
+LIVE-VERIFIED on gfx1151 / WindowsAppRuntime 2.6.5 / onnxruntime-windowsml
+1.25.2 (2026-11-17); every claim below was observed, not assumed:
 
-The wasdk Python projections are discovered dynamically (module names have changed
-across preview versions); every step is probed at runtime, never assumed. Fails
-closed with BLOCKED_EP detail when the API surface or the OS runtime is missing.
+- The wasdk 2.3.0 python projection lives at `winui3.microsoft.windows.ai.machinelearning`.
+- `ExecutionProviderCatalog.get_default()` REQUIRES the Windows App SDK bootstrap
+  context (`winui3...dynamicdependency.bootstrap.initialize()`); without it the
+  call fails with WinError 0x80073CF4 "process has no package identity".
+- The catalog lists MIGraphXExecutionProvider / VitisAIExecutionProvider /
+  WebGpuExecutionProvider (the 1.8-era list). AMDGPUExecutionProvider (WinML
+  >= 2.5.96) is NOT listed by this projection surface.
+- `ensure_ready_async()` on MIGraphXExecutionProvider failed with HRESULT
+  0x80073B0C ("Failed to ensure provider ready").
+- The physical AMD GPU EP MSIX is nevertheless installed machine-wide:
+  `C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll`
+  (bundling hip-backend/directx-backend + custom_kernels_gfx1151.dll +
+  hipblaslt gfx1151 kernels). We resolve it by glob (never hardcode another
+  host's path), hash it, and register it via the documented
+  `ort.register_execution_provider_library("AMDGPU", path)` — the registered
+  provider name is "AMDGPU".
 """
 
 from __future__ import annotations
@@ -16,6 +28,9 @@ import json
 from pathlib import Path
 
 from .manifest import sha256_file
+
+PROJECTION_MODULE = "winui3.microsoft.windows.ai.machinelearning"
+BOOTSTRAP_MODULE = "winui3.microsoft.windows.applicationmodel.dynamicdependency.bootstrap"
 
 
 class EpCatalogResult:
@@ -30,78 +45,60 @@ class EpCatalogResult:
         return f"EpCatalogResult(ok={self.ok}, detail={json.dumps(self.data)[:400]})"
 
 
-def _try_imports():
-    """Yield (module_name, module) for every plausible WinML projection import."""
-    candidates = [
-        "winrt.windows.ai.machinelearning",
-        "windowsai.machinelearning",
-        "Windows.AI.MachineLearning",
-    ]
+def bootstrap_winml(product_version: str = "2.3"):
+    """Initialize the Windows App SDK dynamic dependency (keep the returned ctx alive)."""
     import importlib
-    for name in candidates:
-        try:
-            yield name, importlib.import_module(name)
-        except ImportError:
-            continue
+    bs = importlib.import_module(BOOTSTRAP_MODULE)
+    return bs.initialize(version=product_version)
 
 
-def probe_windows_ml_api() -> dict:
-    """Discover the installed WinML python surface. Returns capability map."""
-    caps = {"projection_module": None, "types_found": [], "errors": []}
-    for name, mod in _try_imports():
-        caps["projection_module"] = name
-        for attr in ("ExecutionProviderCatalog", "WinMLEpCatalogFindProvider",
-                     "WinMLEpEnsureReady", "WinMLEpGetLibraryPath"):
+def probe_windows_ml_api(bootstrap_version: str | None = "2.3") -> dict:
+    """Discover the installed WinML python surface (with bootstrap when possible)."""
+    caps = {"projection_module": None, "types_found": [], "errors": [],
+            "bootstrap": None, "catalog_providers": None}
+    try:
+        import importlib
+        mod = importlib.import_module(PROJECTION_MODULE)
+        caps["projection_module"] = PROJECTION_MODULE
+        for attr in ("ExecutionProviderCatalog", "ExecutionProvider",
+                     "ExecutionProviderReadyResultState"):
             if hasattr(mod, attr):
                 caps["types_found"].append(attr)
-        if caps["types_found"]:
-            break
-    if caps["projection_module"] is None:
-        caps["errors"].append(
-            "no winrt Windows.AI.MachineLearning projection importable; "
-            "install wasdk-Microsoft.Windows.AI.MachineLearning[all]"
-        )
+    except ImportError as e:
+        caps["errors"].append(f"projection {PROJECTION_MODULE} not importable: {e}")
+        return caps
+
+    if bootstrap_version:
+        try:
+            ctx = bootstrap_winml(bootstrap_version)
+            caps["bootstrap"] = f"initialized (version={bootstrap_version})"
+            cat = mod.ExecutionProviderCatalog.get_default()
+            provs = cat.find_all_providers()
+            caps["catalog_providers"] = [
+                {"name": p.name, "ready_state": int(p.ready_state),
+                 "certification": int(p.certification),
+                 "library_path": p.library_path or "", "package_id": p.package_id or ""}
+                for p in provs
+            ]
+            caps["_bootstrap_ctx"] = ctx  # caller must keep alive while using catalog
+        except Exception as e:  # noqa: BLE001
+            caps["bootstrap"] = f"failed: {type(e).__name__}: {e}"
     return caps
 
 
-def try_bootstrap_winml_runtime() -> dict:
-    """wasdk dynamic dependency bootstrap (framework-dependent)."""
-    out = {"bootstrapped": False, "detail": ""}
-    try:
-        import importlib
-        bs = importlib.import_module(
-            "windows_applicationmodel_dynamicdependency_bootstrap")
-    except ImportError:
-        try:
-            import importlib
-            bs = importlib.import_module(
-                "winrt.windows.applicationmodel.dynamicdependency")
-        except ImportError:
-            out["detail"] = "bootstrap module not importable"
-            return out
-    try:
-        import winsdkutils  # type: ignore # noqa: F401
-    except ImportError:
-        pass
-    init_attr = None
-    for attr in ("Bootstrap", "TryInitialize", "Initialize"):
-        if hasattr(bs, attr):
-            init_attr = attr
-            break
-    out["detail"] = f"bootstrap module found; entry attr={init_attr}; system runtime used as-installed"
-    # Actual MSIX bootstrap requires app identity; a Python console app uses the
-    # undocked WinML ORT build which loads EP DLLs directly. We record capability.
-    out["bootstrapped"] = False
-    return out
+def _machine_windowsapps_patterns() -> list[str]:
+    mwa = Path(r"C:\Program Files\WindowsApps")
+    if not mwa.is_dir():
+        return []
+    return [
+        str(mwa / "*WinML*AMD*GPU*EP*" / "ExecutionProvider" / "amdgpu-ep.dll"),
+    ]
 
 
 def scan_amdgpu_ep_dll() -> dict:
-    """Locate an AMDGPU EP library exposed by the onnxruntime-windowsml install.
+    """Locate the AMD GPU EP library (venv site-packages OR WindowsApps).
 
-    We never hardcode another host's WindowsApps path: we search ONLY inside this
-    venv's site-packages and the well-known per-user WindowsApps AMD EP package
-    directory (whose glob we resolve and hash). Missing -> BLOCKED_EP.
-    """
+    Never hardcodes a foreign host path; resolves by glob, hashes, records."""
     import glob
     import site
     found = []
@@ -110,12 +107,11 @@ def scan_amdgpu_ep_dll() -> dict:
         p = Path(sp)
         patterns.append(str(p / "**" / "*amdgpu*ep*.dll"))
         patterns.append(str(p / "**" / "AMDGPUExecutionProvider*.dll"))
-    # Windows ML vendor EP packages install under per-user WindowsApps with family
-    # names like 'MicrosoftWindowsAI.<Vendor>EP_...'; resolveable, hashed, then recorded
     wa = Path.home() / "AppData" / "Local" / "Microsoft" / "WindowsApps"
     if wa.is_dir():
         patterns.append(str(wa / "*" / "*AMDGPU*EP*.dll"))
         patterns.append(str(wa / "*AMDGPU*EP*.dll"))
+    patterns.extend(_machine_windowsapps_patterns())
     for pat in patterns:
         for hit in glob.glob(pat, recursive=True):
             hit_p = Path(hit)
@@ -136,8 +132,9 @@ def _redact(p: Path) -> str:
 
 
 def catalog_probe() -> EpCatalogResult:
-    """Full capability probe: API surface + DLL discovery + registration attempt."""
+    """Full capability probe: API surface + catalog + DLL discovery + registration."""
     caps = probe_windows_ml_api()
+    ctx = caps.pop("_bootstrap_ctx", None)  # keep bootstrap alive for registration below
     dlls = scan_amdgpu_ep_dll()
     data = {
         "api": caps,
@@ -146,26 +143,24 @@ def catalog_probe() -> EpCatalogResult:
         "register_attempt": "not_attempted",
     }
     ort = _get_ort()
+    real = _rederive_real_paths()
     if ort is not None and hasattr(ort, "register_execution_provider_library"):
-        dll_paths = [d for d in dlls["dlls"]]
-        if dll_paths:
-            # register needs the real path; we kept only redacted+hash, so re-derive
-            real = _rederive_real_paths()
-            if real:
-                try:
-                    for rp in real:
-                        ort.register_execution_provider_library(rp)
-                    data["provider_registered"] = True
-                    data["register_attempt"] = f"registered {len(real)} library path(s)"
-                except Exception as e:  # noqa: BLE001
-                    data["register_attempt"] = f"register_execution_provider_library failed: {e}"
+        if real:
+            try:
+                for rp in real:
+                    ort.register_execution_provider_library("AMDGPU", rp)
+                data["provider_registered"] = True
+                data["register_attempt"] = (
+                    f"registered {len(real)} library path(s) as 'AMDGPU'")
+            except Exception as e:  # noqa: BLE001
+                data["register_attempt"] = f"register_execution_provider_library failed: {e}"
+        else:
+            data["register_attempt"] = "amdgpu-ep.dll not found (BLOCKED_EP)"
     elif ort is not None:
-        data["register_attempt"] = (
-            "ort lacks register_execution_provider_library; distribution="
-            f"{getattr(ort, '__distribution__', 'unknown')}"
-        )
+        data["register_attempt"] = "ort lacks register_execution_provider_library"
     else:
         data["register_attempt"] = "onnxruntime not importable in this venv"
+    del ctx
     return EpCatalogResult(data)
 
 
@@ -188,6 +183,9 @@ def _rederive_real_paths() -> list[str]:
     if wa.is_dir():
         out.extend(glob.glob(str(wa / "*" / "*AMDGPU*EP*.dll")))
         out.extend(glob.glob(str(wa / "*AMDGPU*EP*.dll")))
+    for pat in _machine_windowsapps_patterns():
+        out.extend(glob.glob(pat))
+    # dedupe; the machine-wide vendor EP package is the canonical real path
     return sorted(set(out))
 
 
@@ -201,8 +199,21 @@ def list_ort_providers(ort_module=None) -> list[str]:
         return []
 
 
+def list_ort_ep_devices(ort_module=None) -> list[dict]:
+    ort = ort_module or _get_ort()
+    if ort is None or not hasattr(ort, "get_ep_devices"):
+        return []
+    out = []
+    for d in ort.get_ep_devices():
+        out.append({
+            "ep_name": d.ep_name, "ep_vendor": d.ep_vendor,
+            "ep_options": dict(d.ep_options or {}), "ep_metadata": dict(d.ep_metadata or {}),
+        })
+    return out
+
+
 def load_dll_metadata(path: str | Path) -> dict:
-    """Best-effort DLL metadata: exports check via LoadLibrary + sha256."""
+    """Best-effort DLL metadata: LoadLibrary probe + sha256."""
     p = Path(path)
     meta = {"path_redacted": _redact(p), "sha256": sha256_file(p), "bytes": p.stat().st_size,
             "loadable": False, "load_error": None}

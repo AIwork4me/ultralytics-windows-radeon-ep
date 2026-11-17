@@ -1,0 +1,49 @@
+{
+  "captured_utc": "2026-11-17T14:07:40Z",
+  "api": {
+    "projection_module": "winui3.microsoft.windows.ai.machinelearning",
+    "types_found": [
+      "ExecutionProviderCatalog",
+      "ExecutionProvider",
+      "ExecutionProviderReadyResultState"
+    ],
+    "errors": [],
+    "bootstrap": "initialized (version=2.3)",
+    "catalog_providers": [
+      {
+        "name": "MIGraphXExecutionProvider",
+        "ready_state": 2,
+        "certification": 1,
+        "library_path": "",
+        "package_id": ""
+      },
+      {
+        "name": "VitisAIExecutionProvider",
+        "ready_state": 2,
+        "certification": 1,
+        "library_path": "",
+        "package_id": ""
+      },
+      {
+        "name": "WebGpuExecutionProvider",
+        "ready_state": 2,
+        "certification": 2,
+        "library_path": "",
+        "package_id": ""
+      }
+    ]
+  },
+  "amdgpu_dlls": [
+    {
+      "path_redacted": "C:/Program Files/WindowsApps/MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe/ExecutionProvider/amdgpu-ep.dll",
+      "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+      "bytes": 548304
+    }
+  ],
+  "register_attempt": "registered 1 library path(s) as 'AMDGPU'",
+  "available_providers": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider",
+    "AMDGPU"
+  ]
+}

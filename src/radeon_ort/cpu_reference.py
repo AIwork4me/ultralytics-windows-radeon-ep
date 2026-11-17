@@ -11,7 +11,7 @@ def create_cpu_session(onnx_path: str | Path, *, enable_profiling: bool = False,
     so = ort.SessionOptions()
     if enable_profiling:
         so.enable_profiling = True
-        so.profile_file_profile_prefix = profile_prefix
+        so.profile_file_prefix = profile_prefix
     # Match GPU-session optimization defaults as closely as possible.
     so.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
     return ort.InferenceSession(str(onnx_path), sess_options=so,

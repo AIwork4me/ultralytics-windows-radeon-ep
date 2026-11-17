@@ -121,7 +121,9 @@ def derive_gpu_status(receipt: dict, ep: str) -> str:
         return "BLOCKED_IDENTITY"
 
     counts = session.get("provider_node_counts") or {}
-    target_nodes = counts.get(ep_name, 0)
+    # ORT profiler keys are real provider names: AMDGPU / DmlExecutionProvider
+    ort_key = "AMDGPU" if ep == "amdgpu" else "DmlExecutionProvider"
+    target_nodes = counts.get(ort_key, counts.get(ep_name, 0))
     if not isinstance(target_nodes, int) or isinstance(target_nodes, bool) or target_nodes < 0:
         raise ReceiptValidationError(f"{ep}: target-EP node count must be a non-negative integer")
     if target_nodes == 0:
@@ -202,12 +204,13 @@ def validate_receipt_strict(receipt: dict, *, expect_ep: str | None = None) -> d
             )
     # FULL claims must not carry CPU compute nodes
     for ep, ep_name in (("amdgpu", "AMDGPU"), ("dml", "DML")):
+        ort_key = "AMDGPU" if ep == "amdgpu" else "DmlExecutionProvider"
         if receipt["status"][ep] == GPU_PASS_FULL:
             counts = (receipt.get("session") or {}).get("provider_node_counts") or {}
             if counts.get("CPU", 0) > 0:
                 problems.append(f"{ep}: FULL claim but CPU nodes > 0")
-            if counts.get(ep_name, 0) <= 0:
-                problems.append(f"{ep}: FULL claim but {ep_name} node count not positive")
+            if counts.get(ort_key, counts.get(ep_name, 0)) <= 0:
+                problems.append(f"{ep}: FULL claim but {ort_key} node count not positive")
         # any recorded error for this EP is incompatible with a PASS claim
         if receipt["status"][ep].startswith("PASS_GPU"):
             ep_errors = [e for e in (receipt.get("errors") or [])

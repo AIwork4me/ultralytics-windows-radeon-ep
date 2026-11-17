@@ -54,12 +54,29 @@ def main() -> int:
         if ep == "cpu":
             sess = create_cpu_session(onnx_path, enable_profiling=True)
         elif ep == "amdgpu":
-            from radeon_ort.amdgpu_session import create_amdgpu_session
-            sess = create_amdgpu_session(onnx_path, profile_prefix=case.get("profile_prefix", "amdgpu"))
+            from radeon_ort import windows_ml_ep_catalog
+            from radeon_ort.amdgpu_session import (amdgpu_ep_devices,
+                                                   create_amdgpu_session,
+                                                   register_amdgpu_ep_library)
+            if not amdgpu_ep_devices():
+                dlls = windows_ml_ep_catalog._rederive_real_paths()
+                if not dlls:
+                    frag["session"]["routing_notes"] = (
+                        "BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps")
+                    _write(a.out, frag)
+                    print("BLOCKED_EP: amdgpu-ep.dll not found", file=sys.stderr)
+                    return 34
+                frag["session"]["ep_library_path_redacted"] = windows_ml_ep_catalog._redact(
+                    __import__("pathlib").Path(dlls[-1]))
+                register_amdgpu_ep_library(dlls[-1])
+            sess = create_amdgpu_session(
+                onnx_path, profile_prefix=case.get("profile_prefix", "amdgpu"),
+                feeds_for_validation=feeds)
         elif ep == "dml":
-            from radeon_ort.dml_session import create_dml_session
+            from radeon_ort.dml_session import (create_dml_session,
+                                                resolve_dml_device_id_for_adapter)
             # select DML adapter by resolved DXGI index of the intended Radeon
-            dml_idx = device_identity.resolve_dml_device_id_for_adapter(target.index)
+            dml_idx = resolve_dml_device_id_for_adapter(target.index)
             sess = create_dml_session(onnx_path, device_id=dml_idx,
                                       profile_prefix=case.get("profile_prefix", "dml"))
         else:
@@ -89,12 +106,13 @@ def main() -> int:
             frag["benchmark_data"] = bench_session_run(sess, feeds)
 
         _write(a.out, frag)
-        ep_name = ep.upper()
-        ep_nodes = audit["provider_node_counts"].get(ep_name, 0)
+        # ORT profiler uses REAL provider names: AMDGPU / DmlExecutionProvider
+        ort_provider_key = "AMDGPU" if ep == "amdgpu" else "DmlExecutionProvider"
+        ep_nodes = audit["provider_node_counts"].get(ort_provider_key, 0)
         if ep == "cpu":
             return 0  # reference path; never a GPU claim
         if ep_nodes == 0:
-            print(f"{ep_name}_FAILED: zero target-EP profile nodes (no GPU compute)", file=sys.stderr)
+            print(f"{ep.upper()}_FAILED: zero target-EP profile nodes (no GPU compute)", file=sys.stderr)
             return 31 if ep == "amdgpu" else 32
         return 0
     except Exception as e:  # noqa: BLE001

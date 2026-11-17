@@ -73,11 +73,15 @@ class _DXGI_ADAPTER_DESC1(ctypes.Structure):
 
 
 def _vtbl(instance):
-    return ctypes.cast(ctypes.cast(instance, ctypes.c_void_p).value,
-                       ctypes.POINTER(ctypes.c_void_p))
+    """Dereference a COM interface pointer to its vtable (one level of indirection)."""
+    iface = ctypes.cast(instance, ctypes.c_void_p).value
+    if not iface:
+        raise OSError("null COM interface pointer")
+    vtbl_ptr = ctypes.cast(iface, ctypes.POINTER(ctypes.c_void_p))[0]
+    return ctypes.cast(vtbl_ptr, ctypes.POINTER(ctypes.c_void_p))
 
 
-# IUnknown(0-2) + IDXGIObject(3-6) + IDXGIFactory(7-11) => IDXGIFactory1::EnumAdapters1 = 12
+# Empirically verified on this host (see tests): IDXGIFactory1::EnumAdapters1 = vtable slot 12
 _IDXGIFACTORY1_ENUMADAPTERS1 = 12
 # IUnknown(0-2) + IDXGIObject(3-6) + IDXGIAdapter(7-9) => IDXGIAdapter1::GetDesc1 = 10
 _IDXGIADAPTER1_GETDESC1 = 10
@@ -94,20 +98,22 @@ def enum_dxgi_adapters() -> list[DxgiAdapter]:
 
     adapters: list[DxgiAdapter] = []
     factory_vtbl = _vtbl(factory)
+    # restype c_long (not HRESULT: ctypes auto-raises OSError on failing HRESULTs,
+    # which would prevent us from handling DXGI_ERROR_NOT_FOUND as end-of-list)
     enum_adapters1 = ctypes.WINFUNCTYPE(
-        ctypes.HRESULT, ctypes.c_void_p, ctypes.c_uint,
+        ctypes.c_long, ctypes.c_void_p, ctypes.c_uint,
         ctypes.POINTER(ctypes.c_void_p))(factory_vtbl[_IDXGIFACTORY1_ENUMADAPTERS1])
 
     for i in range(16):
         adapter = ctypes.c_void_p()
         hr = enum_adapters1(factory, i, ctypes.byref(adapter))
-        if hr == DXGI_ERROR_NOT_FOUND:
+        if hr & 0xFFFFFFFF == DXGI_ERROR_NOT_FOUND:  # HRESULT is signed here
             break
         if hr != 0:
             raise OSError(f"EnumAdapters1({i}) hr=0x{hr & 0xFFFFFFFF:08X}")
         adapter_vtbl = _vtbl(adapter)
         get_desc1 = ctypes.WINFUNCTYPE(
-            ctypes.HRESULT, ctypes.c_void_p, ctypes.POINTER(_DXGI_ADAPTER_DESC1))(
+            ctypes.c_long, ctypes.c_void_p, ctypes.POINTER(_DXGI_ADAPTER_DESC1))(
             adapter_vtbl[_IDXGIADAPTER1_GETDESC1])
         desc = _DXGI_ADAPTER_DESC1()
         hr = get_desc1(adapter, ctypes.byref(desc))
@@ -158,13 +164,25 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
             cands = [a for a in amd if any(n.lower() in a.description.lower() for n in name_needles)]
     else:
         cands = amd
+    dup_note = None
 
     if len(cands) == 0:
         return {"ok": False, "reason": f"WRONG_OR_AMBIGUOUS_DEVICE: no candidate for {gfx}"}
     if len(cands) > 1:
-        return {"ok": False, "reason":
-                f"WRONG_OR_AMBIGUOUS_DEVICE: {len(cands)} AMD candidates "
-                f"({[a.description for a in cands]})"}
+        # An integrated Radeon can be enumerated multiple times (e.g. compute +
+        # display enumeration, LUID differs per instance). Multiple entries with
+        # IDENTICAL vendor+deviceId+description denote the same physical silicon;
+        # keep the lowest index and record every observed LUID as corroboration.
+        uniq = {(a.vendor_id, a.device_id, a.description): None for a in cands}
+        if len(uniq) == 1:
+            dup_note = (f"same physical {gfx} enumerated {len(cands)}x "
+                        f"(LUIDs: {[a.luid_str for a in cands]}); selected index "
+                        f"{min(a.index for a in cands)}")
+            cands = [min(cands, key=lambda a: a.index)]
+        else:
+            return {"ok": False, "reason":
+                    f"WRONG_OR_AMBIGUOUS_DEVICE: {len(cands)} distinct AMD candidates "
+                    f"({[a.description for a in cands]})"}
 
     a = cands[0]
     corroborated = []
@@ -173,13 +191,16 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
     for n in name_needles:
         if n.lower() in a.description.lower():
             corroborated.append(f"description contains '{n}'")
-    return {
+    result = {
         "ok": True,
         "adapter": a,
         "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed)",
         "corroboration": corroborated,
         "note": "LUID is boot-local; recorded as session corroboration only",
     }
+    if dup_note is not None:
+        result["dedup_note"] = dup_note
+    return result
 
 
 def canary_inputs(seed: int = 1234) -> dict:

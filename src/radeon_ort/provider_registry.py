@@ -26,7 +26,7 @@ class ProviderPolicy:
         if self.mode == "cpu_opt_in":
             return ["CPUExecutionProvider"]
         if ep == "amdgpu":
-            return ["AMDGPUExecutionProvider"]  # strict: no CPU entry => create fails if EP unavailable
+            return ["AMDGPU"]  # strict: no CPU entry => create fails if EP unavailable
         if ep == "dml":
             return ["DmlExecutionProvider", "CPUExecutionProvider"]
         raise ValueError(ep)
@@ -45,7 +45,7 @@ def session_options_common(enable_profiling: bool = True, profile_path: str = "o
     so = ort.SessionOptions()
     if enable_profiling:
         so.enable_profiling = True
-        so.profile_file_profile_prefix = profile_path
+        so.profile_file_prefix = profile_path
     so.log_severity_level = 3
     so.log_verbosity_level = 0
     return so
