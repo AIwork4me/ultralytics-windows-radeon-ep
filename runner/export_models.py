@@ -7,10 +7,9 @@ import json
 import sys
 from pathlib import Path
 
-from runner import REPO_ROOT
-
 from radeon_ort.model_export import run_export
 from radeon_ort.model_registry import ModelRegistry
+from runner import REPO_ROOT
 
 
 def main() -> int:
@@ -35,7 +34,6 @@ def main() -> int:
         pt = registry.pt_path(entry["checkpoint"])
         if not pt.is_file():
             if a.allow_asset_download:
-                from ultralytics import YOLO  # in export venv? no: run via subprocess
                 pass
             print(f"[export] SKIP {entry['checkpoint']} (pt missing; download gate)")
             continue

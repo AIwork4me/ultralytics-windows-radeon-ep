@@ -50,6 +50,6 @@ def run_ep_subprocess(python_exe: str | None, script: str | Path, *,
                           exit_code=r.returncode,
                           stdout_tail=r.stdout[-4000:], stderr_tail=r.stderr[-4000:],
                           receipt_fragment=frag)
-    except subprocess.TimeoutExpired as e:
+    except subprocess.TimeoutExpired:
         return EpAttempt(ep="?", exit_code=124, stderr_tail=f"TIMEOUT after {timeout_s}s",
                          receipt_fragment=None)

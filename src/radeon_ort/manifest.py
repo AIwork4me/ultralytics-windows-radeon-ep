@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 
@@ -36,7 +36,7 @@ def build_manifest(root: str | Path, run_id: str, generator: str, *,
     return {
         "schema_version": 1,
         "run_id": run_id,
-        "created_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "created_utc": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "generator": generator,
         "entries": entries,
     }

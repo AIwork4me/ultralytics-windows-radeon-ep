@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import argparse
 import sys
 
 from runner.run_matrix import main as run_matrix_main

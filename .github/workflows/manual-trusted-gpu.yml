@@ -23,7 +23,7 @@ on:
 jobs:
   gpu-matrix:
     if: github.event_name == 'workflow_dispatch'
-    runs-on: [self-hosted, windows, "${{ github.event.inputs.host }}"]
+    runs-on: [self-hosted, windows, gpu]
     environment: trusted-gpu
     steps:
       - name: Guard: refuse untrusted refs

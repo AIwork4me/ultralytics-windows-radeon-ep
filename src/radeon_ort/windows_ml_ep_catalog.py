@@ -209,7 +209,7 @@ def load_dll_metadata(path: str | Path) -> dict:
     try:
         h = ctypes.WinDLL(str(p))
         meta["loadable"] = True
-        meta["_handle"] = h._handle  # noqa: SLF001
+        meta["_handle"] = h._handle
     except OSError as e:
         meta["load_error"] = str(e)
     return meta

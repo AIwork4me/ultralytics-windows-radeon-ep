@@ -18,8 +18,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from radeon_ort import device_identity, profiler_audit  # noqa: E402
-from radeon_ort.cpu_reference import compare_outputs, create_cpu_session  # noqa: E402
+from radeon_ort import device_identity, profiler_audit
+from radeon_ort.cpu_reference import compare_outputs, create_cpu_session
 
 
 def _np(v):

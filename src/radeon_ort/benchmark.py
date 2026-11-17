@@ -55,7 +55,7 @@ def bench_session_run(session, feeds: dict, *, warmup: int = 5, samples: int = 3
 
 
 def e2e_image_timings(pre_ms: list[float], run_ms: list[float], post_ms: list[float]) -> dict:
-    pre, run, post = sorted(pre_ms), sorted(run_ms), sorted(post_ms)
+    _pre, _run, _post = sorted(pre_ms), sorted(run_ms), sorted(post_ms)
     e2e = [p + r + q for p, r, q in zip(pre_ms, run_ms, post_ms)]
     e2e_sorted = sorted(e2e)
     return {

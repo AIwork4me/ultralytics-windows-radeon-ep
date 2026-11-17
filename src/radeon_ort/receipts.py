@@ -15,8 +15,8 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
+from datetime import UTC
 from pathlib import Path
-from typing import Any
 
 RECEIPT_SCHEMA_VERSION = 1
 
@@ -61,8 +61,8 @@ class ReceiptStatus:
 
 
 def utc_now_iso() -> str:
-    from datetime import datetime, timezone
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    from datetime import datetime
+    return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def build_receipt(*, run_id: str, case_id: str, status: ReceiptStatus, host: dict,

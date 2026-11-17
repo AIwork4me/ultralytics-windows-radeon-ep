@@ -12,13 +12,18 @@ import sys
 import time
 from pathlib import Path
 
-from runner import REPO_ROOT
-
+from radeon_ort import redaction
 from radeon_ort.manifest import sha256_file
 from radeon_ort.model_registry import ModelRegistry
-from radeon_ort.receipts import ReceiptStatus, build_receipt, save_receipt, validate_receipt_strict, utc_now_iso
+from radeon_ort.receipts import (
+    ReceiptStatus,
+    build_receipt,
+    save_receipt,
+    utc_now_iso,
+    validate_receipt_strict,
+)
 from radeon_ort.task_oracles import run_pt_oracle
-from radeon_ort import redaction
+from runner import REPO_ROOT
 
 
 def load_catalog(path: Path) -> dict:

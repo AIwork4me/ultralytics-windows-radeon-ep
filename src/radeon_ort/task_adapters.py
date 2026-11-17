@@ -19,7 +19,7 @@ def letterbox_image(img: np.ndarray, out_sz: int, pad_color: int = 114) -> tuple
     import cv2
     h, w = img.shape[:2]
     r = min(out_sz / h, out_sz / w)
-    nh, nw = int(round(h * r)), int(round(w * r))
+    nh, nw = round(h * r), round(w * r)
     dh, dw = out_sz - nh, out_sz - nw
     top, bottom = dh // 2, dh - dh // 2
     left, right = dw // 2, dw - dw // 2

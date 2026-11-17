@@ -29,10 +29,7 @@ def audit_profile(profile_path: str | Path) -> dict:
             counts[provider] = counts.get(provider, 0) + 1
             if len(op_samples) < 40:
                 op_samples.append(f"{name}@{provider}")
-        elif cat == "Kernel" and provider:
-            counts[provider] = counts.get(provider, 0) + 1
-            fused_events += 1
-        elif "fused" in name.lower() and provider:
+        elif cat == "Kernel" and provider or "fused" in name.lower() and provider:
             counts[provider] = counts.get(provider, 0) + 1
             fused_events += 1
         elif cat in ("fence_before", "fence_after"):

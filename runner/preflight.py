@@ -11,11 +11,10 @@ import json
 import sys
 from pathlib import Path
 
-from runner import REPO_ROOT
-
 from radeon_ort import device_identity, host_probe, redaction, windows_ml_ep_catalog
 from radeon_ort.manifest import sha256_file
 from radeon_ort.receipts import utc_now_iso
+from runner import REPO_ROOT
 
 
 def main() -> int:

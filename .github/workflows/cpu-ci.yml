@@ -25,7 +25,9 @@ jobs:
       - name: Compile check
         run: python -m compileall src runner tests
       - name: Lint (non-blocking info)
-        run: ruff check src runner || echo "ruff findings present (non-blocking)"
+        shell: bash
+        run: |
+          ruff check src runner || echo "ruff findings present (non-blocking)"
       - name: Unit + contracts + adversarial tests
         run: python -m pytest tests/unit tests/contracts tests/adversarial -q
       - name: Catalog policy check

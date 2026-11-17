@@ -11,11 +11,9 @@ import json
 import sys
 from pathlib import Path
 
-from runner import REPO_ROOT
-
+from radeon_ort import redaction
 from radeon_ort.manifest import verify_manifest
 from radeon_ort.receipts import verify_receipt_file
-from radeon_ort import redaction
 
 
 def main() -> int:
