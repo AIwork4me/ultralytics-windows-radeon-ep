@@ -92,8 +92,8 @@
         "task": { "type": "string" },
         "checkpoint": { "type": "string" },
         "size": { "type": ["string", "null"] },
-        "pt_sha256": { "$ref": "#/definitions/sha256_hex" },
-        "onnx_sha256": { "$ref": "#/definitions/sha256_hex" },
+        "pt_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] },
+        "onnx_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] },
         "onnx_path_redacted": { "type": "string" },
         "export": {
           "type": "object",
@@ -110,7 +110,7 @@
         },
         "input_names": { "type": "array", "items": { "type": "string" } },
         "output_names": { "type": "array", "items": { "type": "string" } },
-        "inputs_sha256": { "$ref": "#/definitions/sha256_hex" }
+        "inputs_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] }
       }
     },
     "session_block": {

@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "receipt_version": 1,
+  "run_id": "G3_TIERB_YOLO26S",
+  "case_id": "yolo26s-seg__segment__dml",
+  "created_utc": "2026-11-17T15:23:54Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "NOT_APPLICABLE",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "NOT_RUN",
+    "dml": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "benchmark": "PASS_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "unknown",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "device_luid": "0x00000000:0x00011746",
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22032.6002",
+    "driver_date": null,
+    "wddm_version": null,
+    "verified_device_identity": true,
+    "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed); same physical gfx1151 enumerated 2x (LUIDs: ['0x00000000:0x00011746', '0x00000000:0x0001FA74']); selected index 0",
+    "dxgi_evidence": {
+      "adapters": [
+        {
+          "i": 0,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x00011746"
+        },
+        {
+          "i": 1,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x0001FA74"
+        },
+        {
+          "i": 2,
+          "desc": "Microsoft Basic Render Driver",
+          "vid": "0x1414",
+          "did": "0x008C",
+          "luid": "0x00000000:0x00013846"
+        }
+      ],
+      "selected_luid": "0x00000000:0x00011746"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1\\4&35FE04F8&0&0041"
+    }
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "segment",
+    "checkpoint": "yolo26s-seg.pt",
+    "size": "s",
+    "pt_sha256": "3da1d83e31caec96f9300eb4064f4f62882c133c7c264d63dfe61a7c197837a4",
+    "onnx_sha256": "a581aeb5c5f2755b1b1e24bcfe5e3bd64cb354d7e9a093f4137ab9f7e8b4ce49",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO_AMD/uwr_gfx1151/ultralytics-windows-radeon-ep/models/onnx/yolo26s-seg.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 640,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false
+    },
+    "inputs_sha256": "77a2981d9a297c8de0b7538dc04d445949538deae06bb1b8c0bd7ae6944551e9"
+  },
+  "session": {
+    "ep": "DML",
+    "requested_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "graph_node_total": 1,
+    "profile_fused_event_present": false,
+    "ort_version": "1.25.2",
+    "ort_distribution": "onnxruntime",
+    "device_luid": "0x00000000:0x00011746",
+    "stderr_fallback_signals": []
+  },
+  "parity": {
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          116,
+          8400
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 0.00152587890625,
+        "mean_abs_diff": 1.2272242324012182e-06,
+        "max_rel_diff": 138300.47862484207,
+        "p99_abs_diff": 3.0517578125e-05,
+        "allclose": true,
+        "threshold_used": 0.005
+      },
+      {
+        "name": "output1",
+        "shape": [
+          1,
+          32,
+          160,
+          160
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 4.887580871582031e-06,
+        "mean_abs_diff": 3.1519250158824895e-07,
+        "max_rel_diff": 0.16000014892563583,
+        "p99_abs_diff": 1.5497207641601562e-06,
+        "allclose": true,
+        "threshold_used": 0.005
+      }
+    ],
+    "all_outputs_allclose": true,
+    "by_name_matching": true
+  },
+  "task": {
+    "oracle_kind": "PT_APP",
+    "metrics": {
+      "pt_boxes": 5
+    },
+    "passed": true,
+    "summary": "PT oracle ran; task=segment"
+  },
+  "benchmark_data": {
+    "warm_run_ms_p50": 12.301400000000001,
+    "warm_run_ms_p95": 20.06541,
+    "warm_run_ms_p99": 21.543576,
+    "warm_run_ms_mean": 13.38701,
+    "warm_run_ms_std": 3.011587644897621,
+    "warm_run_samples": 30,
+    "timer": "time.perf_counter_ns"
+  },
+  "errors": [],
+  "provenance": {
+    "script_head_sha": "git:see-run-metadata",
+    "command": "python -m runner.run_matrix --case yolo26s-seg__segment__dml",
+    "seed": 20260101,
+    "python_version": "3.13.13",
+    "ultralytics_version": null,
+    "raw_log_path_redacted": "%USERPROFILE%//Desktop/YOLO_AMD/uwr_gfx1151/ultralytics-windows-radeon-ep/reports/gfx1151/G3_TIERB_YOLO26S/raw/stdout_yolo26s-seg__segment__dml.txt"
+  }
+}

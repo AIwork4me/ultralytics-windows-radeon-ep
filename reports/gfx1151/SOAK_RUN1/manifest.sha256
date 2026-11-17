@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "SOAK_RUN1",
+  "created_utc": "2026-11-17T15:49:30Z",
+  "generator": "runner.soak",
+  "entries": [
+    {
+      "path": "SOAK_amdgpu.json",
+      "sha256": "8940a85de99d65fb674be2f689d8bf0ec5ddc7da3f3de9ff1df612024e06cd65",
+      "bytes": 1443
+    },
+    {
+      "path": "SOAK_dml.json",
+      "sha256": "7a7974a63a3b48c67e6fbd42440623dee0ba2c1c2d8c51f50be9c84dc51ad9f2",
+      "bytes": 2021
+    }
+  ]
+}

@@ -59,9 +59,10 @@ def create_amdgpu_session(onnx_path: str | Path, *, enable_profiling: bool = Tru
     last_err: Exception | None = None
     for dev in devices:
         so = ort.SessionOptions()
-        if enable_profiling:
-            so.enable_profiling = True
-            so.profile_file_prefix = f"{profile_prefix}_probe"
+        # probe session ALWAYS profiles: the fail-closed device probe requires
+        # profiler evidence of AMDGPU compute (cannot be disabled)
+        so.enable_profiling = True
+        so.profile_file_prefix = f"{profile_prefix}_probe"
         so.log_severity_level = 3
         so.add_provider_for_devices([dev], {})
         try:
