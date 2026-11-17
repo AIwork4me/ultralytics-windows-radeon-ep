@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radeon-ort"
+version = "0.1.0"
+description = "Independent Windows ML 2.x (AMDGPU EP + DirectML EP) validation harness for Ultralytics ONNX models on AMD Radeon (gfx1151 8060S first)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "AIwork4me" }]
+dependencies = [
+  "numpy>=1.26,<3",
+  "pyyaml>=6.0",
+  "jsonschema>=4.20",
+]
+
+[project.optional-dependencies]
+winml = [
+  "wasdk-Microsoft.Windows.AI.MachineLearning[all]==2.3.0",
+  "wasdk-Microsoft.Windows.ApplicationModel.DynamicDependency.Bootstrap==2.3.0",
+  # pinned transitively by the wasdk package: onnxruntime-windowsml==1.25.2.202605110140
+]
+dml = ["onnxruntime-directml>=1.20"]
+export = ["ultralytics>=8.3.0", "onnx>=1.16"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.setuptools.packages.find]
+include = ["radeon_ort*", "runner*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "hardware: requires a physical AMD GPU on this host (deselected on CI)",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

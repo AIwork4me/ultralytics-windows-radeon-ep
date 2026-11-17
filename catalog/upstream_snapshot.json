@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-17T13:35:27Z",
+  "ultralytics_release": "8.4.215",
+  "ultralytics_commit_sha": "b1942e939948e9933a6ad38f6f7a0e104086b56b",
+  "docs_models_url": "https://docs.ultralytics.com/models/",
+  "docs_onnx_url": "https://docs.ultralytics.com/integrations/onnx/",
+  "docs_access_utc": "2026-11-17T13:35:27Z"
+}

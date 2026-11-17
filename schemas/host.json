@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep/schemas/host.json",
+  "title": "UWR host fingerprint",
+  "type": "object",
+  "required": ["schema_version", "captured_utc", "os", "cpu", "gpu_target", "python", "tooling"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "captured_utc": { "type": "string" },
+    "os": {
+      "type": "object",
+      "required": ["edition", "display_version", "build", "ubr"],
+      "properties": {
+        "edition": { "type": "string" },
+        "display_version": { "type": "string" },
+        "build": { "type": "string" },
+        "ubr": { "type": "integer" }
+      }
+    },
+    "cpu": {
+      "type": "object",
+      "required": ["name", "ram_gb"],
+      "properties": { "name": { "type": "string" }, "ram_gb": { "type": "number" } }
+    },
+    "gpu_target": {
+      "type": "object",
+      "required": ["name", "gfx", "driver_version", "verified"],
+      "properties": {
+        "name": { "type": "string" },
+        "gfx": { "type": "string" },
+        "driver_version": { "type": "string" },
+        "driver_date": { "type": ["string", "null"] },
+        "wddm": { "type": ["string", "null"] },
+        "pnp_device_id": { "type": ["string", "null"] },
+        "luid": { "type": ["string", "null"] },
+        "dedicated_vram_mb": { "type": ["integer", "null"] },
+        "shared_memory_mb": { "type": ["integer", "null"] },
+        "integrated": { "type": ["boolean", "null"] },
+        "verified": { "type": "boolean" },
+        "identity_method": { "type": "string" }
+      }
+    },
+    "other_adapters": { "type": "array", "items": { "type": "object" } },
+    "windows_app_runtime_versions": { "type": "array", "items": { "type": "string" } },
+    "python": { "type": "object" },
+    "tooling": { "type": "object" }
+  }
+}

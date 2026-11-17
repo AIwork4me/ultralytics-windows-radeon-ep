@@ -1,0 +1,42 @@
+# Numeric + task thresholds, fixed BEFORE observing GPU outputs (mission P3.1).
+# Justification: fp32 GPU vs CPU ORT on conv nets typically lands <= 1e-3 abs on
+# normalized inputs; DML may reorder reductions -> slightly looser; depth maps are
+# larger magnitude -> rel-based bound. int8 compares vs int8-CPU graph, not fp32.
+numeric_parity:
+  fp32:
+    atol: 5.0e-3
+    rtol: 5.0e-3
+  fp16_or_quantize16:
+    atol: 5.0e-2
+    rtol: 5.0e-2
+  int8:
+    atol: null    # quality vs fp32 measured separately (mAP-style), not bitwise
+  canary:
+    atol: 2.0e-4
+    rtol: 2.0e-4
+task_oracle:
+  detection:
+    iou_thres: 0.5
+    min_precision: 0.90
+    min_recall: 0.90
+    min_matches: 1
+  segmentation:
+    min_mask_iou: 0.70
+  semantic:
+    min_miou: 0.70
+  depth:
+    max_rel_mae_vs_pt: 0.15
+  classify:
+    require_top1_match: true
+  pose:
+    min_oks: 0.80
+  obb:
+    min_rotated_iou: 0.70
+benchmark:
+  warmup_iters: 5
+  samples: 30
+  repetitions: 3
+soak:
+  duration_minutes: 15
+  heartbeat_s: 30
+  no_progress_timeout_s: 180

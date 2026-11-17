@@ -1,0 +1,210 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep/schemas/receipt.json",
+  "title": "UWR per-case validation receipt",
+  "type": "object",
+  "required": [
+    "schema_version", "receipt_version", "run_id", "case_id", "created_utc",
+    "status", "host", "model", "session", "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "receipt_version": { "type": "integer", "minimum": 1 },
+    "run_id": { "type": "string", "minLength": 4 },
+    "case_id": { "type": "string", "minLength": 4 },
+    "created_utc": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$" },
+    "rerun_of": { "type": ["string", "null"] },
+    "status": {
+      "type": "object",
+      "required": ["model_asset", "export", "cpu_oracle", "amdgpu", "dml", "task_oracle", "benchmark", "host"],
+      "additionalProperties": false,
+      "properties": {
+        "model_asset": { "enum": ["AVAILABLE", "ASSET_GATED", "MISSING_WITH_REASON", "LICENSE_RESTRICTED"] },
+        "export": { "enum": ["PASS_ONNX_EXPORT", "FAIL_EXPORT", "EXPORT_UNSUPPORTED", "NOT_APPLICABLE"] },
+        "cpu_oracle": { "enum": ["PASS_CPU_REFERENCE", "FAIL_CPU_REFERENCE", "NOT_RUN"] },
+        "amdgpu": { "enum": ["PASS_GPU_EXECUTED_FULL", "PASS_GPU_EXECUTED_PARTIAL", "FAIL_NO_GPU_COMPUTE", "FAIL_GPU_PARITY", "FAIL_RUNTIME", "FAIL_TASK", "BLOCKED_EP", "BLOCKED_IDENTITY", "BLOCKED_RESOURCE", "NOT_RUN"] },
+        "dml": { "enum": ["PASS_GPU_EXECUTED_FULL", "PASS_GPU_EXECUTED_PARTIAL", "FAIL_NO_GPU_COMPUTE", "FAIL_GPU_PARITY", "FAIL_RUNTIME", "FAIL_TASK", "BLOCKED_EP", "BLOCKED_IDENTITY", "BLOCKED_RESOURCE", "NOT_RUN"] },
+        "task_oracle": { "enum": ["PASS_TASK", "FAIL_TASK", "ORACLE_UNAVAILABLE", "NOT_RUN"] },
+        "benchmark": { "enum": ["PASS_MEASURED", "NOT_MEASURED", "BLOCKED"] },
+        "host": { "enum": ["VERIFIED_GFX1151", "VERIFIED_GFX1100", "VERIFIED_GFX1201", "BLOCKED_ENV"] }
+      }
+    },
+    "status_reasons": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "host": { "$ref": "#/definitions/host_block" },
+    "model": { "$ref": "#/definitions/model_block" },
+    "session": { "anyOf": [ { "$ref": "#/definitions/session_block" }, { "type": "null" } ] },
+    "parity": { "anyOf": [ { "$ref": "#/definitions/parity_block" }, { "type": "null" } ] },
+    "task": { "anyOf": [ { "$ref": "#/definitions/task_block" }, { "type": "null" } ] },
+    "benchmark_data": { "anyOf": [ { "$ref": "#/definitions/benchmark_block" }, { "type": "null" } ] },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "type", "message"],
+        "properties": {
+          "stage": { "type": "string" },
+          "type": { "type": "string" },
+          "message": { "type": "string" },
+          "stderr_excerpt": { "type": "string" }
+        }
+      }
+    },
+    "provenance": { "$ref": "#/definitions/provenance_block" }
+  },
+  "definitions": {
+    "sha256_hex": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "luid": { "type": "string", "pattern": "^0x[0-9A-Fa-f]{8}:0x[0-9A-Fa-f]{8}$" },
+    "host_block": {
+      "type": "object",
+      "required": ["host_id", "physical_gpu_name", "gfx", "os_build", "driver_version", "verified_device_identity"],
+      "properties": {
+        "host_id": { "type": "string" },
+        "physical_gpu_name": { "type": "string" },
+        "gfx": { "enum": ["gfx1151", "gfx1100", "gfx1201", "unknown"] },
+        "device_luid": { "type": ["string", "null"] },
+        "dxgi_evidence": { "type": "object" },
+        "pnp_evidence": { "type": "object" },
+        "os_build": { "type": "string" },
+        "driver_version": { "type": "string" },
+        "driver_date": { "type": ["string", "null"] },
+        "wddm_version": { "type": ["string", "null"] },
+        "verified_device_identity": { "type": "boolean" },
+        "identity_method": { "type": "string" },
+        "canary": {
+          "type": "object",
+          "properties": {
+            "kind": { "type": "string" },
+            "executed_on_target": { "type": "boolean" },
+            "detail": { "type": "object" }
+          }
+        }
+      }
+    },
+    "model_block": {
+      "type": "object",
+      "required": ["family", "task", "checkpoint"],
+      "properties": {
+        "family": { "type": "string" },
+        "task": { "type": "string" },
+        "checkpoint": { "type": "string" },
+        "size": { "type": ["string", "null"] },
+        "pt_sha256": { "$ref": "#/definitions/sha256_hex" },
+        "onnx_sha256": { "$ref": "#/definitions/sha256_hex" },
+        "onnx_path_redacted": { "type": "string" },
+        "export": {
+          "type": "object",
+          "properties": {
+            "imgsz": { "type": "integer" },
+            "opset": { "type": "integer" },
+            "dynamic": { "type": "boolean" },
+            "batch": { "type": "integer" },
+            "nms_mode": { "enum": ["raw", "embedded_nms", "nms_free_head"] },
+            "quantize": { "enum": ["fp32", "fp16", "int8"] },
+            "args": { "type": "object" },
+            "ultralytics_version": { "type": "string" }
+          }
+        },
+        "input_names": { "type": "array", "items": { "type": "string" } },
+        "output_names": { "type": "array", "items": { "type": "string" } },
+        "inputs_sha256": { "$ref": "#/definitions/sha256_hex" }
+      }
+    },
+    "session_block": {
+      "type": "object",
+      "properties": {
+        "ep": { "enum": ["AMDGPU", "DML", "CPU"] },
+        "requested_providers": { "type": "array", "items": { "type": "string" } },
+        "providers_after_create": { "type": "array", "items": { "type": "string" } },
+        "ep_library_path_redacted": { "type": ["string", "null"] },
+        "ep_library_sha256": { "type": ["string", "null"] },
+        "ep_msix_package": { "type": ["string", "null"] },
+        "ort_version": { "type": "string" },
+        "ort_distribution": { "type": "string" },
+        "provider_node_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "graph_node_total": { "type": "integer", "minimum": 0 },
+        "profile_available": { "type": "boolean" },
+        "profile_sha256": { "type": ["string", "null"] },
+        "profile_fused_event_present": { "type": "boolean" },
+        "routing_notes": { "type": "string" },
+        "stderr_fallback_signals": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "parity_block": {
+      "type": "object",
+      "properties": {
+        "reference": { "enum": ["CPU_ORT", "CPU_ORT_INT8"] },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "shape", "dtype", "finite", "max_abs_diff", "mean_abs_diff", "allclose"],
+            "properties": {
+              "name": { "type": "string" },
+              "shape": { "type": "array", "items": { "type": "integer" } },
+              "dtype": { "type": "string" },
+              "finite": { "type": "boolean" },
+              "max_abs_diff": { "type": "number" },
+              "mean_abs_diff": { "type": "number" },
+              "max_rel_diff": { "type": "number" },
+              "p99_abs_diff": { "type": "number" },
+              "allclose": { "type": "boolean" },
+              "threshold_used": { "type": "number" }
+            }
+          }
+        },
+        "all_outputs_allclose": { "type": "boolean" },
+        "by_name_matching": { "type": "boolean" }
+      }
+    },
+    "task_block": {
+      "type": "object",
+      "properties": {
+        "oracle_kind": { "enum": ["PT_APP", "ANNOTATED_METRIC", "STRUCTURAL"] },
+        "metrics": { "type": "object" },
+        "passed": { "type": "boolean" },
+        "summary": { "type": "string" }
+      }
+    },
+    "benchmark_block": {
+      "type": "object",
+      "properties": {
+        "ep_registration_ms": { "type": "number" },
+        "session_create_ms": { "type": "number" },
+        "first_run_ms": { "type": "number" },
+        "cold_start_total_ms": { "type": "number" },
+        "warm_run_ms_p50": { "type": "number" },
+        "warm_run_ms_p95": { "type": "number" },
+        "warm_run_ms_p99": { "type": "number" },
+        "warm_run_ms_mean": { "type": "number" },
+        "warm_run_ms_std": { "type": "number" },
+        "warm_run_samples": { "type": "integer", "minimum": 1 },
+        "preprocess_ms_mean": { "type": "number" },
+        "postprocess_ms_mean": { "type": "number" },
+        "e2e_image_ms_p50": { "type": "number" },
+        "timer": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "provenance_block": {
+      "type": "object",
+      "required": ["script_head_sha", "command", "seed"],
+      "properties": {
+        "script_head_sha": { "type": "string" },
+        "command": { "type": "string" },
+        "seed": { "type": "integer" },
+        "python_version": { "type": "string" },
+        "ultralytics_version": { "type": ["string", "null"] },
+        "raw_log_path_redacted": { "type": ["string", "null"] },
+        "raw_log_sha256": { "type": ["string", "null"] },
+        "env_fingerprint": { "type": "object" }
+      }
+    }
+  }
+}

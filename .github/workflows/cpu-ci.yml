@@ -1,0 +1,50 @@
+name: cpu-ci
+# CPU_CI_DOES_NOT_ATTEST_GPU — this job validates contracts, adversarial
+# anti-forgery tests, and code quality ONLY. It never certifies GPU execution.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CPU_CI_DOES_NOT_ATTEST_GPU: "1"
+
+jobs:
+  windows-cpu-ci:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pyyaml jsonschema pytest ruff
+      - name: Compile check
+        run: python -m compileall src runner tests
+      - name: Lint (non-blocking info)
+        run: ruff check src runner || echo "ruff findings present (non-blocking)"
+      - name: Unit + contracts + adversarial tests
+        run: python -m pytest tests/unit tests/contracts tests/adversarial -q
+      - name: Catalog policy check
+        shell: pwsh
+        run: |
+          if (Test-Path catalog/model_catalog.json) {
+            python -c "import json; d=json.load(open('catalog/model_catalog.json', encoding='utf-8')); assert d['snapshot']['ultralytics_release'], 'catalog not pinned'; print('catalog pinned:', d['snapshot']['ultralytics_release'], d['snapshot']['ultralytics_commit_sha'])"
+          } else {
+            echo "catalog not yet generated"
+          }
+      - name: Reminder banner
+        run: echo "CPU_CI_DOES_NOT_ATTEST_GPU=1 — GPU evidence comes only from hardware runs with receipts"
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan for obvious secrets/tokens
+        run: |
+          ! git grep -nIE "(ghp_[A-Za-z0-9]{20,}|gho_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA |EC )?PRIVATE KEY-----)" $(git rev-list --all) || { echo "SECRET FOUND"; exit 1; }

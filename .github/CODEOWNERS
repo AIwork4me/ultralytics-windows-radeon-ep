@@ -1,0 +1,11 @@
+# Default ownership
+* @AIwork4me
+
+# gfx1201 evidence scope is prepared for LZ-QWQ (invitation pending; not blocking
+# while pending — CODEOWNERS review requests activate once membership is active)
+reports/gfx1201/ @AIwork4me @LZ-QWQ
+docs/GFX1201_RUNBOOK.md @AIwork4me @LZ-QWQ
+
+# Evidence integrity is owner-only
+schemas/ @AIwork4me
+catalog/upstream_snapshot.json @AIwork4me

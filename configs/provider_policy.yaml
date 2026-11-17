@@ -1,0 +1,24 @@
+# EP policy defaults (mission P1.4)
+default_policy: require_amdgpu
+policies:
+  require_amdgpu:
+    description: "AMDGPU only; fail visibly on CPU-only or wrong device"
+    providers: ["AMDGPUExecutionProvider"]
+    allow_cpu_fallback: false
+  prefer_amdgpu_allow_dml:
+    description: "AMDGPU first; on failure a NEW subprocess+session retries DML on the SAME physical Radeon"
+    providers: ["AMDGPUExecutionProvider"]
+    fallback:
+      ep: DML
+      new_subprocess: true
+      same_physical_gpu_required: true
+      disclose_original_failure: true
+  cpu_opt_in:
+    description: "only with explicit user flag; labeled CPU_ONLY_USER_AUTHORIZED"
+    providers: ["CPUExecutionProvider"]
+    label: CPU_ONLY_USER_AUTHORIZED
+dml_constraints:
+  execution_mode: ORT_SEQUENTIAL
+  enable_mem_pattern: false
+  concurrent_run_on_one_session: forbidden
+negative_injection_required_count: 5

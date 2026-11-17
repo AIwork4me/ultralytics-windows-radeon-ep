@@ -1,0 +1,16 @@
+# gfx1151 host profile — AMD Radeon 8060S (Ryzen AI MAX integrated)
+gfx: gfx1151
+display_name: "AMD Radeon 8060S (gfx1151, RDNA 3.5, Ryzen AI MAX APU)"
+gpu_name_needle: "8060S"
+vendor_id: "0x1002"
+device_id: "0x1586"
+integrated: true           # NEVER require Discrete=True or dedicated VRAM > 0
+# LUID is boot-local; recorded per-session, never used as permanent identity
+memory_model: shared       # large SharedSystemMemory, ~0 dedicated video memory
+min_windows_build: 26100   # Win11 24H2+ for dynamically installed vendor EP
+min_windowsml_runtime: "2.5.96"   # Microsoft.Windows.AI.MachineLearning (docs checked 2026-11-17)
+min_amd_driver_date: "2024-12-01"  # Adrenalin 24.12.1+ per Microsoft AMDGPU page
+worker:
+  one_gpu_process_at_a_time: true
+  default_max_minutes_per_case: 20
+  soak_heartbeat_s: 30

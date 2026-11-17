@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep/schemas/model.json",
+  "title": "UWR catalog model entry",
+  "type": "object",
+  "required": ["family", "task", "checkpoint", "tier", "eligibility"],
+  "properties": {
+    "family": { "type": "string" },
+    "task": { "type": "string" },
+    "checkpoint": { "type": "string" },
+    "size": { "type": ["string", "null"] },
+    "dataset_head": { "type": ["string", "null"] },
+    "source_url": { "type": ["string", "null"] },
+    "access": { "enum": ["public", "gated_hf", "unavailable"] },
+    "license": { "type": ["string", "null"] },
+    "export_capability": { "enum": ["expected", "predict_only", "unsupported", "multi_component"] },
+    "required_components": { "type": "array", "items": { "type": "string" } },
+    "imgsz_default": { "type": ["integer", "null"] },
+    "opset_default": { "type": ["integer", "null"] },
+    "nms_mode": { "enum": ["raw", "embedded_nms", "nms_free_head"] },
+    "quantize": { "enum": ["fp32", "fp16", "int8"] },
+    "batch": { "type": "integer" },
+    "dynamic": { "type": "boolean" },
+    "expected_outputs": { "type": "array", "items": { "type": "string" } },
+    "oracle_policy": { "type": ["string", "null"] },
+    "gpu_effort": { "enum": ["BASELINE_REQUIRED", "OPTIONAL_STRESS", "RESOURCE_GATED", "NOT_APPLICABLE"] },
+    "tier": { "enum": ["A", "B"] },
+    "eligibility": { "enum": ["eligible", "asset_blocked", "export_blocked", "license_restricted", "not_applicable"] },
+    "eligibility_reason": { "type": ["string", "null"] },
+    "owner": { "type": ["string", "null"] }
+  }
+}

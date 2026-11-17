@@ -1,0 +1,57 @@
+name: manual-trusted-gpu
+# NEVER runs arbitrary fork PR code on a privileged GPU runner.
+# workflow_dispatch ONLY, on reviewer-approved SHAs, with explicit inputs.
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "GPU host label (gfx1151)"
+        required: true
+        default: gfx1151
+      catalog_sha:
+        description: "Pinned catalog snapshot sha256 (64 hex)"
+        required: true
+      tier:
+        description: "core|full"
+        required: true
+        default: core
+      allow_asset_download:
+        description: "Allow model weight downloads on runner"
+        type: boolean
+        default: false
+
+jobs:
+  gpu-matrix:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: [self-hosted, windows, "${{ github.event.inputs.host }}"]
+    environment: trusted-gpu
+    steps:
+      - name: Guard: refuse untrusted refs
+        run: |
+          echo "ref=${{ github.ref }} sha=${{ github.sha }}"
+          # Self-hosted GPU runners must only execute reviewed branches.
+          # The environment protection (trusted-gpu) enforces reviewer approval.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install harness deps
+        run: |
+          pip install numpy pyyaml jsonschema pytest
+          pip install "wasdk-Microsoft.Windows.AI.MachineLearning[all]==2.3.0" "wasdk-Microsoft.Windows.ApplicationModel.DynamicDependency.Bootstrap==2.3.0"
+      - name: Preflight (host identity + EP catalog + canary)
+        run: python -m runner.preflight --gfx ${{ github.event.inputs.host }}
+      - name: Run matrix (tier)
+        if: ${{ github.event.inputs.allow_asset_download == 'true' }}
+        run: python -m runner.run_matrix --tier ${{ github.event.inputs.tier }} --ep both --benchmark
+      - name: Verify receipts (strict)
+        run: |
+          $d = Get-ChildItem reports/${{ github.event.inputs.host }} -Directory | Sort-Object LastWriteTime | Select-Object -Last 1
+          python -m runner.verify_receipts --run-dir $d.FullName
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: gpu-evidence-${{ github.event.inputs.host }}-${{ github.sha }}
+          path: reports/
