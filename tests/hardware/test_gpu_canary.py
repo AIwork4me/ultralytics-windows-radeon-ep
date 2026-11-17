@@ -26,16 +26,22 @@ def _has_amd_gpu():
 
 @pytest.mark.skipif(not _has_amd_gpu(), reason="no gfx1151 on this host")
 def test_amdgpu_canary_executes_on_gpu(tmp_path):
-    from radeon_ort.amdgpu_session import canary_model_path
+    from radeon_ort.amdgpu_session import (canary_model_path,
+                                           create_amdgpu_session,
+                                           ensure_amdgpu_registered)
     from radeon_ort.device_identity import canary_inputs
     from radeon_ort import profiler_audit
-    from radeon_ort.amdgpu_session import create_amdgpu_session
 
+    ensure_amdgpu_registered()  # hardware tests must be self-sufficient (R1-0 finding)
     model = canary_model_path(tmp_path)
     feeds = canary_inputs()
-    sess = create_amdgpu_session(model, profile_prefix=str(tmp_path / "prof"))
+    result = create_amdgpu_session(model, profile_prefix=str(tmp_path / "prof"),
+                                   feeds_for_validation=feeds)
+    sess = result.session
     out = sess.run(None, {"a": feeds["a"], "b": feeds["b"]})
     assert out[0].shape == (256, 256)
+    assert result.attestation["state"] == "EP_DEVICE_SELECTED"
+    assert result.attestation["probe"]["amdgpu_nodes"] > 0
     audit = profiler_audit.audit_profile(sess.end_profiling())
     assert audit["provider_node_counts"].get("AMDGPU", 0) > 0, "no GPU compute evidenced"
 
@@ -63,15 +69,18 @@ def test_dml_canary_executes_on_gpu(tmp_path):
 @pytest.mark.skipif(not _has_amd_gpu(), reason="no gfx1151 on this host")
 def test_amdgpu_parity_against_cpu(tmp_path):
     import numpy as np
-    from radeon_ort.amdgpu_session import canary_model_path, create_amdgpu_session
+    from radeon_ort.amdgpu_session import (canary_model_path, create_amdgpu_session,
+                                           ensure_amdgpu_registered)
     from radeon_ort.cpu_reference import compare_outputs, create_cpu_session
     from radeon_ort.device_identity import canary_inputs
 
+    ensure_amdgpu_registered()
     model = canary_model_path(tmp_path)
     feeds = canary_inputs()
     cpu = create_cpu_session(model)
     ref = {o.name: v for o, v in zip(cpu.get_outputs(), cpu.run(None, feeds))}
-    gpu = create_amdgpu_session(model)
+    result = create_amdgpu_session(model, feeds_for_validation=feeds)
+    gpu = result.session
     outs = gpu.run(None, feeds)
     cand = {o.name: v for o, v in zip(gpu.get_outputs(), outs)}
     r = compare_outputs(ref, cand, atol=2e-4, rtol=2e-4)

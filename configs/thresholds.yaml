@@ -24,10 +24,12 @@ task_oracle:
     min_mask_iou: 0.70
   semantic:
     min_miou: 0.70
+    min_pixel_agreement: 0.90
   depth:
     max_rel_mae_vs_pt: 0.15
   classify:
     require_top1_match: true
+    max_score_drift: 0.05
   pose:
     min_oks: 0.80
   obb:

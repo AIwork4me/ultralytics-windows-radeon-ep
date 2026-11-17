@@ -47,18 +47,23 @@ def main() -> int:
     from radeon_ort import windows_ml_ep_catalog
     from radeon_ort import profiler_audit
 
-    stage_markers.append(f"+0.0s session-create-begin")
+    stage_markers.append("+0.0s session-create-begin")
     if a.ep == "amdgpu":
-        from radeon_ort.amdgpu_session import (amdgpu_ep_devices, create_amdgpu_session,
-                                               register_amdgpu_ep_library)
-        if not amdgpu_ep_devices():
-            dlls = windows_ml_ep_catalog._rederive_real_paths()
-            register_amdgpu_ep_library(dlls[-1])
-        sess = create_amdgpu_session(a.onnx, enable_profiling=False,
-                                     feeds_for_validation=feeds)
+        from radeon_ort.amdgpu_session import (create_amdgpu_session,
+                                               ensure_amdgpu_registered)
+        ensure_amdgpu_registered()
+        result = create_amdgpu_session(a.onnx, enable_profiling=False,
+                                       feeds_for_validation=feeds)
+        sess = result.session
     else:
         from radeon_ort.dml_session import create_dml_session
-        sess = create_dml_session(a.onnx, device_id=0, enable_profiling=False)
+        from radeon_ort.device_identity import enum_dxgi_adapters, resolve_target_adapter
+        res = resolve_target_adapter(enum_dxgi_adapters(), gfx=a.gfx)
+        dml_idx = 0
+        if res.get("ok"):
+            from radeon_ort.dml_session import resolve_dml_device_id_for_adapter
+            dml_idx = resolve_dml_device_id_for_adapter(res["adapter"].index)
+        sess = create_dml_session(a.onnx, device_id=dml_idx, enable_profiling=False)
     stage_markers.append(f"+{time.time()-t_start:.1f}s session-created providers={sess.get_providers()}")
 
     status = "RUNNING"
