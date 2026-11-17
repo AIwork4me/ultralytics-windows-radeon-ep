@@ -28,13 +28,22 @@ def main() -> int:
     ap.add_argument("--gfx", default="gfx1151")
     ap.add_argument("--reports-root", default=str(REPO_ROOT / "reports"))
     ap.add_argument("--run-id", default="SOAK")
+    ap.add_argument("--input-npy", default=None,
+                    help="deterministic persisted input tensor (R1-B bundle); "
+                         "default legacy: seeded random tensor rng(777)")
     a = ap.parse_args()
 
     out_dir = Path(a.reports_root) / a.gfx / a.run_id
     out_dir.mkdir(parents=True, exist_ok=True)
     import numpy as np
-    rng = np.random.default_rng(777)
-    feeds = {"images": rng.random((1, 3, 640, 640), dtype=np.float32)}
+    if a.input_npy:
+        feeds = {"images": np.load(a.input_npy).astype(np.float32)}
+        import hashlib
+        input_sha = hashlib.sha256(feeds["images"].tobytes()).hexdigest()[:16]
+    else:
+        rng = np.random.default_rng(777)
+        feeds = {"images": rng.random((1, 3, 640, 640), dtype=np.float32)}
+        input_sha = "rng777"
 
     t_start = time.time()
     deadline = t_start + a.minutes * 60
@@ -90,6 +99,10 @@ def main() -> int:
     lat = sorted(lat_ms)
     digest = {
         "ep": a.ep, "onnx_redacted": str(a.onnx).split("\\")[-1],
+        "input": input_sha,
+        "phase_note": "duration measures INFERENCE phase only; session-create "
+                      "wall time appears in stage_markers (excluded from soak "
+                      "duration verdict per mission R1-F)",
         "duration_s": round(time.time() - t_start, 1),
         "status": status if status != "RUNNING" else "COMPLETED",
         "runs": runs, "errors": errors[:20],
