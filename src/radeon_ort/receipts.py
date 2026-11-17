@@ -631,8 +631,9 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
             if td.get("require_top1_match") and mx.get("top1_match") is False:
                 problems.append("PASS_TASK but top1_match=False with require_top1_match")
         _finite_metrics(problems, "task_parity", tp)
-    # expected-empty claims need a discriminating negative control
-    if tp and tp.get("passed") and (tp.get("metrics") or {}).get("ref_entities") == 0:
+    # expected-empty claims (entity tasks only) need a discriminating negative control
+    if tp and tp.get("passed") and tp.get("task") in ("detect", "segment", "pose", "obb") \
+            and (tp.get("metrics") or {}).get("ref_entities") == 0:
         nc = tp.get("negative_control")
         if not nc or not nc.get("discriminating"):
             problems.append("expected-empty pass without a discriminating negative control")
