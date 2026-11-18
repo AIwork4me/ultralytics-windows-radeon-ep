@@ -7,20 +7,34 @@ GPU_CANARY (amdgpu + dml results from unified_canary run), MODEL_TASK_MATRIX
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
-RUN = Path(__file__).resolve().parents[1] / "reports/gfx1201/GFX1201_DIAG_20261118T2359Z"
+EVIDENCE_BASE = Path(__file__).resolve().parents[1] / "reports/gfx1201"
+RUN = None  # set only after immutable run_id validation
 SRC = Path(__file__).resolve().parents[1] / "reports/gfx1100/unified_canary_20261118T2359Z"
 
 
 def w(name: str, obj) -> None:
+    if RUN is None:
+        raise RuntimeError("run directory has not been initialized")
     RUN.mkdir(parents=True, exist_ok=True)
-    (RUN / name).write_text(json.dumps(obj, indent=1, default=str, ensure_ascii=False),
-                            encoding="utf-8")
+    target = RUN / name
+    if target.exists():
+        raise FileExistsError(f"IMMUTABLE_RECEIPT: {name} already exists")
+    if name.endswith(".csv"):
+        if not isinstance(obj, str):
+            raise TypeError("CSV content must be a string")
+        target.write_text(obj, encoding="utf-8", newline="")
+    else:
+        target.write_text(json.dumps(obj, indent=1, default=str, ensure_ascii=False),
+                          encoding="utf-8", newline="")
     print("wrote", name)
 
 
@@ -39,17 +53,45 @@ def sha(p: Path) -> str:
 
 
 def main() -> int:
-    now = "2026-11-18T23:59:00Z"
+    global RUN
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--run-id", required=True, help="new immutable GFX1201_DIAG_* run")
+    ap.add_argument("--canary-run-dir", default=str(SRC),
+                    help="matching locally generated gfx1100/gfx1201 canary receipts")
+    args = ap.parse_args()
+    if not re.fullmatch(r"GFX1201_DIAG_[0-9]{8}T[0-9]{4}Z(?:_[a-zA-Z0-9-]+)?",
+                        args.run_id):
+        raise ValueError("invalid run ID; use a new GFX1201_DIAG_<UTC> name")
+    RUN = EVIDENCE_BASE / args.run_id
+    if RUN.exists() and any(RUN.iterdir()):
+        print(f"BLOCKED_IMMUTABLE_RUN: {RUN} exists; use a new --run-id",
+              file=sys.stderr)
+        return 65
+    canary_root = Path(args.canary_run_dir)
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     vc = ps("Get-CimInstance Win32_VideoController | Select-Object Name,PNPDeviceID,"
             "DriverVersion | ConvertTo-Json -Compress")
     build = ps("(Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion').DisplayVersion"
                " + ' build ' + (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion').CurrentBuildNumber")
     appx = ps("(Get-AppxPackage Microsoft.WinML.AMD.GPU.EP.Framework.2).Version")
     appx_loc = ps("(Get-AppxPackage Microsoft.WinML.AMD.GPU.EP.Framework.2).InstallLocation")
+    # Never publish hardware-instance suffixes, full PnP IDs, or host-specific IDs.
+    video = json.loads(vc) if vc.startswith(("[", "{")) else []
+    if isinstance(video, dict):
+        video = [video]
+    video = [
+        {"Name": item.get("Name"), "DriverVersion": item.get("DriverVersion"),
+         "PnP_VID_DID": (
+             re.search(r"VEN_[0-9A-F]{4}&DEV_[0-9A-F]{4}",
+                       item.get("PNPDeviceID", ""), flags=re.IGNORECASE).group(0)
+             if re.search(r"VEN_[0-9A-F]{4}&DEV_[0-9A-F]{4}",
+                          item.get("PNPDeviceID", ""), flags=re.IGNORECASE)
+             else "NON_PCI_OR_REDACTED")}
+        for item in video if isinstance(item, dict)]
     w("HOST_FINGERPRINT.json", {
         "captured_utc": now,
         "os": build,
-        "video_controllers_raw": json.loads(vc) if vc.startswith("[") or vc.startswith("{") else vc,
+        "video_controllers_redacted": video,
         "amd_ep_msix_version": appx,
         "mission_premise_check": {
             "expected_by_mission": "RX 9070 XT (gfx1201, DEV_7550/7551)",
@@ -73,7 +115,8 @@ def main() -> int:
 
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
     from radeon_ort.device_identity import enum_dxgi_adapters, resolve_target_adapter
-    from radeon_ort.unified_identity import build_chain
+    from radeon_ort.rca2a_ep import (
+        physical_luid_key, select_amdgpu_ep_device, _ep_device_metadata)
     adapters = enum_dxgi_adapters()
     d = {
         "captured_utc": now,
@@ -88,15 +131,35 @@ def main() -> int:
         r = resolve_target_adapter(adapters, gfx=gfx)
         d["resolution"][gfx] = ("OK did=" + hex(r["adapter"].device_id)
                                 + " luid=" + r["adapter"].luid_str) if r.get("ok") else r["reason"]
-    chain = build_chain("gfx1100")
-    d["gfx1100_chain_confidence"] = chain.confidence()
-    d["gfx1100_ep_device"] = chain.ep_device
+    # Audit current observed GPU only; a run on gfx1100 cannot provide
+    # physical gfx1201 evidence. No PR #6 module is required to execute this.
+    found_gfx = next((gfx for gfx in ("gfx1201", "gfx1100", "gfx1151")
+                      if resolve_target_adapter(adapters, gfx=gfx).get("did_match")),
+                     None)
+    d["host_matched_gfx"] = found_gfx
+    if found_gfx:
+        chosen = resolve_target_adapter(adapters, gfx=found_gfx)
+        adapter = chosen["adapter"]
+        luid = physical_luid_key(adapter)
+        try:
+            dev, sel = select_amdgpu_ep_device(luid)
+            md = _ep_device_metadata(dev) if dev is not None else {}
+            confirmed = (luid is not None and chosen.get("luid_valid")
+                         and str(md.get("LUID", "")) == str(luid))
+            d["ep_device_binding"] = {
+                "confidence": "PHYSICAL_BINDING_CONFIRMED" if confirmed else "UNPROVEN",
+                "luid_match": bool(confirmed),
+                "metadata": md, "selection_basis": sel.get("basis")}
+        except Exception as exc:
+            d["ep_device_binding"] = {
+                "confidence": "UNPROVEN",
+                "reason": f"EP-device probe unavailable: {type(exc).__name__}"}
     w("DEVICE_IDENTITY.json", d)
 
     can = {}
     for name, key in (("AMDGPU_CANARY.json", "amdgpu"), ("DML_CANARY.json", "dml"),
                       ("GFX1201_BLOCKED.json", "gfx1201_request")):
-        p = SRC / name
+        p = canary_root / name
         if p.is_file():
             can[key] = json.loads(p.read_text(encoding="utf-8"))
     w("GPU_CANARY.json", {"captured_utc": now, "hardware": "gfx1100 RX 7900 XTX",
