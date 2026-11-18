@@ -203,41 +203,67 @@ def _validate_gpu_pass(attempt_dir: Path, case: dict, events: list[dict],
             chk("luid_match_basis", probe.get("selection_basis", "").startswith(
                 ("LUID match", "Discrete=1 unique")))
     sess = next((e for e in events if e.get("kind") == "session_created"), None)
+    chk("session_created_event", sess is not None)
     if sess:
         provs = sess.get("providers", [])
         if ep == "amdgpu":
             chk("amdgpu_provider_present", "AMDGPUExecutionProvider" in provs, str(provs))
         else:
             chk("dml_provider_present", "DmlExecutionProvider" in provs, str(provs))
-    ref = case.get("reference_outputs") or {}
-    parity_ok = None
-    if ref:
+    ref = case.get("reference_outputs")
+    chk("reference_outputs_present", isinstance(ref, dict) and bool(ref))
+    if isinstance(ref, dict) and ref:
         import numpy as np
+        atol, rtol = case.get("atol", 5e-3), case.get("rtol", 5e-3)
+        good_thresholds = all(isinstance(x, (int, float)) and not isinstance(x, bool)
+                              and np.isfinite(x) and x >= 0 for x in (atol, rtol))
+        chk("tolerances_valid", good_thresholds)
         npz_p = attempt_dir / "outputs_first.npz"
-        if npz_p.is_file():
-            z = np.load(npz_p)
-            worst = 0.0
-            names_ok = set(ref) == set(z.files)
-            chk("output_names_match", names_ok)
-            if names_ok:
-                for k, rv in ref.items():
-                    got, rv = z[k], np.asarray(rv, dtype=np.float32)
-                    if got.shape != rv.shape:
-                        chk(f"shape:{k}", False, f"{got.shape} vs {rv.shape}")
-                        parity_ok = False
-                        continue
-                    worst = max(worst, float(np.abs(got.astype(np.float64)
-                                                    - rv.astype(np.float64)).max()))
-                v["supervisor_parity_max_abs"] = worst
-                atol, rtol = case.get("atol", 5e-3), case.get("rtol", 5e-3)
-                scale = float(np.abs(np.asarray(list(ref.values())[0],
-                                                dtype=np.float64)).max())
-                parity_ok = (parity_ok is not False) and worst <= atol + rtol * scale
-                chk("supervisor_independent_parity", parity_ok, f"max_abs={worst:.3e}")
-        else:
-            chk("outputs_npz_present", False)
-            parity_ok = False
+        chk("outputs_npz_present", npz_p.is_file())
+        if npz_p.is_file() and good_thresholds:
+            try:
+                with np.load(npz_p, allow_pickle=False) as output:
+                    same_names = set(output.files) == set(ref)
+                    chk("output_names_match", same_names)
+                    parity_ok = same_names
+                    worst = 0.0
+                    for name in sorted(set(output.files) & set(ref)):
+                        actual, oracle = np.asarray(output[name]), np.asarray(ref[name])
+                        same_shape = actual.shape == oracle.shape
+                        chk(f"shape:{name}", same_shape)
+                        if not same_shape:
+                            parity_ok = False
+                            continue
+                        numeric = (actual.size > 0 and actual.dtype.kind in "biuf"
+                                   and oracle.dtype.kind in "biuf")
+                        chk(f"numeric_nonempty:{name}", numeric)
+                        if not numeric:
+                            parity_ok = False
+                            continue
+                        finite = bool(np.isfinite(actual).all() and np.isfinite(oracle).all())
+                        chk(f"finite:{name}", finite)
+                        if not finite:
+                            parity_ok = False
+                            continue
+                        actual64, oracle64 = actual.astype(np.float64), oracle.astype(np.float64)
+                        delta = np.abs(actual64 - oracle64)
+                        if actual.dtype.kind in "biu" or oracle.dtype.kind in "biu":
+                            element_ok = (actual == oracle)
+                        else:
+                            element_ok = (delta <= atol + rtol * np.abs(oracle64))
+                        output_ok = bool(element_ok.all())
+                        chk(f"allclose:{name}", output_ok)
+                        parity_ok = parity_ok and output_ok
+                        worst = max(worst, float(delta.max()))
+                    v["supervisor_parity_max_abs"] = worst
+                    chk("supervisor_independent_parity", parity_ok,
+                        f"max_abs={worst:.3e}; per-output, per-element tolerance")
+            except (OSError, TypeError, ValueError, EOFError) as exc:
+                chk("outputs_npz_readable", False, type(exc).__name__)
+    else:
+        chk("supervisor_independent_parity", False, "missing/empty CPU reference")
     ep_nodes = None
+    chk("profile_required", profile)
     if profile:
         prof = sorted(attempt_dir.glob("ort_profile_sess*.json"))
         needle = "amdgpu" if ep == "amdgpu" else "dml"
@@ -585,7 +611,15 @@ def cmd_verify(a) -> int:
     from radeon_ort.rca2a_schema import validate_receipt
     run_root = Path(a.run_root)
     plan = json.loads((run_root / "EXPERIMENT_PLAN_LOCK.json").read_text(encoding="utf-8"))
-    plan_rec = {"plan_sha256": plan["plan_sha256"], "arms": plan["arms"]}
+    arms = {}
+    for name, arm in plan["arms"].items():
+        private = str(run_root / "CACHE_LABS" / name)
+        shared = str(run_root / "CACHE_LABS" / "mxr_shared")
+        env = {k: v.replace("%CACHE%", private).replace("%CACHE_MXR%", shared)
+               for k, v in (arm.get("env") or {}).items()}
+        arms[name] = {**arm, "env": env}
+    plan_rec = {"plan_sha256": plan["plan_sha256"], "arms": arms,
+                "cases": plan["cases"]}
     receipts = [json.loads(x) for x in
                 (run_root / "RESULTS_RAW.jsonl").read_text(encoding="utf-8").splitlines()
                 if x.strip()]
