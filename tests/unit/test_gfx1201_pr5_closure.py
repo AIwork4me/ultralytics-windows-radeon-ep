@@ -9,6 +9,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+
 from runner.unified_canary import compare_named_outputs
 from runner import freeze_gfx1201_evidence as freeze
 from radeon_ort.device_identity import resolve_target_adapter, DxgiAdapter

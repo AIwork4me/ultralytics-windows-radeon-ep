@@ -88,6 +88,17 @@ def main() -> int:
                           item.get("PNPDeviceID", ""), flags=re.IGNORECASE)
              else "NON_PCI_OR_REDACTED")}
         for item in video if isinstance(item, dict)]
+    # Derive actual hardware from live PnP; never hardcode this host's gfx1100.
+    from radeon_ort.device_identity import GFX_DEVICE_IDS
+    observed_dids = set()
+    for item in video:
+        m = re.search(r"DEV_([0-9A-Fa-f]{4})", item["PnP_VID_DID"])
+        if "VEN_1002" in item["PnP_VID_DID"].upper() and m:
+            observed_dids.add(int(m.group(1), 16))
+    observed_gfx = next((gfx for gfx in ("gfx1201", "gfx1100", "gfx1151")
+                         if observed_dids & ids),
+                        None)
+    has_1201 = observed_gfx == "gfx1201"
     w("HOST_FINGERPRINT.json", {
         "captured_utc": now,
         "os": build,
@@ -95,8 +106,10 @@ def main() -> int:
         "amd_ep_msix_version": appx,
         "mission_premise_check": {
             "expected_by_mission": "RX 9070 XT (gfx1201, DEV_7550/7551)",
-            "actual_physical_amd_dgpu": "RX 7900 XTX DEV_744C (gfx1100)",
-            "conclusion": "NO_GFX1201_HARDWARE_ON_THIS_HOST -> M2 gfx1201 real-GPU execution NOT_RUN",
+            "actual_amd_gfx": observed_gfx or "NOT_DETECTED",
+            "observed_amd_device_ids": sorted(hex(did) for did in observed_dids),
+            "conclusion": ("GFX1201_PRESENT_TASKS_AND_SOAK_PENDING"
+                           if has_1201 else "NO_GFX1201_HARDWARE_ON_THIS_HOST"),
         },
         "note": "host-identifying fields omitted (AGENTS redaction)",
     })
@@ -162,21 +175,34 @@ def main() -> int:
         p = canary_root / name
         if p.is_file():
             can[key] = json.loads(p.read_text(encoding="utf-8"))
-    w("GPU_CANARY.json", {"captured_utc": now, "hardware": "gfx1100 RX 7900 XTX",
-                          "label": "CODE_PATH_VALIDATION_ONLY_NOT_GFX1201_EVIDENCE",
-                          **can})
+    # Bind copied canaries to actual host architecture; no recycled gfx1100
+    # PASS may ever be re-labelled as gfx1201.
+    for key in ("amdgpu", "dml"):
+        if key in can and can[key].get("gfx") != found_gfx:
+            raise RuntimeError(
+                "CANARY_GFX_MISMATCH: refusing cross-arch evidence copy")
+    if "gfx1201_request" in can and found_gfx == "gfx1201":
+        raise RuntimeError(
+            "STALE_BLOCKED_RECEIPT: supply a fresh gfx1201 canary, not old gfx1100 error")
+    w("GPU_CANARY.json", {
+        "captured_utc": now,
+        "hardware_gfx": found_gfx or "NOT_DETECTED",
+        "label": ("GFX1201_CANARY_ONLY_TASKS_AND_SOAK_NOT_RUN"
+                  if found_gfx == "gfx1201"
+                  else "CODE_PATH_VALIDATION_ONLY_NOT_GFX1201_EVIDENCE"),
+        **can})
 
-    w("MODEL_TASK_MATRIX.csv",
-      "task,requested_gfx,executed_ep,status,reason\n"
-      "detect,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "segment,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "classify,gfx1201,none,NOT_RUN,NO_GFX1200_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "pose,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "obb,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "semantic,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "depth,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)\n"
-      "canary_tiny_conv,gfx1100,amdgpu,GPU_PASS_VALIDATED,code_path_validation_only\n"
-      "canary_tiny_conv,gfx1100,dml,GPU_PASS_VALIDATED,code_path_validation_only\n")
+    reason = ("PENDING_REAL_GFX1201_TASK_RECEIPTS" if found_gfx == "gfx1201"
+              else "NO_GFX1201_HARDWARE_ON_HOST")
+    rows = ["task,requested_gfx,executed_ep,status,reason"]
+    for task in ("detect", "segment", "classify", "pose", "obb", "semantic", "depth"):
+        for ep in ("amdgpu", "dml"):
+            rows.append(f"{task},gfx1201,{ep},NOT_RUN,{reason}")
+    for ep in ("amdgpu", "dml"):
+        if ep in can:
+            status = can[ep].get("status", "UNVERIFIED")
+            rows.append(f"canary_tiny_conv,{found_gfx},{ep},{status},canary_only")
+    w("MODEL_TASK_MATRIX.csv", "\n".join(rows) + "\n")
 
     files = sorted(p for p in RUN.iterdir() if p.is_file() and p.name != "manifest.sha256")
     manifest = "\n".join(f"{sha(p)}  {p.name}" for p in files) + "\n"
