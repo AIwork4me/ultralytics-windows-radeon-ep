@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "receipt_version": 1,
+  "run_id": "G2_TIER_A_RUN2",
+  "case_id": "yolo26n-obb__obb__amdgpu",
+  "created_utc": "2026-11-17T14:54:44Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "PASS_ONNX_EXPORT",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "PASS_GPU_EXECUTED_FULL",
+    "dml": "NOT_RUN",
+    "task_oracle": "PASS_TASK",
+    "benchmark": "PASS_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "unknown",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "device_luid": "0x00000000:0x00011746",
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22032.6002",
+    "driver_date": null,
+    "wddm_version": null,
+    "verified_device_identity": true,
+    "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed); same physical gfx1151 enumerated 2x (LUIDs: ['0x00000000:0x00011746', '0x00000000:0x0001FA74']); selected index 0",
+    "dxgi_evidence": {
+      "adapters": [
+        {
+          "i": 0,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x00011746"
+        },
+        {
+          "i": 1,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x0001FA74"
+        },
+        {
+          "i": 2,
+          "desc": "Microsoft Basic Render Driver",
+          "vid": "0x1414",
+          "did": "0x008C",
+          "luid": "0x00000000:0x00013846"
+        }
+      ],
+      "selected_luid": "0x00000000:0x00011746"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1\\4&35FE04F8&0&0041"
+    }
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "obb",
+    "checkpoint": "yolo26n-obb.pt",
+    "size": "n",
+    "pt_sha256": "6f51c78197aacda4a33be77294065a9001675fb893f56227a179731b53dbd2b0",
+    "onnx_sha256": "9fe81d5ebf55bd64ac8cb8836b6dbe648c54850b37ba7851ff590079490e586f",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO_AMD/uwr_gfx1151/ultralytics-windows-radeon-ep/models/onnx/yolo26n-obb.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 1024,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false
+    },
+    "inputs_sha256": "edcbfcf7e90526cacee1c611c13f6a3d7b67082b1a2e4c3ca30fb4e588268bd1"
+  },
+  "session": {
+    "ep": "AMDGPU",
+    "requested_providers": [
+      "AMDGPU",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "AMDGPU": 1
+    },
+    "graph_node_total": 1,
+    "profile_fused_event_present": false,
+    "ort_version": "1.25.2",
+    "ort_distribution": "onnxruntime",
+    "device_luid": "0x00000000:0x00011746",
+    "stderr_fallback_signals": []
+  },
+  "parity": {
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          20,
+          21504
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 0.000499725341796875,
+        "mean_abs_diff": 1.6876918812509278e-06,
+        "max_rel_diff": 133585.41650632105,
+        "p99_abs_diff": 3.4332275390625e-05,
+        "allclose": true,
+        "threshold_used": 0.005
+      }
+    ],
+    "all_outputs_allclose": true,
+    "by_name_matching": true
+  },
+  "task": {
+    "oracle_kind": "PT_APP",
+    "metrics": {
+      "pt_boxes": 0
+    },
+    "passed": true,
+    "summary": "PT oracle ran; task=obb"
+  },
+  "benchmark_data": {
+    "warm_run_ms_p50": 8.817,
+    "warm_run_ms_p95": 12.51005,
+    "warm_run_ms_p99": 13.464100000000002,
+    "warm_run_ms_mean": 9.534073333333334,
+    "warm_run_ms_std": 1.5776684108589556,
+    "warm_run_samples": 30,
+    "timer": "time.perf_counter_ns"
+  },
+  "errors": [],
+  "provenance": {
+    "script_head_sha": "git:see-run-metadata",
+    "command": "python -m runner.run_matrix --case yolo26n-obb__obb__amdgpu",
+    "seed": 20260101,
+    "python_version": "3.13.13",
+    "ultralytics_version": null,
+    "raw_log_path_redacted": "%USERPROFILE%//Desktop/YOLO_AMD/uwr_gfx1151/ultralytics-windows-radeon-ep/reports/gfx1151/G2_TIER_A_RUN2/raw/stdout_yolo26n-obb__obb__amdgpu.txt"
+  }
+}

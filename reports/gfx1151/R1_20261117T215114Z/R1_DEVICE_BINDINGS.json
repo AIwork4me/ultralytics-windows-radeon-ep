@@ -1,0 +1,642 @@
+{
+  "yolo11n__detect__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo11n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-cls__classify__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-cls__classify__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-depth__depth__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-depth__depth__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-obb__obb__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-obb__obb__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-pose__pose__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-pose__pose__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-seg__segment__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-seg__segment__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-sem__semantic__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-sem__semantic__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n__detect__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-cls__classify__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-cls__classify__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-depth__depth__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-depth__depth__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-obb__obb__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-obb__obb__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-pose__pose__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-pose__pose__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-seg__segment__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-seg__segment__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-sem__semantic__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s-sem__semantic__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s__detect__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26s__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolov8n__detect__amdgpu": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 2,
+    "compiled_twice": true,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "AMDGPU",
+    "final_counts": {
+      "AMDGPU": 1
+    },
+    "probe_amdgpu_nodes": 1,
+    "selected_candidate_index": 1,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolov8n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x00011746",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  }
+}

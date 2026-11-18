@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-obb__obb.json --pt-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-obb__obb.npz --cand-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-obb__obb_amdgpu.json --cand-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-obb__obb_amdgpu.npz --task obb --imgsz 1024 --thresholds-json reports\gfx1151\R1_20261117T215114Z\thresholds_snapshot.json --cand-source AMDGPU_POST --image-sha256 83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a --input-id 45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb --out reports\gfx1151\R1_20261117T215114Z\raw\tp_yolo26s-obb__obb_amdgpu.json
+rc=0 elapsed=0.2s
+--- stdout ---
+{"ok": true, "task": "obb", "passed": true, "metrics_keys": ["angle_absdiff_mean_deg", "fn", "fp", "matched", "precision", "recall", "ref_entities", "rotated_iou_mean"]}
+
+--- stderr ---

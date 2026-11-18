@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "NEG_INJECT_RUN1",
+  "created_utc": "2026-11-17T15:49:30Z",
+  "generator": "runner.negative_injection",
+  "entries": [
+    {
+      "path": "canary_amdgpu.onnx",
+      "sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+      "bytes": 262316
+    },
+    {
+      "path": "inject5_profile_2026-11-17_23-04-53_271.json",
+      "sha256": "1d33cd6c97bfc80a33f185facaa56b2e1edd697422ce4b75c4ce2a7babdddda6",
+      "bytes": 124
+    },
+    {
+      "path": "inject5_profile_2026-11-17_23-04-53_273.json",
+      "sha256": "2967aedbfc55eb353d1864b78524d31430dcb26c7da180449288e087c953bff0",
+      "bytes": 1666
+    },
+    {
+      "path": "NEGATIVE_INJECTION.json",
+      "sha256": "55c41ca5084ceff54180f64860571876f2706aa8445352ca9984e1f62710a42e",
+      "bytes": 1771
+    }
+  ]
+}

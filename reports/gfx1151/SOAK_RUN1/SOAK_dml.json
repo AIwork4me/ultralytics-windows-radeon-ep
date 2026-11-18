@@ -1,0 +1,51 @@
+{
+  "ep": "dml",
+  "onnx_redacted": "yolo26n.raw_b1_fp32_static.onnx",
+  "duration_s": 900.0,
+  "status": "COMPLETED",
+  "runs": 181536,
+  "errors": [],
+  "latency_ms": {
+    "p50": 3.6619,
+    "p95": 11.084,
+    "mean": 4.941773420698924
+  },
+  "stage_markers": [
+    "+0.0s session-create-begin",
+    "+0.4s session-created providers=['DmlExecutionProvider', 'CPUExecutionProvider']",
+    "+0s heartbeat runs=1 p50=7.6ms err=0",
+    "+30s heartbeat runs=8174 p50=3.3ms err=0",
+    "+60s heartbeat runs=16260 p50=3.3ms err=0",
+    "+90s heartbeat runs=24395 p50=3.3ms err=0",
+    "+120s heartbeat runs=30150 p50=3.3ms err=0",
+    "+150s heartbeat runs=32965 p50=3.4ms err=0",
+    "+180s heartbeat runs=39357 p50=3.5ms err=0",
+    "+210s heartbeat runs=45885 p50=3.5ms err=0",
+    "+240s heartbeat runs=53949 p50=3.5ms err=0",
+    "+270s heartbeat runs=58204 p50=3.5ms err=0",
+    "+300s heartbeat runs=62129 p50=3.6ms err=0",
+    "+330s heartbeat runs=68593 p50=3.7ms err=0",
+    "+360s heartbeat runs=76540 p50=3.6ms err=0",
+    "+390s heartbeat runs=80216 p50=3.7ms err=0",
+    "+420s heartbeat runs=84770 p50=3.7ms err=0",
+    "+450s heartbeat runs=91204 p50=3.7ms err=0",
+    "+480s heartbeat runs=99202 p50=3.7ms err=0",
+    "+510s heartbeat runs=107278 p50=3.6ms err=0",
+    "+540s heartbeat runs=115319 p50=3.6ms err=0",
+    "+570s heartbeat runs=121099 p50=3.6ms err=0",
+    "+600s heartbeat runs=124086 p50=3.6ms err=0",
+    "+630s heartbeat runs=129825 p50=3.7ms err=0",
+    "+660s heartbeat runs=136832 p50=3.6ms err=0",
+    "+690s heartbeat runs=145015 p50=3.6ms err=0",
+    "+720s heartbeat runs=149842 p50=3.6ms err=0",
+    "+751s heartbeat runs=152680 p50=3.7ms err=0",
+    "+781s heartbeat runs=158920 p50=3.7ms err=0",
+    "+811s heartbeat runs=165909 p50=3.7ms err=0",
+    "+841s heartbeat runs=174039 p50=3.6ms err=0",
+    "+871s heartbeat runs=178858 p50=3.6ms err=0"
+  ],
+  "watchdog": {
+    "no_progress_timeout_s": 180,
+    "heartbeat_s": 30
+  }
+}

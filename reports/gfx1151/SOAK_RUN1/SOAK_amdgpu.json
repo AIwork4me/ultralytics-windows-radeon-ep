@@ -1,0 +1,40 @@
+{
+  "ep": "amdgpu",
+  "onnx_redacted": "yolo26n.raw_b1_fp32_static.onnx",
+  "duration_s": 900.0,
+  "status": "COMPLETED",
+  "runs": 53740,
+  "errors": [],
+  "latency_ms": {
+    "p50": 6.396,
+    "p95": 30.6827,
+    "mean": 10.245944979531075
+  },
+  "stage_markers": [
+    "+0.0s session-create-begin",
+    "+348.7s session-created providers=['AMDGPU', 'CPUExecutionProvider']",
+    "+349s heartbeat runs=1 p50=192.6ms err=0",
+    "+379s heartbeat runs=3107 p50=6.5ms err=0",
+    "+409s heartbeat runs=7229 p50=5.9ms err=0",
+    "+439s heartbeat runs=9271 p50=6.3ms err=0",
+    "+469s heartbeat runs=11902 p50=6.2ms err=0",
+    "+499s heartbeat runs=15091 p50=6.3ms err=0",
+    "+529s heartbeat runs=17554 p50=6.4ms err=0",
+    "+559s heartbeat runs=22136 p50=6.2ms err=0",
+    "+589s heartbeat runs=25848 p50=6.1ms err=0",
+    "+619s heartbeat runs=26818 p50=6.1ms err=0",
+    "+649s heartbeat runs=29579 p50=6.3ms err=0",
+    "+679s heartbeat runs=33982 p50=6.2ms err=0",
+    "+709s heartbeat runs=35632 p50=6.2ms err=0",
+    "+739s heartbeat runs=37181 p50=6.3ms err=0",
+    "+769s heartbeat runs=40851 p50=6.4ms err=0",
+    "+799s heartbeat runs=44661 p50=6.3ms err=0",
+    "+829s heartbeat runs=45584 p50=6.3ms err=0",
+    "+859s heartbeat runs=48037 p50=6.5ms err=0",
+    "+889s heartbeat runs=52130 p50=6.4ms err=0"
+  ],
+  "watchdog": {
+    "no_progress_timeout_s": 180,
+    "heartbeat_s": 30
+  }
+}

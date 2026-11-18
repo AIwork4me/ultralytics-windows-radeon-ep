@@ -2,12 +2,12 @@
   "schema_version": 1,
   "snapshot": {
     "schema_version": 1,
-    "captured_utc": "2026-11-17T13:35:27Z",
+    "captured_utc": "2026-11-17T14:20:23Z",
     "ultralytics_release": "8.4.215",
     "ultralytics_commit_sha": "b1942e939948e9933a6ad38f6f7a0e104086b56b",
     "docs_models_url": "https://docs.ultralytics.com/models/",
     "docs_onnx_url": "https://docs.ultralytics.com/integrations/onnx/",
-    "docs_access_utc": "2026-11-17T13:35:27Z"
+    "docs_access_utc": "2026-11-17T14:20:23Z"
   },
   "entries": {
     "yolo26n.pt": {
@@ -360,10 +360,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26n-semantic.pt": {
+    "yolo26n-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26n-semantic.pt",
+      "checkpoint": "yolo26n-sem.pt",
       "size": "n",
       "dataset_head": null,
       "source_url": null,
@@ -385,10 +385,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26s-semantic.pt": {
+    "yolo26s-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26s-semantic.pt",
+      "checkpoint": "yolo26s-sem.pt",
       "size": "s",
       "dataset_head": null,
       "source_url": null,
@@ -410,10 +410,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26m-semantic.pt": {
+    "yolo26m-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26m-semantic.pt",
+      "checkpoint": "yolo26m-sem.pt",
       "size": "m",
       "dataset_head": null,
       "source_url": null,
@@ -435,10 +435,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26l-semantic.pt": {
+    "yolo26l-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26l-semantic.pt",
+      "checkpoint": "yolo26l-sem.pt",
       "size": "l",
       "dataset_head": null,
       "source_url": null,
@@ -460,10 +460,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26x-semantic.pt": {
+    "yolo26x-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26x-semantic.pt",
+      "checkpoint": "yolo26x-sem.pt",
       "size": "x",
       "dataset_head": null,
       "source_url": null,
@@ -485,10 +485,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26k-semantic.pt": {
+    "yolo26k-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26k-semantic.pt",
+      "checkpoint": "yolo26k-sem.pt",
       "size": "k",
       "dataset_head": null,
       "source_url": null,
@@ -510,10 +510,10 @@
       "eligibility_reason": null,
       "owner": null
     },
-    "yolo26kx-semantic.pt": {
+    "yolo26kx-sem.pt": {
       "family": "YOLO26",
       "task": "semantic",
-      "checkpoint": "yolo26kx-semantic.pt",
+      "checkpoint": "yolo26kx-sem.pt",
       "size": "kx",
       "dataset_head": null,
       "source_url": null,

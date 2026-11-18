@@ -1,0 +1,34 @@
+{
+  "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":768,\"model_name\":\"yolo26s-depth\",\"onnx_sha256\":\"537ce7a90ba1f08300aa1cde10303d5259c0a55576bd3506ebe99be28efcd5c1\",\"task\":\"depth\",\"variant\":\"real_image_v1\"}",
+  "decoded_image_sha256": "7ab70dd0d5992f4814fc4b1b0e6f77cbe4b0fd6b66bbf263210f1b932b1ddb32",
+  "image_path_name": "bus.jpg",
+  "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+  "imgsz": 768,
+  "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995",
+  "kind": "real_image",
+  "model_name": "yolo26s-depth",
+  "npy_file": "input_7de1ec95dc98fc27.npy",
+  "onnx_sha256": "537ce7a90ba1f08300aa1cde10303d5259c0a55576bd3506ebe99be28efcd5c1",
+  "preprocess": {
+    "bottom": 0,
+    "imgsz": 768,
+    "left": 96,
+    "method": "letterbox",
+    "new_h": 768,
+    "new_w": 576,
+    "ratio": 0.7111111111111111,
+    "right": 96,
+    "top": 0
+  },
+  "pt_equivalence": "same decoded image; ultralytics-semantics preprocessing (letterbox/centercrop as per task); PT oracle preprocesses the same image file with its own pipeline \u2014 comparison thresholds absorb resampling-level differences",
+  "task": "depth",
+  "tensor_dtype": "float32",
+  "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195",
+  "tensor_shape": [
+    1,
+    3,
+    768,
+    768
+  ],
+  "variant": "real_image_v1"
+}

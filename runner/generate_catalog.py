@@ -35,7 +35,7 @@ TASK_DEFAULT_IMGSZ = {
 # Official checkpoint suffix per task (ultralytics naming; detect has no suffix).
 TASK_SUFFIX = {
     "detect": "", "segment": "-seg", "classify": "-cls", "pose": "-pose",
-    "obb": "-obb", "depth": "-depth", "semantic": "-semantic",
+    "obb": "-obb", "depth": "-depth", "semantic": "-sem",  # official suffix is -sem (verified live)
 }
 
 
@@ -161,7 +161,7 @@ def build_catalog(tier_a_checkpoints: list[str]) -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ultralytics-release", default="8.3.280")
-    ap.add_argument("--tier-a", default="yolo26n.pt,yolo26n-seg.pt,yolo26n-semantic.pt,"
+    ap.add_argument("--tier-a", default="yolo26n.pt,yolo26n-seg.pt,yolo26n-sem.pt,"
                                         "yolo26n-depth.pt,yolo26n-cls.pt,yolo26n-pose.pt,yolo26n-obb.pt,"
                                         "yolo11n.pt,yolov8n.pt")
     a = ap.parse_args()

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-17T14:07:39Z",
+  "os": {
+    "os_edition": "CoreCountrySpecific",
+    "display_version": "25H2",
+    "build": "26200",
+    "ubr": 9974
+  },
+  "cpu": {
+    "cpu_name": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          ",
+    "ram_gb": 123.6,
+    "model": "ProArt PX13 HN7306EA"
+  },
+  "gpu_target": {
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "driver_version": "32.0.22032.6002",
+    "driver_date": null,
+    "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1\\4&35FE04F8&0&0041",
+    "status": "OK",
+    "verified": true,
+    "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed); PnP cross-check pending canary",
+    "luid": "0x00000000:0x00011746",
+    "dedicated_vram_mb": 4096,
+    "shared_memory_mb": 101292
+  },
+  "other_adapters": [
+    {
+      "name": "GameViewer Virtual Display Adapter",
+      "driver_version": "15.6.5.199",
+      "pnp_device_id": "ROOT\\DISPLAY\\0000",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "device_name": "AMD Radeon(TM) 8060S Graphics",
+      "drv": "32.0.22032.6002",
+      "drv_date": "12/15/2025 08:00:00"
+    },
+    {
+      "device_name": "GameViewer Virtual Display Adapter",
+      "drv": "15.6.5.199",
+      "drv_date": "02/28/2026 08:00:00"
+    }
+  ],
+  "windows_app_runtime_versions": [
+    "2.3.0.0",
+    "2.3.1.0",
+    "2.4.0.0",
+    "2.5.1.0",
+    "2.5.1.100",
+    "2.6.4.0",
+    "2.6.5.0",
+    "4000.1309.2056.0",
+    "5001.373.1736.0",
+    "6000.519.329.0",
+    "6000.900.156.100",
+    "7000.785.2325.0",
+    "8000.946.1701.0",
+    "8000.994.2142.0"
+  ],
+  "python": {
+    "version": "3.13.13",
+    "implementation": "CPython",
+    "executable_basename": "python.exe"
+  },
+  "tooling": {},
+  "_gpu_list": [
+    {
+      "name": "GameViewer Virtual Display Adapter",
+      "driver_version": "15.6.5.199",
+      "pnp_device_id": "ROOT\\DISPLAY\\0000",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "name": "AMD Radeon(TM) 8060S Graphics",
+      "driver_version": "32.0.22032.6002",
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1\\4&35FE04F8&0&0041",
+      "status": "OK",
+      "adapter_ram": 4293918720
+    },
+    {
+      "device_name": "AMD Radeon(TM) 8060S Graphics",
+      "drv": "32.0.22032.6002",
+      "drv_date": "12/15/2025 08:00:00"
+    },
+    {
+      "device_name": "GameViewer Virtual Display Adapter",
+      "drv": "15.6.5.199",
+      "drv_date": "02/28/2026 08:00:00"
+    }
+  ]
+}

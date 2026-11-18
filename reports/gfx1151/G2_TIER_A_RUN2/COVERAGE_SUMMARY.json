@@ -1,0 +1,38 @@
+{
+  "catalog_entries": 142,
+  "receipts": 18,
+  "covered_checkpoints": 9,
+  "not_run_count": 133,
+  "not_run_sample": [
+    "yolo26s.pt",
+    "yolo26m.pt",
+    "yolo26l.pt",
+    "yolo26x.pt",
+    "yolo26k.pt",
+    "yolo26kx.pt",
+    "yolo26s-seg.pt",
+    "yolo26m-seg.pt",
+    "yolo26l-seg.pt",
+    "yolo26x-seg.pt",
+    "yolo26k-seg.pt",
+    "yolo26kx-seg.pt",
+    "yolo26s-sem.pt",
+    "yolo26m-sem.pt",
+    "yolo26l-sem.pt",
+    "yolo26x-sem.pt",
+    "yolo26k-sem.pt",
+    "yolo26kx-sem.pt",
+    "yolo26s-depth.pt",
+    "yolo26m-depth.pt",
+    "yolo26l-depth.pt",
+    "yolo26x-depth.pt",
+    "yolo26k-depth.pt",
+    "yolo26kx-depth.pt",
+    "yolo26s-cls.pt"
+  ],
+  "status_histogram": {
+    "amdgpu=PASS_GPU_EXECUTED_FULL|dml=NOT_RUN": 9,
+    "amdgpu=NOT_RUN|dml=PASS_GPU_EXECUTED_FULL": 9
+  },
+  "full_coverage_claim_allowed": false
+}

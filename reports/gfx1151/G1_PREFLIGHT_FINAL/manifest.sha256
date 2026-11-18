@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "run_id": "G1_PREFLIGHT_FINAL",
+  "created_utc": "2026-11-17T14:07:55Z",
+  "generator": "runner.preflight",
+  "entries": [
+    {
+      "path": "canary/canary_amdgpu.onnx",
+      "sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+      "bytes": 262316
+    },
+    {
+      "path": "canary/case_amdgpu.json",
+      "sha256": "0d2ca4cdbc571a7f84ca0bc1d8fb34a5c44ddc9325059ebf2469a6f18b22bd8c",
+      "bytes": 4116033
+    },
+    {
+      "path": "canary/case_cpu.json",
+      "sha256": "8d5781747ada8157925d2e30b3b8c210446018ff8838332beec324ffd7f8b9ec",
+      "bytes": 2773296
+    },
+    {
+      "path": "canary/case_dml.json",
+      "sha256": "8f238c27f2d38badb6282f16bcfc4ea8e615aa562f1456af064098c07ccb5bd4",
+      "bytes": 4116027
+    },
+    {
+      "path": "canary/frag_amdgpu.json",
+      "sha256": "7dd783ee91eb9640612c8b7e847c72739437b0edb4154b9c46ad9c217971965d",
+      "bytes": 1343506
+    },
+    {
+      "path": "canary/frag_cpu.json",
+      "sha256": "d70229ea5497ed5df2ad4992aba17aaced262cd337ef1966fd81402721ff5511",
+      "bytes": 1343077
+    },
+    {
+      "path": "canary/frag_dml.json",
+      "sha256": "a6f6980cec898dc094ef76a739aaf00fea18d8729a9e1623b6d61e736f344c31",
+      "bytes": 1343604
+    },
+    {
+      "path": "DEVICE_IDENTITY.json",
+      "sha256": "e1db7daae248e0e96aa3be4d731664e7cc59a0b941ebb540eba9988220e277d9",
+      "bytes": 1705
+    },
+    {
+      "path": "EP_INSTALL_AND_PROBE.json",
+      "sha256": "c30f474916e9ad7aadd59df6c4377d3c64f94e596d563663a73189aff4b8ca9a",
+      "bytes": 1379
+    },
+    {
+      "path": "GPU_CANARY.json",
+      "sha256": "a270469f5b643f1ba384496ee7e9375fb06ed156579876461fc5185b9e6869a3",
+      "bytes": 3346
+    },
+    {
+      "path": "HOST_FINGERPRINT.json",
+      "sha256": "0a98cf1ba0ed54fa9c15d88a3fe43803129fc1e44760ff85f2b011778a8a2f21",
+      "bytes": 2627
+    }
+  ]
+}

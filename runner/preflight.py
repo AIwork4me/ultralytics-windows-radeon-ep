@@ -151,7 +151,7 @@ def _run_canary(out_dir: Path, gfx: str) -> dict:
     amdgpu = results.get("amdgpu", {})
     amdgpu_nodes = ((amdgpu.get("provider_node_counts") or {}).get("AMDGPU", 0))
     dml = results.get("dml", {})
-    dml_nodes = ((dml.get("provider_node_counts") or {}).get("Dml", 0))
+    dml_nodes = ((dml.get("provider_node_counts") or {}).get("DmlExecutionProvider", 0))
     status = "PASS_AMDGPU+DML" if (amdgpu_nodes > 0 and dml_nodes > 0) else (
         "PASS_AMDGPU_ONLY" if amdgpu_nodes > 0 else (
             "PASS_DML_ONLY" if dml_nodes > 0 else "FAIL_NO_GPU_COMPUTE"))

@@ -31,7 +31,7 @@ def main() -> int:
     cov = coverage_summary(receipts, cat)
     (run_dir / "COVERAGE_SUMMARY.json").write_text(json.dumps(cov, indent=2), encoding="utf-8")
     write_ledger(receipts, run_dir / "CASE_LEDGER.json")
-    print(f"[matrix] coverage: {cov['covered']}/{cov['catalog_entries']} "
+    print(f"[matrix] coverage: {cov['covered_checkpoints']}/{cov['catalog_entries']} "
           f"(full_coverage_claim_allowed={cov['full_coverage_claim_allowed']})")
     return 0
 

@@ -1,0 +1,87 @@
+{
+  "run_utc": "2026-11-17T14:07:40Z",
+  "status": "PASS_AMDGPU+DML",
+  "model_sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+  "results": {
+    "cpu": {
+      "returncode": 0,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "provider_node_counts": {
+        "CPUExecutionProvider": 1
+      },
+      "parity": null,
+      "stderr_tail": "\u001b[0;93m2026-11-17 22:07:41.2181499 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\n",
+      "stdout_tail": ""
+    },
+    "amdgpu": {
+      "returncode": 0,
+      "providers": [
+        "AMDGPU",
+        "CPUExecutionProvider"
+      ],
+      "provider_node_counts": {
+        "AMDGPU": 1
+      },
+      "parity": {
+        "outputs": [
+          {
+            "name": "y",
+            "shape": [
+              256,
+              256
+            ],
+            "dtype": "float32",
+            "finite": true,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "max_rel_diff": 0.0,
+            "p99_abs_diff": 0.0,
+            "allclose": true,
+            "threshold_used": 0.0002
+          }
+        ],
+        "all_outputs_allclose": true,
+        "by_name_matching": true
+      },
+      "stderr_tail": "blem_cache.json\n2026-11-17 22:07:44.244035 [WARN] [:0] auto_save_problem_cache: save failed: C:\\j\\AMDMIGraphX\\src\\file_buffer.cpp:77: write_buffer: Failure opening file: C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\problem_cache.json\n2026-11-17 22:07:44.332733 [WARN] [:0] auto_save_problem_cache: save failed: C:\\j\\AMDMIGraphX\\src\\file_buffer.cpp:77: write_buffer: Failure opening file: C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\problem_cache.json\n",
+      "stdout_tail": ""
+    },
+    "dml": {
+      "returncode": 0,
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "parity": {
+        "outputs": [
+          {
+            "name": "y",
+            "shape": [
+              256,
+              256
+            ],
+            "dtype": "float32",
+            "finite": true,
+            "max_abs_diff": 2.86102294921875e-06,
+            "mean_abs_diff": 1.9168521703250008e-07,
+            "max_rel_diff": 0.0036181678214010776,
+            "p99_abs_diff": 9.5367431640625e-07,
+            "allclose": true,
+            "threshold_used": 0.0002
+          }
+        ],
+        "all_outputs_allclose": true,
+        "by_name_matching": true
+      },
+      "stderr_tail": "\u001b[0;93m2026-11-17 22:07:44.8371299 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\n\u001b[0;93m2026-11-17 22:07:44.9324063 [W:onnxruntime:Default, config_options.cc:45 onnxruntime::ConfigOptions::AddConfigEntry] Config with key [ep.dmlexecutionprovider.device_id] already exists with value [0]. It will be overwritten\u001b[m\n",
+      "stdout_tail": ""
+    }
+  },
+  "amdgpu_nodes": 1,
+  "dml_nodes": 1
+}

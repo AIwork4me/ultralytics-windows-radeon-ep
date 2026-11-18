@@ -1,0 +1,307 @@
+{
+  "schema_version": 2,
+  "receipt_version": 2,
+  "run_id": "R1_20261117T215114Z",
+  "case_id": "yolo26s-depth__depth__amdgpu",
+  "created_utc": "2026-11-18T00:38:04Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "PASS_ONNX_EXPORT",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "PASS_GPU_EXECUTED_FULL",
+    "dml": "NOT_RUN",
+    "task_oracle": "PASS_TASK",
+    "benchmark": "PASS_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "unknown",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "device_luid": "0x00000000:0x00011746",
+    "dxgi_evidence": {
+      "vendor_id": "0x1002",
+      "device_id": "0x1586"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1\\4&35FE04F8&0&0041"
+    },
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22032.6002",
+    "driver_date": null,
+    "wddm_version": null,
+    "verified_device_identity": true,
+    "identity_method": "wmi-name-match (pending DXGI cross-check)"
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "depth",
+    "checkpoint": "yolo26s-depth.pt",
+    "size": "s",
+    "pt_sha256": "0ab8fa24504a5efa8dd8dd46870c25146ebd22508c64f5e29656e17c59bc24dd",
+    "onnx_sha256": "537ce7a90ba1f08300aa1cde10303d5259c0a55576bd3506ebe99be28efcd5c1",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO_AMD/uwr_gfx1151/ultralytics-windows-radeon-ep/models/onnx/yolo26s-depth.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 768,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false,
+      "ultralytics_version": "8.4.215"
+    },
+    "input_names": [
+      "images"
+    ],
+    "output_names": [
+      "output0"
+    ],
+    "inputs_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+  },
+  "session": {
+    "ep": "AMDGPU",
+    "requested_providers": [
+      "AMDGPU",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "AMDGPU": 1
+    },
+    "graph_node_total": 1,
+    "profile_available": true,
+    "profile_fused_event_present": true,
+    "ort_version": "1.25.2",
+    "ort_distribution": "onnxruntime",
+    "device_luid": "0x00000000:0x00011746",
+    "routing_notes": "",
+    "stderr_fallback_signals": [],
+    "stdout_fallback_signals": [],
+    "worker_pid": 118720
+  },
+  "parity": {
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          1,
+          768,
+          768
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 1.811981201171875e-05,
+        "mean_abs_diff": 1.0200299382429673e-06,
+        "max_rel_diff": 2.9041135752353456e-06,
+        "p99_abs_diff": 6.67572021484375e-06,
+        "allclose": true,
+        "threshold_used": 0.005,
+        "candidate_sha256": "8924317b38c6deb6d9e791204c4529ffdc2158e6ec8e9b445350f5955f0e44f4",
+        "ref_sha256": "43c7c063dfb6f67a0df03e72d095bf38a7723325e679759109283fa7bf5c6a3b"
+      }
+    ],
+    "all_outputs_allclose": true,
+    "by_name_matching": true,
+    "thresholds": {
+      "atol": 0.005,
+      "rtol": 0.005,
+      "source": "configs/thresholds.yaml"
+    }
+  },
+  "task": null,
+  "benchmark_data": {
+    "warm_run_ms_p50": 14.2293,
+    "warm_run_ms_p95": 15.112754999999998,
+    "warm_run_ms_p99": 15.549460999999999,
+    "warm_run_ms_mean": 14.239133333333333,
+    "warm_run_ms_std": 0.5209867889133295,
+    "warm_run_samples": 30,
+    "timer": "time.perf_counter_ns"
+  },
+  "errors": [],
+  "provenance": {
+    "script_head_sha": "git:r1-branch",
+    "command": "python -m runner.r1_pipeline --models yolo26s-depth.pt --eps amdgpu",
+    "seed": 0,
+    "python_version": "3.13.13",
+    "ultralytics_version": "8.4.215",
+    "raw_log_path_redacted": "reports/gfx1151/R1_20261117T215114Z/raw/log_yolo26s-depth__depth_amdgpu.txt"
+  },
+  "verdicts": {
+    "identity": "EP_DEVICE_SELECTED",
+    "amdgpu": {
+      "execution": "PASS_FULL",
+      "numeric_parity": "PASS",
+      "task_parity": "PASS_TASK_PARITY",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "MEASURED"
+    },
+    "dml": {
+      "execution": "NOT_RUN",
+      "numeric_parity": "PASS",
+      "task_parity": "NOT_RUN",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "MEASURED"
+    }
+  },
+  "input": {
+    "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995",
+    "kind": "real_image",
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "tensor_sha256": {
+      "images": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+    },
+    "preprocess": {
+      "method": "letterbox",
+      "params": {
+        "ratio": 0.7111111111111111,
+        "new_h": 768,
+        "new_w": 576,
+        "top": 0,
+        "left": 96,
+        "bottom": 0,
+        "right": 96,
+        "imgsz": 768
+      },
+      "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
+      "tensor_dtype": "float32",
+      "tensor_shape": [
+        1,
+        3,
+        768,
+        768
+      ]
+    },
+    "npy_path_redacted": "reports/gfx1151/R1_20261117T215114Z/inputs/input_7de1ec95dc98fc27.npy",
+    "generation": {
+      "script": "radeon_ort.input_contract.build_input_bundle",
+      "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":768,\"model_name\":\"yolo26s-depth\",\"onnx_sha256\":\"537ce7a90ba1f08300aa1cde10303d5259c0a55576bd3506ebe99be28efcd5c1\",\"task\":\"depth\",\"variant\":\"real_image_v1\"}"
+    }
+  },
+  "expected_outputs": [
+    {
+      "name": "output0",
+      "dtype": "float32",
+      "shape": [
+        1,
+        1,
+        768,
+        768
+      ]
+    }
+  ],
+  "worker": {
+    "exit_code": 0,
+    "pid": 118720,
+    "parent_pid": 10572,
+    "python": "3.13"
+  },
+  "device_binding": {
+    "ep": "AMDGPU",
+    "candidates_tried": 2,
+    "candidate_log": [
+      {
+        "candidate_index": 0,
+        "global_ep_device_index": 3,
+        "metadata": {
+          "ep_name": "AMDGPU",
+          "ep_vendor": "AMD",
+          "ep_options": {},
+          "ep_metadata": {
+            "library_path": "C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll",
+            "version": "0.1.0"
+          }
+        },
+        "outcome": "Fail: [ONNXRuntimeError] : 1 : FAIL : HIP failure 101: invalid device ordinal; GPU=0; file=C:\\j\\amdgpu-ep\\src\\shared\\hip\\allocator.cc; line=14; expr=hipSetDevice(device_id); ",
+        "hip_code": "101",
+        "session_create_ms": 77075.5022
+      },
+      {
+        "candidate_index": 1,
+        "global_ep_device_index": 4,
+        "metadata": {
+          "ep_name": "AMDGPU",
+          "ep_vendor": "AMD",
+          "ep_options": {},
+          "ep_metadata": {
+            "library_path": "C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll",
+            "version": "0.1.0"
+          }
+        },
+        "outcome": null,
+        "hip_code": null,
+        "session_create_ms": 78580.551,
+        "probe_counts": {
+          "AMDGPU": 1
+        }
+      }
+    ],
+    "state": "EP_DEVICE_SELECTED",
+    "selected_candidate_index": 1,
+    "selected_ep_device": {
+      "ep_name": "AMDGPU",
+      "ep_vendor": "AMD",
+      "ep_options": {},
+      "ep_metadata": {
+        "library_path": "C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll",
+        "version": "0.1.0"
+      }
+    },
+    "probe": {
+      "amdgpu_nodes": 1,
+      "cpu_nodes": 0,
+      "profile": "reports\\gfx1151\\R1_20261117T215114Z\\raw\\prof_yolo26s-depth__depth_amdgpu_probe_c1_2026-11-18_08-35-17_966.json"
+    },
+    "final_profile": {
+      "provider_node_counts": {
+        "AMDGPU": 1
+      },
+      "amdgpu_nodes": 1
+    },
+    "attribution": "fused_single_node",
+    "model_compiled_twice": true,
+    "phase_timings_ns": {
+      "total_ms": 236290.512
+    },
+    "rebuild_ms": 80523.9273,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "luid": "0x00000000:0x00011746",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)"
+    }
+  },
+  "task_parity": {
+    "oracle_kind": "TASK_PARITY",
+    "task": "depth",
+    "ref_source": "PT_ULTRALYTICS",
+    "cand_source": "AMDGPU_POST",
+    "ref_fingerprint_sha256": "775472b8f2f4d2a5b32d54846729430e",
+    "cand_fingerprint_sha256": "47f34c24a7c4b6dd4251dd44c393c6c4",
+    "metrics": {
+      "ref_entities": 0,
+      "mae": 1.5514378901571035e-06,
+      "rmse": 4.465697284818124e-06,
+      "rel_mae": 4.2716718474487557e-07,
+      "valid_px": 589824,
+      "ref_mean_depth": 3.631921986431836
+    },
+    "thresholds_declared": {
+      "max_rel_mae_vs_pt": 0.15
+    },
+    "thresholds_source": "configs/thresholds.yaml",
+    "passed": true,
+    "not_implemented_reason": null,
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995"
+  },
+  "rca_issue_ids": [
+    "AMDGPU-RCA-003",
+    "AMDGPU-RCA-004"
+  ]
+}

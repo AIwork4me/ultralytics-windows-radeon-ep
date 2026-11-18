@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-seg__segment.json --pt-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-seg__segment.npz --cand-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-seg__segment_dml.json --cand-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-seg__segment_dml.npz --task segment --imgsz 640 --thresholds-json reports\gfx1151\R1_20261117T215114Z\thresholds_snapshot.json --cand-source DML_POST --image-sha256 c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63 --input-id 2e719ca0bda390fbe03dff87a39f540de5fcd41d9874037fbde3be5b23327d7b --out reports\gfx1151\R1_20261117T215114Z\raw\tp_yolo26s-seg__segment_dml.json
+rc=0 elapsed=0.2s
+--- stdout ---
+{"ok": true, "task": "segment", "passed": true, "metrics_keys": ["fn", "fp", "iou_mean", "mask_iou_mean", "matched", "precision", "recall", "ref_entities"]}
+
+--- stderr ---

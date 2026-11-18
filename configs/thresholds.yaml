@@ -6,6 +6,13 @@ numeric_parity:
   fp32:
     atol: 5.0e-3
     rtol: 5.0e-3
+  int_outputs:
+    # integer (argmax class-map) outputs: parity = exact-agreement fraction.
+    # Defined after AMDGPU-RCA-006 (yolo26s-sem: 1 px / 409600 differed between
+    # CPU and BOTH GPUs identically — an argmax boundary tie, not a GPU fault).
+    # Declared in a versioned design note (docs/r1/R1_INT_OUTPUT_PARITY.md);
+    # rationale: float allclose on integer class ids is a category error.
+    min_exact_agreement: 0.999
   fp16_or_quantize16:
     atol: 5.0e-2
     rtol: 5.0e-2
@@ -24,10 +31,12 @@ task_oracle:
     min_mask_iou: 0.70
   semantic:
     min_miou: 0.70
+    min_pixel_agreement: 0.90
   depth:
     max_rel_mae_vs_pt: 0.15
   classify:
     require_top1_match: true
+    max_score_drift: 0.05
   pose:
     min_oks: 0.80
   obb:

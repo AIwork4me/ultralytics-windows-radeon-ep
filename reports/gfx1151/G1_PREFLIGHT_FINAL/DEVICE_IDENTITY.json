@@ -1,0 +1,55 @@
+{
+  "adapters": [
+    {
+      "index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "dedicated_video_mb": 4096,
+      "shared_sys_mb": 101292,
+      "luid_str": "0x00000000:0x00011746",
+      "is_software": false
+    },
+    {
+      "index": 1,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "dedicated_video_mb": 4096,
+      "shared_sys_mb": 101292,
+      "luid_str": "0x00000000:0x0001FA74",
+      "is_software": false
+    },
+    {
+      "index": 2,
+      "description": "Microsoft Basic Render Driver",
+      "vendor_id": "0x1414",
+      "device_id": "0x008C",
+      "dedicated_video_mb": 0,
+      "shared_sys_mb": 101292,
+      "luid_str": "0x00000000:0x00013846",
+      "is_software": true
+    }
+  ],
+  "resolved": {
+    "ok": true,
+    "adapter": {
+      "index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "dedicated_video_mb": 4096,
+      "shared_sys_mb": 101292,
+      "luid_str": "0x00000000:0x00011746",
+      "is_software": false
+    },
+    "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed)",
+    "corroboration": [
+      "DeviceId 0x1586 -> gfx1151 (Radeon 8060S, Ryzen AI MAX)",
+      "description contains '8060S'",
+      "description contains 'Radeon'"
+    ],
+    "note": "LUID is boot-local; recorded as session corroboration only",
+    "dedup_note": "same physical gfx1151 enumerated 2x (LUIDs: ['0x00000000:0x00011746', '0x00000000:0x0001FA74']); selected index 0"
+  }
+}

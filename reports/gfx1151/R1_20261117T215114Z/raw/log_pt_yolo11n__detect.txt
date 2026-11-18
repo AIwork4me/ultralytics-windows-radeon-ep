@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\models\pt\yolo11n.pt --task detect --tensor-npy reports\gfx1151\R1_20261117T215114Z\inputs\input_db5259085e4e812f.npy --out-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo11n__detect.json --out-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo11n__detect.npz
+rc=0 elapsed=4.0s
+--- stdout ---
+{"ok": true, "task": "detect", "n": 5}
+
+--- stderr ---
