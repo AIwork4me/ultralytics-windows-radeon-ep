@@ -194,7 +194,7 @@
   E0 43.1/124.2s、E2 20.2/98.2s、缓存命中 0.78s/3.9s（wall 4.1/10.1s）、
   FRC 46-48/126-130s、E6 518.7s、E8 DML PASS、soak 903.5s/924.6s
   （均 ≥900s，2 次命中重建，parity 3/3）——主实验全部数字在发布代码上复现。
-- **Draft PR**：`__PR_URL__`（base=main，draft，不合并、不 Ready、不上游 Issue）。
+- **Draft PR**：见仓库 Pull Requests（base=main，draft，不合并、不 Ready、不上游 Issue；本文件提交先于 PR 创建，PR 描述含完整链接与 commit 图）。
 - **CI**：PR 精确 HEAD 触发 cpu-contract workflow；CPU CI 不证明 GPU。
 - 遗留：本地主仓库 origin/main 引用仍为旧值（fetch 未成），不影响本次
   发布正确性（远端 HEAD 已由 API+ls-remote 双通道复核）。
