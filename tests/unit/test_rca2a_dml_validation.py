@@ -6,8 +6,11 @@ Radeon adapter) — never an amdgpu-only probe event, and never a silent pass
 when identity is missing."""
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
+
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
@@ -28,7 +31,14 @@ def _events(with_identity: bool) -> list[dict]:
 
 
 def test_dml_pass_with_physical_identity(tmp_path):
-    v = _validate_gpu_pass(tmp_path, {}, _events(True), 0, "dml", False)
+    # Positive control must prove real numerical parity and a profiled GPU node.
+    np.savez(tmp_path / "outputs_first.npz",
+             output=np.array([1.0], dtype=np.float32))
+    (tmp_path / "ort_profile_sess0.json").write_text(
+        json.dumps([{"cat": "Node", "args": {
+            "provider": "DmlExecutionProvider"}}]), encoding="utf-8")
+    case = {"reference_outputs": {"output": [1.0]}}
+    v = _validate_gpu_pass(tmp_path, case, _events(True), 0, "dml", True)
     assert v["verdict"] == "GPU_PASS_VALIDATED", v["checks"]
     names = {c["check"] for c in v["checks"]}
     assert "gpu_identity_event" in names and "physical_radeon_adapter" in names

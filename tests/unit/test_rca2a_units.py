@@ -106,9 +106,11 @@ class TestSchema:
             "RECEIPT_INVALID_CACHE_CLAIM_WITHOUT_SNAPSHOTS"
 
     def test_gpu_pass_without_profile_nodes_rejected(self):
-        r = _base_receipt(gpu_validation={"verdict": "GPU_PASS_VALIDATED",
-                                          "profile_ep_nodes_positive": False,
-                                          "supervisor_independent_parity": True})
+        gv = _base_receipt()["gpu_validation"]
+        gv["profile_ep_node_count"] = 0
+        gv["checks"] = [dict(c, ok=False) if c["check"] == "profile_ep_nodes_positive"
+                        else c for c in gv["checks"]]
+        r = _base_receipt(gpu_validation=gv)
         assert validate_receipt(r)["verdict"] == \
             "RECEIPT_INVALID_GPU_PASS_WITHOUT_PROFILE_NODES"
 

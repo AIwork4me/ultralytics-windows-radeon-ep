@@ -23,7 +23,8 @@ from typing import Any
 
 SCHEMA_VERSION = "rca2a_receipt_v1"
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
-SHA256_SEARCH = re.compile(r"[0-9a-f]{64}")  # unanchored, for DIRTY-<sha> forms
+GIT_SHA_RE = re.compile(r"^(?:[0-9a-f]{40}|[0-9a-f]{64})$")
+DIRTY_GIT_SHA_RE = re.compile(r"^DIRTY-(?:[0-9a-f]{40}|[0-9a-f]{64})$")
 
 PHASE_ORDER = [
     "EP_DISCOVERY", "EP_DLL_REGISTER", "GPU_IDENTITY_RESOLVE", "EP_DEVICE_PROBE",
@@ -68,14 +69,21 @@ def validate_receipt(r: dict[str, Any], *, plan: dict[str, Any] | None = None) -
     if r.get("schema_version") != SCHEMA_VERSION:
         return finish("RECEIPT_INVALID_SCHEMA_VERSION")
 
-    for f in ("onnx_sha256", "input_sha256", "plan_sha256", "code_git_sha", "main_base_sha"):
+    for f in ("onnx_sha256", "input_sha256", "plan_sha256",
+              "code_git_sha", "main_base_sha"):
         v = r.get(f)
-        if not isinstance(v, str) or not SHA256_RE.match(v):
-            # code_git_sha may be "DIRTY-<sha>" — still must carry a full sha
-            m = SHA256_SEARCH.search(str(v or ""))
-            if f != "code_git_sha" or not m:
-                chk(f"sha:{f}", False, v)
-                return finish(f"RECEIPT_INVALID_SHA_{f.upper()}")
+        if f in ("code_git_sha", "main_base_sha"):
+            # Git SHA-1 uses 40 hexadecimal chars; SHA-256 repos use 64.
+            # Neither may be treated as an ONNX / input content SHA256.
+            ok = (isinstance(v, str) and bool(GIT_SHA_RE.fullmatch(v)))
+            if f == "code_git_sha":
+                ok = ok or (isinstance(v, str) and
+                            bool(DIRTY_GIT_SHA_RE.fullmatch(v)))
+        else:
+            ok = isinstance(v, str) and bool(SHA256_RE.fullmatch(v))
+        if not ok:
+            chk(f"sha:{f}", False, v)
+            return finish(f"RECEIPT_INVALID_SHA_{f.upper()}")
 
     # env: every key the arm promises must appear in the worker's own echo
     exp = r.get("env_expected") or {}
