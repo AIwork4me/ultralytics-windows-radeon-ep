@@ -40,9 +40,18 @@ def test_software_adapter_ignored():
     assert res["ok"]
 
 
-def test_wrong_device_id_for_gfx1151_falls_to_name():
+def test_wrong_device_id_for_gfx1151_fails_closed_by_default():
     res = resolve_target_adapter([_adapter(device_id=0x9999)], gfx="gfx1151")
-    assert res["ok"]  # name corroboration still matches
+    assert not res["ok"]
+    assert "WRONG_OR_AMBIGUOUS_DEVICE" in res["reason"]
+
+
+def test_unknown_did_name_only_fallback_requires_explicit_diagnostic_opt_in():
+    res = resolve_target_adapter(
+        [_adapter(device_id=0x9999)], gfx="gfx1151",
+        allow_unverified_name_fallback=True)
+    assert res["ok"] and res["did_match"] is False
+    assert "warning" in res
 
 
 def test_catalog_exists_and_frozen():
