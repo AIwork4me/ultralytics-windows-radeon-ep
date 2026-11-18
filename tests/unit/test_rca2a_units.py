@@ -31,8 +31,13 @@ def _base_receipt(**over):
         "cache_verdict": {"label": "CACHE_NO_EFFECT_OBSERVED", "snapshots": [],
                           "switch_recognized": False},
         "gpu_validation": {"verdict": "GPU_PASS_VALIDATED",
-                           "profile_ep_nodes_positive": True,
-                           "supervisor_independent_parity": True},
+                           "profile_ep_node_count": 2,
+                           "supervisor_parity_max_abs": 0.0,
+                           "checks": [{"check": name, "ok": True} for name in (
+                               "ep_device_probe_event", "luid_match_basis",
+                               "amdgpu_provider_present", "output_names_match",
+                               "supervisor_independent_parity",
+                               "profile_ep_nodes_positive")]},
         "finished_utc": "2026-11-18T00:00:00Z",
     }
     r.update(over)
@@ -65,9 +70,10 @@ class TestSchema:
     def test_same_sha_cross_condition_mixing_rejected(self):
         # same plan sha but receipt claims an arm whose env differs from the plan
         plan = {"plan_sha256": SHA, "arms": {
-            "baseline": {"model": "yolo26n", "ep": "amdgpu", "env": {}},
-            "skip": {"model": "yolo26n", "ep": "amdgpu",
-                     "env": {"MIGRAPHX_SKIP_BENCHMARKING": "1"}}}}
+            "baseline": {"models": ["yolo26n"], "ep": "amdgpu", "env": {}},
+            "skip": {"models": ["yolo26n"], "ep": "amdgpu",
+                     "env": {"MIGRAPHX_SKIP_BENCHMARKING": "1"}}},
+                "cases": {"yolo26n": {"onnx_sha256": SHA, "input_sha256": SHA}}}
         r = _base_receipt(arm="skip", env_expected={})  # claims skip, no env
         assert validate_receipt(r, plan=plan)["verdict"] == \
             "RECEIPT_INVALID_ARM_ENV_MISMATCH"
@@ -112,7 +118,8 @@ class TestSchema:
                           env_echoed={"ORT_MIGRAPHX_EXHAUSTIVE_TUNE": "1"},
                           arm="baseline")
         plan = {"plan_sha256": SHA, "arms": {
-            "baseline": {"model": "yolo26n", "ep": "amdgpu", "env": {}}}}
+            "baseline": {"models": ["yolo26n"], "ep": "amdgpu", "env": {}}},
+                "cases": {"yolo26n": {"onnx_sha256": SHA, "input_sha256": SHA}}}
         assert validate_receipt(r, plan=plan)["verdict"] == \
             "RECEIPT_INVALID_ARM_ENV_MISMATCH"
 

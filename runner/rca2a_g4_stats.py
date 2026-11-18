@@ -14,12 +14,28 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from radeon_ort.rca2a_metrics import bootstrap_ci, paired_improvement, summarize
+
+SOAK_MIN_EFFECTIVE_SECONDS = 900.0
+
+
+def soak_gate(receipt: dict) -> bool:
+    """Exactly >=900 seconds of effective steady inference and real GPU proof."""
+    phases = receipt.get("phases") or {}
+    value = phases.get("steady_effective_s")
+    return (isinstance(value, (int, float)) and not isinstance(value, bool)
+            and math.isfinite(value) and value >= SOAK_MIN_EFFECTIVE_SECONDS
+            and receipt.get("classification") == "CLEAN_COMPLETE"
+            and receipt.get("child_exit_code") == 0
+            and receipt.get("killed_by_watchdog") is False
+            and (receipt.get("gpu_validation") or {}).get("verdict") == "GPU_PASS_VALIDATED"
+            and len(phases.get("recreates") or []) >= 1)
 
 QUANT_NOTE = ("steady per-run latencies quantize to ~15.6ms steps on this host; "
               "p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic")
@@ -212,9 +228,9 @@ def main() -> int:
                 "recreates": recs,
                 "effective_steady_minutes": round(
                     (_ph(r, "steady_effective_s") or 0) / 60.0, 2),
-                "meets_15min": (_ph(r, "steady_effective_s") or 0) >= 870,
-                "gate": "SOAK_15MIN_OK" if (_ph(r, "steady_effective_s") or 0) >= 870
-                        and r.get("gpu_validation", {}).get("verdict") == "GPU_PASS_VALIDATED"
+                "min_effective_steady_s": SOAK_MIN_EFFECTIVE_SECONDS,
+                "meets_15min": soak_gate(r),
+                "gate": "SOAK_15MIN_OK" if soak_gate(r)
                         else "SOAK_SHORT_OR_INVALID"}
 
         out["models"][model] = m

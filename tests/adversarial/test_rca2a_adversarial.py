@@ -27,8 +27,13 @@ def _receipt(**over):
         "cache_verdict": {"label": "CACHE_NO_EFFECT_OBSERVED", "snapshots": [],
                           "switch_recognized": False},
         "gpu_validation": {"verdict": "GPU_PASS_VALIDATED",
-                           "profile_ep_nodes_positive": True,
-                           "supervisor_independent_parity": True},
+                           "profile_ep_node_count": 2,
+                           "supervisor_parity_max_abs": 0.0,
+                           "checks": [{"check": name, "ok": True} for name in (
+                               "ep_device_probe_event", "luid_match_basis",
+                               "amdgpu_provider_present", "output_names_match",
+                               "supervisor_independent_parity",
+                               "profile_ep_nodes_positive")]},
         "finished_utc": "2026-11-18T00:00:00Z",
     }
     r.update(over)
@@ -63,13 +68,11 @@ def test_cache_file_exists_but_no_state_change_overclaim_fails():
 
 def test_same_model_name_different_sha_fails_plan_binding():
     plan = {"plan_sha256": SHA, "arms": {
-        "a": {"model": "yolo26n", "ep": "amdgpu", "env": {}}}}
-    r = _receipt(onnx_sha256="d" * 64)  # different model bytes, same name
-    # sha is well-formed but no longer matches... schema only checks format vs
-    # plan; plan carries no per-model sha here so this must NOT be upgraded to
-    # a cache-reuse claim — verdict stays whatever checks say, never VALID++
+        "a": {"models": ["yolo26n"], "ep": "amdgpu", "env": {}}},
+            "cases": {"yolo26n": {"onnx_sha256": SHA, "input_sha256": SHA}}}
+    r = _receipt(onnx_sha256="d" * 64)
     v = validate_receipt(r, plan=plan)
-    assert v["verdict"] in ("RECEIPT_VALID", "RECEIPT_INVALID_PLAN_SHA_MISMATCH")
+    assert v["verdict"] == "RECEIPT_INVALID_ONNX_SHA256_MISMATCH"
 
 
 def test_tuning_off_arm_claims_effect_without_recognition_fails():
@@ -100,8 +103,9 @@ def test_env_key_correct_but_wrong_case_rejected():
     r = _receipt(env_expected={"migraphx_skip_benchmarking": "1"},
                  env_echoed={"migraphx_skip_benchmarking": "1"})
     plan = {"plan_sha256": SHA, "arms": {
-        "a": {"model": "yolo26n", "ep": "amdgpu",
-              "env": {"MIGRAPHX_SKIP_BENCHMARKING": "1"}}}}
+        "a": {"models": ["yolo26n"], "ep": "amdgpu",
+              "env": {"MIGRAPHX_SKIP_BENCHMARKING": "1"}}},
+            "cases": {"yolo26n": {"onnx_sha256": SHA, "input_sha256": SHA}}}
     v = validate_receipt(r, plan=plan)
     assert v["verdict"] == "RECEIPT_INVALID_ARM_ENV_MISMATCH"
 
