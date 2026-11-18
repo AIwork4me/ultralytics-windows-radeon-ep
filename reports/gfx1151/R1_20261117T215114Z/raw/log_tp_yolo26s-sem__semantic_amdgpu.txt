@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-sem__semantic.json --pt-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26s-sem__semantic.npz --cand-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-sem__semantic_amdgpu.json --cand-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-sem__semantic_amdgpu.npz --task semantic --imgsz 640 --thresholds-json reports\gfx1151\R1_20261117T215114Z\thresholds_snapshot.json --cand-source AMDGPU_POST --image-sha256 c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63 --input-id a74b7921fa0c776a621c0fe54bf4a763681672adf28a1273bdc02043f76f807f --out reports\gfx1151\R1_20261117T215114Z\raw\tp_yolo26s-sem__semantic_amdgpu.json
+rc=0 elapsed=0.2s
+--- stdout ---
+{"ok": true, "task": "semantic", "passed": true, "metrics_keys": ["classes_ref", "miou", "pixel_agreement", "ref_entities"]}
+
+--- stderr ---

@@ -31,3 +31,9 @@
    preserved in git history at commit preceding this note, deleted, and the
    cases re-run with the fixed decoders. obb after fix: 15/15 matched,
    rotated IoU 0.99999998, angle diff 4.5e-6 deg (both EPs).
+
+5. 2026-11-18: yolo26s-sem receipts of the representative pass recorded
+   FAIL_GPU_PARITY because float allclose was applied to a uint8 class map
+   (1/409600 px argmax tie; both GPUs identical; see AMDGPU-RCA-006 and
+   docs/r1/R1_INT_OUTPUT_PARITY.md). Preserved in git history, then re-run
+   under the declared integer-output contract (exact-agreement >= 0.999).

@@ -24,7 +24,8 @@ def run_reference(session, feeds: dict) -> dict:
 
 
 def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float,
-                    expected: dict | None = None, thresholds_source: str = "configs/thresholds.yaml") -> dict:
+                    expected: dict | None = None, thresholds_source: str = "configs/thresholds.yaml",
+                    int_min_agreement: float = 0.999) -> dict:
     """By-name comparison with an optional expected-output manifest (v2).
 
     v2 semantics when ``expected`` is given: the compared name set must equal the
@@ -32,6 +33,12 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float,
     match the expected contract; per-output sha256 fingerprints recorded; the
     declared thresholds block is embedded so the strict validator can re-derive
     the PASS against predeclared values.
+
+    Integer outputs (argmax class maps, uint8/int*): float allclose is the WRONG
+    contract — a single boundary argmax tie flips a pixel by 1. For integer
+    dtypes the parity metric is the exact-agreement fraction, PASS when
+    agreement >= int_min_agreement (predeclared; see configs/thresholds.yaml
+    numeric_parity.int_outputs). Rationale: AMDGPU-RCA-006 (1 px / 409600).
     """
     import hashlib
 
@@ -69,22 +76,41 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float,
                             "max_abs_diff": None, "mean_abs_diff": None})
             all_ok = False
             continue
-        finite = bool(np.isfinite(c).all() and np.isfinite(r).all())
+        finite = bool(np.isfinite(c).all() and np.isfinite(r).all()) \
+            if c.dtype.kind == "f" else bool(np.isfinite(c.astype(np.float64)).all())
         diff = np.abs(c.astype(np.float64) - r.astype(np.float64))
         with np.errstate(invalid="ignore"):
             rel = diff / np.maximum(np.abs(r.astype(np.float64)), 1e-12)
-        close = bool(np.allclose(c, r, atol=atol, rtol=rtol)) if finite else False
-        item = {
-            "name": name, "shape": list(c.shape),
-            "dtype": str(c.dtype), "finite": finite,
-            "max_abs_diff": float(diff.max()) if diff.size else 0.0,
-            "mean_abs_diff": float(diff.mean()) if diff.size else 0.0,
-            "max_rel_diff": float(rel.max()) if rel.size else 0.0,
-            "p99_abs_diff": float(np.percentile(diff, 99)) if diff.size else 0.0,
-            "allclose": close, "threshold_used": atol,
-            "candidate_sha256": hashlib.sha256(np.ascontiguousarray(c).tobytes()).hexdigest(),
-            "ref_sha256": hashlib.sha256(np.ascontiguousarray(r).tobytes()).hexdigest(),
-        }
+        if c.dtype.kind in "iu":
+            agree = float((c == r).mean()) if c.size else 1.0
+            close = agree >= int_min_agreement
+            item = {
+                "name": name, "shape": list(c.shape),
+                "dtype": str(c.dtype), "finite": finite,
+                "max_abs_diff": float(diff.max()) if diff.size else 0.0,
+                "mean_abs_diff": float(diff.mean()) if diff.size else 0.0,
+                "max_rel_diff": float(rel.max()) if rel.size else 0.0,
+                "p99_abs_diff": float(np.percentile(diff, 99)) if diff.size else 0.0,
+                "allclose": close, "threshold_used": int_min_agreement,
+                "comparison_kind": "int_exact_agreement",
+                "exact_agreement": agree,
+                "disagree_px": int((c != r).sum()),
+                "candidate_sha256": hashlib.sha256(np.ascontiguousarray(c).tobytes()).hexdigest(),
+                "ref_sha256": hashlib.sha256(np.ascontiguousarray(r).tobytes()).hexdigest(),
+            }
+        else:
+            close = bool(np.allclose(c, r, atol=atol, rtol=rtol)) if finite else False
+            item = {
+                "name": name, "shape": list(c.shape),
+                "dtype": str(c.dtype), "finite": finite,
+                "max_abs_diff": float(diff.max()) if diff.size else 0.0,
+                "mean_abs_diff": float(diff.mean()) if diff.size else 0.0,
+                "max_rel_diff": float(rel.max()) if rel.size else 0.0,
+                "p99_abs_diff": float(np.percentile(diff, 99)) if diff.size else 0.0,
+                "allclose": close, "threshold_used": atol,
+                "candidate_sha256": hashlib.sha256(np.ascontiguousarray(c).tobytes()).hexdigest(),
+                "ref_sha256": hashlib.sha256(np.ascontiguousarray(r).tobytes()).hexdigest(),
+            }
         if expected is not None and name in expected:
             want_dtype = expected[name].get("dtype")
             if want_dtype and str(c.dtype) != want_dtype:
@@ -93,5 +119,6 @@ def compare_outputs(ref: dict, cand: dict, *, atol: float, rtol: float,
         results.append(item)
         all_ok = all_ok and close and finite
     out = {"outputs": results, "all_outputs_allclose": all_ok, "by_name_matching": True,
-           "thresholds": {"atol": atol, "rtol": rtol, "source": thresholds_source}}
+           "thresholds": {"atol": atol, "rtol": rtol, "source": thresholds_source,
+                          "int_min_agreement": int_min_agreement}}
     return out

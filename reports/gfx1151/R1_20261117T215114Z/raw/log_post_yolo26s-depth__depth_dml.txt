@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz reports\gfx1151\R1_20261117T215114Z\raw\cand_yolo26s-depth__depth_dml.npz --task depth --imgsz 768 --out-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-depth__depth_dml.json --out-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26s-depth__depth_dml.npz
+rc=0 elapsed=1.9s
+--- stdout ---
+{"ok": true, "task": "depth", "n": 0}
+
+--- stderr ---

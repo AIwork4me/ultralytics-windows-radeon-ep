@@ -27,3 +27,9 @@
 {"case": "yolo26n-obb__obb__dml", "model": "yolo26n-obb.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
 {"case": "yolo26s__detect__amdgpu", "model": "yolo26s.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
 {"case": "yolo26s__detect__dml", "model": "yolo26s.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-seg__segment__amdgpu", "model": "yolo26s-seg.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-seg__segment__dml", "model": "yolo26s-seg.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-sem__semantic__amdgpu", "model": "yolo26s-sem.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "FAIL_GPU_PARITY", "parity": false, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-sem__semantic__dml", "model": "yolo26s-sem.pt", "task": "PASS_TASK", "ep": "dml", "exec": "FAIL_GPU_PARITY", "parity": false, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-depth__depth__amdgpu", "model": "yolo26s-depth.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26s-depth__depth__dml", "model": "yolo26s-depth.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
