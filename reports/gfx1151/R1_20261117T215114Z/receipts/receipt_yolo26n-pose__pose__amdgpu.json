@@ -3,7 +3,7 @@
   "receipt_version": 2,
   "run_id": "R1_20261117T215114Z",
   "case_id": "yolo26n-pose__pose__amdgpu",
-  "created_utc": "2026-11-17T23:29:17Z",
+  "created_utc": "2026-11-18T01:37:51Z",
   "rerun_of": null,
   "status": {
     "model_asset": "AVAILABLE",
@@ -77,7 +77,7 @@
     "routing_notes": "",
     "stderr_fallback_signals": [],
     "stdout_fallback_signals": [],
-    "worker_pid": 107224
+    "worker_pid": 113312
   },
   "parity": {
     "outputs": [
@@ -105,16 +105,17 @@
     "thresholds": {
       "atol": 0.005,
       "rtol": 0.005,
-      "source": "configs/thresholds.yaml"
+      "source": "configs/thresholds.yaml",
+      "int_min_agreement": 0.999
     }
   },
   "task": null,
   "benchmark_data": {
-    "warm_run_ms_p50": 5.42305,
-    "warm_run_ms_p95": 13.157909999999998,
-    "warm_run_ms_p99": 17.758435000000006,
-    "warm_run_ms_mean": 6.757196666666667,
-    "warm_run_ms_std": 3.357787977968366,
+    "warm_run_ms_p50": 4.68755,
+    "warm_run_ms_p95": 5.3562199999999995,
+    "warm_run_ms_p99": 5.511941,
+    "warm_run_ms_mean": 4.778336666666666,
+    "warm_run_ms_std": 0.31742039577751696,
     "warm_run_samples": 30,
     "timer": "time.perf_counter_ns"
   },
@@ -156,14 +157,14 @@
     "preprocess": {
       "method": "letterbox",
       "params": {
-        "ratio": 0.5925925925925926,
+        "bottom": 0,
+        "imgsz": 640,
+        "left": 80,
         "new_h": 640,
         "new_w": 480,
-        "top": 0,
-        "left": 80,
-        "bottom": 0,
+        "ratio": 0.5925925925925926,
         "right": 80,
-        "imgsz": 640
+        "top": 0
       },
       "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
       "tensor_dtype": "float32",
@@ -193,8 +194,8 @@
   ],
   "worker": {
     "exit_code": 0,
-    "pid": 107224,
-    "parent_pid": 121384,
+    "pid": 113312,
+    "parent_pid": 81600,
     "python": "3.13"
   },
   "device_binding": {
@@ -215,7 +216,7 @@
         },
         "outcome": "Fail: [ONNXRuntimeError] : 1 : FAIL : HIP failure 101: invalid device ordinal; GPU=0; file=C:\\j\\amdgpu-ep\\src\\shared\\hip\\allocator.cc; line=14; expr=hipSetDevice(device_id); ",
         "hip_code": "101",
-        "session_create_ms": 81618.2889
+        "session_create_ms": 76187.6499
       },
       {
         "candidate_index": 1,
@@ -231,7 +232,7 @@
         },
         "outcome": null,
         "hip_code": null,
-        "session_create_ms": 84526.2977,
+        "session_create_ms": 78846.4634,
         "probe_counts": {
           "AMDGPU": 1
         }
@@ -251,7 +252,7 @@
     "probe": {
       "amdgpu_nodes": 1,
       "cpu_nodes": 0,
-      "profile": "reports\\gfx1151\\R1_20261117T215114Z\\raw\\prof_yolo26n-pose__pose_amdgpu_probe_c1_2026-11-18_07-22-03_504.json"
+      "profile": "reports\\gfx1151\\R1_20261117T215114Z\\raw\\prof_yolo26n-pose__pose_amdgpu_probe_c1_2026-11-18_09-31-10_322.json"
     },
     "final_profile": {
       "provider_node_counts": {
@@ -262,9 +263,9 @@
     "attribution": "fused_single_node",
     "model_compiled_twice": true,
     "phase_timings_ns": {
-      "total_ms": 249986.7163
+      "total_ms": 234381.9353
     },
-    "rebuild_ms": 83774.9295,
+    "rebuild_ms": 79258.7453,
     "dxgi_corroboration": {
       "adapter_index": 0,
       "luid": "0x00000000:0x00011746",
@@ -298,7 +299,13 @@
     "passed": true,
     "not_implemented_reason": null,
     "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
-    "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0"
+    "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0",
+    "negative_control": {
+      "image_sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "ref_empty": true,
+      "cand_empty": true,
+      "discriminating": true
+    }
   },
   "rca_issue_ids": [
     "AMDGPU-RCA-003",

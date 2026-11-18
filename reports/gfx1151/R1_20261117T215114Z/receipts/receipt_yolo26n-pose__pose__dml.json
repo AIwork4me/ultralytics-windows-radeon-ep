@@ -3,7 +3,7 @@
   "receipt_version": 2,
   "run_id": "R1_20261117T215114Z",
   "case_id": "yolo26n-pose__pose__dml",
-  "created_utc": "2026-11-17T23:46:08Z",
+  "created_utc": "2026-11-18T01:38:01Z",
   "rerun_of": null,
   "status": {
     "model_asset": "AVAILABLE",
@@ -77,7 +77,7 @@
     "routing_notes": "",
     "stderr_fallback_signals": [],
     "stdout_fallback_signals": [],
-    "worker_pid": 100116
+    "worker_pid": 105016
   },
   "parity": {
     "outputs": [
@@ -105,16 +105,17 @@
     "thresholds": {
       "atol": 0.005,
       "rtol": 0.005,
-      "source": "configs/thresholds.yaml"
+      "source": "configs/thresholds.yaml",
+      "int_min_agreement": 0.999
     }
   },
   "task": null,
   "benchmark_data": {
-    "warm_run_ms_p50": 2.6911,
-    "warm_run_ms_p95": 4.961184999999997,
-    "warm_run_ms_p99": 7.208089000000002,
-    "warm_run_ms_mean": 3.0679066666666666,
-    "warm_run_ms_std": 1.0891266234720165,
+    "warm_run_ms_p50": 2.80425,
+    "warm_run_ms_p95": 3.5075399999999997,
+    "warm_run_ms_p99": 4.007816000000001,
+    "warm_run_ms_mean": 2.9145433333333335,
+    "warm_run_ms_std": 0.38328878119361764,
     "warm_run_samples": 30,
     "timer": "time.perf_counter_ns"
   },
@@ -193,8 +194,8 @@
   ],
   "worker": {
     "exit_code": 0,
-    "pid": 100116,
-    "parent_pid": 47824,
+    "pid": 105016,
+    "parent_pid": 95132,
     "python": "3.13"
   },
   "device_binding": {
@@ -254,7 +255,13 @@
     "passed": true,
     "not_implemented_reason": null,
     "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
-    "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0"
+    "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0",
+    "negative_control": {
+      "image_sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "ref_empty": true,
+      "cand_empty": true,
+      "discriminating": true
+    }
   },
   "rca_issue_ids": []
 }

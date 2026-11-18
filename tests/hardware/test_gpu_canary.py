@@ -30,7 +30,6 @@ def test_amdgpu_canary_executes_on_gpu(tmp_path):
                                            create_amdgpu_session,
                                            ensure_amdgpu_registered)
     from radeon_ort.device_identity import canary_inputs
-    from radeon_ort import profiler_audit
 
     ensure_amdgpu_registered()  # hardware tests must be self-sufficient (R1-0 finding)
     model = canary_model_path(tmp_path)
@@ -40,10 +39,13 @@ def test_amdgpu_canary_executes_on_gpu(tmp_path):
     sess = result.session
     out = sess.run(None, {"a": feeds["a"], "b": feeds["b"]})
     assert out[0].shape == (256, 256)
-    assert result.attestation["state"] == "EP_DEVICE_SELECTED"
-    assert result.attestation["probe"]["amdgpu_nodes"] > 0
-    audit = profiler_audit.audit_profile(sess.end_profiling())
-    assert audit["provider_node_counts"].get("AMDGPU", 0) > 0, "no GPU compute evidenced"
+    att = result.attestation
+    assert att["state"] == "EP_DEVICE_SELECTED"
+    assert att["probe"]["amdgpu_nodes"] > 0
+    # the FINAL rebuilt session is revalidated inside create (its profile is
+    # consumed there); assert the final attribution evidence from the attestation
+    final_counts = (att.get("final_profile") or {}).get("provider_node_counts") or {}
+    assert final_counts.get("AMDGPU", 0) > 0, "no GPU compute evidenced on final session"
 
 
 @pytest.mark.skipif(not _has_amd_gpu(), reason="no gfx1151 on this host")
@@ -56,6 +58,7 @@ def test_dml_canary_executes_on_gpu(tmp_path):
 
     res = resolve_target_adapter(enum_dxgi_adapters(), gfx="gfx1151")
     assert res["ok"]
+    from radeon_ort.device_identity import canary_inputs
     model = canary_model_path(tmp_path)
     feeds = canary_inputs()
     sess = create_dml_session(model, device_id=res["adapter"].index,
@@ -63,7 +66,8 @@ def test_dml_canary_executes_on_gpu(tmp_path):
     out = sess.run(None, {"a": feeds["a"], "b": feeds["b"]})
     assert out[0].shape == (256, 256)
     audit = profiler_audit.audit_profile(sess.end_profiling())
-    assert audit["provider_node_counts"].get("Dml", 0) > 0, "no DML compute evidenced"
+    # ORT profiler key is the real provider name (DmlExecutionProvider, not "Dml")
+    assert audit["provider_node_counts"].get("DmlExecutionProvider", 0) > 0, "no DML compute evidenced"
 
 
 @pytest.mark.skipif(not _has_amd_gpu(), reason="no gfx1151 on this host")

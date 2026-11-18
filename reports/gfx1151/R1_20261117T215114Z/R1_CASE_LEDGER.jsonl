@@ -45,3 +45,5 @@
 {"case": "yolov8n__detect__dml", "model": "yolov8n.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
 {"case": "yolo26s-sem__semantic__amdgpu", "model": "yolo26s-sem.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
 {"case": "yolo26s-sem__semantic__dml", "model": "yolo26s-sem.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n-pose__pose__amdgpu", "model": "yolo26n-pose.pt", "task": "PASS_TASK", "ep": "amdgpu", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
+{"case": "yolo26n-pose__pose__dml", "model": "yolo26n-pose.pt", "task": "PASS_TASK", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}
