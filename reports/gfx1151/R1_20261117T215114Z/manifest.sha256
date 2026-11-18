@@ -1,0 +1,3668 @@
+{
+  "schema_version": 1,
+  "run_id": "R1_20261117T215114Z",
+  "created_utc": "2026-11-18T01:06:29Z",
+  "generator": "tools/r1_finalize.py",
+  "entries": [
+    {
+      "path": "ERRATA.md",
+      "sha256": "7ad12a70a76205de8958abba690c87d4489f36d06f60f6434eb4f0caa4c8e73e",
+      "bytes": 2374
+    },
+    {
+      "path": "inputs/.bundle_negative_gray_v1_yolo26n-obb_obb.done",
+      "sha256": "67df780a643bd7ab3260ed2d0a9e3cfe7d886e9aec1f8bfe2513950fed2cf318",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_negative_gray_v1_yolo26n-pose_pose.done",
+      "sha256": "81826881971c45566484020d90d4963c9e25acc6bd4462d444f73c8f44ade921",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_negative_gray_v1_yolo26n-seg_segment.done",
+      "sha256": "3f3069b9d8e52c0016b4d93d7026f9df2ef1c558bff70021f5bfc6a414c6ed36",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_negative_gray_v1_yolo26n_detect.done",
+      "sha256": "c0b378b880b3a798f7d9694325e99de63da4b5fadcfe8ae222a78b4fbab45d84",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo11n_detect.done",
+      "sha256": "82c66a1f077d3bb1dc75de17f17ee4f946d86f5415580f45874d0dd4d80a6de8",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-cls_classify.done",
+      "sha256": "ba696d800c8bfd4e72d574468d05358b492163e7b5463fbea73c0c54034fb90c",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-depth_depth.done",
+      "sha256": "cfd07019e2c38d488508754eebb8a87d9503da1f58a81c96a3db0d9b96364586",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-obb_obb.done",
+      "sha256": "311d29a3ab19a28fecb2b3bcae9db436e4691283431c09b8cb4a4fd325edf982",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-pose_pose.done",
+      "sha256": "d63d5c65a49f9a3597cca4cfaf8fee8f1dd43f07d45a86ad5b3b0ec36f5a2f29",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-seg_segment.done",
+      "sha256": "98f6d44a636df4f4cfd72613f4acfeac50ce54a4c426b4503e25880af384c495",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n-sem_semantic.done",
+      "sha256": "e921c8b0f606d6daee8d14cefb33ee946e6442b818f0617872fcc2b87bd002be",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n_detect.done",
+      "sha256": "ea29fb7a08ae2fd44451922bb2d7581cd00cda881bd4c2d3f93e29beb0d8ebec",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-cls_classify.done",
+      "sha256": "3a550b5e8974254533d3f07b4e79cc1f1c43e2745fcc71f0187405a7be65bb6e",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-depth_depth.done",
+      "sha256": "00522357e92bda3b8dced07b7d1a461b01ff871fe65ddae521ef0ff4b293693b",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-obb_obb.done",
+      "sha256": "1571f14bfc73066cfb2dbe8076a723070efda6dc96d832ff2cf0dbaf2c9dbf35",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-pose_pose.done",
+      "sha256": "2fbf5c5090519b467f21fe37d6d2ddc5f89f599d19b991c99c985de2a05246a2",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-seg_segment.done",
+      "sha256": "beb348dd6da678eb4174e515724dcc1b768faeb1a8fcecc93e32309d283671ab",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s-sem_semantic.done",
+      "sha256": "245fdb2838aff9d126956d56948a79c434aa1a7567c55b518e522db51c52281e",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26s_detect.done",
+      "sha256": "81c531a2ad8a48aa3dfb7ed8d421fb0ac3fcebc6410dfa2c9d194d6f74f7496a",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolov8n_detect.done",
+      "sha256": "3f85e0a3af6db550777fb5d8d66aadb911020a9e8aae6de4c336fb8136f63df4",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/input_24706931a53be894.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_247582377f39aaf5.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_2e719ca0bda390fb.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_39640b615c9f5513.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_45c08f9329ec692e.npy",
+      "sha256": "c41c8b411f37a8de92a02e757b6713ed41387f61021d612168b2850fb2c6ba38",
+      "bytes": 12583040
+    },
+    {
+      "path": "inputs/input_463deddc46b066a4.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_634306556a7a75c8.npy",
+      "sha256": "80b6046d55f119c5b3bec108bb1d7c4c51fd72445b3e83ed7a090ea220d81916",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_655f9eef36b4e235.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_6597d10a8e78c23b.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_7de1ec95dc98fc27.npy",
+      "sha256": "26cc428bc7daa3b35bb132f497e53238de73c1ed09df3b110245ad7a690d7c18",
+      "bytes": 7078016
+    },
+    {
+      "path": "inputs/input_7df334f66e941193.npy",
+      "sha256": "0b4d62eaf49b9e25722aaceeda59f7353ceca13ca311623b8d7218cc1665fbc6",
+      "bytes": 602240
+    },
+    {
+      "path": "inputs/input_8c30132a70af4f2d.npy",
+      "sha256": "80b6046d55f119c5b3bec108bb1d7c4c51fd72445b3e83ed7a090ea220d81916",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_9aeab0e4835bf24e.npy",
+      "sha256": "0b4d62eaf49b9e25722aaceeda59f7353ceca13ca311623b8d7218cc1665fbc6",
+      "bytes": 602240
+    },
+    {
+      "path": "inputs/input_a74b7921fa0c776a.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_afe1832014647f0e.npy",
+      "sha256": "7af24f03010ed4069b7f4a778ec7d892494581ea386703cb06fdc45811196055",
+      "bytes": 12583040
+    },
+    {
+      "path": "inputs/input_b30975e0aaebc980.npy",
+      "sha256": "80b6046d55f119c5b3bec108bb1d7c4c51fd72445b3e83ed7a090ea220d81916",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_b99692b53d3e5a04.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_db5259085e4e812f.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/input_de9ee3b21a7ecb3d.npy",
+      "sha256": "26cc428bc7daa3b35bb132f497e53238de73c1ed09df3b110245ad7a690d7c18",
+      "bytes": 7078016
+    },
+    {
+      "path": "inputs/input_f451e24c03ae5091.npy",
+      "sha256": "c41c8b411f37a8de92a02e757b6713ed41387f61021d612168b2850fb2c6ba38",
+      "bytes": 12583040
+    },
+    {
+      "path": "inputs/manifest_24706931a53be894.json",
+      "sha256": "efdba144c1d5b0fad2c41d8811a5da1b689c0aeb9ecd106616c33053494ff500",
+      "bytes": 1512
+    },
+    {
+      "path": "inputs/manifest_247582377f39aaf5.json",
+      "sha256": "92b6e5548f3d2eee321a4f9eb0b69dd2332fb8c4674ebcbda14aa9fd48627ad6",
+      "bytes": 1514
+    },
+    {
+      "path": "inputs/manifest_2e719ca0bda390fb.json",
+      "sha256": "568e0498e4518593336b51c55e404256265c4c72b0d17a43fe12b3873a4c1bfb",
+      "bytes": 1512
+    },
+    {
+      "path": "inputs/manifest_39640b615c9f5513.json",
+      "sha256": "2717b4e9c0619133c1f61431a2321d60de3fabdf8d3fb6401ef82658972e3d09",
+      "bytes": 1502
+    },
+    {
+      "path": "inputs/manifest_45c08f9329ec692e.json",
+      "sha256": "d4d44a108ee1cdc7e5785406f950d966946ec8d11b5229303470735736b40902",
+      "bytes": 1501
+    },
+    {
+      "path": "inputs/manifest_463deddc46b066a4.json",
+      "sha256": "6c5d38fff8db3d4c5e4298ef813c8dc394529d303c2f6dcbcb1f29ae236b7573",
+      "bytes": 1508
+    },
+    {
+      "path": "inputs/manifest_634306556a7a75c8.json",
+      "sha256": "212ffe581a1445e94dd28b785fd9bae88599da4d014bc691763033063cac6cfa",
+      "bytes": 1501
+    },
+    {
+      "path": "inputs/manifest_655f9eef36b4e235.json",
+      "sha256": "1f4ccff36618c8140f49cc2cca9ff41697753cd8e96c81589079c9a525726cb1",
+      "bytes": 1508
+    },
+    {
+      "path": "inputs/manifest_6597d10a8e78c23b.json",
+      "sha256": "c23324e746e5ba691a77489997b8ed2dd6b695956d48a63cdd680ed164bcd9a0",
+      "bytes": 1502
+    },
+    {
+      "path": "inputs/manifest_7de1ec95dc98fc27.json",
+      "sha256": "d15aee4fc0c3f8e1966a4b326e6dec4a6a595de020e41dc14f58937b63fddf97",
+      "bytes": 1512
+    },
+    {
+      "path": "inputs/manifest_7df334f66e941193.json",
+      "sha256": "a5a5887cb8ec25fd9b4b168a09ef83829488b7ea123a45abf0f524500d4dc6ca",
+      "bytes": 1474
+    },
+    {
+      "path": "inputs/manifest_8c30132a70af4f2d.json",
+      "sha256": "4a5a91e2e1818096237e28210dca819147bda98ef7203e5f383efcf4f8b0d19c",
+      "bytes": 1511
+    },
+    {
+      "path": "inputs/manifest_9aeab0e4835bf24e.json",
+      "sha256": "3d477a8a02fa7e41a7041a889e66953be61ce1f081f38ca2d4291da5545bd146",
+      "bytes": 1474
+    },
+    {
+      "path": "inputs/manifest_a74b7921fa0c776a.json",
+      "sha256": "ecd60c4221a8e02fb1d0843ca6aa0cbe236f9c3d9fc6279f80ad4e5242755ee4",
+      "bytes": 1514
+    },
+    {
+      "path": "inputs/manifest_afe1832014647f0e.json",
+      "sha256": "93fc00b247c569141d10ad514d80f72dc6f0762d7dbfa9d3d0a2047f12dd29a7",
+      "bytes": 1510
+    },
+    {
+      "path": "inputs/manifest_b30975e0aaebc980.json",
+      "sha256": "39d710e16b0162a7362e3f4a7e615434d332c8127dcff32a7a81ca3a909fe952",
+      "bytes": 1507
+    },
+    {
+      "path": "inputs/manifest_b99692b53d3e5a04.json",
+      "sha256": "0586b2cd98e96fbd0bccb1f6deac13e90d57292be38f8d6e862b6b8451ae289a",
+      "bytes": 1502
+    },
+    {
+      "path": "inputs/manifest_db5259085e4e812f.json",
+      "sha256": "4f5cc869cd9de895309f520e2030a18eb88d0012ffcf1a7deb9d364411b8f1e7",
+      "bytes": 1502
+    },
+    {
+      "path": "inputs/manifest_de9ee3b21a7ecb3d.json",
+      "sha256": "88f1a7ed99f4354fd8ebd3fc8a572c2bb1a001802acef6661f5960e01296f694",
+      "bytes": 1512
+    },
+    {
+      "path": "inputs/manifest_f451e24c03ae5091.json",
+      "sha256": "5e74ed471c4a97617e56820145eadc6cd94a5d1674b325d4d224f59e7ab62439",
+      "bytes": 1501
+    },
+    {
+      "path": "negative_gray.png",
+      "sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "bytes": 687455
+    },
+    {
+      "path": "R1_ADVERSARIAL_CI.md",
+      "sha256": "f469c7adb474461e551a533031e30eca2fe04f551c6e263707fe913cff383b07",
+      "bytes": 1810
+    },
+    {
+      "path": "R1_CASE_LEDGER.jsonl",
+      "sha256": "efc0c1201fd847afee38eced6e98df1d1f5f41e541d431255876223623be353e",
+      "bytes": 9695
+    },
+    {
+      "path": "R1_CASE_MATRIX.csv",
+      "sha256": "c135c663cc3c4a6a7f8f45909b0f127f5683d199c7d53371c73da0179638600e",
+      "bytes": 5947
+    },
+    {
+      "path": "R1_DEVICE_BINDINGS.json",
+      "sha256": "06f5e2c735fc35722f3b68529bd3e4e96897c7a2536756b9aac32b6ffef5fdd7",
+      "bytes": 21803
+    },
+    {
+      "path": "R1_GAP_REGISTER.md",
+      "sha256": "1316cf85506cbbeaa7a25738c8b4b114b22fb06ae622f5a8c6cfaea4db98f2ed",
+      "bytes": 2428
+    },
+    {
+      "path": "R1_INPUT_IDENTITY.json",
+      "sha256": "3389ac4be5f08e40a4bd43ec3caaff46bacdb698967764ad6860ae1ee3103e99",
+      "bytes": 8427
+    },
+    {
+      "path": "R1_LEDGER.json",
+      "sha256": "4cd1d89e11575ec50e32c8f28bdadf9e1fb36358c70ed2924648159c8c5a2d23",
+      "bytes": 595
+    },
+    {
+      "path": "R1_PROVENANCE.md",
+      "sha256": "bd317e686a22c1357ff21307a6b2d2f02bfe21dd2a5379ecbce3c776637506f9",
+      "bytes": 3479
+    },
+    {
+      "path": "R1_REPRODUCE.md",
+      "sha256": "5b0835e6b955f4d1412d4e6f0cbf73823bbe08d3e4982b4396b8270ca424c252",
+      "bytes": 2632
+    },
+    {
+      "path": "R1_TASK_PARITY_MATRIX.csv",
+      "sha256": "11898dd8a2a529b344a51e07531896eb257cca33ee53ed027758be7143d8d948",
+      "bytes": 2406
+    },
+    {
+      "path": "raw/cand_yolo11n__detect_amdgpu.npz",
+      "sha256": "6b2dadb5ffe1078fc311bfbf50f6530d2343a72660272a09fde82383906fbb09",
+      "bytes": 2569003
+    },
+    {
+      "path": "raw/cand_yolo11n__detect_dml.npz",
+      "sha256": "1345a14f71d45d8c9489a2662c55f5a88f36d72c34b2bb919bc37c084306e11c",
+      "bytes": 2568682
+    },
+    {
+      "path": "raw/cand_yolo26n-cls__classify_amdgpu.npz",
+      "sha256": "38409675ceaa7bfa95a2de1f03b26634127e0903e13ae5a010208c528330b73c",
+      "bytes": 3997
+    },
+    {
+      "path": "raw/cand_yolo26n-cls__classify_dml.npz",
+      "sha256": "c3efe39a8ec15b97083509d0ded5fdc340af1318f0a51a4e1781db6512b6b2f1",
+      "bytes": 3991
+    },
+    {
+      "path": "raw/cand_yolo26n-depth__depth_amdgpu.npz",
+      "sha256": "2d5327e4179a0c6801d9e2688f9026ed9320b59e0055d5d34f78f67f25a4efe1",
+      "bytes": 1973166
+    },
+    {
+      "path": "raw/cand_yolo26n-depth__depth_dml.npz",
+      "sha256": "9974ce4743ec31cdcf0375957fb519b9d76dcc1138eff0f1286ff4a62c87f600",
+      "bytes": 1973224
+    },
+    {
+      "path": "raw/cand_yolo26n-obb__obb_amdgpu.npz",
+      "sha256": "9dc23a293191d765ba523d1a06742f70a7fd3df684fb3d30c6c0e1841e637874",
+      "bytes": 1583257
+    },
+    {
+      "path": "raw/cand_yolo26n-obb__obb_dml.npz",
+      "sha256": "f24f45f4ad61a4809ad961f2421a2b19e24806b22e5db5fd6fdbb61431081988",
+      "bytes": 1583196
+    },
+    {
+      "path": "raw/cand_yolo26n-pose__pose_amdgpu.npz",
+      "sha256": "bd42f3f570ba85beab558d1aae82e622b60671c4baa744ebcca793e78b59090e",
+      "bytes": 1688718
+    },
+    {
+      "path": "raw/cand_yolo26n-pose__pose_dml.npz",
+      "sha256": "8a2eec18070fcd1f92b5506639add1f943a23e2f321c64621e6583d32ac953ef",
+      "bytes": 1689004
+    },
+    {
+      "path": "raw/cand_yolo26n-seg__segment_amdgpu.npz",
+      "sha256": "657d8e7b9316a58cc94f9a258e99961f700e0cf9bf22364772e74b8771b5bfd4",
+      "bytes": 6524500
+    },
+    {
+      "path": "raw/cand_yolo26n-seg__segment_dml.npz",
+      "sha256": "c2df4067ad07b70f859000720fdd4b43f4831d3327d88e96139073385d1758d1",
+      "bytes": 6524729
+    },
+    {
+      "path": "raw/cand_yolo26n-sem__semantic_amdgpu.npz",
+      "sha256": "f0028a7cf1f60f5b936107b05be5a24d7f899d296ae9d5644644138eb13fb001",
+      "bytes": 6956
+    },
+    {
+      "path": "raw/cand_yolo26n-sem__semantic_dml.npz",
+      "sha256": "f0028a7cf1f60f5b936107b05be5a24d7f899d296ae9d5644644138eb13fb001",
+      "bytes": 6956
+    },
+    {
+      "path": "raw/cand_yolo26n__detect_amdgpu.npz",
+      "sha256": "215a0b398064e4f7ca0305807d1229754db9998e7a74e411923e4967eb9c37a6",
+      "bytes": 2607729
+    },
+    {
+      "path": "raw/cand_yolo26n__detect_dml.npz",
+      "sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
+      "bytes": 2607655
+    },
+    {
+      "path": "raw/cand_yolo26s-cls__classify_amdgpu.npz",
+      "sha256": "6cf9c16ea8c1f8799969502ea0f007268cb5b5f9eced474b542939e1f40cd82a",
+      "bytes": 3981
+    },
+    {
+      "path": "raw/cand_yolo26s-cls__classify_dml.npz",
+      "sha256": "a6f4d8dcc8c7ff7870881e4314926493fac674e3ed72ce4c298f68a0fac67190",
+      "bytes": 3980
+    },
+    {
+      "path": "raw/cand_yolo26s-depth__depth_amdgpu.npz",
+      "sha256": "eb63700eea420484cd1bb7f22a2d91f6908b25293506d58a215570e8cb93572f",
+      "bytes": 1997978
+    },
+    {
+      "path": "raw/cand_yolo26s-depth__depth_dml.npz",
+      "sha256": "cb920f2a4a4c0c30c937dbd71606ca3880cf494629f197ee4e614c88131b01ac",
+      "bytes": 1998108
+    },
+    {
+      "path": "raw/cand_yolo26s-obb__obb_amdgpu.npz",
+      "sha256": "869ada1820047e5b2198da2ecaf385a5a6191ef783959a102032ef026c8466cc",
+      "bytes": 1591617
+    },
+    {
+      "path": "raw/cand_yolo26s-obb__obb_dml.npz",
+      "sha256": "c5475615d13c883f5c7e02469227cf2d6950584e6c2a60e55602003304d46986",
+      "bytes": 1591571
+    },
+    {
+      "path": "raw/cand_yolo26s-pose__pose_amdgpu.npz",
+      "sha256": "b2e1f5c3589ffd74cfeb091ac7156ad55569cfa33b2eae686bd9b754aeb98d9c",
+      "bytes": 1688677
+    },
+    {
+      "path": "raw/cand_yolo26s-pose__pose_dml.npz",
+      "sha256": "f02034bf3d96d116ad4aaee49000ca1770a4b60b011ccec866ae0677fe9e55d8",
+      "bytes": 1688635
+    },
+    {
+      "path": "raw/cand_yolo26s-seg__segment_amdgpu.npz",
+      "sha256": "38b6b4f27d601a737b5aecb8fae3708e078c21e7be2712f8d70d4ae2b753c69f",
+      "bytes": 6546110
+    },
+    {
+      "path": "raw/cand_yolo26s-seg__segment_dml.npz",
+      "sha256": "4b6ac76b3bbf1b7c25d6b135c9740958d0f2ce4c8f9e7bbb2b0019d7045363a2",
+      "bytes": 6545689
+    },
+    {
+      "path": "raw/cand_yolo26s-sem__semantic_amdgpu.npz",
+      "sha256": "c21ecb8bf86fe2ea3ca15481fe9b898ad9e5e3185ae4359d521457bfd129146a",
+      "bytes": 9523
+    },
+    {
+      "path": "raw/cand_yolo26s-sem__semantic_dml.npz",
+      "sha256": "c21ecb8bf86fe2ea3ca15481fe9b898ad9e5e3185ae4359d521457bfd129146a",
+      "bytes": 9523
+    },
+    {
+      "path": "raw/cand_yolo26s__detect_amdgpu.npz",
+      "sha256": "3f2ab9fdbcadd9b0d24d14fbc586e47dc449d8e055082f38ecd9f261b8ef32da",
+      "bytes": 2621603
+    },
+    {
+      "path": "raw/cand_yolo26s__detect_dml.npz",
+      "sha256": "bf96bf3a7e3d206c159ee5ff4420d222e2609f5ab6fa2261bf7575ad6a068d59",
+      "bytes": 2621447
+    },
+    {
+      "path": "raw/cand_yolov8n__detect_amdgpu.npz",
+      "sha256": "e7b176e51dbbe71204cc5e535a19d42b1e2bbaee7eb6c774326f43b087a1fe6f",
+      "bytes": 2578579
+    },
+    {
+      "path": "raw/cand_yolov8n__detect_dml.npz",
+      "sha256": "93be9b85cf4223c53bf9d149f166f27140ac28a97aa40c97a32ccb3b17cb20ff",
+      "bytes": 2578605
+    },
+    {
+      "path": "raw/candneg_yolo26n-obb__obb_amdgpu.npz",
+      "sha256": "b412cbac4a939b39d36c2900a2492c05970f33014a032a9ebe7b58f091edc509",
+      "bytes": 1568458
+    },
+    {
+      "path": "raw/candneg_yolo26n-obb__obb_dml.npz",
+      "sha256": "2ecc8ed2a28f03b66703df49e9b2129225d16ac6b9ea0ff3781c257527a3b1ae",
+      "bytes": 1568169
+    },
+    {
+      "path": "raw/candneg_yolo26n-pose__pose_amdgpu.npz",
+      "sha256": "8c40dc2593cc667fe19c3d04fa5274fb487b69d2e27a38827bc3e9efbb997ee9",
+      "bytes": 1680505
+    },
+    {
+      "path": "raw/candneg_yolo26n-pose__pose_dml.npz",
+      "sha256": "87cc31f00613ac4c3cddc230395a4b536d3258ec46ff0beb60b1ff8d65c5d926",
+      "bytes": 1680432
+    },
+    {
+      "path": "raw/candneg_yolo26n-seg__segment_amdgpu.npz",
+      "sha256": "7f1953c075ee52d1e0b77a8e187c95e85220549085974b3c93a85ad6c58f420b",
+      "bytes": 6429703
+    },
+    {
+      "path": "raw/candneg_yolo26n-seg__segment_dml.npz",
+      "sha256": "474ed97d4c53048ded42d589835107c6458df276d7fb519b0b954c881a6a53b3",
+      "bytes": 6428750
+    },
+    {
+      "path": "raw/candneg_yolo26n__detect_amdgpu.npz",
+      "sha256": "5be35f98f7b904d07a9b32cfe353ef74a5ceb0abdc17156c6a7d66e412a60598",
+      "bytes": 2526673
+    },
+    {
+      "path": "raw/candneg_yolo26n__detect_dml.npz",
+      "sha256": "9f72dd38387369dcca90e62ed7c57c5d21ac594734ddd2c987743992d4c94309",
+      "bytes": 2526754
+    },
+    {
+      "path": "raw/case_yolo11n__detect_amdgpu.json",
+      "sha256": "ab7ff3e59b5fd06034f04fd6ee1177310a61d3836b1e374755e00a0478cc2762",
+      "bytes": 623
+    },
+    {
+      "path": "raw/case_yolo11n__detect_cpu.json",
+      "sha256": "230cb9f6da257eabdbeb98728b63fca3f8ca8ca7a65626ac14b86fbbf041c010",
+      "bytes": 472
+    },
+    {
+      "path": "raw/case_yolo11n__detect_dml.json",
+      "sha256": "4e61ccbbac886391f3d4c454e16ab6ea703f38a1d441c44911276694f7b85a08",
+      "bytes": 614
+    },
+    {
+      "path": "raw/case_yolo26n-cls__classify_amdgpu.json",
+      "sha256": "d7a81992624f5f1546bd307cfede8d84a84e411faef4e7a03f867e6d11ab3ac0",
+      "bytes": 645
+    },
+    {
+      "path": "raw/case_yolo26n-cls__classify_cpu.json",
+      "sha256": "edd15e4940078bca782d76ac5b2d7b1d6861ae489b73188056814129a09af439",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26n-cls__classify_dml.json",
+      "sha256": "7f29012362e5435d2cdb4901d67f3430400ff1069938f8e37fed185730368534",
+      "bytes": 636
+    },
+    {
+      "path": "raw/case_yolo26n-depth__depth_amdgpu.json",
+      "sha256": "2991c6355f14efe94d869ea6be39424bc56340d4f33449313a9ef41a602be756",
+      "bytes": 644
+    },
+    {
+      "path": "raw/case_yolo26n-depth__depth_cpu.json",
+      "sha256": "f2bdd29ac4f845623e0e98ddccfc6057edea869c9f74a2ff24ccc3440eebb02f",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26n-depth__depth_dml.json",
+      "sha256": "ef11d5f330931bc4ccda3b36ef90d5bac209fceae2f399650dc2ab7887f94d24",
+      "bytes": 635
+    },
+    {
+      "path": "raw/case_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "258d5b30b20f11f8ef5f6f83267c2ed1a44f7d7eae75bd4416b2acd57baf14c2",
+      "bytes": 630
+    },
+    {
+      "path": "raw/case_yolo26n-obb__obb_cpu.json",
+      "sha256": "b52c9dde33bfcfc5bd39f40d647966bac8d44bc3083ef78aa2f694d4495f55c2",
+      "bytes": 478
+    },
+    {
+      "path": "raw/case_yolo26n-obb__obb_dml.json",
+      "sha256": "155a2a76a4e92eb34e01c925ae93bb44286b1fdfe21bab40067cd693007849d2",
+      "bytes": 621
+    },
+    {
+      "path": "raw/case_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "24710eddfcac1128f1fff458d101e93f8b2bcdc7b94412fd845d1c44fc72ad6f",
+      "bytes": 637
+    },
+    {
+      "path": "raw/case_yolo26n-pose__pose_cpu.json",
+      "sha256": "27035c70ef6d9630213b642501c4cded504cb8c0dfaf088c0a642e87eb5bdca6",
+      "bytes": 483
+    },
+    {
+      "path": "raw/case_yolo26n-pose__pose_dml.json",
+      "sha256": "5e8bec5c27b1812d956d9a13c2326b4aefb58e6b6ad2674ca9c85251c16a7e0a",
+      "bytes": 628
+    },
+    {
+      "path": "raw/case_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "c14d32f5a581df94d61e8b7092282ca3c54dbc8a16b50ed304fd49465da44386",
+      "bytes": 642
+    },
+    {
+      "path": "raw/case_yolo26n-seg__segment_cpu.json",
+      "sha256": "df35542ca8537b0779ffd1ae40c9896419ecb09eeffbf9a220bb7fca7405b36f",
+      "bytes": 486
+    },
+    {
+      "path": "raw/case_yolo26n-seg__segment_dml.json",
+      "sha256": "0598cee741068108925fcba357941c076fae5d6be3e84430f7ffc12ddda1c84a",
+      "bytes": 633
+    },
+    {
+      "path": "raw/case_yolo26n-sem__semantic_amdgpu.json",
+      "sha256": "99c1799435dab580622ca9c86197fe7e49429d84eac93869982e2c5e3f0db01a",
+      "bytes": 645
+    },
+    {
+      "path": "raw/case_yolo26n-sem__semantic_cpu.json",
+      "sha256": "df47bb64624f9f87caf8d3142872e84283cfaafcab1376784d192a6582f29aa4",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26n-sem__semantic_dml.json",
+      "sha256": "af1fc85895c9fa70acda2c40e45435fcaab014ff9a0ae2a1f552e0e22b8b4559",
+      "bytes": 636
+    },
+    {
+      "path": "raw/case_yolo26n__detect_amdgpu.json",
+      "sha256": "f2c2cd9db478cb675ff3eb562579722973492fac67e84fcaab3da6251d2beb5b",
+      "bytes": 623
+    },
+    {
+      "path": "raw/case_yolo26n__detect_cpu.json",
+      "sha256": "27d271c22c7035e15e19bbba631aa7357a6f54f6d34f46f4f00b8a6b1ece21e2",
+      "bytes": 472
+    },
+    {
+      "path": "raw/case_yolo26n__detect_dml.json",
+      "sha256": "1cdc0fb79e8818b4aeb6446da9e6b172103dabf31edc62fd215133750bca9335",
+      "bytes": 614
+    },
+    {
+      "path": "raw/case_yolo26s-cls__classify_amdgpu.json",
+      "sha256": "d508baf18adc0b97ef2d418a28736c7d11906baaa1f7e69b50ba74fb23c9b6bb",
+      "bytes": 645
+    },
+    {
+      "path": "raw/case_yolo26s-cls__classify_cpu.json",
+      "sha256": "6f21f084022689559933dd6275c7d30cf92f6e84ca2bdfc1ec2b65ddc7162ac6",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26s-cls__classify_dml.json",
+      "sha256": "69221723ed78a4f9d4a36b9803a64f262351a344dcd6e0a98b9c066d2f7755e6",
+      "bytes": 636
+    },
+    {
+      "path": "raw/case_yolo26s-depth__depth_amdgpu.json",
+      "sha256": "a285d4eeae82f63cb2a4698bff48850c64bbfeca99c0b08d057f8086c0e7f843",
+      "bytes": 644
+    },
+    {
+      "path": "raw/case_yolo26s-depth__depth_cpu.json",
+      "sha256": "fdab94234ea33b5282fa9f4f7d05ba2cda933f27cf93b8a11d1e4ec70a3718ab",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26s-depth__depth_dml.json",
+      "sha256": "a65cfad8d9d9624f4b8198b04adc54c0949a451abc91920cc59cdf6db1c67a4e",
+      "bytes": 635
+    },
+    {
+      "path": "raw/case_yolo26s-obb__obb_amdgpu.json",
+      "sha256": "f2ba69ae215f37bd89d27064923008c09d22e3aa606ca11c5d7e1952f06db85f",
+      "bytes": 630
+    },
+    {
+      "path": "raw/case_yolo26s-obb__obb_cpu.json",
+      "sha256": "6db1e94ae796cfa976efc61a8e92124c8dd243b7736786bbee384a140031f5f2",
+      "bytes": 478
+    },
+    {
+      "path": "raw/case_yolo26s-obb__obb_dml.json",
+      "sha256": "fc52aeb14e0367a18a222dc40e32ec603b567ae0807e356811fc63cb4b7d8540",
+      "bytes": 621
+    },
+    {
+      "path": "raw/case_yolo26s-pose__pose_amdgpu.json",
+      "sha256": "6566ec28594f036b6ec119422b095918d511acdf9359588279476c23f2eed36d",
+      "bytes": 637
+    },
+    {
+      "path": "raw/case_yolo26s-pose__pose_cpu.json",
+      "sha256": "4df18fd4ac1b5c575b1d75200db18ed2d2dc26f974a390a9e703a02560d5256e",
+      "bytes": 483
+    },
+    {
+      "path": "raw/case_yolo26s-pose__pose_dml.json",
+      "sha256": "d6c424f2a83e024d6142f5c4d04067659fe6ebef0622bbdfeba58d38591a1aac",
+      "bytes": 628
+    },
+    {
+      "path": "raw/case_yolo26s-seg__segment_amdgpu.json",
+      "sha256": "5dcd3b4b66672c40ded89b7805bc414499f04de4a39e32b9f2c92a6b08d6b734",
+      "bytes": 642
+    },
+    {
+      "path": "raw/case_yolo26s-seg__segment_cpu.json",
+      "sha256": "73f962abf685a28537ffd8451863283d5a706876a6bcf809a4cf8b79269f5380",
+      "bytes": 486
+    },
+    {
+      "path": "raw/case_yolo26s-seg__segment_dml.json",
+      "sha256": "728453c838d1f5bb51bcec325fe868e078400a9bfc8a80144b31a1b28ad1e638",
+      "bytes": 633
+    },
+    {
+      "path": "raw/case_yolo26s-sem__semantic_amdgpu.json",
+      "sha256": "bd9b555e9ad750b25910d48f4269ce41d43d9f07e55eebd939dc4a68fde248e3",
+      "bytes": 645
+    },
+    {
+      "path": "raw/case_yolo26s-sem__semantic_cpu.json",
+      "sha256": "89bbe8c518d0010784d00025182323ccbc8d3f2fdc8275d09121a3529e8d29ba",
+      "bytes": 488
+    },
+    {
+      "path": "raw/case_yolo26s-sem__semantic_dml.json",
+      "sha256": "c6e38f30db1bc617fedc8100250ba247df00418b75d5ed58a51b6f6590cc6eac",
+      "bytes": 636
+    },
+    {
+      "path": "raw/case_yolo26s__detect_amdgpu.json",
+      "sha256": "6daadb524c52445813e4a9311c1e0fdb5893798554511638533d23f12137d1c7",
+      "bytes": 623
+    },
+    {
+      "path": "raw/case_yolo26s__detect_cpu.json",
+      "sha256": "9e20effa875393e5d9069480fde7a68d9aea0a53196477af8d2b1faf5146ac10",
+      "bytes": 472
+    },
+    {
+      "path": "raw/case_yolo26s__detect_dml.json",
+      "sha256": "ef310234edc2f9c76dd3c06e5f95cd8a6216059eeb9f6b6e1d4562ddc1f18a50",
+      "bytes": 614
+    },
+    {
+      "path": "raw/case_yolov8n__detect_amdgpu.json",
+      "sha256": "321597b8e2dfc5f04114c28d8524e0194d462d1d93faf08a155abf66a931d28e",
+      "bytes": 623
+    },
+    {
+      "path": "raw/case_yolov8n__detect_cpu.json",
+      "sha256": "6e8a6e2ef0eb9c17672af24a5362f983b7dea99440540fc472decf6073faed59",
+      "bytes": 472
+    },
+    {
+      "path": "raw/case_yolov8n__detect_dml.json",
+      "sha256": "f6bffe91a023f1827556339379d6fc8727403c583460882ff25e203e0bd7b8cb",
+      "bytes": 614
+    },
+    {
+      "path": "raw/caseneg_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "ac1f655cfab853c453470594db8148421f3e6f3f74065c61ebbbbb235fd590bd",
+      "bytes": 498
+    },
+    {
+      "path": "raw/caseneg_yolo26n-obb__obb_dml.json",
+      "sha256": "cee4cd90ae6ee9b031bfa074581275dc8c917e194086127cdcb6b5aebb2931e7",
+      "bytes": 489
+    },
+    {
+      "path": "raw/caseneg_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "aa4ce1909f422da10c04219fe4b98acb578dacab4e827194c3562377549c31df",
+      "bytes": 503
+    },
+    {
+      "path": "raw/caseneg_yolo26n-pose__pose_dml.json",
+      "sha256": "730f2705f481a1276d0055b9e426e8c448f8bc57097ca4ac2ec8723c0ce8af61",
+      "bytes": 494
+    },
+    {
+      "path": "raw/caseneg_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "c314628cf4023c9cd06e18892b37af8483d8990b10dde83115d87ab8e4cbf7c5",
+      "bytes": 506
+    },
+    {
+      "path": "raw/caseneg_yolo26n-seg__segment_dml.json",
+      "sha256": "f09d4e7c60315fbefed7c2c7c55dbcb42dfec09a8598409dbb159e1cb25837aa",
+      "bytes": 497
+    },
+    {
+      "path": "raw/caseneg_yolo26n__detect_amdgpu.json",
+      "sha256": "0e53670287485470e23b1f2aba05d0878346cdacffcd770b663f36406101c571",
+      "bytes": 492
+    },
+    {
+      "path": "raw/caseneg_yolo26n__detect_dml.json",
+      "sha256": "e4c0d24a9b2a584f129e683948e0f05f96f0756e17fb50d15d13b1c4e6b3ac08",
+      "bytes": 483
+    },
+    {
+      "path": "raw/frag_yolo11n__detect_amdgpu.json",
+      "sha256": "4e2793663a6c890011362a05a28af20bfdc8cf02166f91b5ece1fedc2a8fe33f",
+      "bytes": 3920
+    },
+    {
+      "path": "raw/frag_yolo11n__detect_cpu.json",
+      "sha256": "5b85d27adf7bb2a501dfd8bfdc1f7f72f7b8a92779e331badb68f9d47bcb4d07",
+      "bytes": 785
+    },
+    {
+      "path": "raw/frag_yolo11n__detect_dml.json",
+      "sha256": "7956279cadebaefeec0991191887a8d3aadf03a1e40df5cb8cfcedd9c0be3af6",
+      "bytes": 2490
+    },
+    {
+      "path": "raw/frag_yolo26n-cls__classify_amdgpu.json",
+      "sha256": "9b54155a07d490bcadb235e58be352e927e9187ade23507b63111dd20a47096f",
+      "bytes": 3893
+    },
+    {
+      "path": "raw/frag_yolo26n-cls__classify_cpu.json",
+      "sha256": "64fed5cb9a0d137f19c27df4cab21d8c6025f935e862afba4dd715b9f15bb69b",
+      "bytes": 777
+    },
+    {
+      "path": "raw/frag_yolo26n-cls__classify_dml.json",
+      "sha256": "f14211d7dcf11e4516443594a2423a6e209514a3a416f44b97ace4dd7d56a4f4",
+      "bytes": 2474
+    },
+    {
+      "path": "raw/frag_yolo26n-depth__depth_amdgpu.json",
+      "sha256": "02812fea41aa4152bce5a303f3febd40ebb86c14f3b166f39819d4e341a943d5",
+      "bytes": 3915
+    },
+    {
+      "path": "raw/frag_yolo26n-depth__depth_cpu.json",
+      "sha256": "77459b37a4d43d46015a66a5211711e7acb080a1f75231c3d4755c2a340fa487",
+      "bytes": 791
+    },
+    {
+      "path": "raw/frag_yolo26n-depth__depth_dml.json",
+      "sha256": "ffe972a3a32c8c87eb598a209a042d36fc312f5ec0609a92b3ffcda0d256073f",
+      "bytes": 2488
+    },
+    {
+      "path": "raw/frag_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "29f4f70b89003a34a514180a4911560b00757c3f9e2e5847fce517316fb4eb51",
+      "bytes": 3891
+    },
+    {
+      "path": "raw/frag_yolo26n-obb__obb_cpu.json",
+      "sha256": "cdbb13d1285eed487420462574f1c305aa27a8ad9bd212573ed2a2aa98573e97",
+      "bytes": 787
+    },
+    {
+      "path": "raw/frag_yolo26n-obb__obb_dml.json",
+      "sha256": "5dfca328a04753ccae61087c816d9310d6768d30533c42225ed9e8a7f23d54ee",
+      "bytes": 2474
+    },
+    {
+      "path": "raw/frag_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "cce9ed93355efa8c81c8d71dadcb649ec01cf273c3cc021a645fc558e34583cd",
+      "bytes": 3905
+    },
+    {
+      "path": "raw/frag_yolo26n-pose__pose_cpu.json",
+      "sha256": "46d84109bc77542c4f2e71d88f9deab1f265c06b440b66c323c18818234f7a2d",
+      "bytes": 785
+    },
+    {
+      "path": "raw/frag_yolo26n-pose__pose_dml.json",
+      "sha256": "7cdb66f0fa320c84a4250fb8503fe3595430a3bc4ee18ae653d2826f38a85a84",
+      "bytes": 2468
+    },
+    {
+      "path": "raw/frag_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "27bb4df1b684168202a86f4c581edc81ad673df3195e911a2aae5ac99cca957b",
+      "bytes": 4559
+    },
+    {
+      "path": "raw/frag_yolo26n-seg__segment_cpu.json",
+      "sha256": "f796dc88980e9e86de781f88255cf231b4bcf5b98e8a67d22127200fd12532bb",
+      "bytes": 1003
+    },
+    {
+      "path": "raw/frag_yolo26n-seg__segment_dml.json",
+      "sha256": "48db58b606fa5cc05d319c4311cb0a04761f546f5e9924b1623749c034e66e91",
+      "bytes": 3134
+    },
+    {
+      "path": "raw/frag_yolo26n-sem__semantic_amdgpu.json",
+      "sha256": "9553dd8badd2aebfcc2591e4de186b27014bbfe8d75f2e842ae281d0bb4a68b7",
+      "bytes": 3824
+    },
+    {
+      "path": "raw/frag_yolo26n-sem__semantic_cpu.json",
+      "sha256": "5809ab1ea795426fa11e178c2baa4b376ef931d7ad59fbb94dfcf77c86e3e679",
+      "bytes": 781
+    },
+    {
+      "path": "raw/frag_yolo26n-sem__semantic_dml.json",
+      "sha256": "42fb9d9f864bdbee11cbe562e6759cf816e04f25b57e4a2f05628a3509f8e22c",
+      "bytes": 2395
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_amdgpu.json",
+      "sha256": "1eaaff3cd77c0515917f9c9cd130b7957d00ab9018dfc7d9982e5601ac6586d4",
+      "bytes": 3875
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_cpu.json",
+      "sha256": "4191eb8645fc0870a251dcd750800e8431b07cef9cdb15b3503ad7ea1b50fd4b",
+      "bytes": 784
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_dml.json",
+      "sha256": "c8c412f7fc8778b524a4632b22131bac3fe7ac3957daf7a91801313d52dbb66e",
+      "bytes": 2455
+    },
+    {
+      "path": "raw/frag_yolo26s-cls__classify_amdgpu.json",
+      "sha256": "674cf6f438d9a68ed1fdb4c98200f6b6a213bcc2383adda1d0ceaf59ee938d6b",
+      "bytes": 3917
+    },
+    {
+      "path": "raw/frag_yolo26s-cls__classify_cpu.json",
+      "sha256": "a763cfe1f50d1b5c321cdff0fe1e1f64c91828ed080100bef0d1070bc53d4017",
+      "bytes": 777
+    },
+    {
+      "path": "raw/frag_yolo26s-cls__classify_dml.json",
+      "sha256": "56e583b7bb2dfe03c5b273d328984502eee9c33812d628f54bda3eb9e5c0ce53",
+      "bytes": 2503
+    },
+    {
+      "path": "raw/frag_yolo26s-depth__depth_amdgpu.json",
+      "sha256": "1e8baea127954d32577f29453295b65075224b0cccb3995c345d2f88d4812cfa",
+      "bytes": 3931
+    },
+    {
+      "path": "raw/frag_yolo26s-depth__depth_cpu.json",
+      "sha256": "d410996fcc7763689f1221c4e2c7aa9d1c2cbc50f248dacf0d3b7232b37b5f12",
+      "bytes": 791
+    },
+    {
+      "path": "raw/frag_yolo26s-depth__depth_dml.json",
+      "sha256": "8d70e8245b75e0646fe763c7e5b67d21fdd985d2846118dfad3cf058e45155e3",
+      "bytes": 2482
+    },
+    {
+      "path": "raw/frag_yolo26s-obb__obb_amdgpu.json",
+      "sha256": "ffe967980af9ada31f73ea89a6ab5fd195bc895af940b1eaee094c6f2c0ea04c",
+      "bytes": 3935
+    },
+    {
+      "path": "raw/frag_yolo26s-obb__obb_cpu.json",
+      "sha256": "352bc07748ba5d9ca29b1805ab98bd0914da03bb7377d2dfa15ee9e2244d9d7b",
+      "bytes": 787
+    },
+    {
+      "path": "raw/frag_yolo26s-obb__obb_dml.json",
+      "sha256": "998ffdca2d40aabdc8cf95e1ed057a23e5d46d8b72ed8c354539a5eb2ecc3175",
+      "bytes": 2509
+    },
+    {
+      "path": "raw/frag_yolo26s-pose__pose_amdgpu.json",
+      "sha256": "34424d9cf12864159d64228b280658b14c2135914dc8551c3562c382ab0a85c5",
+      "bytes": 3918
+    },
+    {
+      "path": "raw/frag_yolo26s-pose__pose_cpu.json",
+      "sha256": "2eab5d022ea76ab36b3070962f69bb676893371e27d48841fe26e3a1220db47a",
+      "bytes": 785
+    },
+    {
+      "path": "raw/frag_yolo26s-pose__pose_dml.json",
+      "sha256": "244e48248bf77159c8f6a5a097d028c6cb0a60fb071ab59ed05e4977f765e6b0",
+      "bytes": 2479
+    },
+    {
+      "path": "raw/frag_yolo26s-seg__segment_amdgpu.json",
+      "sha256": "3312c3893f401d5ab316a2f8d0aa84a0e479c1058834750d3c8c217753bf95da",
+      "bytes": 4560
+    },
+    {
+      "path": "raw/frag_yolo26s-seg__segment_cpu.json",
+      "sha256": "8bbc857885728498b3f27c9cbdc1c0b590d5b36c6aec98a3054eb4b1d0c45c61",
+      "bytes": 1003
+    },
+    {
+      "path": "raw/frag_yolo26s-seg__segment_dml.json",
+      "sha256": "96ce526a7d9fea441561832aa4e2b0566dd4a3780f873a60f517356753fa08e1",
+      "bytes": 3132
+    },
+    {
+      "path": "raw/frag_yolo26s-sem__semantic_amdgpu.json",
+      "sha256": "119ea5c9ae7ab9ac8f7be6bd72e08ca6d50ad174340534d27b4b50169e4daa3f",
+      "bytes": 3962
+    },
+    {
+      "path": "raw/frag_yolo26s-sem__semantic_cpu.json",
+      "sha256": "92c33d61d25af448236c9b0109e846661009b4b4cefa5734da570a83e7a681b6",
+      "bytes": 781
+    },
+    {
+      "path": "raw/frag_yolo26s-sem__semantic_dml.json",
+      "sha256": "02a9ef2e16ecde30acc1c761af22ae62a6e6aaeeb45a6f3f2b72fae75f533e09",
+      "bytes": 2523
+    },
+    {
+      "path": "raw/frag_yolo26s__detect_amdgpu.json",
+      "sha256": "9eb80a77de93194e62dac5f773d22c242c537ade05f508b4c3a490d4ed1af0f0",
+      "bytes": 3883
+    },
+    {
+      "path": "raw/frag_yolo26s__detect_cpu.json",
+      "sha256": "60bc7a734703ceaa10bb2c2ff0170d72612df15f93d6788bfba04ebd7b9e2277",
+      "bytes": 785
+    },
+    {
+      "path": "raw/frag_yolo26s__detect_dml.json",
+      "sha256": "b74d501616d174d24ccfc6503af62888649cf8b1ee8049e1bbacab238896b451",
+      "bytes": 2462
+    },
+    {
+      "path": "raw/frag_yolov8n__detect_amdgpu.json",
+      "sha256": "6e5aba9d427a40c3fc3aab978697c419c0b1d2aba53eb6d745ed20a738ac85bb",
+      "bytes": 3934
+    },
+    {
+      "path": "raw/frag_yolov8n__detect_cpu.json",
+      "sha256": "2be64a0d971f4d8ec07cb8b92af21633bccd987f3612d6e0ca29693fd20295ed",
+      "bytes": 784
+    },
+    {
+      "path": "raw/frag_yolov8n__detect_dml.json",
+      "sha256": "eb3ea424017c600794321a4e073e36b9d5c7ebb734487782c5475fed6e2d8670",
+      "bytes": 2479
+    },
+    {
+      "path": "raw/fragneg_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "6671344f3eb7a4e6ecd8df74def51fc9d9ccfa93969f788d6c38818d8020768e",
+      "bytes": 3088
+    },
+    {
+      "path": "raw/fragneg_yolo26n-obb__obb_dml.json",
+      "sha256": "916875155ee69b4417cbc56ddd5d7f899bbc5a1acf03979e10dd5bfb8b6b3cce",
+      "bytes": 1649
+    },
+    {
+      "path": "raw/fragneg_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "7a1afdd8adb1fca813e26e00425da6a658f3806b51859be011c44ad752312720",
+      "bytes": 3088
+    },
+    {
+      "path": "raw/fragneg_yolo26n-pose__pose_dml.json",
+      "sha256": "4b18dc7d348fab6d81292b1b7573144e80dd44455fdb0621fe79f191b5fcdbab",
+      "bytes": 1647
+    },
+    {
+      "path": "raw/fragneg_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "2a693615a0b6151e759e86952a0d3e65db98653fcce59624e6d48d308616d905",
+      "bytes": 3308
+    },
+    {
+      "path": "raw/fragneg_yolo26n-seg__segment_dml.json",
+      "sha256": "ed5cd9b417d51259f408bae00d43e5668f7f47d57e9b4ef54387ee274b98f3e2",
+      "bytes": 1865
+    },
+    {
+      "path": "raw/fragneg_yolo26n__detect_amdgpu.json",
+      "sha256": "d7f08760c5af528176f1dd97b642cf3c5760dd306d04b12eff180499e02331b7",
+      "bytes": 3085
+    },
+    {
+      "path": "raw/fragneg_yolo26n__detect_dml.json",
+      "sha256": "cd949a0e0966ded227bf360bc88d65ac8d47f2f714921fe001d9fa206e6c5890",
+      "bytes": 1647
+    },
+    {
+      "path": "raw/log_cpu_yolo11n__detect.txt",
+      "sha256": "fe601fd6c6d4fc30e47acdfcdecba4fe0b30b72c46c6b74321a96855d817f9d2",
+      "bytes": 569
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-cls__classify.txt",
+      "sha256": "04af095c7dcafa57122b1a025aa81c4dfd120a659492492c14977a3e7eac700c",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-depth__depth.txt",
+      "sha256": "40bfd00bc3e9b822e3cb44369b9276bd05f72713392be8dbf9b3ba8975c05c43",
+      "bytes": 579
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-obb__obb.txt",
+      "sha256": "491ab7eecf0c6b234ccb594e273090f19f526ff1d4de683525ea7e81149a06ff",
+      "bytes": 571
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-pose__pose.txt",
+      "sha256": "7c15ef77f0831a7ac858cb9fb92aea16bd63c72011dc89328c51a95dada5b2ae",
+      "bytes": 575
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-seg__segment.txt",
+      "sha256": "31a4628d07533b4fbf02aa2e6f60952a3b108b27c1fbc0bb4e74fe7385d55a42",
+      "bytes": 579
+    },
+    {
+      "path": "raw/log_cpu_yolo26n-sem__semantic.txt",
+      "sha256": "8f1d9bd5e0b9a16b760da58bf0cdb8cee13996aad8f7e647ef8f91eb8f0583c6",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_cpu_yolo26n__detect.txt",
+      "sha256": "421059e5646d0e100ce448182f99af2650804d7f32739af4af49e9842fa6ad3d",
+      "bytes": 569
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-cls__classify.txt",
+      "sha256": "9b0fbad543c88f64e0e77c6bd66da655f4e8a1a6c3d11b9283c8f41bc504f101",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-depth__depth.txt",
+      "sha256": "7a15dec593e88d7b42d45134a829d65b82f715a26300cf27554092bf7f49523e",
+      "bytes": 579
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-obb__obb.txt",
+      "sha256": "b8c0450d338f3881251f0743cdd0f9ab7c99b406541dc938ab2513676387f337",
+      "bytes": 571
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-pose__pose.txt",
+      "sha256": "f34a3f22f88994d688085660be060a730d520fb1aa66a7c83918df5ab11e02e6",
+      "bytes": 575
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-seg__segment.txt",
+      "sha256": "aad92b5df836ae0abb66193453274f0bd765ccb16720d1d0f14e83d036376b46",
+      "bytes": 579
+    },
+    {
+      "path": "raw/log_cpu_yolo26s-sem__semantic.txt",
+      "sha256": "468dea0334bc8eba32728abada7bde72583395aab8f4aebdb31aed553d6cb2db",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_cpu_yolo26s__detect.txt",
+      "sha256": "a761c9b618acf3092b7ccbaf20a743ef615100c9b14bed24657d97fa7158d5e6",
+      "bytes": 569
+    },
+    {
+      "path": "raw/log_cpu_yolov8n__detect.txt",
+      "sha256": "6a241108aeae612d3c699778b6a87eb3dd4a944c1bacb8874719f2405a6bfbc7",
+      "bytes": 569
+    },
+    {
+      "path": "raw/log_post_yolo11n__detect_amdgpu.txt",
+      "sha256": "6e51454f0d47aa6b8104dc7bf9675eebfcc458cf63bc833d37ea0cfd126cb18c",
+      "bytes": 582
+    },
+    {
+      "path": "raw/log_post_yolo11n__detect_dml.txt",
+      "sha256": "a6ec847274574f44fbc9cd4c856b6fe42411aba55156fa84082e6f2e6fa82c69",
+      "bytes": 573
+    },
+    {
+      "path": "raw/log_post_yolo26n-cls__classify_amdgpu.txt",
+      "sha256": "a53682e35cac94e1cc5ec8da3b9789a5a697a78a6e8dadefcea6789b1b0d3f42",
+      "bytes": 604
+    },
+    {
+      "path": "raw/log_post_yolo26n-cls__classify_dml.txt",
+      "sha256": "7247e743aff5defaefd56571726ddf06a4535b900286399d72f8c14b67f12423",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26n-depth__depth_amdgpu.txt",
+      "sha256": "fbbbf16c80ecf05592286f747815700cfe47610fbd7e3acfa0bf22806bcd090c",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26n-depth__depth_dml.txt",
+      "sha256": "d65d70bebab462e003073c9dd91355e921bf2c21f6dd3de6d3a3677f6467be9d",
+      "bytes": 586
+    },
+    {
+      "path": "raw/log_post_yolo26n-obb__obb_amdgpu.txt",
+      "sha256": "5f7bc214622dc9541df2e75c70bc0e6ff9b5c8a917c81e1bbde125befe115bc7",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_post_yolo26n-obb__obb_dml.txt",
+      "sha256": "7ce68c355f186bea76033113502246208130438e5d84fbbaee90581ee1bbc45c",
+      "bytes": 572
+    },
+    {
+      "path": "raw/log_post_yolo26n-pose__pose_amdgpu.txt",
+      "sha256": "180d2166c410b7d59934b99d04679e0b13a5c1ea0e5a083f0699d78d2acf6c24",
+      "bytes": 587
+    },
+    {
+      "path": "raw/log_post_yolo26n-pose__pose_dml.txt",
+      "sha256": "dbc1458c810fa7e41526f6b232697bf07d18fb4fec6141b0f123193be2af86a5",
+      "bytes": 578
+    },
+    {
+      "path": "raw/log_post_yolo26n-seg__segment_amdgpu.txt",
+      "sha256": "11408fcee6bb8346baf3068fb4203e87351aa01d14664a354dbbc8cee6bbf3ab",
+      "bytes": 599
+    },
+    {
+      "path": "raw/log_post_yolo26n-seg__segment_dml.txt",
+      "sha256": "37e6e5eb08ff04e0cd03b88ecf5200ed34a7639c1b9ede3edb5eb9771f3a408d",
+      "bytes": 590
+    },
+    {
+      "path": "raw/log_post_yolo26n-sem__semantic_amdgpu.txt",
+      "sha256": "38d76976057ed7e9b08889fcef4d1d7070193d3fdc49be9724dc00ba995d3f70",
+      "bytes": 604
+    },
+    {
+      "path": "raw/log_post_yolo26n-sem__semantic_dml.txt",
+      "sha256": "7254ccf36e7b07b2457ff1e880c39f88a4c41cd87dcb13f78c6cfa12ebac1ff3",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26n__detect_amdgpu.txt",
+      "sha256": "3200398da1dcc3da6bc759f7705386956f541fa045fb4c26fede69deb5e0052b",
+      "bytes": 582
+    },
+    {
+      "path": "raw/log_post_yolo26n__detect_dml.txt",
+      "sha256": "81bd5a5af12c6af02ea9958a518c0b0d96e405ff4a69dab08e2b3e4d51fb41cf",
+      "bytes": 573
+    },
+    {
+      "path": "raw/log_post_yolo26s-cls__classify_amdgpu.txt",
+      "sha256": "7bbec8215d0296d53e4b616caf4538cfa646c93ee62a640045d9b706e948a8aa",
+      "bytes": 604
+    },
+    {
+      "path": "raw/log_post_yolo26s-cls__classify_dml.txt",
+      "sha256": "e66365e91b961c3865054659572ed3aa6c063ed0a1d2350a17cb55bab8690afe",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26s-depth__depth_amdgpu.txt",
+      "sha256": "7cfd967f81bde93f60f729ddc4575fdc95029ee1c9d8899183bf26e5861a9394",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26s-depth__depth_dml.txt",
+      "sha256": "fc8bc73662f2791b8980ad4a44f0b2d6a6e18cdb3638b0e463ee01bf1c63e67e",
+      "bytes": 586
+    },
+    {
+      "path": "raw/log_post_yolo26s-obb__obb_amdgpu.txt",
+      "sha256": "6d823c67b232102042387bad0e1e89a52e3aa1a419abc8ea56954150774a20d5",
+      "bytes": 581
+    },
+    {
+      "path": "raw/log_post_yolo26s-obb__obb_dml.txt",
+      "sha256": "e97e84e69d218f4169a6e144c2801592949a83b4de40590898c5f68444ba1829",
+      "bytes": 572
+    },
+    {
+      "path": "raw/log_post_yolo26s-pose__pose_amdgpu.txt",
+      "sha256": "ebbdb6a50a52a048d6c4c1b1bd3779b22c0e31d4a12b4c8abec1c19566ff3f33",
+      "bytes": 587
+    },
+    {
+      "path": "raw/log_post_yolo26s-pose__pose_dml.txt",
+      "sha256": "4200356af4736d91d4a0847e533178635b1bc6c26fb9080fd0b1bf7176b8f3dc",
+      "bytes": 578
+    },
+    {
+      "path": "raw/log_post_yolo26s-seg__segment_amdgpu.txt",
+      "sha256": "9f0655e5d520fa9c52520a515f0c32af1080a540843547b221f27110103567fd",
+      "bytes": 599
+    },
+    {
+      "path": "raw/log_post_yolo26s-seg__segment_dml.txt",
+      "sha256": "8946a9e5cec649f2fd1fd1e9b6e7748efcd6019d06d0d1cf6a7db1954454f317",
+      "bytes": 590
+    },
+    {
+      "path": "raw/log_post_yolo26s-sem__semantic_amdgpu.txt",
+      "sha256": "a9b25f8ac167f82bebecf8b383225410eed3b04b04c9611f9030a8e5b016ff33",
+      "bytes": 604
+    },
+    {
+      "path": "raw/log_post_yolo26s-sem__semantic_dml.txt",
+      "sha256": "b316fb1ae2f18afbd4e4707114412900369506f54e30852cef7e2f37a978db56",
+      "bytes": 595
+    },
+    {
+      "path": "raw/log_post_yolo26s__detect_amdgpu.txt",
+      "sha256": "31b2bcca3178c95ab46ee2e0c20f08a7dcacabd5e411f452d0cefbc0257e5e9b",
+      "bytes": 582
+    },
+    {
+      "path": "raw/log_post_yolo26s__detect_dml.txt",
+      "sha256": "440f135aef46a6a3ee3d5c8c9518bd770862fc2d01df73deef01335f684f5841",
+      "bytes": 573
+    },
+    {
+      "path": "raw/log_post_yolov8n__detect_amdgpu.txt",
+      "sha256": "b76e6a03af7eb89536a885ccb2db079ed7be91081edf39c8d1ff99450b49cafe",
+      "bytes": 582
+    },
+    {
+      "path": "raw/log_post_yolov8n__detect_dml.txt",
+      "sha256": "c2679bafc177ff5ccc06fc3f91729e463f7fdb1fa849f9e02b4a356a3073907f",
+      "bytes": 573
+    },
+    {
+      "path": "raw/log_pt_yolo11n__detect.txt",
+      "sha256": "dd35d018825152f877412a0ac1d4a0dfa35202ba4dd7d5f5e53f23d23180afbe",
+      "bytes": 652
+    },
+    {
+      "path": "raw/log_pt_yolo26n-cls__classify.txt",
+      "sha256": "f4e3111120c1c0c81aaebe1caaa6dc49ae9d213050c4320ae98be287028e9a07",
+      "bytes": 672
+    },
+    {
+      "path": "raw/log_pt_yolo26n-depth__depth.txt",
+      "sha256": "0a4cbfd81f38de47b7dbd309e1ae7f3599aaf833fd4c1485ff729147da6f4c4d",
+      "bytes": 666
+    },
+    {
+      "path": "raw/log_pt_yolo26n-obb__obb.txt",
+      "sha256": "21f33473dd46c485dc24b60ef45aca9302225f83922e3f795a64a22a029653c2",
+      "bytes": 653
+    },
+    {
+      "path": "raw/log_pt_yolo26n-pose__pose.txt",
+      "sha256": "693c879f5d1042ac3e996debd95c34442c991bcd18f682442e94e1473da1bacf",
+      "bytes": 659
+    },
+    {
+      "path": "raw/log_pt_yolo26n-seg__segment.txt",
+      "sha256": "55bc445dde8eb36fc60b642a75b435afc54b03c631a89887828ed730dbbff184",
+      "bytes": 668
+    },
+    {
+      "path": "raw/log_pt_yolo26n-sem__semantic.txt",
+      "sha256": "b590939527c592f0ea5e52cbc6df56abcd54fb1c68da57d2e15644fb91801a02",
+      "bytes": 672
+    },
+    {
+      "path": "raw/log_pt_yolo26n__detect.txt",
+      "sha256": "d3705ad119f2d2f6e5b6deae74286b2b557a51291a912e8da5684638629860a5",
+      "bytes": 652
+    },
+    {
+      "path": "raw/log_pt_yolo26s-cls__classify.txt",
+      "sha256": "03e91d35006c894fa3f208e9541fb038d2ecd29256347f633a23adcf5285e277",
+      "bytes": 672
+    },
+    {
+      "path": "raw/log_pt_yolo26s-depth__depth.txt",
+      "sha256": "e972bd416f75b779d5a24945da207bcdb11e1cfada4ce6ba353aca052981d02a",
+      "bytes": 666
+    },
+    {
+      "path": "raw/log_pt_yolo26s-obb__obb.txt",
+      "sha256": "f467dee23fa5dbff6b7f4201b69f360cc80b4e3f7e50a6452c4e58e42ffeb59f",
+      "bytes": 653
+    },
+    {
+      "path": "raw/log_pt_yolo26s-pose__pose.txt",
+      "sha256": "a1c33ce067eede72b385c6e8dbd4f21e1c3eb3f801b5296573ce38c476c0ee40",
+      "bytes": 659
+    },
+    {
+      "path": "raw/log_pt_yolo26s-seg__segment.txt",
+      "sha256": "57e7ad0b8a3d128d150a95e2ad840ea0c1d05c319f62323cc74b66c9f6428be7",
+      "bytes": 668
+    },
+    {
+      "path": "raw/log_pt_yolo26s-sem__semantic.txt",
+      "sha256": "4071a9b1ede0c5d1248168d51a6ede47da84d6805434c0c1ae1384c970f8801a",
+      "bytes": 672
+    },
+    {
+      "path": "raw/log_pt_yolo26s__detect.txt",
+      "sha256": "4b2561bb261a04498efd47b6ab9bbc05585318fe3c6fdce2c6ca7b9f64e8ecfb",
+      "bytes": 652
+    },
+    {
+      "path": "raw/log_pt_yolov8n__detect.txt",
+      "sha256": "6bc89b682eb56f9ac2ed7a63e473c9f3cdcf1444dc44cb471a44f1471f3ec140",
+      "bytes": 652
+    },
+    {
+      "path": "raw/log_ptneg_yolo26n-obb__obb.txt",
+      "sha256": "97c5ec4487a1889f136b35c3306fe35e5673a073b4fc2d9cced2a60b5d9fd64d",
+      "bytes": 658
+    },
+    {
+      "path": "raw/log_ptneg_yolo26n-pose__pose.txt",
+      "sha256": "324057239c7f5a3ad38c894e72d058f02b1e849fc9d6c9f85928a8455678abaa",
+      "bytes": 665
+    },
+    {
+      "path": "raw/log_ptneg_yolo26n-seg__segment.txt",
+      "sha256": "1c97094a7eb28ce4e1c2d0a33157bfa161a5d6ce9f15228a03cf85e492dca86c",
+      "bytes": 674
+    },
+    {
+      "path": "raw/log_ptneg_yolo26n__detect.txt",
+      "sha256": "13fa4087bc7a8cf5579033e3164d64b16576e9576b866ba412aaad3594eacf79",
+      "bytes": 658
+    },
+    {
+      "path": "raw/log_tp_yolo11n__detect_amdgpu.txt",
+      "sha256": "0d4e697ae9324d62c35fc20daf23fe163cc89317c63dccaf34795c06d1fc93d5",
+      "bytes": 1085
+    },
+    {
+      "path": "raw/log_tp_yolo11n__detect_dml.txt",
+      "sha256": "885acae457fb56436c99c4de282a202b52b9238ec53d721f15c111af4918ce57",
+      "bytes": 1073
+    },
+    {
+      "path": "raw/log_tp_yolo26n-cls__classify_amdgpu.txt",
+      "sha256": "4b6bed6ddb7d1f512078d5c93e853ef803f7eaa1ab5b20041f3b66b2336fb8c4",
+      "bytes": 1131
+    },
+    {
+      "path": "raw/log_tp_yolo26n-cls__classify_dml.txt",
+      "sha256": "fa9e429f3a51801aaf8f69d25835dd4139a317c552841d353dca90d4f5e7cdda",
+      "bytes": 1119
+    },
+    {
+      "path": "raw/log_tp_yolo26n-depth__depth_amdgpu.txt",
+      "sha256": "61c77689d14e5601a15bdc17278dcb85899826152ec486a635c92fa0c7a4c44d",
+      "bytes": 1106
+    },
+    {
+      "path": "raw/log_tp_yolo26n-depth__depth_dml.txt",
+      "sha256": "511b920a3068f62c4998557896efb5e3d531b1320b495240c45ae88a0830c311",
+      "bytes": 1094
+    },
+    {
+      "path": "raw/log_tp_yolo26n-obb__obb_amdgpu.txt",
+      "sha256": "5b6542cdf242f94244e5a7da27c6e1c57749bb83ca9b3ee76457af83830fb50d",
+      "bytes": 1119
+    },
+    {
+      "path": "raw/log_tp_yolo26n-obb__obb_dml.txt",
+      "sha256": "04280421da4d83f9c5186aef2dcdba8b28474534fe3a0fae697e57ab33dff0b8",
+      "bytes": 1107
+    },
+    {
+      "path": "raw/log_tp_yolo26n-pose__pose_amdgpu.txt",
+      "sha256": "6c0f7f146f7c38e42e11e55ca424f93fa4a4e758da1d42b9c1e663ee4380296d",
+      "bytes": 1108
+    },
+    {
+      "path": "raw/log_tp_yolo26n-pose__pose_dml.txt",
+      "sha256": "e218d6690343119c9538edec773d7ce1fc8d3eb9adaf5f8f33abcb8ba0e2b55e",
+      "bytes": 1096
+    },
+    {
+      "path": "raw/log_tp_yolo26n-seg__segment_amdgpu.txt",
+      "sha256": "069b1b28119abf62d81fba1926f94166ce94426762ae44b647098a057e924d41",
+      "bytes": 1129
+    },
+    {
+      "path": "raw/log_tp_yolo26n-seg__segment_dml.txt",
+      "sha256": "2d5e27ade1b504615d30fe6293e2839c1ec6a99b129b2e2e5d5f7239ade6a1ec",
+      "bytes": 1117
+    },
+    {
+      "path": "raw/log_tp_yolo26n-sem__semantic_amdgpu.txt",
+      "sha256": "39f49471a09487c95e89036a34ac3bbbe01b1e324d46e809c2006e5a06f7c18f",
+      "bytes": 1103
+    },
+    {
+      "path": "raw/log_tp_yolo26n-sem__semantic_dml.txt",
+      "sha256": "052c4d685f6fe1af86ac14e60a68617dd37b46a44d24e61cc0770568cfa46dcd",
+      "bytes": 1091
+    },
+    {
+      "path": "raw/log_tp_yolo26n__detect_amdgpu.txt",
+      "sha256": "076bdb6b96ae60f85328f39bfbb42f08525cc0e62f2060668cdd6967bfdc164d",
+      "bytes": 1085
+    },
+    {
+      "path": "raw/log_tp_yolo26n__detect_dml.txt",
+      "sha256": "82bdf7076e712ad704c56a86a8bfd8291e858c3d7b8cb82a2617a6d6adb8e333",
+      "bytes": 1073
+    },
+    {
+      "path": "raw/log_tp_yolo26s-cls__classify_amdgpu.txt",
+      "sha256": "55bbc08fbebd2ff143ff25819aec205bf3637e821fbd0800557dde9eeddc5927",
+      "bytes": 1131
+    },
+    {
+      "path": "raw/log_tp_yolo26s-cls__classify_dml.txt",
+      "sha256": "875e5f669131885b55dbde7899c8c0e46a5c97028568385602375ba7323a66b7",
+      "bytes": 1119
+    },
+    {
+      "path": "raw/log_tp_yolo26s-depth__depth_amdgpu.txt",
+      "sha256": "439a40c521c746bf260d0cb7f97aa668660eab58f189f84bb4bbddc5aedfd3cf",
+      "bytes": 1106
+    },
+    {
+      "path": "raw/log_tp_yolo26s-depth__depth_dml.txt",
+      "sha256": "6d7b1c894fa803bfbf21c488e88d765883785d41406519d7460f05339801fc9d",
+      "bytes": 1094
+    },
+    {
+      "path": "raw/log_tp_yolo26s-obb__obb_amdgpu.txt",
+      "sha256": "85e15837ee8b8cab0828d0871b8364933cb9269be1eead9e3a136bc1c8e3f2d1",
+      "bytes": 1119
+    },
+    {
+      "path": "raw/log_tp_yolo26s-obb__obb_dml.txt",
+      "sha256": "95b8272b44f09c48aa6304f9b462493e07b5baa8f596da9e74a1514df9c3f677",
+      "bytes": 1107
+    },
+    {
+      "path": "raw/log_tp_yolo26s-pose__pose_amdgpu.txt",
+      "sha256": "bfec153fa88275987be00d2c371f55773ef8541cb24f73ec38fd5a070604c3bb",
+      "bytes": 1108
+    },
+    {
+      "path": "raw/log_tp_yolo26s-pose__pose_dml.txt",
+      "sha256": "3af90ea4f7494042f2dc5182de8453c2089c883eb200519981c4bd2148b2f5d8",
+      "bytes": 1096
+    },
+    {
+      "path": "raw/log_tp_yolo26s-seg__segment_amdgpu.txt",
+      "sha256": "24c35f974a2cbdbd3c77973a4ed0fb46c2f09ed3f06258ad7d28d4f6857055de",
+      "bytes": 1129
+    },
+    {
+      "path": "raw/log_tp_yolo26s-seg__segment_dml.txt",
+      "sha256": "1449cbebaa38316fbb234c89fbe9d1e475d3e60306790660de0480fd7c4959d6",
+      "bytes": 1117
+    },
+    {
+      "path": "raw/log_tp_yolo26s-sem__semantic_amdgpu.txt",
+      "sha256": "43906b35469fff51a68904d2e3ddf6fbed59a7f58b4cc0befa7182e3d85e9177",
+      "bytes": 1103
+    },
+    {
+      "path": "raw/log_tp_yolo26s-sem__semantic_dml.txt",
+      "sha256": "0533bf3abd9054fad3d48a59529b08a72e0942e36c7f74be63cbd2716c9a0960",
+      "bytes": 1091
+    },
+    {
+      "path": "raw/log_tp_yolo26s__detect_amdgpu.txt",
+      "sha256": "19c9178a6f78f2409ef8400e4c1a88cc6bdcde967d58dea3d036f9f822ec10c3",
+      "bytes": 1085
+    },
+    {
+      "path": "raw/log_tp_yolo26s__detect_dml.txt",
+      "sha256": "e5a653564a8ee5019c2360ddf3572b331f9da89074c41948b18f7f3d9c567995",
+      "bytes": 1073
+    },
+    {
+      "path": "raw/log_tp_yolov8n__detect_amdgpu.txt",
+      "sha256": "0562bd8b74541f2ed1b2a39eef4cfbb26f09fb36cda71f24ebd1d7c171fdbc96",
+      "bytes": 1085
+    },
+    {
+      "path": "raw/log_tp_yolov8n__detect_dml.txt",
+      "sha256": "459723e28e7af8bb787b62ae8e4cf0f3cf7ebfaa75c656723714acccf51ebf33",
+      "bytes": 1073
+    },
+    {
+      "path": "raw/log_yolo11n__detect_amdgpu.txt",
+      "sha256": "86c9edeb4e093eeb8b12915415761a6a73ebd1b771e21754d6356cce2e51a63c",
+      "bytes": 8452
+    },
+    {
+      "path": "raw/log_yolo11n__detect_dml.txt",
+      "sha256": "515118523bb726d4d61e0eb1be8cd3e04f9bdd38a40bd73bcefc07c541d72693",
+      "bytes": 803
+    },
+    {
+      "path": "raw/log_yolo26n-cls__classify_amdgpu.txt",
+      "sha256": "f2951f838a6fc3b59bf827a9e468eeabe1b9d539ba4eeb06fe244560844eec3e",
+      "bytes": 4048
+    },
+    {
+      "path": "raw/log_yolo26n-cls__classify_dml.txt",
+      "sha256": "b8b4742b3ca0a2f6e6906fc34d80882ea34c86870509b0930b96cabb4362d3da",
+      "bytes": 815
+    },
+    {
+      "path": "raw/log_yolo26n-depth__depth_amdgpu.txt",
+      "sha256": "500b1cf1ceef341c78f5fc5afeeab7457c3a8160073f3bcc0c46e68a7692c502",
+      "bytes": 7850
+    },
+    {
+      "path": "raw/log_yolo26n-depth__depth_dml.txt",
+      "sha256": "3fe0599ecdaa5d08bc35bdacf91f327dd541ff22b779287d5e82ef31959bbd2a",
+      "bytes": 813
+    },
+    {
+      "path": "raw/log_yolo26n-obb__obb_amdgpu.txt",
+      "sha256": "f5a7cf8409fa09ddb01f5b596338aa7f1444103a306e8865c302a23356c59e6c",
+      "bytes": 8455
+    },
+    {
+      "path": "raw/log_yolo26n-obb__obb_dml.txt",
+      "sha256": "ce9696ee7174a12a1cd450b5682afba6d0ed8d27864305ad7af6a4f35d3b5ae7",
+      "bytes": 805
+    },
+    {
+      "path": "raw/log_yolo26n-pose__pose_amdgpu.txt",
+      "sha256": "10bce3870b66fb18fa92d6e874e7c7947b8aa54292142bb8d367c837e0aa8ead",
+      "bytes": 8459
+    },
+    {
+      "path": "raw/log_yolo26n-pose__pose_dml.txt",
+      "sha256": "84b4be07a515b685dcaae810e7961ca2bd8e0bf5e8287ca0233521cba1db60fa",
+      "bytes": 809
+    },
+    {
+      "path": "raw/log_yolo26n-seg__segment_amdgpu.txt",
+      "sha256": "2d09d080aab94f5bb374403f7598cee790255e428bfc91b03c55fcb38001580f",
+      "bytes": 7850
+    },
+    {
+      "path": "raw/log_yolo26n-seg__segment_dml.txt",
+      "sha256": "ea398be1bf8b7bf981b174272703cd2295b53f80781afba11c0f20db33e73174",
+      "bytes": 813
+    },
+    {
+      "path": "raw/log_yolo26n-sem__semantic_amdgpu.txt",
+      "sha256": "32beba128a20d49da50a2b356eb086cd9c760d8744fd278ba951a82090beab0b",
+      "bytes": 4990
+    },
+    {
+      "path": "raw/log_yolo26n-sem__semantic_dml.txt",
+      "sha256": "6fe5eaab0a13d0ca364157529e4fb78577a10a84ec2fe09ce192f87511e5a5a2",
+      "bytes": 815
+    },
+    {
+      "path": "raw/log_yolo26n__detect_amdgpu.txt",
+      "sha256": "5f52f8b2912ef8d8b46883b5c718878cab82d79d0013c9c2c4c8e4b2e7c48bde",
+      "bytes": 7840
+    },
+    {
+      "path": "raw/log_yolo26n__detect_dml.txt",
+      "sha256": "b3dd36440d6131da86c67785f1a5b8e8d76d1e16619f88cd43fe5e5e5c6e5011",
+      "bytes": 803
+    },
+    {
+      "path": "raw/log_yolo26s-cls__classify_amdgpu.txt",
+      "sha256": "48309f62f7f374ac245fa1f4b7947e277814578da1f1aebde9b3161b0d579bf8",
+      "bytes": 4048
+    },
+    {
+      "path": "raw/log_yolo26s-cls__classify_dml.txt",
+      "sha256": "d259e1e483adb5a00809dd49a67daf822a68ef10a4ee38a745b228b58f101a60",
+      "bytes": 815
+    },
+    {
+      "path": "raw/log_yolo26s-depth__depth_amdgpu.txt",
+      "sha256": "6755d113c9610c16ddc38e04dc5a35151d5fd6f1eab063e09f3aa9f475e418bc",
+      "bytes": 7850
+    },
+    {
+      "path": "raw/log_yolo26s-depth__depth_dml.txt",
+      "sha256": "3e6ff9bd4fc5f2aee91d01f50fa840f121ea4e3f8f189c0246e71e8b7a6869dd",
+      "bytes": 813
+    },
+    {
+      "path": "raw/log_yolo26s-obb__obb_amdgpu.txt",
+      "sha256": "e9d1f8d6227319a3d9d4de7f915cd9ba902d7ed2074f8ee35d4fb09f472d9cc3",
+      "bytes": 8455
+    },
+    {
+      "path": "raw/log_yolo26s-obb__obb_dml.txt",
+      "sha256": "a6d3e00e6cf911a4bf4529fd7ac7c5d0beb05b0855af70633ed8b12a5a11cd17",
+      "bytes": 805
+    },
+    {
+      "path": "raw/log_yolo26s-pose__pose_amdgpu.txt",
+      "sha256": "98fce33d55496a42ed1f1f1ac16a9ce0dd377c7d5d18975cacd96ed22578fedc",
+      "bytes": 8459
+    },
+    {
+      "path": "raw/log_yolo26s-pose__pose_dml.txt",
+      "sha256": "38d6de2635e69a2cf13863a2dd37a7828ec962338f741e6e4b6537c9ff7556d3",
+      "bytes": 809
+    },
+    {
+      "path": "raw/log_yolo26s-seg__segment_amdgpu.txt",
+      "sha256": "02d719aa8ab9526a90c09e00e1dd60bc8911da15f0948943a023b6517671078a",
+      "bytes": 7850
+    },
+    {
+      "path": "raw/log_yolo26s-seg__segment_dml.txt",
+      "sha256": "1c6f31d0a01032411cfef818eb7242e7385a401717816558ce2c51a475f7a0ae",
+      "bytes": 813
+    },
+    {
+      "path": "raw/log_yolo26s-sem__semantic_amdgpu.txt",
+      "sha256": "f13641348da43940e25e6def5088ee49fd426f9b2040b248ddddcb1301dfbfe7",
+      "bytes": 4990
+    },
+    {
+      "path": "raw/log_yolo26s-sem__semantic_dml.txt",
+      "sha256": "81d756abf5f8f6f62436929908237d20e131ddc70968fc1f59f15fe08e68d0d1",
+      "bytes": 815
+    },
+    {
+      "path": "raw/log_yolo26s__detect_amdgpu.txt",
+      "sha256": "027be4caa20f0788379b16cd557385eaf1d4d245122f2db15063b90285dc619c",
+      "bytes": 7840
+    },
+    {
+      "path": "raw/log_yolo26s__detect_dml.txt",
+      "sha256": "f186bfa5f912b9bc6e4db6d7a3590652f51851da30100c792d38183f2b017a38",
+      "bytes": 803
+    },
+    {
+      "path": "raw/log_yolov8n__detect_amdgpu.txt",
+      "sha256": "6af897e9b6f7a70829864272f7232ee1255cd3a19821eaf33ecc398265e0814b",
+      "bytes": 8452
+    },
+    {
+      "path": "raw/log_yolov8n__detect_dml.txt",
+      "sha256": "727587782bdf2560edc2fb380c5f53013282052d8ce821160e31e48fe67610b1",
+      "bytes": 803
+    },
+    {
+      "path": "raw/logneg_yolo26n-obb__obb_amdgpu.txt",
+      "sha256": "66535da05fe4b8b6a50ce1436e019f8e76e7939a4a13174413b39dcbe651bbee",
+      "bytes": 8461
+    },
+    {
+      "path": "raw/logneg_yolo26n-obb__obb_dml.txt",
+      "sha256": "680034dc589f06e9683b74867e2f1435bf15712efa3860e4a96a3fc374b7e385",
+      "bytes": 811
+    },
+    {
+      "path": "raw/logneg_yolo26n-pose__pose_amdgpu.txt",
+      "sha256": "2fe94f00e00a5905601858d2ec9a709e87efa27c8200a78f40e9a7d1b6408fda",
+      "bytes": 8465
+    },
+    {
+      "path": "raw/logneg_yolo26n-pose__pose_dml.txt",
+      "sha256": "92ec5f5a95e9dc1c10ca71492e72c798e2be9b7f78fd2826dcaef0de14c14cce",
+      "bytes": 815
+    },
+    {
+      "path": "raw/logneg_yolo26n-seg__segment_amdgpu.txt",
+      "sha256": "a81bb2cc1ed06f9eca305a89c29aebee672af2dacc07f324dc54d50ef0f852e5",
+      "bytes": 7856
+    },
+    {
+      "path": "raw/logneg_yolo26n-seg__segment_dml.txt",
+      "sha256": "5933cb64369b46647e2906adb0275cd9473065a0d62fa14a21844facab429bb5",
+      "bytes": 819
+    },
+    {
+      "path": "raw/logneg_yolo26n__detect_amdgpu.txt",
+      "sha256": "634da892ea70cec0c8cf6d55d2ea47f54b8dd37038fab0862bbf783c2a450f95",
+      "bytes": 7846
+    },
+    {
+      "path": "raw/logneg_yolo26n__detect_dml.txt",
+      "sha256": "c1aafef522c6ab480664643dce2fd430efcae8567eb2897f7f4f8dc23a3fc8bd",
+      "bytes": 809
+    },
+    {
+      "path": "raw/post_yolo11n__detect_amdgpu.json",
+      "sha256": "352e9013ccb2e83baae2efb74e33aac8852107c1580bb797eb9c5d670b9d8665",
+      "bytes": 593
+    },
+    {
+      "path": "raw/post_yolo11n__detect_amdgpu.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolo11n__detect_dml.json",
+      "sha256": "3ff4c5a5341887c9b767fb06f833be7afa7c5431e731159ef7ba653e4b4f5701",
+      "bytes": 591
+    },
+    {
+      "path": "raw/post_yolo11n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolo26n-cls__classify_amdgpu.json",
+      "sha256": "a72ac77496bb1ebb25dc23f6d3b0b1109377275b3a6cdda5c5eeba19e379952a",
+      "bytes": 216
+    },
+    {
+      "path": "raw/post_yolo26n-cls__classify_amdgpu.npz",
+      "sha256": "00905c98c0081f2b21319250821bf99104113d9908985698a34871467cd558c2",
+      "bytes": 3991
+    },
+    {
+      "path": "raw/post_yolo26n-cls__classify_dml.json",
+      "sha256": "86f5705c4e84b685d373a43ca6294142ae3da8c6fa2fd24c0d185984a29b1c25",
+      "bytes": 219
+    },
+    {
+      "path": "raw/post_yolo26n-cls__classify_dml.npz",
+      "sha256": "4ddb28beacfd5bde6d42ee95f83ef118a923795616d0ff9db6a2afcc8c7b8ab3",
+      "bytes": 3985
+    },
+    {
+      "path": "raw/post_yolo26n-depth__depth_amdgpu.json",
+      "sha256": "0559777b24535a60de8a4fd4bebc08920647f4556a0ae82a3834b6c4d4da95de",
+      "bytes": 168
+    },
+    {
+      "path": "raw/post_yolo26n-depth__depth_amdgpu.npz",
+      "sha256": "73980803ec9bc103e4f8d5cf305fbb73531b9af0bf64593ca30ef26f287dfc24",
+      "bytes": 1973159
+    },
+    {
+      "path": "raw/post_yolo26n-depth__depth_dml.json",
+      "sha256": "47f46cf01cef5f99ee77747be199e779189160dfb0d902756922bbb63b2bc8c5",
+      "bytes": 168
+    },
+    {
+      "path": "raw/post_yolo26n-depth__depth_dml.npz",
+      "sha256": "3b05983cfc34e0636426857a886e7f37c365c920960932b0ee84cdc7560821f5",
+      "bytes": 1973217
+    },
+    {
+      "path": "raw/post_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "d3e72b8d164d61adf3ba7c572a491e5b4e42f67f69d08b649f4a770fb93db5cf",
+      "bytes": 429
+    },
+    {
+      "path": "raw/post_yolo26n-obb__obb_amdgpu.npz",
+      "sha256": "20909b07f9482f7b7d7efc6556b5871bf52ae430eb140d89193d43a523549951",
+      "bytes": 527
+    },
+    {
+      "path": "raw/post_yolo26n-obb__obb_dml.json",
+      "sha256": "c0289fdaf419416b60f5bfcf4ad16127bec50b83166f284fd80269e9d16e1874",
+      "bytes": 428
+    },
+    {
+      "path": "raw/post_yolo26n-obb__obb_dml.npz",
+      "sha256": "dae8142f697627a9c95c133501b0ae8d51ad6c2d09b956de7b51bc1c24e2ccab",
+      "bytes": 527
+    },
+    {
+      "path": "raw/post_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "b28049eb21252aa6e81e2fa4d1fd96ca6a62af3191ce512ec4b7a81ef0fd1dfc",
+      "bytes": 513
+    },
+    {
+      "path": "raw/post_yolo26n-pose__pose_amdgpu.npz",
+      "sha256": "dbd02ea6dd040a9f5ed2aea78aa509cb1aaf78ab2d32152aac0e418091ee6f3f",
+      "bytes": 1025
+    },
+    {
+      "path": "raw/post_yolo26n-pose__pose_dml.json",
+      "sha256": "31cfd2394ff4ae36d30641798b4e95a8a99bb6b23513b3e08f710bf02aaba80d",
+      "bytes": 516
+    },
+    {
+      "path": "raw/post_yolo26n-pose__pose_dml.npz",
+      "sha256": "0a39614d9ec294f61a6be3477e4b09bca03cc94ef42ea0ed5b2567ee56afa68c",
+      "bytes": 1026
+    },
+    {
+      "path": "raw/post_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "89120ac5184c3ca03383e3cb5814c179c7965b7b68eb09809ad608bf596d0936",
+      "bytes": 614
+    },
+    {
+      "path": "raw/post_yolo26n-seg__segment_amdgpu.npz",
+      "sha256": "be855a44ae20059ec72975f687d3b456abcec64fd170ad21fdb93eb14677e174",
+      "bytes": 8023
+    },
+    {
+      "path": "raw/post_yolo26n-seg__segment_dml.json",
+      "sha256": "31bcb56ba632e89cc60073d7aef58748432cec2ba2073c48114014b684dce4ba",
+      "bytes": 615
+    },
+    {
+      "path": "raw/post_yolo26n-seg__segment_dml.npz",
+      "sha256": "be855a44ae20059ec72975f687d3b456abcec64fd170ad21fdb93eb14677e174",
+      "bytes": 8023
+    },
+    {
+      "path": "raw/post_yolo26n-sem__semantic_amdgpu.json",
+      "sha256": "948d7d9752576d328e3b596a0bac3fabaece2e73985ec3993020f73f0c40a0b0",
+      "bytes": 134
+    },
+    {
+      "path": "raw/post_yolo26n-sem__semantic_amdgpu.npz",
+      "sha256": "3c0c1c2435aee002f8404fdf299da284d733392797bead868bf628543c88f11e",
+      "bytes": 6957
+    },
+    {
+      "path": "raw/post_yolo26n-sem__semantic_dml.json",
+      "sha256": "948d7d9752576d328e3b596a0bac3fabaece2e73985ec3993020f73f0c40a0b0",
+      "bytes": 134
+    },
+    {
+      "path": "raw/post_yolo26n-sem__semantic_dml.npz",
+      "sha256": "3c0c1c2435aee002f8404fdf299da284d733392797bead868bf628543c88f11e",
+      "bytes": 6957
+    },
+    {
+      "path": "raw/post_yolo26n__detect_amdgpu.json",
+      "sha256": "1fb3f4bb32f4dc06e229691778ca5da0a2d0a1065bac1b074042a5792e315061",
+      "bytes": 590
+    },
+    {
+      "path": "raw/post_yolo26n__detect_amdgpu.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.json",
+      "sha256": "e26be77ef8fcba9e8fbef953048a4b328d5d98ba47fe4331f9620f8357c44712",
+      "bytes": 593
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolo26s-cls__classify_amdgpu.json",
+      "sha256": "34c350705caba5ddbb3ec35a2dde68f7c85f8f4e6229caf12e0d41d37a973052",
+      "bytes": 220
+    },
+    {
+      "path": "raw/post_yolo26s-cls__classify_amdgpu.npz",
+      "sha256": "0ef0d1578ed4b44cb79c782e111fc3de93cd383586e6605208f7603dbd1c04dd",
+      "bytes": 3976
+    },
+    {
+      "path": "raw/post_yolo26s-cls__classify_dml.json",
+      "sha256": "d423888bb445faa90076c123ffe11c4be7b82e8a07ad44de6b5a1f602920cbfc",
+      "bytes": 219
+    },
+    {
+      "path": "raw/post_yolo26s-cls__classify_dml.npz",
+      "sha256": "0cbdd508a3ea514418776433440fe64d33e7f2c42da702ebebb1c44ed1c5ce90",
+      "bytes": 3975
+    },
+    {
+      "path": "raw/post_yolo26s-depth__depth_amdgpu.json",
+      "sha256": "b4cd3fb541e43e63001c52e4fefa5eca9ee7c7a9675854a35f990cd74ed335d7",
+      "bytes": 169
+    },
+    {
+      "path": "raw/post_yolo26s-depth__depth_amdgpu.npz",
+      "sha256": "3b7e1084506d9762d5221358797ff03ebb93badd332d4ec67a7b81c22df5f2cd",
+      "bytes": 1997974
+    },
+    {
+      "path": "raw/post_yolo26s-depth__depth_dml.json",
+      "sha256": "32d8eaf6574ffb224f4e7554b31254140b284b74b416d57c364d0e6648765eb1",
+      "bytes": 169
+    },
+    {
+      "path": "raw/post_yolo26s-depth__depth_dml.npz",
+      "sha256": "f967b2820410feeefd721e2351f0fb1c1b75eb2835abc044ea292afe3ccf744b",
+      "bytes": 1998104
+    },
+    {
+      "path": "raw/post_yolo26s-obb__obb_amdgpu.json",
+      "sha256": "7db34909b964af9de7ae000e8962454481f01d061ba0b659e3af7d790f9f4593",
+      "bytes": 428
+    },
+    {
+      "path": "raw/post_yolo26s-obb__obb_amdgpu.npz",
+      "sha256": "499bee544634ac287263141ede33d37dfc1636813d17c9fb2b81a6de10885a51",
+      "bytes": 524
+    },
+    {
+      "path": "raw/post_yolo26s-obb__obb_dml.json",
+      "sha256": "1ba8434f481155898eb6e008be83ca1228a1d8b3df3762883859d62e93cea552",
+      "bytes": 428
+    },
+    {
+      "path": "raw/post_yolo26s-obb__obb_dml.npz",
+      "sha256": "72f6492ba444218b35faf45b385cbcda4110d0a5ff903f617e705049f42eb94c",
+      "bytes": 525
+    },
+    {
+      "path": "raw/post_yolo26s-pose__pose_amdgpu.json",
+      "sha256": "8db7e9a88c4a0c0a333ba5b5220a3df4b78effe47104f5506b4546d8c104de8c",
+      "bytes": 512
+    },
+    {
+      "path": "raw/post_yolo26s-pose__pose_amdgpu.npz",
+      "sha256": "15be513ff76aa0cc6290b5cd2825550478b2585f9a1c13dbc4fb67cdbd528099",
+      "bytes": 1024
+    },
+    {
+      "path": "raw/post_yolo26s-pose__pose_dml.json",
+      "sha256": "bae76cd2c875203b50fb87e070382073bb9776664c434e5bffee0519ee7f5f8a",
+      "bytes": 507
+    },
+    {
+      "path": "raw/post_yolo26s-pose__pose_dml.npz",
+      "sha256": "c1d5d58f31af87a8c103808a470c0e66b4b6689d0116ed9548ffc735c9968605",
+      "bytes": 1027
+    },
+    {
+      "path": "raw/post_yolo26s-seg__segment_amdgpu.json",
+      "sha256": "76be4c74506084ad98788bc7a3ca29cdc5358644b59c73a64dd1f33615d08c8d",
+      "bytes": 622
+    },
+    {
+      "path": "raw/post_yolo26s-seg__segment_amdgpu.npz",
+      "sha256": "8d07c43abb9060949c10edc28ea46355f077494c7c936e317db543461c8a1f37",
+      "bytes": 7981
+    },
+    {
+      "path": "raw/post_yolo26s-seg__segment_dml.json",
+      "sha256": "c5af3e807c40f1d51a1b3010167b98d05a328bc0c07a4d7ebda116201ff41635",
+      "bytes": 615
+    },
+    {
+      "path": "raw/post_yolo26s-seg__segment_dml.npz",
+      "sha256": "8d07c43abb9060949c10edc28ea46355f077494c7c936e317db543461c8a1f37",
+      "bytes": 7981
+    },
+    {
+      "path": "raw/post_yolo26s-sem__semantic_amdgpu.json",
+      "sha256": "9ab8943e634bada454cd6e332e12ac55dcec08d79adc18a336a4f31c1d13c0b1",
+      "bytes": 138
+    },
+    {
+      "path": "raw/post_yolo26s-sem__semantic_amdgpu.npz",
+      "sha256": "6d94159f0e767cb032b6d09b21462ce8c9a3944349c66cf4335e804c5b750520",
+      "bytes": 9524
+    },
+    {
+      "path": "raw/post_yolo26s-sem__semantic_dml.json",
+      "sha256": "9ab8943e634bada454cd6e332e12ac55dcec08d79adc18a336a4f31c1d13c0b1",
+      "bytes": 138
+    },
+    {
+      "path": "raw/post_yolo26s-sem__semantic_dml.npz",
+      "sha256": "6d94159f0e767cb032b6d09b21462ce8c9a3944349c66cf4335e804c5b750520",
+      "bytes": 9524
+    },
+    {
+      "path": "raw/post_yolo26s__detect_amdgpu.json",
+      "sha256": "ad7ccae98bafb196818087222eb4e6920662fbb20f7793da92c5c456ac4e372d",
+      "bytes": 582
+    },
+    {
+      "path": "raw/post_yolo26s__detect_amdgpu.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolo26s__detect_dml.json",
+      "sha256": "4311efb128ba96903914983632b2466a6fe2a9e70ade87e0d8dc7fef939e9bd9",
+      "bytes": 586
+    },
+    {
+      "path": "raw/post_yolo26s__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolov8n__detect_amdgpu.json",
+      "sha256": "1a62348eee1fef2bdafcb6f2a525cefe64a151d4b8803467f25ed3062635f026",
+      "bytes": 580
+    },
+    {
+      "path": "raw/post_yolov8n__detect_amdgpu.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/post_yolov8n__detect_dml.json",
+      "sha256": "44df402f3b7803770fe04507b9f0b6a563f2851d4e210cd5a2ce47c428ed89ae",
+      "bytes": 585
+    },
+    {
+      "path": "raw/post_yolov8n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/postneg_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "acb4c93e7afaec66ce491c0b867e275ea3a3338f7e02f33c3bfef7ab20f6dbc8",
+      "bytes": 81
+    },
+    {
+      "path": "raw/postneg_yolo26n-obb__obb_amdgpu.npz",
+      "sha256": "43ee29cb87087547b407980a26c6694ffc42e49410f4036c6b72761af5e771f0",
+      "bytes": 214
+    },
+    {
+      "path": "raw/postneg_yolo26n-obb__obb_dml.json",
+      "sha256": "acb4c93e7afaec66ce491c0b867e275ea3a3338f7e02f33c3bfef7ab20f6dbc8",
+      "bytes": 81
+    },
+    {
+      "path": "raw/postneg_yolo26n-obb__obb_dml.npz",
+      "sha256": "43ee29cb87087547b407980a26c6694ffc42e49410f4036c6b72761af5e771f0",
+      "bytes": 214
+    },
+    {
+      "path": "raw/postneg_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "7ab6d76a88808cc225f0e3fb884037c8cc0ed0d3704cfa48f39bf74ae8980fcc",
+      "bytes": 118
+    },
+    {
+      "path": "raw/postneg_yolo26n-seg__segment_amdgpu.npz",
+      "sha256": "8c2544d2125777ee86de5b3e2b9355424b95c22a10f572d461995a0506f5164b",
+      "bytes": 209
+    },
+    {
+      "path": "raw/postneg_yolo26n-seg__segment_dml.json",
+      "sha256": "7ab6d76a88808cc225f0e3fb884037c8cc0ed0d3704cfa48f39bf74ae8980fcc",
+      "bytes": 118
+    },
+    {
+      "path": "raw/postneg_yolo26n-seg__segment_dml.npz",
+      "sha256": "8c2544d2125777ee86de5b3e2b9355424b95c22a10f572d461995a0506f5164b",
+      "bytes": 209
+    },
+    {
+      "path": "raw/postneg_yolo26n__detect_amdgpu.json",
+      "sha256": "af32932f201fa129751a678048fc32d3e91899c258f8e926c78780853bbf74d8",
+      "bytes": 88
+    },
+    {
+      "path": "raw/postneg_yolo26n__detect_amdgpu.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/postneg_yolo26n__detect_dml.json",
+      "sha256": "af32932f201fa129751a678048fc32d3e91899c258f8e926c78780853bbf74d8",
+      "bytes": 88
+    },
+    {
+      "path": "raw/postneg_yolo26n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/prof_cpu_yolo11n__detect_2026-11-18_08-50-10_631.json",
+      "sha256": "2fa68824df2b39b3b49d9b1719200b8a981eae6eb6b2436b55789f9cfae8a4ef",
+      "bytes": 356179
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-cls__classify_2026-11-18_07-18-30_784.json",
+      "sha256": "ac306de3fa8e2d3e329424cc0a0799f64390c97c7732b30bf3c6c75ade463287",
+      "bytes": 162624
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-cls__classify_2026-11-18_07-45-49_623.json",
+      "sha256": "ca0502b1977dac064bf9ba034085e324b7521caf05c15a856bd73cb6e5d1cfe8",
+      "bytes": 162446
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-cls__classify_2026-11-18_07-58-32_353.json",
+      "sha256": "633ca980f5eb0f6204389b2113e69bda56dd28bf164252b0951b3387b80f7968",
+      "bytes": 163252
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-cls__classify_2026-11-18_08-10-04_140.json",
+      "sha256": "6999c6931d30a5b6897760627bde1f0853f6440f7762ae86c736f0fb8c677be6",
+      "bytes": 162784
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-depth__depth_2026-11-18_07-15-00_152.json",
+      "sha256": "e8c9257605a05248066693c62442f27a634128ed9cf41f59d3f9bce6f68be1b7",
+      "bytes": 363490
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-depth__depth_2026-11-18_07-45-41_167.json",
+      "sha256": "7f2bddf17b3595e2a31657388acc93ad174dd1dd4a70b9c4af5c4cfc66fe4d49",
+      "bytes": 363802
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-obb__obb_2026-11-18_07-29-29_297.json",
+      "sha256": "a07b619f17bda2fe769301634bd3975632c6f2d0fc76cb5f32fe0380a9d180af",
+      "bytes": 445375
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-obb__obb_2026-11-18_07-46-08_658.json",
+      "sha256": "9383394b7f00f7ade4ad8bb9e978a1efa698a17182f8b1b5bb3a4a0c7336c7ae",
+      "bytes": 447162
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-obb__obb_2026-11-18_07-46-20_664.json",
+      "sha256": "7de774041af3a27fbfbfdd4b6bf8f829c14ddc37613479b8d48f7505824e9dba",
+      "bytes": 447815
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-obb__obb_2026-11-18_07-58-32_876.json",
+      "sha256": "6a1335f14a098ef37889b00a7da97934b120fb220734cf8565912fd664dabdaf",
+      "bytes": 447276
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-obb__obb_2026-11-18_08-12-06_858.json",
+      "sha256": "147d642c6d31651fd0cf0761acc888105609c321a55c70181cb04d1de3c9e94c",
+      "bytes": 447708
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-pose__pose_2026-11-18_07-20-36_171.json",
+      "sha256": "485d3ce227533d8b2e05202eff190c749b4f101648ef42c8b562131ad85947c3",
+      "bytes": 443179
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-pose__pose_2026-11-18_07-45-57_258.json",
+      "sha256": "05206c5188a9520c7fdbf447666eae06bb02e9e5468f7b40f99513027f59a4c7",
+      "bytes": 442752
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-seg__segment_2026-11-18_07-03-47_701.json",
+      "sha256": "def86274752b7df3b0f42440f2593e824921b1828c1eea15644a3c1d0430230e",
+      "bytes": 460061
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-seg__segment_2026-11-18_07-45-21_258.json",
+      "sha256": "e617cf6e49ad8a0e7798a74d67725c8a36b296ff65ce9b3bbed6453d2e3374a5",
+      "bytes": 460761
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-seg__segment_2026-11-18_07-58-31_532.json",
+      "sha256": "9f0f9b290391c080da40dcd7f26b56ddb50187f018b6cc054cb83acb0c7f0465",
+      "bytes": 460332
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-seg__segment_2026-11-18_08-00-16_979.json",
+      "sha256": "deb24c46d740b581ad8fd6755d3b2b4cce840410f5b8bb62ab12449af7413fc0",
+      "bytes": 460489
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-sem__semantic_2026-11-18_07-12-34_410.json",
+      "sha256": "d866411832d1c8b183e6ed87767e3f4aa898ce8e47f85713e21a64b0d57b1f9e",
+      "bytes": 245922
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n-sem__semantic_2026-11-18_07-45-33_317.json",
+      "sha256": "6f305ba479fc67b32d6c7427a50689d4a7b1e6ec3695d186b5ec1796655d3379",
+      "bytes": 245424
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-18_06-51-37_037.json",
+      "sha256": "4ac42a796b6626d39dc6092b510529fc890a1d6925eb75c96effbadf52574a99",
+      "bytes": 408034
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-18_06-56-50_798.json",
+      "sha256": "146b2265042c43b820ad108a9f332dd0dcc32a006d635536ac394f35cb5bae82",
+      "bytes": 408376
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-18_07-45-09_240.json",
+      "sha256": "3b648f88d655e4feae6c58feea61807dafde52ffaa59f021b9671c2cff3e7655",
+      "bytes": 407813
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-cls__classify_2026-11-18_08-38-12_414.json",
+      "sha256": "1b4ec0da5cb97c6f8b0150eaa39165f7611386391da7b49289e2ed8aa1244c54",
+      "bytes": 161581
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-depth__depth_2026-11-18_08-33-55_486.json",
+      "sha256": "906ff477cb392921a34192fe551429953a87d41562dbf9238dcdb3a97f3345a7",
+      "bytes": 365071
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-obb__obb_2026-11-18_08-45-13_032.json",
+      "sha256": "c6cee4d0add7be50848bfb6ade8dc8dc0fb34fed3219536666cb34909c0204b1",
+      "bytes": 447582
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-pose__pose_2026-11-18_08-40-22_174.json",
+      "sha256": "42abc49a59da857484aca2a141b199a382fdec5e551a9f0d4010039d956b09ae",
+      "bytes": 444061
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-seg__segment_2026-11-18_08-25-37_210.json",
+      "sha256": "08cf291fa255b16899032ef670a924e07580f4fa1d3623e62ae87a4cd0b3de45",
+      "bytes": 459390
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-sem__semantic_2026-11-18_08-31-00_533.json",
+      "sha256": "8c1445f258141b6bb6751ec6f48d40707b487dae9b8728b079a994f86f6fb953",
+      "bytes": 245217
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s-sem__semantic_2026-11-18_08-57-01_750.json",
+      "sha256": "c2a75b2f7206caa62315f7b1a73d3268e2af9de2f6d06892939216470cf21b2e",
+      "bytes": 244585
+    },
+    {
+      "path": "raw/prof_cpu_yolo26s__detect_2026-11-18_08-21-09_960.json",
+      "sha256": "4d8c12d8ee6d4d59afddcb2ab36be0e497491dce07c24dc4844d139efd9592d6",
+      "bytes": 407884
+    },
+    {
+      "path": "raw/prof_cpu_yolov8n__detect_2026-11-18_08-53-34_580.json",
+      "sha256": "42399379de2fbda9b1d92140683bccbf86af4a5ab12c32b2e6986cb030fd0439",
+      "bytes": 268470
+    },
+    {
+      "path": "raw/prof_yolo11n__detect_amdgpu_2026-11-18_08-52-21_699.json",
+      "sha256": "93aa2108bf6f831c98385e08d5852f7de85fad3c7d37054443cd3fd0b0ecf1c3",
+      "bytes": 1729
+    },
+    {
+      "path": "raw/prof_yolo11n__detect_amdgpu_probe_c0_2026-11-18_08-50-15_635.json",
+      "sha256": "66c853930278faae567d6463938af78fc1f86da9641d018ea3fb5151ae483f27",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo11n__detect_amdgpu_probe_c1_2026-11-18_08-51-22_192.json",
+      "sha256": "ee3d61c3e80854b926faebc061f17234ab347e969959a49b7468fc8f3b8e4419",
+      "bytes": 1727
+    },
+    {
+      "path": "raw/prof_yolo11n__detect_dml_2026-11-18_08-53-27_352.json",
+      "sha256": "2ee90dcf25b9490d73471bede38c4c14173a9ea8765066b2bc9c787879a146a9",
+      "bytes": 1703
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_2026-11-18_07-19-45_957.json",
+      "sha256": "d67170719a3e14e15cd602bf11b25ebb6e7a13340eea1339777e458be04c8f84",
+      "bytes": 1724
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_2026-11-18_08-11-16_461.json",
+      "sha256": "03e68f4c3ffe44b54557d6ffcf90ecd982b05de771d3d695d8d4be8415721ab1",
+      "bytes": 1722
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_probe_c0_2026-11-18_07-18-36_235.json",
+      "sha256": "80e4024be284e92e6e9b347556b621d95d99eca33750998aadf5633bbeaba7d4",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_probe_c0_2026-11-18_08-10-05_188.json",
+      "sha256": "926a19d68b3c151957f598226f9b0b3ab509b7af8e6727b7c8f8530f17861a10",
+      "bytes": 381
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_probe_c1_2026-11-18_07-19-10_818.json",
+      "sha256": "18156ec0525bcbfb2fbc087a9b01ec8da0bca9c1a387f11b987607d678825795",
+      "bytes": 1721
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_amdgpu_probe_c1_2026-11-18_08-10-40_597.json",
+      "sha256": "a1dd056abd2e7f366d2efd5d317812be767ee0fe85a2f4291b7dc3bd18d0f9f3",
+      "bytes": 1720
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_dml_2026-11-18_07-20-28_540.json",
+      "sha256": "5ab4cc4ad687ef1fa3a5303621d045781c22062f592c2c465ae15b073ec70626",
+      "bytes": 1693
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_dml_2026-11-18_07-45-50_046.json",
+      "sha256": "895667fa737b4d329c2d9a985b570c97c7333d767107b003d262a2efd2133a8a",
+      "bytes": 1693
+    },
+    {
+      "path": "raw/prof_yolo26n-cls__classify_dml_2026-11-18_08-11-59_522.json",
+      "sha256": "91ea68950227f745f04f7a936988e19ad046e7686a048ff640eeb40109030d28",
+      "bytes": 1694
+    },
+    {
+      "path": "raw/prof_yolo26n-depth__depth_amdgpu_2026-11-18_07-17-11_620.json",
+      "sha256": "d091f39f67ff8b8d14377bc74dfca918bfb46f34b54db409c4ade8375779e97c",
+      "bytes": 1735
+    },
+    {
+      "path": "raw/prof_yolo26n-depth__depth_amdgpu_probe_c0_2026-11-18_07-15-05_499.json",
+      "sha256": "25c3c0dfac4de0ba73fd604cbb1703447ed5c09081da0b944f5343d819b5d1f4",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26n-depth__depth_amdgpu_probe_c1_2026-11-18_07-16-08_808.json",
+      "sha256": "9c065011b45317cadad3731587526fc605daddaea0871d1f52de8937d7d59983",
+      "bytes": 1737
+    },
+    {
+      "path": "raw/prof_yolo26n-depth__depth_dml_2026-11-18_07-18-23_156.json",
+      "sha256": "a7f9bac5fd6e41e07bf787a6ed92b6ff047ea1506b350fec7b9739dcae0076ef",
+      "bytes": 1710
+    },
+    {
+      "path": "raw/prof_yolo26n-depth__depth_dml_2026-11-18_07-45-41_795.json",
+      "sha256": "37e27d30f2aecc946bb461bde9eae09f7ac546605d0ea77076ad4a1883fe0640",
+      "bytes": 1709
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_2026-11-18_07-32-18_351.json",
+      "sha256": "840c4b8a3cd4e5f250decf2abd6b787ecc7b64b12dfa30760d1a23b8c708953e",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_2026-11-18_07-49-01_019.json",
+      "sha256": "d84f3fa072634c968d564dc58a8f84ff0ce357e1e6cf478880f0f6eff1941896",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_2026-11-18_08-14-52_203.json",
+      "sha256": "bfa9847bfab19e501a52b37dd30da6fdd22d1d959a692d1273ddd3eea7027c86",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_07-29-35_175.json",
+      "sha256": "a97036e9f553fbe26717bba7102a52930123c5110bbf16e918a290092ecbd45e",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_07-46-21_664.json",
+      "sha256": "a214e046aa4453863d9594ee92abd720468b9fc10f5d351820381962d81817ad",
+      "bytes": 380
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_08-12-07_895.json",
+      "sha256": "fcc3b5bd9c8486a99f0295f76af8f49fa896be0acbbb20248212ae6f1813bc47",
+      "bytes": 380
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_07-30-56_303.json",
+      "sha256": "600ea11427c0dca9bb35a7df265cbb8b3649e120fef5b75d06d93b1316d2a6dc",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_07-47-41_393.json",
+      "sha256": "78f92ff262bd269effa13f52f5e0cfbad77a32252d1094a20c6604052fe0accb",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_08-13-25_227.json",
+      "sha256": "eba7676084d2c7402ce707568e14bc44d0ac79ce7416da86506a2e42076b3600",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_dml_2026-11-18_07-38-04_181.json",
+      "sha256": "283e69e2fd08c621824a62383a74acacc34e896d7cbf4628e25d4506f43ac051",
+      "bytes": 1710
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_dml_2026-11-18_07-46-09_289.json",
+      "sha256": "8b39c46103f92a5fd1b8a132cc9dbca4c011c9dd072a01c277b6459d43709a74",
+      "bytes": 1705
+    },
+    {
+      "path": "raw/prof_yolo26n-obb__obb_dml_2026-11-18_08-20-41_314.json",
+      "sha256": "abe556c11dd8a7f8e1c4e0f8d6575f6d9fde37d393ac99b209d89c5d7fcc884b",
+      "bytes": 1698
+    },
+    {
+      "path": "raw/prof_yolo26n-pose__pose_amdgpu_2026-11-18_07-23-28_059.json",
+      "sha256": "1b4691c478c696624c9c733f349cbd65832a2163a3e7d8be4994036bfa20d5db",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/prof_yolo26n-pose__pose_amdgpu_probe_c0_2026-11-18_07-20-41_872.json",
+      "sha256": "f76a35297e6472da133f2e8afb132740707184dd4bdc5b50958cf8bb2e0d8362",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26n-pose__pose_amdgpu_probe_c1_2026-11-18_07-22-03_504.json",
+      "sha256": "c01b4ed6cc366f6807c0f70f046bc8aeadd18bdd06db97106ee47e4b89acf409",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/prof_yolo26n-pose__pose_dml_2026-11-18_07-29-18_128.json",
+      "sha256": "5ce5a9e4bc2bb77eb945574c406f4a326f4258d8bcdfa286282ac13c854e55b8",
+      "bytes": 1705
+    },
+    {
+      "path": "raw/prof_yolo26n-pose__pose_dml_2026-11-18_07-45-57_837.json",
+      "sha256": "53171143192b6bffb3cad74d9285173bf7fcab40f692a3615231c7e975c097b3",
+      "bytes": 1704
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_2026-11-18_07-06-39_097.json",
+      "sha256": "e7e4305bf75a0d42c73f7bdf0592c2fa79691d2f0836a035898fa6df54912c2a",
+      "bytes": 1757
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_2026-11-18_08-03-23_032.json",
+      "sha256": "1360e99b5b7e639ebb22edb44dfa748b158571d35a0c4f71013b5d12c5901350",
+      "bytes": 1760
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_probe_c0_2026-11-18_07-03-53_101.json",
+      "sha256": "28fd2e32f3ec5aaaf03237cb52e3ebd1c7ab3adbc921e583e2c3322be474d509",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_probe_c0_2026-11-18_08-00-18_153.json",
+      "sha256": "5b91d2a8464896dcb8472e478ed81f29f49046982848c14529cfc8119abebd34",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_probe_c1_2026-11-18_07-05-17_345.json",
+      "sha256": "79f7077ec36f62b13e05e55da324da2d1efe0cc6c21a283acc8de7a3d8827002",
+      "bytes": 1756
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_amdgpu_probe_c1_2026-11-18_08-01-51_334.json",
+      "sha256": "ac24d016024d3586e45109c84ff44b88e3f34955665585633e6d8fa383f020ec",
+      "bytes": 1757
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_dml_2026-11-18_07-12-24_020.json",
+      "sha256": "2daf5d424eb792d4ca0df853a39d2411fa421c9d5f6863d6fed4ae7a240e7ff2",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_dml_2026-11-18_07-45-22_050.json",
+      "sha256": "3d5ab2b5ee0343407a1d9881f0751e82647ec4187647aeee87102d1232e0d775",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/prof_yolo26n-seg__segment_dml_2026-11-18_08-09-52_440.json",
+      "sha256": "ed6129feeaf6c16601e7a0e013a92899b404f82c491e5d3fa0524a337f790730",
+      "bytes": 1730
+    },
+    {
+      "path": "raw/prof_yolo26n-sem__semantic_amdgpu_2026-11-18_07-14-03_270.json",
+      "sha256": "d4d77625c6c853f3bcfdfae3726c88439b525beb1fdf3f53c2103b0bf25aebc4",
+      "bytes": 1730
+    },
+    {
+      "path": "raw/prof_yolo26n-sem__semantic_amdgpu_probe_c0_2026-11-18_07-12-39_439.json",
+      "sha256": "96b4b232d257e0ada286d339666cb09fdf8ecc2640f087d2ef2a04589cff20cb",
+      "bytes": 381
+    },
+    {
+      "path": "raw/prof_yolo26n-sem__semantic_amdgpu_probe_c1_2026-11-18_07-13-21_461.json",
+      "sha256": "d95467cdcf08b9d0d3bd2a5432d39f5ec244ccffae69ffceba730e7037c41d93",
+      "bytes": 1727
+    },
+    {
+      "path": "raw/prof_yolo26n-sem__semantic_dml_2026-11-18_07-14-53_022.json",
+      "sha256": "0689e3e57c101191536473be65c050220f82b170eec656cf80d9c1b6d36f1bca",
+      "bytes": 1701
+    },
+    {
+      "path": "raw/prof_yolo26n-sem__semantic_dml_2026-11-18_07-45-33_808.json",
+      "sha256": "24791753a836fff715f1e1d9d1c695cc2b13d512f6631c9d3e6099ba21a12950",
+      "bytes": 1701
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_2026-11-18_06-53-50_686.json",
+      "sha256": "a8674a7edcb5ae675a9a8384f96f05c2b547f0b0d0fcaec8f6b377ef449b6a58",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_2026-11-18_06-59-02_349.json",
+      "sha256": "a031f758e129f4bb57f9f87c733de5412f75ca4259bf90cb4f2149e141ea3dea",
+      "bytes": 1728
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_probe_c0_2026-11-18_06-51-42_184.json",
+      "sha256": "74544a71bbd72bca8cb6c6c744f588e25cfcedd066e83b60760c82173fe89d19",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_probe_c0_2026-11-18_06-56-51_753.json",
+      "sha256": "1d07b9c114a07e751cb27d680925195a0d173acf0d56452bed5a1599ab349feb",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_probe_c1_2026-11-18_06-52-45_772.json",
+      "sha256": "64ebf4f6e43c15c7ee2982175f8548af63897b2aac55e17ee44984bc12af6d2f",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_amdgpu_probe_c1_2026-11-18_06-57-57_003.json",
+      "sha256": "8612af3a0300908e38bcda15917cc515cdece8f9586a66ba2f0d98460c47ca66",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_dml_2026-11-18_07-03-37_238.json",
+      "sha256": "813d29ae11d8bb5197b0c7e155b3f1a468411af019b0b88669c53b8b4957ab6e",
+      "bytes": 1701
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_dml_2026-11-18_07-45-09_855.json",
+      "sha256": "fe769f8b8fcfeb7e50fc9382900ecdce76549e43e092528b91d97a0dc1b2e623",
+      "bytes": 1704
+    },
+    {
+      "path": "raw/prof_yolo26s-cls__classify_amdgpu_2026-11-18_08-39-31_043.json",
+      "sha256": "be611fbfc199034b7025b70673d5f4d593fc3d4399ddd9c1ed5e0aa5da1fe9d0",
+      "bytes": 1725
+    },
+    {
+      "path": "raw/prof_yolo26s-cls__classify_amdgpu_probe_c0_2026-11-18_08-38-17_246.json",
+      "sha256": "e48915f605e00fc10dd93c59cf99e43d32cd3a2a066ed2b60e5265567e9d90db",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26s-cls__classify_amdgpu_probe_c1_2026-11-18_08-38-53_122.json",
+      "sha256": "f89cc01a65fbcdd9e6008d9fab78dc5cfac5396b4c50e9658bd04a1e0b3e82d8",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26s-cls__classify_dml_2026-11-18_08-40-15_398.json",
+      "sha256": "68a1e74617a097ee7d9a86dec4dca62f3a87b4ac4de75f0d2dece2022b580072",
+      "bytes": 1696
+    },
+    {
+      "path": "raw/prof_yolo26s-depth__depth_amdgpu_2026-11-18_08-36-36_584.json",
+      "sha256": "fc49dcb5bef08cb40cf06ff3486328f4f09049b633d09e688c2a188a8ea29a80",
+      "bytes": 1735
+    },
+    {
+      "path": "raw/prof_yolo26s-depth__depth_amdgpu_probe_c0_2026-11-18_08-34-00_879.json",
+      "sha256": "1297830144d6d2138e0b5c3002d282665047baedf6afaafb31c46b6b9864b40a",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26s-depth__depth_amdgpu_probe_c1_2026-11-18_08-35-17_966.json",
+      "sha256": "dea921e532133788dffba40b128d6df7374e73e4e0255fc222365ba5c4587d7e",
+      "bytes": 1735
+    },
+    {
+      "path": "raw/prof_yolo26s-depth__depth_dml_2026-11-18_08-38-04_905.json",
+      "sha256": "6b4feb83fe81c040b9d8ba6997bee1e898b32bfc9312992c2b6a96f9b0828cbb",
+      "bytes": 1707
+    },
+    {
+      "path": "raw/prof_yolo26s-obb__obb_amdgpu_2026-11-18_08-48-21_886.json",
+      "sha256": "dedc8a302a49fa2fbd4d7ed6fea3814499dfcca9cdc8258ea5dadcf22cd71978",
+      "bytes": 1738
+    },
+    {
+      "path": "raw/prof_yolo26s-obb__obb_amdgpu_probe_c0_2026-11-18_08-45-18_265.json",
+      "sha256": "80d92311674820399a1fad3924b134b95b4a8342bc6740a131e412dfe2a7a71c",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26s-obb__obb_amdgpu_probe_c1_2026-11-18_08-46-49_247.json",
+      "sha256": "cfc68969e6e45c9305753cbdcfd8c93eb4fa18c3167f8383297aaf1d3a64cdd0",
+      "bytes": 1736
+    },
+    {
+      "path": "raw/prof_yolo26s-obb__obb_dml_2026-11-18_08-50-02_970.json",
+      "sha256": "85904bc163f4230589408f8a6adddad64b66d44851a4ad807f80acc9c547ac21",
+      "bytes": 1711
+    },
+    {
+      "path": "raw/prof_yolo26s-pose__pose_amdgpu_2026-11-18_08-43-27_466.json",
+      "sha256": "4101b4fdfd2cd190d27d63521c4c0d3f6624f1620960a1157b78fbd3b6103976",
+      "bytes": 1735
+    },
+    {
+      "path": "raw/prof_yolo26s-pose__pose_amdgpu_probe_c0_2026-11-18_08-40-27_355.json",
+      "sha256": "de07222d764dcc5b0a5e487347b9cc0486303ce9bde01d55cdb8a2ab883ac079",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolo26s-pose__pose_amdgpu_probe_c1_2026-11-18_08-41-56_639.json",
+      "sha256": "e889bd1f4fa4055ee60150b47e24db8227eb5eb506661c777b78d6c38e40a21e",
+      "bytes": 1733
+    },
+    {
+      "path": "raw/prof_yolo26s-pose__pose_dml_2026-11-18_08-45-05_837.json",
+      "sha256": "a1316551e9123e380025f32d3f439ba9b46f12983cd4b7171dfa94e66f543612",
+      "bytes": 1705
+    },
+    {
+      "path": "raw/prof_yolo26s-seg__segment_amdgpu_2026-11-18_08-29-04_746.json",
+      "sha256": "67e70dc8ac9fba9ee00cb96b6f4f94a2c75ddaf82ad50ea3573fc2cec8710d35",
+      "bytes": 1762
+    },
+    {
+      "path": "raw/prof_yolo26s-seg__segment_amdgpu_probe_c0_2026-11-18_08-25-42_594.json",
+      "sha256": "7d7175ab76db7bf21470c4ffb40eaa7a3dd7dc4b3c4afe986e4da65090b7fb0e",
+      "bytes": 385
+    },
+    {
+      "path": "raw/prof_yolo26s-seg__segment_amdgpu_probe_c1_2026-11-18_08-27-24_111.json",
+      "sha256": "9897f85633a62f86f5e3d9810396848af736bcb9895dc09108b1252866032f58",
+      "bytes": 1766
+    },
+    {
+      "path": "raw/prof_yolo26s-seg__segment_dml_2026-11-18_08-30-52_942.json",
+      "sha256": "c77cbce0a096b50eb8ea3359ac9332d8c5943ed63a3533a146ca22a54dff8f7d",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_2026-11-18_08-32-48_754.json",
+      "sha256": "a25fa47505339184096b299c7f43bef5f467e533921fbdf3fc9614002332fa34",
+      "bytes": 1726
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_2026-11-18_08-58-30_570.json",
+      "sha256": "870ad6d548c9ac6259c6fd1e0f39ccaeab49431a170be3f5e04f20a557a469a3",
+      "bytes": 1724
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_probe_c0_2026-11-18_08-31-05_509.json",
+      "sha256": "e295f93aabd57bb11e7deee6b0eada994b0c7ca2e8ddc05c53f62b77a2b0648c",
+      "bytes": 383
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_probe_c0_2026-11-18_08-57-02_597.json",
+      "sha256": "e6ec427239a7aa048c896dad7ebd5b204422997ef1ec463ca1ff8602954d2e8c",
+      "bytes": 379
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_probe_c1_2026-11-18_08-31-56_526.json",
+      "sha256": "8e7c21e0c997bb0493bdddf430e14f92cd5bca3b242c9689b1a9617c501e5234",
+      "bytes": 1728
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_amdgpu_probe_c1_2026-11-18_08-57-46_759.json",
+      "sha256": "4a94c614bd8658c2fe4f7d6112cab2e0486e13719ef31cb104320e369c48a750",
+      "bytes": 1724
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_dml_2026-11-18_08-33-48_430.json",
+      "sha256": "5c9bb5ce3f1c13894f9683311fb3f7aac6a1bcc2c4cd113aa4388bbe7f90b5ee",
+      "bytes": 1702
+    },
+    {
+      "path": "raw/prof_yolo26s-sem__semantic_dml_2026-11-18_08-59-23_216.json",
+      "sha256": "97a4ea64e54d400fa453f0a273550842fb02592bcee106551e53980d35dec2f3",
+      "bytes": 1705
+    },
+    {
+      "path": "raw/prof_yolo26s__detect_amdgpu_2026-11-18_08-23-57_880.json",
+      "sha256": "025d3419a63514538fd1c666a2e294b15692bb0d2dd0ac73feefe5389f5a2a4e",
+      "bytes": 1728
+    },
+    {
+      "path": "raw/prof_yolo26s__detect_amdgpu_probe_c0_2026-11-18_08-21-15_225.json",
+      "sha256": "9e785f327006e3f7bec136ee92e959a98cce460f9eb6c4d95b78dd3b5a476e78",
+      "bytes": 380
+    },
+    {
+      "path": "raw/prof_yolo26s__detect_amdgpu_probe_c1_2026-11-18_08-22-35_741.json",
+      "sha256": "1874cd8dd603539d22448615225944de6584afb31eca66b197719f7b63b154c8",
+      "bytes": 1727
+    },
+    {
+      "path": "raw/prof_yolo26s__detect_dml_2026-11-18_08-25-29_979.json",
+      "sha256": "95f750c353eedeea3c8eb4d3d307717486de241612ac8d8edb6595d9d618d982",
+      "bytes": 1705
+    },
+    {
+      "path": "raw/prof_yolov8n__detect_amdgpu_2026-11-18_08-55-17_035.json",
+      "sha256": "e813b38eeaa2c29dbed24b3c460ca48fd12813c936ca27cf5a5ea236d4ec63dc",
+      "bytes": 1728
+    },
+    {
+      "path": "raw/prof_yolov8n__detect_amdgpu_probe_c0_2026-11-18_08-53-39_763.json",
+      "sha256": "22dfa7989f0848fd55135e05c37f85be971e8637fa4dd54d57cd8ed9b45aafe2",
+      "bytes": 382
+    },
+    {
+      "path": "raw/prof_yolov8n__detect_amdgpu_probe_c1_2026-11-18_08-54-28_295.json",
+      "sha256": "3284bf5b2252c20046f018f7776ab78049b8c94ad8aacb5f53ea5bcd359f1a6a",
+      "bytes": 1730
+    },
+    {
+      "path": "raw/prof_yolov8n__detect_dml_2026-11-18_08-56-12_594.json",
+      "sha256": "bce1d4efbbbfcce51d73c67f8a8ef865fa08519f75bcca09b5b59059dc9d362d",
+      "bytes": 1702
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_2026-11-18_07-36-28_465.json",
+      "sha256": "63c59c19db8db36caf3b8295190ea7691e0e26bca87a6d7e4f0845f5efe1ae96",
+      "bytes": 1733
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_2026-11-18_07-53-05_750.json",
+      "sha256": "35c692a858e229908516fa9ca056f1c1ce24e14df7535eb0874bccd36b18af25",
+      "bytes": 1734
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_2026-11-18_08-19-08_221.json",
+      "sha256": "701ffc3173b5f7a38f73f65b3d09d4032767860913e53e19a870f523aaca11a0",
+      "bytes": 1733
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_07-33-47_002.json",
+      "sha256": "f20037e90742e0bac7572139f526c797e45262929fbdc9dfb184d1ffa2430847",
+      "bytes": 382
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_07-50-27_220.json",
+      "sha256": "0718a37ccecb1c846f8fd031e154ac262eadde4fb758b12814bbafe8d9c1abc6",
+      "bytes": 383
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c0_2026-11-18_08-16-20_185.json",
+      "sha256": "289c2f1fff578bdaab91e716dbe01c29cdbdda7aacbaa7e3f595f2f0516ae761",
+      "bytes": 382
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_07-35-07_343.json",
+      "sha256": "b60ba3977dcadfb1839ae62c5c41720456a76313a4be43c2d022909a2bdd14d5",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_07-51-45_056.json",
+      "sha256": "4889f80bafeb4aa7de2a4b1dcbac131ef6b9070d898c639604d6d3d4e7e0b824",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_amdgpu_probe_c1_2026-11-18_08-17-43_440.json",
+      "sha256": "f814bfbfa3ccc4e2c20983edf6dfaaa135cca7b23a819bf9e2e03a7455780e5e",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_dml_2026-11-18_07-38-07_953.json",
+      "sha256": "76b0c4e644ee60d5b1f9307c458ee5266367eeb8154fe649ff76060ac623b523",
+      "bytes": 1711
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_dml_2026-11-18_07-46-13_071.json",
+      "sha256": "42ed57cf39ac7e3b6f44c60de71223ac577b9a5bca9d8c106750fa1e1e26ccb8",
+      "bytes": 1711
+    },
+    {
+      "path": "raw/profneg_yolo26n-obb__obb_dml_2026-11-18_08-20-44_634.json",
+      "sha256": "64858d2ea78a39f71368ce02b98ca66ce882a7b35531958ef56c8a7edb14b070",
+      "bytes": 1710
+    },
+    {
+      "path": "raw/profneg_yolo26n-pose__pose_amdgpu_2026-11-18_07-27-41_082.json",
+      "sha256": "a3d692cdd93e08b2b9d42f671e3cf5e2a6dc936c724f42c78539fa9bd447905c",
+      "bytes": 1730
+    },
+    {
+      "path": "raw/profneg_yolo26n-pose__pose_amdgpu_probe_c0_2026-11-18_07-24-56_786.json",
+      "sha256": "b654f805c824368af65e4c01905ee2e69dcf0877e6911d3af368b57c5a95718e",
+      "bytes": 383
+    },
+    {
+      "path": "raw/profneg_yolo26n-pose__pose_amdgpu_probe_c1_2026-11-18_07-26-18_286.json",
+      "sha256": "28049bc5e862b5e48c4052234c13cf14a2516f2edaaf88c82814665d3393383e",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/profneg_yolo26n-pose__pose_dml_2026-11-18_07-29-21_872.json",
+      "sha256": "bd7467991b85ff13f1ce79f12678f53d6e163a189a3979c26fbcd4aec023153a",
+      "bytes": 1704
+    },
+    {
+      "path": "raw/profneg_yolo26n-pose__pose_dml_2026-11-18_07-46-01_493.json",
+      "sha256": "80a5252bc56ddedc72d6786ce77bc44fa79564271194a1a32b6824884aeeb3fa",
+      "bytes": 1704
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_2026-11-18_07-10-49_882.json",
+      "sha256": "0717c157e607ab9665ea59c2dc1261e82edd8c176637d2a79298710c0ae2a3cc",
+      "bytes": 1757
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_2026-11-18_08-08-07_144.json",
+      "sha256": "c5249ca58f937dd1f3b06b7733447a58406fdc260bc4ceae0258d92618449aba",
+      "bytes": 1759
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_probe_c0_2026-11-18_07-08-05_870.json",
+      "sha256": "b7ba3ac38465d454a3538be9cad0a392c3ef0f22e683d8c3f9d5d4eab7fa3222",
+      "bytes": 383
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_probe_c0_2026-11-18_08-05-01_954.json",
+      "sha256": "a7045b64973a7db9740097b22a28a082a81a3467057a7f6d5e3e244ae343ccdb",
+      "bytes": 383
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_probe_c1_2026-11-18_07-09-27_277.json",
+      "sha256": "4d5ec433976909476158a4d35e6d6326db0b420e313ba7d56bd35ae5b0610103",
+      "bytes": 1757
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_amdgpu_probe_c1_2026-11-18_08-06-33_582.json",
+      "sha256": "635709f35076f11df966711cfbb467c6e859358b6a8c2e2ddaae1f99c02175db",
+      "bytes": 1756
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_dml_2026-11-18_07-12-27_234.json",
+      "sha256": "b27d0427a87242aca19c69653c033f71114e7c97161607b07201b20f900b45ff",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_dml_2026-11-18_07-45-25_738.json",
+      "sha256": "2f24aa783f4e8b0504e7955eb9d34d2d4daf9bcb4dadb26d40ff36490e536424",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/profneg_yolo26n-seg__segment_dml_2026-11-18_08-09-56_343.json",
+      "sha256": "cdecc5e5adb82085df150c32009a908d69ab4a72d651ef7c3eba96bf069a4c06",
+      "bytes": 1732
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_amdgpu_2026-11-18_07-02-20_762.json",
+      "sha256": "9a0fbc296c9ffc9ab2a4631f2aa34280eaec67ca811df55c96506c95669b77ff",
+      "bytes": 1730
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_amdgpu_probe_c0_2026-11-18_07-00-11_506.json",
+      "sha256": "44091cdfd3f533f32f6966727435be6ed61ef489ea689d1b28fe235fed564535",
+      "bytes": 383
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_amdgpu_probe_c1_2026-11-18_07-01-16_436.json",
+      "sha256": "c5de918089bb26686206c015c6613095304234995fcae62da12cc96623d1111e",
+      "bytes": 1731
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_dml_2026-11-18_07-03-40_461.json",
+      "sha256": "efc9c78e5d4052e326d9fc0f8ff1c4aaba08d4e21c850a8503def1a3512c09f5",
+      "bytes": 1704
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_dml_2026-11-18_07-45-13_446.json",
+      "sha256": "4ffacdd0c97acfbee6cde6216a32f32ef8d5a8c32d956f05666f3e5b49b47599",
+      "bytes": 1703
+    },
+    {
+      "path": "raw/pt_yolo11n__detect.json",
+      "sha256": "fa3985b0b72d0f03d66156f9ffd8a85baaaac417c4cc941313a4bed494364b57",
+      "bytes": 610
+    },
+    {
+      "path": "raw/pt_yolo11n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/pt_yolo26n-cls__classify.json",
+      "sha256": "f9d55b62f91b1df4f2453f3b969a17b4c1a1201fc440954c7d4dad93e7ea1ed4",
+      "bytes": 238
+    },
+    {
+      "path": "raw/pt_yolo26n-cls__classify.npz",
+      "sha256": "ddbf261cc3202469c54e6be3bc7c3dd7a0b249dc86bd46389d04c561131af068",
+      "bytes": 3999
+    },
+    {
+      "path": "raw/pt_yolo26n-depth__depth.json",
+      "sha256": "5b8023be7f0298b020e3f0dccabe618aefa1847a8752565214a155bcf1b2f32c",
+      "bytes": 187
+    },
+    {
+      "path": "raw/pt_yolo26n-depth__depth.npz",
+      "sha256": "e45ae7f0bdf4a447149d774a0a03f26e597ca45900fd11072967825c46de1752",
+      "bytes": 1972016
+    },
+    {
+      "path": "raw/pt_yolo26n-obb__obb.json",
+      "sha256": "49c119ae6d8c6ceb695e35f6dfdd6070affd6dd86d9201256cabc6ed953ace3f",
+      "bytes": 446
+    },
+    {
+      "path": "raw/pt_yolo26n-obb__obb.npz",
+      "sha256": "6ed5cb15737d9d426033410a2feaf58af34662d03035bf3ee08e104ab6a8f714",
+      "bytes": 528
+    },
+    {
+      "path": "raw/pt_yolo26n-pose__pose.json",
+      "sha256": "81121ee1156c172e2aea18cc09e3307ddace251dcf1581e19b9a412077ac2693",
+      "bytes": 538
+    },
+    {
+      "path": "raw/pt_yolo26n-pose__pose.npz",
+      "sha256": "a89f0572511ec94bb4900409de305987b33bad9764f62a301f91a25a10723aff",
+      "bytes": 1025
+    },
+    {
+      "path": "raw/pt_yolo26n-seg__segment.json",
+      "sha256": "5e86875c716cdf5c8e950ed538d311d0994c02e9676fa689b393823e09aa9661",
+      "bytes": 635
+    },
+    {
+      "path": "raw/pt_yolo26n-seg__segment.npz",
+      "sha256": "be855a44ae20059ec72975f687d3b456abcec64fd170ad21fdb93eb14677e174",
+      "bytes": 8023
+    },
+    {
+      "path": "raw/pt_yolo26n-sem__semantic.json",
+      "sha256": "14a6fa73ecb69a416e4776e257a28425a460579b122bd968718fa1e8504bab09",
+      "bytes": 153
+    },
+    {
+      "path": "raw/pt_yolo26n-sem__semantic.npz",
+      "sha256": "3c0c1c2435aee002f8404fdf299da284d733392797bead868bf628543c88f11e",
+      "bytes": 6957
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.json",
+      "sha256": "d45a771fc020d8af34d03213b92f8bc0f91a00faad567df7c55f560e090ebecf",
+      "bytes": 609
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/pt_yolo26s-cls__classify.json",
+      "sha256": "b12c7a8f03f001795b7030e1348c995f1e01dbd8368e2b4017d7aa2968ba7e7b",
+      "bytes": 239
+    },
+    {
+      "path": "raw/pt_yolo26s-cls__classify.npz",
+      "sha256": "1027c95bb389ea03578d81d93a4c1d65984cc2307e4c84aaff494f1a711818e3",
+      "bytes": 3970
+    },
+    {
+      "path": "raw/pt_yolo26s-depth__depth.json",
+      "sha256": "0b9954cf805bb766c775af19d8d030701e918dc732d354433fb2d7aee878a574",
+      "bytes": 188
+    },
+    {
+      "path": "raw/pt_yolo26s-depth__depth.npz",
+      "sha256": "c3cca37070ea02734a622b07bd67584ff135c1cbb1af6829db963ff16257be24",
+      "bytes": 1996829
+    },
+    {
+      "path": "raw/pt_yolo26s-obb__obb.json",
+      "sha256": "d85c6fd4c3fbf4fbb2a0b9cc76ecb3f0840d94a87a74d2185e50cc50d5278187",
+      "bytes": 447
+    },
+    {
+      "path": "raw/pt_yolo26s-obb__obb.npz",
+      "sha256": "e7a05a4302a7fbb1a5efa843c5eb4d9ca348d7aeb5de58b9c6046bd64714eacf",
+      "bytes": 526
+    },
+    {
+      "path": "raw/pt_yolo26s-pose__pose.json",
+      "sha256": "654f5d73f7bf6d1fa3d39b47ceb58e3b9559b11713ed9ec6cf2a3f272cde6f04",
+      "bytes": 532
+    },
+    {
+      "path": "raw/pt_yolo26s-pose__pose.npz",
+      "sha256": "d6b9164d60983535dc6fcfa29c5bc59e873f7889213351fe9e79a92078256cc7",
+      "bytes": 1025
+    },
+    {
+      "path": "raw/pt_yolo26s-seg__segment.json",
+      "sha256": "f575034efb40699c368749e6ff916ba5cb6e56c1e3d6ec9d9269a2b677be154d",
+      "bytes": 638
+    },
+    {
+      "path": "raw/pt_yolo26s-seg__segment.npz",
+      "sha256": "8d07c43abb9060949c10edc28ea46355f077494c7c936e317db543461c8a1f37",
+      "bytes": 7981
+    },
+    {
+      "path": "raw/pt_yolo26s-sem__semantic.json",
+      "sha256": "c7036b11d8514eb85f6982c5408a79b0472e0604372bbcd71bd0785471e41697",
+      "bytes": 157
+    },
+    {
+      "path": "raw/pt_yolo26s-sem__semantic.npz",
+      "sha256": "6d94159f0e767cb032b6d09b21462ce8c9a3944349c66cf4335e804c5b750520",
+      "bytes": 9524
+    },
+    {
+      "path": "raw/pt_yolo26s__detect.json",
+      "sha256": "9fa6623c5188073588de5b7f89d8fe103894b6e354b82900668e0fcc057b0617",
+      "bytes": 606
+    },
+    {
+      "path": "raw/pt_yolo26s__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/pt_yolov8n__detect.json",
+      "sha256": "776c7b499604d8fdcb0b3db3f5443b937cd3c6df02c501e00e8703c2f8bdb98b",
+      "bytes": 600
+    },
+    {
+      "path": "raw/pt_yolov8n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/ptneg_yolo26n-obb__obb.json",
+      "sha256": "64d9dee75645f13b6b4a6c57de26281de8db6dd98901a4a366e296b203bf8a1f",
+      "bytes": 101
+    },
+    {
+      "path": "raw/ptneg_yolo26n-obb__obb.npz",
+      "sha256": "43ee29cb87087547b407980a26c6694ffc42e49410f4036c6b72761af5e771f0",
+      "bytes": 214
+    },
+    {
+      "path": "raw/ptneg_yolo26n-pose__pose.json",
+      "sha256": "d4b33290430398c89239210cb821e3885e568aa4222e9cfe7d776ffa3a583233",
+      "bytes": 130
+    },
+    {
+      "path": "raw/ptneg_yolo26n-pose__pose.npz",
+      "sha256": "9608de47c00fd8cf38a863aa7d6dea7b185a92274ace6692bc89948797abf499",
+      "bytes": 218
+    },
+    {
+      "path": "raw/ptneg_yolo26n-seg__segment.json",
+      "sha256": "790c67273f9415bcb4f2998a6c197ec94e48d73d6eb26e4a32ede5f0be1ad987",
+      "bytes": 137
+    },
+    {
+      "path": "raw/ptneg_yolo26n-seg__segment.npz",
+      "sha256": "8c2544d2125777ee86de5b3e2b9355424b95c22a10f572d461995a0506f5164b",
+      "bytes": 209
+    },
+    {
+      "path": "raw/ptneg_yolo26n__detect.json",
+      "sha256": "dd939fee914b06e3ba553791372d1af07c8565bbf6785a715bf7e01965628697",
+      "bytes": 107
+    },
+    {
+      "path": "raw/ptneg_yolo26n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/ref_yolo11n__detect.npz",
+      "sha256": "a8e7ca93ee1b0281652a4fef8bc4b7959a1d9c644c97dc0f7079af059de3cc5d",
+      "bytes": 800480
+    },
+    {
+      "path": "raw/ref_yolo26n-cls__classify.npz",
+      "sha256": "8898acfc521db3d4c478b8d2807b77ac08461b4d41133b13e7b199f4c2febc59",
+      "bytes": 4001
+    },
+    {
+      "path": "raw/ref_yolo26n-depth__depth.npz",
+      "sha256": "c7ea794aed329441a7eb469a5393a5a631003463e4062c7510d9d009a6f755d7",
+      "bytes": 1972615
+    },
+    {
+      "path": "raw/ref_yolo26n-obb__obb.npz",
+      "sha256": "5cecc1394e5503d95bb18f9b0e7132350bcb3fe9495743c87e18d73e0ff7fc96",
+      "bytes": 545649
+    },
+    {
+      "path": "raw/ref_yolo26n-pose__pose.npz",
+      "sha256": "5753355c2a4d887f62eaf6dcab70eb8118c046f54b4a23252ec255e03635eda2",
+      "bytes": 1677619
+    },
+    {
+      "path": "raw/ref_yolo26n-seg__segment.npz",
+      "sha256": "b3692cc4c64309c8140f5f19b8cd224161f7ef9b4c592cdcfffd8934713a8cf0",
+      "bytes": 4544000
+    },
+    {
+      "path": "raw/ref_yolo26n-sem__semantic.npz",
+      "sha256": "f0028a7cf1f60f5b936107b05be5a24d7f899d296ae9d5644644138eb13fb001",
+      "bytes": 6956
+    },
+    {
+      "path": "raw/ref_yolo26n__detect.npz",
+      "sha256": "09f1e064de6692e7254c1662b6b6d2046516c68004b6da3cb1bc37966d08fc1d",
+      "bytes": 612126
+    },
+    {
+      "path": "raw/ref_yolo26s-cls__classify.npz",
+      "sha256": "d770ada148da7339e192377726e0f0111fc3ff14752e043d52c46d23f6458f59",
+      "bytes": 3973
+    },
+    {
+      "path": "raw/ref_yolo26s-depth__depth.npz",
+      "sha256": "d3f7aea80e06e88f4cd70559ca29508d44f6f2e289840184d68c0cd40689967d",
+      "bytes": 1997495
+    },
+    {
+      "path": "raw/ref_yolo26s-obb__obb.npz",
+      "sha256": "4f6fb940c92b9b3b8eb17dd6dcb48f9d7a3e38870233ac29ede63bb695510469",
+      "bytes": 471895
+    },
+    {
+      "path": "raw/ref_yolo26s-pose__pose.npz",
+      "sha256": "fa975e77df6699e66728ea460b397fcc5165f0f02d54d35c644f02a87585ce88",
+      "bytes": 1658096
+    },
+    {
+      "path": "raw/ref_yolo26s-seg__segment.npz",
+      "sha256": "a0933a15117c5b941ab1ce2fd8cd0d6a0f2f8da00e182a5f0a4c2cfb5d1e436b",
+      "bytes": 4488100
+    },
+    {
+      "path": "raw/ref_yolo26s-sem__semantic.npz",
+      "sha256": "6361dd0003465eec1bd9a0cde8e9cdebf053850590bd99a24762d476c345382c",
+      "bytes": 9523
+    },
+    {
+      "path": "raw/ref_yolo26s__detect.npz",
+      "sha256": "e6faf919078c5e0282ea990344f49bbf34dbe03d972edee1fccaaeb22f39e5c7",
+      "bytes": 436004
+    },
+    {
+      "path": "raw/ref_yolov8n__detect.npz",
+      "sha256": "0d1ef178473e6561638784bf8799385b073df240dfdd9c03dbff3e11d5cfc5c8",
+      "bytes": 809143
+    },
+    {
+      "path": "raw/tp_yolo11n__detect_amdgpu.json",
+      "sha256": "13b3c8c1f3719d99d381f4c47a28f714dbffc820df209cadde4093f129a746bd",
+      "bytes": 726
+    },
+    {
+      "path": "raw/tp_yolo11n__detect_dml.json",
+      "sha256": "543b83bfea6a74d8469d21673168a7aa14ceb9bc9d6acc5b223c940c3048d73d",
+      "bytes": 723
+    },
+    {
+      "path": "raw/tp_yolo26n-cls__classify_amdgpu.json",
+      "sha256": "2929aafff732b21ee00488606dadca9ab7211439c83496d6aba79198cd1120fb",
+      "bytes": 720
+    },
+    {
+      "path": "raw/tp_yolo26n-cls__classify_dml.json",
+      "sha256": "b5fa4f1cac8d13bcca19d92436045d3abb6d44d9146a0095bc766613759ec564",
+      "bytes": 716
+    },
+    {
+      "path": "raw/tp_yolo26n-depth__depth_amdgpu.json",
+      "sha256": "04edd6a0a4f15c3d7ffac5d94b138cbdec8d3e973adb5beb734535c9e4d2644a",
+      "bytes": 728
+    },
+    {
+      "path": "raw/tp_yolo26n-depth__depth_dml.json",
+      "sha256": "4b63ee43a10613aa5ee7e24fc3a7fcba0939536f93fc5c882a99589b6d8c0cde",
+      "bytes": 728
+    },
+    {
+      "path": "raw/tp_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "ad7ee9f72c3d82c9a7615a7cb483e621b63cd9c4ed829260876e4611b500293a",
+      "bytes": 728
+    },
+    {
+      "path": "raw/tp_yolo26n-obb__obb_dml.json",
+      "sha256": "91c4d30f30c775a6546a32087fe68d24aa5bb7dad439f06d67a382765e2143ba",
+      "bytes": 727
+    },
+    {
+      "path": "raw/tp_yolo26n-pose__pose_amdgpu.json",
+      "sha256": "606fce85bdb766b9fdd665f30f9a529ac7828f2e2e659fe7fec5e9e1683e4f63",
+      "bytes": 695
+    },
+    {
+      "path": "raw/tp_yolo26n-pose__pose_dml.json",
+      "sha256": "ef623ef99b9deb0f1afe85b7d365c64d51d4ce2eaddf3ef69165e11a94440d40",
+      "bytes": 692
+    },
+    {
+      "path": "raw/tp_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "117b5356e8d3985eed27cb91c3c12f9a806647d3d849487c8e159c9175759925",
+      "bytes": 693
+    },
+    {
+      "path": "raw/tp_yolo26n-seg__segment_dml.json",
+      "sha256": "61a826ec981096e6c48a890ad5d8b27239640d1ad81814d8727010386e1aa3ef",
+      "bytes": 689
+    },
+    {
+      "path": "raw/tp_yolo26n-sem__semantic_amdgpu.json",
+      "sha256": "42cc9f9a9cfa2b0d5dec000b34b3a6b3a3bd80011b550b549cc1c56f78a785f3",
+      "bytes": 691
+    },
+    {
+      "path": "raw/tp_yolo26n-sem__semantic_dml.json",
+      "sha256": "5eebb2016872d5a6ffc9831a9619b8944c273dac9469ae47838130df656bc2f6",
+      "bytes": 688
+    },
+    {
+      "path": "raw/tp_yolo26n__detect_amdgpu.json",
+      "sha256": "f969f4d97eb78b8ababbe6d7bf1f3756982c197441edd1983776322269fa9329",
+      "bytes": 725
+    },
+    {
+      "path": "raw/tp_yolo26n__detect_dml.json",
+      "sha256": "39c11cddd9fab630eabce2fae4aeeabeb31063ca5ea22385158c6d8570eba663",
+      "bytes": 723
+    },
+    {
+      "path": "raw/tp_yolo26s-cls__classify_amdgpu.json",
+      "sha256": "9e5f23b4c374bf99ec18dae057c2632c7264587ce2cd6115a9990a567c0d80fd",
+      "bytes": 720
+    },
+    {
+      "path": "raw/tp_yolo26s-cls__classify_dml.json",
+      "sha256": "bb6b28d7546b660be3dd35186ea0865a33199d013ef44921566c283c0a9639b1",
+      "bytes": 715
+    },
+    {
+      "path": "raw/tp_yolo26s-depth__depth_amdgpu.json",
+      "sha256": "de0775b9f226abec542fbf0be67b7a92c53fc1a0f9209ccaa3e031edd5346a5a",
+      "bytes": 732
+    },
+    {
+      "path": "raw/tp_yolo26s-depth__depth_dml.json",
+      "sha256": "f001fb7f16bf0893e06c16011acae8904f4c97b112d53abbc1e2f1c32cb89507",
+      "bytes": 729
+    },
+    {
+      "path": "raw/tp_yolo26s-obb__obb_amdgpu.json",
+      "sha256": "b08fa8705155fe6cae8232d388fd82215241e153b8bf7099fbdf9cd7a9b5351c",
+      "bytes": 728
+    },
+    {
+      "path": "raw/tp_yolo26s-obb__obb_dml.json",
+      "sha256": "fa138121ae126db9cbb624cca843bd6b602ad0c022bc3f0647b14ada239c1609",
+      "bytes": 726
+    },
+    {
+      "path": "raw/tp_yolo26s-pose__pose_amdgpu.json",
+      "sha256": "476982de0f1c17fedfbcf8be9187eb4b48cfd81a18789a77e9cbdfc1c7e7d3d7",
+      "bytes": 695
+    },
+    {
+      "path": "raw/tp_yolo26s-pose__pose_dml.json",
+      "sha256": "f4423118f66e5321bb4d5fd5227f13f42a234bed4103713e939bafdd3ab84e63",
+      "bytes": 692
+    },
+    {
+      "path": "raw/tp_yolo26s-seg__segment_amdgpu.json",
+      "sha256": "7025986e82da4da2a8feb01c8b9211ab6977445e3e33f0920710c3cdfddd0338",
+      "bytes": 693
+    },
+    {
+      "path": "raw/tp_yolo26s-seg__segment_dml.json",
+      "sha256": "45b5cb2ffa2a7faa7a9a00815c35ce487f36c8fc2b096713d67e6feb690c92e9",
+      "bytes": 690
+    },
+    {
+      "path": "raw/tp_yolo26s-sem__semantic_amdgpu.json",
+      "sha256": "7fd01c609d6b2bd7c663042e6557b1ec49f477bea7e41027478b41a9a3e204cc",
+      "bytes": 695
+    },
+    {
+      "path": "raw/tp_yolo26s-sem__semantic_dml.json",
+      "sha256": "72c38171aacf4cbd0878fc90eb53624facf530b7f8bfd801afedcaa6f04d4c1d",
+      "bytes": 692
+    },
+    {
+      "path": "raw/tp_yolo26s__detect_amdgpu.json",
+      "sha256": "ce60c895bf03bcf1685b00750165ecb4c8c04a4ab00ebdfccc251168e07c6afc",
+      "bytes": 726
+    },
+    {
+      "path": "raw/tp_yolo26s__detect_dml.json",
+      "sha256": "722686a6eb2c21d1a5be42a1b64922d1f1a34b0bb287b6f193608427e6ba1065",
+      "bytes": 723
+    },
+    {
+      "path": "raw/tp_yolov8n__detect_amdgpu.json",
+      "sha256": "3d5ae2d633405fde86bffb0aa5bedca36d8126cdf61c154600d42653b09622fc",
+      "bytes": 726
+    },
+    {
+      "path": "raw/tp_yolov8n__detect_dml.json",
+      "sha256": "2b9e1e924f6ded0ab434d87e14b3d2ea1838b24211207b740206bf1ece412699",
+      "bytes": 723
+    },
+    {
+      "path": "raw/tpneg_yolo26n-obb__obb_amdgpu.json",
+      "sha256": "62023df380e3721d2cccf13283e1066b329e1ae7cd0d00d6950dff06565d9b65",
+      "bytes": 760
+    },
+    {
+      "path": "raw/tpneg_yolo26n-obb__obb_dml.json",
+      "sha256": "9b163a6c0ecd6d94bc86bdb377edc842056c3c39aec09fcf021d1b8262d3093d",
+      "bytes": 757
+    },
+    {
+      "path": "raw/tpneg_yolo26n-seg__segment_amdgpu.json",
+      "sha256": "61012c8d56db28229c30f55395318456cc8941d8eee2cda9625e9dc8b68b1e08",
+      "bytes": 844
+    },
+    {
+      "path": "raw/tpneg_yolo26n-seg__segment_dml.json",
+      "sha256": "07c7f528aaeae34cdecf4bc2bb9e9af672e6d2de1e5e757e27b4e9fc3e076d08",
+      "bytes": 841
+    },
+    {
+      "path": "raw/tpneg_yolo26n__detect_amdgpu.json",
+      "sha256": "2c04417f0bb79f34a69ce9123f4f81213ac8693da27c3b988c7cd15bdb5ce082",
+      "bytes": 898
+    },
+    {
+      "path": "raw/tpneg_yolo26n__detect_dml.json",
+      "sha256": "d71daeccc787e9a44cfd1eb3d6846f6c68e51222b83a21dfc422f3707002ee99",
+      "bytes": 896
+    },
+    {
+      "path": "rca/AMDGPU-RCA-001.md",
+      "sha256": "7fe8e140fe6e1072cd32757690a67b90370dddab42f7687b4734853f8f0a8911",
+      "bytes": 1457
+    },
+    {
+      "path": "rca/AMDGPU-RCA-002.md",
+      "sha256": "ca73d40a494b24e2de1a7ed326168c869ae38a96d4051dbae08d5151225d8a8b",
+      "bytes": 1931
+    },
+    {
+      "path": "rca/AMDGPU-RCA-003.md",
+      "sha256": "2e56d8732acc0fba6e388dcaddbf869a1e01db3661e2138d122065725c6248dc",
+      "bytes": 2024
+    },
+    {
+      "path": "rca/AMDGPU-RCA-004.md",
+      "sha256": "6ad2c9f29467b8539b81124c721f1a21495af7e52ddf5b08dbab92f4c9b185e3",
+      "bytes": 2162
+    },
+    {
+      "path": "rca/AMDGPU-RCA-005.md",
+      "sha256": "430d0835a2f643361c2d6a259d30be5d630affb457e58235b979dbde4e56b110",
+      "bytes": 1718
+    },
+    {
+      "path": "rca/AMDGPU-RCA-006.md",
+      "sha256": "2824f13955dbcb6a97b6ccf58e39f277e93ea61432493583cb488915449afa15",
+      "bytes": 2072
+    },
+    {
+      "path": "rca/AMDGPU_ISSUES.jsonl",
+      "sha256": "6055ceca9829b1972038cfdf6bb6619b6841e1972f18e09d2d6d93bf4b5584d4",
+      "bytes": 35548
+    },
+    {
+      "path": "rca/AMDGPU_RCA_REGISTER.md",
+      "sha256": "9398c32ac1898cbce46f19afe917a03be3394e648e1cd045883fb3f6520027a3",
+      "bytes": 1761
+    },
+    {
+      "path": "receipts/receipt_yolo11n__detect__amdgpu.json",
+      "sha256": "584a1f000dcaec7f1e6f36171a4f60b581872b3959b6db6014d241cd5a1ddefb",
+      "bytes": 9843
+    },
+    {
+      "path": "receipts/receipt_yolo11n__detect__dml.json",
+      "sha256": "cfddd347e924538cb8afa0e3f2ae7de0a12f449c9b6c162f073d2baca0f369ca",
+      "bytes": 8098
+    },
+    {
+      "path": "receipts/receipt_yolo26n-cls__classify__amdgpu.json",
+      "sha256": "de487c4a4766d24767db800281f49030defbafe5fedfea9ac021ab8f651d68a8",
+      "bytes": 9746
+    },
+    {
+      "path": "receipts/receipt_yolo26n-cls__classify__dml.json",
+      "sha256": "ac706ce152e183c8cdaf8c1b2f253e44b7e56e68e76cebf3a2334e418fd623c1",
+      "bytes": 8011
+    },
+    {
+      "path": "receipts/receipt_yolo26n-depth__depth__amdgpu.json",
+      "sha256": "300c96bafe0a2f4ea796dd67e41bc35ca6b7a4734ae4528e936083456956300a",
+      "bytes": 10016
+    },
+    {
+      "path": "receipts/receipt_yolo26n-depth__depth__dml.json",
+      "sha256": "97008037d9eda2378e2e53a51a793c5fa4144bd54c0bad7956105a9124d1d215",
+      "bytes": 8115
+    },
+    {
+      "path": "receipts/receipt_yolo26n-obb__obb__amdgpu.json",
+      "sha256": "2e268959d3d9e6ac86066cc869e0e53f61b64b40e2de4bcb1a9813a39e612b89",
+      "bytes": 10005
+    },
+    {
+      "path": "receipts/receipt_yolo26n-obb__obb__dml.json",
+      "sha256": "298cf85e35c4ecc6a6532ea37c99d5741be14c756ee1cf05205c6db3dfa77495",
+      "bytes": 8274
+    },
+    {
+      "path": "receipts/receipt_yolo26n-pose__pose__amdgpu.json",
+      "sha256": "5a80c081e7c203f415c9b73c175dced5b75313b1b67b4ce52c4e8efe3ac16814",
+      "bytes": 9798
+    },
+    {
+      "path": "receipts/receipt_yolo26n-pose__pose__dml.json",
+      "sha256": "0bf8104d771d32796ac78440f8e340ca1ca2f818b2a872d130d907dc4addf306",
+      "bytes": 8046
+    },
+    {
+      "path": "receipts/receipt_yolo26n-seg__segment__amdgpu.json",
+      "sha256": "0c537917638b118d16989ca4ad843afeb1a0e5f611c92937969caecb64853641",
+      "bytes": 10792
+    },
+    {
+      "path": "receipts/receipt_yolo26n-seg__segment__dml.json",
+      "sha256": "9a1c18400de5c23035add7443afc03c73dc2241920bf87105d02e93b12276d14",
+      "bytes": 9051
+    },
+    {
+      "path": "receipts/receipt_yolo26n-sem__semantic__amdgpu.json",
+      "sha256": "0cf19514a7c49c1f0029c11cf874219b99875b85a01888df5a9574cf0cb791dd",
+      "bytes": 9812
+    },
+    {
+      "path": "receipts/receipt_yolo26n-sem__semantic__dml.json",
+      "sha256": "435a203e17a1c8ce73e52f59ab786c91f68e3cf291af382c5eb304c610e95569",
+      "bytes": 8068
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__amdgpu.json",
+      "sha256": "2ccb4bcf48d19a35d9736e629536a79c99481cad68d669f5ed92a81b1181d005",
+      "bytes": 9999
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__dml.json",
+      "sha256": "26ed73aeea777c39e70be4012a3416aef9c7502b060925893257e4baa6eba6fe",
+      "bytes": 8265
+    },
+    {
+      "path": "receipts/receipt_yolo26s-cls__classify__amdgpu.json",
+      "sha256": "a7753e83e737f231cb2e0e1b542071862fd9aa2f3de30ad8aed2eabafb856489",
+      "bytes": 9770
+    },
+    {
+      "path": "receipts/receipt_yolo26s-cls__classify__dml.json",
+      "sha256": "af904aaaaabfde66cd43b39a9bd1b9680f15372d8e3af33c4d0df9c9af65c8d2",
+      "bytes": 8046
+    },
+    {
+      "path": "receipts/receipt_yolo26s-depth__depth__amdgpu.json",
+      "sha256": "901423893e99a7351fb4b602dea28341a2491284298eac33bb36dd78effcf01a",
+      "bytes": 9874
+    },
+    {
+      "path": "receipts/receipt_yolo26s-depth__depth__dml.json",
+      "sha256": "fc87f679600b4291fb9eb7a3fd5105e19430082aa6d9abe4c206a0f3182c7de1",
+      "bytes": 8110
+    },
+    {
+      "path": "receipts/receipt_yolo26s-obb__obb__amdgpu.json",
+      "sha256": "c35c0214525e836f6b94624b405fd1db2146f06ca2164ea61ea799c6bfb26103",
+      "bytes": 9847
+    },
+    {
+      "path": "receipts/receipt_yolo26s-obb__obb__dml.json",
+      "sha256": "af857ad4eddd6b53de0426e53ab993f9cc2fa0a50bd2a6c2529a7bbdc1e469a0",
+      "bytes": 8107
+    },
+    {
+      "path": "receipts/receipt_yolo26s-pose__pose__amdgpu.json",
+      "sha256": "3bff25ea04c932661349cf9248a3e3e71ae58864c7499e02cbc337afc8640864",
+      "bytes": 9818
+    },
+    {
+      "path": "receipts/receipt_yolo26s-pose__pose__dml.json",
+      "sha256": "4cf44689c8dd43d5cd0ab24d3eaa7177ca51dbb574fae797edffa46c96e02fa2",
+      "bytes": 8064
+    },
+    {
+      "path": "receipts/receipt_yolo26s-seg__segment__amdgpu.json",
+      "sha256": "3a20e8e2b24c82dbf9d2b188d9f00d96a518e48926951a8016ad23d4dc2793ef",
+      "bytes": 10584
+    },
+    {
+      "path": "receipts/receipt_yolo26s-seg__segment__dml.json",
+      "sha256": "7aa79dd55fa79a7dd037a53e3057c1a9274bf3b9f492a35e0b28b6ebb6dad824",
+      "bytes": 8841
+    },
+    {
+      "path": "receipts/receipt_yolo26s-sem__semantic__amdgpu.json",
+      "sha256": "7f2a322414b0ca3d010f7c5640379f751d7c2596545ed88640728b3d8081a273",
+      "bytes": 9996
+    },
+    {
+      "path": "receipts/receipt_yolo26s-sem__semantic__dml.json",
+      "sha256": "037e20a6090722f39a266519f4ba4f76ae1c00cf5fd296fbaa7b7bb058d53828",
+      "bytes": 8243
+    },
+    {
+      "path": "receipts/receipt_yolo26s__detect__amdgpu.json",
+      "sha256": "08e5f9f2dfb63abc72c69e2f49f8fbb796f5f38d03bb01b58c00237130721303",
+      "bytes": 9798
+    },
+    {
+      "path": "receipts/receipt_yolo26s__detect__dml.json",
+      "sha256": "acec377249246e849d9fcc8b604202804b47e15155601f968723d77837630ad3",
+      "bytes": 8063
+    },
+    {
+      "path": "receipts/receipt_yolov8n__detect__amdgpu.json",
+      "sha256": "0c8614ffa8d4b4f7a2d2754e2e785a0c006a89a22efb57561998195d2c96b2d3",
+      "bytes": 9857
+    },
+    {
+      "path": "receipts/receipt_yolov8n__detect__dml.json",
+      "sha256": "0c68b5f6d14667432a5e550db85091f614e5d30387c36a38160d1b2afbf88c8b",
+      "bytes": 8087
+    },
+    {
+      "path": "redaction_scan.json",
+      "sha256": "d5a18ed767f87cdbc19585b752ebf4b0078a5a8862f40efe6e56fb493bc94cff",
+      "bytes": 64
+    },
+    {
+      "path": "thresholds_snapshot.json",
+      "sha256": "f49bc757d31707418270e3c7c5be6713f3c3ad8848831ef02cfd75f13c760a35",
+      "bytes": 1031
+    }
+  ]
+}

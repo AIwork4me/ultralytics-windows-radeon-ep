@@ -1,0 +1,28 @@
+{
+  "generated_utc": "2026-11-18T01:06:26Z",
+  "receipts": 32,
+  "gpu_cases": {
+    "amdgpu": 16,
+    "dml": 16,
+    "total": 32
+  },
+  "exec_counts": {
+    "amdgpu": {
+      "PASS_GPU_EXECUTED_FULL": 16
+    },
+    "dml": {
+      "PASS_GPU_EXECUTED_FULL": 16
+    }
+  },
+  "task_pass": 32,
+  "task_blocked": 0,
+  "task_fail": 0,
+  "negative_controls_discriminating": 3,
+  "catalog_snapshot": {
+    "total": 142,
+    "EVIDENCED": 16,
+    "BASELINE_REQUIRED_NOT_RUN": 26,
+    "other_gated": 100
+  },
+  "errata": "see ERRATA.md (4 entries, all preserved in git history)"
+}

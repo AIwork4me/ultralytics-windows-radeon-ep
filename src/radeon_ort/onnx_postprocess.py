@@ -95,7 +95,9 @@ def main() -> int:
         out["boxes"] = dets[:, :4].tolist()
         out["scores"] = dets[:, 4].tolist()
         out["classes"] = dets[:, 5].astype(int).tolist()
-        kpts = dets[:, 6:].reshape(len(dets), -1, 3).astype(np.float32)
+        # empty-dets guard: reshape(0, -1, 3) cannot infer the -1 dim
+        kpts = (dets[:, 6:].reshape(len(dets), -1, 3).astype(np.float32)
+                if len(dets) else np.zeros((0, 0, 3), dtype=np.float32))
         heavy["keypoints"] = kpts
         out["kpt_shape"] = list(kpts.shape)
     elif a.task == "obb":
