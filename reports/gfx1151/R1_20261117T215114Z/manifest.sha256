@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "R1_20261117T215114Z",
-  "created_utc": "2026-11-18T02:02:48Z",
+  "created_utc": "2026-11-18T02:05:33Z",
   "generator": "tools/r1_finalize.py",
   "entries": [
     {
@@ -336,8 +336,8 @@
     },
     {
       "path": "R1_FINAL_CN.md",
-      "sha256": "35756204d013f1ebeedb68e21cf9e41053c1031186d4a62319f7e2c9a47e23b6",
-      "bytes": 11185
+      "sha256": "38168e29cbbd5225d0e6532bf1f405e6bf4d012c129f2ea613cd8aba03ca1f5f",
+      "bytes": 11491
     },
     {
       "path": "R1_FINAL_EN.md",
@@ -356,7 +356,7 @@
     },
     {
       "path": "R1_LEDGER.json",
-      "sha256": "1b06c5f8d98326f186dc990e35d65d14136dde63e80d6e34f6e6cddec6f1fc39",
+      "sha256": "b5ed3936ab15d48aaf164341e42a460f33b5596afaa1b2f7c880655fa0f2e01d",
       "bytes": 595
     },
     {

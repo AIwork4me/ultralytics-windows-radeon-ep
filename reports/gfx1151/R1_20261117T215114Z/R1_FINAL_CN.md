@@ -26,9 +26,9 @@
 ## B. 精确 Git 状态
 
 - 起点：PR #2（Draft, OPEN, 未改动）head `563c24e5e27a6abd61328720efd97ee618f10021`，base main `ee47a4496eb7f23fc29aaa8e9a22e08ab7f700bd`。
-- R1 分支：`mission/gfx1151-r1-amdgpu-first-task-parity`，本地 HEAD = 远端 HEAD = PR #3 head = **`8ce34c5162de78bf3ea373e5aba384fe9d7f0d36`**（三者一致，已核）。
+- R1 分支：`mission/gfx1151-r1-amdgpu-first-task-parity`。**代码+证据冻结于 `8ce34c5162de78bf3ea373e5aba384fe9d7f0d36`**（CI run **44219621167** pass）；其后仅追加报告文档，分支 tip 与 PR #3 head 同步（如 `0f9dcf541a7368af2d803d222e2e19347fff931a`，windows-cpu-ci run **44220376458** pass）。任一时刻本地=远端=PR head（已核）。
 - **Draft stacked PR #3**：https://github.com/AIwork4me/ultralytics-windows-radeon-ep/pull/3（base=`mission/gfx1151-windowsml-foundation`，即 PR #2 head 分支；Draft；未标记 Ready）。
-- CI：`windows-cpu-ci` **pass** 于 PR 精确 HEAD —— Actions run **44219621167**（job 134517955520）；push 事件 run 44219520979 同过。`secret-scan` 长期 pending（自 G 轮即如此，非本轮引入，已在 I 节注明）。
+- CI：`windows-cpu-ci` **pass** 于冻结 HEAD 与各报告提交 HEAD（runs **44219621167**、**44220376458**；jobs 134517955520 / 134520452258）。`secret-scan` 长期 pending（自 G 轮即如此，非本轮引入，已在 I 节注明）。
 - 未 force-push、未重写历史；所有被替换的缺陷收据保存在对应历史提交中并由 `ERRATA.md`（5 条）索引。
 
 ## C. 环境与真机身份
