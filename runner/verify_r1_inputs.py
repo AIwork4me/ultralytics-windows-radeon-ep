@@ -53,7 +53,9 @@ def main() -> int:
             mpath = run_dir / "inputs" / f"manifest_{mid[:16]}.json"
             if mpath.is_file():
                 m = json.loads(mpath.read_text(encoding="utf-8"))
-                want = next(iter(m["tensor_sha256"].values()))
+                want = m.get("tensor_sha256")
+                if isinstance(want, dict):
+                    want = next(iter(want.values()))
                 if want != list(shas)[0]:
                     identity["ok"] = False
                     problems.append(f"{case_key}: fragment tensor sha != manifest sha")

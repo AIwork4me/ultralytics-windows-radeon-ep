@@ -1,17 +1,6 @@
 $ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz reports\gfx1151\R1_20261117T215114Z\raw\cand_yolo26n-seg__segment_amdgpu.npz --task segment --imgsz 640 --out-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-seg__segment_amdgpu.json --out-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-seg__segment_amdgpu.npz
-rc=1 elapsed=2.1s
+rc=0 elapsed=2.4s
 --- stdout ---
+{"ok": true, "task": "segment", "n": 5}
 
 --- stderr ---
-Traceback (most recent call last):
-  File "C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py", line 126, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py", line 66, in main
-    masks = process_mask(torch.from_numpy(proto), torch.from_numpy(dets[:, 6:]),
-                         torch.from_numpy(dets[:, :4]), (a.imgsz, a.imgsz),
-                         upsample=True)
-  File "C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Lib\site-packages\ultralytics\utils\ops.py", line 651, in process_mask
-    c, mh, mw = protos.shape  # CHW
-    ^^^^^^^^^
-ValueError: too many values to unpack (expected 3)
