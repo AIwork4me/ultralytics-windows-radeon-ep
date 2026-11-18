@@ -129,6 +129,23 @@ def main(run_dir_s: str) -> int:
         "errata": "see ERRATA.md (4 entries, all preserved in git history)",
     }
     (run_dir / "R1_LEDGER.json").write_text(json.dumps(ledger, indent=2), encoding="utf-8")
+
+    # redaction scan over all text evidence (policy: 'rocm' is a known-public
+    # username per redaction.KNOWN_PUBLIC_USERNAMES; binary tensors skipped)
+    from radeon_ort import redaction
+    scan: dict = {"files_scanned": 0, "violations": {}}
+    for p in sorted(run_dir.rglob("*")):
+        if not p.is_file() or p.suffix.lower() in {".npz", ".npy", ".png", ".jpg", ".sha256"}:
+            continue
+        if p.name == "redaction_scan.json":
+            continue
+        leaks = redaction.scan_file(p)
+        scan["files_scanned"] += 1
+        if leaks:
+            scan["violations"][p.relative_to(run_dir).as_posix()] = leaks
+    scan["ok"] = not scan["violations"]
+    (run_dir / "redaction_scan.json").write_text(json.dumps(scan, indent=2), encoding="utf-8")
+
     mp = write_manifest(run_dir, run_dir.name, "tools/r1_finalize.py")
     print(json.dumps(ledger, indent=1))
     print(f"manifest -> {mp}")
