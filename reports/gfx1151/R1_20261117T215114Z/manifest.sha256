@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "R1_20261117T215114Z",
-  "created_utc": "2026-11-18T01:38:24Z",
+  "created_utc": "2026-11-18T02:02:48Z",
   "generator": "tools/r1_finalize.py",
   "entries": [
     {
@@ -335,6 +335,16 @@
       "bytes": 21803
     },
     {
+      "path": "R1_FINAL_CN.md",
+      "sha256": "35756204d013f1ebeedb68e21cf9e41053c1031186d4a62319f7e2c9a47e23b6",
+      "bytes": 11185
+    },
+    {
+      "path": "R1_FINAL_EN.md",
+      "sha256": "d9da6f0fa9b251664907a0103298d651bdf0a507ed9719f95a8756762e9bac15",
+      "bytes": 2160
+    },
+    {
       "path": "R1_GAP_REGISTER.md",
       "sha256": "1316cf85506cbbeaa7a25738c8b4b114b22fb06ae622f5a8c6cfaea4db98f2ed",
       "bytes": 2428
@@ -346,8 +356,13 @@
     },
     {
       "path": "R1_LEDGER.json",
-      "sha256": "242b79d2cceea7cfec84095a5d13c35a8adffda6d612d0daefdec6ee26422c5f",
+      "sha256": "1b06c5f8d98326f186dc990e35d65d14136dde63e80d6e34f6e6cddec6f1fc39",
       "bytes": 595
+    },
+    {
+      "path": "R1_PERF_AND_SOAK.md",
+      "sha256": "5666cb202e93fb0751fa7bd45e0fb030d122720d3495f577fcb4996be5791e4c",
+      "bytes": 2572
     },
     {
       "path": "R1_PROVENANCE.md",
@@ -3731,7 +3746,7 @@
     },
     {
       "path": "redaction_scan.json",
-      "sha256": "e7adc817bad63470cbc8c7629034ab327c0166670029e614df5051ae4e2d8991",
+      "sha256": "3ea3458a09a82437cd61c70b6565aa7766f91ea5e241711d595609e6511c44b0",
       "bytes": 64
     },
     {
