@@ -1,0 +1,83 @@
+{
+ "run_result": {
+  "requested_policy": "require_amdgpu",
+  "attempted_eps": [
+   "amdgpu"
+  ],
+  "actual_ep": "amdgpu",
+  "actual_provider": "AMDGPUExecutionProvider",
+  "status": "GPU_FULL",
+  "cpu_user_authorized": false,
+  "device_identity": {
+   "ok": true,
+   "gfx": "gfx1100",
+   "description": "AMD Radeon RX 7900 XTX",
+   "vendor_id": 4098,
+   "device_id": 29772,
+   "luid_key": 72346,
+   "luid_str": "0x00000000:0x00011A9A",
+   "luid_valid": true,
+   "dxgi_index": 0,
+   "did_match": true,
+   "corroboration": [
+    "DeviceId 0x744C -> gfx1100 (Navi 31, RX 7900 XTX)",
+    "description contains 'Radeon'"
+   ],
+   "dedup_note": "same physical gfx1100 enumerated 3x (LUIDs: ['0x00000000:0x00011A9A', '0x00000000:0x0001CD1D', '0x00000000:0x00096C38']); selected index 0"
+  },
+  "device_binding_confidence": "PHYSICAL_BINDING_CONFIRMED",
+  "ep_version": null,
+  "ep_dll_sha": null,
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "2de3f4177adba3992ef134cd0962d93988e0f3125394198bbfc41e8e20a38a72",
+  "target_ep_profile_nodes": 1,
+  "cpu_profile_nodes": 0,
+  "numeric_oracle": {
+   "allclose": true,
+   "max_abs": 2.2351741790771484e-08
+  },
+  "task_oracle": {
+   "status": "NOT_RUN",
+   "reason": "no task requested"
+  },
+  "fallback_reason": null,
+  "cache_status": "CACHE_NOT_VALIDATED",
+  "provenance_head": null,
+  "source_receipt_sha": null
+ },
+ "verifier": {
+  "verdict": "RUNRESULT_VALID",
+  "checks": [
+   {
+    "check": "target_nodes_positive",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "cpu_nodes_zero",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "parity_allclose",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "binding_not_unproven",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "attempted_eps_ordered",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "onnx_sha_is_64hex",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ }
+}

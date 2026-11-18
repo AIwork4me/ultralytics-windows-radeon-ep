@@ -139,11 +139,43 @@ def enum_dxgi_adapters() -> list[DxgiAdapter]:
 AMD_VENDOR_ID = 0x1002
 
 # Known AMD APU/discrete DeviceIds used ONLY as corroboration, never sole proof.
+# Sources: pci.ids database (1002:7550 = Navi 48 [Radeon RX 9070/9070 XT/9070
+# GRE]; 1002:7448/744C = Navi 31; 1002:1586 = gfx1151 per dxdiag on the
+# reference host). 0x7480 was previously mislabeled gfx1201 — it is NOT a
+# Navi 48 ID and has been removed (red test: test_7480_is_not_labeled_gfx1201).
+# 0x7551 is a reported Navi 48 variant, hardware-unverified on any reference
+# host; a table entry alone NEVER grants PHYSICAL_BINDING_CONFIRMED.
 KNOWN_AMD_DEVICE_IDS = {
     0x1586: "gfx1151 (Radeon 8060S, Ryzen AI MAX)",  # per dxdiag ChipType 0x1586
-    0x7448: "gfx1100 (RX 7900 XTX class)",
-    0x7480: "gfx1201 (RX 9070 XT class)",
+    0x7448: "gfx1100 (Navi 31, RX 7900 XT class)",
+    0x744C: "gfx1100 (Navi 31, RX 7900 XTX)",        # live-verified 2026-11-18 host PNP
+    0x7550: "gfx1201 (Navi 48, RX 9070/9070 XT/9070 GRE)",  # pci.ids
+    0x7551: "gfx1201 (Navi 48 variant, hardware-unverified)",
 }
+
+# Deterministic per-gfx DeviceId pinning: the requested gfx arch decides which
+# DIDs are acceptable. A host whose AMD adapter is NOT in the requested set
+# fails visibly instead of being silently selected (B0 fix).
+GFX_DEVICE_IDS = {
+    "gfx1100": {0x7448, 0x744C},
+    "gfx1151": {0x1586},
+    "gfx1201": {0x7550, 0x7551},
+}
+
+# gfx-arch-SPECIFIC name needles for the legacy pre-DID fallback. The generic
+# 'Radeon' needle is deliberately excluded: it matches every AMD card and would
+# let e.g. a gfx1151 request silently select a 7900 XTX (live-discovered hole).
+GFX_FALLBACK_NEEDLES = {
+    "gfx1151": ("8060s",),
+}
+
+
+def _describe_found(adapters: list[DxgiAdapter]) -> str:
+    parts = []
+    for a in adapters:
+        known = KNOWN_AMD_DEVICE_IDS.get(a.device_id, "unknown/uncatalogued DID")
+        parts.append(f"0x{a.device_id:X} ({known}) {a.description!r}")
+    return "; ".join(parts)
 
 
 def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
@@ -153,17 +185,34 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
 
     Never requires Discrete=True / DedicatedVideoMemory>0 (integrated 8060S has
     ~0 dedicated and large SharedSystemMemory).
+
+    B0 contract: selection is DID-pinned per gfx target. Requesting gfx1201 on
+    a host whose only AMD adapter is gfx1100 FAILS with a reason naming what
+    was found — never a silent any-AMD pick. gfx1151 keeps its historical
+    name-needle fallback (pre-DID-knowledge path) flagged did_match=False.
     """
     amd = [a for a in adapters if a.vendor_id == expect_vendor_id and not a.is_software]
     if not amd:
         return {"ok": False, "reason": "WRONG_OR_AMBIGUOUS_DEVICE: no non-software AMD adapter found"}
 
-    if gfx == "gfx1151":
-        cands = [a for a in amd if a.device_id == 0x1586]
-        if not cands:
-            cands = [a for a in amd if any(n.lower() in a.description.lower() for n in name_needles)]
-    else:
-        cands = amd
+    dids = GFX_DEVICE_IDS.get(gfx)
+    if dids is None:
+        return {"ok": False,
+                "reason": f"UNSUPPORTED_GFX_TARGET: {gfx}; supported: "
+                          f"{sorted(GFX_DEVICE_IDS)}"}
+
+    cands = [a for a in amd if a.device_id in dids]
+    did_match = bool(cands)
+    if not cands and gfx in GFX_FALLBACK_NEEDLES:
+        # legacy name-only corroboration, arch-SPECIFIC needles only
+        needles = GFX_FALLBACK_NEEDLES[gfx]
+        cands = [a for a in amd
+                 if any(n in a.description.lower() for n in needles)]
+    if not cands:
+        return {"ok": False,
+                "reason": f"WRONG_OR_AMBIGUOUS_DEVICE: no adapter with {gfx} "
+                          f"DeviceId(s) {sorted(hex(d) for d in dids)}; found: "
+                          f"{_describe_found(amd)}"}
     dup_note = None
 
     if len(cands) == 0:
@@ -194,10 +243,15 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
     result = {
         "ok": True,
         "adapter": a,
-        "identity_method": "DXGI vendor+deviceId+description corroboration (integrated allowed)",
+        "did_match": did_match,
+        "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
         "corroboration": corroborated,
         "note": "LUID is boot-local; recorded as session corroboration only",
+        "luid_valid": not (a.luid_high == 0 and a.luid_low == 0),
     }
+    if not did_match:
+        result["warning"] = ("name-needle fallback used (DID not in target set); "
+                             "binding confidence reduced — canary required")
     if dup_note is not None:
         result["dedup_note"] = dup_note
     return result

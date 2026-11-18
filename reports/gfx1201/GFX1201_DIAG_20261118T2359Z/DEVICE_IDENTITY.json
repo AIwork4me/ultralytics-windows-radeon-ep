@@ -1,0 +1,69 @@
+{
+ "captured_utc": "2026-11-18T23:59:00Z",
+ "dxgi_adapters": [
+  {
+   "index": 0,
+   "desc": "AMD Radeon RX 7900 XTX",
+   "vid": "1002",
+   "did": "744C",
+   "sw": false,
+   "luid": "0x00000000:0x00011A9A",
+   "dedicated_mb": 24560
+  },
+  {
+   "index": 1,
+   "desc": "AMD Radeon RX 7900 XTX",
+   "vid": "1002",
+   "did": "744C",
+   "sw": false,
+   "luid": "0x00000000:0x0001CD1D",
+   "dedicated_mb": 24560
+  },
+  {
+   "index": 2,
+   "desc": "Intel(R) UHD Graphics 770",
+   "vid": "8086",
+   "did": "A780",
+   "sw": false,
+   "luid": "0x00000000:0x000138E3",
+   "dedicated_mb": 128
+  },
+  {
+   "index": 3,
+   "desc": "AMD Radeon RX 7900 XTX",
+   "vid": "1002",
+   "did": "744C",
+   "sw": false,
+   "luid": "0x00000000:0x00096C38",
+   "dedicated_mb": 24560
+  },
+  {
+   "index": 4,
+   "desc": "Microsoft Basic Render Driver",
+   "vid": "1414",
+   "did": "008C",
+   "sw": true,
+   "luid": "0x00000000:0x00013878",
+   "dedicated_mb": 0
+  }
+ ],
+ "resolution": {
+  "gfx1100": "OK did=0x744c luid=0x00000000:0x00011A9A",
+  "gfx1151": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1151 DeviceId(s) ['0x1586']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'",
+  "gfx1201": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'"
+ },
+ "gfx1100_chain_confidence": "PHYSICAL_BINDING_CONFIRMED",
+ "gfx1100_ep_device": {
+  "ok": true,
+  "metadata": {
+   "Description": "AMD Radeon RX 7900 XTX",
+   "Discrete": "1",
+   "DxgiAdapterNumber": "0",
+   "DxgiHighPerformanceIndex": "0",
+   "DxgiVideoMemory": "24560 MB",
+   "LUID": "72346"
+  },
+  "selection_basis": "LUID match with physical adapter",
+  "luid_match": true
+ }
+}

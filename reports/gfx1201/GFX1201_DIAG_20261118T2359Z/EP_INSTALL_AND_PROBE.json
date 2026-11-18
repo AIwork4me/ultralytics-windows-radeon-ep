@@ -1,0 +1,12 @@
+{
+ "captured_utc": "2026-11-18T23:59:00Z",
+ "msix": {
+  "package": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+  "version": "1.8.65.0"
+ },
+ "ep_dll_sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+ "ep_dll_bytes": 548304,
+ "catalog_discovery": "see EP_catalog_providers in DEVICE_IDENTITY (read-only find_all_providers)",
+ "catalog_install_attempted": false,
+ "catalog_install_note": "read-only discovery only (BLOCKED_INSTALL_AUTHORIZATION posture)"
+}
