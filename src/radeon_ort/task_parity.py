@@ -158,8 +158,11 @@ def compare(pt_json, pt_npz, cand_json, cand_npz, task: str, th: dict,
             "top1_match": int(pt_json["top1"]) == int(cand_json["top1"]),
             "top5_overlap": len(set(pt_json["top5"]) & set(cand_json["top5"])),
             "score_drift": float(np.abs(pv - cv).max())})
-        passed = (metrics["top1_match"]
-                  if t.get("require_top1_match", True) else True)
+        # Both configured constraints are acceptance gates, not report-only metrics.
+        passed = bool(
+            (metrics["top1_match"] or not t.get("require_top1_match", True))
+            and metrics["score_drift"] <= t.get("max_score_drift", float("inf"))
+        )
     elif task == "obb":
         pr = cand_npz["obb_xywhr"].reshape(-1, 5)
         rr = pt_npz["obb_xywhr"].reshape(-1, 5)

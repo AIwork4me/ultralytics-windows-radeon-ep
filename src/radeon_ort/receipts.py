@@ -606,7 +606,10 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
             if expected_thresholds and "task" in expected_thresholds:
                 td = tp.get("thresholds_declared") or {}
                 for k, want in expected_thresholds["task"].items():
-                    if k in td and td[k] != want:
+                    if k not in td:
+                        problems.append(
+                            f"task threshold {k!r} missing from declared thresholds")
+                    elif td[k] != want:
                         problems.append(
                             f"task threshold {k}={td[k]!r} != predeclared {want!r}")
             # metrics must actually satisfy the declared thresholds (no
@@ -617,17 +620,21 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
             td = tp.get("thresholds_declared") or {}
             mx = tp.get("metrics") or {}
             for k, want in td.items():
-                metric_key = TH_METRIC_ALIAS.get(k, k[4:] if k[:4] in ("min_", "max_") else k)
-                if k.startswith("min_") and metric_key in mx \
-                        and isinstance(mx[metric_key], (int, float)):
-                    if mx[metric_key] < want:
-                        problems.append(
-                            f"PASS_TASK but metric {metric_key}={mx[metric_key]} < min {want}")
-                if k.startswith("max_") and metric_key in mx \
-                        and isinstance(mx[metric_key], (int, float)):
-                    if mx[metric_key] > want:
-                        problems.append(
-                            f"PASS_TASK but metric {metric_key}={mx[metric_key]} > max {want}")
+                if not k.startswith(("min_", "max_")):
+                    continue
+                metric_key = TH_METRIC_ALIAS.get(k, k[4:])
+                value = mx.get(metric_key)
+                if (not isinstance(value, (int, float)) or isinstance(value, bool)
+                        or not math.isfinite(value)):
+                    problems.append(
+                        f"PASS_TASK missing/nonfinite required metric {metric_key!r} for {k}")
+                    continue
+                if k.startswith("min_") and value < want:
+                    problems.append(
+                        f"PASS_TASK but metric {metric_key}={value} < min {want}")
+                if k.startswith("max_") and value > want:
+                    problems.append(
+                        f"PASS_TASK but metric {metric_key}={value} > max {want}")
             if td.get("require_top1_match") and mx.get("top1_match") is False:
                 problems.append("PASS_TASK but top1_match=False with require_top1_match")
         _finite_metrics(problems, "task_parity", tp)
