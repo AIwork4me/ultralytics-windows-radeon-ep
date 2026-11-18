@@ -50,6 +50,49 @@ def build_tiny_onnx(path: str) -> None:
     onnx.save(model, path)
 
 
+def compare_named_outputs(reference: dict, actual: dict, *, atol=5e-3,
+                          rtol=5e-3) -> dict:
+    """Fail-closed by-name and by-element numeric agreement with CPU ORT.
+
+    For each float element: abs(gpu - cpu) <= atol + rtol * abs(cpu).
+    Integer/boolean outputs require exact equality; invalid/missing/non-finite
+    tensors never produce a GPU PASS. This function needs no GPU runtime.
+    """
+    import numpy as np
+
+    errors = []
+    worst = 0.0
+    if not isinstance(reference, dict) or not reference:
+        return {"allclose": False, "max_abs": None, "reason": "empty_cpu_reference"}
+    if not isinstance(actual, dict) or set(reference) != set(actual):
+        return {"allclose": False, "max_abs": None, "reason": "output_names_mismatch"}
+    if (not np.isfinite(atol) or not np.isfinite(rtol)
+            or atol < 0 or rtol < 0):
+        return {"allclose": False, "max_abs": None, "reason": "invalid_tolerances"}
+    for name in sorted(reference):
+        a = np.asarray(actual[name])
+        b = np.asarray(reference[name])
+        if a.shape != b.shape or a.size == 0:
+            errors.append(f"{name}:shape_or_empty")
+            continue
+        if a.dtype.kind not in "biuf" or b.dtype.kind not in "biuf":
+            errors.append(f"{name}:non_numeric")
+            continue
+        if not bool(np.isfinite(a).all() and np.isfinite(b).all()):
+            errors.append(f"{name}:non_finite")
+            continue
+        a64, b64 = a.astype(np.float64), b.astype(np.float64)
+        delta = np.abs(a64 - b64)
+        worst = max(worst, float(delta.max()))
+        if a.dtype.kind in "biu" or b.dtype.kind in "biu":
+            agreement = a == b
+        else:
+            agreement = delta <= atol + rtol * np.abs(b64)
+        if not bool(agreement.all()):
+            errors.append(f"{name}:parity_failed")
+    return {"allclose": not errors, "max_abs": worst,
+            "reason": ";".join(errors) if errors else None}
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--ep", choices=["amdgpu", "dml"], default="amdgpu")
@@ -77,29 +120,50 @@ def main() -> int:
     out["versions"] = {"python": sys.version.split()[0], "ort": ort.__version__,
                        "numpy": np.__version__}
 
-    # 2) identity chain (amdgpu path)
-    from radeon_ort.unified_identity import build_chain
-    chain = build_chain(a.gfx if a.ep == "amdgpu" else "gfx1100")
+    # 2) PR #5 must run independently: do NOT import unified_identity,
+    # which belongs to stacked PR #6. Resolve only the requested architecture.
+    from radeon_ort.device_identity import enum_dxgi_adapters, resolve_target_adapter
+    res = resolve_target_adapter(enum_dxgi_adapters(), gfx=a.gfx)
+    if (not res.get("ok") or not res.get("did_match")
+            or not res.get("luid_valid")):
+        out["status"] = "BLOCKED"
+        out["reason"] = (res.get("reason") or "DID or LUID identity not proven")
+        Path(a.out).write_text(json.dumps(out, indent=1))
+        return 34
+    adapter = res["adapter"]
+    from radeon_ort.rca2a_ep import physical_luid_key
+    luid = physical_luid_key(adapter)
+    if luid is None:
+        out.update(status="BLOCKED", reason="physical LUID key unavailable")
+        Path(a.out).write_text(json.dumps(out, indent=1))
+        return 34
+    out["physical"] = {"description": adapter.description,
+                       "vendor_id": adapter.vendor_id,
+                       "device_id": adapter.device_id,
+                       "luid": adapter.luid_str,
+                       "dxgi_index": adapter.index,
+                       "did_match": True}
     if a.ep == "amdgpu":
-        if chain.physical is None:
-            out["status"] = "BLOCKED"
-            out["reason"] = ";".join(chain.failures)
+        # select_amdgpu_ep_device may fall back to an unrelated candidate;
+        # ONLY a byte-exact LUID equality is strong binding evidence.
+        try:
+            from radeon_ort.rca2a_ep import (
+                select_amdgpu_ep_device, _ep_device_metadata)
+            ep_dev, selected = select_amdgpu_ep_device(luid)
+            md = _ep_device_metadata(ep_dev) if ep_dev is not None else {}
+            if str(md.get("LUID", "")) != str(luid):
+                out.update(status="BLOCKED",
+                           reason="AMDGPU EP LUID != requested physical DXGI LUID")
+                Path(a.out).write_text(json.dumps(out, indent=1))
+                return 34
+            out["confidence"] = "PHYSICAL_BINDING_CONFIRMED"
+        except Exception as exc:
+            out.update(status="BLOCKED",
+                       reason=f"AMDGPU EP LUID attestation failed: {type(exc).__name__}")
             Path(a.out).write_text(json.dumps(out, indent=1))
             return 34
-        out["physical"] = {k: v for k, v in chain.physical.items() if k != "adapter"}
-        out["confidence"] = chain.confidence()
-        luid = chain.physical.get("luid_key")
     else:
-        from radeon_ort.device_identity import enum_dxgi_adapters, resolve_target_adapter
-        res = resolve_target_adapter(enum_dxgi_adapters(), gfx=a.gfx)
-        if not res.get("ok"):
-            out["status"] = "BLOCKED"
-            out["reason"] = res["reason"]
-            Path(a.out).write_text(json.dumps(out, indent=1))
-            return 34
-        out["physical"] = {k: v for k, v in res["adapter"].__dict__.items()}
-        out["confidence"] = "DML_ADAPTER_PINED_BY_DXGI_ORDINAL"
-        luid = None
+        out["confidence"] = "DML_DXGI_ORDINAL_CORROBORATED;EP_LUID_UNPROVEN"
 
     # 3) session (fail-closed)
     so = ort.SessionOptions()
@@ -118,7 +182,7 @@ def main() -> int:
         else:
             from radeon_ort.dml_session import create_dml_session
             sess = create_dml_session(str(model_path),
-                                      device_id=res["adapter"].index,
+                                      device_id=adapter.index,
                                       sess_options_override=so)
             if "DmlExecutionProvider" not in sess.get_providers():
                 raise RuntimeError("DML provider absent: " + str(sess.get_providers()))
@@ -134,16 +198,8 @@ def main() -> int:
             pass
 
     outs = dict(zip([o.name for o in sess.get_outputs()], sess.run(None, feeds)))
-    worst = 0.0
-    parity_ok = True
-    for k in sorted(ref):
-        d = float(np.max(np.abs(np.asarray(outs[k], np.float64)
-                                - np.asarray(ref[k], np.float64))))
-        worst = max(worst, d)
-        finite = bool(np.isfinite(np.asarray(outs[k])).all())
-        parity_ok = parity_ok and finite and d <= 5e-3 + 5e-3 * float(
-            np.max(np.abs(np.asarray(ref[k], np.float64))))
-    out["parity"] = {"allclose": parity_ok, "max_abs": worst}
+    out["parity"] = compare_named_outputs(ref, outs)
+    parity_ok = out["parity"]["allclose"]
 
     prof = sess.end_profiling()
     data = json.loads(Path(prof).read_text(encoding="utf-8"))
