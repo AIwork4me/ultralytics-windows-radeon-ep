@@ -1,0 +1,31 @@
+{
+  "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":224,\"model_name\":\"yolo26s-cls\",\"onnx_sha256\":\"525f4c7bf7bf2a1ecd7ba872735fcdc9a0c52b22dbebf41eacf8ac18ad2da409\",\"task\":\"classify\",\"variant\":\"real_image_v1\"}",
+  "decoded_image_sha256": "7ab70dd0d5992f4814fc4b1b0e6f77cbe4b0fd6b66bbf263210f1b932b1ddb32",
+  "image_path_name": "bus.jpg",
+  "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+  "imgsz": 224,
+  "input_id": "7df334f66e941193a238f90ea9da836616c8e31995671a5ece5d6420d2866018",
+  "kind": "real_image",
+  "model_name": "yolo26s-cls",
+  "npy_file": "input_7df334f66e941193.npy",
+  "onnx_sha256": "525f4c7bf7bf2a1ecd7ba872735fcdc9a0c52b22dbebf41eacf8ac18ad2da409",
+  "preprocess": {
+    "crop_left": 0,
+    "crop_top": 37,
+    "imgsz": 224,
+    "method": "resize_short+centercrop",
+    "resize_h": 299,
+    "resize_w": 224
+  },
+  "pt_equivalence": "same decoded image; ultralytics-semantics preprocessing (letterbox/centercrop as per task); PT oracle preprocesses the same image file with its own pipeline \u2014 comparison thresholds absorb resampling-level differences",
+  "task": "classify",
+  "tensor_dtype": "float32",
+  "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8",
+  "tensor_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "variant": "real_image_v1"
+}

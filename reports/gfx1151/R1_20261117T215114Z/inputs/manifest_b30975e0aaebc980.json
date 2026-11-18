@@ -1,0 +1,34 @@
+{
+  "canonical_config": "{\"export_params\":{},\"image_sha256\":\"94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea\",\"imgsz\":640,\"model_name\":\"yolo26n-pose\",\"onnx_sha256\":\"447f0d3439462126c6b690566d5806157d603782dd1c163e6b7f5a63fabb3f42\",\"task\":\"pose\",\"variant\":\"negative_gray_v1\"}",
+  "decoded_image_sha256": "de7ba63896a3dac267d965a260c2aae28a1e42a40e136329cc8ecd082f95c055",
+  "image_path_name": "negative_gray.png",
+  "image_sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+  "imgsz": 640,
+  "input_id": "b30975e0aaebc9801a75486f44cc944ac604385a7aa7773416a1cae8376ab196",
+  "kind": "real_image",
+  "model_name": "yolo26n-pose",
+  "npy_file": "input_b30975e0aaebc980.npy",
+  "onnx_sha256": "447f0d3439462126c6b690566d5806157d603782dd1c163e6b7f5a63fabb3f42",
+  "preprocess": {
+    "bottom": 0,
+    "imgsz": 640,
+    "left": 0,
+    "method": "letterbox",
+    "new_h": 640,
+    "new_w": 640,
+    "ratio": 1.0,
+    "right": 0,
+    "top": 0
+  },
+  "pt_equivalence": "same decoded image; ultralytics-semantics preprocessing (letterbox/centercrop as per task); PT oracle preprocesses the same image file with its own pipeline \u2014 comparison thresholds absorb resampling-level differences",
+  "task": "pose",
+  "tensor_dtype": "float32",
+  "tensor_sha256": "9f4bb6074cfc2f11d5a7b9eafe640fc6b7a35d57b317a18a891df6b88f2c2ff0",
+  "tensor_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "variant": "negative_gray_v1"
+}

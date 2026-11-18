@@ -1,0 +1,34 @@
+{
+  "canonical_config": "{\"export_params\":{},\"image_sha256\":\"83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a\",\"imgsz\":1024,\"model_name\":\"yolo26s-obb\",\"onnx_sha256\":\"b1485988e4231e8f378f8e7d3a2dc176166ed26d61f954eeea4a540a66a888b0\",\"task\":\"obb\",\"variant\":\"real_image_v1\"}",
+  "decoded_image_sha256": "909d939557b8aa6d911e533333b9f6abc542a1606869b3c965aab80eb7c33c64",
+  "image_path_name": "dota_p1053.jpg",
+  "image_sha256": "83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a",
+  "imgsz": 1024,
+  "input_id": "45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb",
+  "kind": "real_image",
+  "model_name": "yolo26s-obb",
+  "npy_file": "input_45c08f9329ec692e.npy",
+  "onnx_sha256": "b1485988e4231e8f378f8e7d3a2dc176166ed26d61f954eeea4a540a66a888b0",
+  "preprocess": {
+    "bottom": 0,
+    "imgsz": 1024,
+    "left": 0,
+    "method": "letterbox",
+    "new_h": 1024,
+    "new_w": 1024,
+    "ratio": 1.0,
+    "right": 0,
+    "top": 0
+  },
+  "pt_equivalence": "same decoded image; ultralytics-semantics preprocessing (letterbox/centercrop as per task); PT oracle preprocesses the same image file with its own pipeline \u2014 comparison thresholds absorb resampling-level differences",
+  "task": "obb",
+  "tensor_dtype": "float32",
+  "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae",
+  "tensor_shape": [
+    1,
+    3,
+    1024,
+    1024
+  ],
+  "variant": "real_image_v1"
+}

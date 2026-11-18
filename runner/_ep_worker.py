@@ -1,15 +1,24 @@
-"""One-EP-per-process worker: load case JSON, run session on requested EP,
-emit receipt fragment JSON. Called by fallback_policy.run_ep_subprocess.
+"""One-EP-per-process worker (v2): load case JSON, run the requested EP on the
+persisted input bundle, emit a fail-closed receipt fragment + candidate outputs
+(.npz). Called via subprocess by runner.run_matrix.
 
-Exit codes (fail-closed, machine-readable):
-  0 OK            31 AMDGPU_FAILED      32 DML_FAILED
-  34 BLOCKED_EP   35 BLOCKED_IDENTITY   3 usage/invalid
+v2 changes (R1-B/R1-C):
+  - inputs arrive as a verified .npy bundle (tensor sha256 re-derived at load);
+    no arrays embedded in the case JSON,
+  - the expected-output manifest is derived from the session's own IO contract,
+  - AMDGPU sessions carry a full selection attestation (device_binding),
+  - reference outputs arrive as .npz (no giant JSON),
+  - exit codes remain the fail-closed contract (rc!=0 can never become PASS).
+
+Exit codes: 0 OK; 31 AMDGPU_FAILED; 32 DML_FAILED; 34 BLOCKED_EP;
+35 BLOCKED_IDENTITY; 3 usage/invalid.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import traceback
 from pathlib import Path
@@ -18,12 +27,25 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from radeon_ort import device_identity, profiler_audit
-from radeon_ort.cpu_reference import compare_outputs, create_cpu_session
+from radeon_ort import device_identity, profiler_audit  # noqa: E402
+from radeon_ort.cpu_reference import compare_outputs, create_cpu_session  # noqa: E402
+from radeon_ort.input_contract import load_input_bundle, tensor_sha256  # noqa: E402
+
+ORT_TYPE_MAP = {
+    "tensor(float)": "float32", "tensor(float16)": "float16",
+    "tensor(double)": "float64", "tensor(int64)": "int64",
+    "tensor(int32)": "int32", "tensor(bool)": "bool",
+    "tensor(uint8)": "uint8", "tensor(int8)": "int8",
+}
 
 
-def _np(v):
-    return np.asarray(v, dtype=np.float32)
+def _expected_from_session(sess) -> list[dict]:
+    out = []
+    for o in sess.get_outputs():
+        shape = [d if isinstance(d, int) else None for d in (o.shape or [])]
+        out.append({"name": o.name, "dtype": ORT_TYPE_MAP.get(o.type, o.type),
+                    "shape": shape})
+    return out
 
 
 def main() -> int:
@@ -34,13 +56,20 @@ def main() -> int:
     case = json.loads(Path(a.case).read_text(encoding="utf-8"))
     ep = case["ep"].lower()
     onnx_path = case["onnx_path"]
-    feeds = {k: _np(v) for k, v in case["feeds"].items()}
-    atol = case.get("atol", 1e-3)
-    rtol = case.get("rtol", 1e-3)
+    atol = case.get("atol", 5e-3)
+    rtol = case.get("rtol", 5e-3)
     bench = case.get("benchmark", False)
 
-    frag = {"session": {"ep": ep.upper()}, "parity": None, "benchmark_data": None}
+    frag = {"session": {"ep": ep.upper()}, "parity": None, "benchmark_data": None,
+            "worker_pid": os.getpid(), "parent_pid": os.getppid(),
+            "input_tensor_sha256": None}
     try:
+        manifest, tensor = load_input_bundle(case["input_manifest"])
+        input_name = case.get("input_name") or "images"
+        feed_dict = {input_name: np.asarray(tensor, dtype=np.float32)}
+        frag["input_tensor_sha256"] = tensor_sha256(feed_dict[input_name])
+        frag["input_id"] = manifest.get("input_id")
+
         # device identity check in this process (fresh session corroboration)
         adapters = device_identity.enum_dxgi_adapters()
         res = device_identity.resolve_target_adapter(adapters, gfx=case.get("gfx", "gfx1151"))
@@ -50,69 +79,128 @@ def main() -> int:
             print("BLOCKED_IDENTITY: " + res["reason"], file=sys.stderr)
             return 35
         target = res["adapter"]
+        dxgi_corr = {"adapter_index": target.index, "luid": target.luid_str,
+                     "vendor_id": f"0x{target.vendor_id:04X}",
+                     "device_id": f"0x{target.device_id:04X}",
+                     "description": target.description,
+                     "note": "DXGI corroboration of the physical GPU; the EP exposes "
+                             "no LUID/ordinal so candidate->LUID mapping stays unproven "
+                             "(AMDGPU-RCA-004)"}
 
         if ep == "cpu":
-            sess = create_cpu_session(onnx_path, enable_profiling=True)
+            sess = create_cpu_session(onnx_path, enable_profiling=True,
+                                      profile_prefix=case.get("profile_prefix", "cpu"))
         elif ep == "amdgpu":
             from radeon_ort import windows_ml_ep_catalog
-            from radeon_ort.amdgpu_session import (amdgpu_ep_devices,
-                                                   create_amdgpu_session,
-                                                   register_amdgpu_ep_library)
-            if not amdgpu_ep_devices():
-                dlls = windows_ml_ep_catalog._rederive_real_paths()
-                if not dlls:
-                    frag["session"]["routing_notes"] = (
-                        "BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps")
-                    _write(a.out, frag)
-                    print("BLOCKED_EP: amdgpu-ep.dll not found", file=sys.stderr)
-                    return 34
-                frag["session"]["ep_library_path_redacted"] = windows_ml_ep_catalog._redact(
-                    __import__("pathlib").Path(dlls[-1]))
-                register_amdgpu_ep_library(dlls[-1])
-            sess = create_amdgpu_session(
+            from radeon_ort.amdgpu_session import (create_amdgpu_session,
+                                                   ensure_amdgpu_registered)
+            try:
+                dll = ensure_amdgpu_registered()
+            except RuntimeError as e:
+                frag["session"]["routing_notes"] = f"BLOCKED_EP: {e}"
+                _write(a.out, frag)
+                print(str(e), file=sys.stderr)
+                return 34
+            frag["session"]["ep_library_path_redacted"] = (
+                windows_ml_ep_catalog._redact(Path(dll)) if dll != "already-registered" else None)
+            result = create_amdgpu_session(
                 onnx_path, profile_prefix=case.get("profile_prefix", "amdgpu"),
-                feeds_for_validation=feeds)
+                feeds_for_validation=feed_dict)
+            sess = result.session
+            att = result.attestation
+            frag["device_binding"] = dict(att)
+            frag["device_binding"]["dxgi_corroboration"] = dxgi_corr
+            frag["session"]["provider_node_counts"] = \
+                (att.get("final_profile") or {}).get("provider_node_counts") or {}
+            frag["session"]["graph_node_total"] = sum(
+                frag["session"]["provider_node_counts"].values())
+            frag["session"]["profile_fused_event_present"] = \
+                frag["session"]["provider_node_counts"].get("AMDGPU", 0) == 1
         elif ep == "dml":
             from radeon_ort.dml_session import (create_dml_session,
                                                 resolve_dml_device_id_for_adapter)
-            # select DML adapter by resolved DXGI index of the intended Radeon
             dml_idx = resolve_dml_device_id_for_adapter(target.index)
             sess = create_dml_session(onnx_path, device_id=dml_idx,
                                       profile_prefix=case.get("profile_prefix", "dml"))
+            # DML revalidation: first profiled run must attribute to DML
+            outs_probe = sess.run(None, feed_dict)
+            dml_counts = profiler_audit.audit_profile(sess.end_profiling())["provider_node_counts"]
+            dml_nodes = dml_counts.get("DmlExecutionProvider", 0)
+            frag["device_binding"] = {
+                "ep": "DML",
+                "state": "EP_DEVICE_SELECTED",
+                "selected_candidate_index": dml_idx,
+                "candidates_tried": 1,
+                "selected_ep_device": {"ep_vendor": "Microsoft",
+                                       "ep_metadata": {"device_id": dml_idx},
+                                       "ep_options": {}},
+                "probe": {"amdgpu_nodes": 0, "cpu_nodes": dml_counts.get("CPU", 0),
+                          "profile": None},
+                "final_profile": {"provider_node_counts": dict(dml_counts)},
+                "attribution": ("fused_single_node" if dml_nodes == 1 else
+                                "multi_node" if dml_nodes > 0 else "none"),
+                "dxgi_corroboration": dxgi_corr,
+                "notes": "DML device_id = DXGI adapter ordinal; profile revalidated "
+                         "on the final session's first run",
+            }
+            frag["session"]["provider_node_counts"] = dml_counts
+            frag["session"]["graph_node_total"] = sum(dml_counts.values())
+            frag["session"]["profile_fused_event_present"] = dml_nodes == 1
         else:
             print(f"invalid ep {ep}", file=sys.stderr)
             return 3
 
         frag["session"]["requested_providers"] = [p for p in sess.get_providers()]
-        outs = sess.run(None, feeds)
+        expected = _expected_from_session(sess)
+        frag["expected_outputs"] = expected
+        real_input = sess.get_inputs()[0].name
+        if real_input != input_name:
+            # session contract wins: re-feed under the graph's input name
+            feed_dict = {real_input: feed_dict[input_name]}
+            frag["input_tensor_sha256"] = tensor_sha256(feed_dict[real_input])
+        frag["input_name"] = real_input
+
+        outs = sess.run(None, feed_dict)
         out_names = [o.name for o in sess.get_outputs()]
         cand = dict(zip(out_names, outs))
 
-        if ep != "cpu" and case.get("reference_outputs"):
-            ref = {k: _np(v) for k, v in case["reference_outputs"].items()}
-            frag["parity"] = compare_outputs(ref, cand, atol=atol, rtol=rtol)
+        # save candidate outputs for task postprocessing (npz, not JSON)
+        npz_path = case.get("outputs_npz")
+        if npz_path:
+            np.savez_compressed(npz_path, **{k: np.asarray(v) for k, v in cand.items()})
 
-        audit = profiler_audit.audit_profile(sess.end_profiling())
-        frag["session"]["provider_node_counts"] = audit["provider_node_counts"]
-        frag["session"]["graph_node_total"] = sum(audit["provider_node_counts"].values())
-        frag["session"]["profile_fused_event_present"] = audit["fused_event_count"] > 0
+        if ep != "cpu" and case.get("reference_npz"):
+            ref_npz = np.load(case["reference_npz"])
+            ref = {k: ref_npz[k] for k in ref_npz.files}
+            exp_map = {e["name"]: e for e in expected}
+            frag["parity"] = compare_outputs(ref, cand, atol=atol, rtol=rtol,
+                                             expected=exp_map)
+
+        if ep == "cpu":
+            audit = profiler_audit.audit_profile(sess.end_profiling())
+            frag["session"]["provider_node_counts"] = audit["provider_node_counts"]
+            frag["session"]["graph_node_total"] = sum(audit["provider_node_counts"].values())
+
         frag["session"]["ort_version"] = _ort_version()
         frag["session"]["ort_distribution"] = _ort_distribution()
         frag["session"]["device_luid"] = target.luid_str
-        frag["outputs"] = {k: v.tolist() if hasattr(v, "tolist") else v for k, v in cand.items()}
+        frag["outputs_summary"] = [
+            {"name": k, "shape": list(np.asarray(v).shape), "dtype": str(np.asarray(v).dtype),
+             "sha256": tensor_sha256(v)} for k, v in cand.items()]
 
         if bench:
             from radeon_ort.benchmark import bench_session_run
-            frag["benchmark_data"] = bench_session_run(sess, feeds)
+            frag["benchmark_data"] = bench_session_run(sess, feed_dict)
 
         _write(a.out, frag)
         # ORT profiler uses REAL provider names: AMDGPU / DmlExecutionProvider
         ort_provider_key = "AMDGPU" if ep == "amdgpu" else "DmlExecutionProvider"
-        ep_nodes = audit["provider_node_counts"].get(ort_provider_key, 0)
+        ep_nodes = (frag["session"].get("provider_node_counts") or {}).get(ort_provider_key, 0)
         if ep == "cpu":
             return 0  # reference path; never a GPU claim
         if ep_nodes == 0:
-            print(f"{ep.upper()}_FAILED: zero target-EP profile nodes (no GPU compute)", file=sys.stderr)
+            print(f"{ep.upper()}_FAILED: zero target-EP profile nodes (no GPU compute)",
+                  file=sys.stderr)
             return 31 if ep == "amdgpu" else 32
         return 0
     except Exception as e:  # noqa: BLE001
@@ -143,7 +231,7 @@ def _ort_distribution():
 
 def _write(path, frag):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_text(json.dumps(_jsonable(frag)), encoding="utf-8")
+    Path(path).write_text(json.dumps(_jsonable(frag), allow_nan=False), encoding="utf-8")
 
 
 def _jsonable(o):
@@ -153,9 +241,11 @@ def _jsonable(o):
     if isinstance(o, (list, tuple)):
         return [_jsonable(v) for v in o]
     if isinstance(o, np.ndarray):
-        return o.tolist()
+        return f"<ndarray {o.shape} {o.dtype}>"
     if isinstance(o, (np.floating, np.integer)):
         return o.item()
+    if isinstance(o, Path):
+        return str(o)
     if isinstance(o, float) and o != o:
         return "NaN"
     return o

@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\models\pt\yolo26n-depth.pt --task depth --tensor-npy reports\gfx1151\R1_20261117T215114Z\inputs\input_de9ee3b21a7ecb3d.npy --out-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26n-depth__depth.json --out-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26n-depth__depth.npz
+rc=0 elapsed=4.3s
+--- stdout ---
+{"ok": true, "task": "depth", "n": 0}
+
+--- stderr ---

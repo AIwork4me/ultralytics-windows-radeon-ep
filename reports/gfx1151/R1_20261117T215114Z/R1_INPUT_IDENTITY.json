@@ -1,0 +1,422 @@
+{
+  "ok": true,
+  "problems": [],
+  "cases": {
+    "yolo11n__detect": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo11n__detect_amdgpu.json",
+          "input_id": "db5259085e4e812fc230259a9257692fd3b483d95d3fe8f126b12c47087667cc",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo11n__detect_cpu.json",
+          "input_id": "db5259085e4e812fc230259a9257692fd3b483d95d3fe8f126b12c47087667cc",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo11n__detect_dml.json",
+          "input_id": "db5259085e4e812fc230259a9257692fd3b483d95d3fe8f126b12c47087667cc",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "db5259085e4e812fc230259a9257692fd3b483d95d3fe8f126b12c47087667cc"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26n-cls__classify": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-cls__classify_amdgpu.json",
+          "input_id": "9aeab0e4835bf24ece8b817f2d9c9311e57354bb4e1792e5c2c4c99aad977d82",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        },
+        {
+          "fragment": "frag_yolo26n-cls__classify_cpu.json",
+          "input_id": "9aeab0e4835bf24ece8b817f2d9c9311e57354bb4e1792e5c2c4c99aad977d82",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        },
+        {
+          "fragment": "frag_yolo26n-cls__classify_dml.json",
+          "input_id": "9aeab0e4835bf24ece8b817f2d9c9311e57354bb4e1792e5c2c4c99aad977d82",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        }
+      ],
+      "input_id": [
+        "9aeab0e4835bf24ece8b817f2d9c9311e57354bb4e1792e5c2c4c99aad977d82"
+      ],
+      "tensor_sha256": [
+        "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+      ]
+    },
+    "yolo26n-depth__depth": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-depth__depth_amdgpu.json",
+          "input_id": "de9ee3b21a7ecb3d3300d1e4dd3e0130b5b5455420d8556350991a0b7c4f9ac4",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        },
+        {
+          "fragment": "frag_yolo26n-depth__depth_cpu.json",
+          "input_id": "de9ee3b21a7ecb3d3300d1e4dd3e0130b5b5455420d8556350991a0b7c4f9ac4",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        },
+        {
+          "fragment": "frag_yolo26n-depth__depth_dml.json",
+          "input_id": "de9ee3b21a7ecb3d3300d1e4dd3e0130b5b5455420d8556350991a0b7c4f9ac4",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        }
+      ],
+      "input_id": [
+        "de9ee3b21a7ecb3d3300d1e4dd3e0130b5b5455420d8556350991a0b7c4f9ac4"
+      ],
+      "tensor_sha256": [
+        "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+      ]
+    },
+    "yolo26n-obb__obb": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-obb__obb_amdgpu.json",
+          "input_id": "f451e24c03ae50918302993c089239823401738362ab818426d01f85d2d5ad50",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        },
+        {
+          "fragment": "frag_yolo26n-obb__obb_cpu.json",
+          "input_id": "f451e24c03ae50918302993c089239823401738362ab818426d01f85d2d5ad50",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        },
+        {
+          "fragment": "frag_yolo26n-obb__obb_dml.json",
+          "input_id": "f451e24c03ae50918302993c089239823401738362ab818426d01f85d2d5ad50",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        }
+      ],
+      "input_id": [
+        "f451e24c03ae50918302993c089239823401738362ab818426d01f85d2d5ad50"
+      ],
+      "tensor_sha256": [
+        "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+      ]
+    },
+    "yolo26n-pose__pose": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-pose__pose_amdgpu.json",
+          "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-pose__pose_cpu.json",
+          "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-pose__pose_dml.json",
+          "input_id": "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "655f9eef36b4e23506723f636ff489aa0a3419fcc8b7acb20d0917a7ccb017e0"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26n-seg__segment": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-seg__segment_amdgpu.json",
+          "input_id": "24706931a53be894f2b521164dd5bc1bf4258cf16ae6a67962a2dfac464c2be0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-seg__segment_cpu.json",
+          "input_id": "24706931a53be894f2b521164dd5bc1bf4258cf16ae6a67962a2dfac464c2be0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-seg__segment_dml.json",
+          "input_id": "24706931a53be894f2b521164dd5bc1bf4258cf16ae6a67962a2dfac464c2be0",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "24706931a53be894f2b521164dd5bc1bf4258cf16ae6a67962a2dfac464c2be0"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26n-sem__semantic": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n-sem__semantic_amdgpu.json",
+          "input_id": "247582377f39aaf578ef3e65f2728085fe7cf440c76d86e7d0b0939e44046256",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-sem__semantic_cpu.json",
+          "input_id": "247582377f39aaf578ef3e65f2728085fe7cf440c76d86e7d0b0939e44046256",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n-sem__semantic_dml.json",
+          "input_id": "247582377f39aaf578ef3e65f2728085fe7cf440c76d86e7d0b0939e44046256",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "247582377f39aaf578ef3e65f2728085fe7cf440c76d86e7d0b0939e44046256"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26n__detect": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26n__detect_amdgpu.json",
+          "input_id": "b99692b53d3e5a04c1faad35bc5af94e649aaf4e9a57af8f53bc9e2191430edb",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n__detect_cpu.json",
+          "input_id": "b99692b53d3e5a04c1faad35bc5af94e649aaf4e9a57af8f53bc9e2191430edb",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26n__detect_dml.json",
+          "input_id": "b99692b53d3e5a04c1faad35bc5af94e649aaf4e9a57af8f53bc9e2191430edb",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "b99692b53d3e5a04c1faad35bc5af94e649aaf4e9a57af8f53bc9e2191430edb"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26s-cls__classify": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-cls__classify_amdgpu.json",
+          "input_id": "7df334f66e941193a238f90ea9da836616c8e31995671a5ece5d6420d2866018",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        },
+        {
+          "fragment": "frag_yolo26s-cls__classify_cpu.json",
+          "input_id": "7df334f66e941193a238f90ea9da836616c8e31995671a5ece5d6420d2866018",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        },
+        {
+          "fragment": "frag_yolo26s-cls__classify_dml.json",
+          "input_id": "7df334f66e941193a238f90ea9da836616c8e31995671a5ece5d6420d2866018",
+          "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+        }
+      ],
+      "input_id": [
+        "7df334f66e941193a238f90ea9da836616c8e31995671a5ece5d6420d2866018"
+      ],
+      "tensor_sha256": [
+        "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+      ]
+    },
+    "yolo26s-depth__depth": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-depth__depth_amdgpu.json",
+          "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        },
+        {
+          "fragment": "frag_yolo26s-depth__depth_cpu.json",
+          "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        },
+        {
+          "fragment": "frag_yolo26s-depth__depth_dml.json",
+          "input_id": "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995",
+          "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+        }
+      ],
+      "input_id": [
+        "7de1ec95dc98fc270a815d5b5cf55c9ad936a780e47745159f3012e1f2d26995"
+      ],
+      "tensor_sha256": [
+        "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195"
+      ]
+    },
+    "yolo26s-obb__obb": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-obb__obb_amdgpu.json",
+          "input_id": "45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        },
+        {
+          "fragment": "frag_yolo26s-obb__obb_cpu.json",
+          "input_id": "45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        },
+        {
+          "fragment": "frag_yolo26s-obb__obb_dml.json",
+          "input_id": "45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb",
+          "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+        }
+      ],
+      "input_id": [
+        "45c08f9329ec692eaa9e646aa12f92ab6ddc71a4a2e77d605b7d336190aedabb"
+      ],
+      "tensor_sha256": [
+        "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae"
+      ]
+    },
+    "yolo26s-pose__pose": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-pose__pose_amdgpu.json",
+          "input_id": "463deddc46b066a4b13f9496e59ac0d1bc5c15dcbc1f34933e8496cff759367d",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-pose__pose_cpu.json",
+          "input_id": "463deddc46b066a4b13f9496e59ac0d1bc5c15dcbc1f34933e8496cff759367d",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-pose__pose_dml.json",
+          "input_id": "463deddc46b066a4b13f9496e59ac0d1bc5c15dcbc1f34933e8496cff759367d",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "463deddc46b066a4b13f9496e59ac0d1bc5c15dcbc1f34933e8496cff759367d"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26s-seg__segment": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-seg__segment_amdgpu.json",
+          "input_id": "2e719ca0bda390fbe03dff87a39f540de5fcd41d9874037fbde3be5b23327d7b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-seg__segment_cpu.json",
+          "input_id": "2e719ca0bda390fbe03dff87a39f540de5fcd41d9874037fbde3be5b23327d7b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-seg__segment_dml.json",
+          "input_id": "2e719ca0bda390fbe03dff87a39f540de5fcd41d9874037fbde3be5b23327d7b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "2e719ca0bda390fbe03dff87a39f540de5fcd41d9874037fbde3be5b23327d7b"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26s-sem__semantic": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s-sem__semantic_amdgpu.json",
+          "input_id": "a74b7921fa0c776a621c0fe54bf4a763681672adf28a1273bdc02043f76f807f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-sem__semantic_cpu.json",
+          "input_id": "a74b7921fa0c776a621c0fe54bf4a763681672adf28a1273bdc02043f76f807f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s-sem__semantic_dml.json",
+          "input_id": "a74b7921fa0c776a621c0fe54bf4a763681672adf28a1273bdc02043f76f807f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "a74b7921fa0c776a621c0fe54bf4a763681672adf28a1273bdc02043f76f807f"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolo26s__detect": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolo26s__detect_amdgpu.json",
+          "input_id": "6597d10a8e78c23bb5ad3f103733b3fe29ce1f067f95aa95cfecde734ae9003b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s__detect_cpu.json",
+          "input_id": "6597d10a8e78c23bb5ad3f103733b3fe29ce1f067f95aa95cfecde734ae9003b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolo26s__detect_dml.json",
+          "input_id": "6597d10a8e78c23bb5ad3f103733b3fe29ce1f067f95aa95cfecde734ae9003b",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "6597d10a8e78c23bb5ad3f103733b3fe29ce1f067f95aa95cfecde734ae9003b"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    },
+    "yolov8n__detect": {
+      "ok": true,
+      "fragments": [
+        {
+          "fragment": "frag_yolov8n__detect_amdgpu.json",
+          "input_id": "39640b615c9f551374b76db641473da732531b1bce5bc19c7d20fb683c76790f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolov8n__detect_cpu.json",
+          "input_id": "39640b615c9f551374b76db641473da732531b1bce5bc19c7d20fb683c76790f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        },
+        {
+          "fragment": "frag_yolov8n__detect_dml.json",
+          "input_id": "39640b615c9f551374b76db641473da732531b1bce5bc19c7d20fb683c76790f",
+          "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+        }
+      ],
+      "input_id": [
+        "39640b615c9f551374b76db641473da732531b1bce5bc19c7d20fb683c76790f"
+      ],
+      "tensor_sha256": [
+        "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+      ]
+    }
+  }
+}

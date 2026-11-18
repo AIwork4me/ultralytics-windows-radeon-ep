@@ -1,0 +1,53 @@
+{
+  "ep": "dml",
+  "onnx_redacted": "yolo26n.raw_b1_fp32_static.onnx",
+  "input": "64d11ef4c1e47028",
+  "phase_note": "duration measures INFERENCE phase only; session-create wall time appears in stage_markers (excluded from soak duration verdict per mission R1-F)",
+  "duration_s": 900.0,
+  "status": "COMPLETED",
+  "runs": 269534,
+  "errors": [],
+  "latency_ms": {
+    "p50": 3.265,
+    "p95": 3.9378,
+    "mean": 3.329658996267632
+  },
+  "stage_markers": [
+    "+0.0s session-create-begin",
+    "+0.4s session-created providers=['DmlExecutionProvider', 'CPUExecutionProvider']",
+    "+0s heartbeat runs=1 p50=8.0ms err=0",
+    "+30s heartbeat runs=9203 p50=3.2ms err=0",
+    "+60s heartbeat runs=18335 p50=3.2ms err=0",
+    "+90s heartbeat runs=27476 p50=3.2ms err=0",
+    "+120s heartbeat runs=36604 p50=3.2ms err=0",
+    "+150s heartbeat runs=45784 p50=3.2ms err=0",
+    "+180s heartbeat runs=54874 p50=3.2ms err=0",
+    "+210s heartbeat runs=64011 p50=3.2ms err=0",
+    "+240s heartbeat runs=73162 p50=3.2ms err=0",
+    "+270s heartbeat runs=82268 p50=3.2ms err=0",
+    "+300s heartbeat runs=91390 p50=3.2ms err=0",
+    "+330s heartbeat runs=100543 p50=3.2ms err=0",
+    "+360s heartbeat runs=109677 p50=3.2ms err=0",
+    "+390s heartbeat runs=118815 p50=3.2ms err=0",
+    "+420s heartbeat runs=127980 p50=3.2ms err=0",
+    "+450s heartbeat runs=137096 p50=3.2ms err=0",
+    "+480s heartbeat runs=146166 p50=3.2ms err=0",
+    "+510s heartbeat runs=155262 p50=3.2ms err=0",
+    "+540s heartbeat runs=164380 p50=3.2ms err=0",
+    "+570s heartbeat runs=173549 p50=3.2ms err=0",
+    "+600s heartbeat runs=182326 p50=3.2ms err=0",
+    "+630s heartbeat runs=190995 p50=3.2ms err=0",
+    "+660s heartbeat runs=199764 p50=3.2ms err=0",
+    "+690s heartbeat runs=208502 p50=3.2ms err=0",
+    "+720s heartbeat runs=217254 p50=3.2ms err=0",
+    "+750s heartbeat runs=225957 p50=3.3ms err=0",
+    "+780s heartbeat runs=234742 p50=3.3ms err=0",
+    "+810s heartbeat runs=243401 p50=3.3ms err=0",
+    "+840s heartbeat runs=252249 p50=3.3ms err=0",
+    "+870s heartbeat runs=260907 p50=3.3ms err=0"
+  ],
+  "watchdog": {
+    "no_progress_timeout_s": 180,
+    "heartbeat_s": 30
+  }
+}

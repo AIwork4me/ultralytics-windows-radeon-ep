@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\.venv-export\Scripts\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\uwr_gfx1151\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26n-depth__depth.json --pt-npz reports\gfx1151\R1_20261117T215114Z\raw\pt_yolo26n-depth__depth.npz --cand-json reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-depth__depth_amdgpu.json --cand-npz reports\gfx1151\R1_20261117T215114Z\raw\post_yolo26n-depth__depth_amdgpu.npz --task depth --imgsz 768 --thresholds-json reports\gfx1151\R1_20261117T215114Z\thresholds_snapshot.json --cand-source AMDGPU_POST --image-sha256 c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63 --input-id de9ee3b21a7ecb3d3300d1e4dd3e0130b5b5455420d8556350991a0b7c4f9ac4 --out reports\gfx1151\R1_20261117T215114Z\raw\tp_yolo26n-depth__depth_amdgpu.json
+rc=0 elapsed=0.3s
+--- stdout ---
+{"ok": true, "task": "depth", "passed": true, "metrics_keys": ["mae", "ref_entities", "ref_mean_depth", "rel_mae", "rmse", "valid_px"]}
+
+--- stderr ---
