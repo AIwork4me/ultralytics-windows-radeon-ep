@@ -17,6 +17,7 @@ GPU labels are the supervisor's; this module only checks their evidence fields.
 """
 from __future__ import annotations
 
+import math
 import re
 from typing import Any
 
@@ -93,12 +94,18 @@ def validate_receipt(r: dict[str, Any], *, plan: dict[str, Any] | None = None) -
     tl = r.get("timeline") or []
     names = [t.get("phase") for t in tl if isinstance(t, dict)]
     idx = {p: i for i, p in enumerate(PHASE_ORDER)}
-    seq = [idx[p] for p in names if p in idx]
-    if not seq:
+    canonical = []
+    for name in names:
+        base = name[:-6] if isinstance(name, str) and name.endswith("_BEGIN") else name
+        if base not in idx:
+            return finish("RECEIPT_INVALID_TIMELINE_PHASE")
+        canonical.append(base)
+    if not canonical:
         return finish("RECEIPT_INVALID_TIMELINE_EMPTY")
+    seq = [idx[name] for name in canonical]
     if seq != sorted(seq):
         return finish("RECEIPT_INVALID_TIMELINE_ORDER")
-    if "SESSION_CREATE" not in names:
+    if "SESSION_CREATE" not in canonical:
         return finish("RECEIPT_INVALID_NO_SESSION_CREATE")
 
     # classification sanity
@@ -124,20 +131,58 @@ def validate_receipt(r: dict[str, Any], *, plan: dict[str, Any] | None = None) -
         arm = plan.get("arms", {}).get(r.get("arm"))
         if arm is None:
             return finish("RECEIPT_INVALID_ARM_NOT_IN_PLAN")
-        if (arm.get("model") or "") not in (r.get("model") or ""):
+        models = arm.get("models")
+        if not isinstance(models, list) or r.get("model") not in models:
             return finish("RECEIPT_INVALID_ARM_MODEL_MISMATCH")
+        case = (plan.get("cases") or {}).get(r["model"])
+        if not isinstance(case, dict):
+            return finish("RECEIPT_INVALID_PLAN_CASE_MISSING")
+        for field in ("onnx_sha256", "input_sha256"):
+            if not SHA256_RE.fullmatch(str(case.get(field, ""))):
+                return finish("RECEIPT_INVALID_PLAN_CASE_SHA_MISSING")
+            if r.get(field) != case[field]:
+                return finish("RECEIPT_INVALID_" + field.upper() + "_MISMATCH")
         if arm.get("ep") != r.get("ep"):
             return finish("RECEIPT_INVALID_ARM_EP_MISMATCH")
         if (arm.get("env") or {}) != exp:
             return finish("RECEIPT_INVALID_ARM_ENV_MISMATCH")
 
-    # GPU-pass evidence fields present when validation claims pass
+    # Published supervisor receipts use checks[] plus numeric summary fields.
     gv = r.get("gpu_validation") or {}
     if gv.get("verdict") == "GPU_PASS_VALIDATED":
-        if not gv.get("profile_ep_nodes_positive") and r.get("ep") != "cpu":
+        if r.get("classification") != "CLEAN_COMPLETE" or r.get("child_exit_code") != 0:
+            return finish("RECEIPT_INVALID_GPU_PASS_STATE")
+        raw_checks = gv.get("checks")
+        if not isinstance(raw_checks, list) or not raw_checks:
+            return finish("RECEIPT_INVALID_GPU_PASS_WITHOUT_CHECKS")
+        if any(not isinstance(c, dict) or not isinstance(c.get("check"), str)
+               for c in raw_checks):
+            return finish("RECEIPT_INVALID_GPU_CHECK_MALFORMED")
+        names_seen = [c["check"] for c in raw_checks]
+        if len(names_seen) != len(set(names_seen)):
+            return finish("RECEIPT_INVALID_GPU_CHECK_DUPLICATE")
+        evidence = {c["check"]: c.get("ok") is True for c in raw_checks}
+        n = gv.get("profile_ep_node_count")
+        if not evidence.get("profile_ep_nodes_positive") or not isinstance(n, int) \
+                or isinstance(n, bool) or n <= 0:
             return finish("RECEIPT_INVALID_GPU_PASS_WITHOUT_PROFILE_NODES")
-        if not gv.get("supervisor_independent_parity"):
+        delta = gv.get("supervisor_parity_max_abs")
+        if not evidence.get("supervisor_independent_parity") \
+                or not isinstance(delta, (int, float)) or isinstance(delta, bool) \
+                or not math.isfinite(delta) or delta < 0:
             return finish("RECEIPT_INVALID_GPU_PASS_WITHOUT_PARITY")
+        if r.get("ep") == "amdgpu":
+            required = ("ep_device_probe_event", "luid_match_basis",
+                        "amdgpu_provider_present", "output_names_match")
+        elif r.get("ep") == "dml":
+            required = ("gpu_identity_event", "physical_radeon_adapter",
+                        "dml_provider_present", "output_names_match")
+        else:
+            return finish("RECEIPT_INVALID_GPU_EP_UNSUPPORTED")
+        if any(not evidence.get(k) for k in required):
+            return finish("RECEIPT_INVALID_GPU_PASS_WITHOUT_IDENTITY_OR_OUTPUTS")
+        if not all(evidence.values()):
+            return finish("RECEIPT_INVALID_GPU_CHECK_FAILED")
 
     ok = all(c["ok"] for c in checks)
     return finish("RECEIPT_VALID" if ok else "RECEIPT_INVALID_CHECKS_FAILED")
