@@ -1,0 +1,10 @@
+{
+  "schema": "gfx1201_soak_v1",
+  "status": "NOT_RUN",
+  "reason": "NO_GFX1201_HARDWARE_ON_HOST: physical AMD dGPU is RX 7900 XTX (PCI VEN_1002 DEV_744C, gfx1100). Per AGENTS.md rule 2 and mission Gate M0, gfx1201 soak cannot be executed or emulated on this host.",
+  "gate": "15-minute effective-steady (>=900 s) soak requires real gfx1201 hardware",
+  "historical_reference_only": {
+    "note": "RCA2A gfx1100 soaks (>=900 s, merged PR #4) are gfx1100 evidence and do NOT substitute",
+    "source": "reports/gfx1100/rca2a/RCA2A_20261118T1140Z (commit ef3faec9 physical HEAD)"
+  }
+}

@@ -1,0 +1,10 @@
+task,requested_gfx,executed_ep,status,reason
+detect,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+segment,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+classify,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+pose,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+obb,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+semantic,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+depth,gfx1201,none,NOT_RUN,NO_GFX1201_HARDWARE_ON_HOST(gfx1100 present)
+canary_tiny_conv,gfx1100,amdgpu,GPU_PASS_VALIDATED,code_path_validation_only
+canary_tiny_conv,gfx1100,dml,GPU_PASS_VALIDATED,code_path_validation_only

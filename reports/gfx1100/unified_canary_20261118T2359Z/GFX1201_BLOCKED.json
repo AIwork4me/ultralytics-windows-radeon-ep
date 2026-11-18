@@ -1,0 +1,14 @@
+{
+ "ep": "amdgpu",
+ "gfx": "gfx1201",
+ "schema": "unified_canary_v1",
+ "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+ "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+ "versions": {
+  "python": "3.12.16",
+  "ort": "1.25.2",
+  "numpy": "2.5.5"
+ },
+ "status": "BLOCKED",
+ "reason": "physical:WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'"
+}

@@ -1,0 +1,97 @@
+{
+ "captured_utc": "2026-11-18T23:59:00Z",
+ "hardware": "gfx1100 RX 7900 XTX",
+ "label": "CODE_PATH_VALIDATION_ONLY_NOT_GFX1201_EVIDENCE",
+ "amdgpu": {
+  "ep": "amdgpu",
+  "gfx": "gfx1100",
+  "schema": "unified_canary_v1",
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+  "versions": {
+   "python": "3.12.16",
+   "ort": "1.25.2",
+   "numpy": "2.5.5"
+  },
+  "physical": {
+   "ok": true,
+   "gfx": "gfx1100",
+   "description": "AMD Radeon RX 7900 XTX",
+   "vendor_id": 4098,
+   "device_id": 29772,
+   "luid_key": 72346,
+   "luid_str": "0x00000000:0x00011A9A",
+   "luid_valid": true,
+   "dxgi_index": 0,
+   "did_match": true,
+   "corroboration": [
+    "DeviceId 0x744C -> gfx1100 (Navi 31, RX 7900 XTX)",
+    "description contains 'Radeon'"
+   ],
+   "dedup_note": "same physical gfx1100 enumerated 3x (LUIDs: ['0x00000000:0x00011A9A', '0x00000000:0x0001CD1D', '0x00000000:0x00096C38']); selected index 0"
+  },
+  "confidence": "PHYSICAL_BINDING_CONFIRMED",
+  "session_create_s": 3.938,
+  "parity": {
+   "allclose": true,
+   "max_abs": 1.4901161193847656e-08
+  },
+  "profile": {
+   "target_ep_nodes": 1,
+   "cpu_nodes": 0
+  },
+  "status": "GPU_PASS_VALIDATED"
+ },
+ "dml": {
+  "ep": "dml",
+  "gfx": "gfx1100",
+  "schema": "unified_canary_v1",
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+  "versions": {
+   "python": "3.12.16",
+   "ort": "1.25.2",
+   "numpy": "2.5.5"
+  },
+  "physical": {
+   "index": 0,
+   "description": "AMD Radeon RX 7900 XTX",
+   "vendor_id": 4098,
+   "device_id": 29772,
+   "sub_sys_id": 238751746,
+   "revision": 200,
+   "dedicated_video_mb": 24560,
+   "dedicated_system_mb": 0,
+   "shared_sys_mb": 16267,
+   "luid_high": 0,
+   "luid_low": 72346,
+   "is_software": false,
+   "extra": {}
+  },
+  "confidence": "DML_ADAPTER_PINED_BY_DXGI_ORDINAL",
+  "session_create_s": 0.14,
+  "parity": {
+   "allclose": true,
+   "max_abs": 7.450580596923828e-09
+  },
+  "profile": {
+   "target_ep_nodes": 1,
+   "cpu_nodes": 0
+  },
+  "status": "GPU_PASS_VALIDATED"
+ },
+ "gfx1201_request": {
+  "ep": "amdgpu",
+  "gfx": "gfx1201",
+  "schema": "unified_canary_v1",
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+  "versions": {
+   "python": "3.12.16",
+   "ort": "1.25.2",
+   "numpy": "2.5.5"
+  },
+  "status": "BLOCKED",
+  "reason": "physical:WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'"
+ }
+}

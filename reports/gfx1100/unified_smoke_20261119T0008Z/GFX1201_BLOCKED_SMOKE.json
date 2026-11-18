@@ -1,0 +1,44 @@
+{
+ "run_result": {
+  "requested_policy": "require_amdgpu",
+  "attempted_eps": [
+   "amdgpu"
+  ],
+  "actual_ep": null,
+  "actual_provider": null,
+  "status": "BLOCKED",
+  "cpu_user_authorized": false,
+  "device_identity": {},
+  "device_binding_confidence": "UNPROVEN",
+  "ep_version": null,
+  "ep_dll_sha": null,
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "2de3f4177adba3992ef134cd0962d93988e0f3125394198bbfc41e8e20a38a72",
+  "target_ep_profile_nodes": 0,
+  "cpu_profile_nodes": 0,
+  "numeric_oracle": {},
+  "task_oracle": {
+   "status": "NOT_RUN",
+   "reason": "no task requested"
+  },
+  "fallback_reason": "physical:WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'",
+  "cache_status": "CACHE_NOT_VALIDATED",
+  "provenance_head": null,
+  "source_receipt_sha": null
+ },
+ "verifier": {
+  "verdict": "RUNRESULT_VALID",
+  "checks": [
+   {
+    "check": "attempted_eps_ordered",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "onnx_sha_is_64hex",
+    "ok": true,
+    "detail": ""
+   }
+  ]
+ }
+}

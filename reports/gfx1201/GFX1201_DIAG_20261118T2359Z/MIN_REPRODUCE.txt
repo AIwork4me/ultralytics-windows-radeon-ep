@@ -1,0 +1,8 @@
+# Minimal reproduction (on a REAL RX 9070 XT host; on this host step 3 BLOCKS by design)
+py -3.12 -m venv .venv-winml
+.venv-winml\Scripts\python -m pip install -e ".[winml]" onnx
+.venv-winml\Scripts\python -I -m runner.unified_predict --model <tiny-or-real.onnx> --policy require_amdgpu --target-gfx gfx1201
+# expect on RX 9070 XT: {"status": "GPU_FULL", "actual_ep": "amdgpu", "verifier": "RUNRESULT_VALID"} exit 0
+# observed on THIS host (gfx1100): status BLOCKED, exit 34, reason names found 0x744C adapters
+.venv-winml\Scripts\python -I runner/unified_canary.py --ep amdgpu --gfx gfx1201 --out CANARY.json
+.venv-winml\Scripts\python -I runner/freeze_gfx1201_evidence.py
