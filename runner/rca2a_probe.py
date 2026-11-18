@@ -95,14 +95,16 @@ import sys, os, time, json
 sys.path.insert(0, r"{repo_src}")
 import numpy as np
 import onnxruntime as ort
-from radeon_ort.amdgpu_session import (_ensure_amdgpu_registered, canary_model_path,
-                                       create_amdgpu_session)
+from radeon_ort.rca2a_ep import (_ensure_amdgpu_registered, create_amdgpu_session,
+                                  physical_luid_key)
+from radeon_ort.amdgpu_session import canary_model_path
 from radeon_ort import device_identity
 _ensure_amdgpu_registered()
 adapters = device_identity.enum_dxgi_adapters()
 res = device_identity.resolve_target_adapter(adapters, gfx="gfx1100")
 assert res.get("ok"), res
-luid = res["adapter"].extra.get("luid_key")
+luid = physical_luid_key(res["adapter"])
+assert luid is not None, "no LUID derivable"
 p = canary_model_path(r"{out_dir}")
 t0 = time.monotonic()
 sess = create_amdgpu_session(str(p), enable_profiling=False, target_luid=luid)
@@ -150,6 +152,9 @@ def run_effect_probe(name: str, env_extra: dict[str, str], out_root: Path,
     d = out_root / f"probe_{name}"
     d.mkdir(parents=True, exist_ok=True)
     cache_dir = d / "cache"
+    import shutil
+    if cache_dir.exists():
+        shutil.rmtree(cache_dir)  # every probe starts from a provably empty cache
     cache_dir.mkdir(exist_ok=True)
     env = dict(os.environ)
     env.update(env_extra)
@@ -178,21 +183,52 @@ def classify_effect(name: str, res: dict) -> tuple[str, dict]:
     stderr, stdout = res["stderr"], res["stdout_tail"]
     if res["rc"] != 0 or '"canary": "ok"' not in stdout:
         return "PROBE_ERROR", ev
+    # fail-closed GPU truth: the child's own providers list must contain the
+    # AMDGPU EP — ORT silently rebuilds CPU sessions on unknown provider names
+    if '"AMDGPUExecutionProvider"' not in stdout.replace("'", '"'):
+        ev["cpu_fallback_detected"] = True
+        ev["providers_line"] = stdout[-200:]
+        return "PROBE_ERROR_CPU_FALLBACK", ev
     if name == "baseline":
         ev["auto_save_failed_windowsapps"] = "auto_save_problem_cache: save failed" in stderr
         ev["tuning_db_warning"] = "tuning db not found" in stderr.lower()
         return "EFFECT_CONFIRMED", ev  # baseline probe itself succeeding
     if name.startswith("trace_bench_"):
-        lines = [ln for ln in stderr.splitlines()
-                 if re.search(r"benchmark|fastest solution|configs", ln, re.I)]
+        joined = stderr + os.linesep + stdout
+        lines = [ln for ln in joined.splitlines()
+                 if re.search(r"benchmarking gpu::|benchmarking solution|"
+                              r"fastest solution|configs", ln, re.I)]
         ev["benchmark_log_lines"] = lines[:20]
-        return ("EFFECT_CONFIRMED" if lines else "RECOGNIZED_BUT_NO_EFFECT"), ev
+        ev["n_configs_benchmarked"] = sum(
+            int(m.group(1)) for ln in lines
+            for m in [re.search(r"(\d+) configs", ln)] if m)
+        ev["session_create_failed_epfail"] = "EPFail" in stderr
+        if lines:
+            return ("EFFECT_CONFIRMED" if "EPFail" not in stderr
+                    else "EFFECT_OBSERVED_BUT_SESSION_FAILED"), ev
+        return ("RECOGNIZED_BUT_NO_EFFECT"
+                if '"canary": "ok"' in stdout else "PROBE_ERROR"), ev
     if name == "skip_benchmark_with_trace":
-        # requires trace lines to ABSENT while trace var IS set (skip suppressed them)
-        lines = [ln for ln in stderr.splitlines()
-                 if re.search(r"benchmarking .* configs|fastest solution", ln, re.I)]
+        # EFFECT for skip = config count DROPS vs the pure trace arm (13->1 on
+        # the canary, live 2026-11-18); capture counts, compare in analysis
+        joined = stderr + os.linesep + stdout
+        lines = [ln for ln in joined.splitlines()
+                 if re.search(r"benchmarking gpu::|benchmarking solution|"
+                              r"fastest solution|configs", ln, re.I)]
         ev["benchmark_log_lines"] = lines[:10]
-        return ("EFFECT_CONFIRMED" if not lines else "RECOGNIZED_BUT_NO_EFFECT"), ev
+        ev["n_configs_benchmarked"] = sum(
+            int(m.group(1)) for ln in lines
+            for m in [re.search(r"(\d+) configs", ln)] if m)
+        ev["session_succeeded"] = '"canary": "ok"' in stdout
+        return "EFFECT_JUDGED_BY_CONFIG_COUNT_VS_TRACE_ARM", ev
+    if name == "problem_cache_ort_env_read":
+        joined = stderr + os.linesep + stdout
+        info = [ln for ln in joined.splitlines()
+                if re.search(r"problem.?cache|tuning db|loaded", ln, re.I)]
+        ev["cache_related_log_lines"] = info[:20]
+        ev["auto_save_failed_windowsapps"] = "auto_save_problem_cache: save failed" in stderr
+        # read-side effect must show SOME load/hit evidence; absence = not recognized
+        return ("EFFECT_CONFIRMED" if info else "RECOGNIZED_BUT_NO_EFFECT"), ev
     if name.startswith("problem_cache_"):
         # redirect worked iff cache file created in OUR dir AND no WindowsApps failure
         created = [f for f in (res["cache_dir_state"].get("files") or [])
@@ -222,6 +258,8 @@ def main() -> int:
     ap.add_argument("--out", required=True, help="CAPABILITY_MATRIX.json path")
     ap.add_argument("--python", required=True, help="venv python for child probes")
     ap.add_argument("--skip-physical", action="store_true")
+    ap.add_argument("--only", default=None,
+                    help="comma-separated probe names to run (default all)")
     a = ap.parse_args()
 
     ep_dir = Path(a.ep_dir)
@@ -256,11 +294,16 @@ def main() -> int:
                                        '{"binary_cache":"%CACHE%\\\\bin"}'}),
             ("compute_mode_bad", {"ORT_MIGRAPHX_COMPUTE_MODE": "bogus_mode"}),
             ("exhaustive_tune_1", {"ORT_MIGRAPHX_EXHAUSTIVE_TUNE": "1"}),
+            ("trace_bench_1", {"MIGRAPHX_TRACE_BENCHMARKING": "1"}),
+            ("problem_cache_ort_env_read", {"ORT_MIGRAPHX_PROBLEM_CACHE": "%SHIPPED_PC%"}),
         ]
         probe_root = out_p.parent / "PROBES"
+        shipped_pc = str(Path(a.ep_dir) / "problem_cache.json")
         for name, env in probes:
+            if a.only and name not in a.only.split(","):
+                continue
             env2 = {k: v.replace("%CACHE%", str((probe_root / f"probe_{name}" / "cache")
-                                                .resolve()))
+                                                .resolve())).replace("%SHIPPED_PC%", shipped_pc)
                     for k, v in env.items()}
             try:
                 res = run_effect_probe(name, env2, probe_root, a.python)

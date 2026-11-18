@@ -279,7 +279,7 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
 
     if a.ep == "amdgpu":
         _set_phase(em, "EP_DLL_REGISTER", "begin")
-        from radeon_ort.amdgpu_session import _ensure_amdgpu_registered
+        from radeon_ort.rca2a_ep import _ensure_amdgpu_registered
         _ensure_amdgpu_registered()
         _native("ort.get_ep_devices")
         ep_devices = [d.ep_name for d in ort.get_ep_devices()]
@@ -293,7 +293,12 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
         em.emit("identity_fail", "GPU_IDENTITY_RESOLVE", mark="fail", reason=res.get("reason"))
         return 44
     adapter = res["adapter"]
-    luid = adapter.extra.get("luid_key")
+    from radeon_ort.rca2a_ep import physical_luid_key
+    luid = physical_luid_key(adapter)
+    if luid is None:
+        em.emit("identity_fail", "GPU_IDENTITY_RESOLVE", mark="fail",
+                reason="no LUID derivable from adapter", luid_str=adapter.luid_str)
+        return 44
     em.emit("gpu_identity", "GPU_IDENTITY_RESOLVE", mark="end",
             name=adapter.description, vendor_id=adapter.vendor_id,
             device_id=adapter.device_id, luid=luid, luid_str=adapter.luid_str,
@@ -301,7 +306,7 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
 
     if a.ep == "amdgpu":
         _set_phase(em, "EP_DEVICE_PROBE", "begin")
-        from radeon_ort.amdgpu_session import select_amdgpu_ep_device, _ep_device_metadata
+        from radeon_ort.rca2a_ep import select_amdgpu_ep_device, _ep_device_metadata
         dev, sel = select_amdgpu_ep_device(luid)
         if dev is None:
             em.emit("ep_device_probe_fail", "EP_DEVICE_PROBE", mark="fail", selection=sel)
@@ -322,7 +327,7 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
         so.log_severity_level = 3
         so.graph_optimization_level = _graph_opt_level(ort, a.graph_opt)
         if a.ep == "amdgpu":
-            from radeon_ort.amdgpu_session import create_amdgpu_session
+            from radeon_ort.rca2a_ep import create_amdgpu_session
             return create_amdgpu_session(str(onnx_p), sess_options_override=so, target_luid=luid)
         if a.ep == "dml":
             from radeon_ort.dml_session import create_dml_session
@@ -339,8 +344,15 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
     sess = make_session(0)
     create_s = time.monotonic() - t0
     _native_done()
+    final_providers = sess.get_providers()
     em.emit("session_created", "SESSION_CREATE_END", mark="end", session_ordinal=0,
-            role="final", providers=sess.get_providers(), create_s=round(create_s, 3))
+            role="final", providers=final_providers, create_s=round(create_s, 3))
+    if a.ep == "amdgpu" and "AMDGPUExecutionProvider" not in final_providers:
+        # ORT python binding only WARNS on unknown provider names and silently
+        # rebuilds a CPU session — that must fail closed here (AGENTS.md rule 1)
+        em.emit("silent_cpu_fallback_blocked", "SESSION_CREATE_END", mark="fail",
+                providers=final_providers)
+        return 45
     em.emit("model_compile_observable", "MODEL_COMPILE_IF_OBSERVABLE", observable=False,
             note="compile embedded in InferenceSession ctor; no internal stage split claimed")
     _snapshot(em, "post_create", a.cache_watch)
@@ -438,7 +450,11 @@ def _run(a, em, out, case, ort, np, feeds, ref, atol, rtol, onnx_p) -> int:
                           "first_run_after_s": round(fr, 4),
                           "lat_ms_p50": round(float(np.median(cyc_lat)) * 1000, 2)})
         em.emit("session_recreated", "SESSION_RECREATE_END", mark="end", cycle=cyc,
-                recreate_s=round(rc_s, 3), first_run_after_s=round(fr, 4))
+                recreate_s=round(rc_s, 3), first_run_after_s=round(fr, 4),
+                providers=sess.get_providers())
+        if a.ep == "amdgpu" and "AMDGPUExecutionProvider" not in sess.get_providers():
+            em.emit("silent_cpu_fallback_blocked", "SESSION_RECREATE_END", mark="fail")
+            return 45
         if ref and a.ep != "cpu":
             pr = compare_outputs(ref, dict(zip(out_names, o2)), atol=atol, rtol=rtol)
             em.emit("parity_check", "SESSION_RECREATE_END", cycle=cyc,
