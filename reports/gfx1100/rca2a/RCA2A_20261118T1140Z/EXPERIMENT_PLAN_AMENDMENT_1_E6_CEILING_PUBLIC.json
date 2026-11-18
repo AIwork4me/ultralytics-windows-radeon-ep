@@ -1,0 +1,21 @@
+{
+ "schema": "rca2a_plan_amendment_v1",
+ "amendment_id": "AMENDMENT-1",
+ "created_utc": "2026-11-18T10:28:58+00:00",
+ "amends": "EXPERIMENT_PLAN_LOCK.json (plan_sha256 9956cb8acbc54267ef576afa2567c00588ffa1d976f44ab76fe815ea39c002ea) — APPEND-ONLY, original lock and its 900s evidence untouched",
+ "change": {
+  "phase_timeouts": {
+   "SESSION_CREATE": {
+    "was": 900,
+    "now": 2700
+   }
+  },
+  "scope": "E6_COMPUTE_MAX / yolo26n / single rep (rep 9, tag p2b) only"
+ },
+ "justification": [
+  "E6_COMPUTE_MAX yolo26n rep0 (p1) hit the pre-registered 900s SESSION_CREATE ceiling and was killed with evidence preserved (TIMEOUT_SESSION_CREATE).",
+  "E6_COMPUTE_MAX yolo26n rep1 (p1) completed CLEAN with create=572.8s, proving legitimate exhaustive tuning exceeds the default ceiling (~13x baseline 43.7s; canary probe showed ~20x on the tiny model).",
+  "2700s = 3x the single observed clean E6 create; bounded, pre-registered before the run, recorded via --session-create-ceiling in the receipt."
+ ],
+ "rtdetr_l_disposition": "BLOCKED_BY_PRESET_CEILING — estimated 13-20x of 115.6s baseline (~1500-2300s+) with wide uncertainty; a speculative ~30-40min run is not proportionate to the optional E6 question. Registered, not silently dropped."
+}

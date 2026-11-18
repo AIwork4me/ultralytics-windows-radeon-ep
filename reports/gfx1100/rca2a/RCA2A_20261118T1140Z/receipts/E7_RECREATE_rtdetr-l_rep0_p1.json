@@ -1,0 +1,152 @@
+{
+ "schema_version": "rca2a_receipt_v1",
+ "kind": "rca2a_attempt_receipt",
+ "attempt_id": "E7_RECREATE_rtdetr-l_rep0_p1",
+ "arm": "E7_RECREATE",
+ "model": "rtdetr-l",
+ "rep": 0,
+ "ep": "amdgpu",
+ "classification": "CLEAN_COMPLETE",
+ "child_exit_code": 0,
+ "killed_by_watchdog": false,
+ "stall": null,
+ "wall_s": 354.4,
+ "onnx_sha256": "85f19ea31ed6a7df7e35033cbe0829b843c24caa27921e74914d0bd089ca886f",
+ "input_sha256": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+ "plan_sha256": "9956cb8acbc54267ef576afa2567c00588ffa1d976f44ab76fe815ea39c002ea",
+ "code_git_sha": "",
+ "worktree_dirty": false,
+ "main_base_sha": "492975284f7c93684d6dbd67801a5634f450f7a0",
+ "env_expected": {},
+ "env_echoed": {},
+ "timeline": [
+  {
+   "phase": "EP_DISCOVERY",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DLL_REGISTER",
+   "mark": "begin"
+  },
+  {
+   "phase": "GPU_IDENTITY_RESOLVE",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DEVICE_PROBE",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_CREATE_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "FIRST_RUN_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "WARMUP_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "STEADY_RUN_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_RECREATE_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_RECREATE_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_TEARDOWN_BEGIN",
+   "mark": "begin"
+  }
+ ],
+ "phases": {
+  "session_create_s": 115.219,
+  "first_run_s": 0.047,
+  "warmup": {
+   "p50": 15.5,
+   "max": 32.0
+  },
+  "steady": {
+   "p50": 16.0,
+   "p95": 16.0,
+   "p99": 31.0,
+   "mean": 12.65,
+   "n": 200
+  },
+  "steady_effective_s": 2.6,
+  "recreates": [
+   {
+    "cycle": 0,
+    "recreate_s": 115.828,
+    "first_run_after_s": 0.031,
+    "lat_ms_p50": 15.5
+   },
+   {
+    "cycle": 1,
+    "recreate_s": 116.531,
+    "first_run_after_s": 0.016,
+    "lat_ms_p50": 16.0
+   }
+  ]
+ },
+ "cache_verdict": {
+  "label": "CACHE_NO_EFFECT_OBSERVED",
+  "snapshots": [
+   "pre_session",
+   "post_create",
+   "post_first_run",
+   "final"
+  ],
+  "watch": [
+   "%RUN_ROOT%\\CACHE_LABS\\E7_RECREATE"
+  ],
+  "switch_recognized": false,
+  "second_process_evidence": null
+ },
+ "gpu_validation": {
+  "checks": [
+   {
+    "check": "ep_device_probe_event",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "luid_match_basis",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "amdgpu_provider_present",
+    "ok": true,
+    "detail": "['AMDGPUExecutionProvider', 'CPUExecutionProvider']"
+   },
+   {
+    "check": "output_names_match",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "supervisor_independent_parity",
+    "ok": true,
+    "detail": "max_abs=9.365e-06"
+   },
+   {
+    "check": "profile_ep_nodes_positive",
+    "ok": true,
+    "detail": "nodes=11"
+   }
+  ],
+  "supervisor_parity_max_abs": 9.365379810333252e-06,
+  "profile_ep_node_count": 11,
+  "verdict": "GPU_PASS_VALIDATED"
+ },
+ "events_count": 38,
+ "finished_utc": "2026-11-18T04:58:52Z",
+ "attempt_dir": "%RUN_ROOT%\\attempts\\E7_RECREATE_rtdetr-l_rep0_p1"
+}

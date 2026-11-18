@@ -1,0 +1,38 @@
+{
+ "schema": "rca2a_plan_amendment_v1",
+ "amendment_id": "AMENDMENT-2",
+ "created_utc": "2026-11-18T10:28:58+00:00",
+ "amends": "APPEND-ONLY phase-4 additions; the original 36-attempt lock is untouched",
+ "new_sub_plans": {
+  "PHASE4_E1_TRACE": {
+   "purpose": "E1 diagnostic: MIGRAPHX_TRACE_BENCHMARKING=1 on yolo26n, expect benchmarking trace lines then EP_FAIL at session create (RCA2A-003); bounded, never mixed with timing arms",
+   "arm": "E1_TRACE|MIGRAPHX_TRACE_BENCHMARKING:1|%CACHE%",
+   "steady_iters": 200,
+   "stop_after": "FIRST_RUN"
+  },
+  "PHASE4_E8_DML": {
+   "purpose": "E8 negative control: same case/oracle on DirectML; can never substitute an AMDGPU gate",
+   "arm": "E8_DML (ep=dml set post-freeze before any run)",
+   "steady_iters": 200,
+   "code_note": "requires RCA2A-008 fix (dml_session sess_options_override); frozen before execution"
+  },
+  "PHASE4_SOAK_YOLO": {
+   "purpose": "P0-B 15-min effective steady soak, mxr cache-reuse path, 2 session recreates as mid-run parity checkpoints",
+   "arm": "SOAK_MXR_CACHE|ORT_MIGRAPHX_CACHE_DIR=<abs mxr_shared>|<abs mxr_shared>|2",
+   "steady_iters": 225000,
+   "basis": "E4 rep1 yolo26n steady_effective 0.8s/200it = 4.0ms/it -> 225000it ~= 900s"
+  },
+  "PHASE4_SOAK_RTDETR": {
+   "purpose": "same for rtdetr-l",
+   "arm": "SOAK_MXR_CACHE|...",
+   "steady_iters": 69000,
+   "basis": "E4 rep1 rtdetr-l steady_effective 2.6s/200it = 13ms/it -> 69000it ~= 897s"
+  }
+ },
+ "soak_acceptance": [
+  "initialization (create_s) and effective steady seconds reported separately",
+  ">=1 session recreate with parity re-check (worker revalidates providers + compare_outputs per recreate)",
+  "first-run parity + per-recreate parity + outputs_last.npz; supervisor re-derives GPU_PASS from profile + npz",
+  "FILE stdio contract inherited from supervisor (RCA1 dee28a9)"
+ ]
+}

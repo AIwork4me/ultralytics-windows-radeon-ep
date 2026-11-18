@@ -1,0 +1,335 @@
+{
+ "schema": "rca2a_capability_matrix_v1",
+ "ep_dir": "C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider",
+ "dlls": {
+  "amdgpu-ep.dll": {
+   "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+   "n_strings": 810
+  },
+  "migraphx-backend.dll": {
+   "sha256": "db3b66941d77a43a96ace7078d664e5ca3852473f90f77d44a1c00300d9e7264",
+   "n_strings": 2903
+  },
+  "migraphx_gpu.dll": {
+   "sha256": "d6e842770a8a8c0ae8237faf3fa7f7b06b6ef3a0f522baa868b40a6537bd96ef",
+   "n_strings": 164025
+  },
+  "migraphx.dll": {
+   "sha256": "1b14623bbc2b9ae1e328511d1b078b358cad2a3d5b01d9246cb97638c1d987fe",
+   "n_strings": 6259
+  }
+ },
+ "switches": {
+  "MIGRAPHX_TRACE_BENCHMARKING": {
+   "upstream": {
+    "repo": "ROCm/AMDMIGraphX@2e2cb92",
+    "file": "docs/reference/MIGraphX-dev-env-vars.rst",
+    "note": "1 basic / 2 detailed / 3 compiled traces"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": true,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "MIGRAPHX_SKIP_BENCHMARKING": {
+   "upstream": {
+    "repo": "ROCm/AMDMIGraphX@2e2cb92",
+    "file": "docs/reference/MIGraphX-dev-env-vars.rst",
+    "note": "skip MIGraphX+rocMLIR kernel benchmarking"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": true,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "MIGRAPHX_GPU_OPTIONS": {
+   "upstream": {
+    "repo": "ROCm/AMDMIGraphX@2e2cb92",
+    "file": "src/targets/gpu/target.cpp get_backend_options",
+    "note": "JSON-like override of gpu backend options incl. problem_cache_files / binary_cache"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": true,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "MIGRAPHX_PROBLEM_CACHE": {
+   "upstream": {
+    "repo": "upstream main uses problem_cache_files backend option; env var mentioned only in EP comment",
+    "file": "onnxruntime-ep-amdgpu src/migraphx/mgx_ep.cc",
+    "note": "EP delivers read-only list via compile API, explicitly NOT via this env var"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "MIGRAPHX_BINARY_CACHE": {
+   "upstream": {
+    "repo": "ROCm/AMDMIGraphX@2e2cb92",
+    "file": "src/targets/gpu/include/migraphx/gpu/binary_cache.hpp",
+    "note": "default binary-cache dir env var (newer gen)"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_PROBLEM_CACHE": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_ep.cc setup_problem_cache_paths",
+    "note": "prepends a user file to the read-only search list"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_CACHE_DIR": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_ep.cc (cache_dir_ / mxr)",
+    "note": "compiled-model (.mxr) cache directory"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_EXHAUSTIVE_TUNE": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_program_ops.cc compile_program",
+    "note": "set_exhaustive_tune_flag"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_COMPUTE_MODE": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_ep.cc",
+    "note": "eager|balanced|maximum; unknown -> warning + keep"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_FORCE_RECOMPILE": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_ep.cc load_compiled_program gate",
+    "note": "bypass .mxr load"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "ORT_MIGRAPHX_DISABLE_COMPILED_MODEL_CACHING": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/migraphx/mgx_ep.cc save gate",
+    "note": "disables .mxr save"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": true,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "provider_option:cache_dir": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/amdgpu/gpu_options.h",
+    "note": "EP provider option relayed to migraphx backend"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "provider_option:exhaustive_tune": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/amdgpu/gpu_options.h"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "provider_option:compute_mode": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/amdgpu/gpu_options.h"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "provider_option:force_recompile": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/amdgpu/gpu_options.h"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "provider_option:disable_caching": {
+   "upstream": {
+    "repo": "onnxruntime/onnxruntime-ep-amdgpu main",
+    "file": "src/amdgpu/gpu_options.h"
+   },
+   "dll": {
+    "recognized": false,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": false,
+     "migraphx.dll": false
+    }
+   }
+  },
+  "MIGRAPHX_MLIR_TUNING_DB": {
+   "upstream": {
+    "repo": "shipped migraphx_gpu.dll v2_17_0 string: 'MLIR tuning db not found. Please set MIGRAPHX_MLIR_TUNING_DB for optimal performance.'",
+    "file": "shipped binary strings",
+    "note": "older-gen MLIR tuning database"
+   },
+   "dll": {
+    "recognized": true,
+    "hits": {
+     "amdgpu-ep.dll": false,
+     "migraphx-backend.dll": false,
+     "migraphx_gpu.dll": true,
+     "migraphx.dll": false
+    }
+   }
+  }
+ },
+ "physical_probes": {
+  "baseline": {
+   "verdict": "EFFECT_CONFIRMED",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_baseline",
+   "rc": 0,
+   "auto_save_failed_windowsapps": true,
+   "tuning_db_warning": false
+  },
+  "trace_bench_2": {
+   "verdict": "PROBE_ERROR",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_trace_bench_2",
+   "rc": 1
+  },
+  "skip_benchmark_with_trace": {
+   "verdict": "NO_BENCH_LINES_EITHER_WAY",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_skip_benchmark_with_trace",
+   "rc": 0,
+   "benchmark_log_lines": []
+  },
+  "mxr_cache_ort_env": {
+   "verdict": "EFFECT_CONFIRMED",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_mxr_cache_ort_env",
+   "rc": 0,
+   "mxr_files": [
+    {
+     "rel": "21100-e703a7fc41b4615e-9880cf1608079e0d-32-510799189cd4b485.mxr",
+     "bytes": 270891
+    }
+   ]
+  },
+  "trace_bench_1": {
+   "verdict": "PROBE_ERROR",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_trace_bench_1",
+   "rc": 1
+  },
+  "problem_cache_ort_env_read": {
+   "verdict": "RECOGNIZED_BUT_NO_EFFECT",
+   "probe_dir": "%RUN_ROOT%\\PROBES\\probe_problem_cache_ort_env_read",
+   "rc": 0,
+   "cache_related_log_lines": [],
+   "auto_save_failed_windowsapps": false
+  }
+ }
+}

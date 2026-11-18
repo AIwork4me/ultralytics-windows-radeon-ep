@@ -1,0 +1,224 @@
+{
+ "schema": "rca2a_soak_results_v1",
+ "soaks": [
+  {
+   "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep0_p2",
+   "model": "rtdetr-l",
+   "root": "PHASE4_SOAK_RTDETR",
+   "classification": "CLEAN_COMPLETE",
+   "verdict": "GPU_PASS_VALIDATED",
+   "session_create_s": 3.688,
+   "steady_effective_s": 943.5,
+   "effective_steady_minutes": 15.72,
+   "steady_mean_ms": 12.82,
+   "steady_n_iters": 72500,
+   "recreates": [
+    {
+     "cycle": 0,
+     "recreate_s": 3.609,
+     "first_run_after_s": 0.032,
+     "parity_rechecked": true
+    },
+    {
+     "cycle": 1,
+     "recreate_s": 3.704,
+     "first_run_after_s": 0.031,
+     "parity_rechecked": true
+    }
+   ],
+   "watchdog_kills": false,
+   "child_exit_code": 0,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": true,
+    "clean_exit": true,
+    "gpu_pass": true,
+    "recreate_count": 2
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
+   "model": "yolo26n",
+   "root": "PHASE4_SOAK_YOLO",
+   "classification": "CLEAN_COMPLETE",
+   "verdict": "GPU_PASS_VALIDATED",
+   "session_create_s": 0.766,
+   "steady_effective_s": 877.7,
+   "effective_steady_minutes": 14.63,
+   "steady_mean_ms": 2.87,
+   "steady_n_iters": 300000,
+   "recreates": [
+    {
+     "cycle": 0,
+     "recreate_s": 0.641,
+     "first_run_after_s": 0.016,
+     "parity_rechecked": true
+    },
+    {
+     "cycle": 1,
+     "recreate_s": 0.625,
+     "first_run_after_s": 0.015,
+     "parity_rechecked": true
+    }
+   ],
+   "watchdog_kills": false,
+   "child_exit_code": 0,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": false,
+    "clean_exit": true,
+    "gpu_pass": true,
+    "recreate_count": 2
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep1_pub",
+   "model": "rtdetr-l",
+   "root": "PUBCONF_SOAK_RTDETR",
+   "classification": "RUNTIME_ERROR",
+   "verdict": "GPU_PASS_INVALIDATED",
+   "session_create_s": null,
+   "steady_effective_s": null,
+   "effective_steady_minutes": 0.0,
+   "steady_mean_ms": null,
+   "steady_n_iters": null,
+   "recreates": [],
+   "watchdog_kills": false,
+   "child_exit_code": 42,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": false,
+    "clean_exit": false,
+    "gpu_pass": false,
+    "recreate_count": 0
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep1_pub2",
+   "model": "rtdetr-l",
+   "root": "PUBCONF_SOAK_RTDETR",
+   "classification": "CLEAN_COMPLETE",
+   "verdict": "GPU_PASS_VALIDATED",
+   "session_create_s": 3.75,
+   "steady_effective_s": 924.6,
+   "effective_steady_minutes": 15.41,
+   "steady_mean_ms": 12.54,
+   "steady_n_iters": 72500,
+   "recreates": [
+    {
+     "cycle": 0,
+     "recreate_s": 3.703,
+     "first_run_after_s": 0.031,
+     "parity_rechecked": true
+    },
+    {
+     "cycle": 1,
+     "recreate_s": 3.828,
+     "first_run_after_s": 0.031,
+     "parity_rechecked": true
+    }
+   ],
+   "watchdog_kills": false,
+   "child_exit_code": 0,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": true,
+    "clean_exit": true,
+    "gpu_pass": true,
+    "recreate_count": 2
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
+   "model": "yolo26n",
+   "root": "PUBCONF_SOAK_YOLO",
+   "classification": "CLEAN_COMPLETE",
+   "verdict": "GPU_PASS_VALIDATED",
+   "session_create_s": 0.766,
+   "steady_effective_s": 916.8,
+   "effective_steady_minutes": 15.28,
+   "steady_mean_ms": 2.85,
+   "steady_n_iters": 315000,
+   "recreates": [
+    {
+     "cycle": 0,
+     "recreate_s": 0.625,
+     "first_run_after_s": 0.015,
+     "parity_rechecked": true
+    },
+    {
+     "cycle": 1,
+     "recreate_s": 0.609,
+     "first_run_after_s": 0.016,
+     "parity_rechecked": true
+    }
+   ],
+   "watchdog_kills": false,
+   "child_exit_code": 0,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": true,
+    "clean_exit": true,
+    "gpu_pass": true,
+    "recreate_count": 2
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_yolo26n_rep1_pub",
+   "model": "yolo26n",
+   "root": "PUBCONF_SOAK_YOLO",
+   "classification": "RUNTIME_ERROR",
+   "verdict": "GPU_PASS_INVALIDATED",
+   "session_create_s": null,
+   "steady_effective_s": null,
+   "effective_steady_minutes": 0.0,
+   "steady_mean_ms": null,
+   "steady_n_iters": null,
+   "recreates": [],
+   "watchdog_kills": false,
+   "child_exit_code": 42,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": false,
+    "clean_exit": false,
+    "gpu_pass": false,
+    "recreate_count": 0
+   }
+  },
+  {
+   "attempt": "SOAK_MXR_CACHE_yolo26n_rep1_pub2",
+   "model": "yolo26n",
+   "root": "PUBCONF_SOAK_YOLO",
+   "classification": "CLEAN_COMPLETE",
+   "verdict": "GPU_PASS_VALIDATED",
+   "session_create_s": 0.782,
+   "steady_effective_s": 903.5,
+   "effective_steady_minutes": 15.06,
+   "steady_mean_ms": 2.8,
+   "steady_n_iters": 315000,
+   "recreates": [
+    {
+     "cycle": 0,
+     "recreate_s": 0.657,
+     "first_run_after_s": 0.015,
+     "parity_rechecked": true
+    },
+    {
+     "cycle": 1,
+     "recreate_s": 0.625,
+     "first_run_after_s": 0.016,
+     "parity_rechecked": true
+    }
+   ],
+   "watchdog_kills": false,
+   "child_exit_code": 0,
+   "acceptance": {
+    "effective_steady_s_min": 900,
+    "meets": true,
+    "clean_exit": true,
+    "gpu_pass": true,
+    "recreate_count": 2
+   }
+  }
+ ]
+}

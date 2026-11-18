@@ -1,0 +1,98 @@
+{
+ "schema_version": "rca2a_receipt_v1",
+ "kind": "rca2a_attempt_receipt",
+ "attempt_id": "E6_COMPUTE_MAX_rtdetr-l_rep0_p1",
+ "arm": "E6_COMPUTE_MAX",
+ "model": "rtdetr-l",
+ "rep": 0,
+ "ep": "amdgpu",
+ "classification": "TIMEOUT_SESSION_CREATE",
+ "child_exit_code": 1,
+ "killed_by_watchdog": true,
+ "stall": {
+  "phase": "SESSION_CREATE",
+  "ceiling_s": 900
+ },
+ "wall_s": 903.1,
+ "onnx_sha256": "85f19ea31ed6a7df7e35033cbe0829b843c24caa27921e74914d0bd089ca886f",
+ "input_sha256": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+ "plan_sha256": "9956cb8acbc54267ef576afa2567c00588ffa1d976f44ab76fe815ea39c002ea",
+ "code_git_sha": "",
+ "worktree_dirty": false,
+ "main_base_sha": "492975284f7c93684d6dbd67801a5634f450f7a0",
+ "env_expected": {
+  "ORT_MIGRAPHX_COMPUTE_MODE": "maximum"
+ },
+ "env_echoed": {
+  "ORT_MIGRAPHX_COMPUTE_MODE": "maximum"
+ },
+ "timeline": [
+  {
+   "phase": "EP_DISCOVERY",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DLL_REGISTER",
+   "mark": "begin"
+  },
+  {
+   "phase": "GPU_IDENTITY_RESOLVE",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DEVICE_PROBE",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_CREATE_BEGIN",
+   "mark": "begin"
+  }
+ ],
+ "phases": {
+  "session_create_s": null,
+  "first_run_s": null,
+  "warmup": null,
+  "steady": null,
+  "steady_effective_s": null,
+  "recreates": null
+ },
+ "cache_verdict": {
+  "label": "CACHE_NO_EFFECT_OBSERVED",
+  "snapshots": [
+   "pre_session"
+  ],
+  "watch": [
+   "%RUN_ROOT%\\CACHE_LABS\\E6_COMPUTE_MAX"
+  ],
+  "switch_recognized": true,
+  "second_process_evidence": null
+ },
+ "gpu_validation": {
+  "checks": [
+   {
+    "check": "ep_device_probe_event",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "luid_match_basis",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "outputs_npz_present",
+    "ok": false,
+    "detail": ""
+   },
+   {
+    "check": "profile_parse",
+    "ok": false,
+    "detail": "Expecting value: line 1 column 1 (char 0)"
+   }
+  ],
+  "verdict": "GPU_PASS_INVALIDATED"
+ },
+ "events_count": 10,
+ "finished_utc": "2026-11-18T04:52:37Z",
+ "attempt_dir": "%RUN_ROOT%\\attempts\\E6_COMPUTE_MAX_rtdetr-l_rep0_p1"
+}
