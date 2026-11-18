@@ -170,3 +170,20 @@ problem_cache）均不同，报告与 PR 描述必须分层陈述。
   fail-closed/非 AMD fail-closed/amdgpu 路径回归），全套 42/42。
 - **纪律**：rep0_p2 收据原样保留（INVALIDATED 是当时验证器的真实输出）；
   修复后以新 attempt（rep1_p2b）重跑 E8 出具有效收据；两次收据同存。
+
+## RCA2A-010 — STAGING 镜像滞后：worker/probe 停留在 v1 版本 → C1 分支 amdgpu 路径损坏 — CONFIRMED (caught by PUBCONF, fixed)
+
+- **现象**：PUBCONF 确认套件（发布头 7392be11）16 个 amdgpu 臂 2.1s 内全部
+  rc=42（`ImportError: cannot import name '_ensure_amdgpu_registered' from
+  'radeon_ort.amdgpu_session'`），E8 DML 臂通过 → 单点定位到
+  `runner/rca2a_worker.py` 内容错误。
+- **root cause**：C1 的树取自 `$RUN/STAGING`，而 STAGING 的
+  rca2a_worker.py/rca2a_probe.py 是 G2 期（v1，2c1f44/5f4837）旧版；
+  物理实验全部在 $WT 终版（v2 起 2f6fbd/cfeafc，RUN_CODE_MANIFEST v2/v3
+  一致）上执行，STAGING 未随后同步 worker/probe 两个文件。
+- **这正是 PUBCONF 存在的意义**：PUBLICATION_CODE_NOT_PHYSICALLY_VALIDATED
+  条款在 PR 创建之前拦截了不一致代码；16 份失败收据（code_git_sha=
+  7392be11, worktree_dirty=false）如实保留。
+- **修复**：STAGING←$WT 终版全量对齐（仅此 2 文件陈旧，其余 11 个代码文件
+  均一致）；追加修复 commit C2（parent=C1，不改写历史）；C2 头重跑全套
+  PUBCONF。残余风险：无——v2 worker 正是产出全部既有 GPU 收据的版本。

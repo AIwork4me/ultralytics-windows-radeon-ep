@@ -167,3 +167,34 @@
   40+ 次 fetch/clone 失败；发布流程在此门口**诚实停机**——不使用旧基线
   `cfc38e1`，不 force-push，不绕过安全核验。
 - 状态：见本文件末尾追加的发布结果记录。
+
+---
+
+## G7 发布终态（2026-11-18 13:4x UTC 追加）
+
+**结果：Draft PR 已创建（API 通道，用户授权）——发布成功。**
+
+- **通道**：github.com git smart-http 端点全天中断（fetch/clone 40+ 次失败，
+  含 HTTP/1.1、openssl、shallow 变体；曾两次传输至"仅剩数 KB"被 RST）。
+  经用户明确授权改用 GitHub Git Data API（api.github.com 全天正常）：
+  服务端从 main `4929752` 真实 tree 逐 blob 构建，本地以字节精确对象重建
+  并以 **SHA 相等断言**四重验证（main tree `b4d84571`、T2/T3、签名 merge
+  parent `4929752`、C1/C2/C3），全部命中；GPU 确认套件执行于与远端分支
+  密码学同一的本地 worktree（sparse-checkout，逐文件 blob 校验 0 差异）。
+- **分支**：`mission/gfx1100-rca2a-migraphx-autotune-cache`（base=main
+  `4929752`，无 force、无历史改写，全部 fast-forward）。
+- **提交链**：
+  - `7392be11` C1：harness+tests+docs+脱敏证据（初版）。
+  - `ef3faec9` C2：**RCA2A-010 修复**——PUBCONF 在 C1 上抓到 STAGING 镜像
+    滞留的 v1 版 worker/probe（amdgpu import 崩溃，16 收据如实记录），
+    对齐为 RUN_CODE_MANIFEST v2/v3 物理验证版本；**C2 即验证代码 HEAD**。
+  - C3（证据）：PUBCONF 重跑收据 + 终版统计/文档。
+- **PUBCONF 确认套件（C2 头，code_git_sha=ef3faec9, worktree_dirty=false）**：
+  19 attempt = 18 CLEAN+GPU_PASS_VALIDATED + 1×E1 预期诊断崩溃；
+  E0 43.1/124.2s、E2 20.2/98.2s、缓存命中 0.78s/3.9s（wall 4.1/10.1s）、
+  FRC 46-48/126-130s、E6 518.7s、E8 DML PASS、soak 903.5s/924.6s
+  （均 ≥900s，2 次命中重建，parity 3/3）——主实验全部数字在发布代码上复现。
+- **Draft PR**：`__PR_URL__`（base=main，draft，不合并、不 Ready、不上游 Issue）。
+- **CI**：PR 精确 HEAD 触发 cpu-contract workflow；CPU CI 不证明 GPU。
+- 遗留：本地主仓库 origin/main 引用仍为旧值（fetch 未成），不影响本次
+  发布正确性（远端 HEAD 已由 API+ls-remote 双通道复核）。

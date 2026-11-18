@@ -1,7 +1,9 @@
 # RCA2A Review Index — what to read, in what order, and where every claim lives
 
 Reviewer fast-path (Owner/ChatGPT). PR base: `main` @ `492975284f7c93684d6dbd67801a5634f450f7a0`.
-Branch HEAD / PR URL / CI run: appended at publication time (see final report §B).
+Branch: mission/gfx1100-rca2a-migraphx-autotune-cache (created via the GitHub Git Data API while the git smart-http endpoint was down; every object byte-exactly reconstructed locally and SHA-verified; GPU confirmation suite ran from a cryptographically identical local worktree).
+Commit map: 7392be11 initial tree (PUBCONF caught RCA2A-010 stale STAGING worker/probe — 16 failed receipts retained) → ef3faec9 fix + **validated code HEAD** (all PUBCONF receipts: code_git_sha=ef3faec9, worktree_dirty=false) → evidence commit (receipts/stats/docs only).
+PR URL / CI run: see PR (this branch).
 
 ## 1. One-paragraph claim
 
@@ -48,7 +50,8 @@ cache** tokens are absent — four distinct layers, four distinct verdicts.
 - `src/radeon_ort/dml_session.py` — **one backward-compatible keyword added**
   (`sess_options_override`, RCA2A-008; see `main_overrides/README.md`).
 - `tests/unit/test_rca2a_units.py`, `tests/unit/test_rca2a_dml_override.py`,
-  `tests/adversarial/test_rca2a_adversarial.py` — 38 CPU tests incl. forged-
+  `tests/unit/test_rca2a_dml_validation.py`,
+  `tests/adversarial/test_rca2a_adversarial.py` — 42 CPU tests incl. forged-
   label, missing-event, CPU-fallback-forgery, cache-confusion adversarial cases.
 
 ## 4. Review questions the submitter explicitly flags
@@ -69,3 +72,12 @@ cache** tokens are absent — four distinct layers, four distinct verdicts.
 95 GB historical freeze, RCA1 raw tree, ONNX/PT/mxr binaries, raw tensors,
 full soak ORT profiles, host identifiers. `LOCAL_RAW_EVIDENCE_INDEX.json`
 holds SHA256 anchors for withheld artifacts.
+
+## 6. PUBCONF confirmation (published-HEAD rerun)
+
+17+2 attempts re-executed from the exact branch HEAD `ef3faec9` after the
+RCA2A-010 fix: E0/E2/E7 ×2 models, E4 fill→FRC→hit→FRC ×2 models
+(hit 0.78 s / 3.9 s), E6@2700 s (518.7 s), E1 trace (expected crash),
+E8 DML PASS, soaks 903.5 s / 924.6 s. 18/19 CLEAN GPU_PASS_VALIDATED.
+The 16 C1-era failed receipts (ImportError) are preserved in the same
+package as failure→repair→rerun evidence.

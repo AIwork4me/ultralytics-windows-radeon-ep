@@ -304,6 +304,32 @@
      "recreates": []
     },
     {
+     "attempt": "E1_TRACE_yolo26n_rep1_pub",
+     "root": "PHASE4_E1_TRACE",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E1_TRACE_yolo26n_rep1_pub2",
+     "root": "PHASE4_E1_TRACE",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 38.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
      "attempt": "E8_DML_yolo26n_rep0_p2",
      "root": "PHASE4_E8_DML",
      "classification": "CLEAN_COMPLETE",
@@ -325,6 +351,32 @@
      "first_run_s": 0.0,
      "warmup_p50_ms": 0.0,
      "steady_mean_ms": 2.42,
+     "steady_effective_s": 0.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E8_DML_yolo26n_rep2_pub",
+     "root": "PHASE4_E8_DML",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 2.2,
+     "session_create_s": 0.187,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.35,
+     "steady_effective_s": 0.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E8_DML_yolo26n_rep3_pub2",
+     "root": "PHASE4_E8_DML",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 2.2,
+     "session_create_s": 0.187,
+     "first_run_s": 0.0,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.34,
      "steady_effective_s": 0.5,
      "steady_n": 200,
      "recreates": []
@@ -356,6 +408,227 @@
      ]
     },
     {
+     "attempt": "E0_BASELINE_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.2,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep1_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep1_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E6_COMPUTE_MAX_yolo26n_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.2,
+     "session_create_s": 43.078,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 20.2,
+     "session_create_s": 17.86,
+     "first_run_s": 0.032,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 132.3,
+     "session_create_s": 43.547,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 42.906,
+       "first_run_after_s": 0.032,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 42.969,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.2,
+     "session_create_s": 43.859,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.81,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 48.2,
+     "session_create_s": 44.172,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.81,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep1_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 4.1,
+     "session_create_s": 0.781,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep1_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.2,
+     "session_create_s": 43.812,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E6_COMPUTE_MAX_yolo26n_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 518.7,
+     "session_create_s": 516.141,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.81,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
      "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
      "root": "PUBCONF_SOAK_YOLO",
      "classification": "CLEAN_COMPLETE",
@@ -380,30 +653,69 @@
        "lat_ms_p50": 0.0
       }
      ]
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_yolo26n_rep1_pub",
+     "root": "PUBCONF_SOAK_YOLO",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_yolo26n_rep1_pub2",
+     "root": "PUBCONF_SOAK_YOLO",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 910.2,
+     "session_create_s": 0.782,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.8,
+     "steady_effective_s": 903.5,
+     "steady_n": 315000,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 0.657,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 0.625,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      }
+     ]
     }
    ],
    "arm_create": {
     "E0_BASELINE": {
-     "n": 3,
-     "mean": 43.6353,
-     "p50": 43.656,
-     "p95": 43.9233,
-     "p99": 43.9471,
-     "std": 0.2682,
-     "min": 43.297,
+     "n": 4,
+     "mean": 43.496,
+     "p50": 43.4765,
+     "p95": 43.9085,
+     "p99": 43.9441,
+     "std": 0.335,
+     "min": 43.078,
      "max": 43.953,
      "ci95_median": [
-      43.297,
+      43.078,
       43.953
      ]
     },
     "E2_SKIP_BENCH": {
-     "n": 3,
-     "mean": 17.797,
-     "p50": 17.75,
-     "p95": 17.9048,
-     "p99": 17.9186,
-     "std": 0.0893,
+     "n": 4,
+     "mean": 17.8128,
+     "p50": 17.805,
+     "p95": 17.9127,
+     "p99": 17.9201,
+     "std": 0.082,
      "min": 17.719,
      "max": 17.922,
      "ci95_median": [
@@ -412,26 +724,26 @@
      ]
     },
     "E4_MXR_CACHE": {
-     "n": 4,
-     "mean": 11.8245,
+     "n": 6,
+     "mean": 15.323,
      "p50": 0.8985,
-     "p95": 38.1771,
-     "p99": 43.4234,
-     "std": 19.0011,
+     "p95": 44.516,
+     "p99": 44.6912,
+     "std": 20.4894,
      "min": 0.766,
      "max": 44.735,
      "ci95_median": [
-      0.766,
-      44.735
+      0.7735,
+      44.297
      ]
     },
     "E4_MXR_FRC": {
-     "n": 3,
-     "mean": 43.8953,
-     "p50": 43.578,
-     "p95": 44.5338,
-     "p99": 44.6188,
-     "std": 0.5285,
+     "n": 5,
+     "mean": 43.934,
+     "p50": 43.812,
+     "p95": 44.5464,
+     "p99": 44.6213,
+     "std": 0.4275,
      "min": 43.468,
      "max": 44.64,
      "ci95_median": [
@@ -440,12 +752,12 @@
      ]
     },
     "E6_COMPUTE_MAX": {
-     "n": 2,
-     "mean": 539.8435,
-     "p50": 539.8435,
-     "p95": 569.4872,
-     "p99": 572.1222,
-     "std": 32.9375,
+     "n": 3,
+     "mean": 531.9427,
+     "p50": 516.141,
+     "p95": 567.117,
+     "p99": 571.6482,
+     "std": 29.1221,
      "min": 506.906,
      "max": 572.781,
      "ci95_median": [
@@ -454,43 +766,43 @@
      ]
     },
     "E7_RECREATE": {
-     "n": 3,
-     "mean": 43.1307,
-     "p50": 43.204,
-     "p95": 43.2877,
-     "p99": 43.2951,
-     "std": 0.1737,
+     "n": 4,
+     "mean": 43.2347,
+     "p50": 43.2505,
+     "p95": 43.5095,
+     "p99": 43.5395,
+     "std": 0.2348,
      "min": 42.891,
-     "max": 43.297,
+     "max": 43.547,
      "ci95_median": [
       42.891,
-      43.297
+      43.547
      ]
     },
     "SOAK_MXR_CACHE": {
-     "n": 2,
-     "mean": 0.766,
+     "n": 3,
+     "mean": 0.7713,
      "p50": 0.766,
-     "p95": 0.766,
-     "p99": 0.766,
-     "std": 0.0,
+     "p95": 0.7804,
+     "p99": 0.7817,
+     "std": 0.0075,
      "min": 0.766,
-     "max": 0.766,
+     "max": 0.782,
      "ci95_median": [
       0.766,
-      0.766
+      0.782
      ]
     }
    },
    "arm_steady": {
     "E0_BASELINE": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 2.9133,
-      "p50": 2.96,
-      "p95": 2.969,
-      "p99": 2.9698,
-      "std": 0.0732,
+      "n": 4,
+      "mean": 2.9075,
+      "p50": 2.925,
+      "p95": 2.9685,
+      "p99": 2.9697,
+      "std": 0.0642,
       "min": 2.81,
       "max": 2.97
      },
@@ -498,12 +810,12 @@
     },
     "E2_SKIP_BENCH": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 2.9433,
+      "n": 4,
+      "mean": 2.95,
       "p50": 2.97,
       "p95": 2.97,
       "p99": 2.97,
-      "std": 0.0377,
+      "std": 0.0346,
       "min": 2.89,
       "max": 2.97
      },
@@ -511,12 +823,12 @@
     },
     "E4_MXR_CACHE": {
      "mean_of_means_ms": {
-      "n": 4,
-      "mean": 2.99,
-      "p50": 3.01,
-      "p95": 3.1775,
-      "p99": 3.1955,
-      "std": 0.1663,
+      "n": 6,
+      "mean": 2.9433,
+      "p50": 2.93,
+      "p95": 3.1625,
+      "p99": 3.1925,
+      "std": 0.1527,
       "min": 2.74,
       "max": 3.2
      },
@@ -524,12 +836,12 @@
     },
     "E4_MXR_FRC": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 2.99,
-      "p50": 3.04,
-      "p95": 3.184,
-      "p99": 3.1968,
-      "std": 0.1951,
+      "n": 5,
+      "mean": 2.934,
+      "p50": 2.89,
+      "p95": 3.168,
+      "p99": 3.1936,
+      "std": 0.1679,
       "min": 2.73,
       "max": 3.2
      },
@@ -537,130 +849,136 @@
     },
     "E6_COMPUTE_MAX": {
      "mean_of_means_ms": {
-      "n": 2,
-      "mean": 2.93,
-      "p50": 2.93,
-      "p95": 2.966,
-      "p99": 2.9692,
-      "std": 0.04,
-      "min": 2.89,
+      "n": 3,
+      "mean": 2.89,
+      "p50": 2.89,
+      "p95": 2.962,
+      "p99": 2.9684,
+      "std": 0.0653,
+      "min": 2.81,
       "max": 2.97
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "SOAK_MXR_CACHE": {
      "mean_of_means_ms": {
-      "n": 2,
-      "mean": 2.86,
-      "p50": 2.86,
-      "p95": 2.869,
-      "p99": 2.8698,
-      "std": 0.01,
-      "min": 2.85,
+      "n": 3,
+      "mean": 2.84,
+      "p50": 2.85,
+      "p95": 2.868,
+      "p99": 2.8696,
+      "std": 0.0294,
+      "min": 2.8,
       "max": 2.87
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     }
    },
    "E0_vs_E2_create": {
-    "pairs": 3,
+    "pairs": 4,
     "e0_s": [
      43.656,
+     43.078,
      43.953,
      43.297
     ],
     "e2_s": [
      17.719,
      17.75,
-     17.922
+     17.922,
+     17.86
     ],
     "paired_improvement_pct": {
-     "pairs": 3,
-     "median_improvement_pct": 59.412,
+     "pairs": 4,
+     "median_improvement_pct": 59.01,
      "ci95": [
-      58.6068,
-      59.616
+      58.75,
+      59.4122
      ],
      "low_power": true
     },
-    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=3 independent processes)"
+    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=4 independent processes)"
    },
    "E4_cache_benefit": {
     "baseline_e0_create_s": {
-     "n": 3,
-     "mean": 43.6353,
-     "p50": 43.656,
-     "p95": 43.9233,
-     "p99": 43.9471,
-     "std": 0.2682,
-     "min": 43.297,
+     "n": 4,
+     "mean": 43.496,
+     "p50": 43.4765,
+     "p95": 43.9085,
+     "p99": 43.9441,
+     "std": 0.335,
+     "min": 43.078,
      "max": 43.953
     },
     "cold_tune_rep0_s": [
-     44.735
+     44.735,
+     43.859
     ],
     "cached_create_s": {
      "values": [
       0.781,
       0.766,
-      1.016
+      1.016,
+      0.781
      ],
-     "mean": 0.854
+     "mean": 0.836
     },
-    "cold_start_reduction_pct": 98.04,
+    "cold_start_reduction_pct": 98.08,
     "ci95_baseline_median": [
-     43.297,
+     43.078,
      43.953
     ],
     "ci95_cached_median": [
      0.766,
      1.016
     ],
-    "n_processes_cached": 3,
+    "n_processes_cached": 4,
     "low_power": true
    },
    "E4_MXR_FRC": {
     "frc_create_s": [
      44.64,
      43.468,
-     43.578
+     43.578,
+     44.172,
+     43.812
     ],
-    "frc_vs_baseline_ratio": 1.006,
+    "frc_vs_baseline_ratio": 1.01,
     "verdict": "FORCE_RECOMPILE_EFFECTIVE (create returned to baseline level despite populated .mxr)"
    },
    "steady_gates_mean_primary": {
     "E2_SKIP_BENCH": {
-     "baseline_mean_ms": 2.913,
-     "candidate_mean_ms": 2.943,
-     "regression_pct_mean": 1.03,
+     "baseline_mean_ms": 2.908,
+     "candidate_mean_ms": 2.95,
+     "regression_pct_mean": 1.46,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E4_MXR_CACHE": {
-     "baseline_mean_ms": 2.913,
-     "candidate_mean_ms": 2.99,
-     "regression_pct_mean": 2.63,
+     "baseline_mean_ms": 2.908,
+     "candidate_mean_ms": 2.943,
+     "regression_pct_mean": 1.23,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E4_MXR_FRC": {
-     "baseline_mean_ms": 2.913,
-     "candidate_mean_ms": 2.99,
-     "regression_pct_mean": 2.63,
+     "baseline_mean_ms": 2.908,
+     "candidate_mean_ms": 2.934,
+     "regression_pct_mean": 0.91,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E6_COMPUTE_MAX": {
-     "baseline_mean_ms": 2.913,
-     "candidate_mean_ms": 2.93,
-     "regression_pct_mean": 0.57,
+     "baseline_mean_ms": 2.908,
+     "candidate_mean_ms": 2.89,
+     "regression_pct_mean": -0.6,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "SOAK_MXR_CACHE": {
-     "baseline_mean_ms": 2.913,
-     "candidate_mean_ms": 2.86,
-     "regression_pct_mean": -1.83,
+     "baseline_mean_ms": 2.908,
+     "candidate_mean_ms": 2.84,
+     "regression_pct_mean": -2.32,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     }
@@ -672,7 +990,9 @@
      43.328,
      42.766,
      42.906,
-     43.062
+     43.062,
+     42.906,
+     42.969
     ],
     "first_run_after_s": [
      0.015,
@@ -680,31 +1000,33 @@
      0.016,
      0.015,
      0.016,
-     0.016
+     0.016,
+     0.032,
+     0.015
     ],
     "verdict": "IN_PROCESS_RECREATE_FULL_RECOMPILE (no warm in-process cache)"
    },
    "soak": {
-    "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
-    "session_create_s": 0.766,
-    "steady_effective_s": 916.8,
-    "steady_mean_ms": 2.85,
+    "attempt": "SOAK_MXR_CACHE_yolo26n_rep1_pub2",
+    "session_create_s": 0.782,
+    "steady_effective_s": 903.5,
+    "steady_mean_ms": 2.8,
     "steady_n": 315000,
     "recreates": [
      {
       "cycle": 0,
-      "recreate_s": 0.625,
+      "recreate_s": 0.657,
       "first_run_after_s": 0.015,
       "lat_ms_p50": 0.0
      },
      {
       "cycle": 1,
-      "recreate_s": 0.609,
+      "recreate_s": 0.625,
       "first_run_after_s": 0.016,
       "lat_ms_p50": 0.0
      }
     ],
-    "effective_steady_minutes": 15.28,
+    "effective_steady_minutes": 15.06,
     "meets_15min": true,
     "gate": "SOAK_15MIN_OK"
    }
@@ -996,126 +1318,363 @@
        "lat_ms_p50": 15.5
       }
      ]
+    },
+    {
+     "attempt": "E0_BASELINE_rtdetr-l_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_rtdetr-l_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_rtdetr-l_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep0_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep1_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep1_pub",
+     "root": "PUBCONF",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_rtdetr-l_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 124.2,
+     "session_create_s": 118.391,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 13.04,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_rtdetr-l_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 98.2,
+     "session_create_s": 91.609,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 15.4,
+     "steady_effective_s": 3.1,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_rtdetr-l_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 360.3,
+     "session_create_s": 118.75,
+     "first_run_s": 0.062,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.97,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 118.219,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 15.5
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 116.687,
+       "first_run_after_s": 0.047,
+       "lat_ms_p50": 15.5
+      }
+     ]
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 130.2,
+     "session_create_s": 125.204,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep0_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 128.2,
+     "session_create_s": 122.188,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep1_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 10.1,
+     "session_create_s": 3.735,
+     "first_run_s": 0.032,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep1_pub2",
+     "root": "PUBCONF",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 126.2,
+     "session_create_s": 121.109,
+     "first_run_s": 0.063,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.74,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep1_pub",
+     "root": "PUBCONF_SOAK_RTDETR",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 2.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep1_pub2",
+     "root": "PUBCONF_SOAK_RTDETR",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 938.9,
+     "session_create_s": 3.75,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.54,
+     "steady_effective_s": 924.6,
+     "steady_n": 72500,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 3.703,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 16.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 3.828,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 16.0
+      }
+     ]
     }
    ],
    "arm_create": {
     "E0_BASELINE": {
-     "n": 3,
-     "mean": 115.8693,
-     "p50": 115.64,
-     "p95": 116.3015,
-     "p99": 116.3603,
-     "std": 0.3581,
+     "n": 4,
+     "mean": 116.4998,
+     "p50": 116.0075,
+     "p95": 118.0886,
+     "p99": 118.3305,
+     "std": 1.1351,
      "min": 115.593,
-     "max": 116.375,
+     "max": 118.391,
      "ci95_median": [
       115.593,
-      116.375
+      118.391
      ]
     },
     "E2_SKIP_BENCH": {
-     "n": 3,
-     "mean": 89.0937,
-     "p50": 89.234,
-     "p95": 89.5157,
-     "p99": 89.5407,
-     "std": 0.4388,
+     "n": 4,
+     "mean": 89.7225,
+     "p50": 89.3905,
+     "p95": 91.2997,
+     "p99": 91.5471,
+     "std": 1.1536,
      "min": 88.5,
-     "max": 89.547,
+     "max": 91.609,
      "ci95_median": [
       88.5,
-      89.547
+      91.609
      ]
     },
     "E4_MXR_CACHE": {
-     "n": 4,
-     "mean": 33.3945,
+     "n": 6,
+     "mean": 43.7528,
      "p50": 3.953,
-     "p95": 104.2671,
-     "p99": 118.4158,
-     "std": 51.1294,
+     "p95": 124.3912,
+     "p99": 125.0414,
+     "std": 56.4532,
      "min": 3.719,
-     "max": 121.953,
+     "max": 125.204,
      "ci95_median": [
-      3.719,
-      121.953
+      3.727,
+      123.5785
      ]
     },
     "E4_MXR_FRC": {
-     "n": 3,
-     "mean": 122.7347,
-     "p50": 122.219,
-     "p95": 124.244,
-     "p99": 124.424,
-     "std": 1.2595,
-     "min": 121.516,
+     "n": 5,
+     "mean": 122.3002,
+     "p50": 122.188,
+     "p95": 124.019,
+     "p99": 124.379,
+     "std": 1.1625,
+     "min": 121.109,
      "max": 124.469,
      "ci95_median": [
-      121.516,
+      121.109,
       124.469
      ]
     },
     "E7_RECREATE": {
-     "n": 3,
-     "mean": 116.0937,
-     "p50": 115.875,
-     "p95": 117.0558,
-     "p99": 117.1608,
-     "std": 0.8182,
+     "n": 4,
+     "mean": 116.7578,
+     "p50": 116.531,
+     "p95": 118.5156,
+     "p99": 118.7031,
+     "std": 1.351,
      "min": 115.219,
-     "max": 117.187,
+     "max": 118.75,
      "ci95_median": [
       115.219,
-      117.187
+      118.75
      ]
     },
     "SOAK_MXR_CACHE": {
-     "n": 1,
-     "mean": 3.688,
-     "p50": 3.688,
-     "p95": 3.688,
-     "p99": 3.688,
-     "std": 0.0,
+     "n": 2,
+     "mean": 3.719,
+     "p50": 3.719,
+     "p95": 3.7469,
+     "p99": 3.7494,
+     "std": 0.031,
      "min": 3.688,
-     "max": 3.688,
-     "ci95_median": null
+     "max": 3.75,
+     "ci95_median": [
+      3.688,
+      3.75
+     ]
     }
    },
    "arm_steady": {
     "E0_BASELINE": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 12.6267,
-      "p50": 12.65,
-      "p95": 12.722,
-      "p99": 12.7284,
-      "std": 0.0953,
+      "n": 4,
+      "mean": 12.73,
+      "p50": 12.69,
+      "p95": 12.9935,
+      "p99": 13.0307,
+      "std": 0.1971,
       "min": 12.5,
-      "max": 12.73
+      "max": 13.04
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E2_SKIP_BENCH": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 15.1567,
-      "p50": 15.08,
-      "p95": 15.359,
-      "p99": 15.3838,
-      "std": 0.1682,
+      "n": 4,
+      "mean": 15.2175,
+      "p50": 15.235,
+      "p95": 15.3985,
+      "p99": 15.3997,
+      "std": 0.1798,
       "min": 15.0,
-      "max": 15.39
+      "max": 15.4
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E4_MXR_CACHE": {
      "mean_of_means_ms": {
-      "n": 4,
-      "mean": 12.6375,
-      "p50": 12.62,
-      "p95": 12.7995,
-      "p99": 12.8079,
-      "std": 0.1397,
+      "n": 6,
+      "mean": 12.695,
+      "p50": 12.775,
+      "p95": 12.81,
+      "p99": 12.81,
+      "std": 0.1401,
       "min": 12.5,
       "max": 12.81
      },
@@ -1123,123 +1682,129 @@
     },
     "E4_MXR_FRC": {
      "mean_of_means_ms": {
-      "n": 3,
-      "mean": 12.8367,
+      "n": 5,
+      "mean": 12.812,
       "p50": 12.81,
-      "p95": 12.882,
-      "p99": 12.8884,
-      "std": 0.0377,
-      "min": 12.81,
+      "p95": 12.874,
+      "p99": 12.8868,
+      "std": 0.0475,
+      "min": 12.74,
       "max": 12.89
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "SOAK_MXR_CACHE": {
      "mean_of_means_ms": {
-      "n": 1,
-      "mean": 12.82,
-      "p50": 12.82,
-      "p95": 12.82,
-      "p99": 12.82,
-      "std": 0.0,
-      "min": 12.82,
+      "n": 2,
+      "mean": 12.68,
+      "p50": 12.68,
+      "p95": 12.806,
+      "p99": 12.8172,
+      "std": 0.14,
+      "min": 12.54,
       "max": 12.82
      },
      "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     }
    },
    "E0_vs_E2_create": {
-    "pairs": 3,
+    "pairs": 4,
     "e0_s": [
      115.593,
+     118.391,
      115.64,
      116.375
     ],
     "e2_s": [
      89.234,
      88.5,
-     89.547
+     89.547,
+     91.609
     ],
     "paired_improvement_pct": {
-     "pairs": 3,
-     "median_improvement_pct": 23.053,
+     "pairs": 4,
+     "median_improvement_pct": 22.684,
      "ci95": [
-      22.8033,
-      23.4694
+      21.2812,
+      25.2477
      ],
      "low_power": true
     },
-    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=3 independent processes)"
+    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=4 independent processes)"
    },
    "E4_cache_benefit": {
     "baseline_e0_create_s": {
-     "n": 3,
-     "mean": 115.8693,
-     "p50": 115.64,
-     "p95": 116.3015,
-     "p99": 116.3603,
-     "std": 0.3581,
+     "n": 4,
+     "mean": 116.4998,
+     "p50": 116.0075,
+     "p95": 118.0886,
+     "p99": 118.3305,
+     "std": 1.1351,
      "min": 115.593,
-     "max": 116.375
+     "max": 118.391
     },
     "cold_tune_rep0_s": [
-     121.953
+     121.953,
+     125.204
     ],
     "cached_create_s": {
      "values": [
       3.859,
       3.719,
-      4.047
+      4.047,
+      3.735
      ],
-     "mean": 3.875
+     "mean": 3.84
     },
-    "cold_start_reduction_pct": 96.66,
+    "cold_start_reduction_pct": 96.7,
     "ci95_baseline_median": [
      115.593,
-     116.375
+     118.391
     ],
     "ci95_cached_median": [
      3.719,
      4.047
     ],
-    "n_processes_cached": 3,
+    "n_processes_cached": 4,
     "low_power": true
    },
    "E4_MXR_FRC": {
     "frc_create_s": [
      121.516,
      124.469,
-     122.219
+     122.219,
+     122.188,
+     121.109
     ],
-    "frc_vs_baseline_ratio": 1.059,
+    "frc_vs_baseline_ratio": 1.05,
     "verdict": "FORCE_RECOMPILE_EFFECTIVE (create returned to baseline level despite populated .mxr)"
    },
    "steady_gates_mean_primary": {
     "E2_SKIP_BENCH": {
-     "baseline_mean_ms": 12.627,
-     "candidate_mean_ms": 15.157,
-     "regression_pct_mean": 20.04,
+     "baseline_mean_ms": 12.73,
+     "candidate_mean_ms": 15.218,
+     "regression_pct_mean": 19.54,
      "gate": "STEADY_REGRESSED (COLD_FAST_STEADY_SLOW if E2)",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E4_MXR_CACHE": {
-     "baseline_mean_ms": 12.627,
-     "candidate_mean_ms": 12.637,
-     "regression_pct_mean": 0.09,
+     "baseline_mean_ms": 12.73,
+     "candidate_mean_ms": 12.695,
+     "regression_pct_mean": -0.27,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "E4_MXR_FRC": {
-     "baseline_mean_ms": 12.627,
-     "candidate_mean_ms": 12.837,
-     "regression_pct_mean": 1.66,
+     "baseline_mean_ms": 12.73,
+     "candidate_mean_ms": 12.812,
+     "regression_pct_mean": 0.64,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     },
     "SOAK_MXR_CACHE": {
-     "baseline_mean_ms": 12.627,
-     "candidate_mean_ms": 12.82,
-     "regression_pct_mean": 1.53,
+     "baseline_mean_ms": 12.73,
+     "candidate_mean_ms": 12.68,
+     "regression_pct_mean": -0.39,
      "gate": "STEADY_NOT_REGRESSED",
      "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
     }
@@ -1251,7 +1816,9 @@
      115.406,
      115.562,
      115.922,
-     115.687
+     115.687,
+     118.219,
+     116.687
     ],
     "first_run_after_s": [
      0.031,
@@ -1259,31 +1826,33 @@
      0.031,
      0.031,
      0.031,
-     0.031
+     0.031,
+     0.031,
+     0.047
     ],
     "verdict": "IN_PROCESS_RECREATE_FULL_RECOMPILE (no warm in-process cache)"
    },
    "soak": {
-    "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep0_p2",
-    "session_create_s": 3.688,
-    "steady_effective_s": 943.5,
-    "steady_mean_ms": 12.82,
+    "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep1_pub2",
+    "session_create_s": 3.75,
+    "steady_effective_s": 924.6,
+    "steady_mean_ms": 12.54,
     "steady_n": 72500,
     "recreates": [
      {
       "cycle": 0,
-      "recreate_s": 3.609,
-      "first_run_after_s": 0.032,
-      "lat_ms_p50": 15.5
+      "recreate_s": 3.703,
+      "first_run_after_s": 0.031,
+      "lat_ms_p50": 16.0
      },
      {
       "cycle": 1,
-      "recreate_s": 3.704,
+      "recreate_s": 3.828,
       "first_run_after_s": 0.031,
-      "lat_ms_p50": 15.5
+      "lat_ms_p50": 16.0
      }
     ],
-    "effective_steady_minutes": 15.72,
+    "effective_steady_minutes": 15.41,
     "meets_15min": true,
     "gate": "SOAK_15MIN_OK"
    }

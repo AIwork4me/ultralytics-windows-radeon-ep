@@ -1,0 +1,138 @@
+{
+ "schema_version": "rca2a_receipt_v1",
+ "kind": "rca2a_attempt_receipt",
+ "attempt_id": "E4_MXR_FRC_yolo26n_rep0_pub2",
+ "arm": "E4_MXR_FRC",
+ "model": "yolo26n",
+ "rep": 0,
+ "ep": "amdgpu",
+ "classification": "CLEAN_COMPLETE",
+ "child_exit_code": 0,
+ "killed_by_watchdog": false,
+ "stall": null,
+ "wall_s": 48.2,
+ "onnx_sha256": "488e7e9876cbeafc1def07ce515f2af1862a7f43402f7055acecddf42ebb089c",
+ "input_sha256": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+ "plan_sha256": "535b5f469eadec220ffca7743969db1d1fdbc3be72f009a539ae83760ad4fc8b",
+ "code_git_sha": "ef3faec9b44a5b5b5bd3dcc621ef54c82a1c374b",
+ "worktree_dirty": false,
+ "main_base_sha": "492975284f7c93684d6dbd67801a5634f450f7a0",
+ "env_expected": {
+  "ORT_MIGRAPHX_CACHE_DIR": "%RUN_ROOT%\\PUBCONF\\CACHE_LABS\\mxr_shared",
+  "ORT_MIGRAPHX_FORCE_RECOMPILE": "1"
+ },
+ "env_echoed": {
+  "ORT_MIGRAPHX_CACHE_DIR": "%RUN_ROOT%\\PUBCONF\\CACHE_LABS\\mxr_shared",
+  "ORT_MIGRAPHX_FORCE_RECOMPILE": "1"
+ },
+ "timeline": [
+  {
+   "phase": "EP_DISCOVERY",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DLL_REGISTER",
+   "mark": "begin"
+  },
+  {
+   "phase": "GPU_IDENTITY_RESOLVE",
+   "mark": "begin"
+  },
+  {
+   "phase": "EP_DEVICE_PROBE",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_CREATE_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "FIRST_RUN_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "WARMUP_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "STEADY_RUN_BEGIN",
+   "mark": "begin"
+  },
+  {
+   "phase": "SESSION_TEARDOWN_BEGIN",
+   "mark": "begin"
+  }
+ ],
+ "phases": {
+  "session_create_s": 44.172,
+  "first_run_s": 0.015,
+  "warmup": {
+   "p50": 0.0,
+   "max": 16.0
+  },
+  "steady": {
+   "p50": 0.0,
+   "p95": 16.0,
+   "p99": 16.0,
+   "mean": 2.81,
+   "n": 200
+  },
+  "steady_effective_s": 0.6,
+  "recreates": []
+ },
+ "cache_verdict": {
+  "label": "CACHE_FILE_STATE_CHANGED",
+  "snapshots": [
+   "pre_session",
+   "post_create",
+   "post_first_run",
+   "final"
+  ],
+  "watch": [
+   "%RUN_ROOT%\\PUBCONF\\CACHE_LABS\\mxr_shared"
+  ],
+  "switch_recognized": true,
+  "second_process_evidence": null
+ },
+ "gpu_validation": {
+  "checks": [
+   {
+    "check": "ep_device_probe_event",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "luid_match_basis",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "amdgpu_provider_present",
+    "ok": true,
+    "detail": "['AMDGPUExecutionProvider', 'CPUExecutionProvider']"
+   },
+   {
+    "check": "output_names_match",
+    "ok": true,
+    "detail": ""
+   },
+   {
+    "check": "supervisor_independent_parity",
+    "ok": true,
+    "detail": "max_abs=4.395e-03"
+   },
+   {
+    "check": "profile_ep_nodes_positive",
+    "ok": true,
+    "detail": "nodes=231"
+   }
+  ],
+  "supervisor_parity_max_abs": 0.00439453125,
+  "profile_ep_node_count": 231,
+  "verdict": "GPU_PASS_VALIDATED"
+ },
+ "watchdog_amendment_session_create_s": null,
+ "events_count": 30,
+ "finished_utc": "2026-11-18T12:45:50Z",
+ "attempt_dir": "%RUN_ROOT%\\PUBCONF\\attempts\\E4_MXR_FRC_yolo26n_rep0_pub2"
+}
