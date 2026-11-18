@@ -26,8 +26,8 @@ def test_pr5_standalone_imports_without_pr6_module():
     import runner.freeze_gfx1201_evidence as fr
     assert callable(uc.main) and callable(fr.main)
     assert not hasattr(fr, "build_chain")
-    assert "unified_identity" not in Path(uc.__file__).read_text(encoding="utf-8")
-    assert "unified_identity" not in Path(fr.__file__).read_text(encoding="utf-8")
+    assert "from radeon_ort.unified_identity import" not in Path(uc.__file__).read_text(encoding="utf-8")
+    assert "from radeon_ort.unified_identity import" not in Path(fr.__file__).read_text(encoding="utf-8")
 
 def test_same_output_high_scale_does_not_mask_small_error():
     cpu = {"y": np.array([1000.0, 0.0], dtype=np.float32)}

@@ -13,7 +13,7 @@ import json
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 EVIDENCE_BASE = Path(__file__).resolve().parents[1] / "reports/gfx1201"
@@ -68,7 +68,7 @@ def main() -> int:
               file=sys.stderr)
         return 65
     canary_root = Path(args.canary_run_dir)
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     vc = ps("Get-CimInstance Win32_VideoController | Select-Object Name,PNPDeviceID,"
             "DriverVersion | ConvertTo-Json -Compress")
     build = ps("(Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion').DisplayVersion"
@@ -128,8 +128,7 @@ def main() -> int:
 
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
     from radeon_ort.device_identity import enum_dxgi_adapters, resolve_target_adapter
-    from radeon_ort.rca2a_ep import (
-        physical_luid_key, select_amdgpu_ep_device, _ep_device_metadata)
+    from radeon_ort.rca2a_ep import _ep_device_metadata, physical_luid_key, select_amdgpu_ep_device
     adapters = enum_dxgi_adapters()
     d = {
         "captured_utc": now,
@@ -163,7 +162,7 @@ def main() -> int:
                 "confidence": "PHYSICAL_BINDING_CONFIRMED" if confirmed else "UNPROVEN",
                 "luid_match": bool(confirmed),
                 "metadata": md, "selection_basis": sel.get("basis")}
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 — report failure without an invalid PASS
             d["ep_device_binding"] = {
                 "confidence": "UNPROVEN",
                 "reason": f"EP-device probe unavailable: {type(exc).__name__}"}

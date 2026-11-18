@@ -157,7 +157,7 @@ def main() -> int:
                 Path(a.out).write_text(json.dumps(out, indent=1))
                 return 34
             out["confidence"] = "PHYSICAL_BINDING_CONFIRMED"
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 — fail closed when EP probe raises
             out.update(status="BLOCKED",
                        reason=f"AMDGPU EP LUID attestation failed: {type(exc).__name__}")
             Path(a.out).write_text(json.dumps(out, indent=1))
