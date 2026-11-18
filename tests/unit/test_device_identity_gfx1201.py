@@ -145,7 +145,8 @@ def test_zero_luid_flagged_not_silent():
 def test_gfx1151_name_fallback_still_works():
     res = resolve_target_adapter(
         [_adapter(device_id=0x9999,
-                  description="AMD Radeon(TM) 8060S Graphics")], gfx="gfx1151")
+                  description="AMD Radeon(TM) 8060S Graphics")], gfx="gfx1151",
+        allow_unverified_name_fallback=True)
     assert res["ok"]
     assert res.get("did_match") is False
 
@@ -158,3 +159,11 @@ def test_gfx1151_generic_radeon_needle_must_not_match_other_cards():
         [_adapter(device_id=0x744C, description="AMD Radeon RX 7900 XTX")],
         gfx="gfx1151")
     assert not res["ok"], res
+
+
+def test_name_only_8060s_without_known_did_is_blocked_by_default():
+    # A device name can be spoofed; a gfx1151 GPU_FULL claim must be DID-pinned.
+    res = resolve_target_adapter(
+        [_adapter(device_id=0x9999,
+                  description="AMD Radeon(TM) 8060S Graphics")], gfx="gfx1151")
+    assert not res["ok"] and "WRONG_OR_AMBIGUOUS_DEVICE" in res["reason"]

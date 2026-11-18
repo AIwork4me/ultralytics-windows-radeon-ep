@@ -180,7 +180,8 @@ def _describe_found(adapters: list[DxgiAdapter]) -> str:
 
 def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
                            expect_vendor_id: int = AMD_VENDOR_ID,
-                           name_needles: tuple[str, ...] = ("8060S", "Radeon")) -> dict:
+                           name_needles: tuple[str, ...] = ("8060S", "Radeon"),
+                           allow_unverified_name_fallback: bool = False) -> dict:
     """Select the intended physical GPU. Fail WRONG_OR_AMBIGUOUS_DEVICE on ambiguity.
 
     Never requires Discrete=True / DedicatedVideoMemory>0 (integrated 8060S has
@@ -188,8 +189,9 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
 
     B0 contract: selection is DID-pinned per gfx target. Requesting gfx1201 on
     a host whose only AMD adapter is gfx1100 FAILS with a reason naming what
-    was found — never a silent any-AMD pick. gfx1151 keeps its historical
-    name-needle fallback (pre-DID-knowledge path) flagged did_match=False.
+    was found — never a silent any-AMD pick. The legacy gfx1151 name-only
+    fallback is *opt-in for diagnostics*, never the default identity path.
+    Name-only selection is tagged did_match=False and cannot certify GPU FULL.
     """
     amd = [a for a in adapters if a.vendor_id == expect_vendor_id and not a.is_software]
     if not amd:
@@ -203,7 +205,7 @@ def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
 
     cands = [a for a in amd if a.device_id in dids]
     did_match = bool(cands)
-    if not cands and gfx in GFX_FALLBACK_NEEDLES:
+    if not cands and allow_unverified_name_fallback and gfx in GFX_FALLBACK_NEEDLES:
         # legacy name-only corroboration, arch-SPECIFIC needles only
         needles = GFX_FALLBACK_NEEDLES[gfx]
         cands = [a for a in amd

@@ -43,3 +43,10 @@ Original Git history remains available without a force-push; historical exposure
 cannot be erased by this forward-only redaction. The earlier redaction_scan.json
 had limited needles and is an immutable historical scan, not an endorsement of
 its missing PnP-instance pattern. New run generator redacts PnP by default.
+
+## Additional strict-identity gate
+
+Legacy gfx1151 name-only matching (unknown DID with the string '8060S') is
+**explicit opt-in for diagnostics only** through
+`allow_unverified_name_fallback=True`. The default is exact per-gfx DID
+pinning. Downstream GPU_FULL paths must not accept a name-only identity.
