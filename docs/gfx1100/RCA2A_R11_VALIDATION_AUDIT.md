@@ -21,3 +21,13 @@ Review tests/unit/test_rca2a_r11_contracts.py, including actual published receip
 ## Release gate
 
 Keep PR #4 Draft. Do not merge, mark Ready, or publish upstream issues without owner approval. Historical 95 GB catalog and RCA1 local-only evidence are untouched.
+
+## Additional historical DML discrepancy (do not overwrite receipt)
+
+The E8_DML_yolo26n_rep3_pub2 receipt reports GPU_PASS_VALIDATED from its
+independent profile and numerical parity, but it also declares a synthetic
+%CACHE% environment key that was not echoed. Its complete receipt is therefore
+RECEIPT_INVALID_ENV_NOT_ECHOED. Treat DML as an auxiliary historical control
+with incomplete environment attestation, not a strictly verified receipt.
+Only a new immutable DML attempt with a corrected plan can close this evidence
+issue. AMDGPU-first core cold-start findings are not based on that DML receipt.

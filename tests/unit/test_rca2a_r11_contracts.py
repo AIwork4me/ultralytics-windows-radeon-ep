@@ -28,10 +28,17 @@ def valid(r, plan=None):
     "E2_SKIP_BENCH_rtdetr-l_rep0_pub2",
     "SOAK_MXR_CACHE_yolo26n_rep1_pub2",
     "SOAK_MXR_CACHE_rtdetr-l_rep1_pub2",
-    "E8_DML_yolo26n_rep3_pub2",
 ])
 def test_real_published_receipt_passes(name):
     assert valid(rec(name))
+
+
+def test_published_dml_control_env_evidence_is_incomplete():
+    # Historical DML GPU calculation was profiled, but its published receipt
+    # declares %CACHE% without an echoed value. Never forge the env evidence.
+    r = rec("E8_DML_yolo26n_rep3_pub2")
+    assert r["gpu_validation"]["verdict"] == "GPU_PASS_VALIDATED"
+    assert validate_receipt(r)["verdict"] == "RECEIPT_INVALID_ENV_NOT_ECHOED"
 
 
 def test_frozen_plan_binds_model_and_input_bytes():
