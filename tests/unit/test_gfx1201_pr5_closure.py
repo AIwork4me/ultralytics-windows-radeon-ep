@@ -89,3 +89,14 @@ def test_freezer_blocks_path_traversal(tmp_path, monkeypatch):
     monkeypatch.setattr(sys, "argv", ["freeze", "--run-id", "../bad"])
     with pytest.raises(ValueError):
         freeze.main()
+
+
+def test_active_host_fingerprint_redacts_instance_ids():
+    path = (Path(__file__).resolve().parents[2] / "reports" / "gfx1201" /
+            "GFX1201_DIAG_20261118T2359Z" / "HOST_FINGERPRINT.json")
+    text = path.read_text(encoding="utf-8")
+    host = json.loads(text)
+    assert "video_controllers_raw" not in host
+    assert "video_controllers_redacted" in host
+    assert "PNPDeviceID" not in text
+    assert all("PnP_VID_DID" in row for row in host["video_controllers_redacted"])

@@ -30,3 +30,16 @@
 At exact HEAD: pass windows-cpu-ci + secret-scan; no hidden leaked assets;
 verify 10 historical files against manifest, ownership of base/head and
 branch protection; only normal merge, expected-head guard, post-merge checks.
+
+## Publication-only host PnP redaction (forward commit)
+
+An independent audit found the original HOST_FINGERPRINT.json included raw
+PnP instance paths. The active published file now contains only GPU vendor/device
+IDs, adapter names, and driver versions. SHA-256 of the prior immutable version:
+`9b3179e9b0b263550d259134069ae706f68f6a51a7ee7bb63cbb91225ae9f016`; sanitized current SHA-256: `e306ee8ecb1f1367e9e01555591d47319b1840d358d452a53fd4c8ce92c78c4c`.
+The manifest HOST entry is updated to bind the actual sanitized bytes.
+**No GPU task, numeric, device-selection, soak or NOT_RUN status was altered.**
+Original Git history remains available without a force-push; historical exposure
+cannot be erased by this forward-only redaction. The earlier redaction_scan.json
+had limited needles and is an immutable historical scan, not an endorsement of
+its missing PnP-instance pattern. New run generator redacts PnP by default.

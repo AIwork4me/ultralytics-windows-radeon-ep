@@ -1,33 +1,41 @@
 {
  "captured_utc": "2026-11-18T23:59:00Z",
  "os": "26H2 build 26300",
- "video_controllers_raw": [
-  {
-   "Name": "GameViewer Virtual Display Adapter",
-   "PNPDeviceID": "ROOT\\DISPLAY\\0000",
-   "DriverVersion": "15.6.5.199"
-  },
-  {
-   "Name": "AMD Radeon RX 7900 XTX",
-   "PNPDeviceID": "PCI\\VEN_1002&DEV_744C&SUBSYS_0E3B1002&REV_C8\\6&13FD3BF3&0&00000008",
-   "DriverVersion": "32.0.21030.2001"
-  },
-  {
-   "Name": "Intel(R) UHD Graphics 770",
-   "PNPDeviceID": "PCI\\VEN_8086&DEV_A780&SUBSYS_D0001458&REV_04\\3&11583659&0&10",
-   "DriverVersion": "32.0.101.6129"
-  },
-  {
-   "Name": "Microsoft Remote Display Adapter",
-   "PNPDeviceID": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0002",
-   "DriverVersion": "10.0.26100.9818"
-  }
- ],
  "amd_ep_msix_version": "1.8.65.0",
  "mission_premise_check": {
   "expected_by_mission": "RX 9070 XT (gfx1201, DEV_7550/7551)",
   "actual_physical_amd_dgpu": "RX 7900 XTX DEV_744C (gfx1100)",
   "conclusion": "NO_GFX1201_HARDWARE_ON_THIS_HOST -> M2 gfx1201 real-GPU execution NOT_RUN"
  },
- "note": "host-identifying fields omitted (AGENTS redaction)"
+ "note": "host-identifying fields omitted (AGENTS redaction)",
+ "video_controllers_redacted": [
+  {
+   "Name": "GameViewer Virtual Display Adapter",
+   "DriverVersion": "15.6.5.199",
+   "PnP_VID_DID": "NON_PCI_OR_REDACTED"
+  },
+  {
+   "Name": "AMD Radeon RX 7900 XTX",
+   "DriverVersion": "32.0.21030.2001",
+   "PnP_VID_DID": "VEN_1002&DEV_744C"
+  },
+  {
+   "Name": "Intel(R) UHD Graphics 770",
+   "DriverVersion": "32.0.101.6129",
+   "PnP_VID_DID": "VEN_8086&DEV_A780"
+  },
+  {
+   "Name": "Microsoft Remote Display Adapter",
+   "DriverVersion": "10.0.26100.9818",
+   "PnP_VID_DID": "NON_PCI_OR_REDACTED"
+  }
+ ],
+ "redaction_provenance": {
+  "type": "PUBLICATION_PRIVACY_REDACTION_ONLY",
+  "original_host_fingerprint_sha256": "9b3179e9b0b263550d259134069ae706f68f6a51a7ee7bb63cbb91225ae9f016",
+  "fields_removed": [
+   "raw PnP instance paths"
+  ],
+  "gpu_verdicts_changed": false
+ }
 }
