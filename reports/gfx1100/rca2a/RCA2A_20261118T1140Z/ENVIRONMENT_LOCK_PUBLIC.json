@@ -1,0 +1,139 @@
+{
+ "os": {
+  "caption": "Microsoft Windows 11 专业版",
+  "build": "26300",
+  "version": "10.0.26300"
+ },
+ "cpu": {
+  "name": "13th Gen Intel(R) Core(TM) i7-13700K",
+  "cores": 16,
+  "logical": 24
+ },
+ "ram_gb": 31.8,
+ "gpus": [
+  {
+   "name": "AMD Radeon RX 7900 XTX",
+   "driver": "32.0.21030.2001",
+   "pnp": "PCI\\VEN_1002&DEV_744C&SUBSYS_0E3B1002&REV_C8"
+  }
+ ],
+ "msix_package": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+ "msix_version": "1.8.65.0",
+ "ep_files": {
+  "amdgpu-ep.dll": {
+   "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+   "bytes": 548304
+  },
+  "migraphx-backend.dll": {
+   "sha256": "db3b66941d77a43a96ace7078d664e5ca3852473f90f77d44a1c00300d9e7264",
+   "bytes": 2353112
+  },
+  "migraphx.dll": {
+   "sha256": "1b14623bbc2b9ae1e328511d1b078b358cad2a3d5b01d9246cb97638c1d987fe",
+   "bytes": 50775560
+  },
+  "migraphx_c.dll": {
+   "sha256": "ce8da09995ce26a76b76f7cf436b30a949e50b2d721851c107682beb714e08f5",
+   "bytes": 632784
+  },
+  "migraphx_gpu.dll": {
+   "sha256": "d6e842770a8a8c0ae8237faf3fa7f7b06b6ef3a0f522baa868b40a6537bd96ef",
+   "bytes": 99254280
+  },
+  "migraphx_device.dll": {
+   "sha256": "75f36b1466837361fa5ddae6cd87b5ca6b50004259924b3901b65ffe5d608f9a",
+   "bytes": 14666712
+  },
+  "migraphx_onnx.dll": {
+   "sha256": "a25c0707f5bdc8499db5ca94998b173d9384aa4c16d60d43164d2e317ba713ca",
+   "bytes": 3767240
+  },
+  "migraphx-hiprtc-driver.exe": {
+   "sha256": "338ef7166ee717454d9502bf8ad89761a71e63a1c4aaa73f7383f356c1942f34",
+   "bytes": 423912
+  },
+  "directx-backend.dll": {
+   "sha256": "0292084948042fe19a6ddc8e074002d05ad0aa5be1fa10aeaf7c8035a7c7a73f",
+   "bytes": 11124184
+  },
+  "hip-backend.dll": {
+   "sha256": "9a50da9ad7b50e1b38cfa3767afb79ae0651f8703bcc500977862190b2938807",
+   "bytes": 295384
+  },
+  "hipgpu.dll": {
+   "sha256": "620251081765b963dd2cac62185c98ad3b788db1b3a1cc84c69bf3fd56e03de0",
+   "bytes": 34693600
+  },
+  "hiprtc0714.dll": {
+   "sha256": "0531f03da26c0f9a6f1133ace3c32acc2fcfa4055d566fb973ef04c29fad2077",
+   "bytes": 1275840
+  },
+  "amdhip64_7.dll": {
+   "sha256": "714990f5b64a767c467882fa5d8165da3cb6861942a834a602803387e533d6cc",
+   "bytes": 16153096
+  },
+  "hipblaslt.dll": {
+   "sha256": "d0c7b29697878f49bd3a2ac86651c011b916717e1f978c76e705fd4d7641eff2",
+   "bytes": 6979080
+  },
+  "rocblas.dll": {
+   "sha256": "ea2ef86e753268f9aac4e7541dc44ee5bf974b09877bf273490de43dc0404a99",
+   "bytes": 26196488
+  },
+  "MIOpen.dll": {
+   "sha256": "102a42d8a9c27b4247242fc8773db8e3a49fe5e9e726f4dd24aa407d8daa94d2",
+   "bytes": 69436896
+  },
+  "amdmlss.dll": {
+   "sha256": "249cae143b0695ec22ce3a28f09df4050ce30535095e15ec50153ec042f633ec",
+   "bytes": 15505968
+  },
+  "onnxruntime_providers_migraphx.dll": {
+   "sha256": "27cd82550a25b6c5aeeaa1dc91bdfeeec1ccc70e35bbd4aa54222c335c89e449",
+   "bytes": 658904
+  },
+  "onnxruntime_providers_shared.dll": {
+   "sha256": "3623c4a5e1ec6f0d70298e99862bcba2734ee40b2fe5748571482366a7185182",
+   "bytes": 139728
+  },
+  "hip-compiler.dll": {
+   "sha256": "8f98b6c251c46fac03b04244eb1efe70fdac8fa92c8b3583daefee46074855d4",
+   "bytes": 59566088
+  },
+  "hiprtc-builtins0714.dll": {
+   "sha256": "e7ee5bdd4f3f174f14037063fce93ff00765ded812cf47ca7d848b43c81b871d",
+   "bytes": 937944
+  },
+  "amd_comgr0714.dll": {
+   "sha256": "1c976c95a2eaf92dca029a3a6cf9f43bd22efe50c2e2249e40d929e4b34c68ea",
+   "bytes": 119743968
+  },
+  "custom_kernels_gfx1151.dll": {
+   "sha256": "a3488ccd4213a3e6800fac6ef9988b8f537eb84899de3ced23f44ac2d16b9f84",
+   "bytes": 13397984
+  },
+  "problem_cache.json": {
+   "sha256": "d1f3be0380d84015e74fd162ff3cabf0e3cc801e7f64c844f590bf07c5edfbc9",
+   "bytes": 1094108
+  }
+ },
+ "venv_python_winml": "Python 3.12 + onnxruntime 1.25.2 (ORT-WinML build)",
+ "problem_cache_shipped": {
+  "sha256": "d1f3be0380d84015e74fd162ff3cabf0e3cc801e7f64c844f590bf07c5edfbc9",
+  "bytes": 1094108,
+  "gfx_blocks": {
+   "gfx1200": null,
+   "gfx1151": null,
+   "gfx1201": null,
+   "gfx1100": 672
+  },
+  "note": "672 gfx1100 gpu::mlir_op tuning solutions, cu_count=48 matches RX 7900 XTX"
+ },
+ "upstream_pins": {
+  "AMDMIGraphX": "2e2cb9276c3f2e2f27eebb5fe725ac638ce44a9a (docs+src read)",
+  "onnxruntime-ep-amdgpu gpu_options.h": "3c988ec322535c4ce9bfadfdbcb7053cbf8acfa6",
+  "origin_main_remote": "492975284f7c93684d6dbd67801a5634f450f7a0"
+ },
+ "shipped_mgx_internal_version": "version_2_17_0 (from MSVC mangled symbols in migraphx_gpu.dll)",
+ "note": "host-identifying fields (hostname, PNP instance suffix, local paths) removed; DLL SHA256 are content hashes, safe to publish"
+}

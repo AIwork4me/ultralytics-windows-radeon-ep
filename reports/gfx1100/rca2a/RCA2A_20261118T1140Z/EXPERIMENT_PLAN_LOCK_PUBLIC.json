@@ -1,0 +1,316 @@
+{
+ "schema": "rca2a_plan_v1",
+ "plan_sha256": "9956cb8acbc54267ef576afa2567c00588ffa1d976f44ab76fe815ea39c002ea",
+ "created_utc": "2026-11-18T04:37:04Z",
+ "repeats": 3,
+ "seed": 20261118,
+ "phase_timeouts": {
+  "EP_DISCOVERY": 120,
+  "EP_DLL_REGISTER": 120,
+  "GPU_IDENTITY_RESOLVE": 120,
+  "EP_DEVICE_PROBE": 300,
+  "SESSION_CREATE": 900,
+  "FIRST_RUN": 600,
+  "STEADY_NO_PROGRESS": 180,
+  "SESSION_TEARDOWN": 300,
+  "TOTAL": 3600
+ },
+ "warmup_iters": 30,
+ "steady_iters": 200,
+ "recreate_count": 0,
+ "arms": {
+  "E0_BASELINE": {
+   "env": {},
+   "cache_watch": [
+    "%CACHE%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 0
+  },
+  "E2_SKIP_BENCH": {
+   "env": {
+    "MIGRAPHX_SKIP_BENCHMARKING": "1"
+   },
+   "cache_watch": [
+    "%CACHE%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 0
+  },
+  "E4_MXR_CACHE": {
+   "env": {
+    "ORT_MIGRAPHX_CACHE_DIR": "%CACHE_MXR%"
+   },
+   "cache_watch": [
+    "%CACHE_MXR%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 0
+  },
+  "E4_MXR_FRC": {
+   "env": {
+    "ORT_MIGRAPHX_CACHE_DIR": "%CACHE_MXR%",
+    "ORT_MIGRAPHX_FORCE_RECOMPILE": "1"
+   },
+   "cache_watch": [
+    "%CACHE_MXR%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 0
+  },
+  "E6_COMPUTE_MAX": {
+   "env": {
+    "ORT_MIGRAPHX_COMPUTE_MODE": "maximum"
+   },
+   "cache_watch": [
+    "%CACHE%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 0
+  },
+  "E7_RECREATE": {
+   "env": {},
+   "cache_watch": [
+    "%CACHE%"
+   ],
+   "models": [
+    "yolo26n",
+    "rtdetr-l"
+   ],
+   "ep": "amdgpu",
+   "recreate_count": 2
+  }
+ },
+ "cases": {
+  "yolo26n": {
+   "case_file": "%RESULTS_ROOT%\\gfx1100\\gfx1100\\SOAK_20261117_205512\\SOAK\\case_yolo26n_amdgpu.json",
+   "onnx_path": "%RESULTS_ROOT%\\gfx1100\\_registry\\onnx\\yolo26n.raw_b1_fp32_static.onnx",
+   "onnx_sha256": "488e7e9876cbeafc1def07ce515f2af1862a7f43402f7055acecddf42ebb089c",
+   "input_sha256": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+   "input_shapes": {
+    "images": [
+     1,
+     3,
+     640,
+     640
+    ]
+   }
+  },
+  "rtdetr-l": {
+   "case_file": "%RESULTS_ROOT%\\gfx1100\\gfx1100\\SOAK_20261117_204242\\SOAK\\case_rtdetr-l_amdgpu.json",
+   "onnx_path": "%RESULTS_ROOT%\\gfx1100\\_registry\\onnx\\rtdetr-l.raw_b1_fp32_static.onnx",
+   "onnx_sha256": "85f19ea31ed6a7df7e35033cbe0829b843c24caa27921e74914d0bd089ca886f",
+   "input_sha256": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+   "input_shapes": {
+    "images": [
+     1,
+     3,
+     640,
+     640
+    ]
+   }
+  }
+ },
+ "order": [
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "rtdetr-l",
+   "rep": 0
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "yolo26n",
+   "rep": 0
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "yolo26n",
+   "rep": 1
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "rtdetr-l",
+   "rep": 1
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "yolo26n",
+   "rep": 2
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "yolo26n",
+   "rep": 2
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "yolo26n",
+   "rep": 2
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E7_RECREATE",
+   "model": "yolo26n",
+   "rep": 2
+  },
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E4_MXR_FRC",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E2_SKIP_BENCH",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E6_COMPUTE_MAX",
+   "model": "yolo26n",
+   "rep": 2
+  },
+  {
+   "arm": "E0_BASELINE",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "rtdetr-l",
+   "rep": 2
+  },
+  {
+   "arm": "E4_MXR_CACHE",
+   "model": "yolo26n",
+   "rep": 2
+  }
+ ]
+}

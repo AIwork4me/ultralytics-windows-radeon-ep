@@ -20,13 +20,21 @@ def resolve_dml_device_id_for_adapter(target_adapter_index: int) -> int:
 
 def create_dml_session(onnx_path: str | Path, *, device_id: int,
                        enable_profiling: bool = True,
-                       profile_prefix: str = "dml_profile"):
+                       profile_prefix: str = "dml_profile",
+                       sess_options_override=None):
     import onnxruntime as ort
 
-    so = ort.SessionOptions()
-    if enable_profiling:
-        so.enable_profiling = True
-        so.profile_file_prefix = profile_prefix
+    # RCA2A-008: rca2a_worker passes supervisor-prepared SessionOptions
+    # (profiling prefix / graph-opt level); when given, the override wins over
+    # the enable_profiling/profile_prefix pair, and the DML-mandated flags
+    # below are still enforced on it.
+    if sess_options_override is not None:
+        so = sess_options_override
+    else:
+        so = ort.SessionOptions()
+        if enable_profiling:
+            so.enable_profiling = True
+            so.profile_file_prefix = profile_prefix
     so.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
     so.enable_mem_pattern = False
     so.log_severity_level = 3

@@ -1,0 +1,1333 @@
+{
+ "schema": "rca2a_g4_statistics_v1",
+ "quantization_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic",
+ "models": {
+  "yolo26n": {
+   "timeline": [
+    {
+     "attempt": "E2_SKIP_BENCH_yolo26n_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 20.1,
+     "session_create_s": 17.719,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E6_COMPUTE_MAX_yolo26n_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "TIMEOUT_SESSION_CREATE",
+     "wall_s": 903.3,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_yolo26n_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.1,
+     "session_create_s": 43.656,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.81,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_yolo26n_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 132.2,
+     "session_create_s": 42.891,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 42.953,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 42.985,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    },
+    {
+     "attempt": "E7_RECREATE_yolo26n_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 132.2,
+     "session_create_s": 43.297,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 43.328,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 42.766,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    },
+    {
+     "attempt": "E6_COMPUTE_MAX_yolo26n_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 576.8,
+     "session_create_s": 572.781,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_yolo26n_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.1,
+     "session_create_s": 43.953,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.96,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_yolo26n_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 20.1,
+     "session_create_s": 17.75,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_yolo26n_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 22.1,
+     "session_create_s": 17.922,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.7,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_yolo26n_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.1,
+     "session_create_s": 43.297,
+     "first_run_s": 0.032,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_yolo26n_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 132.2,
+     "session_create_s": 43.204,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 42.906,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 43.062,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 48.2,
+     "session_create_s": 44.735,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.97,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 4.2,
+     "session_create_s": 0.781,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 3.05,
+     "steady_effective_s": 0.8,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 4.1,
+     "session_create_s": 0.766,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 3.2,
+     "steady_effective_s": 0.8,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_yolo26n_rep9_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 4.2,
+     "session_create_s": 1.016,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.74,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep0_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 48.1,
+     "session_create_s": 44.64,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 3.2,
+     "steady_effective_s": 0.7,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep1_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.1,
+     "session_create_s": 43.468,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 3.04,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_yolo26n_rep2_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 46.1,
+     "session_create_s": 43.578,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.73,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E6_COMPUTE_MAX_yolo26n_rep9_p2b",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 510.7,
+     "session_create_s": 506.906,
+     "first_run_s": 0.015,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.89,
+     "steady_effective_s": 0.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E1_TRACE_yolo26n_rep0_p2",
+     "root": "PHASE4_E1_TRACE",
+     "classification": "RUNTIME_ERROR",
+     "wall_s": 38.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E8_DML_yolo26n_rep0_p2",
+     "root": "PHASE4_E8_DML",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 2.2,
+     "session_create_s": 0.375,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.5,
+     "steady_effective_s": 0.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E8_DML_yolo26n_rep1_p2b",
+     "root": "PHASE4_E8_DML",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 2.2,
+     "session_create_s": 0.203,
+     "first_run_s": 0.0,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.42,
+     "steady_effective_s": 0.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
+     "root": "PHASE4_SOAK_YOLO",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 885.2,
+     "session_create_s": 0.766,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.87,
+     "steady_effective_s": 877.7,
+     "steady_n": 300000,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 0.641,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 0.625,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
+     "root": "PUBCONF_SOAK_YOLO",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 924.5,
+     "session_create_s": 0.766,
+     "first_run_s": 0.016,
+     "warmup_p50_ms": 0.0,
+     "steady_mean_ms": 2.85,
+     "steady_effective_s": 916.8,
+     "steady_n": 315000,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 0.625,
+       "first_run_after_s": 0.015,
+       "lat_ms_p50": 0.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 0.609,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 0.0
+      }
+     ]
+    }
+   ],
+   "arm_create": {
+    "E0_BASELINE": {
+     "n": 3,
+     "mean": 43.6353,
+     "p50": 43.656,
+     "p95": 43.9233,
+     "p99": 43.9471,
+     "std": 0.2682,
+     "min": 43.297,
+     "max": 43.953,
+     "ci95_median": [
+      43.297,
+      43.953
+     ]
+    },
+    "E2_SKIP_BENCH": {
+     "n": 3,
+     "mean": 17.797,
+     "p50": 17.75,
+     "p95": 17.9048,
+     "p99": 17.9186,
+     "std": 0.0893,
+     "min": 17.719,
+     "max": 17.922,
+     "ci95_median": [
+      17.719,
+      17.922
+     ]
+    },
+    "E4_MXR_CACHE": {
+     "n": 4,
+     "mean": 11.8245,
+     "p50": 0.8985,
+     "p95": 38.1771,
+     "p99": 43.4234,
+     "std": 19.0011,
+     "min": 0.766,
+     "max": 44.735,
+     "ci95_median": [
+      0.766,
+      44.735
+     ]
+    },
+    "E4_MXR_FRC": {
+     "n": 3,
+     "mean": 43.8953,
+     "p50": 43.578,
+     "p95": 44.5338,
+     "p99": 44.6188,
+     "std": 0.5285,
+     "min": 43.468,
+     "max": 44.64,
+     "ci95_median": [
+      43.468,
+      44.64
+     ]
+    },
+    "E6_COMPUTE_MAX": {
+     "n": 2,
+     "mean": 539.8435,
+     "p50": 539.8435,
+     "p95": 569.4872,
+     "p99": 572.1222,
+     "std": 32.9375,
+     "min": 506.906,
+     "max": 572.781,
+     "ci95_median": [
+      506.906,
+      572.781
+     ]
+    },
+    "E7_RECREATE": {
+     "n": 3,
+     "mean": 43.1307,
+     "p50": 43.204,
+     "p95": 43.2877,
+     "p99": 43.2951,
+     "std": 0.1737,
+     "min": 42.891,
+     "max": 43.297,
+     "ci95_median": [
+      42.891,
+      43.297
+     ]
+    },
+    "SOAK_MXR_CACHE": {
+     "n": 2,
+     "mean": 0.766,
+     "p50": 0.766,
+     "p95": 0.766,
+     "p99": 0.766,
+     "std": 0.0,
+     "min": 0.766,
+     "max": 0.766,
+     "ci95_median": [
+      0.766,
+      0.766
+     ]
+    }
+   },
+   "arm_steady": {
+    "E0_BASELINE": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 2.9133,
+      "p50": 2.96,
+      "p95": 2.969,
+      "p99": 2.9698,
+      "std": 0.0732,
+      "min": 2.81,
+      "max": 2.97
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E2_SKIP_BENCH": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 2.9433,
+      "p50": 2.97,
+      "p95": 2.97,
+      "p99": 2.97,
+      "std": 0.0377,
+      "min": 2.89,
+      "max": 2.97
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_CACHE": {
+     "mean_of_means_ms": {
+      "n": 4,
+      "mean": 2.99,
+      "p50": 3.01,
+      "p95": 3.1775,
+      "p99": 3.1955,
+      "std": 0.1663,
+      "min": 2.74,
+      "max": 3.2
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_FRC": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 2.99,
+      "p50": 3.04,
+      "p95": 3.184,
+      "p99": 3.1968,
+      "std": 0.1951,
+      "min": 2.73,
+      "max": 3.2
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E6_COMPUTE_MAX": {
+     "mean_of_means_ms": {
+      "n": 2,
+      "mean": 2.93,
+      "p50": 2.93,
+      "p95": 2.966,
+      "p99": 2.9692,
+      "std": 0.04,
+      "min": 2.89,
+      "max": 2.97
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "SOAK_MXR_CACHE": {
+     "mean_of_means_ms": {
+      "n": 2,
+      "mean": 2.86,
+      "p50": 2.86,
+      "p95": 2.869,
+      "p99": 2.8698,
+      "std": 0.01,
+      "min": 2.85,
+      "max": 2.87
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    }
+   },
+   "E0_vs_E2_create": {
+    "pairs": 3,
+    "e0_s": [
+     43.656,
+     43.953,
+     43.297
+    ],
+    "e2_s": [
+     17.719,
+     17.75,
+     17.922
+    ],
+    "paired_improvement_pct": {
+     "pairs": 3,
+     "median_improvement_pct": 59.412,
+     "ci95": [
+      58.6068,
+      59.616
+     ],
+     "low_power": true
+    },
+    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=3 independent processes)"
+   },
+   "E4_cache_benefit": {
+    "baseline_e0_create_s": {
+     "n": 3,
+     "mean": 43.6353,
+     "p50": 43.656,
+     "p95": 43.9233,
+     "p99": 43.9471,
+     "std": 0.2682,
+     "min": 43.297,
+     "max": 43.953
+    },
+    "cold_tune_rep0_s": [
+     44.735
+    ],
+    "cached_create_s": {
+     "values": [
+      0.781,
+      0.766,
+      1.016
+     ],
+     "mean": 0.854
+    },
+    "cold_start_reduction_pct": 98.04,
+    "ci95_baseline_median": [
+     43.297,
+     43.953
+    ],
+    "ci95_cached_median": [
+     0.766,
+     1.016
+    ],
+    "n_processes_cached": 3,
+    "low_power": true
+   },
+   "E4_MXR_FRC": {
+    "frc_create_s": [
+     44.64,
+     43.468,
+     43.578
+    ],
+    "frc_vs_baseline_ratio": 1.006,
+    "verdict": "FORCE_RECOMPILE_EFFECTIVE (create returned to baseline level despite populated .mxr)"
+   },
+   "steady_gates_mean_primary": {
+    "E2_SKIP_BENCH": {
+     "baseline_mean_ms": 2.913,
+     "candidate_mean_ms": 2.943,
+     "regression_pct_mean": 1.03,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_CACHE": {
+     "baseline_mean_ms": 2.913,
+     "candidate_mean_ms": 2.99,
+     "regression_pct_mean": 2.63,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_FRC": {
+     "baseline_mean_ms": 2.913,
+     "candidate_mean_ms": 2.99,
+     "regression_pct_mean": 2.63,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E6_COMPUTE_MAX": {
+     "baseline_mean_ms": 2.913,
+     "candidate_mean_ms": 2.93,
+     "regression_pct_mean": 0.57,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "SOAK_MXR_CACHE": {
+     "baseline_mean_ms": 2.913,
+     "candidate_mean_ms": 2.86,
+     "regression_pct_mean": -1.83,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    }
+   },
+   "E7_recreate": {
+    "recreate_create_s": [
+     42.953,
+     42.985,
+     43.328,
+     42.766,
+     42.906,
+     43.062
+    ],
+    "first_run_after_s": [
+     0.015,
+     0.015,
+     0.016,
+     0.015,
+     0.016,
+     0.016
+    ],
+    "verdict": "IN_PROCESS_RECREATE_FULL_RECOMPILE (no warm in-process cache)"
+   },
+   "soak": {
+    "attempt": "SOAK_MXR_CACHE_yolo26n_rep0_p2",
+    "session_create_s": 0.766,
+    "steady_effective_s": 916.8,
+    "steady_mean_ms": 2.85,
+    "steady_n": 315000,
+    "recreates": [
+     {
+      "cycle": 0,
+      "recreate_s": 0.625,
+      "first_run_after_s": 0.015,
+      "lat_ms_p50": 0.0
+     },
+     {
+      "cycle": 1,
+      "recreate_s": 0.609,
+      "first_run_after_s": 0.016,
+      "lat_ms_p50": 0.0
+     }
+    ],
+    "effective_steady_minutes": 15.28,
+    "meets_15min": true,
+    "gate": "SOAK_15MIN_OK"
+   }
+  },
+  "rtdetr-l": {
+   "timeline": [
+    {
+     "attempt": "E6_COMPUTE_MAX_rtdetr-l_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "TIMEOUT_SESSION_CREATE",
+     "wall_s": 903.1,
+     "session_create_s": null,
+     "first_run_s": null,
+     "warmup_p50_ms": null,
+     "steady_mean_ms": null,
+     "steady_effective_s": null,
+     "steady_n": null,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_rtdetr-l_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 354.4,
+     "session_create_s": 115.219,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.65,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 115.828,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 15.5
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 116.531,
+       "first_run_after_s": 0.016,
+       "lat_ms_p50": 16.0
+      }
+     ]
+    },
+    {
+     "attempt": "E0_BASELINE_rtdetr-l_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 120.1,
+     "session_create_s": 115.593,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.5,
+     "steady_effective_s": 2.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_rtdetr-l_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 96.1,
+     "session_create_s": 89.234,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 15.0,
+     "steady_effective_s": 3.0,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_rtdetr-l_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 120.1,
+     "session_create_s": 115.64,
+     "first_run_s": 0.062,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.73,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_rtdetr-l_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 94.1,
+     "session_create_s": 88.5,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 15.39,
+     "steady_effective_s": 3.1,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E7_RECREATE_rtdetr-l_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 352.3,
+     "session_create_s": 115.875,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.5,
+     "steady_effective_s": 2.5,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 115.406,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 16.0
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 115.562,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 15.5
+      }
+     ]
+    },
+    {
+     "attempt": "E7_RECREATE_rtdetr-l_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 354.3,
+     "session_create_s": 117.187,
+     "first_run_s": 0.062,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.58,
+     "steady_effective_s": 2.5,
+     "steady_n": 200,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 115.922,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 15.5
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 115.687,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 16.0
+      }
+     ]
+    },
+    {
+     "attempt": "E2_SKIP_BENCH_rtdetr-l_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 96.1,
+     "session_create_s": 89.547,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 15.08,
+     "steady_effective_s": 3.0,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E0_BASELINE_rtdetr-l_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 122.1,
+     "session_create_s": 116.375,
+     "first_run_s": 0.062,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.65,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep0_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 128.1,
+     "session_create_s": 121.953,
+     "first_run_s": 0.062,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.5,
+     "steady_effective_s": 2.5,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep1_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 10.0,
+     "session_create_s": 3.859,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.5,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep2_p1",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 10.0,
+     "session_create_s": 3.719,
+     "first_run_s": 0.031,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_CACHE_rtdetr-l_rep9_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 10.1,
+     "session_create_s": 4.047,
+     "first_run_s": 0.032,
+     "warmup_p50_ms": 15.5,
+     "steady_mean_ms": 12.74,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep0_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 126.2,
+     "session_create_s": 121.516,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.89,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep1_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 130.2,
+     "session_create_s": 124.469,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "E4_MXR_FRC_rtdetr-l_rep2_p2",
+     "root": "RCA2A_20261118T1140Z",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 128.1,
+     "session_create_s": 122.219,
+     "first_run_s": 0.047,
+     "warmup_p50_ms": 15.0,
+     "steady_mean_ms": 12.81,
+     "steady_effective_s": 2.6,
+     "steady_n": 200,
+     "recreates": []
+    },
+    {
+     "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep0_p2",
+     "root": "PHASE4_SOAK_RTDETR",
+     "classification": "CLEAN_COMPLETE",
+     "wall_s": 959.2,
+     "session_create_s": 3.688,
+     "first_run_s": 0.032,
+     "warmup_p50_ms": 16.0,
+     "steady_mean_ms": 12.82,
+     "steady_effective_s": 943.5,
+     "steady_n": 72500,
+     "recreates": [
+      {
+       "cycle": 0,
+       "recreate_s": 3.609,
+       "first_run_after_s": 0.032,
+       "lat_ms_p50": 15.5
+      },
+      {
+       "cycle": 1,
+       "recreate_s": 3.704,
+       "first_run_after_s": 0.031,
+       "lat_ms_p50": 15.5
+      }
+     ]
+    }
+   ],
+   "arm_create": {
+    "E0_BASELINE": {
+     "n": 3,
+     "mean": 115.8693,
+     "p50": 115.64,
+     "p95": 116.3015,
+     "p99": 116.3603,
+     "std": 0.3581,
+     "min": 115.593,
+     "max": 116.375,
+     "ci95_median": [
+      115.593,
+      116.375
+     ]
+    },
+    "E2_SKIP_BENCH": {
+     "n": 3,
+     "mean": 89.0937,
+     "p50": 89.234,
+     "p95": 89.5157,
+     "p99": 89.5407,
+     "std": 0.4388,
+     "min": 88.5,
+     "max": 89.547,
+     "ci95_median": [
+      88.5,
+      89.547
+     ]
+    },
+    "E4_MXR_CACHE": {
+     "n": 4,
+     "mean": 33.3945,
+     "p50": 3.953,
+     "p95": 104.2671,
+     "p99": 118.4158,
+     "std": 51.1294,
+     "min": 3.719,
+     "max": 121.953,
+     "ci95_median": [
+      3.719,
+      121.953
+     ]
+    },
+    "E4_MXR_FRC": {
+     "n": 3,
+     "mean": 122.7347,
+     "p50": 122.219,
+     "p95": 124.244,
+     "p99": 124.424,
+     "std": 1.2595,
+     "min": 121.516,
+     "max": 124.469,
+     "ci95_median": [
+      121.516,
+      124.469
+     ]
+    },
+    "E7_RECREATE": {
+     "n": 3,
+     "mean": 116.0937,
+     "p50": 115.875,
+     "p95": 117.0558,
+     "p99": 117.1608,
+     "std": 0.8182,
+     "min": 115.219,
+     "max": 117.187,
+     "ci95_median": [
+      115.219,
+      117.187
+     ]
+    },
+    "SOAK_MXR_CACHE": {
+     "n": 1,
+     "mean": 3.688,
+     "p50": 3.688,
+     "p95": 3.688,
+     "p99": 3.688,
+     "std": 0.0,
+     "min": 3.688,
+     "max": 3.688,
+     "ci95_median": null
+    }
+   },
+   "arm_steady": {
+    "E0_BASELINE": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 12.6267,
+      "p50": 12.65,
+      "p95": 12.722,
+      "p99": 12.7284,
+      "std": 0.0953,
+      "min": 12.5,
+      "max": 12.73
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E2_SKIP_BENCH": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 15.1567,
+      "p50": 15.08,
+      "p95": 15.359,
+      "p99": 15.3838,
+      "std": 0.1682,
+      "min": 15.0,
+      "max": 15.39
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_CACHE": {
+     "mean_of_means_ms": {
+      "n": 4,
+      "mean": 12.6375,
+      "p50": 12.62,
+      "p95": 12.7995,
+      "p99": 12.8079,
+      "std": 0.1397,
+      "min": 12.5,
+      "max": 12.81
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_FRC": {
+     "mean_of_means_ms": {
+      "n": 3,
+      "mean": 12.8367,
+      "p50": 12.81,
+      "p95": 12.882,
+      "p99": 12.8884,
+      "std": 0.0377,
+      "min": 12.81,
+      "max": 12.89
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "SOAK_MXR_CACHE": {
+     "mean_of_means_ms": {
+      "n": 1,
+      "mean": 12.82,
+      "p50": 12.82,
+      "p95": 12.82,
+      "p99": 12.82,
+      "std": 0.0,
+      "min": 12.82,
+      "max": 12.82
+     },
+     "note": "per-process mean of per-iter monotonic deltas (telescope-exact); steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    }
+   },
+   "E0_vs_E2_create": {
+    "pairs": 3,
+    "e0_s": [
+     115.593,
+     115.64,
+     116.375
+    ],
+    "e2_s": [
+     89.234,
+     88.5,
+     89.547
+    ],
+    "paired_improvement_pct": {
+     "pairs": 3,
+     "median_improvement_pct": 23.053,
+     "ci95": [
+      22.8033,
+      23.4694
+     ],
+     "low_power": true
+    },
+    "verdict": "AUTOTUNING_CONTRIBUTION_QUANTIFIED (MIGRAPHX_SKIP_BENCHMARKING recognized; single variable; n=3 independent processes)"
+   },
+   "E4_cache_benefit": {
+    "baseline_e0_create_s": {
+     "n": 3,
+     "mean": 115.8693,
+     "p50": 115.64,
+     "p95": 116.3015,
+     "p99": 116.3603,
+     "std": 0.3581,
+     "min": 115.593,
+     "max": 116.375
+    },
+    "cold_tune_rep0_s": [
+     121.953
+    ],
+    "cached_create_s": {
+     "values": [
+      3.859,
+      3.719,
+      4.047
+     ],
+     "mean": 3.875
+    },
+    "cold_start_reduction_pct": 96.66,
+    "ci95_baseline_median": [
+     115.593,
+     116.375
+    ],
+    "ci95_cached_median": [
+     3.719,
+     4.047
+    ],
+    "n_processes_cached": 3,
+    "low_power": true
+   },
+   "E4_MXR_FRC": {
+    "frc_create_s": [
+     121.516,
+     124.469,
+     122.219
+    ],
+    "frc_vs_baseline_ratio": 1.059,
+    "verdict": "FORCE_RECOMPILE_EFFECTIVE (create returned to baseline level despite populated .mxr)"
+   },
+   "steady_gates_mean_primary": {
+    "E2_SKIP_BENCH": {
+     "baseline_mean_ms": 12.627,
+     "candidate_mean_ms": 15.157,
+     "regression_pct_mean": 20.04,
+     "gate": "STEADY_REGRESSED (COLD_FAST_STEADY_SLOW if E2)",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_CACHE": {
+     "baseline_mean_ms": 12.627,
+     "candidate_mean_ms": 12.637,
+     "regression_pct_mean": 0.09,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "E4_MXR_FRC": {
+     "baseline_mean_ms": 12.627,
+     "candidate_mean_ms": 12.837,
+     "regression_pct_mean": 1.66,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    },
+    "SOAK_MXR_CACHE": {
+     "baseline_mean_ms": 12.627,
+     "candidate_mean_ms": 12.82,
+     "regression_pct_mean": 1.53,
+     "gate": "STEADY_NOT_REGRESSED",
+     "reference_p50_p95_note": "steady per-run latencies quantize to ~15.6ms steps on this host; p50/p95/p99 are REFERENCE_ONLY, mean is the gate statistic"
+    }
+   },
+   "E7_recreate": {
+    "recreate_create_s": [
+     115.828,
+     116.531,
+     115.406,
+     115.562,
+     115.922,
+     115.687
+    ],
+    "first_run_after_s": [
+     0.031,
+     0.016,
+     0.031,
+     0.031,
+     0.031,
+     0.031
+    ],
+    "verdict": "IN_PROCESS_RECREATE_FULL_RECOMPILE (no warm in-process cache)"
+   },
+   "soak": {
+    "attempt": "SOAK_MXR_CACHE_rtdetr-l_rep0_p2",
+    "session_create_s": 3.688,
+    "steady_effective_s": 943.5,
+    "steady_mean_ms": 12.82,
+    "steady_n": 72500,
+    "recreates": [
+     {
+      "cycle": 0,
+      "recreate_s": 3.609,
+      "first_run_after_s": 0.032,
+      "lat_ms_p50": 15.5
+     },
+     {
+      "cycle": 1,
+      "recreate_s": 3.704,
+      "first_run_after_s": 0.031,
+      "lat_ms_p50": 15.5
+     }
+    ],
+    "effective_steady_minutes": 15.72,
+    "meets_15min": true,
+    "gate": "SOAK_15MIN_OK"
+   }
+  }
+ },
+ "cache_artifact_stages": {
+  "phase2_final_preserve_and_live": {
+   "21100-584dcaab3a0428b9-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+    "sha256": "0ac9bb173e071abc02931e54d2b0aae8c3b1240bcc5741296095883bf8e1f1d9",
+    "bytes": 11075403,
+    "mtime_utc": "2026-11-18T05:56:51.461685+00:00"
+   },
+   "21100-bdfb4488df205702-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+    "sha256": "3afd95bbd5fc91961f79ae4cf3b57e7773440b9fb33bd5dbcfeeb35df95f690d",
+    "bytes": 183121308,
+    "mtime_utc": "2026-11-18T05:58:57.101315+00:00"
+   }
+  },
+  "post_frc_batch": {
+   "21100-584dcaab3a0428b9-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+    "sha256": "2a1065597a479d1ff435a2ea6d7dc17ac809513aff0ba6bf8c76cdeb67b9064d",
+    "bytes": 11099697,
+    "mtime_utc": "2026-11-18T10:32:46.051172+00:00"
+   },
+   "21100-bdfb4488df205702-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+    "sha256": "0f430eb0bad5f27254384bd3866f37aacb5f0dd1dd8656313975322ad4363c8a",
+    "bytes": 183093698,
+    "mtime_utc": "2026-11-18T10:34:50.994498+00:00"
+   }
+  }
+ },
+ "frc_rewrite_evidence": {
+  "21100-584dcaab3a0428b9-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+   "phase2_sha": "0ac9bb173e071abc",
+   "post_frc_sha": "2a1065597a479d1f",
+   "rewritten": true,
+   "mtime_changed": true
+  },
+  "21100-bdfb4488df205702-9880cf1608079e0d-32-4ad36bce0ac4a673.mxr": {
+   "phase2_sha": "3afd95bbd5fc9196",
+   "post_frc_sha": "0f430eb0bad5f272",
+   "rewritten": true,
+   "mtime_changed": true
+  },
+  "all_files_rewritten": true
+ }
+}
