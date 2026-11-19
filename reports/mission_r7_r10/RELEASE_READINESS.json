@@ -26,7 +26,11 @@
       "status": "PHYSICAL",
       "tasks_verified": 7,
       "tasks_total": 7,
-      "e2e_models": [],
+      "e2e_models": [
+        "yolo26n.pt",
+        "yolo26n-seg.pt",
+        "yolo26n-pose.pt"
+      ],
       "stability": "PASS",
       "soak": "reports/gfx1151/R7_SOAK_20261119T220341/ (4 min, 80038 runs, p50 2.99 ms, nodes=1)"
     },

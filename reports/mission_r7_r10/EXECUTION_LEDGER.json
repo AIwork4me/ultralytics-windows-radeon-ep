@@ -15,7 +15,7 @@
   },
   "git": {
     "branch": "mission/r7-gfx1151-product-hardening",
-    "head": "85938dd2a0b4ce4d7a3c56f3f5937fa4cab19539",
+    "head": "ea059888b293cb4bff5574c32bfae49651e08a40",
     "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
     "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
   },
@@ -92,10 +92,131 @@
       ],
       "experiment": "runner.bench_e2e (20 images, 3 models, 3 processes each)",
       "result": {
-        "corpus_images": null,
-        "repetitions": null,
-        "all_passed": null,
-        "models": {}
+        "corpus_images": 20,
+        "repetitions": 3,
+        "all_passed": true,
+        "models": {
+          "yolo26n.pt": {
+            "status": "PASS",
+            "task": "detect",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 18.4791,
+              "min": 18.3835,
+              "max": 18.5272,
+              "p50": 18.5266,
+              "p95": 18.5271,
+              "p99": 18.5272
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 5.0018,
+              "min": 4.9686,
+              "max": 5.0588,
+              "p50": 4.9779,
+              "p95": 5.0507,
+              "p99": 5.0572
+            },
+            "session_create_ms": [
+              221.7425,
+              225.0609,
+              223.7004
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3267,
+              "decode": 7.1727,
+              "preprocess": 4.189,
+              "infer": 4.9779,
+              "postprocess": 1.6169,
+              "e2e": 18.5266
+            },
+            "throughput_fps": [
+              52.382,
+              52.825,
+              52.55
+            ]
+          },
+          "yolo26n-seg.pt": {
+            "status": "PASS",
+            "task": "segment",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 20.9413,
+              "min": 20.7819,
+              "max": 21.2016,
+              "p50": 20.8404,
+              "p95": 21.1655,
+              "p99": 21.1944
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 6.1001,
+              "min": 5.9538,
+              "max": 6.2423,
+              "p50": 6.1041,
+              "p95": 6.2285,
+              "p99": 6.2395
+            },
+            "session_create_ms": [
+              253.0255,
+              242.4352,
+              246.006
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3373,
+              "decode": 7.0308,
+              "preprocess": 4.1368,
+              "infer": 6.1041,
+              "postprocess": 2.3499,
+              "e2e": 20.8404
+            },
+            "throughput_fps": [
+              46.613,
+              46.663,
+              45.985
+            ]
+          },
+          "yolo26n-pose.pt": {
+            "status": "PASS",
+            "task": "pose",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 17.0102,
+              "min": 16.9178,
+              "max": 17.1751,
+              "p50": 16.9376,
+              "p95": 17.1514,
+              "p99": 17.1703
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 5.0763,
+              "min": 5.0018,
+              "max": 5.1179,
+              "p50": 5.1093,
+              "p95": 5.117,
+              "p99": 5.1177
+            },
+            "session_create_ms": [
+              240.7017,
+              241.8197,
+              241.6659
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3216,
+              "decode": 7.0852,
+              "preprocess": 4.1057,
+              "infer": 5.1093,
+              "postprocess": 0.4261,
+              "e2e": 16.9376
+            },
+            "throughput_fps": [
+              56.944,
+              56.463,
+              56.38
+            ]
+          }
+        }
       },
       "evidence": [
         "reports/mission_r7/e2e_bench.json",
@@ -188,6 +309,10 @@
     }
   },
   "evidence_manifest": {
+    "reports/mission_r7/e2e_bench.json": {
+      "sha256": "e223a31225d94fe7517417d9c92e89fc5c441f25b0620f64875a56ea6daffe69",
+      "bytes": 59143
+    },
     "reports/mission_r7/JOB_FAULT_INJECTION.json": {
       "sha256": "40d7a6f5073ff16de876cecf2145ada2357784e81bd5ac25d59f5106b7d77216",
       "bytes": 3425
@@ -205,8 +330,8 @@
       "bytes": 6008
     },
     "reports/mission_r7_r10/EXECUTION_LEDGER.json": {
-      "sha256": "3b7c7cdb2f09c46cfbb1a42fb494e4a1bd729227befc12f70b08502b6231bab3",
-      "bytes": 6807
+      "sha256": "dfc479175dab9a863811526bde611a1bf144a94ec398ef190ec579489fc7c200",
+      "bytes": 6806
     },
     "reports/mission_r7_r10/RELEASE_READINESS.json": {
       "sha256": "3cb22f2883a2bb142c3c7ab68ecf5d281968f6ad867d968cf06b6282ee5cdb0b",
