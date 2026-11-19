@@ -154,7 +154,7 @@ Provisioning Plan（详见文档，均需用户批准，未执行）：
 - 内存口径：`MEMORY_PROVENANCE.json`。
 - Pose 时延：`POSE_LATENCY_ANALYSIS.json`；新增 hash-bound `BENCH_DML_yolo26n-pose.json` + `BENCH_DML_yolo26n-pose.clocks.jsonl`。
 - DML 绑定负向控制：`DML_BINDING_PROBE.json`（无效 ordinal 7/99 失败；相邻 ordinal 1 被接受，记录为 dual enumeration；无 EP-reported LUID）。
-- 多输入 task-oracle：`MULTI_INPUT_TASK_ORACLE.json`（detect/pose 各 4 个输入变体，8/8 PASS；明确不是 dataset-level）。
+- 多输入 task-oracle：`MULTI_INPUT_TASK_ORACLE.json`（7 任务 × 4 输入变体，28/28 PASS；明确不是 dataset-level）。
 - 历史 Receipt 政策：`docs/LEGACY_RECEIPTS.md`；PR #8 的 18 个 Receipt 仍 `ALL_OK`。
 - 硬件声明矩阵：`docs/HARDWARE_CLAIM_MATRIX.md`（gfx1100/gfx1201 无硬件证据，禁止 PASS）。
 - 新证据目录没有 Receipt，也没有新的 GPU PASS 声明；PR #8 的历史 Receipt 未被修改。
@@ -165,7 +165,7 @@ Provisioning Plan（详见文档，均需用户批准，未执行）：
 | --- | --- | --- | --- | --- |
 | 1 | AMDGPU EP 缺失 | 无 `amdgpu-ep.dll`/无 AMD GPU EP 包；2.3.0 与官方 2.5.96 catalog 均 0 providers；驱动最低版本未证明 | 只读探测 + 审批门禁 provisioning plan；记录 `BLOCKED_ADMIN_DEPENDENCY`；**未安装任何组件** | **仍阻塞，需 A1–A3 批准** |
 | 2 | Pose 4× 时延 | 旧 benchmark 无 ONNX/input SHA，属 unbound 比较；当前 hash-bound 实测 ~11.9 ms，kernel 6.2–7.1 ms，ADL clock 恒 2900/1000 MHz；高优先级/profiling 不改变 | 新增 SHA 绑定 + kernel/wall 分解 + ADL clock 采样；旧 2.56 ms 标记 `UNBOUND_LEGACY_OUTLIER`，不再引用 | **证据风险已解决；2.56 ms 物理根因 UNKNOWN** |
-| 3 | 单图 task oracle | 原 pipeline 每个任务只跑 1 张图 | 新增 `multi_input_oracle`，detect/pose 各 4 变体 8/8 PASS；seg 等在 7-task 运行时 PT-oracle 子进程卡住，未完成 | **harness 已实现；dataset-level 仍需数据集** |
+| 3 | 单图 task oracle | 原 pipeline 每个任务只跑 1 张图 | 新增 `multi_input_oracle`；7 任务 × 4 变体 = 28/28 PASS；仍非独立场景数据集 | **harness 已解决；dataset-level 需数据集** |
 | 4 | DML 绑定间接 | DML 只暴露 ordinal，不暴露 LUID/PCI | 新增 `DML_BINDING_PROBE` 负向控制：ordinal 7/99 失败，证明 ordinal 被强制执行；仍不能声明 EP-reported LUID | **已加强，限制仍在** |
 | 5 | gfx1100/gfx1201 未真机 | 本机只有 gfx1151 | 合成 DID-pin 测试 + 硬件声明矩阵；无硬件不产生 PASS | **硬件阻塞** |
 | 6 | 历史 Receipt 兼容 | 旧 Receipt 无 `contract` 块，resume 是循环论证 | 明确 verify-only 政策；旧 Receipt 继续 strict-verify，不复用、不改写 | **按设计接受** |
@@ -185,14 +185,20 @@ Provisioning Plan（详见文档，均需用户批准，未执行）：
 
 ### 6.2 多输入 task-oracle
 
-`multi_input_oracle` 对 `bus.jpg` 生成 `orig / flip / bright / crop90` 四个确定性变体，对 detect 和 pose 各跑 4 个输入：
+`multi_input_oracle` 对 `bus.jpg`（detect/pose/seg/sem/depth/cls）和 `dota_p1053.jpg`（obb）生成 `orig / flip / bright / crop90` 四个确定性变体，全部 7 个 Tier A 任务各跑 4 个输入：
 
 | task | inputs | passed | 说明 |
 | --- | --- | --- | --- |
 | detect | 4 | 4/4 | all_passed=true |
+| segment | 4 | 4/4 | all_passed=true |
+| semantic | 4 | 4/4 | all_passed=true |
+| depth | 4 | 4/4 | all_passed=true |
+| classify | 4 | 4/4 | all_passed=true |
 | pose | 4 | 4/4 | all_passed=true |
+| obb | 4 | 4/4 | all_passed=true |
+| **合计** | **28** | **28/28** | 全部 PASS |
 
-这解决了“每个任务只有一张图”的 harness 限制，但不是 dataset-level 精度；seg/sem/depth/cls/obb 的 7-task 批量运行在 segment PT-oracle 子进程处卡住，未完成，不能宣称全部任务多输入通过。
+这解决了“每个任务只有一张图”的 harness 限制；但仍不是 dataset-level 精度：变体来自同一场景，且没有 20–50 张独立场景的标注数据集。单图/数据集级风险从“harness 缺失”降级为“数据集资产未提供”。
 
 ## 7. 下一轮 gfx1151 真机命令
 

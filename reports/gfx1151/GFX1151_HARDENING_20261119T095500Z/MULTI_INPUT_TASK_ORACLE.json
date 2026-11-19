@@ -3,7 +3,7 @@
   "captured_utc": "2026-11-19T02:40:10Z",
   "gfx": "gfx1151",
   "ep": "dml",
-  "scope": "multi-input task-oracle smoke: detect and pose, 4 deterministic image variants each; NOT dataset-level accuracy",
+  "scope": "multi-input task-oracle: all 7 Tier A tasks, 4 deterministic image variants each (28/28 PASS); NOT dataset-level accuracy",
   "variants_per_model": 4,
   "host_identity": {
     "gfx": "gfx1151",
@@ -24,6 +24,61 @@
       ]
     },
     "pose": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "classify": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "depth": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "semantic": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "segment": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "obb": {
       "inputs": 4,
       "passed": 4,
       "all_passed": true,
@@ -199,7 +254,442 @@
       },
       "oracle_kind": "TASK_PARITY",
       "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-cls.pt",
+      "task": "classify",
+      "variant": "orig",
+      "input_id": "f4378604fa157f1e60c826a605b51448bfe137045c35421ce39e648e46fd3eae",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "ref_top1": 654,
+        "cand_top1": 654,
+        "top1_match": true,
+        "top5_overlap": 5,
+        "score_drift": 1.0132789611816406e-06
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-cls.pt",
+      "task": "classify",
+      "variant": "flip",
+      "input_id": "d3fdc360f96332275aaf89f3e1b9cb11b195a359786dfb205801af1d2c4d270b",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "ref_top1": 654,
+        "cand_top1": 654,
+        "top1_match": true,
+        "top5_overlap": 5,
+        "score_drift": 4.76837158203125e-07
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-cls.pt",
+      "task": "classify",
+      "variant": "bright",
+      "input_id": "15a3e2b5b44d35b23c55e6515cd3e2bd431d951fbdbc8767b3693cefe84d4f11",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "ref_top1": 654,
+        "cand_top1": 654,
+        "top1_match": true,
+        "top5_overlap": 5,
+        "score_drift": 5.364418029785156e-07
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-cls.pt",
+      "task": "classify",
+      "variant": "crop90",
+      "input_id": "b4b3ed0d7fb250cd34ea36d2bb59908e708c268b4d2b80afc17f79ab3c26931f",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "ref_top1": 408,
+        "cand_top1": 408,
+        "top1_match": true,
+        "top5_overlap": 5,
+        "score_drift": 9.834766387939453e-07
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-depth.pt",
+      "task": "depth",
+      "variant": "orig",
+      "input_id": "cd610d33cb84ae58ae06e78ed535938ff85d697917ab5e96c0fb0cb895e43d38",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "e8e452359bb3cec3ac9d4ab2a0fa536b63eb0cf74ae41ca81fb543557493b678",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "mae": 1.4904766835065352e-06,
+        "rmse": 4.723386248057228e-06,
+        "rel_mae": 3.3677081946470395e-07,
+        "valid_px": 589824,
+        "ref_mean_depth": 4.425789282680853
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-depth.pt",
+      "task": "depth",
+      "variant": "flip",
+      "input_id": "5b04f4fac2caff21dba664ebabf81c0eb6fcb558ad4cff7eba806019398790d8",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "e8e452359bb3cec3ac9d4ab2a0fa536b63eb0cf74ae41ca81fb543557493b678",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "mae": 2.1011548799126304e-06,
+        "rmse": 4.781903702687243e-06,
+        "rel_mae": 4.485779045753223e-07,
+        "valid_px": 589824,
+        "ref_mean_depth": 4.684035612279735
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-depth.pt",
+      "task": "depth",
+      "variant": "bright",
+      "input_id": "bc4c766a42dada978be9e66e7d8b0cb63ac9df3ae6aa6df815a085e8d49d7b89",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "e8e452359bb3cec3ac9d4ab2a0fa536b63eb0cf74ae41ca81fb543557493b678",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "mae": 1.432012342977234e-06,
+        "rmse": 4.80536096905278e-06,
+        "rel_mae": 3.219255010136091e-07,
+        "valid_px": 589824,
+        "ref_mean_depth": 4.448272468221451
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-depth.pt",
+      "task": "depth",
+      "variant": "crop90",
+      "input_id": "559ecf174949b4ae57ee0ac21d4580910ed72ed2de094975aeca4ee0a8a282bb",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "e8e452359bb3cec3ac9d4ab2a0fa536b63eb0cf74ae41ca81fb543557493b678",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 0,
+        "mae": 1.48537825831833e-06,
+        "rmse": 4.156620741038087e-06,
+        "rel_mae": 3.7337397409132384e-07,
+        "valid_px": 589824,
+        "ref_mean_depth": 3.9782586934005746
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-sem.pt",
+      "task": "semantic",
+      "variant": "orig",
+      "input_id": "560e96c1ffeeb8b1fdd02be58dec2267cc4cb7cbd4dddb7b3b40a5596fc8c1ab",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "a71fdf47e77f80d9727038914a127b069ace7718fdf650c58e2deefd8507637d",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 11,
+        "pixel_agreement": 1.0,
+        "miou": 1.0,
+        "classes_ref": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          11,
+          13,
+          15,
+          18
+        ]
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-sem.pt",
+      "task": "semantic",
+      "variant": "flip",
+      "input_id": "e87215e97408b8ced3cda662c210e91b0a04008057177f1f5ecdeeac1d2d3e99",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "a71fdf47e77f80d9727038914a127b069ace7718fdf650c58e2deefd8507637d",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 10,
+        "pixel_agreement": 0.99999755859375,
+        "miou": 0.9999685486708989,
+        "classes_ref": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          11,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-sem.pt",
+      "task": "semantic",
+      "variant": "bright",
+      "input_id": "1e2cde106438045460a9c6beceaa4ab78ad32aca09bec69983538a29ac07505e",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "a71fdf47e77f80d9727038914a127b069ace7718fdf650c58e2deefd8507637d",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 11,
+        "pixel_agreement": 1.0,
+        "miou": 1.0,
+        "classes_ref": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          11,
+          13,
+          15,
+          18
+        ]
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-sem.pt",
+      "task": "semantic",
+      "variant": "crop90",
+      "input_id": "94f8aa2b4f227f1ef25174c64e40aa70964aee854e90d34e7a61b6358f26cf9f",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "a71fdf47e77f80d9727038914a127b069ace7718fdf650c58e2deefd8507637d",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 11,
+        "pixel_agreement": 1.0,
+        "miou": 1.0,
+        "classes_ref": [
+          1,
+          2,
+          5,
+          7,
+          8,
+          11,
+          13,
+          14,
+          15,
+          16,
+          18
+        ]
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "variant": "orig",
+      "input_id": "b80f6acde4d5d9880ed1c210115c5adacc45fe8ffca097cd762d0d97978c06e4",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999994760113481,
+        "mask_iou_mean": 1.0
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "variant": "flip",
+      "input_id": "3d2f52800ef95722dacc5ee75425c6857bb139f8995c721015f87fb058e563ba",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999989469802321,
+        "mask_iou_mean": 1.0
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "variant": "bright",
+      "input_id": "9857bbdae82fc897dfd5e619cacfd1174bcfbbbf36bb2491aa1fb76506c9721b",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999995720356345,
+        "mask_iou_mean": 1.0
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "variant": "crop90",
+      "input_id": "341787a7b35d46ec7a8416237551f3cc0edca65cbb7c0285775796a6add0d2c2",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999991824865009,
+        "mask_iou_mean": 1.0
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-obb.pt",
+      "task": "obb",
+      "variant": "orig",
+      "input_id": "f3a1ef63c1f16726e3c0ebb6863316c4f2b66a9cf11a39de4fd0b73db0de9662",
+      "image_sha256": "fd02a418eb92d65839625ce1d1a7808ea50970cd58fdf119be76667b3da6ed40",
+      "onnx_sha256": "1f3ff9f7336aa02182485ad7b8dd93b220438688d9976621c1c89e437a3cedb6",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 15,
+        "matched": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "rotated_iou_mean": 1.00000003973643,
+        "angle_absdiff_mean_deg": 3.827751847361312e-06
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-obb.pt",
+      "task": "obb",
+      "variant": "flip",
+      "input_id": "61968cd7701ef3e83ffad4af3487a161a5890733a4a475e7078f32f9cb99276a",
+      "image_sha256": "d401f7647b5e9069ce8c1b7a9937278d3b1e8ae0a13678811d65b5e2c498acc6",
+      "onnx_sha256": "1f3ff9f7336aa02182485ad7b8dd93b220438688d9976621c1c89e437a3cedb6",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 15,
+        "matched": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "rotated_iou_mean": 1.0,
+        "angle_absdiff_mean_deg": 3.5858493142566946e-06
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-obb.pt",
+      "task": "obb",
+      "variant": "bright",
+      "input_id": "0c49cb9b6a781664a891e207ddc814d5dd31db2bb36899606570d64ff21bc774",
+      "image_sha256": "453a0147651249886eceb6d61225a87c89ab8af5b2b8529926a3323f3e584d8e",
+      "onnx_sha256": "1f3ff9f7336aa02182485ad7b8dd93b220438688d9976621c1c89e437a3cedb6",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 15,
+        "matched": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "rotated_iou_mean": 0.9999999125798543,
+        "angle_absdiff_mean_deg": 3.443553706548095e-06
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-obb.pt",
+      "task": "obb",
+      "variant": "crop90",
+      "input_id": "3cf242bfbcfb70d1cfd20705886d6118be4a035ae0ff053ae37351c22e09355d",
+      "image_sha256": "d963af408a9921f68430ba2007749fdae1665a0d624cb232f034c96db520c23e",
+      "onnx_sha256": "1f3ff9f7336aa02182485ad7b8dd93b220438688d9976621c1c89e437a3cedb6",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 14,
+        "matched": 14,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "rotated_iou_mean": 0.9999998893056598,
+        "angle_absdiff_mean_deg": 2.8509941401615735e-06
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
     }
   ],
-  "not_run": "seg/sem/depth/cls/obb multi-input smoke not completed (the 7-task run stalled in the segment PT-oracle subprocess); these remain single-image evidence in PR #8"
+  "not_run": "dataset-level mAP/OKS/mIoU over 20-50 independent scenes remains out of scope; this is a multi-input harness/parity smoke"
 }

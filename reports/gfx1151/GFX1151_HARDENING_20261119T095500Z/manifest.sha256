@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "GFX1151_HARDENING_20261119T095500Z",
-  "created_utc": "2026-11-19T02:41:45Z",
+  "created_utc": "2026-11-19T02:48:08Z",
   "generator": "GFX1151 independent hardening read-only evidence",
   "entries": [
     {
@@ -51,8 +51,8 @@
     },
     {
       "path": "HARDENING_FINAL_CN.md",
-      "sha256": "401a7dbc3bd4c5159f533738c9d4bd485697c10c6b6ac9f2480b3beec4cc13e8",
-      "bytes": 20973
+      "sha256": "ce2cc2d7890b80c420b158624c1e4b1cd57d0cb5da1676231bd0908447e5679e",
+      "bytes": 21274
     },
     {
       "path": "HOST_IDENTITY_MATRIX.json",
@@ -66,8 +66,8 @@
     },
     {
       "path": "MULTI_INPUT_TASK_ORACLE.json",
-      "sha256": "fed6ed3ab58f4158089ff94a02f8fbea39d70ead3e455e609a5bbd588fb98ad7",
-      "bytes": 6238
+      "sha256": "574fb2699310296f10c7b92dc738624830572fb2da93183a26ea6c1a803186d2",
+      "bytes": 20927
     },
     {
       "path": "POSE_LATENCY_ANALYSIS.json",
