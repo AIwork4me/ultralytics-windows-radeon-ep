@@ -90,12 +90,25 @@ def test_reused_run_id_is_refused_before_any_execution(tmp_path):
         _predict(tmp_path, run_id="RUN_FROZEN", inputs=_inputs(2.0))
 
 
-def test_reuse_run_id_is_explicit_and_leaves_a_new_receipt(tmp_path):
+def test_reuse_run_id_has_no_overwrite_escape_hatch(tmp_path):
     first = _predict(tmp_path, run_id="RUN_REUSE")
-    second = _predict(tmp_path, run_id="RUN_REUSE", inputs=_inputs(3.0),
-                      allow_reuse_run_id=True)
-    assert first["receipt_sha256"] != second["receipt_sha256"]
-    assert second["receipt"]["written"] is True
+    before = (tmp_path / "work" / ("receipt_%s.json" % first["run_id"])).read_bytes()
+    # the parameter was removed on purpose: there is no overwrite path at all
+    with pytest.raises(TypeError):
+        _predict(tmp_path, run_id="RUN_REUSE", inputs=_inputs(3.0),
+                 allow_reuse_run_id=True)
+    with pytest.raises(ur.ContractError, match="RUN_ID_ALREADY_FROZEN"):
+        _predict(tmp_path, run_id="RUN_REUSE", inputs=_inputs(3.0))
+    after = (tmp_path / "work" / ("receipt_%s.json" % first["run_id"])).read_bytes()
+    assert before == after, "a frozen receipt must never be rewritten"
+
+
+def test_run_id_cannot_escape_the_workspace(tmp_path):
+    # an empty/None run_id legitimately means "generate one"; a *supplied*
+    # value must be a single safe path component
+    for bad in ("..", "../evil", "a/b", "C:\\abs", "x", ".hidden", "a" * 200):
+        with pytest.raises(ur.ContractError, match="INVALID_RUN_ID"):
+            _predict(tmp_path, run_id=bad)
 
 
 def test_different_onnx_same_work_dir_cannot_share_attempts(tmp_path):
@@ -112,23 +125,34 @@ def test_different_onnx_same_work_dir_cannot_share_attempts(tmp_path):
 
 
 def test_foreign_fragment_attempt_id_is_rejected(tmp_path):
+    """A fragment that echoes someone else's attempt id is refused outright."""
     ex = WorkerExecutor(gfx="gfx1151", winml_python=sys.executable,
                         work_dir=tmp_path / "w", repo_root=Path.cwd(),
-                        worker_module=FAKE)
+                        worker_module=FAKE,
+                        worker_case_extra={"fake_mode": {"dml": "wrong_attempt",
+                                                         "cpu": "ok"}})
     a = ex.execute(ep="dml", model_path=str(_model(tmp_path)),
                    inputs=_inputs())
-    assert a.ok is True
-    # now force the stub to echo a stranger's attempt id
-    a2 = ex.execute(ep="dml", model_path=str(_model(tmp_path)),
-                    inputs=_inputs())
-    assert a2.ok is True
-    frag = json.loads((Path(a2.attempt_dir) / "fragment.json").read_text())
-    frag["attempt_id"] = "A999-not-mine"
-    (Path(a2.attempt_dir) / "fragment.json").write_text(json.dumps(frag))
-    a3 = ex._run_worker("dml", str(_model(tmp_path)), reference=None,
-                        feeds=ex._feeds_path(_inputs())[0],
-                        feed_fp=ex._feeds_path(_inputs())[1])
-    assert a3.fragment_matches_attempt is True  # the fresh run wrote its own
+    assert a.ok is False
+    assert a.fragment_matches_attempt is False
+    assert a.error and a.error.startswith("ATTEMPT_MISMATCH")
+
+
+def test_simulation_hook_cannot_redirect_inputs(tmp_path):
+    """worker_case_extra must not be able to swap the tensor or the model."""
+    with pytest.raises(ValueError, match="refused keys"):
+        WorkerExecutor(gfx="gfx1151", winml_python=sys.executable,
+                       work_dir=tmp_path / "w", repo_root=Path.cwd(),
+                       worker_module=FAKE,
+                       worker_case_extra={"feeds_npz": "x.npz",
+                                          "expected_feed_sha256": "0" * 64})
+
+
+def test_simulated_worker_is_never_evidence_grade(tmp_path):
+    r = _predict(tmp_path, run_id="RUN_SIM")
+    assert r["evidence_grade"] == ur.INJECTED_GRADE
+    assert r["verification_scope"] == "SIMULATED_WORKER"
+    assert r["readiness"]["evidence_verified"] is False
 
 
 def test_failed_worker_keeps_partial_artifacts_labelled(tmp_path):

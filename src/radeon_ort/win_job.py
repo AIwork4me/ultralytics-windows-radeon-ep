@@ -268,8 +268,14 @@ def _resume_process_threads(pid: int) -> dict:
         if h:
             try:
                 status = _ntdll.NtResumeProcess(h)
-                out["nt_resume_process"] = "ok" if status == 0 else ("status=0x%08X"
-                                                                   % (status & 0xFFFFFFFF))
+                if status == 0:
+                    out["nt_resume_process"] = "ok"
+                    # count it as a successful resume so the caller does not
+                    # report RESUME_FAILED after the fallback worked
+                    out["resumed_threads"] = max(int(out.get("resumed_threads", 0)), 1)
+                    out["resumed_via"] = "NtResumeProcess"
+                else:
+                    out["nt_resume_process"] = "status=0x%08X" % (status & 0xFFFFFFFF)
             finally:
                 _k32.CloseHandle(h)
         else:
@@ -553,6 +559,7 @@ def spawn_in_job(argv: list[str], *, cwd: str | Path | None = None,
             res.job_assigned = bool(a.get("ok"))
             if not a.get("ok"):
                 res.job_error = str(a.get("error"))
+                res.container = "job_object_degraded"
                 res.notes.append("job assignment failed; cleanup falls back to the "
                                  "direct child only")
         res.resume = _resume_process_threads(res.pid)

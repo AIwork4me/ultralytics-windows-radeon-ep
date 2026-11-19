@@ -71,7 +71,9 @@ def test_missing_reference_file_blocks_without_faking_a_pass(tmp_path):
     assert r["task_verified"] is False               # but the task is unverified
     assert r["task_parity"]["status"] == tor.BLOCKED
     assert "TASK_ORACLE_REFERENCE_MISSING" in r["task_parity"]["reason_code"]
-    assert ur.verify_run_result(r, work_dir=tmp_path / "work")["verdict"] == "RUNRESULT_VALID"
+    # the stub worker is not evidence-grade, so the verdict is UNVERIFIED - but
+    # never INVALID and never VALID: the GPU/CPU split is still coherent
+    assert ur.verify_run_result(r, work_dir=tmp_path / "work")["verdict"] == "RUNRESULT_UNVERIFIED"
 
 
 def test_catalog_task_mismatch_blocks(tmp_path):
