@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T14:55:24Z",
+  "scope": "Windows Job Object process-tree lifecycle fault injection",
+  "host_container": "job_object",
+  "scenarios": [
+    {
+      "scenario": "normal_exit",
+      "expected": "exit 0, job assigned, no survivors",
+      "observed": {
+        "returncode": 0,
+        "job_assigned": true,
+        "survivors": [],
+        "alive": {
+          "26532": false
+        }
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "wedged_worker_timeout",
+      "expected": "timeout, job termination, no survivors",
+      "observed": {
+        "timed_out": true,
+        "returncode": 124,
+        "terminated_by_job": true,
+        "survivors": [],
+        "alive": {
+          "8796": false
+        }
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "live_grandchild",
+      "expected": "grandchild reclaimed with the parent",
+      "observed": {
+        "recorded_pids": [
+          7468,
+          25912,
+          28380
+        ],
+        "alive": {
+          "7468": false,
+          "25912": false,
+          "28380": false
+        },
+        "survivors": []
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "multilevel_descendants",
+      "expected": "every descendant reclaimed",
+      "observed": {
+        "recorded_pids": [
+          6208,
+          17964,
+          22260,
+          28396,
+          28584
+        ],
+        "alive": {
+          "6208": false,
+          "17964": false,
+          "22260": false,
+          "28396": false,
+          "28584": false
+        },
+        "survivors": []
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "partial_output_then_timeout",
+      "expected": "timeout with the partial artefact retained and labelled",
+      "observed": {
+        "timed_out": true,
+        "partial_file_present": true,
+        "bytes": 72
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "job_assign_failure",
+      "expected": "run proceeds, degraded container recorded",
+      "observed": {
+        "returncode": 0,
+        "job_assigned": false,
+        "job_error": "simulated denial",
+        "notes": [
+          "job assignment failed; cleanup falls back to the direct child only"
+        ]
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "user_cancel",
+      "expected": "cancelled, exit 130, tree reclaimed",
+      "observed": {
+        "cancelled": true,
+        "returncode": 130,
+        "survivors": [],
+        "alive": {
+          "7056": false,
+          "8312": false,
+          "26964": false
+        }
+      },
+      "passed": true,
+      "note": ""
+    },
+    {
+      "scenario": "amdgpu_timeout_then_dml",
+      "expected": "AMDGPU timeout recorded, policy continues to an independent DML attempt",
+      "observed": {
+        "runtime_status": "GPU_FULL_DML",
+        "amd_error": "TIMEOUT_2s",
+        "amd_timed_out": true,
+        "dml_ok": true,
+        "attempted_eps": [
+          "amdgpu",
+          "dml"
+        ],
+        "fallback_reason": "AMDGPU_FAILED: TIMEOUT_2s"
+      },
+      "passed": true,
+      "note": ""
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "all_passed": true
+}

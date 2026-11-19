@@ -1,0 +1,1 @@
+{"ok": true, "task": "semantic", "passed": true, "metrics_keys": ["classes_ref", "miou", "pixel_agreement", "ref_entities"]}

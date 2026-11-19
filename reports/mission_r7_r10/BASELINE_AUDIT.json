@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "mission": "R7-R10",
+  "host_id": "unknown",
+  "git": {
+    "head": "85938dd2a0b4ce4d7a3c56f3f5937fa4cab19539",
+    "head_short": "85938dd",
+    "branch": "mission/r7-gfx1151-product-hardening",
+    "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "worktree_clean": true,
+    "status_porcelain": "",
+    "recent": [
+      "85938dd evidence(r7): regenerate on the P0-fixed head (gfx1151, DML)",
+      "1efeba3 fix(r7): close the four P0 findings from the independent review",
+      "27a709b test(r7): make the task-oracle and job tests CI-independent",
+      "0c0ada1 feat(r7): product hardening - task oracle, job objects, attempt isolation, E2E",
+      "0c844da Merge PR #11: record PR #10 merge commit and final main"
+    ],
+    "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
+  },
+  "baseline_note": {
+    "head_at_mission_start": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "origin_main_at_mission_start": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "tracked_files_modified_at_mission_start": false,
+    "untracked_at_mission_start": [
+      "Ultralytics/settings.json (created by the export venv)",
+      "reports/gfx1151/PREFLIGHT_<ts>/ (produced by this audit's preflight)"
+    ],
+    "worktree_clean_at_capture": true,
+    "why_dirty_now": "this file is captured at the end of the mission; the working tree intentionally carries the R7-R10 changes"
+  },
+  "os": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.26200",
+    "machine": "AMD64"
+  },
+  "cpu": null,
+  "ram_gb": null,
+  "gpu": {
+    "dxgi_error": null,
+    "adapters": [
+      {
+        "index": 0,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "subsys_id": "0x8D01103C",
+        "luid": "0x00000000:0x000154E4",
+        "software": false
+      },
+      {
+        "index": 1,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "subsys_id": "0x8D01103C",
+        "luid": "0x00000000:0x08D5FD5C",
+        "software": false
+      },
+      {
+        "index": 2,
+        "description": "Microsoft Basic Render Driver",
+        "vendor_id": "0x1414",
+        "device_id": "0x008C",
+        "subsys_id": "0x00000000",
+        "luid": "0x00000000:0x000174B5",
+        "software": true
+      }
+    ],
+    "selected": {
+      "index": 0,
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x000154E4",
+      "did_match": true
+    },
+    "gfx": "gfx1151",
+    "driver_version": "unknown",
+    "driver_date": null,
+    "pnp_device_id_redacted": "PCI&VEN_1002&DEV_1586",
+    "memory_provenance": {
+      "schema_version": 1,
+      "sources": {
+        "dedicated_video_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "driver/BIOS-reported dedicated segment; on an integrated APU this is a carve-out, NOT independent physical VRAM"
+        },
+        "dedicated_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system memory dedicated to the adapter segment"
+        },
+        "shared_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system RAM the GPU is allowed to share; not VRAM"
+        },
+        "wmi_adapter_ram_bytes": {
+          "source": "WMI Win32_VideoController.AdapterRAM",
+          "unit": "bytes",
+          "meaning": "uint32 field; saturates near 4 GiB and is unreliable for >4 GiB devices; do NOT use as VRAM capacity"
+        }
+      },
+      "values": {
+        "dedicated_video_mb": 32589,
+        "dedicated_system_mb": 0,
+        "shared_system_mb": 78459,
+        "wmi_adapter_ram_bytes": null
+      },
+      "wmi_adapter_ram_saturated": false,
+      "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, bandwidth, temperature and power are NOT_MEASURED"
+    }
+  },
+  "runtime": {
+    "winml_python": {
+      "python": "3.12.10",
+      "ort": "1.25.2",
+      "providers": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ],
+      "windowsml": "2.5.96"
+    },
+    "export_python": {
+      "python": "3.12.10",
+      "ort_error": "ModuleNotFoundError: No module named 'onnxruntime'",
+      "windowsml_error": "PackageNotFoundError: No package metadata was found for windowsml"
+    },
+    "windows_ml_catalog": "CATALOG_EMPTY -> AMDGPU BLOCKED_EXTERNAL (see reports/mission_r10/)",
+    "dml_available": true
+  },
+  "models": {
+    "onnx_count": 9,
+    "onnx": [
+      "yolo11n.raw_b1_fp32_static.onnx",
+      "yolo26n-cls.raw_b1_fp32_static.onnx",
+      "yolo26n-depth.raw_b1_fp32_static.onnx",
+      "yolo26n-obb.raw_b1_fp32_static.onnx",
+      "yolo26n-pose.raw_b1_fp32_static.onnx",
+      "yolo26n-seg.raw_b1_fp32_static.onnx",
+      "yolo26n-sem.raw_b1_fp32_static.onnx",
+      "yolo26n.raw_b1_fp32_static.onnx",
+      "yolov8n.raw_b1_fp32_static.onnx"
+    ],
+    "catalog_sha256": "40aa1fa66dd7878d49bb79e48be3298a6ed02333e8bec847c25b2004c6a378d2"
+  },
+  "tests": {
+    "baseline_before_mission": {
+      "passed": 293,
+      "skipped": 1,
+      "hardware_failures": 2,
+      "command": "pytest -q (all)"
+    },
+    "ci_scope": "tests/unit tests/contracts tests/adversarial",
+    "note": "the two hardware failures are tests/hardware gfx canaries that require the AMDGPU EP; it is not installed on this host"
+  },
+  "policies": {
+    "no_system_changes": true,
+    "read_only_host_audit": true,
+    "venv_only_dependency_additions": [
+      "opencv-python-headless (winml venv, needed for real-image preprocessing)"
+    ]
+  }
+}

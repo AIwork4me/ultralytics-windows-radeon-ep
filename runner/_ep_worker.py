@@ -27,9 +27,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from radeon_ort import device_identity, profiler_audit  # noqa: E402
-from radeon_ort.cpu_reference import compare_outputs, create_cpu_session  # noqa: E402
-from radeon_ort.input_contract import load_input_bundle, tensor_sha256  # noqa: E402
+from radeon_ort import device_identity, profiler_audit
+from radeon_ort.cpu_reference import compare_outputs, create_cpu_session
+from radeon_ort.input_contract import load_input_bundle, tensor_sha256
 
 ORT_TYPE_MAP = {
     "tensor(float)": "float32", "tensor(float16)": "float16",
@@ -67,6 +67,7 @@ def main() -> int:
 
     frag = {"session": {"ep": ep.upper()}, "parity": None, "benchmark_data": None,
             "worker_pid": os.getpid(), "parent_pid": os.getppid(),
+            "attempt_id": case.get("attempt_id"),
             "input_tensor_sha256": None}
     try:
         if case.get("feeds_npz"):
@@ -80,6 +81,22 @@ def main() -> int:
                 hh.update(k.encode() + b"|")
                 hh.update(tensor_sha256(feed_dict[k]).encode())
             frag["input_tensor_sha256"] = hh.hexdigest()
+            expected_feed = case.get("expected_feed_sha256")
+            frag["input_binding"] = {
+                "expected_sha256": expected_feed,
+                "actual_sha256": frag["input_tensor_sha256"],
+                "ok": (expected_feed is None
+                       or expected_feed == frag["input_tensor_sha256"]),
+                "source": "npz bundle re-hashed in this worker process",
+            }
+            if expected_feed is not None and expected_feed != frag["input_tensor_sha256"]:
+                # R7-C: the input file on disk is not the tensor the caller
+                # fingerprinted. A stale or substituted bundle must never feed a
+                # GPU run and then be validated by a fresh receipt.
+                _write(a.out, frag)
+                print("INPUT_FINGERPRINT_MISMATCH: feeds=" + str(frag["input_tensor_sha256"])
+                      + " expected=" + str(expected_feed), file=sys.stderr)
+                return 3
             frag["input_id"] = "canary_feeds:" + frag["input_tensor_sha256"][:16]
             input_name = None
             manifest = {"input_id": frag["input_id"]}
@@ -121,8 +138,7 @@ def main() -> int:
                                       profile_prefix=case.get("profile_prefix", "cpu"))
         elif ep == "amdgpu":
             from radeon_ort import windows_ml_ep_catalog
-            from radeon_ort.amdgpu_session import (create_amdgpu_session,
-                                                   ensure_amdgpu_registered)
+            from radeon_ort.amdgpu_session import create_amdgpu_session, ensure_amdgpu_registered
             try:
                 dll = ensure_amdgpu_registered()
             except RuntimeError as e:
@@ -157,8 +173,7 @@ def main() -> int:
             frag["session"]["profile_fused_event_present"] = \
                 frag["session"]["provider_node_counts"].get("AMDGPU", 0) == 1
         elif ep == "dml":
-            from radeon_ort.dml_session import (create_dml_session,
-                                                resolve_dml_device_id_for_adapter)
+            from radeon_ort.dml_session import create_dml_session, resolve_dml_device_id_for_adapter
             dml_idx = resolve_dml_device_id_for_adapter(target.index)
             sess = create_dml_session(onnx_path, device_id=dml_idx,
                                       profile_prefix=case.get("profile_prefix", "dml"))
@@ -286,8 +301,17 @@ def _ort_distribution():
 
 
 def _write(path, frag):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_text(json.dumps(_jsonable(frag), allow_nan=False), encoding="utf-8")
+    """Atomically publish the fragment so a timeout cannot leave half a JSON.
+
+    A partially written fragment would be indistinguishable from a real one to a
+    careless reader; writing to a sibling temp file and os.replace()-ing it
+    means the only two observable states are "absent" and "complete".
+    """
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_name(p.name + ".tmp-" + str(os.getpid()))
+    tmp.write_text(json.dumps(_jsonable(frag), allow_nan=False), encoding="utf-8")
+    os.replace(tmp, p)
 
 
 def _jsonable(o):

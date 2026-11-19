@@ -1,0 +1,1 @@
+{"ok": true, "task": "depth", "passed": true, "metrics_keys": ["mae", "ref_entities", "ref_mean_depth", "rel_mae", "rmse", "valid_px"]}

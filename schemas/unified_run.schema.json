@@ -1,0 +1,282 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep/schemas/unified_run.schema.json",
+  "title": "Unified Radeon runtime RunResult v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "requested_policy",
+    "runtime_status",
+    "gpu_full",
+    "task_verified",
+    "actual_ep",
+    "attempted_eps",
+    "target_gfx",
+    "model_sha256",
+    "input_sha256",
+    "target_ep_profile_nodes",
+    "cpu_profile_nodes",
+    "numeric_parity",
+    "task_parity",
+    "device_binding_confidence",
+    "code_provenance",
+    "receipt_sha256",
+    "attempts",
+    "readiness",
+    "evidence_grade",
+    "cpu_reference"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "const": "unified_run_v1"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "requested_policy": {
+      "enum": [
+        "require_amdgpu",
+        "prefer_amdgpu_allow_dml",
+        "gpu_first_allow_cpu",
+        "cpu_opt_in"
+      ]
+    },
+    "runtime_status": {
+      "enum": [
+        "GPU_FULL",
+        "GPU_FULL_DML",
+        "CPU_ONLY_USER_AUTHORIZED",
+        "BLOCKED",
+        "FAIL",
+        "PARTIAL_CPU"
+      ]
+    },
+    "gpu_full": {
+      "type": "boolean"
+    },
+    "task_verified": {
+      "type": "boolean"
+    },
+    "actual_ep": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "amdgpu",
+        "dml",
+        "cpu",
+        null
+      ]
+    },
+    "attempted_eps": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "amdgpu",
+          "dml",
+          "cpu"
+        ]
+      }
+    },
+    "target_gfx": {
+      "enum": [
+        "gfx1100",
+        "gfx1151",
+        "gfx1201"
+      ]
+    },
+    "model_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_fingerprint": {
+      "type": "object",
+      "required": [
+        "combined_sha256",
+        "inputs"
+      ],
+      "properties": {
+        "combined_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "inputs": {
+          "type": "object"
+        }
+      }
+    },
+    "target_ep_profile_nodes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cpu_profile_nodes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "device_binding_confidence": {
+      "type": "string",
+      "minLength": 3
+    },
+    "physical_gpu": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "numeric_parity": {
+      "type": "object"
+    },
+    "task_parity": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS_TASK",
+            "FAIL_TASK",
+            "TASK_ORACLE_BLOCKED",
+            "NOT_RUN",
+            "NOT_REQUESTED"
+          ]
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "task_oracle": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "fallback_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cpu_user_authorized": {
+      "type": "boolean"
+    },
+    "cpu_reference": {
+      "type": "object",
+      "required": [
+        "mode",
+        "used"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "allow",
+            "forbid"
+          ]
+        },
+        "used": {
+          "type": "boolean"
+        }
+      }
+    },
+    "code_provenance": {
+      "type": "object"
+    },
+    "receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "receipt": {
+      "type": "object"
+    },
+    "evidence_grade": {
+      "enum": [
+        "EVIDENCE",
+        "INJECTED_TEST"
+      ]
+    },
+    "verification_scope": {
+      "type": "string"
+    },
+    "readiness": {
+      "type": "object",
+      "required": [
+        "gpu_full",
+        "task_verified",
+        "evidence_verified",
+        "product_ready"
+      ],
+      "properties": {
+        "gpu_full": {
+          "type": "boolean"
+        },
+        "task_verified": {
+          "type": "boolean"
+        },
+        "evidence_verified": {
+          "type": "boolean"
+        },
+        "product_ready": {
+          "type": "boolean"
+        }
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ep",
+          "ok",
+          "status"
+        ],
+        "properties": {
+          "ep": {
+            "enum": [
+              "amdgpu",
+              "dml",
+              "cpu"
+            ]
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "attempt_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_nodes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "cpu_nodes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "process": {
+            "type": "object"
+          },
+          "partial_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

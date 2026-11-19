@@ -1,0 +1,44 @@
+{
+  "ep": "dml",
+  "tag": "yolo26n",
+  "onnx_redacted": "yolo26n.raw_b1_fp32_static.onnx",
+  "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+  "input": "64d11ef4c1e470282a385f7d293607b639da2f40405c92238897253dd1e23f14",
+  "input_source": "persisted_npy",
+  "phase_note": "duration measures INFERENCE phase only; session-create wall time appears in stage_markers",
+  "duration_s": 240.0,
+  "status": "COMPLETED",
+  "runs": 80038,
+  "errors": [],
+  "provider_node_counts": {
+    "DmlExecutionProvider": 1
+  },
+  "target_ep_nodes": 1,
+  "cpu_nodes": 0,
+  "attribution": "fused_single_node",
+  "gpu_attested": true,
+  "latency_ms": {
+    "p50": 2.9943,
+    "p95": 3.2143,
+    "p99": 3.3584890000000014,
+    "mean": 2.991174264724256,
+    "std": 0.15328363064578882,
+    "samples": 80038
+  },
+  "stage_markers": [
+    "+0.0s session-create-begin",
+    "+0.3s session-created providers=['DmlExecutionProvider', 'CPUExecutionProvider'] DmlExecutionProvider=1 CPU=0",
+    "+0s heartbeat runs=1 err=0",
+    "+30s heartbeat runs=10486 err=0",
+    "+60s heartbeat runs=20637 err=0",
+    "+90s heartbeat runs=30823 err=0",
+    "+120s heartbeat runs=40888 err=0",
+    "+150s heartbeat runs=50862 err=0",
+    "+180s heartbeat runs=60625 err=0",
+    "+210s heartbeat runs=70384 err=0"
+  ],
+  "watchdog": {
+    "no_progress_timeout_s": 180,
+    "heartbeat_s": 30
+  }
+}

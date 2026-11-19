@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "verdicts": {
+    "R7": "R7_GFX1151_PRODUCT_HARDENING_GO",
+    "R8": "GFX1100_CROSS_HOST_HARNESS_READY",
+    "R9": "GFX1201_CROSS_HOST_HARNESS_READY",
+    "R10": "AMDGPU_EP_ESCALATION_READY",
+    "GFX1151_DML": "GFX1151_DML_PHYSICAL_GO",
+    "GFX1151_AMDGPU": "GFX1151_AMDGPU_BLOCKED_EP",
+    "GFX1100_PHYSICAL": "GFX1100_PHYSICAL_PENDING",
+    "GFX1201_PHYSICAL": "GFX1201_PHYSICAL_PENDING",
+    "THREE_PLATFORM": "THREE_PLATFORM_RC_CONDITIONAL_GO"
+  },
+  "gates": {
+    "no_cross_arch_fake_pass": "PASS - no gfx1100/gfx1201 physical claim exists",
+    "no_implicit_cpu_business_fallback": "PASS - allow_cpu gates CPU business execution; internal reference is disclosed in cpu_reference",
+    "no_stale_input_output_pollution": "PASS - content-addressed inputs, per-attempt dirs, attempt_id binding, worker-side feed re-hash compared to the caller's fingerprint",
+    "no_fake_task_verified": "PASS - verifier ties task_verified to PASS_TASK + metrics + thresholds + hashes, and a simulated worker can never be evidence-grade (29 adversarial tests)",
+    "no_timeout_orphans": "PASS - 8/8 job fault scenarios, survivors=[]",
+    "no_receipt_overwrite": "PASS - RUN_ID_ALREADY_FROZEN with no overwrite escape hatch, plus file/body byte-hash verification of the persisted receipt. Boundary: a *coherent* rewrite of result+receipt cannot be distinguished without an external anchor (manifest/signature); that is documented, not claimed",
+    "no_host_identity_forgery": "PASS - DID-pinned gfx, LUID only as corroboration, cross-host hard gate WRONG_PHYSICAL_DEVICE",
+    "cpu_ci_does_not_attest_gpu": "PASS - CPU CI runs unit/contracts/adversarial only"
+  },
+  "physical_evidence": {
+    "gfx1151_dml": {
+      "status": "PHYSICAL",
+      "tasks_verified": 7,
+      "tasks_total": 7,
+      "e2e_models": [
+        "yolo26n.pt",
+        "yolo26n-seg.pt",
+        "yolo26n-pose.pt"
+      ],
+      "stability": "PASS",
+      "soak": "reports/gfx1151/R7_SOAK_20261119T220341/ (4 min, 80038 runs, p50 2.99 ms, nodes=1)"
+    },
+    "gfx1151_amdgpu": {
+      "status": "BLOCKED_EXTERNAL",
+      "reason": "ExecutionProviderCatalog empty; no AMDGPU DLL"
+    },
+    "gfx1100": {
+      "status": "PENDING_PHYSICAL_HOST"
+    },
+    "gfx1201": {
+      "status": "PENDING_PHYSICAL_HOST"
+    }
+  },
+  "next_actions": [
+    "Run runner.cross_host_validate --gfx gfx1100 --tier core --policy gpu-first on an RX 7900 XTX host to replace GFX1100_PHYSICAL_PENDING",
+    "Same for gfx1201 on an RX 9070 XT host",
+    "Re-probe the AMDGPU EP after an official Windows ML / driver release; only an EP_REGISTERED + GPU_EXECUTED canary can lift BLOCKED_EXTERNAL",
+    "Publish the R10 issue draft once the maintainer channel is confirmed"
+  ]
+}

@@ -1,0 +1,1 @@
+{"ok": true, "task": "obb", "passed": true, "metrics_keys": ["angle_absdiff_mean_deg", "fn", "fp", "matched", "precision", "recall", "ref_entities", "rotated_iou_mean"]}

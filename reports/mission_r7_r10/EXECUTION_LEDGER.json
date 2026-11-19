@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "mission": "R7-R10 gfx1151 product hardening & cross-host readiness",
+  "host": {
+    "host_id": "unknown",
+    "os": "10.0.26200",
+    "cpu": null,
+    "gfx": "gfx1151",
+    "device_id": "0x1586",
+    "luid": "0x00000000:0x000154E4",
+    "driver": "unknown",
+    "ort": "1.25.2",
+    "windowsml": "2.5.96",
+    "amdgpu_ep": "BLOCKED_EXTERNAL (CATALOG_EMPTY)"
+  },
+  "git": {
+    "branch": "mission/r7-gfx1151-product-hardening",
+    "head": "ea059888b293cb4bff5574c32bfae49651e08a40",
+    "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
+  },
+  "phases": [
+    {
+      "phase": "R7-A",
+      "deliverable": "PT task oracle in predict()",
+      "artifacts": [
+        "src/radeon_ort/task_oracle_runner.py",
+        "src/radeon_ort/unified_runtime.py"
+      ],
+      "experiment": "runner.unified_task_matrix (7 tasks, real image, DML)",
+      "result": {
+        "cases": 7,
+        "passed": 7,
+        "all_passed": true
+      },
+      "evidence": [
+        "reports/mission_r7/unified_task_matrix.json"
+      ]
+    },
+    {
+      "phase": "R7-B",
+      "deliverable": "Windows Job Object process-tree lifecycle",
+      "artifacts": [
+        "src/radeon_ort/win_job.py",
+        "src/radeon_ort/unified_executors.py"
+      ],
+      "experiment": "runner.job_fault_evidence (8 fault scenarios)",
+      "result": {
+        "passed": 8,
+        "total": 8,
+        "all_passed": true
+      },
+      "evidence": [
+        "reports/mission_r7/JOB_FAULT_INJECTION.json"
+      ]
+    },
+    {
+      "phase": "R7-C",
+      "deliverable": "attempt isolation / input-output immutability",
+      "artifacts": [
+        "src/radeon_ort/unified_executors.py",
+        "runner/_ep_worker.py"
+      ],
+      "experiment": "tests/adversarial/test_attempt_isolation.py",
+      "result": {
+        "tests": 14
+      },
+      "evidence": [
+        "tests/adversarial/test_attempt_isolation.py"
+      ]
+    },
+    {
+      "phase": "R7-D",
+      "deliverable": "independent verifier + JSON schema",
+      "artifacts": [
+        "src/radeon_ort/unified_runtime.py",
+        "schemas/unified_run.schema.json"
+      ],
+      "experiment": "tests/adversarial/test_unified_evidence.py (23) + tests/contracts/test_unified_run_schema.py (6)",
+      "result": {
+        "tests": 29
+      },
+      "evidence": [
+        "schemas/unified_run.schema.json"
+      ]
+    },
+    {
+      "phase": "R7-E",
+      "deliverable": "real-image E2E benchmark",
+      "artifacts": [
+        "runner/bench_e2e.py"
+      ],
+      "experiment": "runner.bench_e2e (20 images, 3 models, 3 processes each)",
+      "result": {
+        "corpus_images": 20,
+        "repetitions": 3,
+        "all_passed": true,
+        "models": {
+          "yolo26n.pt": {
+            "status": "PASS",
+            "task": "detect",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 18.4791,
+              "min": 18.3835,
+              "max": 18.5272,
+              "p50": 18.5266,
+              "p95": 18.5271,
+              "p99": 18.5272
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 5.0018,
+              "min": 4.9686,
+              "max": 5.0588,
+              "p50": 4.9779,
+              "p95": 5.0507,
+              "p99": 5.0572
+            },
+            "session_create_ms": [
+              221.7425,
+              225.0609,
+              223.7004
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3267,
+              "decode": 7.1727,
+              "preprocess": 4.189,
+              "infer": 4.9779,
+              "postprocess": 1.6169,
+              "e2e": 18.5266
+            },
+            "throughput_fps": [
+              52.382,
+              52.825,
+              52.55
+            ]
+          },
+          "yolo26n-seg.pt": {
+            "status": "PASS",
+            "task": "segment",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 20.9413,
+              "min": 20.7819,
+              "max": 21.2016,
+              "p50": 20.8404,
+              "p95": 21.1655,
+              "p99": 21.1944
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 6.1001,
+              "min": 5.9538,
+              "max": 6.2423,
+              "p50": 6.1041,
+              "p95": 6.2285,
+              "p99": 6.2395
+            },
+            "session_create_ms": [
+              253.0255,
+              242.4352,
+              246.006
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3373,
+              "decode": 7.0308,
+              "preprocess": 4.1368,
+              "infer": 6.1041,
+              "postprocess": 2.3499,
+              "e2e": 20.8404
+            },
+            "throughput_fps": [
+              46.613,
+              46.663,
+              45.985
+            ]
+          },
+          "yolo26n-pose.pt": {
+            "status": "PASS",
+            "task": "pose",
+            "e2e_ms": {
+              "n": 3,
+              "mean": 17.0102,
+              "min": 16.9178,
+              "max": 17.1751,
+              "p50": 16.9376,
+              "p95": 17.1514,
+              "p99": 17.1703
+            },
+            "model_only_ms": {
+              "n": 3,
+              "mean": 5.0763,
+              "min": 5.0018,
+              "max": 5.1179,
+              "p50": 5.1093,
+              "p95": 5.117,
+              "p99": 5.1177
+            },
+            "session_create_ms": [
+              240.7017,
+              241.8197,
+              241.6659
+            ],
+            "aggregate_stage_p50_ms": {
+              "load": 0.3216,
+              "decode": 7.0852,
+              "preprocess": 4.1057,
+              "infer": 5.1093,
+              "postprocess": 0.4261,
+              "e2e": 16.9376
+            },
+            "throughput_fps": [
+              56.944,
+              56.463,
+              56.38
+            ]
+          }
+        }
+      },
+      "evidence": [
+        "reports/mission_r7/e2e_bench.json",
+        "data/fixtures/bench_images/SOURCES.json"
+      ]
+    },
+    {
+      "phase": "R7-F",
+      "deliverable": "stability and recovery",
+      "artifacts": [
+        "runner/stability.py"
+      ],
+      "experiment": "runner.stability (8 predict() iterations + timeout + recovery)",
+      "result": {
+        "verdict": "PASS",
+        "deterministic_outputs": true,
+        "handle_delta": 8
+      },
+      "evidence": [
+        "reports/mission_r7/STABILITY.json"
+      ]
+    },
+    {
+      "phase": "R8",
+      "deliverable": "gfx1100 handoff + cross-host validator",
+      "artifacts": [
+        "docs/cross_host/GFX1100_HANDOFF.md",
+        "runner/cross_host_validate.py",
+        "src/radeon_ort/cross_host.py"
+      ],
+      "experiment": "runner.cross_host_validate --gfx gfx1100 --dry-run (exit 0); --tier smoke (exit 34 WRONG_PHYSICAL_DEVICE)",
+      "result": {
+        "verdict": "GFX1100_CROSS_HOST_HARNESS_READY",
+        "physical": "GFX1100_PHYSICAL_PENDING"
+      },
+      "evidence": [
+        "docs/mission_r8/R8_GFX1100_HANDOFF_READY_CN.md"
+      ]
+    },
+    {
+      "phase": "R9",
+      "deliverable": "gfx1201 handoff correction + RDNA4 harness",
+      "artifacts": [
+        "docs/cross_host/GFX1201_HANDOFF.md"
+      ],
+      "experiment": "runner.cross_host_validate --gfx gfx1201 --dry-run (exit 0)",
+      "result": {
+        "verdict": "GFX1201_CROSS_HOST_HARNESS_READY",
+        "physical": "GFX1201_PHYSICAL_PENDING"
+      },
+      "evidence": [
+        "docs/mission_r9/R9_GFX1201_HANDOFF_READY_CN.md"
+      ]
+    },
+    {
+      "phase": "R10",
+      "deliverable": "official doc truth + read-only repro + issue draft",
+      "artifacts": [
+        "docs/AMDGPU_EP_PROVISIONING.md",
+        "runner/probe_amdgpu_ep.py",
+        "repro/windowsml_amdgpu_catalog_probe.py"
+      ],
+      "experiment": "runner.probe_amdgpu_ep --gfx gfx1151 (twice, identical digest)",
+      "result": {
+        "state": null,
+        "verdict": null,
+        "providers": null,
+        "stable_digest": null
+      },
+      "evidence": [
+        "docs/mission_r10/R10_AMDGPU_EP_ESCALATION_FINAL_CN.md",
+        "reports/mission_r10/PROBE_R10_A_20261119T135033Z.json"
+      ]
+    }
+  ],
+  "tests": {
+    "full_suite": {
+      "passed": 421,
+      "skipped": 0,
+      "failed": 2,
+      "note": "the only failures are tests/hardware gfx canaries that need the AMDGPU EP, which is not installed"
+    },
+    "ci_scope": {
+      "scope": "tests/unit tests/contracts tests/adversarial",
+      "passed": 421
+    },
+    "baseline_before_mission": {
+      "ci_scope_passed": 293,
+      "skipped": 1
+    }
+  },
+  "evidence_manifest": {
+    "reports/mission_r7/e2e_bench.json": {
+      "sha256": "e223a31225d94fe7517417d9c92e89fc5c441f25b0620f64875a56ea6daffe69",
+      "bytes": 59143
+    },
+    "reports/mission_r7/JOB_FAULT_INJECTION.json": {
+      "sha256": "40d7a6f5073ff16de876cecf2145ada2357784e81bd5ac25d59f5106b7d77216",
+      "bytes": 3425
+    },
+    "reports/mission_r7/STABILITY.json": {
+      "sha256": "314c1dffb9a9f89a503232c1971102b2c3f6493f5e4e46eac63a17e02c3147da",
+      "bytes": 4395
+    },
+    "reports/mission_r7/unified_task_matrix.json": {
+      "sha256": "d165987a5fecaff54408b9a863098dab59fa0cc64963663bdfdcea5d98499ca7",
+      "bytes": 13843
+    },
+    "reports/mission_r7_r10/BASELINE_AUDIT.json": {
+      "sha256": "5d8b87730f7f76797291845c877db8dff8defd4cf86fc6300838035a54d77243",
+      "bytes": 6008
+    },
+    "reports/mission_r7_r10/EXECUTION_LEDGER.json": {
+      "sha256": "dfc479175dab9a863811526bde611a1bf144a94ec398ef190ec579489fc7c200",
+      "bytes": 6806
+    },
+    "reports/mission_r7_r10/RELEASE_READINESS.json": {
+      "sha256": "3cb22f2883a2bb142c3c7ab68ecf5d281968f6ad867d968cf06b6282ee5cdb0b",
+      "bytes": 2715
+    }
+  },
+  "doc_citations": {
+    "count": 0,
+    "file": "reports/mission_r10/DOC_CITATIONS.json"
+  }
+}
