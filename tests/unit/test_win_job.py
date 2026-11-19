@@ -36,9 +36,18 @@ def _run(tmp_path: Path, mode: str, timeout_s: float, **kw) -> tuple[dict, list[
     return res.as_dict(), pids
 
 
-def _alive(pids: list[int]) -> dict[int, bool]:
-    time.sleep(0.4)
-    return {p: win_job.process_alive(p) for p in pids}
+def _alive(pids: list[int], timeout_s: float = 8.0) -> dict[int, bool]:
+    """Wait (bounded) until every pid is gone, then report liveness.
+
+    A fixed sleep is flaky on a slow CI runner: the job terminates the tree
+    immediately but the OS can take a moment to reap it. Poll instead.
+    """
+    deadline = time.time() + timeout_s
+    while True:
+        alive = {p: win_job.process_alive(p) for p in pids}
+        if not any(alive.values()) or time.time() >= deadline:
+            return alive
+        time.sleep(0.1)
 
 
 def test_normal_exit_is_clean_and_contained(tmp_path):
