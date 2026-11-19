@@ -23,6 +23,8 @@ Exit codes (documented in docs/unified/CONTRACTS.md):
     2   contract error (bad arguments, conflicting consent, frozen run_id)
     4   the execution result was adopted but the task oracle did not pass
         (FAIL_TASK / TASK_ORACLE_BLOCKED) - never a silent success
+    5   the adopted result failed independent verification (INVALID) - the
+        evidence contradicts itself, so the CLI must not exit 0
     30  blocked (no EP could execute under the requested policy)
     31  AMDGPU failed (require_amdgpu policy)
     34  device/identity blocked
@@ -48,6 +50,7 @@ from radeon_ort.unified_runtime import (
 )
 
 EXIT_TASK_NOT_VERIFIED = 4
+EXIT_EVIDENCE_INVALID = 5
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -75,8 +78,6 @@ def main(argv: list[str] | None = None) -> int:
                     help="allow the internal CPU ORT numeric reference, or forbid it "
                          "(forbid => parity is UNVERIFIED and no GPU FULL claim)")
     ap.add_argument("--container", choices=["job_object", "plain"], default="job_object")
-    ap.add_argument("--reuse-run-id", action="store_true",
-                    help="allow writing into a workspace whose receipt already exists")
     ap.add_argument("--timeout-s", type=int, default=900)
     ap.add_argument("--run-id", default=None)
     ap.add_argument("--work-dir", default=None)
@@ -102,7 +103,6 @@ def main(argv: list[str] | None = None) -> int:
             verify_task=a.verify_task, pt_reference=a.pt_reference,
             export_python=export_python,
             task_params={"imgsz": a.imgsz, "conf": a.conf},
-            allow_reuse_run_id=a.reuse_run_id,
             cpu_reference=a.cpu_reference,
             container=a.container)
     except ContractError as e:
@@ -144,6 +144,9 @@ def main(argv: list[str] | None = None) -> int:
 
     status = result.get("runtime_status")
     if status in (GPU_FULL, GPU_FULL_DML, CPU_AUTHORIZED):
+        if verdict["verdict"] == "RUNRESULT_INVALID":
+            # a self-contradictory or tampered result is never a success
+            return EXIT_EVIDENCE_INVALID
         if a.verify_task and not result.get("task_verified"):
             return EXIT_TASK_NOT_VERIFIED
         return 0

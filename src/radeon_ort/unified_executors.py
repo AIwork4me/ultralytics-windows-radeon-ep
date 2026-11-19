@@ -30,6 +30,10 @@ from . import win_job
 from .unified_runtime import Attempt, _attempt_from_fragment
 
 CASE_SCHEMA = 1
+DEFAULT_WORKER_MODULE = "runner._ep_worker"
+# The only keys a caller may inject into a worker case. Everything else in the
+# case is security-critical (inputs, model, reference output, attempt id).
+SIMULATION_KEYS = frozenset({"fake_mode"})
 
 
 def _sha256_file(path: Path) -> str:
@@ -100,10 +104,21 @@ class WorkerExecutor:
         # Injectable so the isolation/lifecycle tests can drive a deterministic
         # stub worker without needing DXGI, ORT or a GPU.
         self.worker_module = worker_module
-        # Simulation hook: extra keys merged into the worker case JSON. Used by
-        # the fault-injection tests (stub worker modes); recorded in the case so
-        # an audit can see exactly what was requested.
+        # Simulation hook: extra *non-security* keys merged into the worker case
+        # JSON. It exists so the fault-injection tests can select stub-worker
+        # behaviour; it must never be able to redirect the inputs, the model,
+        # the reference or the attempt identity, because the RunResult would
+        # otherwise describe the caller's tensor while the worker executed a
+        # different one.
         self.worker_case_extra = dict(worker_case_extra or {})
+        bad = sorted(set(self.worker_case_extra) - SIMULATION_KEYS)
+        if bad:
+            raise ValueError(
+                "worker_case_extra may only contain " + str(sorted(SIMULATION_KEYS))
+                + "; refused keys: " + str(bad))
+        self.simulated = (worker_module != DEFAULT_WORKER_MODULE
+                          or bool(self.worker_case_extra))
+        self.last_feed_fingerprint: str | None = None
         self.attempts_dir = self.work / "attempts"
         self.inputs_dir = self.work / "inputs"
         self.attempts_dir.mkdir(parents=True, exist_ok=True)
@@ -161,15 +176,15 @@ class WorkerExecutor:
             "attempt_id": attempt_id,
             "ep": ep,
             "gfx": self.gfx,
-            "onnx_path": str(model_path),
-            "feeds_npz": str(feeds),
+            "onnx_path": _store_path(model_path, self.root),
+            "feeds_npz": _store_path(feeds, self.root),
             "expected_feed_sha256": feed_fp,
-            "outputs_npz": str(out_npz),
-            "profile_prefix": str(adir / "profile"),
+            "outputs_npz": _store_path(out_npz, self.root),
+            "profile_prefix": _store_path(adir / "profile", self.root),
         }
         case.update(self.worker_case_extra)
         if reference is not None:
-            case["reference_npz"] = str(reference)
+            case["reference_npz"] = _store_path(reference, self.root)
             case["reference_attempt_id"] = reference_attempt
             case["atol"] = 5e-3
             case["rtol"] = 5e-3
@@ -199,6 +214,9 @@ class WorkerExecutor:
         attempt.reference_attempt_id = reference_attempt
         attempt.process = spawn.as_dict()
         attempt.container = spawn.container
+        if spawn.container == "job_object" and not spawn.job_assigned:
+            attempt.container = "job_object_degraded"
+            attempt.process["container"] = "job_object_degraded"
         attempt.partial_artifacts = []
         attempt.fragment_matches_attempt = (
             bool(frag) and frag.get("attempt_id") == attempt_id)
@@ -262,6 +280,7 @@ class WorkerExecutor:
     def execute(self, *, ep: str, model_path: str, inputs: dict,
                 reference: dict | None = None) -> Attempt:
         feeds, fp = self._feeds_path(inputs or {})
+        self.last_feed_fingerprint = fp
         if ep == "cpu":
             attempt = self._run_worker("cpu", model_path, reference=None,
                                        feeds=feeds, feed_fp=fp)

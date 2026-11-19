@@ -171,6 +171,10 @@ AMDGPU attempt 的超时被记录为 `TIMEOUT_<n>s` 并进入 `fallback_reason`�
 失败 worker 的部分产物、1s 超时、并发三路调用、篡改 `expected_feed_sha256`。
 
 **结论：任何旧文件、部分输出或不匹配产物都无法通过新的 GPU PASS 验证。**
+（注：`R7_GFX1151_PRODUCT_HARDENING_GO` 是任务层面的判决标签；本轮证据全部产生于
+dirty worktree，因此 `readiness.product_ready` 如实为 `false`，receipt 中
+`code_provenance.worktree_dirty=true`。这不影响"GPU 真跑 + 任务真验证"的结论，
+但**不能**被读成"干净代码下的 product-ready 运行"。）
 
 ---
 
@@ -193,7 +197,13 @@ AMDGPU attempt 的超时被记录为 `TIMEOUT_<n>s` 并进入 `fallback_reason`�
 （没有原始证据，**不冒充通过**）。`schemas/unified_run.schema.json` 由
 `validate_run_result_schema()` 强制。
 
-23 项对抗测试逐条攻击上述字段，全部判 `RUNRESULT_INVALID`。
+29 项对抗测试逐条攻击上述字段，全部判 `RUNRESULT_INVALID`。
+
+**篡改检测的边界（必须诚实说明）**：verifier 能发现**字节级**篡改（receipt 文件 SHA、
+body SHA、模型/输入哈希、attempt 归属、feed 指纹、设备身份缺失、状态与 `gpu_full` 矛盾、
+未写 receipt）。如果攻击者**连贯地重写** result 与 receipt 并重算所有哈希，
+在没有外部锚（manifest 签名、git 提交、独立时间戳）的前提下 verifier 无法区分
+——这是"自洽重写"问题，不是本实现独有。不要把"receipt 哈希一致"理解为"来源可信"。
 
 DML ordinal binding 仍为**间接证据**口径（`EP_DEVICE_SELECTED_ORDINAL_MAPPING`）；
 无 EP-reported LUID 时绝不升级为 `PHYSICAL_BINDING_CONFIRMED`。
@@ -232,6 +242,10 @@ JPEG 解码（7.1 ms）+ 预处理（4.1 ms）≈ 11.2 ms，是 GPU 推理（5.1
 
 温度 / 功耗 / GPU Activity：**NOT_MEASURED**（该 APU 无受支持传感器路径），
 绝不用固定时钟替代。
+
+**抖动必须如实记录**：同一代码在更早一轮（warmup 5 + 20 请求）测到 detect
+e2e p50 = 32.8 ms / model-only 9.58 ms —— 正好 2 倍。APU 的共享内存与功耗调度会造成
+真实 run-to-run 差异，因此只用"3 进程 × 30 样本"的数字，并把单轮抖动写进报告。
 
 后处理计时使用 numpy 等价 NMS（conf 0.25 / IoU 0.5 / max_det 300，class-aware），
 在 `postprocess_impl` 字段中显式标注；正确性路径仍用 ultralytics vendor decode。
@@ -279,3 +293,36 @@ CLI 退出码：`0` 采纳结果（含 `--verify-task` 时需 task_verified）�
 
 下一步：gfx1100 / gfx1201 真机按 R8/R9 handoff 跑出各自证据后，才能讨论
 `THREE_PLATFORM_RC_GO`；AMDGPU EP 需等官方 Catalog 提供后按 R10 流程验证。
+
+---
+
+## 10. 独立代码审阅与 P0 修复
+
+本轮邀请了一名**未参与实现**的独立 reviewer 对两个 changeset 做逐行审阅。它判
+`CHANGES_REQUIRED`，并给出 4 个 P0。逐条修复如下：
+
+| P0 | 问题 | 修复 |
+| --- | --- | --- |
+| P0-1 | `worker_case_extra` 可覆盖 `feeds_npz` / `onnx_path` / `reference_npz`，让 worker 执行另一份输入，而 RunResult 仍指纹调用方的张量，verifier 仍判 VALID | 注入键白名单（仅 `fake_mode`），其他键直接拒绝；新增 `feed_fingerprint_sha256` 并在 verifier 中比对 worker 实算的 feed 哈希与调用方指纹 |
+| P0-2 | 任何非默认 `worker_module`（stub）都能产出 `EVIDENCE` 级 GPU PASS，无需 ORT/GPU | 只要使用 stub 或注入键，`evidence_grade` 强制为 `INJECTED_TEST`、`verification_scope=SIMULATED_WORKER`，verifier 最多给 `RUNRESULT_UNVERIFIED`，`evidence_verified`/`product_ready` 恒为 false，CLI 拒绝以 0 退出 |
+| P0-3 | verifier 只做自洽性检查：连贯重写 result+receipt 仍 VALID；`BLOCKED + gpu_full=true` 也 VALID | 新增状态↔`gpu_full`/`task_verified` 一致性检查、receipt 必须真实存在且字节匹配、未知状态判 INVALID；文档明确"自洽重写"超出无锚 verifier 的能力边界 |
+| P0-4 | receipt 只存 binding 标签，丢掉真实 DID/LUID；`physical_gpu` 为 null | `Attempt` 携带完整 `device_binding`（DXGI corroboration、DID、LUID、是否 EP-reported）；verifier 对 EVIDENCE 级要求 `device_id` 存在且 `did_match=true` |
+
+同时修复的 P1：删除 `allow_reuse_run_id`（冻结 receipt 无覆盖入口）、`run_id` 路径
+校验（`..` / 绝对路径 / 保留设备名一律拒绝）、`unified_predict` 对 INVALID 结果以
+退出码 5 失败、case.json 改用相对路径、bench 语料哈希校验不再无条件为 true、
+Job 分配失败时 `container` 标记为 `job_object_degraded`、`NtResumeProcess` 成功后不再
+误报 `RESUME_FAILED`、跨主机 `--skip-soak` 不能到 `PHYSICAL_GO`、跨主机拒绝报告按
+gfx 命名避免互相覆盖、stage 退出码不再被忽略。
+
+审阅同时确认**没有问题**的方面：跨架构物理门禁（无 gfx1100/gfx1201 PASS）、
+ctypes 结构体布局、句柄泄漏、bench NMS 解码、密钥/PII（除下面这条）。
+
+**遗留 P1（明确记录，未在本轮关闭）**：
+* `reports/**/attempts/*/case.json` 仍含绝对用户路径（与仓库既有 167 个已跟踪证据文件的
+  做法一致；receipt 本身已路径干净）。要彻底消除需对历史证据一并执行
+  `runner.redact_evidence`，超出本次 R7 范围。
+* 跨主机 validator 的 stage 仍用 `subprocess.run(timeout=)`，未接入 Job Object；
+  超时可能留下子进程。已记录为下一轮工作项。
+* `outputs.npz` 等大体积原始证据不入 git（其 sha256 已写入 receipt），
+  因此 `EVIDENCE` 级的**完全**离线重算需要一个完整的 run 目录，而不是 clone。

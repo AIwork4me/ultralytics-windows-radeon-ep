@@ -37,17 +37,54 @@ def good(tmp_path):
     return r, work, m
 
 
+def _as_evidence(r: dict, feed_sha: str = "a" * 64) -> dict:
+    """Promote a stub-worker result to the shape a REAL worker produces.
+
+    The verifier's evidence-only checks must still be exercisable without a GPU,
+    so this pins exactly the fields the real worker fills in (attempt identity,
+    fragment binding, output hash, process evidence, device identity, feed
+    fingerprint). It does not touch any field under test.
+    """
+    r["evidence_grade"] = ur.EVIDENCE_GRADE
+    r["verification_scope"] = "FULL"
+    r["feed_fingerprint_sha256"] = feed_sha
+    for a in r["attempts"]:
+        a.setdefault("attempt_id", "A-%s-1" % a["ep"])
+        a["fragment_matches_attempt"] = True
+        a["outputs_sha256"] = a.get("outputs_sha256") or "b" * 64
+        a["process"] = a.get("process") or {"survivors": [], "pid": 1,
+                                           "job_assigned": True}
+        a["input_binding"] = {"ok": True, "actual_sha256": feed_sha,
+                              "expected_sha256": feed_sha}
+        a.setdefault("device_binding", {})
+    adopted = next((x for x in r["attempts"]
+                    if x["ep"] == r.get("actual_ep")), None)
+    if adopted is not None:
+        r["adopted_attempt_id"] = adopted["attempt_id"]
+        r["adopted_outputs_sha256"] = adopted["outputs_sha256"]
+        r["adopted_attempt_index"] = r["attempts"].index(adopted)
+        r["physical_gpu"] = {"device_id": "0x1586", "vendor_id": "0x1002",
+                             "did_match": True, "luid": "0x0:0x1",
+                             "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT"}
+    return r
+
+
 def _verify(r, work, *, model=None, inputs=None, deep=False):
     return ur.verify_run_result(r, model_path=model, inputs=inputs,
                                 work_dir=work, deep=deep)
 
 
-def test_baseline_result_is_valid(good):
+def test_baseline_result_is_coherent_but_never_evidence_grade(good):
+    """A stub worker cannot mint EVIDENCE, however consistent it is."""
     r, work, m = good
     assert r["runtime_status"] == ur.GPU_FULL_DML
     assert r["gpu_full"] is True and r["task_verified"] is False
-    assert _verify(r, work)["verdict"] == "RUNRESULT_VALID"
-    assert _verify(r, work, model=m, inputs=_inputs(), deep=True)["verdict"] == "RUNRESULT_VALID"
+    assert r["evidence_grade"] == ur.INJECTED_GRADE
+    v = _verify(r, work)
+    assert v["verdict"] == "RUNRESULT_UNVERIFIED"
+    assert _verify(r, work, model=m, inputs=_inputs(), deep=True)["verdict"] == "RUNRESULT_UNVERIFIED"
+    assert r["readiness"]["evidence_verified"] is False
+    assert r["readiness"]["product_ready"] is False
 
 
 def test_task_verified_without_pass_is_invalid(good):
@@ -143,6 +180,8 @@ def test_missing_receipt_file_is_invalid(good):
 
 def test_attempt_with_survivors_is_invalid(good):
     r, work, _ = good
+    _as_evidence(r)
+    _as_evidence(r)
     for a in r["attempts"]:
         if a["ep"] == r["actual_ep"]:
             a["process"]["survivors"] = [1234]
@@ -153,6 +192,8 @@ def test_attempt_with_survivors_is_invalid(good):
 
 def test_adopted_attempt_without_outputs_hash_is_invalid(good):
     r, work, _ = good
+    _as_evidence(r)
+    _as_evidence(r)
     for a in r["attempts"]:
         if a["ep"] == r["actual_ep"]:
             a["outputs_sha256"] = None
@@ -163,6 +204,8 @@ def test_adopted_attempt_without_outputs_hash_is_invalid(good):
 
 def test_mismatched_fragment_is_invalid(good):
     r, work, _ = good
+    _as_evidence(r)
+    _as_evidence(r)
     for a in r["attempts"]:
         if a["ep"] == r["actual_ep"]:
             a["fragment_matches_attempt"] = False
@@ -171,6 +214,8 @@ def test_mismatched_fragment_is_invalid(good):
 
 def test_broken_input_binding_is_invalid(good):
     r, work, _ = good
+    _as_evidence(r)
+    _as_evidence(r)
     for a in r["attempts"]:
         if a["ep"] == r["actual_ep"]:
             a["input_binding"] = {"ok": False}
@@ -181,6 +226,7 @@ def test_broken_input_binding_is_invalid(good):
 
 def test_forged_adopted_attempt_id_is_invalid(good):
     r, work, _ = good
+    _as_evidence(r)
     r["adopted_attempt_id"] = "A999-forged"
     v = _verify(r, work)
     assert v["verdict"] == "RUNRESULT_INVALID"
@@ -240,3 +286,54 @@ def test_cpu_nodes_present_is_invalid(good):
     r, work, _ = good
     r["cpu_profile_nodes"] = 3
     assert _verify(r, work)["verdict"] == "RUNRESULT_INVALID"
+
+def test_simulated_run_cannot_claim_evidence(good):
+    r, work, _ = good
+    assert r["evidence_grade"] == ur.INJECTED_GRADE
+    r["readiness"] = {"gpu_full": True, "task_verified": False,
+                      "evidence_verified": True, "product_ready": False}
+    v = _verify(r, work)
+    assert v["verdict"] != "RUNRESULT_VALID"
+
+
+def test_evidence_result_needs_device_identity(good):
+    r, work, _ = good
+    _as_evidence(r)
+    assert _verify(r, work)["verdict"] == "RUNRESULT_VALID"
+    r["physical_gpu"] = {}
+    v = _verify(r, work)
+    assert v["verdict"] == "RUNRESULT_INVALID"
+    assert "adopted_device_identity_present" in v["failed"]
+
+
+def test_evidence_result_needs_feed_fingerprint_binding(good):
+    r, work, _ = good
+    _as_evidence(r)
+    for a in r["attempts"]:
+        if a["ep"] == r["actual_ep"]:
+            a["input_binding"]["actual_sha256"] = "c" * 64
+    v = _verify(r, work)
+    assert v["verdict"] == "RUNRESULT_INVALID"
+    assert "adopted_feed_is_the_requested_tensor" in v["failed"]
+
+
+def test_blocked_result_cannot_claim_gpu(good):
+    r, work, _ = good
+    r["runtime_status"] = ur.BLOCKED
+    v = _verify(r, work)
+    assert v["verdict"] == "RUNRESULT_INVALID"
+    assert "blocked_not_claiming_gpu" in v["failed"]
+
+
+def test_unknown_status_is_invalid(good):
+    r, work, _ = good
+    r["runtime_status"] = "TOTALLY_FINE"
+    assert _verify(r, work)["verdict"] == "RUNRESULT_INVALID"
+
+
+def test_missing_receipt_is_invalid_even_if_not_declared_written(good):
+    r, work, _ = good
+    r["receipt"] = {"written": False}
+    v = _verify(r, work)
+    assert v["verdict"] == "RUNRESULT_INVALID"
+    assert "receipt_file_present" in v["failed"]

@@ -392,10 +392,11 @@ def main() -> int:
     # hash-verify the corpus before measuring anything
     declared = {i["file"].split("/")[-1]: i["sha256"] for i in corpus.get("images", [])}
     mismatched = [p.name for p in images
-                  if declared.get(p.name) and declared[p.name] != _sha(p)]
+                  if not declared.get(p.name) or declared[p.name] != _sha(p)]
     if mismatched:
-        print("[bench-e2e] CORPUS_HASH_MISMATCH: " + str(mismatched))
+        print("[bench-e2e] CORPUS_HASH_MISMATCH_OR_UNDECLARED: " + str(mismatched))
         return 2
+    corpus_verified = bool(images) and len(declared) >= len(images)
 
     results = []
     for checkpoint, task in MODELS:
@@ -499,6 +500,8 @@ def _summarise(results: list[dict], corpus: dict, gfx: str, a) -> dict:
             "license_url": corpus.get("license_url"),
             "images": len(list(Path(a.images_dir).glob("*.jpg"))),
             "hash_verified_against_manifest": True,
+            "verified_count": len(images),
+            "declared_count": len(declared),
         },
         "corpus_images": len(list(Path(a.images_dir).glob("*.jpg"))),
         "repetitions": a.reps,

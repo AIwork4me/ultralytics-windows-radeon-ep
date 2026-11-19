@@ -101,6 +101,7 @@ class Attempt:
     parity: dict = field(default_factory=dict)
     binding: dict = field(default_factory=dict)
     binding_confidence: str = UNPROVEN
+    device_binding: dict = field(default_factory=dict)
     device_identity: dict = field(default_factory=dict)
     provider_list: list = field(default_factory=list)
     outputs: dict | None = None
@@ -138,6 +139,18 @@ class Attempt:
         }
 
 
+def _feed_fingerprint(inputs: dict) -> str:
+    """Mirror of unified_executors._feed_fingerprint (float32 bundle bytes)."""
+    from .input_contract import tensor_sha256
+
+    h = hashlib.sha256()
+    for name in sorted(inputs):
+        arr = np.ascontiguousarray(np.asarray(inputs[name], dtype=np.float32))
+        h.update(name.encode("utf-8") + b"|")
+        h.update(tensor_sha256(arr).encode("ascii"))
+    return h.hexdigest()
+
+
 def model_sha256(path: str | Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as f:
@@ -163,6 +176,26 @@ def input_fingerprint(inputs: dict) -> dict:
         agg.update(",".join(str(d) for d in arr.shape).encode("utf-8") + b"|")
         agg.update(sha.encode("ascii") + b"\n")
     return {"combined_sha256": agg.hexdigest(), "inputs": per_input}
+
+
+RUN_ID_RE = None
+
+
+def validate_run_id(run_id: str) -> None:
+    """A run id is a single safe path component, never a path expression.
+
+    Without this, ".." or an absolute path would place evidence (and a frozen
+    receipt) outside the workspace, or overwrite another run's evidence.
+    """
+    import re
+
+    global RUN_ID_RE
+    if RUN_ID_RE is None:
+        RUN_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{2,119}$")
+    if not isinstance(run_id, str) or not RUN_ID_RE.match(run_id):
+        raise ContractError(
+            "INVALID_RUN_ID: " + repr(run_id) + "; expected 3-120 chars of "
+            "[A-Za-z0-9._-] starting with an alphanumeric")
 
 
 def validate_args(*, model_path, inputs, policy, allow_cpu, target_gfx,
@@ -281,6 +314,30 @@ def evaluate_attempt(a: Attempt, *, ep: str, require_full_gpu: bool) -> tuple[bo
     return True, ""
 
 
+def _physical_identity(binding: dict) -> dict:
+    """Host-side device identity carried in the attempt evidence.
+
+    The EP reports no LUID on this build, so the receipt binds what the host can
+    actually prove: the DXGI adapter that was enumerated and the DID match. It
+    is labelled indirect so it can never be read as an EP-reported identity.
+    """
+    corr = (binding or {}).get("dxgi_corroboration") or {}
+    if not corr:
+        return {}
+    return {
+        "evidence_kind": corr.get("evidence_kind"),
+        "is_ep_reported": bool(corr.get("is_ep_reported")),
+        "adapter_index": corr.get("adapter_index"),
+        "vendor_id": corr.get("vendor_id"),
+        "device_id": corr.get("device_id"),
+        "did_match": corr.get("did_match"),
+        "luid": corr.get("luid"),
+        "description": corr.get("description"),
+        "identity_basis": (binding or {}).get("identity_basis"),
+        "mapping_assumption": corr.get("mapping_assumption"),
+    }
+
+
 def _attempt_from_fragment(ep: str, frag: dict, *, exit_code: int,
                            log_path: str) -> Attempt:
     session = frag.get("session") or {}
@@ -313,7 +370,8 @@ def _attempt_from_fragment(ep: str, frag: dict, *, exit_code: int,
         parity=frag.get("parity") or {},
         binding=binding,
         binding_confidence=confidence,
-        device_identity={k: v for k, v in (frag.get("host") or {}).items()},
+        device_identity=_physical_identity(binding),
+        device_binding=dict(binding),
         provider_list=list(session.get("requested_providers") or []),
         outputs=None,
         exit_code=exit_code,
@@ -411,18 +469,24 @@ def _disclose_cpu_reference(result: dict) -> None:
 
 
 def _readiness(result: dict, *, verifier_ok: bool) -> dict:
-    """Three separate claims; PRODUCT_READY additionally requires clean code."""
+    """Three separate claims; PRODUCT_READY additionally requires clean code.
+
+    A simulated run (stub worker or injected case override) can never be
+    evidence-verified or product-ready, however coherent its self-report is.
+    """
     prov = result.get("code_provenance") or {}
     dirty = bool(prov.get("worktree_dirty"))
     gpu_full = bool(result.get("gpu_full"))
     task_verified = bool(result.get("task_verified"))
+    evidence = (result.get("evidence_grade") == EVIDENCE_GRADE) and verifier_ok
     return {
         "gpu_full": gpu_full,
         "task_verified": task_verified,
-        "evidence_verified": bool(verifier_ok),
-        "product_ready": bool(gpu_full and task_verified and verifier_ok
+        "evidence_verified": bool(evidence),
+        "product_ready": bool(evidence and gpu_full and task_verified
                               and not dirty),
         "code_clean": not dirty,
+        "evidence_grade": result.get("evidence_grade"),
     }
 
 
@@ -434,7 +498,7 @@ def predict(model_path, inputs, *, policy="require_amdgpu", target_gfx=None,
             verify_task: bool = False, pt_reference: str | Path | None = None,
             export_python: str | Path | None = None,
             task_params: dict | None = None,
-            cancel_event=None, allow_reuse_run_id: bool = False,
+            cancel_event=None,
             cpu_reference: str = CPU_REFERENCE_ALLOW,
             container: str = "job_object",
             worker_module: str = "runner._ep_worker",
@@ -475,18 +539,18 @@ def predict(model_path, inputs, *, policy="require_amdgpu", target_gfx=None,
     else:
         result["task_parity"] = {"status": "NOT_REQUESTED"}
     run_id = run_id or ("UNIFIED_" + str(int(__import__("time").time())))
+    validate_run_id(run_id)
     result["run_id"] = run_id
     work = Path(work_dir) if work_dir else root / "reports" / "unified" / run_id
     work.mkdir(parents=True, exist_ok=True)
 
-    # R7-C: a frozen receipt is immutable. Re-using a run_id is a contract error,
-    # never a silent overwrite.
+    # R7-C: a frozen receipt is immutable. Re-using a run_id is always a
+    # contract error - there is deliberately no "overwrite" escape hatch.
     existing_receipt = work / f"receipt_{run_id}.json"
-    if existing_receipt.is_file() and not allow_reuse_run_id:
+    if existing_receipt.is_file():
         raise ContractError(
             "RUN_ID_ALREADY_FROZEN: " + str(existing_receipt)
-            + " exists; use a new run_id (receipts are immutable) or pass "
-              "allow_reuse_run_id=True for an explicitly disposable workspace")
+            + " exists; receipts are immutable - use a new run_id")
     executor_obj = None
     if executor is None:
         from .unified_executors import WorkerExecutor
@@ -497,7 +561,13 @@ def predict(model_path, inputs, *, policy="require_amdgpu", target_gfx=None,
             container=container, cpu_reference=cpu_reference,
             worker_module=worker_module, worker_case_extra=worker_case_extra)
         executor = executor_obj.execute
-        result["evidence_grade"] = EVIDENCE_GRADE
+        if getattr(executor_obj, "simulated", False):
+            # A stub worker (or an injected case override) can mint any label it
+            # likes; such a run can never be evidence-grade.
+            result["evidence_grade"] = INJECTED_GRADE
+            result["verification_scope"] = "SIMULATED_WORKER"
+        else:
+            result["evidence_grade"] = EVIDENCE_GRADE
     else:
         result["evidence_grade"] = INJECTED_GRADE
         result["verification_scope"] = POLICY_ONLY_SCOPE
@@ -536,6 +606,9 @@ def predict(model_path, inputs, *, policy="require_amdgpu", target_gfx=None,
 
     def finish() -> dict:
         _merge_executor_attempts(result, executor_obj)
+        fp = getattr(executor_obj, "last_feed_fingerprint", None)
+        if fp:
+            result["feed_fingerprint_sha256"] = fp
         _disclose_cpu_reference(result)
         if verify_task:
             _run_oracle_for_adopted(
@@ -718,15 +791,18 @@ def _finalize(result: dict, work: Path, root: Path) -> dict:
     }
     # The readiness layer is computed last, from the finalized evidence, and is
     # intentionally excluded from the receipt body (it is derived, not stored).
-    interim = dict(result)
-    interim["readiness"] = {"gpu_full": bool(result.get("gpu_full")),
-                            "task_verified": bool(result.get("task_verified")),
-                            "evidence_verified": False,
-                            "product_ready": False,
-                            "code_clean": not bool(
-                                (result.get("code_provenance") or {}).get("worktree_dirty"))}
-    v = verify_run_result(interim, work_dir=work, check_receipt=False,
+    result["readiness"] = {"gpu_full": bool(result.get("gpu_full")),
+                           "task_verified": bool(result.get("task_verified")),
+                           "evidence_verified": False,
+                           "product_ready": False,
+                           "code_clean": not bool(
+                               (result.get("code_provenance") or {}).get("worktree_dirty")),
+                           "evidence_grade": result.get("evidence_grade")}
+    v = verify_run_result(result, work_dir=work, check_receipt=True,
                           model_path=model_path_ref, inputs=inputs_ref, deep=True)
+    result["verifier_summary"] = {"verdict": v["verdict"],
+                                  "failed": v["failed"],
+                                  "unverified": v["unverified"]}
     result["readiness"] = _readiness(result, verifier_ok=(v["verdict"] == "RUNRESULT_VALID"))
     return result
 
@@ -812,6 +888,15 @@ def verify_run_result(r: dict, *, model_path=None, inputs=None,
         chk("gpu_full_flag", r.get("gpu_full") is True)
         chk("gpu_not_claimed_as_task",
             r.get("task_verified") in (True, False), "task_verified is boolean")
+    if status in (BLOCKED, FAIL):
+        chk("blocked_not_claiming_gpu", r.get("gpu_full") is False,
+            "status=" + str(status) + " gpu_full=" + str(r.get("gpu_full")))
+        chk("blocked_not_claiming_task", r.get("task_verified") is False,
+            "status=" + str(status) + " task_verified=" + str(r.get("task_verified")))
+    if status in (GPU_FULL, GPU_FULL_DML, CPU_AUTHORIZED, BLOCKED, FAIL):
+        chk("status_known", True)
+    else:
+        chk("status_known", False, str(status))
     if status == CPU_AUTHORIZED:
         chk("cpu_consent_true", r.get("cpu_user_authorized") is True)
         chk("cpu_not_claimed_as_gpu", r.get("gpu_full") is False)
@@ -862,6 +947,22 @@ def verify_run_result(r: dict, *, model_path=None, inputs=None,
                 chk("adopted_input_binding",
                     (a.get("input_binding") or {}).get("ok") is True,
                     str((a.get("input_binding") or {}).get("ok")))
+                chk("adopted_feed_is_the_requested_tensor",
+                    bool(r.get("feed_fingerprint_sha256"))
+                    and (a.get("input_binding") or {}).get("actual_sha256")
+                    == r.get("feed_fingerprint_sha256"),
+                    "worker=" + str((a.get("input_binding") or {}).get("actual_sha256"))
+                    + " requested=" + str(r.get("feed_fingerprint_sha256")))
+                phys = r.get("physical_gpu") or (a.get("device_binding") or {})
+                chk("adopted_device_identity_present",
+                    bool((phys or {}).get("device_id")),
+                    str((phys or {}).get("device_id")))
+                chk("adopted_device_did_match",
+                    (phys or {}).get("did_match") is True,
+                    str((phys or {}).get("did_match")))
+    if grade != EVIDENCE_GRADE:
+        chk("simulated_run_is_not_evidence", True,
+            "grade=" + str(grade) + " - structural checks only")
     if grade == EVIDENCE_GRADE:
         for a in attempts:
             if a.get("ok"):
@@ -900,6 +1001,9 @@ def verify_run_result(r: dict, *, model_path=None, inputs=None,
                 chk("receipt_body_sha_matches", False, str(e))
         elif rec.get("written"):
             chk("receipt_file_sha_matches", False, "receipt file missing")
+        else:
+            chk("receipt_file_present", False,
+                "the result declares no written receipt")
 
     # --- CPU disclosure --------------------------------------------------------
     cpu_ref = r.get("cpu_reference") or {}
@@ -918,11 +1022,19 @@ def verify_run_result(r: dict, *, model_path=None, inputs=None,
             (not rd.get("product_ready"))
             or (bool(r.get("gpu_full")) and bool(r.get("task_verified"))))
 
+    if inputs is not None:
+        chk("feed_fingerprint_matches_inputs",
+            r.get("feed_fingerprint_sha256") is not None
+            and r.get("feed_fingerprint_sha256") == _feed_fingerprint(inputs),
+            str(r.get("feed_fingerprint_sha256")))
     failed = [c for c in checks if c["ok"] is False]
     unverified = [c for c in checks if c["ok"] is None]
     if failed:
         verdict = "RUNRESULT_INVALID"
     elif unverified:
+        verdict = "RUNRESULT_UNVERIFIED"
+    elif grade != EVIDENCE_GRADE:
+        # A simulated run is coherent but cannot attest real execution.
         verdict = "RUNRESULT_UNVERIFIED"
     else:
         verdict = "RUNRESULT_VALID"

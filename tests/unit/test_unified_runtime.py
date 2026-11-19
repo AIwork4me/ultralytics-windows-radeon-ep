@@ -88,7 +88,9 @@ def test_require_amdgpu_success_reports_full_evidence(model, tmp_path):
     for f in ur.REQUIRED_RESULT_FIELDS:
         assert f in r, f
     assert len(r["receipt_sha256"]) == 64
-    assert ur.verify_run_result(r)["verdict"] == "RUNRESULT_VALID"
+    # an injected executor is coherent but cannot attest real execution
+    assert r["evidence_grade"] == ur.INJECTED_GRADE
+    assert ur.verify_run_result(r)["verdict"] == "RUNRESULT_UNVERIFIED"
 
 
 def test_require_amdgpu_never_falls_back_to_dml(model, tmp_path):
