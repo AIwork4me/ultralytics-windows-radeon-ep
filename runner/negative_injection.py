@@ -74,21 +74,30 @@ def main() -> int:
     try:
         import onnxruntime as ort
         so = ort.SessionOptions()
+        so.enable_profiling = True
+        so.profile_file_prefix = str(out_dir / "inject4_profile")
         so.log_severity_level = 3
-        # device_id intentionally wrong (2 = Microsoft Basic Render Driver ordinal-ish)
+        # device_id intentionally invalid (9): the wrapper is expected to catch
+        # the DML init failure and retry CPU. That CPU retry MUST be detected.
         sess = ort.InferenceSession(str(model), sess_options=so,
                                     providers=["DmlExecutionProvider", "CPUExecutionProvider"],
                                     provider_options=[{"device_id": 9}, {}])
-        outs = sess.run(None, feeds)
-        from radeon_ort import profiler_audit
-        counts = profiler_audit.audit_profile(sess.end_profiling())["provider_node_counts"]
-        r4 = {"counts": counts,
-              "dml_nodes": counts.get("DmlExecutionProvider", 0),
-              "note": "run completed; check DML node attribution"}
+        providers = list(sess.get_providers())
+        r4 = {"providers": providers, "cpu_fallback_detected":
+              "DmlExecutionProvider" not in providers}
+        if "DmlExecutionProvider" in providers:
+            sess.run(None, feeds)
+            from radeon_ort import profiler_audit
+            counts = profiler_audit.audit_profile(sess.end_profiling())["provider_node_counts"]
+            r4.update({"counts": counts,
+                       "dml_nodes": counts.get("DmlExecutionProvider", 0),
+                       "cpu_nodes": counts.get("CPUExecutionProvider", 0)})
     except Exception as e:  # noqa: BLE001
-        r4 = {"failed": True, "error": str(e)[:200]}
-    results["inject4_dml_wrong_adapter"] = {**r4, "expected": "no DML compute on wrong adapter",
-                                            "passed": r4.get("dml_nodes", 0) == 0 or r4.get("failed", False)}
+        r4 = {"failed": True, "error": str(e)[:200], "cpu_fallback_detected": True}
+    results["inject4_dml_wrong_adapter"] = {
+        **r4, "expected": "wrong adapter cannot be certified: DML init failure or CPU retry detected",
+        "passed": bool(r4.get("failed") or r4.get("cpu_fallback_detected")
+                       or r4.get("dml_nodes", 0) == 0)}
 
     # 5) simulated EP_FAIL with wrapper CPU retry (wrong provider name) — profiler catch
     r5 = {}

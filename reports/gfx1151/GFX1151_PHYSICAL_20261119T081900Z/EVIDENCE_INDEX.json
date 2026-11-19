@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "primary_run_id": "GFX1151_PHYSICAL_20261119T081900Z",
+  "code": {
+    "base_sha": "d24f7377813cddcab744c14c82733e890b881234",
+    "harness_commit": "82d2e4fba8c25debd336188b42d136cd43cc9a60",
+    "branch": "mission/gfx1151-physical-full-validation"
+  },
+  "preflight_run_id": "GFX1151_PREFLIGHT_20261118T234053Z",
+  "same_host": true,
+  "coverage": {
+    "catalog_entries": 142,
+    "eligible_entries": 135,
+    "target_cases_both_eps": 270,
+    "receipts": 18,
+    "amdgpu_pass_full": 0,
+    "amdgpu_blocked": 9,
+    "amdgpu_not_run": 126,
+    "dml_pass_full": 9,
+    "dml_not_run": 126,
+    "full_coverage_claim_allowed": false,
+    "physical_gpu_full_pass_allowed": false
+  },
+  "external_runs": {
+    "preflight": {
+      "run_id": "GFX1151_PREFLIGHT_20261118T234053Z",
+      "manifest": "manifest.sha256",
+      "sha256": "72306819d12316c71815ed9dfed8fc8f289b3c92143454ba8305af47ee67c258",
+      "verify_ok": true
+    },
+    "soak-detect": {
+      "run_id": "GFX1151_SOAK_DETECT_20261119T075000Z",
+      "manifest": "manifest.sha256",
+      "sha256": "50a9525bb28e989621cd513bcb4beab11c0bc15484345576d30c149da98bd2b5",
+      "verify_ok": true
+    },
+    "soak-seg": {
+      "run_id": "GFX1151_SOAK_SEG_20261119T080600Z",
+      "manifest": "manifest.sha256",
+      "sha256": "d691a105e1af4edee2d71d6604b3769c23608d2c69b3f92273cc59ec4db0203c",
+      "verify_ok": true
+    },
+    "soak-amdgpu-blocked": {
+      "run_id": "GFX1151_SOAK_20261119T074900Z",
+      "manifest": "manifest.sha256",
+      "sha256": "647fc287a6b92d38e9216ee7b671293e59e0d3f18e360802e290ea6e5c69b057",
+      "verify_ok": true
+    },
+    "negative-injection": {
+      "run_id": "GFX1151_NEG_INJECT_20261119T080500Z",
+      "manifest": "manifest.sha256",
+      "sha256": "c7abdf65ce758e2e86b55971aa8d10377c140fa179062d9eb8908d90f34846ec",
+      "verify_ok": true
+    }
+  },
+  "notes": [
+    "preflight has its own run_id; snapshot files are duplicated under PREFLIGHT_SNAPSHOT with SHA index",
+    "soak and negative injection have separate run_ids and manifests; not disguised as one run",
+    "raw .npy/.npz/.onnx tensors are moved to LOCAL_ONLY (see LOCAL_ONLY_INDEX.json) and not published"
+  ]
+}

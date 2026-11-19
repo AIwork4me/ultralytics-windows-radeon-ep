@@ -16,7 +16,8 @@ def main() -> int:
     a = ap.parse_args()
     out = {}
     for p in sorted(Path(a.run_dir).glob("**/*.json")):
-        if "profile" not in p.name.lower() and "trace" not in p.name.lower():
+        low = p.name.lower()
+        if not (low.startswith("prof_") or "profile" in low or "trace" in low):
             continue
         try:
             out[p.name] = audit_profile(p)

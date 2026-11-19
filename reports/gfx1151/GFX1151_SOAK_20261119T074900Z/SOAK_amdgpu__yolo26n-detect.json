@@ -1,0 +1,12 @@
+{
+  "ep": "amdgpu",
+  "tag": "yolo26n-detect",
+  "onnx_redacted": "yolo26n.raw_b1_fp32_static.onnx",
+  "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+  "status": "BLOCKED_EP",
+  "error": "RuntimeError: BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps",
+  "duration_s": 0.7,
+  "runs": 0,
+  "provider_node_counts": {},
+  "input_source": "persisted_npy"
+}

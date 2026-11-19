@@ -1,0 +1,6 @@
+$ .venv-export\Scripts\python.exe -I %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\models\pt\yolo26n-cls.pt --task classify --tensor-npy %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\inputs\input_987789f38c39ecb1.npy --out-json %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\pt_yolo26n-cls__classify.json --out-npz %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\pt_yolo26n-cls__classify.npz
+rc=0 elapsed=6.6s
+--- stdout ---
+{"ok": true, "task": "classify", "n": 0}
+
+--- stderr ---

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_SOAK_SEG_20261119T080600Z",
+  "created_utc": "2026-11-19T00:23:03Z",
+  "generator": "independent-gfx1151-soak-seg",
+  "entries": [
+    {
+      "path": "CODE_STATE.json",
+      "sha256": "89cc11c48ddffc806b6e2a99fab4d757ddd99f79d88ac0125e2bb55d0dad6343",
+      "bytes": 297
+    },
+    {
+      "path": "soak.log",
+      "sha256": "8427959295f7c4edc631beb6e8cc88f9709fa4597e22064056249dc24c3129b0",
+      "bytes": 1884
+    },
+    {
+      "path": "SOAK_dml__yolo26n-seg.json",
+      "sha256": "bac847d89ac95c752b6c4aa3778b6b1d0407e1b06a1134ce39913a6ef285b0c1",
+      "bytes": 2339
+    },
+    {
+      "path": "soak_dml_yolo26n-seg_probe_2026-11-19_08-04-13_123.json",
+      "sha256": "38d21eebd22b56bd763764921226feef2bce57a51df35572049c05fbcf350ac3",
+      "bytes": 1700
+    }
+  ]
+}

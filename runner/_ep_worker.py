@@ -64,11 +64,26 @@ def main() -> int:
             "worker_pid": os.getpid(), "parent_pid": os.getppid(),
             "input_tensor_sha256": None}
     try:
-        manifest, tensor = load_input_bundle(case["input_manifest"])
-        input_name = case.get("input_name") or "images"
-        feed_dict = {input_name: np.asarray(tensor, dtype=np.float32)}
-        frag["input_tensor_sha256"] = tensor_sha256(feed_dict[input_name])
-        frag["input_id"] = manifest.get("input_id")
+        if case.get("feeds_npz"):
+            # Multi-input canary path: every input is persisted, hash-checked and
+            # fed under its graph name. Used by runner.preflight (MatMul+Add).
+            z = np.load(case["feeds_npz"])
+            feed_dict = {k: np.asarray(z[k], dtype=np.float32) for k in z.files}
+            import hashlib as _hl
+            hh = _hl.sha256()
+            for k in sorted(feed_dict):
+                hh.update(k.encode() + b"|")
+                hh.update(tensor_sha256(feed_dict[k]).encode())
+            frag["input_tensor_sha256"] = hh.hexdigest()
+            frag["input_id"] = "canary_feeds:" + frag["input_tensor_sha256"][:16]
+            input_name = None
+            manifest = {"input_id": frag["input_id"]}
+        else:
+            manifest, tensor = load_input_bundle(case["input_manifest"])
+            input_name = case.get("input_name") or "images"
+            feed_dict = {input_name: np.asarray(tensor, dtype=np.float32)}
+            frag["input_tensor_sha256"] = tensor_sha256(feed_dict[input_name])
+            frag["input_id"] = manifest.get("input_id")
 
         # device identity check in this process (fresh session corroboration)
         adapters = device_identity.enum_dxgi_adapters()
@@ -153,12 +168,17 @@ def main() -> int:
         frag["session"]["requested_providers"] = [p for p in sess.get_providers()]
         expected = _expected_from_session(sess)
         frag["expected_outputs"] = expected
-        real_input = sess.get_inputs()[0].name
-        if real_input != input_name:
-            # session contract wins: re-feed under the graph's input name
-            feed_dict = {real_input: feed_dict[input_name]}
-            frag["input_tensor_sha256"] = tensor_sha256(feed_dict[real_input])
-        frag["input_name"] = real_input
+        if input_name is not None:
+            real_input = sess.get_inputs()[0].name
+            if real_input != input_name:
+                # session contract wins: re-feed under the graph's input name
+                feed_dict = {real_input: feed_dict[input_name]}
+                frag["input_tensor_sha256"] = tensor_sha256(feed_dict[real_input])
+            frag["input_name"] = real_input
+        else:
+            names = {i.name for i in sess.get_inputs()}
+            if set(feed_dict) != names:
+                raise ValueError(f"canary input mismatch: feeds={sorted(feed_dict)} graph={sorted(names)}")
 
         outs = sess.run(None, feed_dict)
         out_names = [o.name for o in sess.get_outputs()]

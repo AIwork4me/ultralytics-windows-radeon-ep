@@ -1,0 +1,533 @@
+{
+  "prof_cpu_yolo11n__detect_2026-11-19_08-21-16_309.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 290
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_318_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_342_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_316_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_330_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_327_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 294
+  },
+  "prof_cpu_yolo26n-cls__classify_2026-11-19_08-20-37_441.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 134
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_156_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_146_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_148_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_145_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_157_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 138
+  },
+  "prof_cpu_yolo26n-depth__depth_2026-11-19_08-20-23_175.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 295
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_342_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_357_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_355_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_344_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_340_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 299
+  },
+  "prof_cpu_yolo26n-obb__obb_2026-11-19_08-21-01_543.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 362
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_427_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_417_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_401_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_409_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_412_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 366
+  },
+  "prof_cpu_yolo26n-pose__pose_2026-11-19_08-20-49_146.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 360
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_417_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_386_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_415_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_19_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_413_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_30_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_406_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_38_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 364
+  },
+  "prof_cpu_yolo26n-seg__segment_2026-11-19_08-19-56_360.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 373
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_421_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_446_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_437_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_430_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_443_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 377
+  },
+  "prof_cpu_yolo26n-sem__semantic_2026-11-19_08-20-12_342.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 200
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_233_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_241_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_247_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_237_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 204
+  },
+  "prof_cpu_yolo26n__detect_2026-11-19_08-19-39_315.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 331
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_397_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_393_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_369_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_18_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_376_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_29_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_375_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_37_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.5/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.5/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.6/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 335
+  },
+  "prof_cpu_yolov8n__detect_2026-11-19_08-21-28_759.json": {
+    "provider_node_counts": {
+      "CPUExecutionProvider": 219
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "/model.0/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.0/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_kernel_time@CPUExecutionProvider",
+      "/model.2/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_252_kernel_time@CPUExecutionProvider",
+      "/model.2/m.0/Add_kernel_time@CPUExecutionProvider",
+      "/model.2/Concat_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_17_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.2/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.3/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.3/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_236_kernel_time@CPUExecutionProvider",
+      "/model.4/Split_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_28_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_251_kernel_time@CPUExecutionProvider",
+      "/model.4/m.0/Add_kernel_time@CPUExecutionProvider",
+      "ReorderInput_token_36_kernel_time@CPUExecutionProvider",
+      "/model.4/m.1/cv1/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.1/cv1/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "/model.4/m.1/cv2/conv/Conv_output_0_nchwc_kernel_time@CPUExecutionProvider",
+      "/model.4/m.1/cv2/act/Mul/QuickGeluFusion/_kernel_time@CPUExecutionProvider",
+      "ReorderOutput_token_235_kernel_time@CPUExecutionProvider",
+      "/model.4/m.1/Add_kernel_time@CPUExecutionProvider",
+      "/model.4/Concat_kernel_time@CPUExecutionProvider"
+    ],
+    "total_events": 223
+  },
+  "prof_yolo11n__detect_dml_2026-11-19_08-21-23_678.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-cls__classify_dml_2026-11-19_08-20-45_681.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-depth__depth_dml_2026-11-19_08-20-31_737.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-obb__obb_dml_2026-11-19_08-21-11_003.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-pose__pose_dml_2026-11-19_08-20-57_186.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-seg__segment_dml_2026-11-19_08-20-06_613.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n-sem__semantic_dml_2026-11-19_08-20-19_244.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolo26n__detect_dml_2026-11-19_08-19-49_644.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  },
+  "prof_yolov8n__detect_dml_2026-11-19_08-21-35_857.json": {
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "fused_event_count": 0,
+    "op_samples": [
+      "DmlFusedNode_0_0_kernel_time@DmlExecutionProvider"
+    ],
+    "total_events": 5
+  }
+}

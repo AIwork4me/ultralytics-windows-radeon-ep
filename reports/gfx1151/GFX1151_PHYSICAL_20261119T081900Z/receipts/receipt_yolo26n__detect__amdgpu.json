@@ -1,0 +1,188 @@
+{
+  "schema_version": 2,
+  "receipt_version": 2,
+  "run_id": "GFX1151_PHYSICAL_20261119T081900Z",
+  "case_id": "yolo26n__detect__amdgpu",
+  "created_utc": "2026-11-19T00:19:48Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "PASS_ONNX_EXPORT",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "BLOCKED_EP",
+    "dml": "NOT_RUN",
+    "task_oracle": "TASK_ORACLE_BLOCKED",
+    "benchmark": "NOT_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "unknown",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "device_luid": "0x00000000:0x000154E4",
+    "dxgi_evidence": {
+      "adapters": [
+        {
+          "i": 0,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "software": false
+        },
+        {
+          "i": 1,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x00CA17CF",
+          "software": false
+        },
+        {
+          "i": 2,
+          "desc": "Microsoft Basic Render Driver",
+          "vid": "0x1414",
+          "did": "0x008C",
+          "luid": "0x00000000:0x000174B5",
+          "software": true
+        }
+      ],
+      "selected_luid": "0x00000000:0x000154E4"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1"
+    },
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22018.5",
+    "driver_date": "09/17/2025",
+    "wddm_version": null,
+    "dedicated_vram_mb": 32589,
+    "shared_memory_mb": 78459,
+    "verified_device_identity": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)"
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "detect",
+    "checkpoint": "yolo26n.pt",
+    "size": "n",
+    "pt_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/models/onnx/yolo26n.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 640,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false,
+      "ultralytics_version": "8.4.215"
+    },
+    "input_names": [
+      "images"
+    ],
+    "output_names": [],
+    "inputs_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+  },
+  "session": {
+    "ep": "AMDGPU",
+    "requested_providers": [],
+    "provider_node_counts": {},
+    "graph_node_total": 0,
+    "profile_available": false,
+    "profile_fused_event_present": false,
+    "ort_version": "unknown",
+    "ort_distribution": "unknown",
+    "device_luid": null,
+    "routing_notes": "BLOCKED_EP: BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps",
+    "stderr_fallback_signals": [],
+    "stdout_fallback_signals": [],
+    "worker_pid": 23980
+  },
+  "parity": null,
+  "task": null,
+  "benchmark_data": null,
+  "errors": [
+    {
+      "stage": "AMDGPU",
+      "type": "RUNTIME",
+      "message": "worker rc=34: BLOCKED_EP: BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps"
+    }
+  ],
+  "provenance": {
+    "script_head_sha": "git:see-git_head_sha",
+    "command": "python -m runner.r1_pipeline --models yolo26n.pt --eps amdgpu",
+    "seed": 0,
+    "python_version": "3.12.10",
+    "ultralytics_version": "8.4.215",
+    "git_head_sha": "82d2e4fba8c25debd336188b42d136cd43cc9a60",
+    "worktree_dirty": false,
+    "raw_log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/GFX1151_PHYSICAL_20261119T081900Z/raw/log_yolo26n__detect_amdgpu.txt"
+  },
+  "verdicts": {
+    "identity": "IDENTITY_BINDING_UNPROVEN",
+    "amdgpu": {
+      "execution": "BLOCKED_EP",
+      "numeric_parity": "NOT_COMPARED",
+      "task_parity": "NOT_RUN",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "NOT_MEASURED"
+    },
+    "dml": {
+      "execution": "NOT_RUN",
+      "numeric_parity": "NOT_COMPARED",
+      "task_parity": "NOT_RUN",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "NOT_MEASURED"
+    }
+  },
+  "input": {
+    "input_id": "1bfe5fe9dfe2d25a3a3ae51d3b2148b087483bdfb5fb70386748fb237e797ec8",
+    "kind": "real_image",
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "tensor_sha256": {
+      "images": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+    },
+    "preprocess": {
+      "method": "letterbox",
+      "params": {
+        "ratio": 0.5925925925925926,
+        "new_h": 640,
+        "new_w": 480,
+        "top": 0,
+        "left": 80,
+        "bottom": 0,
+        "right": 80,
+        "imgsz": 640
+      },
+      "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
+      "tensor_dtype": "float32",
+      "tensor_shape": [
+        1,
+        3,
+        640,
+        640
+      ]
+    },
+    "npy_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/GFX1151_PHYSICAL_20261119T081900Z/inputs/input_1bfe5fe9dfe2d25a.npy",
+    "generation": {
+      "script": "radeon_ort.input_contract.build_input_bundle",
+      "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":640,\"model_name\":\"yolo26n\",\"onnx_sha256\":\"3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd\",\"task\":\"detect\",\"variant\":\"real_image_v1\"}"
+    }
+  },
+  "expected_outputs": [],
+  "worker": {
+    "exit_code": 34,
+    "pid": 23980,
+    "parent_pid": 18388,
+    "python": "3.12.10"
+  },
+  "device_binding": null,
+  "task_parity": null,
+  "rca_issue_ids": [
+    "AMDGPU-RCA-003",
+    "AMDGPU-RCA-004"
+  ]
+}

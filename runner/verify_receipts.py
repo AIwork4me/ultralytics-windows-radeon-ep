@@ -45,6 +45,9 @@ def main() -> int:
     a = ap.parse_args()
     run_dir = Path(a.run_dir)
     problems_all: list[str] = []
+    if not run_dir.is_dir():
+        print(f"[verify] FAIL: run dir does not exist: {run_dir}")
+        return 1
 
     thresholds = None
     th_path = Path(__file__).resolve().parents[1] / "configs" / "thresholds.yaml"
@@ -57,6 +60,11 @@ def main() -> int:
 
     receipts = sorted(run_dir.glob("**/receipt_*.json"))
     print(f"[verify] {len(receipts)} receipt(s) under {run_dir}")
+    if not receipts:
+        # A vacuous run must never print ALL_OK: zero receipts cannot attest
+        # anything, and this exact fail-open behaviour was a P0 audit finding.
+        print("[verify] FAIL: zero receipts found (empty evidence cannot certify a run)")
+        problems_all.append("zero receipts: empty evidence cannot certify a run")
     for rp in receipts:
         try:
             v = verify_receipt_file(rp, expected_thresholds=_expected_thresholds(
@@ -86,7 +94,9 @@ def main() -> int:
                     print(f"FAIL manifest {kind}: {x}")
                     problems_all.append(f"manifest {kind}: {x}")
     else:
-        print("[verify] manifest.sha256 absent (run finalize first)")
+        # Missing manifest is a fail-closed condition for committed evidence.
+        print("[verify] FAIL: manifest.sha256 absent (run finalize/manifest first)")
+        problems_all.append("manifest.sha256 absent")
 
     for rp in receipts:
         leaks = redaction.scan_file(rp)

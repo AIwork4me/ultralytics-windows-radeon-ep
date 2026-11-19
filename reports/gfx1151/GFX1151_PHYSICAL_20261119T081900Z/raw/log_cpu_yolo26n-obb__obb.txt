@@ -1,0 +1,6 @@
+$ .venv-winml\Scripts\python.exe -I %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\runner\_ep_worker.py --case %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\case_yolo26n-obb__obb_cpu.json --out %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\frag_yolo26n-obb__obb_cpu.json
+rc=0 elapsed=0.8s
+--- stdout ---
+
+--- stderr ---
+2026-11-19 08:21:01.5348811 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.

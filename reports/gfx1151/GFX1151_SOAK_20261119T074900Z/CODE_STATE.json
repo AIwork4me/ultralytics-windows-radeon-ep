@@ -1,0 +1,6 @@
+{
+  "base_sha": "d24f7377813cddcab744c14c82733e890b881234",
+  "harness_head_recorded_after_run": "82d2e4fba8c25debd336188b42d136cd43cc9a60",
+  "branch": "mission/gfx1151-physical-full-validation",
+  "note": "AMDGPU soak block evidence (EP absent)"
+}

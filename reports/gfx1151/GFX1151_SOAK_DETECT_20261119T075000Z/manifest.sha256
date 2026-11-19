@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_SOAK_DETECT_20261119T075000Z",
+  "created_utc": "2026-11-19T00:23:03Z",
+  "generator": "independent-gfx1151-soak-detect",
+  "entries": [
+    {
+      "path": "CODE_STATE.json",
+      "sha256": "89cc11c48ddffc806b6e2a99fab4d757ddd99f79d88ac0125e2bb55d0dad6343",
+      "bytes": 297
+    },
+    {
+      "path": "soak.log",
+      "sha256": "a4bd7e127a08b4f00b9921086888ba13cf06d51fefd79ab55d13957e9a9ab3bb",
+      "bytes": 1902
+    },
+    {
+      "path": "SOAK_dml__yolo26n-detect.json",
+      "sha256": "1190c081e8b19a6fce7ae742f2f08ecfec93be405cdc4481e8cbdb1999b3846b",
+      "bytes": 2349
+    },
+    {
+      "path": "soak_dml_yolo26n-detect_probe_2026-11-19_07-48-18_514.json",
+      "sha256": "da30c7a082bfb534f27213d550b3b4e053e4d36a8f1746bf591cdea82262662f",
+      "bytes": 1669
+    }
+  ]
+}
