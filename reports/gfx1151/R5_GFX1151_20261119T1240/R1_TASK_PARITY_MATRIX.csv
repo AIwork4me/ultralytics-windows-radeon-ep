@@ -1,0 +1,10 @@
+model,task,image_sha256,amdgpu_exec,amdgpu_task,dml_task,ref_entities,matched,precision,recall,iou_mean,mask_iou_mean,oks_mean,rotated_iou_mean,angle_absdiff_mean_deg,pixel_agreement,miou,mae,rel_mae,top1_match,score_drift,negative_control_discriminating
+yolo11n.pt,detect,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-cls.pt,classify,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-depth.pt,depth,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-obb.pt,obb,83e3ae1f20298ad8,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-pose.pt,pose,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-seg.pt,segment,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n-sem.pt,semantic,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolo26n.pt,detect,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False
+yolov8n.pt,detect,c02019c4979c191e,BLOCKED_EP,TASK_ORACLE_BLOCKED,PASS_TASK,,,,,,,,,,,,,,,,False

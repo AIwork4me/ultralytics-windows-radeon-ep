@@ -1,0 +1,11 @@
+{
+  "ep": "amdgpu",
+  "gfx": "gfx1151",
+  "onnx_path": "models\\onnx\\yolo26n.raw_b1_fp32_static.onnx",
+  "feeds_npz": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1335\\inputs.npz",
+  "outputs_npz": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1335\\out_amdgpu.npz",
+  "profile_prefix": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1335\\prof_amdgpu",
+  "reference_npz": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1335\\out_cpu.npz",
+  "atol": 0.005,
+  "rtol": 0.005
+}

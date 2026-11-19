@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "reason": "canary input/out tensors are regenerable zeros; kept in local_evidence/",
+  "pruned_npz": 3,
+  "pruned_bytes": 7870032,
+  "note": "RESULT.json, logs, profilers and manifest are published unchanged (manifest recomputed)"
+}

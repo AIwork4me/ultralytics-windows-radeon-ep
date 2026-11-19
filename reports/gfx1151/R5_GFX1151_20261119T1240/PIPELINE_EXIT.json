@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "attempt_utc": "2026-11-19T04:31:36Z",
+  "exit_code": 0,
+  "classification": "OK",
+  "receipts_written": 18,
+  "pass": 9,
+  "fail": 0,
+  "blocked_or_not_run": 9,
+  "run_problems": [],
+  "environment_probe_error": null
+}

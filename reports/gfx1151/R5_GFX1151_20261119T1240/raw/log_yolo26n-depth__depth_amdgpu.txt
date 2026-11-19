@@ -1,0 +1,7 @@
+$ .venv-winml\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\runner\_ep_worker.py --case C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\case_yolo26n-depth__depth_amdgpu.json --out C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\frag_yolo26n-depth__depth_amdgpu.json
+rc=34 elapsed=1.1s
+--- stdout ---
+
+--- stderr ---
+[0;93m2026-11-19 12:29:29.4932893 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.[m
+BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps

@@ -1,0 +1,6 @@
+$ .venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\cand_yolo26n-depth__depth_dml.npz --task depth --imgsz 768 --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-depth__depth_dml.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-depth__depth_dml.npz
+rc=0 elapsed=3.7s
+--- stdout ---
+{"ok": true, "task": "depth", "n": 0}
+
+--- stderr ---

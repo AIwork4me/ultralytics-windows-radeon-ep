@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "reason": "raw input tensors and candidate output npz are reproducible from the committed fixtures plus the recorded tensor SHA256; they are kept in local_evidence/ instead of the repository",
+  "original_manifest_sha256": "4446867360dd6e3acb91d6cc28db2570962ad5a07557576fabf63b06a1e87ec7",
+  "original_manifest_entries": 353,
+  "pruned": {
+    "inputs_npy": 15,
+    "raw_npz": 54,
+    "raw_npz_bytes": 51692871
+  },
+  "note": "receipts, run contract, threshold snapshot, coverage/disposition ledgers, profiler JSON and logs are published unchanged; manifest.sha256 was recomputed over the published subset"
+}

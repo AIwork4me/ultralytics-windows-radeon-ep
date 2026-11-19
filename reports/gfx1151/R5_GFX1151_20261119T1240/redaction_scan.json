@@ -1,0 +1,693 @@
+{
+  "files_scanned": 282,
+  "violations": {
+    "raw/case_yolo11n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo11n__detect_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo11n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-cls__classify_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-cls__classify_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-cls__classify_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-depth__depth_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-depth__depth_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-depth__depth_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-obb__obb_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-obb__obb_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-obb__obb_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-pose__pose_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-pose__pose_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-pose__pose_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-seg__segment_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-seg__segment_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-seg__segment_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-sem__semantic_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-sem__semantic_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n-sem__semantic_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n__detect_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolo26n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolov8n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolov8n__detect_cpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/case_yolov8n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo11n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo11n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-obb__obb_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-obb__obb_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-pose__pose_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-pose__pose_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-seg__segment_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n-seg__segment_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolo26n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolov8n__detect_amdgpu.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/caseneg_yolov8n__detect_dml.json": [
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'",
+      "JSON-escaped user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo11n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-cls__classify.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-depth__depth.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-obb__obb.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-pose__pose.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-seg__segment.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n-sem__semantic.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolo26n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_cpu_yolov8n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo11n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-cls__classify_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-depth__depth_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-obb__obb_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-pose__pose_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-seg__segment_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n-sem__semantic_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolo26n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_post_yolov8n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo11n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-cls__classify.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-depth__depth.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-obb__obb.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-pose__pose.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-seg__segment.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n-sem__semantic.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolo26n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_pt_yolov8n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolo11n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolo26n-obb__obb.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolo26n-pose__pose.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolo26n-seg__segment.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolo26n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_ptneg_yolov8n__detect.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo11n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-cls__classify_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-depth__depth_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-obb__obb_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-pose__pose_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-seg__segment_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n-sem__semantic_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolo26n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_tp_yolov8n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo11n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo11n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-cls__classify_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-cls__classify_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-depth__depth_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-depth__depth_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-obb__obb_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-obb__obb_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-pose__pose_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-pose__pose_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-seg__segment_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-seg__segment_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-sem__semantic_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n-sem__semantic_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolo26n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolov8n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/log_yolov8n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo11n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo11n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-obb__obb_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-obb__obb_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-pose__pose_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-pose__pose_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-seg__segment_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n-seg__segment_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolo26n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolov8n__detect_amdgpu.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ],
+    "raw/logneg_yolov8n__detect_dml.txt": [
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'",
+      "absolute user path leaks username 'AMD'"
+    ]
+  },
+  "ok": false
+}

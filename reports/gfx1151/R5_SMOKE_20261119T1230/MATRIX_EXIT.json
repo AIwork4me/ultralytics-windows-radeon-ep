@@ -1,0 +1,47 @@
+{
+  "argv_redacted": [
+    ".venv-winml\\Scripts\\python.exe",
+    "-m",
+    "runner.r1_pipeline",
+    "--run-dir",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/R5_SMOKE_20261119T1230",
+    "--catalog",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/catalog/model_catalog.json",
+    "--gfx",
+    "gfx1151",
+    "--models",
+    "yolo26n.pt",
+    "--eps",
+    "amdgpu,dml",
+    "--winml-python",
+    ".venv-winml\\Scripts\\python.exe",
+    "--export-python",
+    ".venv-export\\Scripts\\python.exe",
+    "--case-timeout-s",
+    "1200",
+    "--benchmark",
+    "--with-negative"
+  ],
+  "audit_counts": {
+    "BLOCKED": 1,
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "PASS_FULL": 1,
+    "PASS_PARTIAL": 0
+  },
+  "audit_expected": 2,
+  "audit_passed": 1,
+  "audit_problems": [
+    "yolo26n__detect__amdgpu: BLOCKED_EP"
+  ],
+  "classification": "PIPELINE_REPORTED",
+  "log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/R5_SMOKE_20261119T1230/logs/r1_pipeline.log",
+  "matrix_exit_code": 2,
+  "pipeline_exit_code": 0,
+  "reasons": [
+    "[r1] EXIT classification=OK code=0"
+  ],
+  "schema_version": 1,
+  "stage": "r1_pipeline",
+  "started_utc": "2026-11-19T04:27:46Z"
+}
