@@ -8,9 +8,12 @@
     "pr8_merge_commit": "d5ea31227bc7802f5270bce7055cfd9896768545",
     "pr9_head": "ed60ed47cbfb51e5232abc47ceded5f932e479db",
     "pr9_merge_commit": "bb4dc5a0501923ea1647d0012d3fe33049976f93",
-    "r6_head_at_capture": "efa4a00a91770467828c0f1b828d8e019bb4fcc4",
+    "r6_head_at_capture": "7944fc818b1121490c5fb13a5570f1c8e7fb6df0",
     "r6_pr": 10,
-    "pr6_disposition": "superseded, not merged (branch mission/unified-winml-amdgpu-first-runtime kept)"
+    "pr6_disposition": "superseded, not merged (branch mission/unified-winml-amdgpu-first-runtime kept)",
+    "pr10_merge_commit": "444f248339b6d08b266e6b678314679a8ebc94b0",
+    "final_main": "444f248339b6d08b266e6b678314679a8ebc94b0",
+    "note_pr10": "PR #10 merged with a merge commit; the R6 branch and PR history are preserved."
   },
   "phases": [
     {
@@ -129,7 +132,7 @@
   ],
   "ci": {
     "at_r3_head": "windows-cpu-ci success, secret-scan success",
-    "at_r6_head": "see PR #10 checks"
+    "at_r6_head": "windows-cpu-ci success, secret-scan success (head 7944fc8, PR #10)"
   },
   "tests": {
     "baseline": "243 passed / 1 skipped",
