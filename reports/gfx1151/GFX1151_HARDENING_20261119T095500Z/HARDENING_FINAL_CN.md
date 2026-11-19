@@ -4,7 +4,7 @@
 - 仓库：`AIwork4me/ultralytics-windows-radeon-ep`
 - 基线：Draft PR #8 head `13b30f5`；Issue #7
 - 分支：`mission/gfx1151-independent-hardening`（从 PR #8 head 建立）
-- 新 Draft PR：#TBD（关联 Issue #7 与 PR #8）
+- 新 Draft PR：[#9](https://github.com/AIwork4me/ultralytics-windows-radeon-ep/pull/9)（关联 Issue #7 与 PR #8）
 - 证据目录：`reports/gfx1151/GFX1151_HARDENING_20261119T095500Z/`
 - 原则：不修改 PR #8 历史 Receipt；不伪造新的 GPU PASS；未合并任何 PR；未安装系统组件或驱动。
 
