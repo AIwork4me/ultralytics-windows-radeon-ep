@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_utc": "2026-11-19T14:15:45Z",
+  "captured_utc": "2026-11-19T14:59:25Z",
   "kind": "bounded_stability",
   "gfx": "gfx1151",
   "model": "yolo26n.raw_b1_fp32_static.onnx",
@@ -12,24 +12,24 @@
     "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6"
   ],
   "no_survivors": true,
-  "handles_before": 180,
-  "handles_after": 184,
-  "handle_delta": 4,
+  "handles_before": 173,
+  "handles_after": 181,
+  "handle_delta": 8,
   "children_before": 0,
   "children_after": 0,
-  "wall_s": 20.62,
+  "wall_s": 20.76,
   "timeout": {
     "status": "BLOCKED",
     "error": "CPU_REFERENCE_FAILED: TIMEOUT_1s",
     "timed_out": true,
     "terminated_by_job": true,
     "survivors": [],
-    "bounded_wall_s": 1.173
+    "bounded_wall_s": 1.184
   },
   "recovery": {
     "status": "GPU_FULL_DML",
     "gpu_full": true,
-    "wall_s": 2.166
+    "wall_s": 2.156
   },
   "rows": [
     {
@@ -43,8 +43,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.185,
-      "handles": 184,
+      "wall_s": 2.189,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -58,8 +58,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.135,
-      "handles": 184,
+      "wall_s": 2.161,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -73,8 +73,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.133,
-      "handles": 184,
+      "wall_s": 2.187,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -88,8 +88,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.168,
-      "handles": 184,
+      "wall_s": 2.179,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -103,8 +103,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.158,
-      "handles": 184,
+      "wall_s": 2.165,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -118,8 +118,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.161,
-      "handles": 184,
+      "wall_s": 2.173,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -133,8 +133,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.151,
-      "handles": 184,
+      "wall_s": 2.162,
+      "handles": 181,
       "child_processes": 0
     },
     {
@@ -148,8 +148,8 @@
       "outputs_sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
       "attempts": 3,
       "survivors": [],
-      "wall_s": 2.171,
-      "handles": 184,
+      "wall_s": 2.189,
+      "handles": 181,
       "child_processes": 0
     }
   ],

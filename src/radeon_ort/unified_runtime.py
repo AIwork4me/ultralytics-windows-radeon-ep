@@ -126,6 +126,10 @@ class Attempt:
             "ep": self.ep, "ok": self.ok, "status": self.status,
             "error": self.error, "target_nodes": self.target_nodes,
             "cpu_nodes": self.cpu_nodes, "binding": self.binding_confidence,
+            # the full host-side device evidence, not just the label: a receipt
+            # without the DID cannot be re-checked offline
+            "device_binding": self.device_binding,
+            "device_identity": self.device_identity,
             "exit_code": self.exit_code, "log": self.log_path,
             "attempt_id": self.attempt_id, "attempt_dir": self.attempt_dir,
             "worker_pid": self.worker_pid, "container": self.container,

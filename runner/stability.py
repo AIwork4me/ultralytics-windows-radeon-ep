@@ -64,8 +64,13 @@ def main() -> int:
 
     from radeon_ort import unified_runtime as ur
 
-    z = np.load(a.input_npz)
-    inputs = {k: z[k] for k in z.files}
+    # accept either an input bundle (.npz with named feeds) or a single
+    # persisted tensor (.npy, the soak/bench input convention)
+    if str(a.input_npz).lower().endswith(".npz"):
+        with np.load(a.input_npz) as z:
+            inputs = {k: z[k] for k in z.files}
+    else:
+        inputs = {"images": np.load(a.input_npz)}
     rows: list[dict] = []
     handles0 = _process_count()
     t_all = time.perf_counter()

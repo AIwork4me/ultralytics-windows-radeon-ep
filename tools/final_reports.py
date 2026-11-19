@@ -214,14 +214,21 @@ def main() -> int:
                                                  "execution; internal reference is "
                                                  "disclosed in cpu_reference",
             "no_stale_input_output_pollution": "PASS - content-addressed inputs, "
-                                               "per-attempt dirs, attempt_id binding "
-                                               "(14 adversarial tests)",
+                                               "per-attempt dirs, attempt_id binding, "
+                                               "worker-side feed re-hash compared to "
+                                               "the caller's fingerprint",
             "no_fake_task_verified": "PASS - verifier ties task_verified to "
-                                     "PASS_TASK + metrics + thresholds + hashes "
-                                     "(23 adversarial tests)",
+                                     "PASS_TASK + metrics + thresholds + hashes, "
+                                     "and a simulated worker can never be "
+                                     "evidence-grade (29 adversarial tests)",
             "no_timeout_orphans": "PASS - 8/8 job fault scenarios, survivors=[]",
-            "no_receipt_overwrite": "PASS - RUN_ID_ALREADY_FROZEN + byte-hash "
-                                    "verification of the persisted receipt",
+            "no_receipt_overwrite": "PASS - RUN_ID_ALREADY_FROZEN with no "
+                                    "overwrite escape hatch, plus file/body "
+                                    "byte-hash verification of the persisted "
+                                    "receipt. Boundary: a *coherent* rewrite of "
+                                    "result+receipt cannot be distinguished "
+                                    "without an external anchor (manifest/signature); "
+                                    "that is documented, not claimed",
             "no_host_identity_forgery": "PASS - DID-pinned gfx, LUID only as "
                                         "corroboration, cross-host hard gate "
                                         "WRONG_PHYSICAL_DEVICE",

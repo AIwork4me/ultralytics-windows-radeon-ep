@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_utc": "2026-11-19T14:11:11Z",
+  "captured_utc": "2026-11-19T14:55:24Z",
   "scope": "Windows Job Object process-tree lifecycle fault injection",
   "host_container": "job_object",
   "scenarios": [
@@ -12,7 +12,7 @@
         "job_assigned": true,
         "survivors": [],
         "alive": {
-          "24996": false
+          "26532": false
         }
       },
       "passed": true,
@@ -27,7 +27,7 @@
         "terminated_by_job": true,
         "survivors": [],
         "alive": {
-          "11816": false
+          "8796": false
         }
       },
       "passed": true,
@@ -38,14 +38,14 @@
       "expected": "grandchild reclaimed with the parent",
       "observed": {
         "recorded_pids": [
-          15680,
-          27780,
-          28736
+          7468,
+          25912,
+          28380
         ],
         "alive": {
-          "15680": false,
-          "27780": false,
-          "28736": false
+          "7468": false,
+          "25912": false,
+          "28380": false
         },
         "survivors": []
       },
@@ -57,18 +57,18 @@
       "expected": "every descendant reclaimed",
       "observed": {
         "recorded_pids": [
-          1760,
-          4832,
-          13824,
-          19784,
-          21516
+          6208,
+          17964,
+          22260,
+          28396,
+          28584
         ],
         "alive": {
-          "1760": false,
-          "4832": false,
-          "13824": false,
-          "19784": false,
-          "21516": false
+          "6208": false,
+          "17964": false,
+          "22260": false,
+          "28396": false,
+          "28584": false
         },
         "survivors": []
       },
@@ -108,9 +108,9 @@
         "returncode": 130,
         "survivors": [],
         "alive": {
-          "10664": false,
-          "17700": false,
-          "20704": false
+          "7056": false,
+          "8312": false,
+          "26964": false
         }
       },
       "passed": true,
