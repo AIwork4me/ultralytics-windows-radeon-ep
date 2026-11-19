@@ -658,6 +658,10 @@ def _ep_probe_classify(plan: Plan, payload: dict | None, rc: int) -> dict:
         return {"status": "FAIL", "reason": "EP_PROBE_UNREADABLE",
                 "detail": f"probe rc={rc} but no parseable report"}
     state = str(payload.get("state") or "UNKNOWN")
+    if rc != 0 and state in ("EP_REGISTERED", "GPU_EXECUTED"):
+        # the probe's own exit code is part of its contract (0 == usable)
+        return {"status": "FAIL", "reason": "EP_PROBE_EXIT_" + str(rc),
+                "detail": "probe reported " + state + " but exited " + str(rc)}
     readiness = payload.get("ep_readiness") or {}
     providers = readiness.get("ort_providers") or []
     dml_ready = any("dml" in str(p).lower() for p in providers)
@@ -694,6 +698,8 @@ def _canary_outcomes(plan: Plan, run_dir: Path, ready: list[str],
         _result, record = _run_stage_command(argv, timeout_s=timeout_s)
         canary = _load_json(run_dir / f"CANARY_{EP_LABEL[ep]}.json") or {}
         status, reason = cross_host.canary_stage_status(canary)
+        if int(record.get("rc", 0)) != 0 or record.get("timeout"):
+            status, reason = "FAIL", "CANARY_STAGE_EXIT_" + str(record.get("rc"))
         record["classification"] = status
         if reason:
             record["classification_reason"] = reason
@@ -806,10 +812,15 @@ def _decide_verdict(plan: Plan, *, gate: dict, dry_run: bool,
 
     physical_ok = all(stage_statuses.get(s) == "PASS" for s in
                       ("device_canary", "tier_a", "multi_input_oracle", "benchmarks"))
-    soak_ok = stage_statuses.get("soak") in ("PASS", "SKIPPED")
+    # A skipped soak is not a passed soak: the handoff contract requires it for
+    # PHYSICAL_GO, so --skip-soak can only ever reach CONDITIONAL_GO.
+    soak_ok = stage_statuses.get("soak") == "PASS"
     frozen_ok = stage_statuses.get("evidence_freeze") == "PASS"
     if physical_ok and soak_ok and frozen_ok and len(passed) == len(required):
         return cross_host.gfx_verdict(plan.gfx, "PHYSICAL_GO")
+    if (physical_ok and stage_statuses.get("soak") == "SKIPPED" and frozen_ok
+            and len(passed) == len(required)):
+        return cross_host.gfx_verdict(plan.gfx, "CONDITIONAL_GO")
     if passed and blocked:
         return cross_host.gfx_verdict(plan.gfx, "CONDITIONAL_GO")
     if blocked and not passed:
@@ -847,7 +858,9 @@ def _report_path(plan: Plan, report: dict) -> Path | None:
     if report.get("mode") == "dry-run":
         return None
     if (report.get("physical_gate") or {}).get("status") != "PASS":
-        return plan.report_root / "_blocked" / f"{plan.run_id}.json"
+        # include the gfx so the same run id on two architectures cannot
+        # overwrite the first refusal evidence
+        return plan.report_root / "_blocked" / f"{plan.run_id}.{plan.gfx}.json"
     return plan.run_dir / "CROSS_HOST_VALIDATION.json"
 
 
@@ -1053,6 +1066,9 @@ def _existing_evidence_problem(plan: Plan) -> str | None:
         return f"{_redact_path(run_dir)} already has RUN_CONTRACT.json"
     if (run_dir / "receipts").is_dir() and any((run_dir / "receipts").glob("receipt_*.json")):
         return f"{_redact_path(run_dir)} already has immutable receipts"
+    for name in ("CROSS_HOST_VALIDATION.json", "HOST_FINGERPRINT.json"):
+        if (run_dir / name).exists():
+            return f"{_redact_path(run_dir)} already has {name}"
     return None
 
 

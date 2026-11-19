@@ -333,6 +333,16 @@ def run_id_architecture_problem(run_id: str, gfx: str) -> str | None:
     if (not text or len(text) > 120
             or any(ch in text for ch in ("/", "\\", ":", "*", "?", '"', "<", ">", "|"))):
         return f"{RUN_ID_INVALID}: {run_id!r} must be a 1-120 char file-name component"
+    # "." / ".." and Windows reserved device names are valid file-name components
+    # syntactically but resolve somewhere else or are unusable; refuse them.
+    import re as _re
+    if text in (".", "..") or text != text.strip() or text.endswith("."):
+        return f"{RUN_ID_INVALID}: {run_id!r} must not be a dot path or end with '.'"
+    if not _re.match(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$", text):
+        return (f"{RUN_ID_INVALID}: {run_id!r} must start alphanumeric and use only "
+                "[A-Za-z0-9._-]")
+    if text.split(".")[0].upper() in {"CON", "PRN", "AUX", "NUL"}:
+        return f"{RUN_ID_INVALID}: {run_id!r} is a reserved Windows device name"
     lowered = text.lower()
     for other in SUPPORTED_GFX:
         if other != gfx and other in lowered:

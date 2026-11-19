@@ -150,7 +150,9 @@ def test_execute_gate_mismatch_exits_34_and_writes_no_gfx_evidence(tmp_path, mon
     assert rc == 34
     assert plan_calls == []
     assert not (report_root / "gfx1100").exists()
-    report_path = report_root / "_blocked" / "X.json"
+    # the refusal report is namespaced by gfx so two architectures cannot
+    # overwrite each other's refusal evidence
+    report_path = report_root / "_blocked" / "X.gfx1100.json"
     assert report_path.is_file()
     report = json.loads(report_path.read_text(encoding="utf-8"))
     assert report["final_verdict"] == "GFX1100_CROSS_HOST_HARNESS_READY"
@@ -353,3 +355,25 @@ def test_evidence_freeze_command_order_is_redact_finalize_compat_verify():
     assert "runner.build_compatibility_matrix" in joined[2]
     assert "runner.verify_receipts" in joined[3]
     assert "--check" in joined[4]
+
+def test_skip_soak_cannot_reach_physical_go():
+    plan = _plan()
+    stages = _passing_statuses()
+    stages["soak"] = "SKIPPED"
+    verdict = chv._decide_verdict(plan, gate={"status": "PASS"}, dry_run=False,
+                                  stage_statuses=stages,
+                                  ep_results={"amdgpu": "PASS", "dml": "PASS"})
+    assert verdict == "GFX1100_CONDITIONAL_GO", verdict
+    stages["soak"] = "PASS"
+    verdict = chv._decide_verdict(plan, gate={"status": "PASS"}, dry_run=False,
+                                  stage_statuses=stages,
+                                  ep_results={"amdgpu": "PASS", "dml": "PASS"})
+    assert verdict == "GFX1100_PHYSICAL_GO", verdict
+
+
+def test_run_id_dot_paths_and_reserved_names_are_refused():
+    from radeon_ort import cross_host
+
+    for bad in (".", "..", "CON", "nul", "a..b/", " x", "x "):
+        assert cross_host.run_id_architecture_problem(bad, "gfx1100") is not None, bad
+    assert cross_host.run_id_architecture_problem("GFX1100_R8_OK", "gfx1100") is None
