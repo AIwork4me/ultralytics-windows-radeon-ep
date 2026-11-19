@@ -31,13 +31,18 @@ MODELS = [{"checkpoint": "yolo26n.pt", "task": "detect", "imgsz": 640,
            "asset_available": True, "gfx": "gfx1151"}]
 IMAGES = {"primary": {"name": "bus.jpg", "sha256": "3" * 64}}
 OPTIONS = {"benchmark": False, "with_negative": False}
+ENV = {"python_executable_name": "python.exe", "python_version": "3.12.10",
+       "os_build": "10.0.26200", "ort_version": "1.25.2",
+       "ort_distribution": "onnxruntime-windowsml",
+       "ort_providers": ["CPUExecutionProvider", "DmlExecutionProvider"],
+       "windowsml_version": "2.5.96", "probe_error": None}
 
 
 def _contract(tmp_path: Path, **kw):
     args = dict(run_id="RUN_TEST", gfx="gfx1151", eps=["amdgpu", "dml"],
                 models=MODELS, cases=["yolo26n__detect"], thresholds=TH,
                 code=CODE, device_identity=DEV, images=IMAGES, options=OPTIONS,
-                created_utc="2026-11-19T00:00:00Z")
+                environment=ENV, created_utc="2026-11-19T00:00:00Z")
     args.update(kw)
     return c.build_run_contract(**args)
 
@@ -98,21 +103,21 @@ def test_verify_run_contract_rejects_changed_code_and_thresholds(tmp_path, monke
     assert c.verify_run_contract(
         contract, repo_root=tmp_path, run_dir=run, thresholds=TH,
         host_block=_host(), models=["yolo26n.pt"], eps=["amdgpu", "dml"],
-        images=IMAGES, options=OPTIONS) == []
+        images=IMAGES, options=OPTIONS, environment=ENV) == []
 
     changed_th = copy.deepcopy(TH)
     changed_th["numeric_parity"]["fp32"]["atol"] = 0.9
     problems = c.verify_run_contract(
         contract, repo_root=tmp_path, run_dir=run, thresholds=changed_th,
         host_block=_host(), models=["yolo26n.pt"], eps=["amdgpu", "dml"],
-        images=IMAGES, options=OPTIONS)
+        images=IMAGES, options=OPTIONS, environment=ENV)
     assert any("THRESHOLDS" in p for p in problems)
 
     bad_host = dict(_host(), device_id="0x7550")
     problems = c.verify_run_contract(
         contract, repo_root=tmp_path, run_dir=run, thresholds=TH,
         host_block=bad_host, models=["yolo26n.pt"], eps=["amdgpu", "dml"],
-        images=IMAGES, options=OPTIONS)
+        images=IMAGES, options=OPTIONS, environment=ENV)
     assert any("DEVICE_IDENTITY_CHANGED" in p for p in problems)
 
 
@@ -126,7 +131,7 @@ def test_contract_for_gfx1201_cannot_be_resumed_on_gfx1151(tmp_path, monkeypatch
     problems = c.verify_run_contract(
         contract, repo_root=tmp_path, run_dir=run, thresholds=TH,
         host_block=_host(), models=["yolo26n.pt"], eps=["amdgpu", "dml"],
-        images=IMAGES, options=OPTIONS)
+        images=IMAGES, options=OPTIONS, environment=ENV)
     assert any("DEVICE_IDENTITY_CHANGED" in p for p in problems)
 
 

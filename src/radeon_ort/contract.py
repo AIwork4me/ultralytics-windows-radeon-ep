@@ -36,9 +36,18 @@ RUN_CONTRACT_NAME = "RUN_CONTRACT.json"
 
 # Files whose content defines "the harness". A change here must invalidate
 # resume, because old receipts were produced by different code.
-HARNESS_DIRS = ("runner", "src/radeon_ort")
+#
+# The hash range documented in docs/GPU_EVIDENCE_CONTRACT.md is
+#   runner/ + src/radeon_ort/ + configs/ + schemas/ + pyproject.toml
+# configs/ carries the acceptance thresholds and provider policy; schemas/
+# carries the receipt/manifest contracts the validator enforces. Both change
+# the meaning of a PASS, so both are bound here. Reports, caches, temporary logs
+# and generated evidence are deliberately excluded: they are outputs, not code.
+HARNESS_DIRS = ("runner", "src/radeon_ort", "configs", "schemas")
 HARNESS_FILES = ("pyproject.toml",)
 HARNESS_SUFFIXES = (".py", ".yaml", ".yml", ".json", ".toml")
+HARNESS_EXCLUDE_DIR_NAMES = {"__pycache__", ".pytest_cache", ".ruff_cache",
+                             ".mypy_cache", ".git", "node_modules"}
 
 
 class ContractError(RuntimeError):
@@ -56,7 +65,7 @@ def sha256_text(text: str) -> str:
 
 def _is_harness_file(path: Path, root: Path) -> bool:
     rel = path.relative_to(root)
-    if "__pycache__" in rel.parts:
+    if HARNESS_EXCLUDE_DIR_NAMES.intersection(rel.parts):
         return False
     return path.suffix in HARNESS_SUFFIXES
 
@@ -101,18 +110,86 @@ def _git(repo_root: Path, *args: str) -> str:
         return ""
 
 
+# Paths whose *tracked or untracked* state makes the worktree dirty. Evidence
+# (reports/), caches and virtualenvs are deliberately outside this list.
+DIRTY_SCOPE = ("runner", "src", "tests", "schemas", "configs", "catalog",
+               "pyproject.toml")
+
+
 def code_state(repo_root: str | Path) -> dict:
-    """Exact code provenance. Dirty covers harness paths only (not evidence)."""
+    """Exact code provenance. Dirty covers harness paths only (not evidence).
+
+    Untracked harness files are included on purpose: a new module that is not
+    committed yet changes behaviour, so it must not be usable to produce an
+    attestable run. Ignored files (__pycache__, *.pyc) stay invisible to git
+    and therefore do not flip the flag.
+    """
     root = Path(repo_root)
     head = _git(root, "rev-parse", "HEAD") or "unknown"
-    dirty = bool(_git(root, "status", "--porcelain", "--untracked-files=no", "--",
-                      "runner", "src", "tests", "schemas", "configs", "catalog",
-                      "pyproject.toml"))
+    dirty = bool(_git(root, "status", "--porcelain", "--untracked-files=all", "--",
+                      *DIRTY_SCOPE))
+    files = harness_files(root)
     return {
         "git_head_sha": head,
         "worktree_dirty": dirty,
         "harness_sha256": harness_sha256(root),
+        "harness_file_count": len(files),
+        "harness_dirs": list(HARNESS_DIRS),
     }
+
+
+ENV_PROBE = r"""
+import json, platform, sys
+
+out = {
+    "python_version": sys.version.split()[0],
+    "os_build": platform.version(),
+}
+try:
+    import importlib.metadata as md
+    out["windowsml_version"] = md.version("windowsml")
+except Exception:
+    out["windowsml_version"] = None
+try:
+    import onnxruntime as ort
+    out["ort_version"] = ort.__version__
+    try:
+        dists = md.packages_distributions().get("onnxruntime") or []
+    except Exception:
+        dists = []
+    out["ort_distribution"] = sorted(dists)[0] if dists else None
+    out["ort_providers"] = sorted(ort.get_available_providers())
+except Exception as e:  # noqa: BLE001
+    out["ort_error"] = f"{type(e).__name__}: {e}"
+print(json.dumps(out, sort_keys=True))
+"""
+
+
+def environment_state(python_executable: str | Path, *, timeout_s: int = 120) -> dict:
+    """Runtime environment binding: python/ORT/Windows ML versions per interpreter.
+
+    Only non-identifying values are recorded (versions, distribution name,
+    sorted provider names). The interpreter path itself is reduced to a
+    basename so no user profile path leaks into a contract or receipt.
+    """
+    exe = Path(python_executable)
+    base = {"python_executable_name": exe.name}
+    try:
+        r = subprocess.run([str(exe), "-c", ENV_PROBE], capture_output=True,
+                           text=True, timeout=timeout_s, check=False)
+    except Exception as e:  # noqa: BLE001
+        return {**base, "probe_error": f"{type(e).__name__}: {e}"}
+    if r.returncode != 0:
+        return {**base, "probe_error": (r.stderr or "").strip()[-400:] or
+                f"exit {r.returncode}"}
+    lines = [ln for ln in (r.stdout or "").splitlines() if ln.strip()]
+    try:
+        data = json.loads(lines[-1])
+    except (IndexError, json.JSONDecodeError) as e:
+        return {**base, "probe_error": f"unparseable environment probe: {e}"}
+    if not isinstance(data, dict):
+        return {**base, "probe_error": "environment probe returned a non-object"}
+    return {**base, **data}
 
 
 def thresholds_sha256(thresholds: dict) -> str:
@@ -189,7 +266,7 @@ def contract_sha256(contract: dict) -> str:
 def build_run_contract(*, run_id: str, gfx: str, eps: list[str], models: list[dict],
                        cases: list[str], thresholds: dict, code: dict,
                        device_identity: dict, images: dict, options: dict,
-                       created_utc: str) -> dict:
+                       created_utc: str, environment: dict | None = None) -> dict:
     contract = {
         "schema_version": CONTRACT_SCHEMA_VERSION,
         "run_id": run_id,
@@ -202,6 +279,7 @@ def build_run_contract(*, run_id: str, gfx: str, eps: list[str], models: list[di
         "thresholds_sha256": thresholds_sha256(thresholds),
         "code": code,
         "device_identity": device_identity,
+        "environment": dict(environment or {}),
         "images": images,
         "options": options,
     }
@@ -242,10 +320,25 @@ def _model_map(models: list[dict]) -> dict[str, dict]:
     return {m["checkpoint"]: m for m in models}
 
 
+def _environment_problems(want: dict, got: dict) -> list[str]:
+    """Field-level environment drift, so the reason survives in the report."""
+    if not want:
+        return [("ENVIRONMENT_UNBOUND: contract carries no runtime environment "
+                 "binding; create the run with a bound interpreter")]
+    problems: list[str] = []
+    for key in sorted(set(want) | set(got)):
+        if want.get(key) != got.get(key):
+            problems.append(
+                f"ENVIRONMENT_CHANGED: {key} contract={want.get(key)!r} "
+                f"current={got.get(key)!r}")
+    return problems
+
+
 def verify_run_contract(contract: dict, *, repo_root: str | Path, run_dir: str | Path,
                         thresholds: dict, host_block: dict, models: list[str],
                         eps: list[str], images: dict | None = None,
-                        options: dict | None = None) -> list[str]:
+                        options: dict | None = None,
+                        environment: dict | None = None) -> list[str]:
     """Problems that forbid resuming this run id (empty list means OK)."""
     problems: list[str] = []
     if contract.get("contract_sha256") != contract_sha256(contract):
@@ -308,6 +401,16 @@ def verify_run_contract(contract: dict, *, repo_root: str | Path, run_dir: str |
         # caller as an informational note instead.
         pass
 
+    contract_env = contract.get("environment") or {}
+    if not contract_env:
+        problems.append("ENVIRONMENT_UNBOUND: contract carries no runtime environment "
+                        "binding; create the run with a bound interpreter")
+    elif environment is None:
+        problems.append("ENVIRONMENT_UNVERIFIED: caller did not supply the live "
+                        "runtime environment, so drift cannot be excluded")
+    else:
+        problems.extend(_environment_problems(contract_env, environment))
+
     if images is not None:
         cimg = contract.get("images") or {}
         for name, want in images.items():
@@ -333,6 +436,7 @@ def build_receipt_contract(run_contract: dict, *, ep: str, model: dict,
         "code": dict(run_contract["code"]),
         "thresholds_sha256": run_contract["thresholds_sha256"],
         "device_identity": dict(run_contract["device_identity"]),
+        "environment": dict(run_contract.get("environment") or {}),
         "ep": ep,
         "model": {
             "checkpoint": model.get("checkpoint"),
@@ -369,6 +473,10 @@ def validate_receipt_contract(receipt: dict, run_contract: dict) -> list[str]:
     if rc.get("device_identity") != run_contract.get("device_identity"):
         problems.append(
             "RECEIPT_DEVICE_MISMATCH: device identity differs from run contract")
+    if dict(rc.get("environment") or {}) != dict(run_contract.get("environment") or {}):
+        problems.append(
+            "RECEIPT_ENVIRONMENT_MISMATCH: runtime environment differs from run "
+            "contract")
 
     active = "amdgpu" if receipt.get("status", {}).get("amdgpu") != "NOT_RUN" else "dml"
     if rc.get("ep") not in (None, active):

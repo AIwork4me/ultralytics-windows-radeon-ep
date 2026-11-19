@@ -261,6 +261,12 @@ def main() -> int:
 
     live_thresholds = yaml.safe_load(
         (REPO_ROOT / "configs" / "thresholds.yaml").read_text(encoding="utf-8"))
+    # Runtime environment is part of the contract: an ORT/Windows ML change
+    # changes what a PASS means and therefore forbids resuming the old run id.
+    environment = contract_mod.environment_state(a.winml_python)
+    if environment.get("probe_error"):
+        print("[r1] WARN: environment probe incomplete: "
+              + str(environment.get("probe_error")))
     try:
         thresholds, th_sha = contract_mod.ensure_thresholds(
             run_dir, live_thresholds, resume=a.resume)
@@ -303,6 +309,7 @@ def main() -> int:
             run_contract, repo_root=REPO_ROOT, run_dir=run_dir,
             thresholds=thresholds, host_block=host_block0, models=models, eps=eps,
             images=images,
+            environment=environment,
             options={"benchmark": bool(a.benchmark),
                      "with_negative": bool(a.with_negative)})
         for p in problems:
@@ -345,6 +352,7 @@ def main() -> int:
                 "did_match": bool(host_block0.get("did_match")),
             },
             images=images,
+            environment=environment,
             options={"benchmark": bool(a.benchmark),
                      "with_negative": bool(a.with_negative)},
             created_utc=utc_now_iso())
@@ -361,6 +369,9 @@ def main() -> int:
 
     ledger_path = run_dir / "R1_CASE_LEDGER.jsonl"
     n_ok = 0
+    n_pass = 0
+    n_fail = 0
+    n_blocked = 0
     run_problems: list[str] = []
     for model in models:
         entry = catalog["entries"].get(model)
@@ -675,6 +686,12 @@ def main() -> int:
                 save_receipt(receipt, receipts_dir)
                 n_ok += 1
                 status_ep = receipt["status"][ep_key]
+                if str(status_ep).startswith("PASS"):
+                    n_pass += 1
+                elif str(status_ep).startswith("FAIL"):
+                    n_fail += 1
+                else:
+                    n_blocked += 1
                 tp_s = receipt["status"]["task_oracle"]
                 with ledger_path.open("a", encoding="utf-8") as lf:
                     lf.write(json.dumps({
@@ -688,11 +705,45 @@ def main() -> int:
             except Exception as e:  # noqa: BLE001
                 run_problems.append(f"{case_key}/{ep}: receipt save failed: {e}")
                 print(f"[r1] receipt save failed {case_key}/{ep}: {e}")
-    print(f"[r1] DONE {n_ok} receipts")
+    rc, classification = classify_exit(n_pass, n_fail, run_problems)
+    print(f"[r1] DONE {n_ok} receipts pass={n_pass} fail={n_fail} "
+          f"blocked_or_not_run={n_blocked}")
     if run_problems:
         print(f"[r1] FAIL: {len(run_problems)} validation/contract problem(s)")
-        return 1
-    return 0
+    if rc == 2:
+        print("[r1] BLOCKED/NOT_RUN: no case produced a full GPU PASS")
+    print(f"[r1] EXIT classification={classification} code={rc}")
+    try:
+        (run_dir / "PIPELINE_EXIT.json").write_text(json.dumps({
+            "schema_version": 1,
+            "attempt_utc": utc_now_iso(),
+            "exit_code": rc,
+            "classification": classification,
+            "receipts_written": n_ok,
+            "pass": n_pass,
+            "fail": n_fail,
+            "blocked_or_not_run": n_blocked,
+            "run_problems": run_problems[:50],
+            "environment_probe_error": environment.get("probe_error"),
+        }, indent=2) + "\n", encoding="utf-8")
+    except OSError as e:  # noqa: BLE001 - never mask the real exit code
+        print(f"[r1] WARN: could not write PIPELINE_EXIT.json: {e}")
+    return rc
+
+
+def classify_exit(n_pass: int, n_fail: int, run_problems: list[str]) -> tuple[int, str]:
+    """Map per-case outcomes to the documented exit code (R3-A).
+
+    1 = evidence invalid / real case failure, 2 = classified external block or
+    nothing executed, 0 = at least one full PASS and no failure.
+    """
+    if run_problems:
+        return 1, "EVIDENCE_INVALID"
+    if n_fail:
+        return 1, "CASE_FAILED"
+    if n_pass == 0:
+        return 2, "NO_GPU_PASS"
+    return 0, "OK"
 
 
 def _git_state() -> dict:

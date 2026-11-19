@@ -401,6 +401,20 @@
             "did_match": { "type": "boolean" }
           }
         },
+        "environment": {
+          "type": "object",
+          "description": "Runtime binding (python/ORT/Windows ML versions) captured with the run contract; drift forbids resume.",
+          "properties": {
+            "python_executable_name": { "type": ["string", "null"] },
+            "python_version": { "type": ["string", "null"] },
+            "os_build": { "type": ["string", "null"] },
+            "ort_version": { "type": ["string", "null"] },
+            "ort_distribution": { "type": ["string", "null"] },
+            "ort_providers": { "type": "array", "items": { "type": "string" } },
+            "windowsml_version": { "type": ["string", "null"] },
+            "probe_error": { "type": ["string", "null"] }
+          }
+        },
         "ep": { "enum": ["amdgpu", "dml"] },
         "model": {
           "type": "object",

@@ -25,6 +25,7 @@ import sys
 from pathlib import Path
 
 from radeon_ort import contract as contract_mod
+from radeon_ort import redaction
 from radeon_ort.receipts import utc_now_iso, validate_receipt_strict
 from runner import REPO_ROOT
 
@@ -54,6 +55,73 @@ def _find_run_dir(reports_root: Path, run_id: str) -> Path | None:
     return None
 
 
+def _redacted_argv(argv: list[str]) -> list[str]:
+    out: list[str] = []
+    for a in argv:
+        try:
+            out.append(redaction.redact_path(a) if Path(a).is_absolute() else a)
+        except Exception:  # noqa: BLE001 - redaction must never break the run
+            out.append("<redacted>")
+    return out
+
+
+def pipeline_classification(rc: int, reasons: list[str]) -> str:
+    """First-error classification of a r1_pipeline run (R3-A).
+
+    The stage name is preserved so a caller can tell an external block from a
+    real failure without re-reading the whole transcript.
+    """
+    joined = " | ".join(reasons)
+    if "CONTRACT FAIL" in joined:
+        return "CONTRACT_REFUSED"
+    if "target device not verified" in joined:
+        return "DEVICE_UNVERIFIED"
+    if "VALIDATION PROBLEMS" in joined:
+        return "EVIDENCE_INVALID"
+    if "EXIT classification=" in joined:
+        return "PIPELINE_REPORTED"
+    if rc == 2:
+        return "BLOCKED_OR_NOT_RUN"
+    if rc != 0:
+        return "FAILURE"
+    return "OK"
+
+
+def _run_pipeline(cmd: list[str], log_path: Path) -> tuple[int, list[str]]:
+    """Run the producer, stream its output, and keep the first failure lines."""
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    reasons: list[str] = []
+    console_errors: list[str] = []
+    proc = subprocess.Popen(cmd, cwd=str(REPO_ROOT), stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, bufsize=0)
+    assert proc.stdout is not None
+    with log_path.open("wb") as log:
+        for raw in proc.stdout:
+            try:
+                sys.stdout.buffer.write(raw)
+                sys.stdout.buffer.flush()
+            except Exception as e:  # noqa: BLE001 - console must not abort the run
+                console_errors.append(f"{type(e).__name__}: {e}")
+            log.write(raw)
+            log.flush()
+            line = raw.decode("utf-8", "replace").rstrip()
+            if "[r1]" in line and ("FAIL" in line or "CONTRACT" in line
+                                   or "EXIT classification" in line):
+                reasons.append(line)
+    proc.wait()
+    if console_errors:
+        reasons.append(f"[matrix] console passthrough degraded: {console_errors[-1]}")
+    return int(proc.returncode or 0), reasons
+
+
+def _write_exit_record(out_dir: Path, record: dict) -> None:
+    try:
+        (out_dir / "MATRIX_EXIT.json").write_text(
+            json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    except OSError as e:
+        print(f"[matrix] WARN: could not write MATRIX_EXIT.json: {e}")
+
+
 def _audit(out_dir: Path, contract: dict, *, run_id: str) -> tuple[int, dict]:
     """Strictly validate every receipt; derive PASS from evidence, not labels."""
     problems: list[str] = []
@@ -62,8 +130,8 @@ def _audit(out_dir: Path, contract: dict, *, run_id: str) -> tuple[int, dict]:
         return 1, {"problems": ["RUN_CONTRACT_TAMPERED"], "counts": {}}
     if (contract.get("code") or {}).get("worktree_dirty"):
         return 1, {"problems": [
-            "CODE_STATE_DIRTY: a run created from a dirty harness worktree "
-            "cannot attest a GPU PASS"], "counts": {}}
+            ("CODE_STATE_DIRTY: a run created from a dirty harness worktree "
+             "cannot attest a GPU PASS")], "counts": {}}
 
     try:
         thresholds = contract_mod.load_thresholds_snapshot(out_dir)
@@ -293,14 +361,36 @@ def main(argv: list[str] | None = None) -> int:
     if a.with_negative:
         cmd += ["--with-negative"]
     print("[matrix] exec: " + " ".join(cmd))
-    r = subprocess.run(cmd, cwd=str(REPO_ROOT))
-    if r.returncode != 0:
-        print(f"[matrix] FAIL: r1_pipeline exited rc={r.returncode}")
+    log_path = out_dir / "logs" / "r1_pipeline.log"
+    pipe_rc, reasons = _run_pipeline(cmd, log_path)
+    classification = pipeline_classification(pipe_rc, reasons)
+    record = {
+        "schema_version": 1,
+        "stage": "r1_pipeline",
+        "started_utc": utc_now_iso(),
+        "pipeline_exit_code": pipe_rc,
+        "classification": classification,
+        "reasons": reasons[-20:],
+        "argv_redacted": _redacted_argv(cmd),
+        "log_path_redacted": redaction.redact_path(log_path),
+    }
+    if pipe_rc != 0:
+        _write_exit_record(out_dir, {**record, "matrix_exit_code": 2 if pipe_rc == 2 else 1})
+        print(f"[matrix] r1_pipeline exited rc={pipe_rc} classification={classification}")
+        for reason in reasons[-5:]:
+            print(f"[matrix]   {reason}")
+        if pipe_rc == 2:
+            print("[matrix] BLOCKED/NOT_RUN: classified refusal from r1_pipeline "
+                  "(exit 2)")
+            return 2
+        print("[matrix] FAIL: r1_pipeline reported a real failure (exit 1)")
         return 1
 
     try:
         contract = contract_mod.load_run_contract(out_dir)
     except contract_mod.ContractError as e:
+        _write_exit_record(out_dir, {**record, "matrix_exit_code": 1,
+                                     "contract_error": str(e)})
         print(f"[matrix] FAIL: {e}")
         return 1
     rc, audit = _audit(out_dir, contract, run_id=run_id)
@@ -315,6 +405,11 @@ def main(argv: list[str] | None = None) -> int:
         print("[matrix] FAIL: forged/stale/error evidence (exit 1)")
     else:
         print("[matrix] BLOCKED/NOT_RUN: incomplete evidence cannot PASS (exit 2)")
+    _write_exit_record(out_dir, {**record, "matrix_exit_code": rc,
+                                 "audit_counts": audit.get("counts"),
+                                 "audit_expected": audit.get("expected"),
+                                 "audit_passed": audit.get("passed"),
+                                 "audit_problems": (audit.get("problems") or [])[:80]})
     return rc
 
 
