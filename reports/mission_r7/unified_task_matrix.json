@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T14:14:26Z",
+  "scope": "unified predict() with verify_task=True on real images; one checkpoint per task",
+  "policy": "prefer_amdgpu_allow_dml",
+  "gfx": "gfx1151",
+  "cases": 7,
+  "passed": 7,
+  "all_passed": true,
+  "results": [
+    {
+      "checkpoint": "yolo26n.pt",
+      "task": "detect",
+      "imgsz": 640,
+      "run_id": "GFX1151_R7_TASK_YOLO26N",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+        "tensor_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 0.5925925925925926,
+          "new_h": 640,
+          "new_w": 480,
+          "top": 0,
+          "left": 80,
+          "bottom": 0,
+          "right": 80,
+          "imgsz": 640
+        },
+        "npz": "yolo26n.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999993533816468
+      },
+      "thresholds": {
+        "iou_thres": 0.5,
+        "min_matches": 1,
+        "min_precision": 0.9,
+        "min_recall": 0.9
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-40ea5249abe7",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N.json",
+        "body_sha256": "49eb34d3a1c1e1e0ee82875189bf8954115f3e47ca1727ded2f48b19615425ac",
+        "file_sha256": "1eb9eab37d2179adb3813c1fe74d70ce37ac3c455b1894e620f03f0fc8b31426",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-seg.pt",
+      "task": "segment",
+      "imgsz": 640,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_SEG",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+        "tensor_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 0.5925925925925926,
+          "new_h": 640,
+          "new_w": 480,
+          "top": 0,
+          "left": 80,
+          "bottom": 0,
+          "right": 80,
+          "imgsz": 640
+        },
+        "npz": "yolo26n-seg.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.999999431747838,
+        "mask_iou_mean": 1.0
+      },
+      "thresholds": {
+        "min_mask_iou": 0.7
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-2ac28e8f6324",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_SEG.json",
+        "body_sha256": "117e96f18a39f3bc53e61bc4615fc2c32cff8f71684aaa1201210e1400faa228",
+        "file_sha256": "a1f3807094a1143099c0ce3a9319a434de321f9f5f20aeaacb5cb0cd66b5df30",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-sem.pt",
+      "task": "semantic",
+      "imgsz": 640,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_SEM",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+        "tensor_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 0.5925925925925926,
+          "new_h": 640,
+          "new_w": 480,
+          "top": 0,
+          "left": 80,
+          "bottom": 0,
+          "right": 80,
+          "imgsz": 640
+        },
+        "npz": "yolo26n-sem.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 11,
+        "pixel_agreement": 1.0,
+        "miou": 1.0,
+        "classes_ref": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          11,
+          13,
+          15,
+          18
+        ]
+      },
+      "thresholds": {
+        "min_miou": 0.7,
+        "min_pixel_agreement": 0.9
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-755dd0133722",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_SEM.json",
+        "body_sha256": "485031cece0f2f6b56e0f9c9200fbc6909776c763fa36a8c1da96ebdac7979a5",
+        "file_sha256": "76c4f5bf05f2bb2211b1db64f030953ca4cd4cce903e5bd23fe324326c289fb1",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-depth.pt",
+      "task": "depth",
+      "imgsz": 768,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_DEPTH",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "31b0a53c357a208de9ac6e023dcc42b95d01410c6f1f56efa3a3867e73924195",
+        "tensor_shape": [
+          1,
+          3,
+          768,
+          768
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 0.7111111111111111,
+          "new_h": 768,
+          "new_w": 576,
+          "top": 0,
+          "left": 96,
+          "bottom": 0,
+          "right": 96,
+          "imgsz": 768
+        },
+        "npz": "yolo26n-depth.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 0,
+        "mae": 1.5659499897285261e-06,
+        "rmse": 4.787618580583022e-06,
+        "rel_mae": 3.531234929814665e-07,
+        "valid_px": 589824,
+        "ref_mean_depth": 4.434567568719406
+      },
+      "thresholds": {
+        "max_rel_mae_vs_pt": 0.15
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-6661acc56010",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_DEPTH.json",
+        "body_sha256": "3eb6fd5c5597d9757014971822ecfb5b8ed215b91755c7cbe52b8f4231c7dd23",
+        "file_sha256": "5e52b3f2d6655c23e06266d6484b43a50956a734ef9ca61984e1f786a375b7f6",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-cls.pt",
+      "task": "classify",
+      "imgsz": 224,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_CLS",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8",
+        "tensor_shape": [
+          1,
+          3,
+          224,
+          224
+        ],
+        "preprocess": {
+          "method": "resize_short+centercrop",
+          "resize_h": 299,
+          "resize_w": 224,
+          "crop_top": 37,
+          "crop_left": 0,
+          "imgsz": 224
+        },
+        "npz": "yolo26n-cls.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 0,
+        "ref_top1": 654,
+        "cand_top1": 654,
+        "top1_match": true,
+        "top5_overlap": 5,
+        "score_drift": 5.364418029785156e-07
+      },
+      "thresholds": {
+        "max_score_drift": 0.05,
+        "require_top1_match": true
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-cd85a9a66f84",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_CLS.json",
+        "body_sha256": "31c729ba222c3edf83488ecde5880ea646707d14cf85e74122a1fb19d0efafa3",
+        "file_sha256": "cd33b50b0b360594eea989de08478ebfed2ff1dc84346c2e5f6ad252f7a0a368",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-pose.pt",
+      "task": "pose",
+      "imgsz": 640,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_POSE",
+      "input": {
+        "image": "bus.jpg",
+        "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+        "tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+        "tensor_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 0.5925925925925926,
+          "new_h": 640,
+          "new_w": 480,
+          "top": 0,
+          "left": 80,
+          "bottom": 0,
+          "right": 80,
+          "imgsz": 640
+        },
+        "npz": "yolo26n-pose.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999994167470768,
+        "oks_mean": 0.9999999999999925
+      },
+      "thresholds": {
+        "min_oks": 0.8
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-dc6e8b326ec1",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_POSE.json",
+        "body_sha256": "f94e819e4ab443c97c321f716f6024bc478fe4e82b496335a16a92085c70faf1",
+        "file_sha256": "c790224f00c0be06502e5cdeb823fe9a426fcab4bab0f83579e0cba442c248f8",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "yolo26n-obb.pt",
+      "task": "obb",
+      "imgsz": 1024,
+      "run_id": "GFX1151_R7_TASK_YOLO26N_OBB",
+      "input": {
+        "image": "dota_p1053.jpg",
+        "image_sha256": "83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a",
+        "tensor_sha256": "c40fb53221f20d521ae7b89668ce10705d66869e00ff7a2bc21fd7170fa858ae",
+        "tensor_shape": [
+          1,
+          3,
+          1024,
+          1024
+        ],
+        "preprocess": {
+          "method": "letterbox",
+          "ratio": 1.0,
+          "new_h": 1024,
+          "new_w": 1024,
+          "top": 0,
+          "left": 0,
+          "bottom": 0,
+          "right": 0,
+          "imgsz": 1024
+        },
+        "npz": "yolo26n-obb.npz"
+      },
+      "runtime_status": "GPU_FULL_DML",
+      "actual_ep": "dml",
+      "gpu_full": true,
+      "task_verified": true,
+      "task_status": "PASS_TASK",
+      "task_reason": null,
+      "metrics": {
+        "ref_entities": 15,
+        "matched": 15,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "rotated_iou_mean": 0.9999999443689982,
+        "angle_absdiff_mean_deg": 3.5289310711732555e-06
+      },
+      "thresholds": {
+        "min_rotated_iou": 0.7
+      },
+      "target_nodes": 1,
+      "cpu_nodes": 0,
+      "binding": "EP_DEVICE_SELECTED_ORDINAL_MAPPING",
+      "adopted_attempt_id": "A003-dml-5daf5ee971e4",
+      "verifier": "RUNRESULT_VALID",
+      "verifier_failed": [],
+      "schema_ok": true,
+      "receipt": {
+        "path": "receipt_GFX1151_R7_TASK_YOLO26N_OBB.json",
+        "body_sha256": "14788aa39b4e51b006213eeb2069337309054272d4df8526af84a9b0a837621e",
+        "file_sha256": "5d433ec10be916c42ad4e26ff461da12f80176fda5500caaed291524931e9fe2",
+        "schema_version": "unified_run_v1",
+        "written": true
+      },
+      "status": "PASS"
+    }
+  ]
+}

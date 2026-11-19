@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "mission": "R7-R10",
+  "host_id": "unknown",
+  "git": {
+    "head": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "head_short": "0c844da",
+    "branch": "mission/r7-r10-gfx1151-product-hardening",
+    "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "worktree_clean": false,
+    "status_porcelain": "M .gitignore\n M README.md\n M README.zh-CN.md\n M docs/AMDGPU_EP_PROVISIONING.md\n M docs/cross_host/GFX1100_HANDOFF.md\n M docs/cross_host/GFX1201_HANDOFF.md\n M docs/unified/ARCHITECTURE.md\n M docs/unified/CONTRACTS.md\n M runner/_ep_worker.py\n M runner/probe_amdgpu_ep.py\n M runner/unified_predict.py\n M src/radeon_ort/unified_executors.py\n M src/radeon_ort/unified_runtime.py\n M tests/unit/test_probe_amdgpu_ep_states.py\n?? data/fixtures/bench_images/SOURCES.json\n?? data/fixtures/bench_images/picsum_1.jpg\n?? data/fixtures/bench_images/picsum_10.jpg\n?? data/fixtures/bench_images/picsum_11.jpg\n?? data/fixtures/bench_images/picsum_12.jpg\n?? data/fixtures/bench_images/picsum_13.jpg\n?? data/fixtures/bench_images/picsum_14.jpg\n?? data/fixtures/bench_images/picsum_15.jpg\n?? data/fixtures/bench_images/picsum_16.jpg\n?? data/fixtures/bench_images/picsum_17.jpg\n?? data/fixtures/bench_images/picsum_18.jpg\n?? data/fixtures/bench_images/picsum_19.jpg\n?? data/fixtures/bench_images/picsum_2.jpg\n?? data/fixtures/bench_images/picsum_20.jpg\n?? data/fixtures/bench_images/picsum_3.jpg\n?? data/fixtures/bench_images/picsum_4.jpg\n?? data/fixtures/bench_images/picsum_5.jpg\n?? data/fixtures/bench_images/picsum_6.jpg\n?? data/fixtures/bench_images/picsum_7.jpg\n?? data/fixtures/bench_images/picsum_8.jpg\n?? data/fixtures/bench_images/picsum_9.jpg\n?? docs/mission_r10/AMDGPU_EP_MINIMAL_REPRO.md\n?? docs/mission_r10/R10_AMDGPU_EP_ESCALATION_FINAL_CN.md\n?? docs/mission_r10/UPSTREAM_ISSUE_DRAFT_EN.md\n?? docs/mission_r7/R7_FINAL_CN.md\n?? docs/mission_r8/R8_GFX1100_HANDOFF_READY_CN.md\n?? docs/mission_r9/R9_GFX1201_HANDOFF_READY_CN.md\n?? reports/_blocked/R8_REFUSAL_20261119T220753.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/DEVICE_IDENTITY.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/EP_INSTALL_AND_PROBE.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/GPU_CANARY.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/HOST_FINGERPRINT.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/canary_cpu_2026-11-19_21-43-28_390.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/canary_dml_2026-11-19_21-43-29_402.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/canary_feeds.npz\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/canary_ref.npz\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/case_amdgpu.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/case_cpu.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/case_dml.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/frag_amdgpu.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/frag_cpu.json\n?? reports/gfx1151/PREFLIGHT_20261119_134322/canary/frag_dml.json\n?? reports/gfx1151/R7_SOAK_20261119T220341/SOAK_dml__yolo26n.json\n?? reports/gfx1151/R7_SOAK_20261119T220341/soak_dml_yolo26n_probe_2026-11-19_22-03-42_026.json\n?? reports/mission_r10/DOC_CITATIONS.json\n?? reports/mission_r10/PROBE_20261119T134753Z.json\n?? reports/mission_r10/PROBE_R10_A_20261119T135033Z.json\n?? reports/mission_r10/PROBE_R10_B_20261119T135036Z.json\n?? reports/mission_r10/PROBE_R10_VS_R4_20261119T135041Z.json\n?? reports/mission_r10/PROBE_REVIEW_20261119.json\n?? reports/mission_r10/REPRO_RUN1.json\n?? reports/mission_r10/REPRO_RUN2.json\n?? reports/mission_r10/REPRO_RUN3.json\n?? reports/mission_r10/_raw/byo_eps_html.html\n?? reports/mission_r10/_raw/byo_eps_html.txt\n?? reports/mission_r10/_raw/ep_errors_html.html\n?? reports/mission_r10/_raw/ep_errors_html.txt\n?? reports/mission_r10/_raw/eps_vs_byo_html.html\n?? reports/mission_r10/_raw/eps_vs_byo_html.txt\n?? reports/mission_r10/_raw/initialize_ep_html.html\n?? reports/mission_r10/_raw/initialize_ep_html.txt\n?? reports/mission_r10/_raw/initialize_ep_md_main.text\n?? reports/mission_r10/_raw/initialize_ep_md_main.txt\n?? reports/mission_r10/_raw/onnxruntime_repo_html.html\n?? reports/mission_r10/_raw/onnxruntime_repo_html.txt\n?? reports/mission_r10/_raw/ort_ep_amdgpu_readme.text\n?? reports/mission_r10/_raw/ort_ep_amdgpu_readme.txt\n?? reports/mission_r10/_raw/register",
+    "recent": [
+      "0c844da Merge PR #11: record PR #10 merge commit and final main",
+      "92ed7b0 docs(mission): record PR #10 merge commit and final main",
+      "444f248 Merge PR #10: unified Windows Radeon runtime + gfx1151 DML physical evidence",
+      "7944fc8 docs(mission): record the exact R3 docs commit and the 15-minute soak numbers",
+      "c6ff315 docs(mission): final R3-R6 report, execution ledger, release readiness"
+    ],
+    "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
+  },
+  "baseline_note": {
+    "head_at_mission_start": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "origin_main_at_mission_start": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
+    "tracked_files_modified_at_mission_start": false,
+    "untracked_at_mission_start": [
+      "Ultralytics/settings.json (created by the export venv)",
+      "reports/gfx1151/PREFLIGHT_<ts>/ (produced by this audit's preflight)"
+    ],
+    "worktree_clean_at_capture": false,
+    "why_dirty_now": "this file is captured at the end of the mission; the working tree intentionally carries the R7-R10 changes"
+  },
+  "os": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.26200",
+    "machine": "AMD64"
+  },
+  "cpu": null,
+  "ram_gb": null,
+  "gpu": {
+    "dxgi_error": null,
+    "adapters": [
+      {
+        "index": 0,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "subsys_id": "0x8D01103C",
+        "luid": "0x00000000:0x000154E4",
+        "software": false
+      },
+      {
+        "index": 1,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "subsys_id": "0x8D01103C",
+        "luid": "0x00000000:0x08D5FD5C",
+        "software": false
+      },
+      {
+        "index": 2,
+        "description": "Microsoft Basic Render Driver",
+        "vendor_id": "0x1414",
+        "device_id": "0x008C",
+        "subsys_id": "0x00000000",
+        "luid": "0x00000000:0x000174B5",
+        "software": true
+      }
+    ],
+    "selected": {
+      "index": 0,
+      "device_id": "0x1586",
+      "luid": "0x00000000:0x000154E4",
+      "did_match": true
+    },
+    "gfx": "gfx1151",
+    "driver_version": "unknown",
+    "driver_date": null,
+    "pnp_device_id_redacted": "PCI&VEN_1002&DEV_1586",
+    "memory_provenance": {
+      "schema_version": 1,
+      "sources": {
+        "dedicated_video_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "driver/BIOS-reported dedicated segment; on an integrated APU this is a carve-out, NOT independent physical VRAM"
+        },
+        "dedicated_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system memory dedicated to the adapter segment"
+        },
+        "shared_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system RAM the GPU is allowed to share; not VRAM"
+        },
+        "wmi_adapter_ram_bytes": {
+          "source": "WMI Win32_VideoController.AdapterRAM",
+          "unit": "bytes",
+          "meaning": "uint32 field; saturates near 4 GiB and is unreliable for >4 GiB devices; do NOT use as VRAM capacity"
+        }
+      },
+      "values": {
+        "dedicated_video_mb": 32589,
+        "dedicated_system_mb": 0,
+        "shared_system_mb": 78459,
+        "wmi_adapter_ram_bytes": null
+      },
+      "wmi_adapter_ram_saturated": false,
+      "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, bandwidth, temperature and power are NOT_MEASURED"
+    }
+  },
+  "runtime": {
+    "winml_python": {
+      "python": "3.12.10",
+      "ort": "1.25.2",
+      "providers": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ],
+      "windowsml": "2.5.96"
+    },
+    "export_python": {
+      "python": "3.12.10",
+      "ort_error": "ModuleNotFoundError: No module named 'onnxruntime'",
+      "windowsml_error": "PackageNotFoundError: No package metadata was found for windowsml"
+    },
+    "windows_ml_catalog": "CATALOG_EMPTY -> AMDGPU BLOCKED_EXTERNAL (see reports/mission_r10/)",
+    "dml_available": true
+  },
+  "models": {
+    "onnx_count": 9,
+    "onnx": [
+      "yolo11n.raw_b1_fp32_static.onnx",
+      "yolo26n-cls.raw_b1_fp32_static.onnx",
+      "yolo26n-depth.raw_b1_fp32_static.onnx",
+      "yolo26n-obb.raw_b1_fp32_static.onnx",
+      "yolo26n-pose.raw_b1_fp32_static.onnx",
+      "yolo26n-seg.raw_b1_fp32_static.onnx",
+      "yolo26n-sem.raw_b1_fp32_static.onnx",
+      "yolo26n.raw_b1_fp32_static.onnx",
+      "yolov8n.raw_b1_fp32_static.onnx"
+    ],
+    "catalog_sha256": "40aa1fa66dd7878d49bb79e48be3298a6ed02333e8bec847c25b2004c6a378d2"
+  },
+  "tests": {
+    "baseline_before_mission": {
+      "passed": 293,
+      "skipped": 1,
+      "hardware_failures": 2,
+      "command": "pytest -q (all)"
+    },
+    "ci_scope": "tests/unit tests/contracts tests/adversarial",
+    "note": "the two hardware failures are tests/hardware gfx canaries that require the AMDGPU EP; it is not installed on this host"
+  },
+  "policies": {
+    "no_system_changes": true,
+    "read_only_host_audit": true,
+    "venv_only_dependency_additions": [
+      "opencv-python-headless (winml venv, needed for real-image preprocessing)"
+    ]
+  }
+}

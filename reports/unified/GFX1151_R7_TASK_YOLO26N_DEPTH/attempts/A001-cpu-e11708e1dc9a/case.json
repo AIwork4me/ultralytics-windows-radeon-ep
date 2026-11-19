@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "attempt_id": "A001-cpu-e11708e1dc9a",
+  "ep": "cpu",
+  "gfx": "gfx1151",
+  "onnx_path": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\models\\onnx\\yolo26n-depth.raw_b1_fp32_static.onnx",
+  "feeds_npz": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\inputs\\31562e6e5677c96fb7030f510648caeee76daa5f47c2da7d553c78d74d384a94\\feeds.npz",
+  "expected_feed_sha256": "31562e6e5677c96fb7030f510648caeee76daa5f47c2da7d553c78d74d384a94",
+  "outputs_npz": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\attempts\\A001-cpu-e11708e1dc9a\\outputs.npz",
+  "profile_prefix": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\attempts\\A001-cpu-e11708e1dc9a\\profile"
+}

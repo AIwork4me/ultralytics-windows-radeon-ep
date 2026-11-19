@@ -1,0 +1,1641 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T14:14:39Z",
+  "kind": "e2e_benchmark",
+  "scope": "real-image pipeline benchmark; separate process per repetition",
+  "gfx": "gfx1151",
+  "ep": "dml",
+  "labels": {
+    "MODEL_ONLY_LATENCY": "infer stage (session.run with the tensor in memory)",
+    "PIPELINE_END_TO_END_LATENCY": "load+decode+preprocess+infer+postprocess",
+    "SESSION_CREATE_LATENCY": "create_dml_session (cold) per repetition"
+  },
+  "corpus": {
+    "dir": "bench_images",
+    "name": "radeon-ort E2E benchmark corpus v1",
+    "license": "Every image is used under the Unsplash License (free to use, modify and redistribute). Per-image author and source URL are recorded below.",
+    "license_url": "https://unsplash.com/license",
+    "images": 20,
+    "hash_verified_against_manifest": true
+  },
+  "corpus_images": 20,
+  "repetitions": 3,
+  "samples_per_rep": 30,
+  "warmup": 10,
+  "all_passed": true,
+  "models": {
+    "yolo26n.pt": {
+      "status": "PASS",
+      "task": "detect",
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "repetitions": 3,
+      "pids": [
+        3780,
+        24156,
+        13824
+      ],
+      "session_create_ms": [
+        222.4264,
+        223.0131,
+        225.2363
+      ],
+      "first_run_ms": [
+        9.8197,
+        9.6041,
+        10.1186
+      ],
+      "per_rep_stage_p50_ms": {
+        "load": [
+          0.3386,
+          0.3401,
+          0.3309
+        ],
+        "decode": [
+          7.0616,
+          6.9873,
+          7.1874
+        ],
+        "preprocess": [
+          4.1677,
+          4.1228,
+          4.1406
+        ],
+        "infer": [
+          4.9927,
+          5.0718,
+          5.0769
+        ],
+        "postprocess": [
+          1.5734,
+          1.5986,
+          1.617
+        ],
+        "e2e": [
+          18.3229,
+          18.4243,
+          18.6726
+        ]
+      },
+      "aggregate_stage_p50_ms": {
+        "load": 0.3386,
+        "decode": 7.0616,
+        "preprocess": 4.1406,
+        "infer": 5.0718,
+        "postprocess": 1.5986,
+        "e2e": 18.4243
+      },
+      "aggregate_stage_p95_ms": {
+        "load": 0.34,
+        "decode": 7.1748,
+        "preprocess": 4.165,
+        "infer": 5.0764,
+        "postprocess": 1.6152,
+        "e2e": 18.6478
+      },
+      "aggregate_stage_p99_ms": {
+        "load": 0.3401,
+        "decode": 7.1849,
+        "preprocess": 4.1672,
+        "infer": 5.0768,
+        "postprocess": 1.6166,
+        "e2e": 18.6676
+      },
+      "e2e_ms": {
+        "n": 3,
+        "mean": 18.4733,
+        "min": 18.3229,
+        "max": 18.6726,
+        "p50": 18.4243,
+        "p95": 18.6478,
+        "p99": 18.6676
+      },
+      "model_only_ms": {
+        "n": 3,
+        "mean": 5.0471,
+        "min": 4.9927,
+        "max": 5.0769,
+        "p50": 5.0718,
+        "p95": 5.0764,
+        "p99": 5.0768
+      },
+      "throughput_fps": [
+        53.159,
+        52.821,
+        52.425
+      ],
+      "samples_per_rep": [
+        30,
+        30,
+        30
+      ],
+      "warmup": 10,
+      "ort": "1.25.2",
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "device": {
+        "gfx": "gfx1151",
+        "adapter_index": 0,
+        "adapter_did": "0x1586",
+        "luid": "0x00000000:0x000154E4",
+        "dml_device_id": 0
+      },
+      "telemetry": {
+        "temperature": "NOT_MEASURED",
+        "power": "NOT_MEASURED",
+        "gpu_activity": "NOT_MEASURED",
+        "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+      },
+      "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode"
+    },
+    "yolo26n-seg.pt": {
+      "status": "PASS",
+      "task": "segment",
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "repetitions": 3,
+      "pids": [
+        29272,
+        22964,
+        6960
+      ],
+      "session_create_ms": [
+        240.7698,
+        247.0179,
+        241.0953
+      ],
+      "first_run_ms": [
+        12.6128,
+        13.1831,
+        13.7202
+      ],
+      "per_rep_stage_p50_ms": {
+        "load": [
+          0.3257,
+          0.3406,
+          0.326
+        ],
+        "decode": [
+          6.9783,
+          7.0727,
+          6.9711
+        ],
+        "preprocess": [
+          4.2294,
+          4.1673,
+          4.1303
+        ],
+        "infer": [
+          6.278,
+          6.1627,
+          6.1066
+        ],
+        "postprocess": [
+          2.3521,
+          2.3739,
+          2.3994
+        ],
+        "e2e": [
+          21.0081,
+          21.1211,
+          20.8733
+        ]
+      },
+      "aggregate_stage_p50_ms": {
+        "load": 0.326,
+        "decode": 6.9783,
+        "preprocess": 4.1673,
+        "infer": 6.1627,
+        "postprocess": 2.3739,
+        "e2e": 21.0081
+      },
+      "aggregate_stage_p95_ms": {
+        "load": 0.3391,
+        "decode": 7.0633,
+        "preprocess": 4.2232,
+        "infer": 6.2665,
+        "postprocess": 2.3969,
+        "e2e": 21.1098
+      },
+      "aggregate_stage_p99_ms": {
+        "load": 0.3403,
+        "decode": 7.0708,
+        "preprocess": 4.2282,
+        "infer": 6.2757,
+        "postprocess": 2.3989,
+        "e2e": 21.1188
+      },
+      "e2e_ms": {
+        "n": 3,
+        "mean": 21.0008,
+        "min": 20.8733,
+        "max": 21.1211,
+        "p50": 21.0081,
+        "p95": 21.1098,
+        "p99": 21.1188
+      },
+      "model_only_ms": {
+        "n": 3,
+        "mean": 6.1824,
+        "min": 6.1066,
+        "max": 6.278,
+        "p50": 6.1627,
+        "p95": 6.2665,
+        "p99": 6.2757
+      },
+      "throughput_fps": [
+        46.237,
+        46.035,
+        46.527
+      ],
+      "samples_per_rep": [
+        30,
+        30,
+        30
+      ],
+      "warmup": 10,
+      "ort": "1.25.2",
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "device": {
+        "gfx": "gfx1151",
+        "adapter_index": 0,
+        "adapter_did": "0x1586",
+        "luid": "0x00000000:0x000154E4",
+        "dml_device_id": 0
+      },
+      "telemetry": {
+        "temperature": "NOT_MEASURED",
+        "power": "NOT_MEASURED",
+        "gpu_activity": "NOT_MEASURED",
+        "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+      },
+      "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode"
+    },
+    "yolo26n-pose.pt": {
+      "status": "PASS",
+      "task": "pose",
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "repetitions": 3,
+      "pids": [
+        23440,
+        16544,
+        15512
+      ],
+      "session_create_ms": [
+        244.1368,
+        243.3758,
+        235.7834
+      ],
+      "first_run_ms": [
+        9.6433,
+        10.8492,
+        9.9121
+      ],
+      "per_rep_stage_p50_ms": {
+        "load": [
+          0.3384,
+          0.341,
+          0.3381
+        ],
+        "decode": [
+          6.9982,
+          6.9262,
+          7.1004
+        ],
+        "preprocess": [
+          4.0733,
+          4.1039,
+          4.1244
+        ],
+        "infer": [
+          5.1531,
+          5.0906,
+          5.1504
+        ],
+        "postprocess": [
+          0.4356,
+          0.4413,
+          0.4434
+        ],
+        "e2e": [
+          17.1808,
+          17.2396,
+          17.4914
+        ]
+      },
+      "aggregate_stage_p50_ms": {
+        "load": 0.3384,
+        "decode": 6.9982,
+        "preprocess": 4.1039,
+        "infer": 5.1504,
+        "postprocess": 0.4413,
+        "e2e": 17.2396
+      },
+      "aggregate_stage_p95_ms": {
+        "load": 0.3407,
+        "decode": 7.0902,
+        "preprocess": 4.1223,
+        "infer": 5.1528,
+        "postprocess": 0.4432,
+        "e2e": 17.4662
+      },
+      "aggregate_stage_p99_ms": {
+        "load": 0.3409,
+        "decode": 7.0984,
+        "preprocess": 4.124,
+        "infer": 5.153,
+        "postprocess": 0.4434,
+        "e2e": 17.4864
+      },
+      "e2e_ms": {
+        "n": 3,
+        "mean": 17.3039,
+        "min": 17.1808,
+        "max": 17.4914,
+        "p50": 17.2396,
+        "p95": 17.4662,
+        "p99": 17.4864
+      },
+      "model_only_ms": {
+        "n": 3,
+        "mean": 5.1314,
+        "min": 5.0906,
+        "max": 5.1531,
+        "p50": 5.1504,
+        "p95": 5.1528,
+        "p99": 5.153
+      },
+      "throughput_fps": [
+        56.327,
+        56.595,
+        56.052
+      ],
+      "samples_per_rep": [
+        30,
+        30,
+        30
+      ],
+      "warmup": 10,
+      "ort": "1.25.2",
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "device": {
+        "gfx": "gfx1151",
+        "adapter_index": 0,
+        "adapter_did": "0x1586",
+        "luid": "0x00000000:0x000154E4",
+        "dml_device_id": 0
+      },
+      "telemetry": {
+        "temperature": "NOT_MEASURED",
+        "power": "NOT_MEASURED",
+        "gpu_activity": "NOT_MEASURED",
+        "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+      },
+      "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode"
+    }
+  },
+  "results": [
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "rep": 0,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 6736,
+      "duration_s": 1.331,
+      "log": "yolo26n_rep0.log",
+      "rep_file": "yolo26n_rep0.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:27Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+        "task": "detect",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 0,
+        "pid": 3780,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 222.4264,
+        "first_run_ms": 9.8197,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3247,
+            "min": 0.1695,
+            "max": 0.3965,
+            "p50": 0.3386,
+            "p95": 0.3663,
+            "p99": 0.388
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4438,
+            "min": 5.2985,
+            "max": 11.2157,
+            "p50": 7.0616,
+            "p95": 10.7519,
+            "p99": 11.1472
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1411,
+            "min": 3.7677,
+            "max": 4.444,
+            "p50": 4.1677,
+            "p95": 4.36,
+            "p99": 4.4213
+          },
+          "infer": {
+            "n": 30,
+            "mean": 4.9803,
+            "min": 4.7196,
+            "max": 5.3944,
+            "p50": 4.9927,
+            "p95": 5.2693,
+            "p99": 5.3909
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 1.9215,
+            "min": 1.464,
+            "max": 9.6704,
+            "p50": 1.5734,
+            "p95": 2.1116,
+            "p99": 7.5
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 18.8115,
+            "min": 16.4467,
+            "max": 24.7671,
+            "p50": 18.3229,
+            "p95": 22.0981,
+            "p99": 24.0249
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 55.752,
+        "throughput_fps_mean": 53.159,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep0.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep0.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "rep": 1,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 19748,
+      "duration_s": 1.324,
+      "log": "yolo26n_rep1.log",
+      "rep_file": "yolo26n_rep1.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:29Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+        "task": "detect",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 1,
+        "pid": 24156,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 223.0131,
+        "first_run_ms": 9.6041,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3338,
+            "min": 0.1374,
+            "max": 0.4414,
+            "p50": 0.3401,
+            "p95": 0.4015,
+            "p99": 0.4309
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4611,
+            "min": 5.3023,
+            "max": 11.0476,
+            "p50": 6.9873,
+            "p95": 10.5017,
+            "p99": 11.0343
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1429,
+            "min": 3.8927,
+            "max": 4.8075,
+            "p50": 4.1228,
+            "p95": 4.4056,
+            "p99": 4.6963
+          },
+          "infer": {
+            "n": 30,
+            "mean": 5.0582,
+            "min": 4.6755,
+            "max": 5.4553,
+            "p50": 5.0718,
+            "p95": 5.4014,
+            "p99": 5.4525
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 1.9356,
+            "min": 1.4564,
+            "max": 9.9032,
+            "p50": 1.5986,
+            "p95": 2.0973,
+            "p99": 7.6681
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 18.9317,
+            "min": 16.6413,
+            "max": 25.6829,
+            "p50": 18.4243,
+            "p95": 22.1438,
+            "p99": 24.7903
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 55.63,
+        "throughput_fps_mean": 52.821,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep1.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep1.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "rep": 2,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 25032,
+      "duration_s": 1.336,
+      "log": "yolo26n_rep2.log",
+      "rep_file": "yolo26n_rep2.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:30Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+        "task": "detect",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 2,
+        "pid": 13824,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 225.2363,
+        "first_run_ms": 10.1186,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3174,
+            "min": 0.1621,
+            "max": 0.4031,
+            "p50": 0.3309,
+            "p95": 0.3881,
+            "p99": 0.3987
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.5412,
+            "min": 5.3042,
+            "max": 11.2406,
+            "p50": 7.1874,
+            "p95": 10.8558,
+            "p99": 11.2401
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1782,
+            "min": 3.8406,
+            "max": 4.9295,
+            "p50": 4.1406,
+            "p95": 4.5401,
+            "p99": 4.8283
+          },
+          "infer": {
+            "n": 30,
+            "mean": 5.0617,
+            "min": 4.373,
+            "max": 5.529,
+            "p50": 5.0769,
+            "p95": 5.3951,
+            "p99": 5.5033
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 1.9765,
+            "min": 1.4596,
+            "max": 10.2659,
+            "p50": 1.617,
+            "p95": 2.1584,
+            "p99": 7.95
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 19.075,
+            "min": 16.55,
+            "max": 25.32,
+            "p50": 18.6726,
+            "p95": 22.659,
+            "p99": 24.5964
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 53.56,
+        "throughput_fps_mean": 52.425,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep2.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n_rep2.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "rep": 0,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 11792,
+      "duration_s": 1.578,
+      "log": "yolo26n-seg_rep0.log",
+      "rep_file": "yolo26n-seg_rep0.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:32Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-seg.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+        "task": "segment",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 0,
+        "pid": 29272,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 240.7698,
+        "first_run_ms": 12.6128,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3292,
+            "min": 0.2302,
+            "max": 0.405,
+            "p50": 0.3257,
+            "p95": 0.3807,
+            "p99": 0.3999
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4239,
+            "min": 5.1267,
+            "max": 11.1551,
+            "p50": 6.9783,
+            "p95": 10.5699,
+            "p99": 11.1372
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.2445,
+            "min": 3.8186,
+            "max": 4.9404,
+            "p50": 4.2294,
+            "p95": 4.7251,
+            "p99": 4.9219
+          },
+          "infer": {
+            "n": 30,
+            "mean": 6.193,
+            "min": 5.3906,
+            "max": 6.5782,
+            "p50": 6.278,
+            "p95": 6.5195,
+            "p99": 6.5616
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 3.4371,
+            "min": 1.61,
+            "max": 13.4124,
+            "p50": 2.3521,
+            "p95": 8.2881,
+            "p99": 12.5345
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 21.6277,
+            "min": 18.9123,
+            "max": 30.1501,
+            "p50": 21.0081,
+            "p95": 25.689,
+            "p99": 29.3438
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 49.264,
+        "throughput_fps_mean": 46.237,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep0.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep0.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "rep": 1,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 12076,
+      "duration_s": 1.608,
+      "log": "yolo26n-seg_rep1.log",
+      "rep_file": "yolo26n-seg_rep1.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:33Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-seg.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+        "task": "segment",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 1,
+        "pid": 22964,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 247.0179,
+        "first_run_ms": 13.1831,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3413,
+            "min": 0.2169,
+            "max": 0.5127,
+            "p50": 0.3406,
+            "p95": 0.4267,
+            "p99": 0.4955
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.5767,
+            "min": 5.3258,
+            "max": 11.1147,
+            "p50": 7.0727,
+            "p95": 10.8038,
+            "p99": 11.1111
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1647,
+            "min": 3.8104,
+            "max": 4.5864,
+            "p50": 4.1673,
+            "p95": 4.4022,
+            "p99": 4.5399
+          },
+          "infer": {
+            "n": 30,
+            "mean": 6.2038,
+            "min": 5.4083,
+            "max": 7.012,
+            "p50": 6.1627,
+            "p95": 6.7757,
+            "p99": 6.9672
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 3.4361,
+            "min": 1.6829,
+            "max": 13.8765,
+            "p50": 2.3739,
+            "p95": 7.9752,
+            "p99": 12.6073
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 21.7226,
+            "min": 18.7922,
+            "max": 30.1566,
+            "p50": 21.1211,
+            "p95": 25.2742,
+            "p99": 29.0352
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 51.223,
+        "throughput_fps_mean": 46.035,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep1.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep1.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-seg.pt",
+      "task": "segment",
+      "rep": 2,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 13072,
+      "duration_s": 1.597,
+      "log": "yolo26n-seg_rep2.log",
+      "rep_file": "yolo26n-seg_rep2.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:35Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-seg.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+        "task": "segment",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 2,
+        "pid": 6960,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 241.0953,
+        "first_run_ms": 13.7202,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3215,
+            "min": 0.2138,
+            "max": 0.4576,
+            "p50": 0.326,
+            "p95": 0.3876,
+            "p99": 0.4373
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4295,
+            "min": 5.2897,
+            "max": 11.2603,
+            "p50": 6.9711,
+            "p95": 10.7706,
+            "p99": 11.1952
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1779,
+            "min": 3.6993,
+            "max": 5.1036,
+            "p50": 4.1303,
+            "p95": 4.5225,
+            "p99": 4.9353
+          },
+          "infer": {
+            "n": 30,
+            "mean": 6.0892,
+            "min": 5.1351,
+            "max": 6.5768,
+            "p50": 6.1066,
+            "p95": 6.5032,
+            "p99": 6.5556
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 3.4751,
+            "min": 1.6517,
+            "max": 14.1363,
+            "p50": 2.3994,
+            "p95": 8.4899,
+            "p99": 12.9061
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 21.4931,
+            "min": 19.1687,
+            "max": 30.1022,
+            "p50": 20.8733,
+            "p95": 24.7941,
+            "p99": 28.8591
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 50.858,
+        "throughput_fps_mean": 46.527,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep2.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-seg_rep2.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "rep": 0,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 26732,
+      "duration_s": 1.304,
+      "log": "yolo26n-pose_rep0.log",
+      "rep_file": "yolo26n-pose_rep0.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:36Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-pose.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+        "task": "pose",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 0,
+        "pid": 23440,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 244.1368,
+        "first_run_ms": 9.6433,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3384,
+            "min": 0.2453,
+            "max": 0.4196,
+            "p50": 0.3384,
+            "p95": 0.381,
+            "p99": 0.411
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4595,
+            "min": 5.358,
+            "max": 11.18,
+            "p50": 6.9982,
+            "p95": 10.6645,
+            "p99": 11.1582
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.092,
+            "min": 3.7235,
+            "max": 4.8313,
+            "p50": 4.0733,
+            "p95": 4.397,
+            "p99": 4.7128
+          },
+          "infer": {
+            "n": 30,
+            "mean": 5.1314,
+            "min": 4.4203,
+            "max": 5.5825,
+            "p50": 5.1531,
+            "p95": 5.5113,
+            "p99": 5.5736
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 0.7323,
+            "min": 0.419,
+            "max": 8.3924,
+            "p50": 0.4356,
+            "p95": 0.6742,
+            "p99": 6.1548
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 17.7536,
+            "min": 15.1928,
+            "max": 24.2696,
+            "p50": 17.1808,
+            "p95": 21.4604,
+            "p99": 23.5739
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 59.522,
+        "throughput_fps_mean": 56.327,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep0.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep0.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "rep": 1,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 22100,
+      "duration_s": 1.29,
+      "log": "yolo26n-pose_rep1.log",
+      "rep_file": "yolo26n-pose_rep1.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:37Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-pose.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+        "task": "pose",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 1,
+        "pid": 16544,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 243.3758,
+        "first_run_ms": 10.8492,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.3429,
+            "min": 0.1799,
+            "max": 0.4329,
+            "p50": 0.341,
+            "p95": 0.4218,
+            "p99": 0.4309
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.4233,
+            "min": 5.3887,
+            "max": 11.2667,
+            "p50": 6.9262,
+            "p95": 10.4944,
+            "p99": 11.2039
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.105,
+            "min": 3.8132,
+            "max": 4.5154,
+            "p50": 4.1039,
+            "p95": 4.348,
+            "p99": 4.474
+          },
+          "infer": {
+            "n": 30,
+            "mean": 5.07,
+            "min": 4.2518,
+            "max": 5.4311,
+            "p50": 5.0906,
+            "p95": 5.4086,
+            "p99": 5.4304
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 0.7284,
+            "min": 0.4104,
+            "max": 8.1403,
+            "p50": 0.4413,
+            "p95": 0.7176,
+            "p99": 5.9903
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 17.6695,
+            "min": 15.194,
+            "max": 24.0876,
+            "p50": 17.2396,
+            "p95": 21.0053,
+            "p99": 23.2188
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 59.157,
+        "throughput_fps_mean": 56.595,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep1.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep1.tensor.npy"
+      },
+      "status": "PASS"
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "rep": 2,
+      "exit_code": 0,
+      "timed_out": false,
+      "pid": 13540,
+      "duration_s": 1.281,
+      "log": "yolo26n-pose_rep2.log",
+      "rep_file": "yolo26n-pose_rep2.json",
+      "data": {
+        "schema_version": 1,
+        "captured_utc": "2026-11-19T14:14:39Z",
+        "kind": "e2e_repetition",
+        "model": "yolo26n-pose.raw_b1_fp32_static.onnx",
+        "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+        "task": "pose",
+        "imgsz": 640,
+        "ep": "dml",
+        "rep": 2,
+        "pid": 15512,
+        "python": "3.12.10",
+        "ort": "1.25.2",
+        "providers": [
+          "DmlExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "device": {
+          "gfx": "gfx1151",
+          "adapter_index": 0,
+          "adapter_did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "dml_device_id": 0
+        },
+        "warmup": 10,
+        "samples": 30,
+        "images_used": 20,
+        "images_sha256": {
+          "picsum_1.jpg": "4c6a33950b9d561946df74aaeecadca013ecade5ee2d7045468e6e6349106479",
+          "picsum_10.jpg": "c9ed81ccd1f5823137d6baaaa8af6f6ba6dc587f9874eb8921167ee368859b9c",
+          "picsum_11.jpg": "73d4cfbe43bf3636134130a92e69aa6852943d8cc2459fb59f75df23c80764ca",
+          "picsum_12.jpg": "19a3f0439663d3735d284736a65cdf962705369381d729278d0b421f38ce7e46",
+          "picsum_13.jpg": "828a9a26bd232480424fe7b0a172fb1c74d0054d2b3266d8def17965b44376eb",
+          "picsum_14.jpg": "d6ce0c4522ef7563b20d38dca4b312b03bd6c9655789e676e494b427c3d42070",
+          "picsum_15.jpg": "b5100a8d2488b4771957877c976b7cef40d53ba75d1e8106d03ed3fb6e772105",
+          "picsum_16.jpg": "c1c4eb6c48579547487d382b3e76efe045972561c2b3d043c39dbb68fcb4c9d3",
+          "picsum_17.jpg": "61c8082268b9fb1f5524a16205cebe9c78eb64be77805336fdb6047f5e3db27e",
+          "picsum_18.jpg": "d2240ad4e308d1a29c1a305c4045c450d35020bdc2cfa39893b51e4ddd655a0d",
+          "picsum_19.jpg": "d2e41aba5dafcdc20f6ffef0ef8316ecfd4bb1a9431535f3d5de1c41be6d446c",
+          "picsum_2.jpg": "a5849d81623f47c273cf67054c10853c18f8169c669ed77deab0c97c8772689f",
+          "picsum_20.jpg": "95f3cf1f47ec2f9cd54d6e61021a217845c87d8dc8bb61d3408d432d94690837",
+          "picsum_3.jpg": "ce26994a5138673d09785310962da8c168ebab9ec9b8a8ab3f7d172a6b78769c",
+          "picsum_4.jpg": "405488d016433b6959affcc8bd212fe509b4bda3306eac5795108144ef293f87",
+          "picsum_5.jpg": "2efbfb8d6f0b91e6b5b3cb422077fb7cfd8656257bfd12fe43a64d954dbe1db9",
+          "picsum_6.jpg": "d2160dcb7831eeea0e2f8ef633a912cd616ce3712d52b327400c0116a86865fa",
+          "picsum_7.jpg": "d3fec8ef38f25b98ea18375577eb287f6606c0091bcbbcb19be0b267cfa2c341",
+          "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
+          "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
+        },
+        "session_create_ms": 235.7834,
+        "first_run_ms": 9.9121,
+        "stages_ms": {
+          "load": {
+            "n": 30,
+            "mean": 0.33,
+            "min": 0.166,
+            "max": 0.4201,
+            "p50": 0.3381,
+            "p95": 0.3858,
+            "p99": 0.4151
+          },
+          "decode": {
+            "n": 30,
+            "mean": 7.5027,
+            "min": 5.3916,
+            "max": 11.212,
+            "p50": 7.1004,
+            "p95": 10.6293,
+            "p99": 11.2108
+          },
+          "preprocess": {
+            "n": 30,
+            "mean": 4.1511,
+            "min": 3.6856,
+            "max": 4.5992,
+            "p50": 4.1244,
+            "p95": 4.5484,
+            "p99": 4.5899
+          },
+          "infer": {
+            "n": 30,
+            "mean": 5.1289,
+            "min": 4.4878,
+            "max": 5.548,
+            "p50": 5.1504,
+            "p95": 5.4682,
+            "p99": 5.5265
+          },
+          "postprocess": {
+            "n": 30,
+            "mean": 0.728,
+            "min": 0.4173,
+            "max": 7.9303,
+            "p50": 0.4434,
+            "p95": 0.7078,
+            "p99": 5.8378
+          },
+          "e2e": {
+            "n": 30,
+            "mean": 17.8407,
+            "min": 14.7417,
+            "max": 24.1226,
+            "p50": 17.4914,
+            "p95": 21.1292,
+            "p99": 23.2587
+          }
+        },
+        "labels": {
+          "MODEL_ONLY_LATENCY": "infer",
+          "PIPELINE_END_TO_END_LATENCY": "e2e",
+          "SESSION_CREATE_LATENCY": "session_create_ms"
+        },
+        "throughput_fps": 56.276,
+        "throughput_fps_mean": 56.052,
+        "telemetry": {
+          "temperature": "NOT_MEASURED",
+          "power": "NOT_MEASURED",
+          "gpu_activity": "NOT_MEASURED",
+          "reason": "no supported APU sensor path in this harness; a fixed clock is never substituted for a measurement"
+        },
+        "postprocess_impl": "numpy NMS equivalent (conf 0.25, IoU 0.5, max_det 300) - timing only; correctness uses the ultralytics vendor decode",
+        "raw_outputs_npz": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep2.raw.npz",
+        "tensor_npy": "reports\\mission_r7\\e2e_bench_raw\\yolo26n-pose_rep2.tensor.npy"
+      },
+      "status": "PASS"
+    }
+  ],
+  "not_measured": [
+    "temperature",
+    "power",
+    "gpu_activity",
+    "system_energy",
+    "npu_offload"
+  ],
+  "caveats": [
+    "postprocess timing uses a numpy NMS equivalent, not the vendor decode",
+    "single APU measurement; VRAM bandwidth and clocks are NOT_MEASURED",
+    "the corpus is 20 distinct Unsplash photos, not a dataset-level accuracy claim"
+  ]
+}

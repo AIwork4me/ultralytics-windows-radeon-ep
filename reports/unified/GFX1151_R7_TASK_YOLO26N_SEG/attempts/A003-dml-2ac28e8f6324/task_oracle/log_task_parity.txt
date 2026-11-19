@@ -1,0 +1,1 @@
+{"ok": true, "task": "segment", "passed": true, "metrics_keys": ["fn", "fp", "iou_mean", "mask_iou_mean", "matched", "precision", "recall", "ref_entities"]}

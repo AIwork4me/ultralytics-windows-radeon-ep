@@ -24,3 +24,18 @@ ledger.local.json
 # OS
 Thumbs.db
 .DS_Store
+# regenerable binary payloads: their sha256 is recorded in the receipts/JSON
+reports/**/attempts/*/outputs.npz
+reports/**/attempts/*/tensor.npy
+reports/**/inputs/
+reports/**/*.raw.npz
+reports/**/*.tensor.npy
+reports/**/*_prof_*.json
+reports/**/job_fault_work/
+reports/**/_inputs/
+reports/**/task_oracle/*.npz
+reports/**/profile_*.json
+reports/**/attempts/*/profile_*.json
+reports/**/stability/
+# ultralytics local settings created by the export venv
+Ultralytics/

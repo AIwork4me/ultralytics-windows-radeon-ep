@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "attempt_id": "A002-amdgpu-eb9fbcb793b0",
+  "ep": "amdgpu",
+  "gfx": "gfx1151",
+  "onnx_path": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\models\\onnx\\yolo26n-depth.raw_b1_fp32_static.onnx",
+  "feeds_npz": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\inputs\\31562e6e5677c96fb7030f510648caeee76daa5f47c2da7d553c78d74d384a94\\feeds.npz",
+  "expected_feed_sha256": "31562e6e5677c96fb7030f510648caeee76daa5f47c2da7d553c78d74d384a94",
+  "outputs_npz": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\attempts\\A002-amdgpu-eb9fbcb793b0\\outputs.npz",
+  "profile_prefix": "C:\\Users\\AMD\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\attempts\\A002-amdgpu-eb9fbcb793b0\\profile",
+  "reference_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_DEPTH\\attempts\\A001-cpu-e11708e1dc9a\\outputs.npz",
+  "reference_attempt_id": "A001-cpu-e11708e1dc9a",
+  "atol": 0.005,
+  "rtol": 0.005
+}

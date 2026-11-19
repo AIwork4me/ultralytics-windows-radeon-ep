@@ -1,0 +1,1 @@
+{"ok": true, "task": "classify", "passed": true, "metrics_keys": ["cand_top1", "ref_entities", "ref_top1", "score_drift", "top1_match", "top5_overlap"]}

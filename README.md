@@ -63,6 +63,81 @@ from a small whitelist. `gpu_full` and `task_verified` are reported separately.
 CLI: `python -m runner.unified_predict --help`; contract:
 `docs/unified/CONTRACTS.md`.
 
+### Task verification (R7): two independent oracles
+
+Numeric parity answers "did the GPU compute the same numbers". Task correctness
+needs a second, independent oracle: the pinned Ultralytics reference model run on
+the **byte-identical** preprocessed tensor, decoded by the vendor postprocess and
+compared against pre-declared thresholds.
+
+```python
+result = predict(
+    model_path="models/onnx/yolo26n.raw_b1_fp32_static.onnx",
+    inputs={"images": tensor},
+    policy="prefer_amdgpu_allow_dml",
+    target_gfx="gfx1151",
+    task="detect",
+    verify_task=True,                       # R7-A
+    pt_reference="models/pt/yolo26n.pt",    # bound by sha256 in the evidence
+)
+result["gpu_full"], result["task_verified"]  # two independent claims
+result["task_parity"]["status"]              # PASS_TASK on this host
+```
+
+```powershell
+.venv-winml\Scripts\python -m runner.unified_predict --model models\onnx\yolo26n.raw_b1_fp32_static.onnx `
+  --inputs-npz in.npz --policy prefer_amdgpu_allow_dml --gfx gfx1151 `
+  --task detect --verify-task --pt-reference models\pt\yolo26n.pt `
+  --run-id GFX1151_R7_TASK_DETECT --out r7_detect.json
+# 7 tasks in one matrix (real images, real GPU):
+.venv-winml\Scripts\python -m runner.unified_task_matrix --gfx gfx1151 `
+  --out reports\mission_r7\unified_task_matrix.json
+```
+
+A missing or incompatible reference is `TASK_ORACLE_BLOCKED` with a concrete
+reason - never a fabricated `PASS_TASK`. Exit code `4` means "the GPU ran but the
+task did not verify".
+
+### Process-tree safety and attempt isolation (R7-B/R7-C)
+
+Every attempt runs in its own **Windows Job Object** (`KILL_ON_JOB_CLOSE`,
+created suspended, assigned, then resumed), so a wedged EP and every process it
+spawned are reclaimed together. Each attempt also gets a unique `attempt_id` and
+a private directory; input bundles are content-addressed and re-hashed by the
+worker, so a stale or substituted file cannot feed a new GPU PASS.
+Re-using a `run_id` whose receipt exists is refused.
+
+### Measured end-to-end performance (R7-E, this host)
+
+20 real photographs (Unsplash License, hashes in
+`data/fixtures/bench_images/SOURCES.json`), DML, 3 independent processes,
+warmup 5 + 20 requests each:
+
+| model | model-only p50 | pipeline E2E p50 | session create | throughput |
+|---|---|---|---|---|
+| yolo26n detect | 5.2 ms | **18.2 ms** | 233-257 ms | ~52 FPS |
+| yolo26n-seg | 6.4 ms | **21.4 ms** | 263-270 ms | ~45 FPS |
+| yolo26n-pose | 5.3 ms | **16.9 ms** | 257-259 ms | ~56 FPS |
+
+The pipeline overhead (JPEG decode 6.9 ms + preprocess 4.0 ms) is more than
+double the GPU inference time on this APU: optimise the input path before the EP.
+Temperature/power/GPU activity are `NOT_MEASURED` (no supported sensor path) and
+are never replaced by a fixed clock. Full data:
+`reports/mission_r7/e2e_bench.json`, analysis:
+`docs/mission_r7/R7_FINAL_CN.md`.
+
+### Cross-host validation (R8/R9)
+
+```powershell
+# plan-only on any host; refuses GPU work on the wrong architecture
+.venv-winml\Scripts\python -m runner.cross_host_validate --gfx gfx1100 --tier core --policy gpu-first --dry-run
+# on the real RX 7900 XTX / RX 9070 XT host:
+.venv-winml\Scripts\python -m runner.cross_host_validate --gfx gfx1100 --tier core --policy gpu-first --run-id <NEW_ID>
+```
+
+A host whose live DXGI DID is not the requested architecture stops with
+`WRONG_PHYSICAL_DEVICE` (exit 34) before any ONNX session or GPU stage.
+
 See [docs/INSTALL_WINDOWS.md](docs/INSTALL_WINDOWS.md) for the three-venv layout
 (winml / export / cpu), [docs/DEVICE_IDENTITY.md](docs/DEVICE_IDENTITY.md) for how
 the 8060S is selected (integrated GPU: no `Discrete=True` requirement), and
@@ -72,7 +147,7 @@ CPU policy.
 ## Repository layout
 
 - `src/radeon_ort/` — harness modules (device identity, EP catalog, sessions, receipts, oracles, benchmark, manifest, redaction)
-- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix` (v2), `r1_pipeline`, `resume_matrix`, `bench_repeats`, `soak`, `negative_injection`, `analyze_profiles`, `finalize_run`, `build_compatibility_matrix`, `redact_evidence`, `prepare_evidence`, `verify_receipts`
+- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix` (v2), `r1_pipeline`, `resume_matrix`, `bench_repeats`, `soak`, `negative_injection`, `analyze_profiles`, `finalize_run`, `build_compatibility_matrix`, `redact_evidence`, `prepare_evidence`, `verify_receipts`, `unified_predict`, `unified_task_matrix`, `bench_e2e`, `stability`, `job_fault_evidence`
 - `schemas/` — versioned JSON contracts for receipts / manifest / host / catalog
 - `catalog/` — pinned upstream snapshot + generated model catalog
 - `configs/` — gfx1151 profile, numeric thresholds (fixed before runs), provider policy
