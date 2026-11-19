@@ -21,6 +21,11 @@ pytest-of-*/
 .cache/
 .run_state/
 ledger.local.json
+# transient pip/venv working directories
+pip-*/
+pytest-of-*/
+.venv-ci/
+
 # OS
 Thumbs.db
 .DS_Store

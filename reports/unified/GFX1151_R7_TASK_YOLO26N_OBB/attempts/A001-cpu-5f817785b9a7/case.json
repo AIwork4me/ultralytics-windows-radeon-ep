@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "attempt_id": "A001-cpu-5f817785b9a7",
+  "ep": "cpu",
+  "gfx": "gfx1151",
+  "onnx_path": "models\\onnx\\yolo26n-obb.raw_b1_fp32_static.onnx",
+  "feeds_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_OBB\\inputs\\27e372d2d83acd78f42bbb2f5e83ed59d463bb9237bda82560a72b0848515ef8\\feeds.npz",
+  "expected_feed_sha256": "27e372d2d83acd78f42bbb2f5e83ed59d463bb9237bda82560a72b0848515ef8",
+  "outputs_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_OBB\\attempts\\A001-cpu-5f817785b9a7\\outputs.npz",
+  "profile_prefix": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_OBB\\attempts\\A001-cpu-5f817785b9a7\\profile"
+}

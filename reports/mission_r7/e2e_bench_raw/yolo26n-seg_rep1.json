@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_utc": "2026-11-19T14:14:33Z",
+  "captured_utc": "2026-11-19T15:01:41Z",
   "kind": "e2e_repetition",
   "model": "yolo26n-seg.raw_b1_fp32_static.onnx",
   "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
@@ -8,7 +8,7 @@
   "imgsz": 640,
   "ep": "dml",
   "rep": 1,
-  "pid": 22964,
+  "pid": 23252,
   "python": "3.12.10",
   "ort": "1.25.2",
   "providers": [
@@ -47,62 +47,62 @@
     "picsum_8.jpg": "72fb3cf83f610a758af7b377e50ef9168243a58c0a082a678e41bb8c15115d1c",
     "picsum_9.jpg": "a70d594db5a51272dd0441e47b33b5db87f5c1ba23c24a6d0fb91c60f86de784"
   },
-  "session_create_ms": 247.0179,
-  "first_run_ms": 13.1831,
+  "session_create_ms": 242.4352,
+  "first_run_ms": 13.9054,
   "stages_ms": {
     "load": {
       "n": 30,
-      "mean": 0.3413,
-      "min": 0.2169,
-      "max": 0.5127,
-      "p50": 0.3406,
-      "p95": 0.4267,
-      "p99": 0.4955
+      "mean": 0.3305,
+      "min": 0.2151,
+      "max": 0.3942,
+      "p50": 0.3373,
+      "p95": 0.3865,
+      "p99": 0.3936
     },
     "decode": {
       "n": 30,
-      "mean": 7.5767,
-      "min": 5.3258,
-      "max": 11.1147,
-      "p50": 7.0727,
-      "p95": 10.8038,
-      "p99": 11.1111
+      "mean": 7.4239,
+      "min": 5.1383,
+      "max": 11.3215,
+      "p50": 7.0077,
+      "p95": 10.542,
+      "p99": 11.2467
     },
     "preprocess": {
       "n": 30,
-      "mean": 4.1647,
-      "min": 3.8104,
-      "max": 4.5864,
-      "p50": 4.1673,
-      "p95": 4.4022,
-      "p99": 4.5399
+      "mean": 4.1952,
+      "min": 3.9617,
+      "max": 4.6011,
+      "p50": 4.2018,
+      "p95": 4.4725,
+      "p99": 4.5642
     },
     "infer": {
       "n": 30,
-      "mean": 6.2038,
-      "min": 5.4083,
-      "max": 7.012,
-      "p50": 6.1627,
-      "p95": 6.7757,
-      "p99": 6.9672
+      "mean": 5.9746,
+      "min": 5.4123,
+      "max": 6.501,
+      "p50": 5.9538,
+      "p95": 6.4061,
+      "p99": 6.4846
     },
     "postprocess": {
       "n": 30,
-      "mean": 3.4361,
-      "min": 1.6829,
-      "max": 13.8765,
-      "p50": 2.3739,
-      "p95": 7.9752,
-      "p99": 12.6073
+      "mean": 3.5063,
+      "min": 1.6777,
+      "max": 13.9547,
+      "p50": 2.3499,
+      "p95": 8.5773,
+      "p99": 13.037
     },
     "e2e": {
       "n": 30,
-      "mean": 21.7226,
-      "min": 18.7922,
-      "max": 30.1566,
-      "p50": 21.1211,
-      "p95": 25.2742,
-      "p99": 29.0352
+      "mean": 21.4304,
+      "min": 18.6328,
+      "max": 30.1399,
+      "p50": 20.8404,
+      "p95": 25.4589,
+      "p99": 29.2223
     }
   },
   "labels": {
@@ -110,8 +110,8 @@
     "PIPELINE_END_TO_END_LATENCY": "e2e",
     "SESSION_CREATE_LATENCY": "session_create_ms"
   },
-  "throughput_fps": 51.223,
-  "throughput_fps_mean": 46.035,
+  "throughput_fps": 53.419,
+  "throughput_fps_mean": 46.663,
   "telemetry": {
     "temperature": "NOT_MEASURED",
     "power": "NOT_MEASURED",

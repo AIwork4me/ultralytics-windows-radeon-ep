@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "attempt_id": "A002-amdgpu-79198fdd9386",
+  "ep": "amdgpu",
+  "gfx": "gfx1151",
+  "onnx_path": "models\\onnx\\yolo26n-cls.raw_b1_fp32_static.onnx",
+  "feeds_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_CLS\\inputs\\3bc0f84c82698f32c598896257fa918ae2938d564741293bb07176ad9cf43317\\feeds.npz",
+  "expected_feed_sha256": "3bc0f84c82698f32c598896257fa918ae2938d564741293bb07176ad9cf43317",
+  "outputs_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_CLS\\attempts\\A002-amdgpu-79198fdd9386\\outputs.npz",
+  "profile_prefix": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_CLS\\attempts\\A002-amdgpu-79198fdd9386\\profile",
+  "reference_npz": "reports\\unified\\GFX1151_R7_TASK_YOLO26N_CLS\\attempts\\A001-cpu-8f8fe1d86bb7\\outputs.npz",
+  "reference_attempt_id": "A001-cpu-8f8fe1d86bb7",
+  "atol": 0.005,
+  "rtol": 0.005
+}
