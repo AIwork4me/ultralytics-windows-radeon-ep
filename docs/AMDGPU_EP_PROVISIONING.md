@@ -19,7 +19,7 @@ Python wheel to a temporary folder for inspection (not installed/registered).
 | AMD GPU EP (`amdgpu-ep.dll`) | **not found** in site-packages or `C:\Program Files\WindowsApps` | `windows_ml_ep_catalog.scan_amdgpu_ep_dll()` → `[]` |
 | ORT in `.venv-winml` | `onnxruntime-windowsml 1.25.2.202605110140`, providers `DmlExecutionProvider`, `CPUExecutionProvider` | `pip list`, `ort.get_available_providers()` |
 | Legacy Python projection | `wasdk-Microsoft.Windows.AI.MachineLearning 2.3.0` + bootstrap 2.3.0 | `pip list`, module file |
-| Official Python bindings | `windowsml==2.5.96` wheel inspected in a temp dir; **not installed** | PyPI metadata; wheel contents |
+| Official Python bindings | `windowsml==2.5.96` | **installed 2026-11-19** (A1, `.venv-winml` and `.venv-r4`); catalog still empty | `pip list`, `PROBE_AFTER_A1.json` |
 | Catalog (`wasdk` 2.3.0) | `find_all_providers()` → **0 providers** | live probe |
 | Catalog (`windowsml` 2.5.96 flat C API) | `EpCatalog.find_all_providers()` → **0 providers** | wheel imported from temp via `PYTHONPATH` (no install) |
 | EP devices visible to ORT | CPU + DML only (DML `device_id=0`) | `ort.get_ep_devices()` |
@@ -29,31 +29,59 @@ The `0 providers` result is not a Python-projection artifact: **both** the old
 `wasdk` projection and the official 2.5.96 flat C bindings return an empty list.
 The OS-level EP catalog is genuinely empty for this host today.
 
-## 2. Microsoft's documented requirements (checked 2026-11-19)
+## 2. Microsoft's documented requirements (re-verified 2026-11-19)
 
-Sources:
+Sources fetched live on 2026-11-19 from the docs source branch
+`MicrosoftDocs/windows-ai-docs`:
 
 * <https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers>
+  (page `ms.date` 2026-04-28)
 * <https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/initialize-execution-providers>
+  (page `ms.date` 2026-05-30)
 * <https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/register-execution-providers>
-* <https://pypi.org/project/windowsml/2.5.96/>
-* <https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning/2.5.96>
+  (page `ms.date` 2026-02-13)
 
-AMD GPU EP (`AMDGPUExecutionProvider`) requirements:
+### 2.1 What the live page actually lists (WinML 2.x tab)
 
-| Requirement | Documented minimum | This host | Status |
-| --- | --- | --- | --- |
-| OS | Windows 11 24H2 (build 26100) or later | 25H2 build 26200.9974 | **meets** |
-| GPU | AMD RDNA 3 or later | gfx1151 / RDNA 3.5 (8060S) | **meets** |
-| `Microsoft.Windows.AI.MachineLearning` | **2.5.96** (2026-10-04) | legacy projection 2.3.0; official 2.5.96 wheel not installed | **does not meet via legacy path** |
-| AMD GPU driver | **25.10.13.09 or later** | `32.0.22018.5` (2025-09-17) | **UNKNOWN / not demonstrated** |
-| EP package | dynamically installed AMD GPU EP MSIX (`AMDGPUExecutionProvider`) | no AMD GPU EP package; only AMD **NPU** VitisAI 1.8 | **BLOCKED_EP** |
+| EP | EpName | Documented requirement |
+| --- | --- | --- |
+| MIGraphX (AMD) | `MIGraphXExecutionProvider` | "GPU with version 25.10.13.09 (exactly)"; not supported for GenAI |
+| VitisAI (AMD) | `VitisAIExecutionProvider` | Adrenalin 25.6.3..25.9.1 with NPU driver 32.00.0203.280..297 (AMD **NPU**) |
+| NvTensorRtRtx | `NvTensorRtRtxExecutionProvider` | RTX 30xx+, driver 32.0.15.5585+ |
+| OpenVINO | `OpenVINOExecutionProvider` | Intel CPU/GPU/NPU driver minima |
+| QNN | `QNNExecutionProvider` | Snapdragon X Elite/Plus |
 
-The driver version reported by Windows (`32.0.22018.5`) and the AMD software
-version in the docs (`25.10.13.09`) use different numbering schemes; Windows
-does not expose the AMD software version in WMI/DXGI. Therefore driver
-compliance cannot be proven from the current telemetry. It is not asserted
-either way here.
+The page states that only the **current** version of each EP is supported and
+that updates arrive through Windows Update optional non-security preview
+("D week") releases. Included (not downloaded) EPs are CPU and DirectML.
+
+### 2.2 R3-D correction: no `AMDGPUExecutionProvider` requirement exists in the live table
+
+An earlier revision of this document asserted that the page listed
+`AMDGPUExecutionProvider` with "Windows ML 2.5.96+ / Adrenalin 24.12.1+".
+That claim is **not reproducible** against the live page on 2026-11-19:
+
+- the string `AMDGPU` does not appear in the page at all (0 matches);
+- `2.5.96` and `24.12` do not appear either (0 matches);
+- the AMD GPU row is MIGraphX with an **exact** driver requirement of
+  25.10.13.09; the AMD NPU row is VitisAI.
+
+Consequences applied to this repository:
+
+1. The MIGraphX 25.10.13.09 minimum is **not** a documented requirement of any
+   `AMDGPUExecutionProvider` and must not be used as one; it is recorded only
+   as the MIGraphX EP's own requirement.
+2. No driver minimum can be asserted for a provider the catalog does not list.
+   Windows WDDM driver version (32.0.22018.5 here) and the AMD
+   software/Adrenalin numbering do not share a scale, so a numeric comparison
+   is not evidence of compatibility in either direction.
+3. The Python package version (`windowsml==2.5.96`) is a **binding** version,
+   not a catalog/EP version. Installing it cannot create an EP entry the OS does
+   not offer.
+4. `runner.probe_amdgpu_ep` records `AMDGPUExecutionProvider` as "NOT listed
+   in the live catalog table on 2026-11-19" in its `ep_reference` block, next
+   to the MIGraphX/VitisAI facts and their source URL, instead of silently
+   importing the old claim.
 
 ## 3. Why does the catalog return an empty list?
 
@@ -183,7 +211,7 @@ never proof.
 
 | # | Action | Privilege | Risk | Approval needed |
 | --- | --- | --- | --- | --- |
-| A1 | `pip install windowsml==2.5.96` in `.venv-winml` | user | low (Python env only) | yes |
+| A1 | `pip install windowsml==2.5.96` in `.venv-winml` | user | **DONE 2026-11-19** (no EP appeared) | n/a |
 | A2 | Update AMD GPU driver to >= 25.10.13.09 | admin + reboot | medium/high (system driver) | yes |
 | A3 | Official dynamic EP install via `ensure_ready()` | may require elevation/Windows Update | medium (system-wide MSIX) | yes |
 | A4 | BYO EP MSIX extraction/registration | admin/controlled folder | medium/high (unsigned-copy risk if mishandled) | yes |
@@ -206,15 +234,70 @@ A successful provisioning must produce, on a new `run_id`:
 
 If only (1)/(2) are true, the verdict is still not a GPU PASS.
 
-## 8. Current status (2026-11-19 re-probe)
+## 8. Current status (2026-11-19, after A1)
 
-`runner.probe_amdgpu_ep` re-ran read-only after the hardening work:
+### 8.1 A1 executed: official bindings installed, catalog still empty
 
-- `verdict`: `BLOCKED_EP`
-- `blocked_status`: `BLOCKED_ADMIN_DEPENDENCY`
-- `admin_dependency`: `true`
-- `amdgpu_dlls`: `[]`
-- `catalog_provider_count`: `{"wasdk_projection": 0, "windowsml_flat_c": 0}`
+Command (user scope, no admin, no system component):
 
-No driver, MSIX, Windows optional update or Python package was installed. The
-required approval actions are A1–A4 above; without them AMDGPU remains blocked.
+    .venv-winml\Scripts\python.exe -m pip install "windowsml==2.5.96"
+
+Result: `windowsml 2.5.96` installed; `onnxruntime-windowsml` unchanged at
+`1.25.2.202605110140`.
+
+Read-only re-probe (`runner.probe_amdgpu_ep --out reports/mission_r4/PROBE_AFTER_A1.json`),
+state machine v2:
+
+| Signal | Observed |
+| --- | --- |
+| `state` | **CATALOG_EMPTY** |
+| `verdict` / `blocked_status` | `BLOCKED_EP` / `BLOCKED_EXTERNAL` |
+| official API `WinMLEpCatalogCreate` / `EnumProviders` | `0x00000000` / `0x00000000` (S_OK) |
+| official catalog providers | 0 |
+| legacy 2.3.0 projection | `api_ok=true`, 0 providers |
+| ORT providers / EP devices | `DmlExecutionProvider`, `CPUExecutionProvider` only |
+| AMD GPU EP DLLs / packages | none |
+| OS build | 26200 (>= 26100, requirement met) |
+| Windows ML shared runtime | `WindowsWorkload.WinMLShared.7.0 1.2610.1050.0` |
+| Windows App Runtime | 1.7 / 1.8 / 2.7 present |
+| only AMD EP package | `WindowsWorkload.EP.AMD.VitisAI.Framework.1.8 1.8.80.0` (NPU, not GPU) |
+
+The empty list is not a Python-projection artifact: the **official** 2.5.96 C
+API and the **legacy** 2.3.0 projection both answer successfully with zero
+providers, and the OS has no AMD GPU EP package. Installing the binding cannot
+change what the OS catalog offers.
+
+### 8.2 Windows Update state (A5 check, read-only)
+
+A `Microsoft.Update.Session` search on 2026-11-19 returned exactly one
+optional driver update (`Microsoft Corporation AudioProcessingObject Driver
+Update`) and one Defender definition update. No AMD display driver and no
+Windows ML EP package is offered to this device. No update is paused, no reboot
+is pending.
+
+### 8.3 Why A2/A3/A4 were not executed
+
+- **A2 (driver)**: no documented AMDGPU EP requirement exists to compare against
+  (section 2.2); the installed driver is the HP OEM package (`oem21.inf`,
+  32.0.22018.5, 2025-09-17); Windows Update offers nothing; a driver change
+  would not create a catalog entry. Replacing a working OEM display driver
+  without a proven blocker would violate the "minimal change" rule.
+- **A3 (catalog install)**: impossible - `find_all_providers()` has no
+  `AMDGPUExecutionProvider` (or MIGraphX/VitisAI) entry to call
+  `ensure_ready()` on. There is nothing to download.
+- **A4 (BYO signed EP)**: no official, signed 2.x AMD GPU EP MSIX artifact is
+  available on this host or from a verifiable Microsoft channel; the only
+  artifact referenced in this repo's history belongs to a different machine and
+  a different (1.8-era) package. Importing it would violate AGENTS.md rule 2 and
+  the mission's own A4 conditions. Recorded `BLOCKED_OFFICIAL_EP_ARTIFACT`.
+
+### 8.4 Verdict
+
+`R4_BLOCKED_EXTERNAL` - the official Windows ML 2.x API surface is healthy
+(bindings installed, catalog callable, S_OK), the host meets the OS/runtime
+prerequisites, but no AMD GPU execution provider is offered or installed. No
+AMDGPU PASS is claimed and no AMD GPU execution was attempted.
+
+What would change it: the OS catalog listing an AMD GPU EP
+(`ReadyState=NotPresent` is enough to call `ensure_ready()`), or an official
+signed EP MSIX for this OS generation. See section 7 for the acceptance chain.

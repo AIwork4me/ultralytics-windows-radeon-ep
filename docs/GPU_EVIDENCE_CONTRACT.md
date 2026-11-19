@@ -140,3 +140,78 @@ not as a performance fact.
 # Strict receipt + contract + manifest verification
 .venv-winml\Scripts\python -m runner.verify_receipts --run-dir reports\<gfx>\<run_id>
 ```
+
+## 9. R3 hardening: harness scope, environment binding, exit codes
+
+### 9.1 Harness content hash scope (R3-B)
+
+`harness_sha256` is computed over `runner/`, `src/radeon_ort/`, `configs/`
+and `schemas/` (all `.py/.yaml/.yml/.json/.toml`) plus `pyproject.toml`.
+That is exactly the range documented above: export code, inference/validation
+code, thresholds and receipt schemas. `reports/`, caches (`__pycache__`,
+`.pytest_cache`, `.ruff_cache`) and virtualenvs are deliberately excluded -
+they are outputs, not the code that produced a result.
+
+`code.worktree_dirty` now uses `git status --untracked-files=all` over the
+harness pathspec. An untracked module under `runner/` or `src/` therefore
+makes a contract dirty instead of silently changing behaviour behind a clean
+flag. Ignored files stay invisible to git, so they do not flip the flag.
+
+A contract also records `code.harness_file_count` and `code.harness_dirs` so
+an auditor can see the scope without re-deriving it.
+
+### 9.2 Runtime environment binding (R3-B)
+
+`RUN_CONTRACT.json` carries an `environment` block captured from the exact
+interpreter that runs the cases: python version, OS build, OnnxRuntime version
+and distribution, sorted `get_available_providers()`, and the `windowsml`
+package version (the interpreter path is reduced to a basename). Every new
+receipt's `contract` block carries the same environment.
+
+Resume semantics:
+
+- environment drift -> `ENVIRONMENT_CHANGED: <field> contract=... current=...`;
+- contract without an environment block -> `ENVIRONMENT_UNBOUND`;
+- caller that cannot supply a live probe -> `ENVIRONMENT_UNVERIFIED`;
+- receipt produced under another environment -> `RECEIPT_ENVIRONMENT_MISMATCH`.
+
+Installing or upgrading an EP/ORT/Windows ML package therefore always requires
+a new `run_id`; it can never be absorbed into an old one.
+
+### 9.3 Evidence is byte-exact
+
+`.gitattributes` marks `reports/**` as `-text`. Line-ending conversion is
+never applied to evidence, so a hash-bound manifest matches the committed bytes
+on every platform and checkout. This also fixes a pre-existing artifact where a
+CRLF-committed fingerprint could never appear clean on a Windows checkout.
+
+### 9.4 Exit codes are classified, not collapsed (R3-A)
+
+`runner.r1_pipeline` now ends with a machine-readable line
+`[r1] EXIT classification=<OK|NO_GPU_PASS|CASE_FAILED|EVIDENCE_INVALID> code=<n>`
+and writes `<run_dir>/PIPELINE_EXIT.json` (counts, classification, environment
+probe status). `runner.run_matrix` streams the producer transcript into
+`<run_dir>/logs/r1_pipeline.log` and writes `<run_dir>/MATRIX_EXIT.json` with
+the original `pipeline_exit_code`, the first-error `classification` and the
+redacted argv.
+
+| producer exit | meaning | coordinator exit |
+| --- | --- | --- |
+| 0 | cases written; audit decides | 0 only if every case strict-validates as a full GPU PASS |
+| 1 | evidence invalid or a real case failure | 1 |
+| 2 | classified refusal (contract/device) or nothing executable | 2 |
+| other/crash | unclassified producer failure | 1 |
+
+A blocked AMDGPU EP therefore returns 2 with `NO_GPU_PASS`, never 1 and never
+0. No exception may be turned into a success: a failed receipt write is
+collected into `run_problems` and forces exit 1.
+
+### 9.5 Read-only EP probe states (R3-C)
+
+`runner.probe_amdgpu_ep` separates `NOT_INSTALLED`, `CATALOG_EMPTY`,
+`EP_NOT_READY`, `EP_REGISTERED` and `GPU_EXECUTED`, and records API
+diagnostics (`api_diagnostic`, including raw HRESULTs) separately from EP
+readiness (`ep_readiness`). Exit 0 means `EP_REGISTERED` or `GPU_EXECUTED`;
+2 means blocked. A missing `windowsml` package is `NOT_INSTALLED`, never a
+successful empty catalog.
+

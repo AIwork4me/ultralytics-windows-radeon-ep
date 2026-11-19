@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T04:25:53.351Z",
+  "mission": "R3-R6 Windows ML 2.x / AMDGPU EP / Radeon three-platform unified inference",
+  "git": {
+    "local_head": "ff1499e0b9277eb8664acb82d1a8ba468dc32b41",
+    "local_branch": "mission/gfx1151-independent-hardening",
+    "worktree_clean": false,
+    "remote_main": "d24f7377813cddcab744c14c82733e890b881234",
+    "pr8_head": "13b30f5f86ed2c2e41717658a12fe52a3afa77d2",
+    "pr9_head_before_mission": "d6d61f1249e3024f018488fafd59aa8c0c4882a8",
+    "pr6_head": "a9075dc80be5ea240f290c74f5e11ab951d372b5",
+    "note": "github.com:443 is unreachable from this host; api.github.com works. Remote refs were read via the GitHub API and reconstructed locally as exact git objects."
+  },
+  "windows": {
+    "caption": "Windows 11 专业版",
+    "display_version": "25H2",
+    "build": "26200.9974",
+    "arch": "x64"
+  },
+  "gpu": {
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586",
+    "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+    "dxgi_luid_selected": "0x00000000:0x000154E4",
+    "dxgi_luid_aliases": [
+      "0x00000000:0x000154E4",
+      "0x00000000:0x00CA17CF"
+    ],
+    "host_id": "host_53f62d2ac2c6",
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+    "verified_device_identity": true,
+    "dedicated_vram_mb": 32589,
+    "shared_memory_mb": 78459,
+    "note": "dedicated segment on an APU is a carve-out, not independent VRAM"
+  },
+  "driver": {
+    "version": "32.0.22018.5",
+    "date": "2025-09-17",
+    "inf": "oem21.inf",
+    "amd_software_package": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware 10.25.20179.0",
+    "adrenalin_version": "NOT_EXPOSED",
+    "compatibility_assertion": "NONE - WDDM driver numbering and Adrenalin numbering are not comparable"
+  },
+  "python": {
+    "system": "3.12.10",
+    "venvs": {
+      "venv-winml": {
+        "python": "3.12.10",
+        "windowsml": "2.5.96",
+        "onnxruntime": "onnxruntime-windowsml 1.25.2.202605110140"
+      },
+      "venv-cpu": {
+        "python": "3.12.10"
+      },
+      "venv-export": {
+        "python": "3.12.10"
+      },
+      "venv-r4": {
+        "python": "3.12.10",
+        "windowsml": "2.5.96",
+        "purpose": "isolated official-binding probe"
+      }
+    }
+  },
+  "execution_providers": {
+    "ort_available": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "ort_ep_devices": [
+      {
+        "ep_name": "CPUExecutionProvider",
+        "ep_vendor": "Microsoft"
+      },
+      {
+        "ep_name": "DmlExecutionProvider",
+        "ep_vendor": "Microsoft"
+      }
+    ],
+    "windows_ml_catalog_state": "CATALOG_EMPTY",
+    "windows_ml_catalog_providers": [],
+    "legacy_projection_providers": [],
+    "amd_gpu_ep_dlls": [],
+    "official_catalog_hresult": {
+      "available": true,
+      "create_hresult": "0x00000000",
+      "enum_hresult": "0x00000000",
+      "provider_count": 0
+    },
+    "legacy_projection": {
+      "api_ok": true,
+      "version": "2.3.0"
+    }
+  },
+  "installed_msix": {
+    "windows_ml_shared": "WindowsWorkload.WinMLShared.7.0 1.2610.1050.0",
+    "windows_app_runtime": [
+      "1.7 7000.785.2325.0",
+      "1.8 8000.994.2142.0",
+      "2 2.7.0.0",
+      "CBS.1.6 6000.900.156.100",
+      "CBS.2 2.5.1.100"
+    ],
+    "amd_ep_packages": [
+      "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8 1.8.80.0 (NPU, not GPU)"
+    ],
+    "amd_gpu_ep_package": null
+  },
+  "hardware_availability": {
+    "gfx1151": {
+      "present": true,
+      "evidence": "live DXGI + PnP DID 0x1586"
+    },
+    "gfx1100": {
+      "present": false,
+      "evidence": "no 0x7448/0x744C adapter enumerated"
+    },
+    "gfx1201": {
+      "present": false,
+      "evidence": "no 0x7550/0x7551 adapter enumerated"
+    }
+  },
+  "windows_update": {
+    "paused": false,
+    "reboot_pending": false,
+    "offered_driver_updates": [
+      "Microsoft Corporation AudioProcessingObject Driver Update"
+    ],
+    "offered_amd_driver": null
+  },
+  "evidence_index": {
+    "reports_gfx1151": [
+      {
+        "run_id": "G1_PREFLIGHT_FINAL",
+        "receipts": 0
+      },
+      {
+        "run_id": "G2_TIER_A_RUN2",
+        "receipts": 18
+      },
+      {
+        "run_id": "G3_TIERB_YOLO26S",
+        "receipts": 14
+      },
+      {
+        "run_id": "GFX1151_HARDENING_20261119T095500Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "GFX1151_NEG_INJECT_20261119T080500Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "GFX1151_PHYSICAL_20261119T081900Z",
+        "receipts": 18
+      },
+      {
+        "run_id": "GFX1151_PREFLIGHT_20261118T234053Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "GFX1151_SOAK_20261119T074900Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "GFX1151_SOAK_DETECT_20261119T075000Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "GFX1151_SOAK_SEG_20261119T080600Z",
+        "receipts": 0
+      },
+      {
+        "run_id": "NEG_INJECT_RUN1",
+        "receipts": 0
+      },
+      {
+        "run_id": "R1_20261117T215114Z",
+        "receipts": 32
+      },
+      {
+        "run_id": "SOAK_RUN1",
+        "receipts": 0
+      }
+    ],
+    "mission_r4_probe": "reports/mission_r4/PROBE_AFTER_A1.json"
+  },
+  "policy": {
+    "default": "AGENTS.md rule 6 = no system changes",
+    "exception": "OWNER_AUTHORIZED_PROVISIONING, scope-limited to host_53f62d2ac2c6 / gfx1151, documented in AGENTS.md and docs/mission_r4/R4_PROVISIONING_FINAL_CN.md",
+    "executed_actions": [
+      "A1: pip install windowsml==2.5.96 (user scope, PyPI)"
+    ],
+    "refused_actions": [
+      "A2 driver update: no proven blocker",
+      "A3 catalog install: no catalog entry",
+      "A4 BYO EP: no official signed artifact"
+    ]
+  }
+}
