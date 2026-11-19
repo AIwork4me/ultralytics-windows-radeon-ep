@@ -13,15 +13,19 @@ fail-closed（失败即关闭）的验证。首个硬件目标：**AMD Radeon 80
 
 | 主机 | AMDGPU EP | DirectML | 证据 |
 |---|---|---|---|
-| gfx1151 — Radeon 8060S | `BLOCKED_EP`：本机 Windows ML 目录不提供 AMD GPU EP | **9/9 Tier A 物理 PASS** | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` |
+| gfx1151 — Radeon 8060S | `BLOCKED_EP`：`AMDGPUExecutionProvider` 在 Windows ML 2.x 中确有文档（需 `Microsoft.Windows.AI.MachineLearning` 2.5.96+、Adrenalin 24.12.1+），但本机 EP 目录**一个 provider 都没有** | **9/9 Tier A 物理 PASS** | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` + `reports/mission_r10/PROBE_*.json` |
 | gfx1100 — RX 7900 XTX | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | 交接：`docs/cross_host/GFX1100_HANDOFF.md` |
 | gfx1201 — RX 9070 XT | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | 交接：`docs/cross_host/GFX1201_HANDOFF.md` |
 
 本机实测（2026-11-19）：Windows 11 25H2 build 26200.9974，Radeon 8060S
 DID `0x1586` / LUID `0x00000000:0x000154E4`，驱动 32.0.22018.5，
-`windowsml 2.5.96`、`onnxruntime-windowsml 1.25.2`。官方 Catalog 返回
-`S_OK` 但 **0 个 provider**，所以 AMDGPU 是外部阻塞，不是代码缺陷，也不是单靠升级驱动
-就能解决。
+`windowsml 2.5.96`、`onnxruntime-windowsml 1.25.2`。Microsoft 官方文档**确实**
+为 Windows ML 2.x 列出了 `AMDGPUExecutionProvider`（最低
+`Microsoft.Windows.AI.MachineLearning` 2.5.96、Adrenalin Edition 24.12.1 或更高；
+MIGraphX 已弃用）。但本机官方 Catalog 仍返回 `S_OK` 且 **0 个 provider** —— EP 包
+根本没有被提供 —— 因此 AMDGPU 属于外部阻塞：不是代码缺陷，也不是单靠升级驱动就能解决。
+引用与哈希见 `docs/AMDGPU_EP_PROVISIONING.md` 第 2 节与
+`reports/mission_r10/DOC_CITATIONS.json`。
 
 `CPU_CI_DOES_NOT_ATTEST_GPU`：GitHub CPU CI 只验证契约与对抗性防伪造测试，
 不证明任何 GPU 执行。

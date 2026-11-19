@@ -1,0 +1,63 @@
+{
+  "captured_utc": "2026-11-19T13:43:28Z",
+  "api": {
+    "projection_module": "winui3.microsoft.windows.ai.machinelearning",
+    "types_found": [
+      "ExecutionProviderCatalog",
+      "ExecutionProvider",
+      "ExecutionProviderReadyResultState"
+    ],
+    "errors": [],
+    "bootstrap": "initialized (version=2.3)",
+    "catalog_providers": [],
+    "windowsml": {
+      "version": "2.5.96",
+      "providers": []
+    },
+    "catalog_probes": [
+      {
+        "engine": "wasdk_projection",
+        "providers": 0
+      },
+      {
+        "engine": "windowsml_flat_c",
+        "version": "2.5.96",
+        "providers": 0
+      }
+    ]
+  },
+  "amdgpu_dlls": [],
+  "register_attempt": "amdgpu-ep.dll not found (BLOCKED_EP)",
+  "available_providers": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+  ],
+  "ep_devices": [
+    {
+      "ep_name": "CPUExecutionProvider",
+      "ep_vendor": "Microsoft",
+      "ep_options": {},
+      "ep_metadata": {
+        "version": "1.25.2"
+      }
+    },
+    {
+      "ep_name": "DmlExecutionProvider",
+      "ep_vendor": "Microsoft",
+      "ep_options": {
+        "device_id": "0"
+      },
+      "ep_metadata": {
+        "version": "1.25.2"
+      }
+    }
+  ],
+  "windowsml": {
+    "version": "2.5.96",
+    "providers": []
+  },
+  "catalog_provider_count": {
+    "wasdk_projection": 0,
+    "windowsml_flat_c": 0
+  }
+}

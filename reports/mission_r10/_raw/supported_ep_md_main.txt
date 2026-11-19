@@ -1,0 +1,207 @@
+---
+title: Windows ML execution providers
+description: Learn which ONNX Runtime execution providers are available in Windows ML for accelerating local AI models across Windows PCs, and see their release history.
+author: GrantMeStrength
+ms.author: jken
+ms.date: 11/18/2026
+ms.topic: how-to
+---
+
+# Windows ML execution providers
+
+Windows ML provides execution providers for accelerating inference on NPU, GPU, and CPU. To learn more about accelerating inference, see [Accelerate AI models](./accelerate-ai-models.md).
+
+## Included execution providers
+
+The following execution providers are included with Windows ML:
+
+* CPU
+* [DirectML](https://onnxruntime.ai/docs/execution-providers/DirectML-ExecutionProvider.html) (legacy)
+* [Windows ML CG EP](#windows-ml-cg-ep-experimental) (experimental)
+
+## Available execution providers
+
+Unlike the included providers, the execution providers below are not included with Windows ML — they're downloaded on demand.
+
+The execution providers listed below are available on **Windows 11 PCs running version 24H2 (build 26100) or greater** (depending on device and driver compatibility) for dynamic download via the Windows ML `ExecutionProviderCatalog` APIs. To use these providers, see [Install Windows ML EPs](./initialize-execution-providers.md) and [Register Windows ML EPs](./register-execution-providers.md). To see what version of each EP is currently available and info about upcoming releases, see [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases).
+
+### [Windows ML 2.x](#tab/winml2)
+
+The following execution providers are available to developers using [Microsoft.WindowsAppSDK.ML](https://www.nuget.org/packages/Microsoft.WindowsAppSDK.ML) or [Microsoft.Windows.AI.MachineLearning](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning) version `2.x`:
+
+| Execution provider | EpName | Vendor |
+|---|---|---|
+| [AMD GPU](#amd-gpu-amd) | `AMDGPUExecutionProvider` | AMD |
+| [NvTensorRtRtx](#nvtensorrtrtx-nvidia) | `NvTensorRtRtxExecutionProvider` | NVIDIA |
+| [OpenVINO](#openvino-intel) | `OpenVINOExecutionProvider` | Intel |
+| [QNN](#qnn-qualcomm) | `QNNExecutionProvider` | Qualcomm |
+| [VitisAI](#vitisai-amd) | `VitisAIExecutionProvider` | AMD |
+| [WebGPU (Experimental)](#webgpu-experimental) | `WebGpuExecutionProvider` | Microsoft |
+| [MIGraphX (Deprecated)](#migraphx-amd) | `MIGraphXExecutionProvider` | AMD |
+
+### [Windows ML 1.8.x](#tab/winml1-8)
+
+The following execution providers are available to developers using [Microsoft.WindowsAppSDK.ML](https://www.nuget.org/packages/Microsoft.WindowsAppSDK.ML) version `1.8.x`:
+
+| Execution provider | EpName | Vendor |
+|---|---|---|
+| [MIGraphX](#migraphx-amd) | `MIGraphXExecutionProvider` | AMD |
+| [NvTensorRtRtx](#nvtensorrtrtx-nvidia) | `NvTensorRtRtxExecutionProvider` | NVIDIA |
+| [OpenVINO](#openvino-intel) | `OpenVINOExecutionProvider` | Intel |
+| [QNN](#qnn-qualcomm) | `QNNExecutionProvider` | Qualcomm |
+| [VitisAI](#vitisai-amd) | `VitisAIExecutionProvider` | AMD |
+
+---
+
+Before your app uses an execution provider, please be sure to read the licenses corresponding to the execution provider. For the full list of third-party license terms, see [Windows ML third-party notices](./third-party-notices.md).
+
+### AMD GPU (AMD)
+
+The AMD GPU Execution Provider (`AMDGPUExecutionProvider`) enables hardware-accelerated AI inference on supported AMD GPUs. It provides a unified interface that automatically selects the most appropriate AMD acceleration backend based on the available hardware and workload, delivering optimized performance across AMD GPU platforms.
+
+**Execution provider info**
+
+* **EpName**: `"AMDGPUExecutionProvider"`
+* **Minimum required [Microsoft.Windows.AI.MachineLearning](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning) version**: [`2.5.96`](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning/2.5.96)
+* **Requirements**:
+  * Adrenalin Edition 24.12.1 or later
+* **Documentation**: [Documentation](https://github.com/onnxruntime/onnxruntime-ep-amdgpu)
+* **Support**: [Support](https://github.com/onnxruntime/onnxruntime-ep-amdgpu/issues)
+* **License terms**: [Ryzen AI Licensing Information](https://ryzenai.docs.amd.com/en/latest/licenses.html)
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+### NvTensorRtRtx (NVIDIA)
+
+* **EpName**: `"NvTensorRtRtxExecutionProvider"`
+* **Requirements**:
+  * NVIDIA GeForce RTX 30XX and above with minimum recommended driver version 32.0.15.5585 + Cuda version 12.5
+* **Documentation**: [Documentation](https://onnxruntime.ai/docs/execution-providers/TensorRTRTX-ExecutionProvider.html)
+* **Support**: [Support](https://github.com/NVIDIA/TensorRT-RTX/issues)
+* **License terms**: See [NvTensorRtRtx](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+### OpenVINO (Intel)
+
+* **EpName**: `"OpenVINOExecutionProvider"`
+* **Requirements and driver guidance**: [Intel Windows ML support](https://www.intel.com/content/www/us/en/developer/articles/guide/windows-ml-support.html)
+* **Documentation**: [Documentation](https://onnxruntime.ai/docs/execution-providers/OpenVINO-ExecutionProvider.html)
+* **Support**: [Support](https://github.com/openvinotoolkit/openvino/issues)
+* **License terms**: See [OpenVINO](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+### QNN (Qualcomm)
+
+* **EpName**: `"QNNExecutionProvider"`
+* **Requirements**:
+  * Snapdragon(R) X Elite - X1Exxxxx
+    * Qualcomm(R) Hexagon(TM) NPU with driver version 30.0.140.0 or later
+  * Snapdragon(R) X Plus - X1Pxxxxx
+    * Qualcomm(R) Hexagon(TM) NPU with driver version 30.0.140.0 or later
+* **Documentation**: [Documentation](https://onnxruntime.ai/docs/execution-providers/QNN-ExecutionProvider.html)
+* **Support**: [Support](https://www.qualcomm.com/support)
+* **License terms**: See [QNN](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+### VitisAI (AMD)
+
+* **EpName**: `"VitisAIExecutionProvider"`
+* **Requirements**:
+  * Adrenalin Edition 25.6.3 or later with NPU driver version 32.00.0203.280 or later
+* **Documentation**: [Documentation](https://onnxruntime.ai/docs/execution-providers/Vitis-AI-ExecutionProvider.html)
+* **Support**: [Support](https://www.amd.com/en/developer/resources/ryzen-ai-software.html)
+* **License terms**: See [VitisAI](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+### WebGPU (experimental)
+
+> [!IMPORTANT]
+> WebGPU EP is **experimental** and requires installing experimental NuGet packages. It is not available in Windows ML 1.8.x. For full usage details, see [WebGPU EP](./webgpu-ep.md).
+
+* **EpName**: `"WebGpuExecutionProvider"`
+* **Package family name**: `Microsoft.WinML.ONNX.WebGPU.EP.2`
+* **Minimum required [Microsoft.Windows.AI.MachineLearning](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning) version**: [`2.4.66-preview`](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning/2.4.66-preview)
+* **Requirements**:
+  * Any DirectX 12–capable GPU with up-to-date drivers (roughly 11th-gen Intel integrated graphics or NVIDIA Turing-class and newer recommended)
+* **Documentation**: [WebGPU EP](./webgpu-ep.md)
+* **Support**: [Support](https://github.com/microsoft/WindowsML/issues)
+* **License terms**: See [WebGPU (experimental)](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+<details><summary><strong>Version and release history</strong></summary>
+
+| MSIX version | WebGPU EP release notes |
+|--|--|
+| 0.4.0.0 | [`0.4.0`](https://github.com/microsoft/onnxruntime/releases/tag/plugin-ep-webgpu%2Fv0.4.0) |
+| 0.3.0.0 | [`0.3.0`](https://github.com/microsoft/onnxruntime/releases/tag/plugin-ep-webgpu%2Fv0.3.0) |
+| 0.2.1.0 | [`0.2.1`](https://github.com/microsoft/onnxruntime/releases/tag/plugin-ep-webgpu%2Fv0.2.1) |
+| 0.1.0.0 | [`0.1.0`](https://github.com/microsoft/onnxruntime/releases/tag/plugin-ep-webgpu%2Fv0.1.0) |
+
+</details>
+
+### MIGraphX (AMD)
+
+> [!IMPORTANT]
+> `MIGraphXExecutionProvider` is deprecated in Windows ML 2.x. AMD recommends transitioning to `AMDGPUExecutionProvider` for all AMD GPU devices. `MIGraphXExecutionProvider` will be retired from the Windows ML API interface with a new Windows ML major release.
+
+**Execution provider info**
+
+* **EpName**: `"MIGraphXExecutionProvider"`
+* **Requirements**:
+  * AMD RDNA 3 or later GPU
+  * AMD GPU driver version 25.10.13.09 or later
+  * *This execution provider is not supported for GenAI scenarios today.*
+* **Documentation**: [Documentation](https://onnxruntime.ai/docs/execution-providers/MIGraphX-ExecutionProvider.html)
+* **Support**: [Support](https://github.com/ROCm/AMDMIGraphX/issues)
+* **License terms**: See [MIGraphX](./third-party-notices.md#execution-provider-licenses) in Windows ML third-party notices.
+* **Version and release history**: [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases)
+
+## Windows ML CG EP (experimental)
+
+> [!IMPORTANT]
+> The Windows ML CG EP is **experimental** and **not supported** for use in production environments. It's available in Windows ML 2.9 experimental or later, and it isn't available in Windows ML 1.8.x.
+
+The Windows ML CG EP runs ONNX models on the GPU with the [CGC backend](./runtime/model-compilation-execution.md). Your inference code stays on the ONNX Runtime API (`Ort::Env`, `Ort::SessionOptions`, and `Ort::Session`), and the EP adapts execution to the Windows ML Runtime and the CGC compiler.
+
+> [!TIP]
+> For most apps, we recommend the Windows ML [Runtime APIs](./runtime/overview.md) with the CGC backend over the CG EP, because the Runtime APIs are generally the more performant path over time. In the short term, the CG EP can be faster for some workloads, particularly on the fallback path, because ONNX Runtime applies graph pre-optimizations that can help or hurt depending on the workload. If performance matters, measure both on your model. See [Runtime APIs with CGC or the CG EP](./runtime/model-compilation-execution.md#runtime-apis-with-cgc-or-the-cg-ep).
+
+Unlike the providers in the previous section, you don't download this provider through the `ExecutionProviderCatalog` APIs. The `Microsoft.Windows.AI.MachineLearning` package deploys ONNX Runtime, the provider library `WinMLCGEp.dll`, and its native dependencies beside your app.
+
+**Execution provider info**
+
+* **EpName**: `"WinMLCGExecutionProvider"`
+* **Minimum required [Microsoft.Windows.AI.MachineLearning](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning) version**: [`2.9.36-experimental`](https://www.nuget.org/packages/Microsoft.Windows.AI.MachineLearning/2.9.36-experimental)
+* **Requirements**:
+  * A physical Direct3D 12 GPU. The provider doesn't run on a software adapter.
+  * A file-backed ONNX model. The provider compiles ONNX models from a file path.
+* **Documentation**: [The CGC backend in Windows ML](./runtime/model-compilation-execution.md)
+* **Sample**: [ONNX Runtime CG EP sample](https://github.com/microsoft/WindowsML/tree/main/Samples/Runtime/interop/onnx-runtime-winmlcgep)
+
+Register the execution provider library that the package deployed by using the following code:
+
+### [C#](#tab/csharp)
+
+```csharp
+// Register the CG EP that the package deployed beside your app.
+OrtEnv.Instance().RegisterExecutionProviderLibrary(
+    "WinMLCGExecutionProvider", "WinMLCGEp.dll");
+```
+
+### [C++](#tab/cpp)
+
+```cpp
+// Register the CG EP that the package deployed beside your app.
+Ort::Env env(ORT_LOGGING_LEVEL_WARNING, "my-app");
+env.RegisterExecutionProviderLibrary("WinMLCGExecutionProvider", L"WinMLCGEp.dll");
+```
+
+---
+
+## See also
+
+* [Windows ML Execution Provider Releases](https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases) (current, upcoming, and past versions)
+* [Install Windows ML EPs](./initialize-execution-providers.md)
+* [Register Windows ML EPs](./register-execution-providers.md)
+* [Select execution providers](./select-execution-providers.md)
+* [Install and deploy Windows ML](./distributing-your-app.md)
+* [Windows ML third-party notices](./third-party-notices.md)

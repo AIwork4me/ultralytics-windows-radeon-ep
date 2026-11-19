@@ -1,0 +1,112 @@
+{
+  "blocked_status": "BLOCKED_EXTERNAL",
+  "captured_utc": "2026-11-19T13:52:21Z",
+  "catalog": {
+    "api_ok": true,
+    "error": null,
+    "provider_count": 0,
+    "providers": [],
+    "raw_hresults": {
+      "available": true,
+      "create_hresult": "0x00000000",
+      "enum_hresult": "0x00000000",
+      "enumerated_count": 0
+    }
+  },
+  "checks": [
+    {
+      "check": "official_windowsml_package",
+      "detail": "2.5.96",
+      "status": "PASS"
+    },
+    {
+      "check": "windows_11_24h2_or_later",
+      "detail": "build=26200 (Windows ML 2.x EPs need 24H2 / build 26100+)",
+      "status": "PASS"
+    },
+    {
+      "check": "amd_gpu_adapter_present",
+      "detail": "2 AMD adapter(s)",
+      "status": "PASS"
+    },
+    {
+      "check": "catalog_create_hresult",
+      "detail": "0x00000000",
+      "status": "PASS"
+    },
+    {
+      "check": "catalog_enum_hresult",
+      "detail": "0x00000000",
+      "status": "PASS"
+    },
+    {
+      "check": "catalog_provider_count",
+      "detail": 0,
+      "status": "FAIL"
+    },
+    {
+      "check": "amdgpu_provider_listed",
+      "detail": "catalog is empty",
+      "status": "FAIL"
+    }
+  ],
+  "gfx_requested": "gfx1151",
+  "host": {
+    "gpu": {
+      "adapters": [
+        {
+          "description": "AMD Radeon(TM) 8060S Graphics",
+          "device_id": "0x1586",
+          "driver_version": "32.0.22018.5",
+          "index": 0,
+          "is_software": false,
+          "revision": 209,
+          "subsys_id": "0x8D01103C",
+          "vendor_id": "0x1002"
+        },
+        {
+          "description": "AMD Radeon(TM) 8060S Graphics",
+          "device_id": "0x1586",
+          "driver_version": "32.0.22018.5",
+          "index": 1,
+          "is_software": false,
+          "revision": 209,
+          "subsys_id": "0x8D01103C",
+          "vendor_id": "0x1002"
+        },
+        {
+          "description": "Microsoft Basic Render Driver",
+          "device_id": "0x008C",
+          "driver_version": "10.0.26100.9818",
+          "index": 2,
+          "is_software": true,
+          "revision": 0,
+          "subsys_id": "0x00000000",
+          "vendor_id": "0x1414"
+        }
+      ],
+      "available": true,
+      "errors": []
+    },
+    "windows_build": {
+      "build": 26200,
+      "display_version": "25H2",
+      "major": 10,
+      "minor": 0,
+      "platform": "Windows-11-10.0.26200-SP0",
+      "ubr": 9974
+    }
+  },
+  "read_only": true,
+  "schema": "winml_amdgpu_catalog_probe/v1",
+  "stable_digest": "66baf7b657232a2a0a586566807c3b26c0b6131edc1557fa438ef0466ec6150b",
+  "versions": {
+    "ep_packages": [
+      "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8 1.8.80.0"
+    ],
+    "error": null,
+    "onnxruntime": "1.25.2",
+    "windows_ml_shared_runtime": "WindowsWorkload.WinMLShared.7.0 1.2610.1050.0",
+    "windowsml_python": "2.5.96"
+  }
+}

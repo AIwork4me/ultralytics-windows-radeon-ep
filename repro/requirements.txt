@@ -1,0 +1,20 @@
+# Exact pins for the standalone Windows ML AMDGPU EP catalog reproduction.
+#
+# Only the official Windows ML Python package is required. It is the same
+# distribution name that the Windows ML 2.x documentation points at, and it is
+# the ONLY third-party dependency of repro/windowsml_amdgpu_catalog_probe.py.
+#
+# Verified on: Windows 11 25H2 build 26200.9974, AMD Radeon(TM) 8060S (gfx1151,
+# DID 0x1586), display driver 32.0.22018.5, CPython 3.11/3.13, 2026-11-19.
+#
+#   python -m venv .venv-repro
+#   .venv-repro\Scripts\pip install -r repro\requirements.txt
+#   .venv-repro\Scripts\python repro\windowsml_amdgpu_catalog_probe.py
+#
+# The probe imports onnxruntime only to *report* its version if it happens to be
+# present; it does not need ONNX Runtime to enumerate the catalog. Install a
+# matching onnxruntime-windowsml ONLY if you also want the EP registration path:
+#
+#   onnxruntime-windowsml==1.25.2.202605110140
+#
+windowsml==2.5.96
