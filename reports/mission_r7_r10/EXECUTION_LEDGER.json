@@ -15,7 +15,7 @@
   },
   "git": {
     "branch": "mission/r7-gfx1151-product-hardening",
-    "head": "1efeba3d3a56c59f73e359ac7418edcc6d60fd49",
+    "head": "85938dd2a0b4ce4d7a3c56f3f5937fa4cab19539",
     "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
     "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
   },
@@ -201,12 +201,12 @@
       "bytes": 13843
     },
     "reports/mission_r7_r10/BASELINE_AUDIT.json": {
-      "sha256": "b027797f44b772ab789f032a259e1694b0dd6f70566d12ba43b5fa6ac2f0fb81",
-      "bytes": 10053
+      "sha256": "5d8b87730f7f76797291845c877db8dff8defd4cf86fc6300838035a54d77243",
+      "bytes": 6008
     },
     "reports/mission_r7_r10/EXECUTION_LEDGER.json": {
-      "sha256": "39c9a3e47da329125cf8db91156de6fce2ee97d89fce227a0cd39883943da76b",
-      "bytes": 6808
+      "sha256": "3b7c7cdb2f09c46cfbb1a42fb494e4a1bd729227befc12f70b08502b6231bab3",
+      "bytes": 6807
     },
     "reports/mission_r7_r10/RELEASE_READINESS.json": {
       "sha256": "3cb22f2883a2bb142c3c7ab68ecf5d281968f6ad867d968cf06b6282ee5cdb0b",

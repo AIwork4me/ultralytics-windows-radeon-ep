@@ -3,18 +3,18 @@
   "mission": "R7-R10",
   "host_id": "unknown",
   "git": {
-    "head": "1efeba3d3a56c59f73e359ac7418edcc6d60fd49",
-    "head_short": "1efeba3",
+    "head": "85938dd2a0b4ce4d7a3c56f3f5937fa4cab19539",
+    "head_short": "85938dd",
     "branch": "mission/r7-gfx1151-product-hardening",
     "origin_main": "0c844da6727f5f7c43d27232b6e3eef9855a69bb",
-    "worktree_clean": false,
-    "status_porcelain": "M .gitignore\n M reports/mission_r7/JOB_FAULT_INJECTION.json\n M reports/mission_r7/STABILITY.json\n D reports/mission_r7/e2e_bench.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-pose_rep0.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-pose_rep1.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-pose_rep2.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-seg_rep0.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-seg_rep1.json\n M reports/mission_r7/e2e_bench_raw/yolo26n-seg_rep2.json\n M reports/mission_r7/e2e_bench_raw/yolo26n_rep0.json\n M reports/mission_r7/e2e_bench_raw/yolo26n_rep1.json\n M reports/mission_r7/e2e_bench_raw/yolo26n_rep2.json\n M reports/mission_r7/unified_task_matrix.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A001-cpu-6f239c474473/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A001-cpu-6f239c474473/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A002-amdgpu-b8198b57393e/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A002-amdgpu-b8198b57393e/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/candidate_postprocess.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/log_postprocess.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/log_pt_oracle.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/log_task_parity.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/pt_reference.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/task_parity.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N/attempts/A003-dml-40ea5249abe7/task_oracle/thresholds_snapshot.json\n M reports/unified/GFX1151_R7_TASK_YOLO26N/receipt_GFX1151_R7_TASK_YOLO26N.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A001-cpu-0845377027c1/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A001-cpu-0845377027c1/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A002-amdgpu-672a221b66c7/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A002-amdgpu-672a221b66c7/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/candidate_postprocess.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/log_postprocess.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/log_pt_oracle.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/log_task_parity.txt\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/pt_reference.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/task_parity.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/attempts/A003-dml-cd85a9a66f84/task_oracle/thresholds_snapshot.json\n M reports/unified/GFX1151_R7_TASK_YOLO26N_CLS/receipt_GFX1151_R7_TASK_YOLO26N_CLS.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A001-cpu-e11708e1dc9a/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A001-cpu-e11708e1dc9a/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A002-amdgpu-eb9fbcb793b0/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A002-amdgpu-eb9fbcb793b0/fragment.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A003-dml-6661acc56010/case.json\n D reports/unified/GFX1151_R7_TASK_YOLO26N_DEPTH/attempts/A003-dml-6661acc56010/frag",
+    "worktree_clean": true,
+    "status_porcelain": "",
     "recent": [
+      "85938dd evidence(r7): regenerate on the P0-fixed head (gfx1151, DML)",
       "1efeba3 fix(r7): close the four P0 findings from the independent review",
       "27a709b test(r7): make the task-oracle and job tests CI-independent",
       "0c0ada1 feat(r7): product hardening - task oracle, job objects, attempt isolation, E2E",
-      "0c844da Merge PR #11: record PR #10 merge commit and final main",
-      "92ed7b0 docs(mission): record PR #10 merge commit and final main"
+      "0c844da Merge PR #11: record PR #10 merge commit and final main"
     ],
     "reference_main_sha": "0c844da6727f5f7c43d27232b6e3eef9855a69bb"
   },
@@ -26,7 +26,7 @@
       "Ultralytics/settings.json (created by the export venv)",
       "reports/gfx1151/PREFLIGHT_<ts>/ (produced by this audit's preflight)"
     ],
-    "worktree_clean_at_capture": false,
+    "worktree_clean_at_capture": true,
     "why_dirty_now": "this file is captured at the end of the mission; the working tree intentionally carries the R7-R10 changes"
   },
   "os": {
