@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "mission": "R3-R6",
+  "captured_utc": "2026-11-19T04:54:34.903Z",
+  "git": {
+    "baseline_main": "d24f7377813cddcab744c14c82733e890b881234",
+    "pr8_head": "13b30f5f86ed2c2e41717658a12fe52a3afa77d2",
+    "pr8_merge_commit": "d5ea31227bc7802f5270bce7055cfd9896768545",
+    "pr9_head": "ed60ed47cbfb51e5232abc47ceded5f932e479db",
+    "pr9_merge_commit": "bb4dc5a0501923ea1647d0012d3fe33049976f93",
+    "r6_head_at_capture": "efa4a00a91770467828c0f1b828d8e019bb4fcc4",
+    "r6_pr": 10,
+    "pr6_disposition": "superseded, not merged (branch mission/unified-winml-amdgpu-first-runtime kept)"
+  },
+  "phases": [
+    {
+      "phase": "R3",
+      "actions": [
+        {
+          "id": "R3-A",
+          "result": "PASS",
+          "detail": "classified exit codes 0/1/2, PIPELINE_EXIT.json + MATRIX_EXIT.json",
+          "tests": "tests/unit/test_exit_code_propagation.py (7)"
+        },
+        {
+          "id": "R3-B",
+          "result": "PASS",
+          "detail": "harness scope configs+schemas, untracked dirty, environment binding, byte-exact evidence",
+          "tests": "tests/adversarial/test_contract_tamper_matrix.py (17)"
+        },
+        {
+          "id": "R3-C",
+          "result": "PASS",
+          "detail": "five-state read-only probe with HRESULT diagnostics",
+          "tests": "tests/unit/test_probe_amdgpu_ep_states.py (9)"
+        },
+        {
+          "id": "R3-D",
+          "result": "PASS",
+          "detail": "live doc re-verified: AMDGPUExecutionProvider not listed; MIGraphX/VitisAI recorded separately"
+        },
+        {
+          "id": "R3-E",
+          "result": "PASS",
+          "detail": "PR #8 merged (d5ea312), PR #9 retargeted to main and merged (bb4dc5a); legacy receipts untouched"
+        }
+      ]
+    },
+    {
+      "phase": "R4",
+      "actions": [
+        {
+          "id": "A1",
+          "result": "DONE",
+          "detail": "pip install windowsml==2.5.96 (user scope)",
+          "evidence": "reports/mission_r4/PROBE_AFTER_A1.json"
+        },
+        {
+          "id": "A2",
+          "result": "NOT_EXECUTED",
+          "detail": "no documented AMDGPU EP requirement; no proven blocker; OEM driver unchanged"
+        },
+        {
+          "id": "A3",
+          "result": "BLOCKED_EXTERNAL",
+          "detail": "catalog returns 0 providers (S_OK), nothing to ensure_ready"
+        },
+        {
+          "id": "A4",
+          "result": "BLOCKED_OFFICIAL_EP_ARTIFACT",
+          "detail": "no official signed 2.x AMD GPU EP MSIX available"
+        },
+        {
+          "id": "A5",
+          "result": "NOT_EXECUTED",
+          "detail": "nothing paused/pending; no evidence servicing is the blocker"
+        }
+      ]
+    },
+    {
+      "phase": "R5",
+      "actions": [
+        {
+          "id": "tier_a",
+          "result": "9/18",
+          "detail": "9 DML PASS_GPU_EXECUTED_FULL + PASS_TASK, 9 AMDGPU BLOCKED_EP; matrix exit 2",
+          "evidence": "reports/gfx1151/R5_GFX1151_20261119T1240"
+        },
+        {
+          "id": "verify",
+          "result": "ALL_OK",
+          "detail": "18 receipts + manifest (255 published entries)"
+        },
+        {
+          "id": "soak",
+          "result": "PASS",
+          "detail": "181112 runs / 15 min, p50 2.7882 ms, DML nodes=1, CPU nodes=0, errors=[]",
+          "evidence": "reports/gfx1151/GFX1151_R5_SOAK_DML_20261119T1340"
+        },
+        {
+          "id": "multi_input",
+          "result": "CITED_HISTORICAL",
+          "detail": "7 tasks x 4 variants = 28/28 in GFX1151_HARDENING_20261119T095500Z (same code family)"
+        }
+      ]
+    },
+    {
+      "phase": "R6",
+      "actions": [
+        {
+          "id": "policy_engine",
+          "result": "PASS",
+          "detail": "4 policies, whitelist binding, strict parity, separate gpu_full/task_verified",
+          "tests": "tests/unit/test_unified_runtime.py (16)"
+        },
+        {
+          "id": "e2e_gpu",
+          "result": "GPU_FULL_DML",
+          "detail": "real 8060S, 1 node, 0 CPU nodes, RUNRESULT_VALID, exit 0",
+          "evidence": "reports/mission_r6/GFX1151_R6_CANARY_20261119T1335"
+        },
+        {
+          "id": "cross_host",
+          "result": "PENDING",
+          "detail": "handoffs written; no gfx1100/gfx1201 hardware on this host"
+        }
+      ]
+    }
+  ],
+  "ci": {
+    "at_r3_head": "windows-cpu-ci success, secret-scan success",
+    "at_r6_head": "see PR #10 checks"
+  },
+  "tests": {
+    "baseline": "243 passed / 1 skipped",
+    "final": "292 passed / 1 skipped"
+  }
+}

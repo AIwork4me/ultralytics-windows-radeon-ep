@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T04:54:40.975Z",
+  "release_verdict": {
+    "unified_runtime_design": "GO",
+    "gfx1151_physical": "CONDITIONAL_GO",
+    "gfx1151_amdgpu": "BLOCKED_EP",
+    "gfx1151_dml": "GO",
+    "gfx1100_physical": "PENDING_PHYSICAL_HOST",
+    "gfx1201_physical": "PENDING_PHYSICAL_HOST",
+    "three_platform_rc": "CONDITIONAL_GO"
+  },
+  "frozen": {
+    "git_commit_r3": "ed60ed47cbfb51e5232abc47ceded5f932e479db",
+    "git_commit_r6": "efa4a00a91770467828c0f1b828d8e019bb4fcc4",
+    "python": "3.12.10",
+    "windows_ml_python": "windowsml 2.5.96",
+    "onnxruntime": "onnxruntime-windowsml 1.25.2.202605110140",
+    "directml": "bundled with the ORT windowsml wheel (DmlExecutionProvider)",
+    "amdgpu_ep": "NOT_INSTALLED (CATALOG_EMPTY, BLOCKED_EXTERNAL)",
+    "model_catalog": "catalog/model_catalog.json (pinned snapshot)",
+    "thresholds": "configs/thresholds.yaml + per-run thresholds_snapshot.json",
+    "runresult_schema": "unified_run_v1 (docs/unified/CONTRACTS.md)",
+    "device_identity_rule": "DID pinning (0x1586 / 0x7448,0x744C / 0x7550,0x7551); LUID boot-local corroboration only"
+  },
+  "supported_claims": [
+    "DirectML GPU execution on Radeon 8060S for 9 Tier A checkpoints, each with profiler node evidence, CPU-ORT parity and PT task oracle",
+    "unified runtime policy engine and CLI (AMDGPU/DML/CPU) with fail-closed evidence gates",
+    "read-only AMDGPU EP provisioning diagnostics (five states, HRESULTs, system dependency matrix)"
+  ],
+  "not_supported_claims": [
+    "any AMDGPU GPU PASS on this host",
+    "any gfx1100 or gfx1201 physical PASS",
+    "dataset-level accuracy (mAP/OKS/mIoU over many scenes)",
+    "end-to-end latency including pre/post-processing",
+    "temperature/power telemetry on the APU"
+  ],
+  "blockers": [
+    {
+      "id": "B1",
+      "severity": "P1",
+      "item": "AMDGPU EP unavailable",
+      "root_cause": "Windows ML catalog offers no provider for this device; no official signed 2.x AMD GPU EP artifact",
+      "owner": "Microsoft/AMD + repo owner",
+      "next_action": "re-probe after Windows Update D-week or an official EP MSIX ships",
+      "close_when": "probe state >= EP_REGISTERED and a canary executes with 0 CPU nodes"
+    },
+    {
+      "id": "B2",
+      "severity": "P2",
+      "item": "gfx1100/gfx1201 physical evidence",
+      "root_cause": "hardware not present on this host",
+      "owner": "cross-host validators",
+      "next_action": "run docs/cross_host/*_HANDOFF.md",
+      "close_when": "each host produces verified receipts + manifest"
+    },
+    {
+      "id": "B3",
+      "severity": "P2",
+      "item": "task oracle not wired into unified predict()",
+      "root_cause": "PT oracle remains in runner.run_matrix",
+      "owner": "repo",
+      "next_action": "expose task oracle through unified path",
+      "close_when": "task_verified can be true with independent PT metrics"
+    }
+  ],
+  "evidence": {
+    "r5_run": "reports/gfx1151/R5_GFX1151_20261119T1240",
+    "soak": "reports/gfx1151/GFX1151_R5_SOAK_DML_20261119T1340",
+    "unified_canary": "reports/mission_r6/GFX1151_R6_CANARY_20261119T1335",
+    "r4_probe": "reports/mission_r4/PROBE_AFTER_A1.json",
+    "baseline": "reports/mission_r3_r6/BASELINE_AUDIT.json"
+  }
+}
