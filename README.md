@@ -12,9 +12,15 @@ starting on the **AMD Radeon 8060S (gfx1151, Ryzen AI MAX APU)**.
 
 | Host | AMDGPU EP | DirectML | Evidence |
 |---|---|---|---|
-| gfx1151 — Radeon 8060S | validating (Tier A in progress) | validating | `reports/gfx1151/` |
-| gfx1100 — RX 7900 XTX | NOT_RUN | NOT_RUN | future host |
-| gfx1201 — RX 9070 XT | NOT_RUN | NOT_RUN | future host (see gfx1201 issue) |
+| gfx1151 — Radeon 8060S | `BLOCKED_EP` — Windows ML catalog offers no AMD GPU EP on this host | **9/9 Tier A PASS** (physical) | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` |
+| gfx1100 — RX 7900 XTX | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | handoff: `docs/cross_host/GFX1100_HANDOFF.md` |
+| gfx1201 — RX 9070 XT | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | handoff: `docs/cross_host/GFX1201_HANDOFF.md` |
+
+Verified on this host (2026-11-19): Windows 11 25H2 build 26200.9974, Radeon 8060S
+DID `0x1586` / LUID `0x00000000:0x000154E4`, driver 32.0.22018.5,
+`windowsml 2.5.96`, `onnxruntime-windowsml 1.25.2`. The official catalog answers
+`S_OK` with **zero** providers, so AMDGPU is an external block — not a code bug,
+and not something a driver bump alone can fix.
 
 `CPU_CI_DOES_NOT_ATTEST_GPU`: GitHub CPU CI validates contracts and adversarial
 anti-forgery tests only.
@@ -33,6 +39,29 @@ python -m venv .venv-winml
 # strict receipt verification:
 .venv-winml\Scripts\python -m runner.verify_receipts --run-dir reports\gfx1151\<run_id>
 ```
+
+## Unified API (one entrypoint, three policies)
+
+```python
+from radeon_ort.unified_runtime import predict
+
+result = predict(
+    model_path="models/onnx/yolo26n.raw_b1_fp32_static.onnx",
+    inputs={"images": tensor},          # name -> ndarray; hashed by name/dtype/shape/bytes
+    policy="prefer_amdgpu_allow_dml",   # require_amdgpu | prefer_amdgpu_allow_dml | gpu_first_allow_cpu | cpu_opt_in
+    target_gfx="gfx1151",               # inferred from the live DID when omitted, never defaulted
+    allow_cpu=False,                    # CPU runs only with explicit consent
+    require_full_gpu=True,
+)
+print(result["runtime_status"])         # GPU_FULL | GPU_FULL_DML | CPU_ONLY_USER_AUTHORIZED | BLOCKED | FAIL
+print(result["attempted_eps"], result["fallback_reason"])
+```
+
+A GPU result requires positive target-EP profiler nodes, **zero** CPU nodes, by-name
+elementwise parity against an independent CPU ORT run, and a device-binding label
+from a small whitelist. `gpu_full` and `task_verified` are reported separately.
+CLI: `python -m runner.unified_predict --help`; contract:
+`docs/unified/CONTRACTS.md`.
 
 See [docs/INSTALL_WINDOWS.md](docs/INSTALL_WINDOWS.md) for the three-venv layout
 (winml / export / cpu), [docs/DEVICE_IDENTITY.md](docs/DEVICE_IDENTITY.md) for how
