@@ -19,20 +19,40 @@ from runner import REPO_ROOT
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--gfx", default="gfx1151")
-    ap.add_argument("--gpu-needle", default="8060S")
+    ap.add_argument("--gfx", default=None,
+                    help="gfx target; inferred from live DXGI DID when omitted")
+    ap.add_argument("--gpu-needle", default=None,
+                    help="optional WMI name needle; DID matching is the default")
     ap.add_argument("--reports-root", default=str(REPO_ROOT / "reports"))
     ap.add_argument("--run-id", default=None)
     a = ap.parse_args()
 
+    # Resolve the live target before creating any evidence directory. Never
+    # assume gfx1151 on a gfx1100/gfx1201 host.
+    gfx = a.gfx
+    try:
+        adapters = device_identity.enum_dxgi_adapters()
+    except OSError as e:
+        print(f"[preflight] FAIL: DXGI enumeration failed: {e}")
+        return 1
+    if gfx is None:
+        inf = device_identity.infer_gfx_from_adapters(adapters)
+        if not inf.get("ok"):
+            print(f"[preflight] FAIL: {inf.get('reason')}")
+            return 1
+        gfx = inf["gfx"]
+    a.gfx = gfx
+
     run_id = a.run_id or ("PREFLIGHT_" + utc_now_iso().replace("-", "").replace(":", "").replace("T", "_").replace("Z", ""))
-    out_dir = Path(a.reports_root) / a.gfx / run_id
+    out_dir = Path(a.reports_root) / gfx / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"[preflight] run_id={run_id} out={out_dir}")
+    print(f"[preflight] run_id={run_id} gfx={gfx} out={out_dir}")
 
-    # 1) host fingerprint
-    host = host_probe.collect_host(gpu_name_needle=a.gpu_needle, gfx=a.gfx)
+    # 1) host fingerprint (DID-pinned; the name needle is only optional)
+    host = host_probe.collect_host(
+        gpu_name_needle=a.gpu_needle, gfx=gfx,
+        gpu_device_ids=device_identity.target_device_ids(gfx))
     (out_dir / "HOST_FINGERPRINT.json").write_text(json.dumps(host, indent=2), encoding="utf-8")
     print(f"[preflight] OS build {host['os']['build']}.{host['os']['ubr']} ({host['os']['display_version']})")
     print(f"[preflight] CPU {host['cpu']['cpu_name']} RAM {host['cpu']['ram_gb']}GB")
@@ -45,7 +65,10 @@ def main() -> int:
     ep_data = {"captured_utc": utc_now_iso(), "api": ep.data["api"],
                "amdgpu_dlls": ep.data["amdgpu_dlls"],
                "register_attempt": ep.data["register_attempt"],
-               "available_providers": providers}
+               "available_providers": providers,
+               "ep_devices": ep.data.get("ep_devices"),
+               "windowsml": ep.data.get("windowsml"),
+               "catalog_provider_count": ep.data.get("catalog_provider_count")}
     (out_dir / "EP_INSTALL_AND_PROBE.json").write_text(json.dumps(ep_data, indent=2), encoding="utf-8")
     print(f"[preflight] ort providers: {providers}")
     print(f"[preflight] register: {ep.data['register_attempt']}")

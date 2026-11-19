@@ -109,7 +109,7 @@ def build_receipt_v2(*, run_id: str, case_id: str, status: ReceiptStatus, verdic
                      parity: dict | None = None, task: dict | None = None,
                      task_parity: dict | None = None, benchmark_data: dict | None = None,
                      errors: list[dict] | None = None, rca_issue_ids: list[str] | None = None,
-                     provenance: dict) -> dict:
+                     provenance: dict, contract: dict | None = None) -> dict:
     r = build_receipt(run_id=run_id, case_id=case_id, status=status, host=host, model=model,
                       session=session, parity=parity, task=task, benchmark_data=benchmark_data,
                       errors=errors, provenance=provenance)
@@ -122,6 +122,8 @@ def build_receipt_v2(*, run_id: str, case_id: str, status: ReceiptStatus, verdic
     r["device_binding"] = device_binding
     r["task_parity"] = task_parity
     r["rca_issue_ids"] = rca_issue_ids or []
+    if contract is not None:
+        r["contract"] = contract
     return r
 
 
@@ -334,6 +336,19 @@ def _expected_manifest(receipt: dict) -> dict:
     return m
 
 
+def _ep_reported_luid(binding: dict) -> str | None:
+    """LUID that the EP itself reported, if any.
+
+    The AMDGPU/DML builds on this host expose no LUID/PCI identity; a host-side
+    DXGI LUID is corroboration and can never be promoted to EP-reported identity.
+    """
+    ident = (binding or {}).get("ep_reported_identity") or {}
+    if ident.get("exposes_luid") is not True:
+        return None
+    value = ident.get("luid") or (ident.get("reported") or {}).get("luid")
+    return str(value) if value else None
+
+
 def derive_verdicts(receipt: dict) -> dict:
     """Orthogonal verdicts per EP + identity, derived from raw evidence only.
 
@@ -354,9 +369,18 @@ def derive_verdicts(receipt: dict) -> dict:
         counts = ((db.get("final_profile") or {}).get("provider_node_counts")) or {}
         return counts.get("DmlExecutionProvider", 0) > 0
 
-    if db.get("state") in ("EP_DEVICE_SELECTED", "PHYSICAL_GPU_IDENTITY_CORROBORATED") \
-            and _binding_evidence(active_ep) and host_ok:
-        out["identity"] = db["state"]
+    if db.get("state") == "PHYSICAL_GPU_IDENTITY_CORROBORATED":
+        # Physical corroboration requires the EP itself to report a LUID that
+        # matches the host DXGI LUID. An indirect host enumeration never counts.
+        ep_luid = _ep_reported_luid(db)
+        dxgi_luid = ((db.get("dxgi_corroboration") or {}).get("luid")
+                     or (receipt.get("host") or {}).get("device_luid"))
+        if ep_luid and (not dxgi_luid or ep_luid == dxgi_luid) and _binding_evidence(active_ep) and host_ok:
+            out["identity"] = "PHYSICAL_GPU_IDENTITY_CORROBORATED"
+        elif host_ok:
+            out["identity"] = "IDENTITY_BINDING_UNPROVEN"
+    elif db.get("state") == "EP_DEVICE_SELECTED" and _binding_evidence(active_ep) and host_ok:
+        out["identity"] = "EP_DEVICE_SELECTED"
     elif db.get("state") == "IDENTITY_BINDING_UNPROVEN":
         out["identity"] = "IDENTITY_BINDING_UNPROVEN"
     elif host_ok:
@@ -481,7 +505,6 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
 
     # --- parity contract
     parity = receipt.get("parity")
-    claimed_exec = {ep: (verdicts.get(ep) or {}).get("execution") for ep in ("amdgpu", "dml")}
     if any_pass_claim:
         if not parity or not parity.get("outputs"):
             problems.append("GPU PASS claim with missing/empty parity outputs (vacuous pass)")
@@ -545,6 +568,26 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
             elif db.get("state") not in ("EP_DEVICE_SELECTED", "PHYSICAL_GPU_IDENTITY_CORROBORATED"):
                 problems.append(
                     f"{ep}: PASS claim with device_binding.state={db.get('state')!r}")
+            elif db.get("state") == "PHYSICAL_GPU_IDENTITY_CORROBORATED":
+                # P1-A: an EP-independent DXGI enumeration is NOT an EP-reported
+                # LUID. Physical corroboration requires the EP's own LUID and it
+                # must agree with the host DXGI LUID.
+                ep_luid = _ep_reported_luid(db)
+                dxgi_luid = ((db.get("dxgi_corroboration") or {}).get("luid")
+                             or (receipt.get("host") or {}).get("device_luid"))
+                if not ep_luid:
+                    problems.append(
+                        f"{ep}: PHYSICAL_GPU_IDENTITY_CORROBORATED without an "
+                        "EP-reported LUID (DXGI corroboration alone is indirect)")
+                elif not dxgi_luid or ep_luid != dxgi_luid:
+                    problems.append(
+                        f"{ep}: EP-reported LUID {ep_luid!r} != DXGI LUID "
+                        f"{dxgi_luid!r}")
+            if ((db.get("dxgi_corroboration") or {}).get("is_ep_reported") is True
+                    and not _ep_reported_luid(db)):
+                problems.append(
+                    f"{ep}: dxgi_corroboration claims is_ep_reported but no "
+                    "ep_reported_identity.exposes_luid/LUID exists")
             elif (db.get("probe") or {}).get("amdgpu_nodes", 0) <= 0 and ep == "amdgpu":
                 problems.append(f"{ep}: PASS claim but probe evidenced zero AMDGPU nodes")
             final_counts = ((db.get("final_profile") or {}).get("provider_node_counts")) or {}
@@ -665,6 +708,11 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
 
     # --- verdicts vs status consistency
     derived_verdicts = derive_verdicts(receipt)
+    claimed_identity = verdicts.get("identity")
+    if claimed_identity != derived_verdicts["identity"]:
+        problems.append(
+            f"verdicts.identity={claimed_identity!r} but evidence derives "
+            f"{derived_verdicts['identity']!r}")
     for ep in ("amdgpu", "dml"):
         want = combine_v2_to_status(ep, derived_verdicts[ep])
         derived[ep] = want

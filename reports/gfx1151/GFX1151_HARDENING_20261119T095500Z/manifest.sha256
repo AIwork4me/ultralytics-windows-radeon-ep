@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_HARDENING_20261119T095500Z",
+  "created_utc": "2026-11-19T01:57:02Z",
+  "generator": "GFX1151 independent hardening read-only evidence",
+  "entries": [
+    {
+      "path": "AMDGPU_EP_READONLY_PROBE.json",
+      "sha256": "63201f68fd23df7bb4a72833f9be07f2a434a3cbd398b3fa63f25ee09fadde97",
+      "bytes": 2251
+    },
+    {
+      "path": "HARDENING_FINAL_CN.md",
+      "sha256": "67796fb3c42068e54f3cb2d0daffbe2371c9a1d3b0f339afa81502cda41ca205",
+      "bytes": 15544
+    },
+    {
+      "path": "HOST_IDENTITY_MATRIX.json",
+      "sha256": "11bcf55d901da3456e36fdafcda66773c335709a36fb4e0c47e46ced027f577f",
+      "bytes": 1870
+    },
+    {
+      "path": "MEMORY_PROVENANCE.json",
+      "sha256": "a84173266791c290aa7fe698ac21c90bf8df6366cd44bfda8f44013419803457",
+      "bytes": 1662
+    },
+    {
+      "path": "POSE_LATENCY_ANALYSIS.json",
+      "sha256": "100ba1425c7952cd1263b48f243cdd9e1314c18395a9de79b76231e23bdf3219",
+      "bytes": 4916
+    }
+  ]
+}

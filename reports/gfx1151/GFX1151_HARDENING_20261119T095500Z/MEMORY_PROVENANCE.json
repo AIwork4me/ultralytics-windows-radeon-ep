@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "gfx": "gfx1151",
+  "dedicated_vram_mb": 32589,
+  "shared_memory_mb": 78459,
+  "memory": {
+    "schema_version": 1,
+    "sources": {
+      "dedicated_video_mb": {
+        "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "driver/BIOS-reported dedicated segment; on an integrated APU this is a carve-out, NOT independent physical VRAM"
+      },
+      "dedicated_system_mb": {
+        "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "system memory dedicated to the adapter segment"
+      },
+      "shared_system_mb": {
+        "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "system RAM the GPU is allowed to share; not VRAM"
+      },
+      "wmi_adapter_ram_bytes": {
+        "source": "WMI Win32_VideoController.AdapterRAM",
+        "unit": "bytes",
+        "meaning": "uint32 field; saturates near 4 GiB and is unreliable for >4 GiB devices; do NOT use as VRAM capacity"
+      }
+    },
+    "values": {
+      "dedicated_video_mb": 32589,
+      "dedicated_system_mb": 0,
+      "shared_system_mb": 78459,
+      "wmi_adapter_ram_bytes": 4293918720
+    },
+    "wmi_adapter_ram_saturated": true,
+    "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, bandwidth, temperature and power are NOT_MEASURED"
+  },
+  "conclusion": "Three different measurement calibers; WMI AdapterRAM saturates at uint32 4GiB and must not be used as VRAM. Runtime VRAM usage/bandwidth/temperature/power remain NOT_MEASURED."
+}

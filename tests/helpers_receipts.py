@@ -97,7 +97,7 @@ def make_receipt_v2(*, ep="amdgpu", exec_status="PASS_GPU_EXECUTED_FULL",
                     task_kind="TASK_PARITY", thresholds_declared=None,
                     errors=None, verified=True,
                     rca_ids=None, backend_route=None, model_sha=None,
-                    input_present=True) -> dict:
+                    input_present=True, contract=None) -> dict:
     """Structurally-valid v2 receipt. An *honest* one is self-consistent because
     verdicts/status are derived from the same evidence the builder emits."""
     from radeon_ort.receipts import (build_receipt_v2, derive_verdicts,
@@ -220,6 +220,7 @@ def make_receipt_v2(*, ep="amdgpu", exec_status="PASS_GPU_EXECUTED_FULL",
                     "python_version": "3.13", "ultralytics_version": "8.4.215",
                     "raw_log_path_redacted": None, "raw_log_sha256": None,
                     "env_fingerprint": {}},
+        contract=contract,
     )
     # derive verdicts from evidence so honest receipts are self-consistent
     v = derive_verdicts(r)

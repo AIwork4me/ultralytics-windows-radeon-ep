@@ -49,6 +49,8 @@ def _map_status(status: str) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
+    ap.add_argument("--host", default=None,
+                    help="gfx target; read from RUN_CONTRACT.json / report path when omitted")
     ap.add_argument("--catalog", default=str(REPO_ROOT / "catalog" / "model_catalog.json"))
     a = ap.parse_args()
     run_dir = Path(a.run_dir)
@@ -56,12 +58,31 @@ def main() -> int:
         print(f"[finalize] FAIL: run dir missing: {run_dir}")
         return 1
 
+    host = a.host
+    gfx_hosts = ("gfx1100", "gfx1151", "gfx1201")
+
     cat = json.loads(Path(a.catalog).read_text(encoding="utf-8"))
     receipts = []
     for rp in sorted(run_dir.glob("receipts/receipt_*.json")):
         receipts.append(json.loads(rp.read_text(encoding="utf-8")))
     if not receipts:
         print("[finalize] FAIL: zero receipts (refusing to invent a disposition ledger)")
+        return 1
+
+    if host is None:
+        cpath = run_dir / "RUN_CONTRACT.json"
+        if cpath.is_file():
+            try:
+                host = json.loads(cpath.read_text(encoding="utf-8")).get("gfx")
+            except json.JSONDecodeError:
+                host = None
+        if not host and run_dir.parent.name in gfx_hosts:
+            host = run_dir.parent.name
+        if not host:
+            print("[finalize] FAIL: cannot determine gfx host; pass --host")
+            return 1
+    if host not in gfx_hosts:
+        print(f"[finalize] FAIL: unsupported host={host!r}")
         return 1
     by_ckpt: dict[str, list[dict]] = {}
     for r in receipts:
@@ -101,21 +122,23 @@ def main() -> int:
                 disposition = "LICENSE_RESTRICTED"
             else:
                 disposition = "NOT_APPLICABLE"
-        rows.append({
+        row = {
             "checkpoint": ckpt, "family": e["family"], "task": e["task"],
             "tier": e.get("tier"), "gpu_effort": e.get("gpu_effort"),
             "eligibility": e.get("eligibility"),
-            "gfx1151_amdgpu": per_ep["amdgpu"], "gfx1151_dml": per_ep["dml"],
             "disposition": disposition,
-            "gfx1100_amdgpu": "NOT_RUN", "gfx1100_dml": "NOT_RUN",
-            "gfx1201_amdgpu": "NOT_RUN", "gfx1201_dml": "NOT_RUN",
             "reason": e.get("eligibility_reason") or "",
-        })
+        }
+        for g in gfx_hosts:
+            row[f"{g}_amdgpu"] = per_ep["amdgpu"] if g == host else "NOT_RUN"
+            row[f"{g}_dml"] = per_ep["dml"] if g == host else "NOT_RUN"
+        rows.append(row)
 
     hist = Counter(r["disposition"] for r in rows)
     eligible = [r for r in rows if r["eligibility"] == "eligible"]
     attempted_both = [r for r in eligible
-                      if r["gfx1151_amdgpu"] != "NOT_RUN" and r["gfx1151_dml"] != "NOT_RUN"]
+                      if r[f"{host}_amdgpu"] != "NOT_RUN"
+                      and r[f"{host}_dml"] != "NOT_RUN"]
     pass_both = [r for r in eligible
                  if r["disposition"] == "PASS_GPU_FULL"]
     ledger = {
@@ -132,7 +155,8 @@ def main() -> int:
         "full_coverage_claim_allowed": len(eligible) > 0 and len(attempted_both) == len(eligible),
         "physical_gpu_full_pass_allowed": len(eligible) > 0 and len(pass_both) == len(eligible),
         "resume_command": (
-            ".venv-winml/Scripts/python -m runner.run_matrix --tier full --ep both "
+            f".venv-winml/Scripts/python -m runner.resume_matrix --run-id {run_dir.name} "
+            f"--host {host} --tier full --ep both "
             "--winml-python .venv-winml/Scripts/python --export-python .venv-export/Scripts/python "
             "--image data/fixtures/bus.jpg --pt-oracle --benchmark --resume"),
         "rows": rows,

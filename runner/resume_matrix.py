@@ -14,14 +14,18 @@ from runner.run_matrix import main as run_matrix_main
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-id", required=True)
+    ap.add_argument("--host", default=None, help="gfx target; inferred from contract/report path")
     ap.add_argument("--tier", default="core")
     ap.add_argument("--ep", choices=["amdgpu", "dml", "both"], default="both")
     ap.add_argument("--winml-python", default=None)
     ap.add_argument("--export-python", default=None)
     ap.add_argument("--image", default=None)
     ap.add_argument("--benchmark", action="store_true")
+    ap.add_argument("--with-negative", action="store_true")
     a, extra = ap.parse_known_args()
     argv = ["--tier", a.tier, "--ep", a.ep, "--run-id", a.run_id, "--resume"]
+    if a.host:
+        argv += ["--host", a.host]
     if a.winml_python:
         argv += ["--winml-python", a.winml_python]
     if a.export_python:
@@ -30,6 +34,8 @@ def main() -> int:
         argv += ["--image", a.image]
     if a.benchmark:
         argv += ["--benchmark"]
+    if a.with_negative:
+        argv += ["--with-negative"]
     return run_matrix_main(argv + extra)
 
 

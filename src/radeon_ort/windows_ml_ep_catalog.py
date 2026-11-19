@@ -53,9 +53,16 @@ def bootstrap_winml(product_version: str = "2.3"):
 
 
 def probe_windows_ml_api(bootstrap_version: str | None = "2.3") -> dict:
-    """Discover the installed WinML python surface (with bootstrap when possible)."""
+    """Discover the installed WinML python surface (with bootstrap when possible).
+
+    Also probes the OFFICIAL flat-C-API bindings (`windowsml` package, the
+    supported Python surface for Microsoft.Windows.AI.MachineLearning >= 2.5.96).
+    The legacy `wasdk-...` projection is kept for evidence comparability, but it
+    is below the AMDGPU EP minimum and must not be the only catalog path.
+    """
     caps = {"projection_module": None, "types_found": [], "errors": [],
-            "bootstrap": None, "catalog_providers": None}
+            "bootstrap": None, "catalog_providers": None,
+            "windowsml": None, "catalog_probes": []}
     try:
         import importlib
         mod = importlib.import_module(PROJECTION_MODULE)
@@ -66,9 +73,9 @@ def probe_windows_ml_api(bootstrap_version: str | None = "2.3") -> dict:
                 caps["types_found"].append(attr)
     except ImportError as e:
         caps["errors"].append(f"projection {PROJECTION_MODULE} not importable: {e}")
-        return caps
+        mod = None
 
-    if bootstrap_version:
+    if mod is not None and bootstrap_version:
         try:
             ctx = bootstrap_winml(bootstrap_version)
             caps["bootstrap"] = f"initialized (version={bootstrap_version})"
@@ -80,9 +87,39 @@ def probe_windows_ml_api(bootstrap_version: str | None = "2.3") -> dict:
                  "library_path": p.library_path or "", "package_id": p.package_id or ""}
                 for p in provs
             ]
+            caps["catalog_probes"].append(
+                {"engine": "wasdk_projection", "providers": len(provs)})
             caps["_bootstrap_ctx"] = ctx  # caller must keep alive while using catalog
         except Exception as e:  # noqa: BLE001
             caps["bootstrap"] = f"failed: {type(e).__name__}: {e}"
+
+    # Official Python bindings (`pip install windowsml`) for WinML >= 2.5.96.
+    try:
+        import importlib
+        import importlib.metadata as md
+        wm = importlib.import_module("windowsml")
+        try:
+            ver = md.version("windowsml")
+        except Exception:  # noqa: BLE001
+            ver = getattr(wm, "__version__", "unknown")
+        provs = []
+        with wm.EpCatalog() as cat:
+            for p in cat.find_all_providers():
+                provs.append({
+                    "name": p.name, "version": p.version,
+                    "ready_state": int(getattr(p.ready_state, "value", p.ready_state)),
+                    "certification": int(getattr(p.certification, "value", p.certification)),
+                    "library_path": p.library_path or "",
+                    "package_family_name": p.package_family_name or "",
+                    "package_root_path": p.package_root_path or "",
+                })
+        caps["windowsml"] = {"version": ver, "providers": provs}
+        caps["catalog_probes"].append(
+            {"engine": "windowsml_flat_c", "version": ver, "providers": len(provs)})
+    except ImportError:
+        caps["windowsml"] = {"installed": False}
+    except Exception as e:  # noqa: BLE001
+        caps["windowsml"] = {"error": f"{type(e).__name__}: {e}"}
     return caps
 
 
@@ -92,6 +129,9 @@ def _machine_windowsapps_patterns() -> list[str]:
         return []
     return [
         str(mwa / "*WinML*AMD*GPU*EP*" / "ExecutionProvider" / "amdgpu-ep.dll"),
+        str(mwa / "*AMD*GPU*EP*" / "ExecutionProvider" / "amdgpu-ep.dll"),
+        str(mwa / "*AMDGPU*EP*" / "ExecutionProvider" / "amdgpu-ep.dll"),
+        str(mwa / "*WinML*AMD*GPU*EP*" / "**" / "amdgpu-ep.dll"),
     ]
 
 
@@ -141,6 +181,13 @@ def catalog_probe() -> EpCatalogResult:
         "amdgpu_dlls": dlls["dlls"],
         "provider_registered": False,
         "register_attempt": "not_attempted",
+        "ep_devices": list_ort_ep_devices(),
+        "ort_providers": list_ort_providers(),
+        "windowsml": caps.get("windowsml"),
+        "catalog_provider_count": {
+            "wasdk_projection": len(caps.get("catalog_providers") or []),
+            "windowsml_flat_c": len(((caps.get("windowsml") or {}).get("providers") or [])),
+        },
     }
     ort = _get_ort()
     real = _rederive_real_paths()

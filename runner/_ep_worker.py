@@ -55,6 +55,11 @@ def main() -> int:
     a = ap.parse_args()
     case = json.loads(Path(a.case).read_text(encoding="utf-8"))
     ep = case["ep"].lower()
+    gfx = case.get("gfx")
+    if not gfx:
+        print("invalid case: missing explicit gfx target (no gfx1151 default)",
+              file=sys.stderr)
+        return 3
     onnx_path = case["onnx_path"]
     atol = case.get("atol", 5e-3)
     rtol = case.get("rtol", 5e-3)
@@ -87,20 +92,29 @@ def main() -> int:
 
         # device identity check in this process (fresh session corroboration)
         adapters = device_identity.enum_dxgi_adapters()
-        res = device_identity.resolve_target_adapter(adapters, gfx=case.get("gfx", "gfx1151"))
+        res = device_identity.resolve_target_adapter(adapters, gfx=gfx)
         if not res.get("ok"):
             frag["session"]["routing_notes"] = res["reason"]
             _write(a.out, frag)
             print("BLOCKED_IDENTITY: " + res["reason"], file=sys.stderr)
             return 35
         target = res["adapter"]
-        dxgi_corr = {"adapter_index": target.index, "luid": target.luid_str,
-                     "vendor_id": f"0x{target.vendor_id:04X}",
-                     "device_id": f"0x{target.device_id:04X}",
-                     "description": target.description,
-                     "note": "DXGI corroboration of the physical GPU; the EP exposes "
-                             "no LUID/ordinal so candidate->LUID mapping stays unproven "
-                             "(AMDGPU-RCA-004)"}
+        dxgi_corr = {
+            "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+            "is_ep_reported": False,
+            "adapter_index": target.index,
+            "luid": target.luid_str,
+            "vendor_id": f"0x{target.vendor_id:04X}",
+            "device_id": f"0x{target.device_id:04X}",
+            "description": target.description,
+            "did_match": bool(res.get("did_match")),
+            "mapping_assumption": (
+                "DXGI enumerates the host adapters; the EP exposes no LUID/PCI "
+                "identity on this build, so EP-device -> DXGI-LUID is an ordinal "
+                "assumption, not an EP-reported LUID (AMDGPU-RCA-004)"),
+            "note": "host-side corroboration only; DO NOT read this as an "
+                    "EP-reported LUID/ordinal",
+        }
 
         if ep == "cpu":
             sess = create_cpu_session(onnx_path, enable_profiling=True,
@@ -125,6 +139,17 @@ def main() -> int:
             att = result.attestation
             frag["device_binding"] = dict(att)
             frag["device_binding"]["dxgi_corroboration"] = dxgi_corr
+            frag["device_binding"]["ep_reported_identity"] = {
+                "source": "OrtEpDevice.ep_metadata/ep_options",
+                "exposes_luid": False,
+                "exposes_pci_id": False,
+                "reported": dict((att.get("selected_ep_device") or {}).get("ep_metadata") or {}),
+                "note": "this AMDGPU EP build exposes identical metadata for the "
+                        "dual-enumerated 8060S and no LUID; physical corroboration "
+                        "is host-side only",
+            }
+            frag["device_binding"]["identity_basis"] = (
+                "EP_DEVICE_SELECTED_BY_PROFILE + HOST_DXGI_INDIRECT_CORROBORATION")
             frag["session"]["provider_node_counts"] = \
                 (att.get("final_profile") or {}).get("provider_node_counts") or {}
             frag["session"]["graph_node_total"] = sum(
@@ -138,7 +163,7 @@ def main() -> int:
             sess = create_dml_session(onnx_path, device_id=dml_idx,
                                       profile_prefix=case.get("profile_prefix", "dml"))
             # DML revalidation: first profiled run must attribute to DML
-            outs_probe = sess.run(None, feed_dict)
+            sess.run(None, feed_dict)
             dml_counts = profiler_audit.audit_profile(sess.end_profiling())["provider_node_counts"]
             dml_nodes = dml_counts.get("DmlExecutionProvider", 0)
             frag["device_binding"] = {
@@ -155,8 +180,19 @@ def main() -> int:
                 "attribution": ("fused_single_node" if dml_nodes == 1 else
                                 "multi_node" if dml_nodes > 0 else "none"),
                 "dxgi_corroboration": dxgi_corr,
-                "notes": "DML device_id = DXGI adapter ordinal; profile revalidated "
-                         "on the final session's first run",
+                "ep_reported_identity": {
+                    "source": "OrtEpDevice.ep_metadata",
+                    "exposes_luid": False,
+                    "exposes_pci_id": False,
+                    "reported": {"device_id": dml_idx},
+                    "note": "DML exposes only an adapter ordinal; it does not "
+                            "report a LUID or PCI identity",
+                },
+                "identity_basis": "EP_DEVICE_ORDINAL + PROFILE_NODE_ATTESTATION "
+                                  "+ HOST_DXGI_INDIRECT_CORROBORATION",
+                "notes": "DML device_id = DXGI adapter ordinal (host-side assumption, "
+                         "not EP-reported LUID); profile revalidated on the final "
+                         "session's first run",
             }
             frag["session"]["provider_node_counts"] = dml_counts
             frag["session"]["graph_node_total"] = sum(dml_counts.values())

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "scope": "READ_ONLY live DXGI DID-pinned selection probe",
+  "targets": {
+    "None": {
+      "gfx": "gfx1151",
+      "host_id": "host_53f62d2ac2c6",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "device_luid": "0x00000000:0x000154E4",
+      "verified_device_identity": true,
+      "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+      "did_match": true
+    },
+    "gfx1151": {
+      "gfx": "gfx1151",
+      "host_id": "host_53f62d2ac2c6",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "device_luid": "0x00000000:0x000154E4",
+      "verified_device_identity": true,
+      "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+      "did_match": true
+    },
+    "gfx1100": {
+      "gfx": "gfx1100",
+      "host_id": "unknown",
+      "vendor_id": null,
+      "device_id": null,
+      "device_luid": null,
+      "verified_device_identity": false,
+      "identity_method": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1100 DeviceId(s) ['0x7448', '0x744c']; found: 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'; 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'",
+      "did_match": false
+    },
+    "gfx1201": {
+      "gfx": "gfx1201",
+      "host_id": "unknown",
+      "vendor_id": null,
+      "device_id": null,
+      "device_luid": null,
+      "verified_device_identity": false,
+      "identity_method": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'; 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'",
+      "did_match": false
+    }
+  },
+  "note": "gfx1100/gfx1201 requests fail closed on this gfx1151 host; no session was created"
+}

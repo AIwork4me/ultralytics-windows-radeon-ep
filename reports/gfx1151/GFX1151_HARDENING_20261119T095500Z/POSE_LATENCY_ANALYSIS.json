@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "model": "yolo26n-pose.raw_b1_fp32_static.onnx",
+  "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+  "input_id": "f7c35eeba4193cb89631fb0823e76c1223bac00638c8274250bb800c32ded4d0",
+  "ep": "DML",
+  "same_contract_across_runs": "same ONNX SHA, input_id, EP and DmlExecutionProvider=1/CPU=0 in every compared run",
+  "bench_repeats": {
+    "GFX1151_PHYSICAL_20261119T074700Z": {
+      "method": "bench_repeats: fresh session per rep, profile once, warmup 5, 30 samples",
+      "reps": [
+        {
+          "rep": 0,
+          "session_create_ms": 480.72,
+          "first_run_ms": 7.847,
+          "warm_p50": 10.0732,
+          "warm_p95": 11.7151,
+          "warm_mean": 10.028596666666665,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        },
+        {
+          "rep": 1,
+          "session_create_ms": 402.7674,
+          "first_run_ms": 7.5373,
+          "warm_p50": 10.786850000000001,
+          "warm_p95": 11.457445,
+          "warm_mean": 10.408406666666668,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        },
+        {
+          "rep": 2,
+          "session_create_ms": 402.7182,
+          "first_run_ms": 7.5165,
+          "warm_p50": 10.9694,
+          "warm_p95": 11.378065,
+          "warm_mean": 10.501046666666667,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        }
+      ],
+      "aggregate_p50": {
+        "mean": 10.609816666666667,
+        "min": 10.0732,
+        "max": 10.9694
+      }
+    },
+    "GFX1151_PHYSICAL_20261119T081900Z": {
+      "method": "bench_repeats: fresh session per rep, profile once, warmup 5, 30 samples",
+      "reps": [
+        {
+          "rep": 0,
+          "session_create_ms": 727.1989,
+          "first_run_ms": 9.1178,
+          "warm_p50": 2.5603,
+          "warm_p95": 10.514684999999998,
+          "warm_mean": 3.9335,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        },
+        {
+          "rep": 1,
+          "session_create_ms": 222.4311,
+          "first_run_ms": 3.9403,
+          "warm_p50": 2.70365,
+          "warm_p95": 2.78571,
+          "warm_mean": 2.711176666666667,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        },
+        {
+          "rep": 2,
+          "session_create_ms": 216.6129,
+          "first_run_ms": 3.8162,
+          "warm_p50": 2.6621,
+          "warm_p95": 2.7961199999999997,
+          "warm_mean": 2.6792333333333334,
+          "dml_nodes": 1,
+          "cpu_nodes": 0
+        }
+      ],
+      "aggregate_p50": {
+        "mean": 2.6420166666666667,
+        "min": 2.5603,
+        "max": 2.70365
+      }
+    }
+  },
+  "current_single_session": {
+    "method": "r1_pipeline --benchmark (single session, profiling ended before measurement)",
+    "warm_run_ms_p50": 11.06765,
+    "warm_run_ms_mean": 10.809763333333335,
+    "samples": 30
+  },
+  "profiled_first_run_durations_us": {
+    "074700": {
+      "kernel_time": 3147,
+      "model_run": 8144
+    },
+    "081900": {
+      "kernel_time": 3021,
+      "model_run": 8079
+    },
+    "095000": {
+      "kernel_time": 5945,
+      "model_run": 16788
+    },
+    "note": "These are first profiled runs, not the warm bench samples; they do not by themselves explain the 4x warm delta."
+  },
+  "observations": [
+    "081900Z is ~4x faster (p50 2.56-2.70 ms) than 074700Z (10.07-10.97 ms) and the 095000Z single-session check (p50 11.07 ms).",
+    "The two ~10-11 ms observations come from different methods/runs; the 2.56-2.70 ms value is the outlier in the available dataset.",
+    "No GPU clock, power, temperature or display/RDP session telemetry was recorded with any benchmark.",
+    "The PR #8 report's statement that GPU clock/thermal state caused the difference is a hypothesis, not measured evidence."
+  ],
+  "root_cause": "UNKNOWN",
+  "thermal_hypothesis": "UNSUPPORTED_BY_DATA",
+  "candidate_hypotheses": [
+    {
+      "hypothesis": "GPU core/memory clock and power-state difference (idle vs boosted)",
+      "status": "NOT_MEASURED"
+    },
+    {
+      "hypothesis": "display/RDP session or frame-pacing state affects DML submission",
+      "status": "NOT_MEASURED"
+    },
+    {
+      "hypothesis": "DML pipeline/shader cache warm state differs between runs",
+      "status": "NOT_MEASURED"
+    },
+    {
+      "hypothesis": "host CPU scheduling/background load changes submission overhead",
+      "status": "NOT_MEASURED"
+    }
+  ],
+  "measurement_plan": [
+    "Interleave 074700-style and 081900-style runs in one session; alternate 5x each.",
+    "Record GPU core/memory clocks, board power, temperature and utilization at 1 Hz (AMD ADL/SMI or vendor tool).",
+    "Record whether the session is local console or RDP, and display power state.",
+    "Use one fresh session per sample and report per-sample distribution; do not compare different methods as if identical.",
+    "Keep all runs under new run_ids; never rewrite the historical benchmark receipts."
+  ]
+}

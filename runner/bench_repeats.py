@@ -35,12 +35,26 @@ def main() -> int:
     ap.add_argument("--onnx", required=True)
     ap.add_argument("--input-npy", required=True)
     ap.add_argument("--ep", choices=["dml", "amdgpu"], default="dml")
-    ap.add_argument("--gfx", default="gfx1151")
+    ap.add_argument("--gfx", default=None,
+                    help="gfx target; inferred from DXGI DID when omitted")
     ap.add_argument("--reps", type=int, default=3)
     ap.add_argument("--warmup", type=int, default=5)
     ap.add_argument("--samples", type=int, default=30)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
+
+    if a.gfx is None:
+        from radeon_ort.device_identity import (enum_dxgi_adapters,
+                                                infer_gfx_from_adapters)
+        inf = infer_gfx_from_adapters(enum_dxgi_adapters())
+        if not inf.get("ok"):
+            out = {"status": "BLOCKED_IDENTITY", "ep": a.ep,
+                   "error": inf.get("reason"), "onnx": Path(a.onnx).name}
+            Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(a.out).write_text(json.dumps(out, indent=2), encoding="utf-8")
+            print(json.dumps(out))
+            return 2
+        a.gfx = inf["gfx"]
 
     import numpy as np
 
@@ -114,9 +128,26 @@ def main() -> int:
         vals = [r["warm_ms"][field] for r in reps]
         return {"mean": statistics.fmean(vals), "min": min(vals), "max": max(vals)}
 
+    from radeon_ort.device_identity import (enum_dxgi_adapters,
+                                            memory_provenance,
+                                            resolve_target_adapter)
+    dev_res = resolve_target_adapter(enum_dxgi_adapters(), gfx=a.gfx)
+    dev = dev_res.get("adapter") if dev_res.get("ok") else None
     out = {
         "schema_version": 1, "ep": a.ep, "onnx": Path(a.onnx).name,
         "input_npy": Path(a.input_npy).name,
+        "gfx": a.gfx,
+        "device": {
+            "state": "EP_DEVICE_SELECTED" if dev is not None else "BLOCKED_IDENTITY",
+            "luid": dev.luid_str if dev else None,
+            "vendor_id": f"0x{dev.vendor_id:04X}" if dev else None,
+            "device_id": f"0x{dev.device_id:04X}" if dev else None,
+            "dxgi_corroboration_only": True,
+            "note": "DML/AMDGPU expose no EP-reported LUID on this build; the "
+                    "LUID above is host-side DXGI evidence, not EP-reported",
+        },
+        "memory": (memory_provenance(dev)
+                   if dev is not None else {"measurement_status": "NOT_MEASURED"}),
         "warmup": a.warmup, "samples_per_rep": a.samples, "repetitions": a.reps,
         "pre_post_processing": "NOT_MEASURED (separate pipeline phases)",
         "timer": "time.perf_counter_ns",
