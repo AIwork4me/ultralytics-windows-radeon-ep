@@ -77,7 +77,11 @@ def test_missing_reference_file_blocks_without_faking_a_pass(tmp_path):
 def test_catalog_task_mismatch_blocks(tmp_path):
     pt = tmp_path / "yolo26n.pt"
     pt.write_bytes(b"pt-bytes")
-    r = _predict(tmp_path, task="segment", verify_task=True, pt_reference=pt)
+    # pass a real interpreter so the *catalog* check is the one that fires: on a
+    # CPU-only CI runner there is no .venv-export, and the interpreter
+    # precondition would otherwise mask the task-binding check.
+    r = _predict(tmp_path, task="segment", verify_task=True, pt_reference=pt,
+                 export_python=sys.executable)
     assert r["task_verified"] is False
     assert r["task_parity"]["status"] == tor.BLOCKED
     assert "TASK_ORACLE_MODEL_TASK_MISMATCH" in r["task_parity"]["reason_code"]
