@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_dir": "GFX1151_PREFLIGHT_20261118T234053Z",
+  "local_only_root": "%USERPROFILE%/../local_evidence/GFX1151_PREFLIGHT_20261118T234053Z",
+  "policy": "weights/tensors are not published; regenerate inputs from the persisted manifest + image; receipts keep hashes",
+  "files": [
+    {
+      "path": "canary/canary_amdgpu.onnx",
+      "sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+      "bytes": 262316,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "canary/canary_feeds.npz",
+      "sha256": "4531c227068576be919c0f16022d65f877bd1ce56047711d2e90d7840e34a027",
+      "bytes": 524778,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "canary/canary_ref.npz",
+      "sha256": "4e3e951faf2f961ba4094ce2406562d11ab6dbdfaefb90ece1820b82b1284b2f",
+      "bytes": 242662,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    }
+  ]
+}

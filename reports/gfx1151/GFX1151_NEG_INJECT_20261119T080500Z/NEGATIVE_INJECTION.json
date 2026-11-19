@@ -1,0 +1,56 @@
+{
+  "run_utc": "2026-11-19T00:04:08Z",
+  "gfx": "gfx1151",
+  "results": {
+    "inject1_forged_identity": {
+      "ok": false,
+      "reason": "WRONG_OR_AMBIGUOUS_DEVICE: no non-software AMD adapter found",
+      "expected": "WRONG_OR_AMBIGUOUS_DEVICE",
+      "passed": true
+    },
+    "inject2_impossible_ep_path": {
+      "failed_as_expected": true,
+      "error": "[ONNXRuntimeError] : 1 : FAIL : Error loading \"C:\\nonexistent\\amdgpu-ep.dll\" which is missing. (Error 126: \"\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6a21\u5757\u3002\")",
+      "expected": "registration failure",
+      "passed": true
+    },
+    "inject4_dml_wrong_adapter": {
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "cpu_fallback_detected": true,
+      "expected": "wrong adapter cannot be certified: DML init failure or CPU retry detected",
+      "passed": true
+    },
+    "inject5_wrapper_cpu_retry": {
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "counts": {
+        "CPUExecutionProvider": 1
+      },
+      "amdgpu_nodes": 0,
+      "cpu_nodes": 1,
+      "expected": "CPU-only masquerade caught (AMDGPU nodes 0)",
+      "passed": true
+    },
+    "inject3_cpu_only_claim_forged": {
+      "ok": false,
+      "derived": "FAIL_NO_GPU_COMPUTE",
+      "problems": [
+        "status.amdgpu forged or stale: receipt says 'PASS_GPU_EXECUTED_FULL', evidence derives 'FAIL_NO_GPU_COMPUTE'",
+        "amdgpu: FULL claim but AMDGPU node count not positive"
+      ],
+      "expected": "validator rejects",
+      "passed": true
+    }
+  },
+  "summary": {
+    "inject1_forged_identity": true,
+    "inject2_impossible_ep_path": true,
+    "inject4_dml_wrong_adapter": true,
+    "inject5_wrapper_cpu_retry": true,
+    "inject3_cpu_only_claim_forged": true
+  },
+  "all_passed": true
+}

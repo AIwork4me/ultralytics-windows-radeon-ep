@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "run_dir": "GFX1151_PHYSICAL_20261119T081900Z",
+  "local_only_root": "%USERPROFILE%/../local_evidence/GFX1151_PHYSICAL_20261119T081900Z",
+  "policy": "weights/tensors are not published; regenerate inputs from the persisted manifest + image; receipts keep hashes",
+  "files": [
+    {
+      "path": "inputs/input_1bfe5fe9dfe2d25a.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_3b636e00741f017f.npy",
+      "sha256": "26cc428bc7daa3b35bb132f497e53238de73c1ed09df3b110245ad7a690d7c18",
+      "bytes": 7078016,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_4924f3e072d410df.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_7288cbed03310a8c.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_753bbd6032dadfbf.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_84817e527945840a.npy",
+      "sha256": "c41c8b411f37a8de92a02e757b6713ed41387f61021d612168b2850fb2c6ba38",
+      "bytes": 12583040,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_987789f38c39ecb1.npy",
+      "sha256": "0b4d62eaf49b9e25722aaceeda59f7353ceca13ca311623b8d7218cc1665fbc6",
+      "bytes": 602240,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_a046b9e36f3b872b.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "inputs/input_f7c35eeba4193cb8.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo11n__detect_dml.npz",
+      "sha256": "1345a14f71d45d8c9489a2662c55f5a88f36d72c34b2bb919bc37c084306e11c",
+      "bytes": 2568682,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-cls__classify_dml.npz",
+      "sha256": "c3efe39a8ec15b97083509d0ded5fdc340af1318f0a51a4e1781db6512b6b2f1",
+      "bytes": 3991,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-depth__depth_dml.npz",
+      "sha256": "9974ce4743ec31cdcf0375957fb519b9d76dcc1138eff0f1286ff4a62c87f600",
+      "bytes": 1973224,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-obb__obb_dml.npz",
+      "sha256": "f24f45f4ad61a4809ad961f2421a2b19e24806b22e5db5fd6fdbb61431081988",
+      "bytes": 1583196,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-pose__pose_dml.npz",
+      "sha256": "8a2eec18070fcd1f92b5506639add1f943a23e2f321c64621e6583d32ac953ef",
+      "bytes": 1689004,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-seg__segment_dml.npz",
+      "sha256": "c2df4067ad07b70f859000720fdd4b43f4831d3327d88e96139073385d1758d1",
+      "bytes": 6524729,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n-sem__semantic_dml.npz",
+      "sha256": "f0028a7cf1f60f5b936107b05be5a24d7f899d296ae9d5644644138eb13fb001",
+      "bytes": 6956,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolo26n__detect_dml.npz",
+      "sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
+      "bytes": 2607655,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/cand_yolov8n__detect_dml.npz",
+      "sha256": "93be9b85cf4223c53bf9d149f166f27140ac28a97aa40c97a32ccb3b17cb20ff",
+      "bytes": 2578605,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo11n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-cls__classify_dml.npz",
+      "sha256": "4ddb28beacfd5bde6d42ee95f83ef118a923795616d0ff9db6a2afcc8c7b8ab3",
+      "bytes": 3985,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-depth__depth_dml.npz",
+      "sha256": "3b05983cfc34e0636426857a886e7f37c365c920960932b0ee84cdc7560821f5",
+      "bytes": 1973217,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-obb__obb_dml.npz",
+      "sha256": "dae8142f697627a9c95c133501b0ae8d51ad6c2d09b956de7b51bc1c24e2ccab",
+      "bytes": 527,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-pose__pose_dml.npz",
+      "sha256": "0a39614d9ec294f61a6be3477e4b09bca03cc94ef42ea0ed5b2567ee56afa68c",
+      "bytes": 1026,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-seg__segment_dml.npz",
+      "sha256": "be855a44ae20059ec72975f687d3b456abcec64fd170ad21fdb93eb14677e174",
+      "bytes": 8023,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n-sem__semantic_dml.npz",
+      "sha256": "3c0c1c2435aee002f8404fdf299da284d733392797bead868bf628543c88f11e",
+      "bytes": 6957,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/post_yolov8n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo11n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-cls__classify.npz",
+      "sha256": "ddbf261cc3202469c54e6be3bc7c3dd7a0b249dc86bd46389d04c561131af068",
+      "bytes": 3999,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-depth__depth.npz",
+      "sha256": "e45ae7f0bdf4a447149d774a0a03f26e597ca45900fd11072967825c46de1752",
+      "bytes": 1972016,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-obb__obb.npz",
+      "sha256": "6ed5cb15737d9d426033410a2feaf58af34662d03035bf3ee08e104ab6a8f714",
+      "bytes": 528,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-pose__pose.npz",
+      "sha256": "a89f0572511ec94bb4900409de305987b33bad9764f62a301f91a25a10723aff",
+      "bytes": 1025,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-seg__segment.npz",
+      "sha256": "be855a44ae20059ec72975f687d3b456abcec64fd170ad21fdb93eb14677e174",
+      "bytes": 8023,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n-sem__semantic.npz",
+      "sha256": "3c0c1c2435aee002f8404fdf299da284d733392797bead868bf628543c88f11e",
+      "bytes": 6957,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/pt_yolov8n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo11n__detect.npz",
+      "sha256": "a8e7ca93ee1b0281652a4fef8bc4b7959a1d9c644c97dc0f7079af059de3cc5d",
+      "bytes": 800480,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-cls__classify.npz",
+      "sha256": "8898acfc521db3d4c478b8d2807b77ac08461b4d41133b13e7b199f4c2febc59",
+      "bytes": 4001,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-depth__depth.npz",
+      "sha256": "c7ea794aed329441a7eb469a5393a5a631003463e4062c7510d9d009a6f755d7",
+      "bytes": 1972615,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-obb__obb.npz",
+      "sha256": "5cecc1394e5503d95bb18f9b0e7132350bcb3fe9495743c87e18d73e0ff7fc96",
+      "bytes": 545649,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-pose__pose.npz",
+      "sha256": "5753355c2a4d887f62eaf6dcab70eb8118c046f54b4a23252ec255e03635eda2",
+      "bytes": 1677619,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-seg__segment.npz",
+      "sha256": "b3692cc4c64309c8140f5f19b8cd224161f7ef9b4c592cdcfffd8934713a8cf0",
+      "bytes": 4544000,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n-sem__semantic.npz",
+      "sha256": "f0028a7cf1f60f5b936107b05be5a24d7f899d296ae9d5644644138eb13fb001",
+      "bytes": 6956,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolo26n__detect.npz",
+      "sha256": "09f1e064de6692e7254c1662b6b6d2046516c68004b6da3cb1bc37966d08fc1d",
+      "bytes": 612126,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    },
+    {
+      "path": "raw/ref_yolov8n__detect.npz",
+      "sha256": "0d1ef178473e6561638784bf8799385b073df240dfdd9c03dbff3e11d5cfc5c8",
+      "bytes": 809143,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    }
+  ]
+}

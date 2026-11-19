@@ -1,0 +1,292 @@
+{
+  "schema_version": 2,
+  "receipt_version": 2,
+  "run_id": "GFX1151_PHYSICAL_20261119T081900Z",
+  "case_id": "yolo26n__detect__dml",
+  "created_utc": "2026-11-19T00:19:55Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "PASS_ONNX_EXPORT",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "NOT_RUN",
+    "dml": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "benchmark": "PASS_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "unknown",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "device_luid": "0x00000000:0x000154E4",
+    "dxgi_evidence": {
+      "adapters": [
+        {
+          "i": 0,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "software": false
+        },
+        {
+          "i": 1,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x00CA17CF",
+          "software": false
+        },
+        {
+          "i": 2,
+          "desc": "Microsoft Basic Render Driver",
+          "vid": "0x1414",
+          "did": "0x008C",
+          "luid": "0x00000000:0x000174B5",
+          "software": true
+        }
+      ],
+      "selected_luid": "0x00000000:0x000154E4"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1"
+    },
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22018.5",
+    "driver_date": "09/17/2025",
+    "wddm_version": null,
+    "dedicated_vram_mb": 32589,
+    "shared_memory_mb": 78459,
+    "verified_device_identity": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)"
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "detect",
+    "checkpoint": "yolo26n.pt",
+    "size": "n",
+    "pt_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/models/onnx/yolo26n.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 640,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false,
+      "ultralytics_version": "8.4.215"
+    },
+    "input_names": [
+      "images"
+    ],
+    "output_names": [
+      "output0"
+    ],
+    "inputs_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+  },
+  "session": {
+    "ep": "DML",
+    "requested_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "graph_node_total": 1,
+    "profile_available": true,
+    "profile_fused_event_present": true,
+    "ort_version": "1.25.2",
+    "ort_distribution": "onnxruntime",
+    "device_luid": "0x00000000:0x000154E4",
+    "routing_notes": "",
+    "stderr_fallback_signals": [],
+    "stdout_fallback_signals": [],
+    "worker_pid": 19884
+  },
+  "parity": {
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          84,
+          8400
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 0.001911163330078125,
+        "mean_abs_diff": 1.2696476700625182e-06,
+        "max_rel_diff": 133842.1498076059,
+        "p99_abs_diff": 3.4332275390625e-05,
+        "allclose": true,
+        "threshold_used": 0.005,
+        "candidate_sha256": "e83aaca2da994744115c1b477ba5da993602894132a00f735ef7ac67be5b61c3",
+        "ref_sha256": "23786020c13e58a3c68373c9520251dc42b8cdaa105960d57c45309bda231027"
+      }
+    ],
+    "all_outputs_allclose": true,
+    "by_name_matching": true,
+    "thresholds": {
+      "atol": 0.005,
+      "rtol": 0.005,
+      "source": "configs/thresholds.yaml",
+      "int_min_agreement": 0.999
+    }
+  },
+  "task": null,
+  "benchmark_data": {
+    "warm_run_ms_p50": 11.846499999999999,
+    "warm_run_ms_p95": 13.101079999999996,
+    "warm_run_ms_p99": 13.962346,
+    "warm_run_ms_mean": 11.655893333333333,
+    "warm_run_ms_std": 1.0838832870542636,
+    "warm_run_samples": 30,
+    "timer": "time.perf_counter_ns"
+  },
+  "errors": [],
+  "provenance": {
+    "script_head_sha": "git:see-git_head_sha",
+    "command": "python -m runner.r1_pipeline --models yolo26n.pt --eps dml",
+    "seed": 0,
+    "python_version": "3.12.10",
+    "ultralytics_version": "8.4.215",
+    "git_head_sha": "82d2e4fba8c25debd336188b42d136cd43cc9a60",
+    "worktree_dirty": false,
+    "raw_log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/GFX1151_PHYSICAL_20261119T081900Z/raw/log_yolo26n__detect_dml.txt"
+  },
+  "verdicts": {
+    "identity": "EP_DEVICE_SELECTED",
+    "amdgpu": {
+      "execution": "NOT_RUN",
+      "numeric_parity": "PASS",
+      "task_parity": "NOT_RUN",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "MEASURED"
+    },
+    "dml": {
+      "execution": "PASS_FULL",
+      "numeric_parity": "PASS",
+      "task_parity": "PASS_TASK_PARITY",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "MEASURED"
+    }
+  },
+  "input": {
+    "input_id": "1bfe5fe9dfe2d25a3a3ae51d3b2148b087483bdfb5fb70386748fb237e797ec8",
+    "kind": "real_image",
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "tensor_sha256": {
+      "images": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9"
+    },
+    "preprocess": {
+      "method": "letterbox",
+      "params": {
+        "ratio": 0.5925925925925926,
+        "new_h": 640,
+        "new_w": 480,
+        "top": 0,
+        "left": 80,
+        "bottom": 0,
+        "right": 80,
+        "imgsz": 640
+      },
+      "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
+      "tensor_dtype": "float32",
+      "tensor_shape": [
+        1,
+        3,
+        640,
+        640
+      ]
+    },
+    "npy_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/GFX1151_PHYSICAL_20261119T081900Z/inputs/input_1bfe5fe9dfe2d25a.npy",
+    "generation": {
+      "script": "radeon_ort.input_contract.build_input_bundle",
+      "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":640,\"model_name\":\"yolo26n\",\"onnx_sha256\":\"3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd\",\"task\":\"detect\",\"variant\":\"real_image_v1\"}"
+    }
+  },
+  "expected_outputs": [
+    {
+      "name": "output0",
+      "dtype": "float32",
+      "shape": [
+        1,
+        84,
+        8400
+      ]
+    }
+  ],
+  "worker": {
+    "exit_code": 0,
+    "pid": 19884,
+    "parent_pid": 14424,
+    "python": "3.12.10"
+  },
+  "device_binding": {
+    "ep": "DML",
+    "state": "EP_DEVICE_SELECTED",
+    "selected_candidate_index": 0,
+    "candidates_tried": 1,
+    "selected_ep_device": {
+      "ep_vendor": "Microsoft",
+      "ep_metadata": {
+        "device_id": 0
+      },
+      "ep_options": {}
+    },
+    "probe": {
+      "amdgpu_nodes": 0,
+      "cpu_nodes": 0,
+      "profile": null
+    },
+    "final_profile": {
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      }
+    },
+    "attribution": "fused_single_node",
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "luid": "0x00000000:0x000154E4",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "note": "DXGI corroboration of the physical GPU; the EP exposes no LUID/ordinal so candidate->LUID mapping stays unproven (AMDGPU-RCA-004)"
+    },
+    "notes": "DML device_id = DXGI adapter ordinal; profile revalidated on the final session's first run"
+  },
+  "task_parity": {
+    "oracle_kind": "TASK_PARITY",
+    "task": "detect",
+    "ref_source": "PT_ULTRALYTICS",
+    "cand_source": "DML_POST",
+    "ref_fingerprint_sha256": "433b41802928f3e36fa8869d6e446dd6",
+    "cand_fingerprint_sha256": "1342e05c30c9c00a043385cba09b0bcc",
+    "metrics": {
+      "ref_entities": 5,
+      "matched": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "iou_mean": 0.9999993533816468
+    },
+    "thresholds_declared": {
+      "iou_thres": 0.5,
+      "min_precision": 0.9,
+      "min_recall": 0.9,
+      "min_matches": 1
+    },
+    "thresholds_source": "configs/thresholds.yaml",
+    "passed": true,
+    "not_implemented_reason": null,
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "input_id": "1bfe5fe9dfe2d25a3a3ae51d3b2148b087483bdfb5fb70386748fb237e797ec8"
+  },
+  "rca_issue_ids": []
+}

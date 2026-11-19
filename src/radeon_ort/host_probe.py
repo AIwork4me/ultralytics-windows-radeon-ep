@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import platform
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -41,6 +42,10 @@ Get-CimInstance Win32_PnPSignedDriver | Where-Object { $_.DeviceClass -eq 'DISPL
   } | ConvertTo-Json -Compress
 }
 Get-AppxPackage | Where-Object { $_.Name -match 'WindowsAppRuntime' } | Select-Object -ExpandProperty Version
+# A non-terminating Appx/cmdlet error can leave a non-zero process exit code even
+# though the fingerprint was emitted completely (observed on a clean 25H2 host).
+# Success is judged by parseable output, not by this trailing exit code.
+exit 0
 """
 
 
@@ -49,9 +54,30 @@ def _run_ps() -> str:
         ["powershell", "-NoProfile", "-Command", PS_SCRIPT],
         capture_output=True, text=True, timeout=120,
     )
-    if r.returncode != 0:
+    lines = [ln for ln in (r.stdout or "").splitlines() if ln.strip()]
+    json_lines = [ln for ln in lines if ln.lstrip().startswith("{")]
+    if r.returncode != 0 and len(json_lines) < 2:
         raise RuntimeError(f"powershell probe failed rc={r.returncode}: {r.stderr[:500]}")
+    if r.returncode != 0:
+        print(f"[host_probe] WARNING: powershell rc={r.returncode} but {len(json_lines)} "
+              f"JSON records were emitted; continuing", file=sys.stderr)
     return r.stdout
+
+
+def redact_pnp_id(pnp: str | None) -> str | None:
+    """Keep the public hardware identification prefix only.
+
+    A full PnP *instance* id embeds the machine-local device instance path
+    (e.g. the trailing \\4&85C8329&0&0041), which is host-identifying. The
+    vendor/device/subsystem/revision prefix is public hardware data.
+    """
+    if not pnp:
+        return pnp
+    text = str(pnp)
+    head, sep, tail = text.rpartition("\\")
+    if sep and re.match(r"^[0-9A-Fa-f]+&", tail):
+        return head
+    return text
 
 
 def collect_host(gpu_name_needle: str = "8060S", gfx: str = "gfx1151") -> dict:
@@ -62,12 +88,20 @@ def collect_host(gpu_name_needle: str = "8060S", gfx: str = "gfx1151") -> dict:
     cpu_info = json.loads(lines[1])
     gpus = []
     idx = 2
+    # video-controller records carry "name"; signed-driver records carry
+    # "device_name". They are two consecutive JSON streams, not one.
     while idx < len(lines) and lines[idx].startswith("{"):
-        gpus.append(json.loads(lines[idx]))
+        obj = json.loads(lines[idx])
+        if "name" not in obj:
+            break
+        gpus.append(obj)
         idx += 1
     drivers = []
     while idx < len(lines) and lines[idx].startswith("{"):
-        drivers.append(json.loads(lines[idx]))
+        obj = json.loads(lines[idx])
+        if "device_name" not in obj:
+            break
+        drivers.append(obj)
         idx += 1
     runtimes = [ln for ln in lines[idx:] if ln and ln[0].isdigit()]
 
@@ -88,7 +122,8 @@ def collect_host(gpu_name_needle: str = "8060S", gfx: str = "gfx1151") -> dict:
             "tooling": {},
             "_gpu_list": gpus,
         }
-    drv_meta = next((d for d in drivers if (d.get("device_name") or "").lower() == needle), {})
+    drv_meta = next((d for d in drivers
+                     if needle in (d.get("device_name") or "").lower()), {})
     return {
         "schema_version": 1,
         "captured_utc": __import__("radeon_ort.receipts", fromlist=["utc_now_iso"]).utc_now_iso(),
@@ -99,12 +134,13 @@ def collect_host(gpu_name_needle: str = "8060S", gfx: str = "gfx1151") -> dict:
             "gfx": gfx,
             "driver_version": target.get("driver_version"),
             "driver_date": (drv_meta.get("drv_date") or "").split(" ")[0] or None,
-            "pnp_device_id": target.get("pnp_device_id"),
+            "pnp_device_id": redact_pnp_id(target.get("pnp_device_id")),
             "status": target.get("status"),
             "verified": False,  # set True only by device_identity with LUID+canary
             "identity_method": "wmi-name-match (pending DXGI cross-check)",
         },
-        "other_adapters": [g for g in gpus if g is not target],
+        "other_adapters": [{**g, "pnp_device_id": redact_pnp_id(g.get("pnp_device_id"))}
+                           for g in gpus if g is not target],
         "windows_app_runtime_versions": sorted(set(runtimes)),
         "python": {"version": sys.version.split()[0], "implementation": platform.python_implementation(),
                    "executable_basename": Path(sys.executable).name},

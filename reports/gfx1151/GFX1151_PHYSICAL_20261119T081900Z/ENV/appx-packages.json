@@ -1,0 +1,97 @@
+﻿[
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.2",
+        "Version":  "2.6.5.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.2",
+        "Version":  "2.6.5.0",
+        "Architecture":  0
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.1.7",
+        "Version":  "7000.785.2325.0",
+        "Architecture":  0
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.1.7",
+        "Version":  "7000.785.2325.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.1.8",
+        "Version":  "8000.994.2142.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.1.8",
+        "Version":  "8000.994.2142.0",
+        "Architecture":  0
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.CBS.1.6",
+        "Version":  "6000.900.156.100",
+        "Architecture":  9
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.CBS.2",
+        "Version":  "2.5.1.100",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.Data.Analysis.Stx.1",
+        "Version":  "1.2610.1063.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+        "Version":  "1.8.80.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.Manager.1",
+        "Version":  "1.2511.1196.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.PSTokenizer.Stx.2.7",
+        "Version":  "1.2610.1063.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.PSTokenizerShared.Data.7.0",
+        "Version":  "1.2610.1050.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.PSTokenizerShared.Stx.7.0",
+        "Version":  "1.2610.1050.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.SessionManager.1",
+        "Version":  "1.2610.1063.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.WinMLShared.7.0",
+        "Version":  "1.2610.1050.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.Data.ContentExtraction.Stx.1",
+        "Version":  "1.2610.1063.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "WindowsWorkload.Data.ImageSearch.Stx.1",
+        "Version":  "1.2610.1063.0",
+        "Architecture":  9
+    },
+    {
+        "Name":  "Microsoft.WindowsAppRuntime.2",
+        "Version":  "2.7.0.0",
+        "Architecture":  9
+    }
+]

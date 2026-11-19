@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_SOAK_20261119T074900Z",
+  "created_utc": "2026-11-19T00:23:03Z",
+  "generator": "independent-gfx1151-soak-amdgpu-blocked",
+  "entries": [
+    {
+      "path": "CODE_STATE.json",
+      "sha256": "d3f8abb5e4df59342f1edbb3ef48914714dab06812b2532b076ba9da4248eb2a",
+      "bytes": 254
+    },
+    {
+      "path": "SOAK_amdgpu__yolo26n-detect.json",
+      "sha256": "77af90ddc8ae3219f03e90bcdd12a0f293d8263ddc7b8e82c2ac1cf6903be0e9",
+      "bytes": 418
+    }
+  ]
+}

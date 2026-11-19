@@ -14,7 +14,7 @@
 
 | venv | purpose | install |
 |---|---|---|
-| `.venv-winml` | inference, CPU/AMDGPU/DML sessions | `pip install -e .[winml]` (pulls wasdk 2.3.0 + onnxruntime-windowsml 1.25.2) |
+| `.venv-winml` | inference, CPU/AMDGPU/DML sessions | `pip install -e .[winml] pytest onnx psutil` (pulls wasdk 2.3.0 + onnxruntime-windowsml 1.25.2; **onnx is required by the canary**) |
 | `.venv-export` | Ultralytics PT + ONNX export + PT oracle | `pip install -e .[export]` |
 | `.venv-cpu` (CI) | contracts/adversarial tests | `pip install -e .[dev]` |
 
@@ -32,6 +32,16 @@ venv, prevent it: pre-install `onnx` + `onnxslim` in `.venv-export` and set
 Weights are downloaded by YOU (license acceptance is yours) into `models/pt/`
 (git-ignored). The harness never auto-downloads unless `--allow-asset-download`
 is explicitly passed on a trusted runner.
+
+## Windows ML EP availability (fail-closed)
+
+The AMDGPU EP is a dynamically downloaded Windows ML package, not a wheel. A
+clean host may have no EP installed: `ExecutionProviderCatalog.find_all_providers()`
+returns an empty list and no `amdgpu-ep.dll` exists. In that case preflight
+reports `PASS_DML_ONLY` / `CONDITIONAL_BLOCKED_AMDGPU` and exits non-zero; the
+AMDGPU cases are recorded as `BLOCKED_EP`, never as CPU fallback or GPU PASS.
+Installing the system-wide EP is outside the harness's no-system-change boundary
+(`BLOCKED_ADMIN_DEPENDENCY`).
 
 ## Verify install
 

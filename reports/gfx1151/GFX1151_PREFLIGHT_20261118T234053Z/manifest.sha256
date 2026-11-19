@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_PREFLIGHT_20261118T234053Z",
+  "created_utc": "2026-11-19T00:23:03Z",
+  "generator": "independent-gfx1151-preflight",
+  "entries": [
+    {
+      "path": "canary/canary_cpu_2026-11-19_07-41-03_846.json",
+      "sha256": "588b502a9b233c15d093832176f6beee307de60f2db8ff83439cabb7aca92579",
+      "bytes": 1665
+    },
+    {
+      "path": "canary/canary_dml_2026-11-19_07-41-05_626.json",
+      "sha256": "311adde0a6127668ccd9dded92a34136e839c31f2912be797e4506127462da75",
+      "bytes": 1676
+    },
+    {
+      "path": "canary/case_amdgpu.json",
+      "sha256": "8bf7be6bd7807d2da1680589698a687866a9588d16a4edea82105ee36001ff2a",
+      "bytes": 724
+    },
+    {
+      "path": "canary/case_cpu.json",
+      "sha256": "01540bc8e6d173804b6b11b58b1fbabbb764e5f892793adbc64f4057c0c505a8",
+      "bytes": 716
+    },
+    {
+      "path": "canary/case_dml.json",
+      "sha256": "20f7e262ecfe5ee02bd49f799099805f054d44de44fbac7f14ab26a7af6be6c1",
+      "bytes": 718
+    },
+    {
+      "path": "canary/frag_amdgpu.json",
+      "sha256": "88ded3773087f39bae358b435a0196f3b02bb72eaebb8d382d4b2bcdfad3e367",
+      "bytes": 346
+    },
+    {
+      "path": "canary/frag_cpu.json",
+      "sha256": "46104b87a19b74dce195eaf5fd5d65d6eb4923ec63f4f315e5e8d4ce6cd7c8ee",
+      "bytes": 700
+    },
+    {
+      "path": "canary/frag_dml.json",
+      "sha256": "3ef337ead1af2d398087fd92a9a526ad18c67e2f7d035e19271f62257950e9c8",
+      "bytes": 2185
+    },
+    {
+      "path": "DEVICE_IDENTITY.json",
+      "sha256": "43e4168e876110999790d186eae1adba1cd1cc08fae716b3aa3ada4aec8cae07",
+      "bytes": 1743
+    },
+    {
+      "path": "EP_INSTALL_AND_PROBE.json",
+      "sha256": "14722dd56d4be23aad39407f7cd9fbf5723f70f17fdca0919ea293337042baca",
+      "bytes": 544
+    },
+    {
+      "path": "GPU_CANARY.json",
+      "sha256": "5fa0c941a097aa3c7335009902e228dd888eec19ab4c29ea68823907116652d0",
+      "bytes": 4375
+    },
+    {
+      "path": "HOST_FINGERPRINT.json",
+      "sha256": "0d58d2c8c30860fee10c091140cbbe6a1a9440cda09fbf7a748cecd9edd4dce8",
+      "bytes": 1847
+    },
+    {
+      "path": "LOCAL_ONLY_INDEX.json",
+      "sha256": "8f3a04b1373f1c52ced2145fe8bbead4bcf13a75bd66c15dcbc2a725e54e189d",
+      "bytes": 1007
+    }
+  ]
+}

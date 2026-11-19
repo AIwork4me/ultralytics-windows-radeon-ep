@@ -88,9 +88,19 @@ def main() -> int:
     print(f"[preflight] redaction scan (host fingerprint): {'CLEAN' if not leaks else leaks}")
 
     print(f"[preflight] DONE -> {out_dir}")
-    ok = resolved_ok and canary.get("status", "").startswith("PASS")
-    print(f"[preflight] verdict: {'GO' if ok else 'BLOCKED/INCOMPLETE (see artifacts)'}")
-    return 0
+    # Fail-closed verdict: a DML-only canary is NOT a dual-EP GO. The mission's
+    # P0 gate requires AMDGPU and DML independently attested.
+    cstatus = canary.get("status", "")
+    if cstatus == "PASS_AMDGPU+DML":
+        verdict, rc = "GO", 0
+    elif cstatus == "PASS_DML_ONLY":
+        verdict, rc = "CONDITIONAL_BLOCKED_AMDGPU (DML canary PASS)", 2
+    elif cstatus == "PASS_AMDGPU_ONLY":
+        verdict, rc = "CONDITIONAL_BLOCKED_DML (AMDGPU canary PASS)", 2
+    else:
+        verdict, rc = "BLOCKED/FAILED (see artifacts)", 1
+    print(f"[preflight] verdict: {verdict}")
+    return rc
 
 
 def _adapter_dict(a) -> dict:
@@ -103,9 +113,16 @@ def _adapter_dict(a) -> dict:
 
 
 def _run_canary(out_dir: Path, gfx: str) -> dict:
-    """Canary ONNX (MatMul+Add) run on CPU, AMDGPU, DML in subprocesses; parity + nodes."""
+    """Canary ONNX (MatMul+Add) run on CPU, AMDGPU, DML in subprocesses; parity + nodes.
+
+    v2: inputs/outputs are persisted .npz artifacts so the shared worker verifies
+    the exact tensor bytes and the CPU reference by output name. A canary PASS
+    requires positive target-EP nodes, zero CPU compute nodes and numeric parity.
+    """
     import subprocess
     import sys
+
+    import numpy as np
 
     from radeon_ort.amdgpu_session import canary_model_path
 
@@ -113,20 +130,26 @@ def _run_canary(out_dir: Path, gfx: str) -> dict:
     tmp.mkdir(exist_ok=True)
     model = canary_model_path(tmp)
     inputs = device_identity.canary_inputs()
-    feeds = {k: v.tolist() for k, v in inputs.items()}
+    feeds_npz = tmp / "canary_feeds.npz"
+    np.savez(feeds_npz, **inputs)
     model_sha = sha256_file(model)
 
     results = {}
-    ref_outputs = None
+    ref_npz = tmp / "canary_ref.npz"
     for ep in ("cpu", "amdgpu", "dml"):
-        case = {"ep": ep, "gfx": gfx, "onnx_path": str(model), "feeds": feeds,
+        case = {"ep": ep, "gfx": gfx, "onnx_path": str(model),
+                "feeds_npz": str(feeds_npz),
                 "atol": 2e-4, "rtol": 2e-4, "benchmark": False,
-                "reference_outputs": None, "profile_prefix": f"canary_{ep}"}
-        if ep != "cpu" and ref_outputs is not None:
-            case["reference_outputs"] = ref_outputs
+                "profile_prefix": str(tmp / f"canary_{ep}")}
+        if ep == "cpu":
+            case["outputs_npz"] = str(ref_npz)
+        else:
+            case["reference_npz"] = str(ref_npz)
         case_p = tmp / f"case_{ep}.json"
         case_p.write_text(json.dumps(case), encoding="utf-8")
         out_p = tmp / f"frag_{ep}.json"
+        if out_p.exists():
+            out_p.unlink()
         r = subprocess.run(
             [sys.executable, "-I", str(REPO_ROOT / "runner" / "_ep_worker.py"),
              "--case", str(case_p), "--out", str(out_p)],
@@ -137,26 +160,43 @@ def _run_canary(out_dir: Path, gfx: str) -> dict:
                 frag = json.loads(out_p.read_text(encoding="utf-8"))
             except json.JSONDecodeError:
                 frag = {}
-        if ep == "cpu" and frag.get("outputs"):
-            ref_outputs = frag["outputs"]
         results[ep] = {
             "returncode": r.returncode,
             "providers": (frag.get("session") or {}).get("requested_providers"),
             "provider_node_counts": (frag.get("session") or {}).get("provider_node_counts"),
             "parity": frag.get("parity"),
-            "stderr_tail": r.stderr[-600:],
+            "input_tensor_sha256": frag.get("input_tensor_sha256"),
+            "device_binding": frag.get("device_binding"),
+            "stderr_tail": r.stderr[-1200:],
             "stdout_tail": r.stdout[-600:],
         }
 
-    amdgpu = results.get("amdgpu", {})
-    amdgpu_nodes = ((amdgpu.get("provider_node_counts") or {}).get("AMDGPU", 0))
-    dml = results.get("dml", {})
-    dml_nodes = ((dml.get("provider_node_counts") or {}).get("DmlExecutionProvider", 0))
-    status = "PASS_AMDGPU+DML" if (amdgpu_nodes > 0 and dml_nodes > 0) else (
-        "PASS_AMDGPU_ONLY" if amdgpu_nodes > 0 else (
-            "PASS_DML_ONLY" if dml_nodes > 0 else "FAIL_NO_GPU_COMPUTE"))
-    return {"model_sha256": model_sha, "results": results, "status": status,
-            "amdgpu_nodes": amdgpu_nodes, "dml_nodes": dml_nodes}
+    def _ep_ok(ep: str, key: str) -> dict:
+        item = results.get(ep, {})
+        counts = item.get("provider_node_counts") or {}
+        nodes = int(counts.get(key, 0) or 0)
+        cpu = int(counts.get("CPU", counts.get("CPUExecutionProvider", 0)) or 0)
+        parity = item.get("parity") or {}
+        parity_ok = bool(parity.get("all_outputs_allclose"))
+        ok = (item.get("returncode") == 0 and nodes > 0 and cpu == 0 and parity_ok)
+        return {"ok": ok, "nodes": nodes, "cpu_nodes": cpu,
+                "parity_ok": parity_ok, "returncode": item.get("returncode")}
+
+    amd = _ep_ok("amdgpu", "AMDGPU")
+    dml = _ep_ok("dml", "DmlExecutionProvider")
+    if amd["ok"] and dml["ok"]:
+        status = "PASS_AMDGPU+DML"
+    elif amd["ok"]:
+        status = "PASS_AMDGPU_ONLY"
+    elif dml["ok"]:
+        status = "PASS_DML_ONLY"
+    else:
+        status = "FAIL_NO_GPU_COMPUTE"
+    return {"model_sha256": model_sha,
+            "inputs_sha256": results.get("cpu", {}).get("input_tensor_sha256"),
+            "results": results, "status": status,
+            "amdgpu_nodes": amd["nodes"], "dml_nodes": dml["nodes"],
+            "amdgpu_ok": amd["ok"], "dml_ok": dml["ok"]}
 
 
 def _jsonable(o):

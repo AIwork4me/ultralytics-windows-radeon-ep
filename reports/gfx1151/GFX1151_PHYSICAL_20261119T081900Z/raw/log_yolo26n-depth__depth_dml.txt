@@ -1,0 +1,7 @@
+$ .venv-winml\Scripts\python.exe -I %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\runner\_ep_worker.py --case %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\case_yolo26n-depth__depth_dml.json --out %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\frag_yolo26n-depth__depth_dml.json
+rc=0 elapsed=1.8s
+--- stdout ---
+
+--- stderr ---
+2026-11-19 08:20:31.7281901 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.
+2026-11-19 08:20:31.8145932 [W:onnxruntime:Default, config_options.cc:45 onnxruntime::ConfigOptions::AddConfigEntry] Config with key [ep.dmlexecutionprovider.device_id] already exists with value [0]. It will be overwritten

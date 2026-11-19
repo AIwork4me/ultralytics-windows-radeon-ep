@@ -40,8 +40,19 @@ def create_dml_session(onnx_path: str | Path, *, device_id: int,
     so.log_severity_level = 3
 
     pov = [{"device_id": int(device_id)}, {}]
-    return ort.InferenceSession(
+    sess = ort.InferenceSession(
         str(onnx_path), sess_options=so,
         providers=["DmlExecutionProvider", "CPUExecutionProvider"],
         provider_options=pov,
     )
+    # ORT's python wrapper SILENTLY retries CPU when the DML provider fails to
+    # initialize (e.g. an invalid device_id). Never return such a session as a
+    # DML session: the caller would then measure CPU and label it GPU.
+    getter = getattr(sess, "get_providers", None)
+    if callable(getter):
+        providers = list(getter())
+        if "DmlExecutionProvider" not in providers:
+            raise RuntimeError(
+                f"DML_FAILED: wrapper fell back to CPU; providers={providers}, "
+                f"requested device_id={device_id}")
+    return sess

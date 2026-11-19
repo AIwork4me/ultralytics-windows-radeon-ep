@@ -471,15 +471,17 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
 
     # --- expected-output manifest sanity
     exp = _expected_manifest(receipt)
-    if not exp:
-        problems.append("expected_outputs manifest is empty (required in v2)")
+    any_pass_claim = any(receipt["status"][ep].startswith("PASS_GPU") for ep in ("amdgpu", "dml"))
+    if not exp and any_pass_claim:
+        # A blocked/failed case legitimately has no session outputs; requiring a
+        # manifest there would force honest BLOCKED receipts to fail validation.
+        problems.append("expected_outputs manifest is empty (required for a GPU PASS in v2)")
     if len(exp) != len(receipt.get("expected_outputs") or []):
         problems.append("expected_outputs contains duplicate names")
 
     # --- parity contract
     parity = receipt.get("parity")
     claimed_exec = {ep: (verdicts.get(ep) or {}).get("execution") for ep in ("amdgpu", "dml")}
-    any_pass_claim = any(receipt["status"][ep].startswith("PASS_GPU") for ep in ("amdgpu", "dml"))
     if any_pass_claim:
         if not parity or not parity.get("outputs"):
             problems.append("GPU PASS claim with missing/empty parity outputs (vacuous pass)")
@@ -616,6 +618,7 @@ def _validate_v2(receipt: dict, expect_ep: str | None,
             # passed=True with failing numbers)
             TH_METRIC_ALIAS = {"min_mask_iou": "mask_iou_mean", "min_oks": "oks_mean",
                                "min_rotated_iou": "rotated_iou_mean",
+                               "min_matches": "matched",
                                "max_rel_mae_vs_pt": "rel_mae"}
             td = tp.get("thresholds_declared") or {}
             mx = tp.get("metrics") or {}

@@ -31,6 +31,7 @@ from radeon_ort.receipts import (  # noqa: E402
 from runner import REPO_ROOT  # noqa: E402
 
 TASK_OF = {}  # filled from catalog
+_HOST_BLOCK_CACHE: dict = {}
 
 
 def _run(cmd: list[str], *, timeout_s: int, log_path: Path | None = None) -> dict:
@@ -120,6 +121,36 @@ def run_worker(winml_python: str, ep: str, case: dict, case_path: Path,
     return frag, r["rc"]
 
 
+def _save_meta_receipt(run_dir: Path, run_id: str, model: str, entry: dict,
+                        host_block: dict, host_status: str, *, model_asset: str,
+                        export: str, error: dict) -> None:
+    """Persist an honest non-executed case receipt (missing asset / export failure).
+
+    These receipts are explicitly NOT GPU passes; they make catalog disposition
+    auditable without fabricating a session.
+    """
+    path = run_dir / "receipts" / f"receipt_{Path(model).stem}__{entry['task']}__asset.json"
+    if path.exists():
+        return
+    st = ReceiptStatus(model_asset=model_asset, export=export, cpu_oracle="NOT_RUN",
+                       amdgpu="NOT_RUN", dml="NOT_RUN", task_oracle="NOT_RUN",
+                       benchmark="NOT_MEASURED", host=host_status)
+    receipt = build_receipt_v2(
+        run_id=run_id, case_id=f"{Path(model).stem}__{entry['task']}__asset", status=st,
+        verdicts={}, host=host_block,
+        model={"family": entry.get("family"), "task": entry.get("task"), "checkpoint": model,
+               "size": entry.get("size"), "pt_sha256": None, "onnx_sha256": None,
+               "onnx_path_redacted": None,
+               "export": {"imgsz": entry.get("imgsz_default"), "nms_mode": entry.get("nms_mode", "raw"),
+                          "quantize": "fp32", "batch": 1, "dynamic": False}},
+        input_block={}, expected_outputs=[], worker={"exit_code": 0, "python": sys.version.split()[0]},
+        session=None, device_binding=None, parity=None, task=None, task_parity=None,
+        benchmark_data=None, errors=[error], rca_issue_ids=[],
+        provenance={"script_head_sha": "git:r1", "command": "runner.r1_pipeline meta receipt",
+                    "seed": 0})
+    save_receipt(receipt, run_dir / "receipts")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -164,10 +195,27 @@ def main() -> int:
         task = entry["task"]
         imgsz = entry.get("imgsz_default") or 640
         onnx = REPO_ROOT / "models" / "onnx" / f"{Path(model).stem}.raw_b1_fp32_static.onnx"
-        if not onnx.is_file():
-            print(f"[r1] SKIP {model}: onnx missing"); continue
-        onnx_sha = sha256_file(onnx)
         pt = REPO_ROOT / "models" / "pt" / model
+        host_block0 = _host_block()
+        host_status = ("VERIFIED_GFX1151" if host_block0.get("verified_device_identity")
+                       else "BLOCKED_ENV")
+        if not pt.is_file():
+            _save_meta_receipt(run_dir, run_dir.name, model, entry, host_block0, host_status,
+                               model_asset="MISSING_WITH_REASON", export="NOT_APPLICABLE",
+                               error={"stage": "ASSET", "type": "MISSING_ASSET",
+                                      "message": f"{model} not present under models/pt (asset gate)"})
+            print(f"[r1] MISSING_ASSET {model}"); continue
+        if not onnx.is_file():
+            print(f"[r1] export {model} -> onnx")
+            from radeon_ort.model_export import run_export
+            er = run_export(a.export_python, str(pt), str(onnx), imgsz=imgsz)
+            if er["returncode"] != 0 or not er["payload"]:
+                _save_meta_receipt(run_dir, run_dir.name, model, entry, host_block0, host_status,
+                                   model_asset="AVAILABLE", export="FAIL_EXPORT",
+                                   error={"stage": "EXPORT", "type": "EXPORT",
+                                          "message": er["stderr_tail"][-800:]})
+                print(f"[r1] EXPORT_FAILED {model}: {er['stderr_tail'][-300:]}"); continue
+        onnx_sha = sha256_file(onnx)
         image = Path(a.obb_image if task == "obb" else a.image)
         image_sha = sha256_file(image)
 
@@ -292,13 +340,15 @@ def main() -> int:
                             neg_block = json.loads(ntp.read_text(encoding="utf-8"))
 
             # ---------- receipt assembly ----------
+            host_block = _host_block()
             st = ReceiptStatus(
                 model_asset="AVAILABLE" if pt.is_file() else "MISSING_WITH_REASON",
                 export="PASS_ONNX_EXPORT" if onnx.is_file() else "NOT_APPLICABLE",
                 cpu_oracle="PASS_CPU_REFERENCE" if cpu_ok else "FAIL_CPU_REFERENCE",
                 amdgpu="NOT_RUN", dml="NOT_RUN",
                 task_oracle="NOT_RUN", benchmark="PASS_MEASURED" if (a.benchmark and frag and frag.get("benchmark_data")) else "NOT_MEASURED",
-                host="VERIFIED_GFX1151",
+                host=("VERIFIED_GFX1151" if host_block.get("verified_device_identity")
+                      else "BLOCKED_ENV"),
             )
             errors: list[dict] = []
             ep_key = ep
@@ -306,6 +356,17 @@ def main() -> int:
                 setattr(st, ep_key, "FAIL_RUNTIME")
                 errors.append({"stage": ep_name, "type": "RUNTIME",
                                "message": f"worker rc={rc} (fragment missing)"})
+            elif rc == 34:
+                # env block, not a model failure: the EP library is absent/unusable
+                setattr(st, ep_key, "BLOCKED_EP")
+                errors.append({"stage": ep_name, "type": "RUNTIME",
+                               "message": f"worker rc={rc}: "
+                                          f"{(frag.get('session') or {}).get('routing_notes', '')[:300]}"})
+            elif rc == 35:
+                setattr(st, ep_key, "BLOCKED_IDENTITY")
+                errors.append({"stage": ep_name, "type": "RUNTIME",
+                               "message": f"worker rc={rc}: "
+                                          f"{(frag.get('session') or {}).get('routing_notes', '')[:300]}"})
             elif rc != 0:
                 setattr(st, ep_key, "FAIL_RUNTIME")
                 errors.append({"stage": ep_name, "type": "RUNTIME",
@@ -357,14 +418,15 @@ def main() -> int:
             binding = None
             if frag is not None:
                 s = frag.get("session") or {}
+                counts_now = s.get("provider_node_counts") or {}
                 session_block = {
-                    "ep": s.get("ep"), "requested_providers": s.get("requested_providers"),
-                    "provider_node_counts": s.get("provider_node_counts") or {},
-                    "graph_node_total": s.get("graph_node_total"),
-                    "profile_available": True,
-                    "profile_fused_event_present": s.get("profile_fused_event_present"),
-                    "ort_version": s.get("ort_version"),
-                    "ort_distribution": s.get("ort_distribution"),
+                    "ep": s.get("ep"), "requested_providers": s.get("requested_providers") or [],
+                    "provider_node_counts": counts_now,
+                    "graph_node_total": s.get("graph_node_total") or sum(counts_now.values()),
+                    "profile_available": bool(counts_now),
+                    "profile_fused_event_present": bool(s.get("profile_fused_event_present")),
+                    "ort_version": s.get("ort_version") or "unknown",
+                    "ort_distribution": s.get("ort_distribution") or "unknown",
                     "device_luid": s.get("device_luid"),
                     "routing_notes": s.get("routing_notes", ""),
                     "stderr_fallback_signals": [],
@@ -374,8 +436,7 @@ def main() -> int:
                 binding = frag.get("device_binding")
             worker_block = {"exit_code": rc, "pid": (frag or {}).get("worker_pid"),
                             "parent_pid": (frag or {}).get("parent_pid"),
-                            "python": "3.13"}
-            host_block = _host_block()
+                            "python": sys.version.split()[0]}
             receipt = build_receipt_v2(
                 run_id=run_dir.name, case_id=f"{case_key}__{ep}", status=st, verdicts={},
                 host=host_block, model=model_block, input_block=input_block,
@@ -384,10 +445,11 @@ def main() -> int:
                 parity=(frag or {}).get("parity"), task=None, task_parity=tp_block,
                 benchmark_data=(frag or {}).get("benchmark_data"), errors=errors,
                 rca_issue_ids=["AMDGPU-RCA-003", "AMDGPU-RCA-004"] if ep == "amdgpu" else [],
-                provenance={"script_head_sha": "git:r1-branch", "command":
+                provenance={"script_head_sha": "git:see-git_head_sha", "command":
                             f"python -m runner.r1_pipeline --models {model} --eps {ep}",
                             "seed": 0, "python_version": sys.version.split()[0],
                             "ultralytics_version": "8.4.215",
+                            **_git_state(),
                             "raw_log_path_redacted": redaction.redact_path(
                                 raw / f"log_{case_key}_{ep}.txt")})
             # honest status derivation: recompute from evidence
@@ -429,30 +491,73 @@ def main() -> int:
     return 0
 
 
-def _host_block() -> dict:
+def _git_state() -> dict:
+    """Exact code provenance for receipts (base SHA alone is not enough)."""
+    def run(*args):
+        try:
+            return subprocess.check_output(["git", *args], cwd=str(REPO_ROOT),
+                                           text=True, stderr=subprocess.DEVNULL).strip()
+        except Exception:  # noqa: BLE001
+            return ""
+    head = run("rev-parse", "HEAD")
+    tracked_dirty = bool(run("status", "--porcelain", "--untracked-files=no", "--",
+                             "runner", "src", "tests", "schemas", "configs",
+                             "catalog", "pyproject.toml"))
+    return {"git_head_sha": head or "unknown", "worktree_dirty": tracked_dirty}
+
+
+def _host_block(gfx: str = "gfx1151") -> dict:
+    """Host evidence from THIS process/host. Never hardcodes a reference host.
+
+    verified_device_identity is true only when the live DXGI DID-pinned
+    resolution succeeded; a failed lookup records the reason and BLOCKED_ENV.
+    """
+    if _HOST_BLOCK_CACHE:
+        return _HOST_BLOCK_CACHE
     from radeon_ort import device_identity, host_probe
-    host = host_probe.collect_host(gpu_name_needle="8060S", gfx="gfx1151")
+    host = host_probe.collect_host(gpu_name_needle="8060S", gfx=gfx)
+    identity_ok = False
+    identity_method = "unresolved"
+    dxgi = {"adapters": [], "selected_luid": None}
     try:
         adapters = device_identity.enum_dxgi_adapters()
-        res = device_identity.resolve_target_adapter(adapters, gfx="gfx1151")
+        dxgi["adapters"] = [
+            {"i": a.index, "desc": a.description, "vid": f"0x{a.vendor_id:04X}",
+             "did": f"0x{a.device_id:04X}", "luid": a.luid_str,
+             "software": a.is_software} for a in adapters]
+        res = device_identity.resolve_target_adapter(adapters, gfx=gfx)
         if res.get("ok"):
-            host["gpu_target"].update({"verified": True, "luid": res["adapter"].luid_str})
-    except OSError:
-        pass
+            identity_ok = True
+            identity_method = res.get("identity_method", "DXGI vendor+deviceId")
+            host["gpu_target"].update({
+                "verified": True, "luid": res["adapter"].luid_str,
+                "identity_method": identity_method,
+                "dedicated_vram_mb": res["adapter"].dedicated_video_mb,
+                "shared_memory_mb": res["adapter"].shared_sys_mb,
+            })
+            dxgi["selected_luid"] = res["adapter"].luid_str
+        else:
+            identity_method = res.get("reason", "resolve failed")
+    except OSError as e:
+        identity_method = f"dxgi-error: {e}"
     gt = host.get("gpu_target", {})
-    return {
+    block = {
         "host_id": host.get("host_id", "unknown"),
-        "physical_gpu_name": gt.get("name", "AMD Radeon 8060S Graphics"),
-        "gfx": "gfx1151", "device_luid": gt.get("luid"),
-        "dxgi_evidence": host.get("_dxgi", {"vendor_id": "0x1002", "device_id": "0x1586"}),
-        "pnp_evidence": {"pnp_device_id": gt.get("pnp_device_id",
-                                                 "PCI\\VEN_1002&DEV_1586&SUBSYS_17141043&REV_C1")},
-        "os_build": f"{host['os']['build']}.{host['os'].get('ubr', '')}".rstrip(".") if host.get("os") else "26200",
-        "driver_version": gt.get("driver_version", "32.0.22032.6002"),
+        "physical_gpu_name": gt.get("name"),
+        "gfx": gfx, "device_luid": gt.get("luid"),
+        "dxgi_evidence": dxgi,
+        "pnp_evidence": {"pnp_device_id": gt.get("pnp_device_id")},
+        "os_build": (f"{host['os']['build']}.{host['os'].get('ubr', '')}".rstrip(".")
+                     if host.get("os") else None),
+        "driver_version": gt.get("driver_version"),
         "driver_date": gt.get("driver_date"), "wddm_version": gt.get("wddm"),
-        "verified_device_identity": True,
-        "identity_method": gt.get("identity_method", "DXGI vendor+deviceId+PnP"),
+        "dedicated_vram_mb": gt.get("dedicated_vram_mb"),
+        "shared_memory_mb": gt.get("shared_memory_mb"),
+        "verified_device_identity": identity_ok,
+        "identity_method": identity_method,
     }
+    _HOST_BLOCK_CACHE.update(block)
+    return block
 
 
 if __name__ == "__main__":

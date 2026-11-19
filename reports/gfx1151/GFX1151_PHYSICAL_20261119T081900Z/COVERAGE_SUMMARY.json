@@ -1,0 +1,61 @@
+{
+  "catalog_entries": 142,
+  "eligible_entries": 135,
+  "target_cases_both_eps": 270,
+  "receipts": 18,
+  "covered_checkpoints": 9,
+  "eligible_attempted_both_eps": 9,
+  "eligible_full_pass_both_eps": 0,
+  "not_run_count": 133,
+  "not_run_sample": [
+    "yolo26s.pt",
+    "yolo26m.pt",
+    "yolo26l.pt",
+    "yolo26x.pt",
+    "yolo26k.pt",
+    "yolo26kx.pt",
+    "yolo26s-seg.pt",
+    "yolo26m-seg.pt",
+    "yolo26l-seg.pt",
+    "yolo26x-seg.pt",
+    "yolo26k-seg.pt",
+    "yolo26kx-seg.pt",
+    "yolo26s-sem.pt",
+    "yolo26m-sem.pt",
+    "yolo26l-sem.pt",
+    "yolo26x-sem.pt",
+    "yolo26k-sem.pt",
+    "yolo26kx-sem.pt",
+    "yolo26s-depth.pt",
+    "yolo26m-depth.pt",
+    "yolo26l-depth.pt",
+    "yolo26x-depth.pt",
+    "yolo26k-depth.pt",
+    "yolo26kx-depth.pt",
+    "yolo26s-cls.pt"
+  ],
+  "status_histogram": {
+    "amdgpu=BLOCKED_EP|dml=NOT_RUN": 9,
+    "amdgpu=NOT_RUN|dml=PASS_GPU_EXECUTED_FULL": 9
+  },
+  "amdgpu_status_counts": {
+    "BLOCKED_EP": 9,
+    "NOT_RUN": 126
+  },
+  "dml_status_counts": {
+    "PASS_GPU_EXECUTED_FULL": 9,
+    "NOT_RUN": 126
+  },
+  "amdgpu_pass_full": 0,
+  "amdgpu_pass_partial": 0,
+  "amdgpu_fail": 0,
+  "amdgpu_blocked": 9,
+  "amdgpu_not_run": 126,
+  "dml_pass_full": 9,
+  "dml_pass_partial": 0,
+  "dml_fail": 0,
+  "dml_blocked": 0,
+  "dml_not_run": 126,
+  "full_coverage_claim_allowed": false,
+  "physical_gpu_full_pass_allowed": false
+}

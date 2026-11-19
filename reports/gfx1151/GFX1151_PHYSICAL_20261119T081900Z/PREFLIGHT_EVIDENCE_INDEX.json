@@ -1,0 +1,23 @@
+{
+  "preflight_run_id": "GFX1151_PREFLIGHT_20261118T234053Z",
+  "snapshot_dir": "PREFLIGHT_SNAPSHOT/",
+  "note": "same physical host/session; preflight is a separate run_id per mission",
+  "files": {
+    "DEVICE_IDENTITY.json": {
+      "sha256": "43e4168e876110999790d186eae1adba1cd1cc08fae716b3aa3ada4aec8cae07",
+      "bytes": 1743
+    },
+    "EP_INSTALL_AND_PROBE.json": {
+      "sha256": "14722dd56d4be23aad39407f7cd9fbf5723f70f17fdca0919ea293337042baca",
+      "bytes": 544
+    },
+    "GPU_CANARY.json": {
+      "sha256": "5fa0c941a097aa3c7335009902e228dd888eec19ab4c29ea68823907116652d0",
+      "bytes": 4375
+    },
+    "HOST_FINGERPRINT.json": {
+      "sha256": "0d58d2c8c30860fee10c091140cbbe6a1a9440cda09fbf7a748cecd9edd4dce8",
+      "bytes": 1847
+    }
+  }
+}

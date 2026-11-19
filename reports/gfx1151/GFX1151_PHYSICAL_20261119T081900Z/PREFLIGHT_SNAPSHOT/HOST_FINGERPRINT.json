@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-18T23:40:59Z",
+  "os": {
+    "os_edition": "Professional",
+    "display_version": "25H2",
+    "build": "26200",
+    "ubr": 9974
+  },
+  "cpu": {
+    "cpu_name": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      ",
+    "ram_gb": 95.8,
+    "model": "HP ZBook Ultra G1a 14 inch Mobile Workstation PC"
+  },
+  "gpu_target": {
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "driver_version": "32.0.22018.5",
+    "driver_date": "09/17/2025",
+    "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+    "status": "OK",
+    "verified": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed); PnP cross-check pending canary",
+    "luid": "0x00000000:0x000154E4",
+    "dedicated_vram_mb": 32589,
+    "shared_memory_mb": 78459
+  },
+  "other_adapters": [
+    {
+      "name": "Microsoft Remote Display Adapter",
+      "driver_version": "10.0.26100.9818",
+      "pnp_device_id": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+      "status": "OK",
+      "adapter_ram": null
+    }
+  ],
+  "windows_app_runtime_versions": [],
+  "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "executable_basename": "python.exe"
+  },
+  "tooling": {},
+  "_gpu_list": [
+    {
+      "name": "AMD Radeon(TM) 8060S Graphics",
+      "driver_version": "32.0.22018.5",
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1\\4&85C8329&0&0041",
+      "status": "OK",
+      "adapter_ram": 4293918720
+    },
+    {
+      "name": "Microsoft Remote Display Adapter",
+      "driver_version": "10.0.26100.9818",
+      "pnp_device_id": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+      "status": "OK",
+      "adapter_ram": null
+    }
+  ]
+}

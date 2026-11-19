@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "ep": "dml",
+  "onnx": "yolo26n-seg.raw_b1_fp32_static.onnx",
+  "input_npy": "input_1bfe5fe9dfe2d25a.npy",
+  "warmup": 5,
+  "samples_per_rep": 30,
+  "repetitions": 3,
+  "pre_post_processing": "NOT_MEASURED (separate pipeline phases)",
+  "timer": "time.perf_counter_ns",
+  "reps": [
+    {
+      "rep": 0,
+      "session_create_ms": 739.7627,
+      "first_run_ms": 12.7555,
+      "cold_start_total_ms": 752.5182,
+      "warm_ms": {
+        "p50": 18.1353,
+        "p95": 20.493809999999993,
+        "p99": 21.676286,
+        "mean": 18.264380000000003,
+        "std": 1.2873753359451936,
+        "samples": 30
+      },
+      "throughput_img_s": 54.75137946100551,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "ep_devices": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ]
+    },
+    {
+      "rep": 1,
+      "session_create_ms": 629.8368,
+      "first_run_ms": 11.9374,
+      "cold_start_total_ms": 641.7742000000001,
+      "warm_ms": {
+        "p50": 17.990099999999998,
+        "p95": 22.713924999999993,
+        "p99": 29.279901000000006,
+        "mean": 18.578926666666668,
+        "std": 2.8218797069723265,
+        "samples": 30
+      },
+      "throughput_img_s": 53.82442258056529,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "ep_devices": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ]
+    },
+    {
+      "rep": 2,
+      "session_create_ms": 631.6072,
+      "first_run_ms": 12.6332,
+      "cold_start_total_ms": 644.2404,
+      "warm_ms": {
+        "p50": 18.1948,
+        "p95": 19.05281,
+        "p99": 19.59503,
+        "mean": 18.118586666666666,
+        "std": 0.8997168060870907,
+        "samples": 30
+      },
+      "throughput_img_s": 55.191942859413615,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "ep_devices": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ]
+    }
+  ],
+  "aggregate_warm_p50": {
+    "mean": 18.106733333333334,
+    "min": 17.990099999999998,
+    "max": 18.1948
+  },
+  "aggregate_warm_p95": {
+    "mean": 20.753514999999997,
+    "min": 19.05281,
+    "max": 22.713924999999993
+  },
+  "gpu_attested_all_reps": true
+}

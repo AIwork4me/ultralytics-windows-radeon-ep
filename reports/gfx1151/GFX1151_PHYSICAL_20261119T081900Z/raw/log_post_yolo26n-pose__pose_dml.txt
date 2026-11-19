@@ -1,0 +1,6 @@
+$ .venv-export\Scripts\python.exe -I %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\cand_yolo26n-pose__pose_dml.npz --task pose --imgsz 640 --out-json %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\post_yolo26n-pose__pose_dml.json --out-npz %USERPROFILE%\\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\GFX1151_PHYSICAL_20261119T081900Z\raw\post_yolo26n-pose__pose_dml.npz
+rc=0 elapsed=2.3s
+--- stdout ---
+{"ok": true, "task": "pose", "n": 4}
+
+--- stderr ---

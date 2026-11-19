@@ -1,0 +1,20 @@
+{
+  "captured_utc": "2026-11-18T23:41:01Z",
+  "api": {
+    "projection_module": "winui3.microsoft.windows.ai.machinelearning",
+    "types_found": [
+      "ExecutionProviderCatalog",
+      "ExecutionProvider",
+      "ExecutionProviderReadyResultState"
+    ],
+    "errors": [],
+    "bootstrap": "initialized (version=2.3)",
+    "catalog_providers": []
+  },
+  "amdgpu_dlls": [],
+  "register_attempt": "amdgpu-ep.dll not found (BLOCKED_EP)",
+  "available_providers": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+  ]
+}

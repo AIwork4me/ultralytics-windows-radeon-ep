@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_NEG_INJECT_20261119T080500Z",
+  "created_utc": "2026-11-19T00:23:03Z",
+  "generator": "independent-gfx1151-negative-injection",
+  "entries": [
+    {
+      "path": "CODE_STATE.json",
+      "sha256": "29c06c4abab316bc1faa100c16209c28fcf57916fba12b0f4582d0dcb6e3a063",
+      "bytes": 275
+    },
+    {
+      "path": "execution.log",
+      "sha256": "77bb6f4e0568d484d9f8aa41847005e8c84627e8262640404f513c12bab8e6b9",
+      "bytes": 3432
+    },
+    {
+      "path": "inject4_profile_2026-11-19_08-04-08_808.json",
+      "sha256": "5525f3be155aa1e8db6d15c6ee75e1f7521466bf6d72e7eebfa7ab5735f089ff",
+      "bytes": 124
+    },
+    {
+      "path": "inject4_profile_2026-11-19_08-04-08_827.json",
+      "sha256": "0a194a71ec27ac4b35fbfdde4d0e2c6225d92ca2fb387924ef55f5c2f97e761c",
+      "bytes": 245
+    },
+    {
+      "path": "inject5_profile_2026-11-19_08-04-08_835.json",
+      "sha256": "c61c726c89c626b9399cc398bce918c0502bc16086c11adcb3d804730ae1868f",
+      "bytes": 121
+    },
+    {
+      "path": "inject5_profile_2026-11-19_08-04-08_836.json",
+      "sha256": "1f177aa46d1cf56866ceaa9a7bb38012ed7438111c3aecb2b89c9283c0d03d3a",
+      "bytes": 1653
+    },
+    {
+      "path": "LOCAL_ONLY_INDEX.json",
+      "sha256": "b3ba402ffcda6bdf8e8227b5b3c5efdfafe6326be143c94f6705ec136cbee16a",
+      "bytes": 544
+    },
+    {
+      "path": "NEGATIVE_INJECTION.json",
+      "sha256": "a613cd443f1f0611bfb91e411155128e3d597b7b496e2c0e20bd4ad457157b44",
+      "bytes": 1839
+    }
+  ]
+}

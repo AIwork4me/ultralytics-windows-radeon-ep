@@ -13,6 +13,8 @@ import re
 from pathlib import Path
 
 USER_PATH_RE = re.compile(r"[A-Za-z]:\\Users\\([^\\\"']+)", re.IGNORECASE)
+# JSON-escaped paths contain two literal backslashes (C:\\Users\\name).
+USER_PATH_ESCAPED_RE = re.compile(r"[A-Za-z]:\\\\Users\\\\([^\\\\\"']+)", re.IGNORECASE)
 USER_POSIX_RE = re.compile(r"(?:[A-Za-z]:)?/(?:Users|home)/([^/\"']+)", re.IGNORECASE)
 MACHINE_HINTS = {
     "computername": "COMPUTERNAME=<redacted>",
@@ -27,7 +29,7 @@ KNOWN_PUBLIC_USERNAMES = {"rocm", "public", "user", "administrator", "wdagutilit
 
 def redact_text(text: str) -> str:
     text = USER_PATH_RE.sub(r"%USERPROFILE%\\", text)
-    text = re.sub(r"[A-Za-z]:\\\\Users\\\\([^\\\\\"']+)", r"%USERPROFILE%\\", text, flags=re.IGNORECASE)
+    text = USER_PATH_ESCAPED_RE.sub(r"%USERPROFILE%\\\\", text)
     text = USER_POSIX_RE.sub(r"%USERPROFILE%/", text)
     text = MAC_RE.sub("<MAC-redacted>", text)
     text = GUIDISH_SERIAL_RE.sub("<serial-redacted>", text)
@@ -47,6 +49,9 @@ def scan_for_leaks(text: str) -> list[str]:
     for m in USER_PATH_RE.finditer(text):
         if m.group(1).lower() not in KNOWN_PUBLIC_USERNAMES:
             leaks.append(f"absolute user path leaks username '{m.group(1)}'")
+    for m in USER_PATH_ESCAPED_RE.finditer(text):
+        if m.group(1).lower() not in KNOWN_PUBLIC_USERNAMES:
+            leaks.append(f"JSON-escaped user path leaks username '{m.group(1)}'")
     for m in USER_POSIX_RE.finditer(text):
         if m.group(1).lower() not in KNOWN_PUBLIC_USERNAMES:
             leaks.append(f"posix user path leaks username '{m.group(1)}'")

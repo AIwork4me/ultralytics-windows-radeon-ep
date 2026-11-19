@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "run_dir": "GFX1151_NEG_INJECT_20261119T080500Z",
+  "local_only_root": "%USERPROFILE%/../local_evidence/GFX1151_NEG_INJECT_20261119T080500Z",
+  "policy": "weights/tensors are not published; regenerate inputs from the persisted manifest + image; receipts keep hashes",
+  "files": [
+    {
+      "path": "canary_amdgpu.onnx",
+      "sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+      "bytes": 262316,
+      "reason": "raw tensor/weight: LOCAL_ONLY, not published"
+    }
+  ]
+}

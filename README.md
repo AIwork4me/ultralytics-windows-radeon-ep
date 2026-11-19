@@ -43,7 +43,7 @@ CPU policy.
 ## Repository layout
 
 - `src/radeon_ort/` — harness modules (device identity, EP catalog, sessions, receipts, oracles, benchmark, manifest, redaction)
-- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix`, `resume_matrix`, `analyze_profiles`, `verify_receipts`, `build_compatibility_matrix`
+- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix` (v2), `r1_pipeline`, `resume_matrix`, `bench_repeats`, `soak`, `negative_injection`, `analyze_profiles`, `finalize_run`, `build_compatibility_matrix`, `redact_evidence`, `prepare_evidence`, `verify_receipts`
 - `schemas/` — versioned JSON contracts for receipts / manifest / host / catalog
 - `catalog/` — pinned upstream snapshot + generated model catalog
 - `configs/` — gfx1151 profile, numeric thresholds (fixed before runs), provider policy
