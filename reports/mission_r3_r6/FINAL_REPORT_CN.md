@@ -28,9 +28,10 @@
 | PR #8 merge commit | `d5ea31227bc7802f5270bce7055cfd9896768545` |
 | PR #9 head（= R3 修复后） | `ed60ed47cbfb51e5232abc47ceded5f932e479db` |
 | PR #9 merge commit | `bb4dc5a0501923ea1647d0012d3fe33049976f93` |
-| R6 head | `efa4a00a91770467828c0f1b828d8e019bb4fcc4`（PR #10） |
+| R6 head | `7944fc818b1121490c5fb13a5570f1c8e7fb6df0`（PR #10，4 commits） |
+| PR #10 merge commit | `444f248339b6d08b266e6b678314679a8ebc94b0`（最终 main） |
 | PR #6 | **未合并**，保留分支 `mission/unified-winml-amdgpu-first-runtime` 作设计参考 |
-| CI（PR #8 / #9 精确 head） | windows-cpu-ci success，secret-scan success |
+| CI（精确 head） | PR #8 / #9 / #10 均 windows-cpu-ci success + secret-scan success |
 | CPU 测试 | 起始 243 passed / 1 skipped → 最终 **292 passed / 1 skipped** |
 | 网络约束 | `github.com:443` 不可达，`api.github.com` 可用；远端提交对象按 API 元数据逐字节重建，SHA 与远端一致 |
 
