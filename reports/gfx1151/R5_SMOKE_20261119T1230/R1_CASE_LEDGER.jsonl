@@ -1,0 +1,2 @@
+{"case": "yolo26n__detect__amdgpu", "model": "yolo26n.pt", "task": "detect", "ep": "amdgpu", "exec": "BLOCKED_EP", "task_status": "TASK_ORACLE_BLOCKED", "parity": false, "rc": 34, "secs": 0, "problems": [], "neg": null}
+{"case": "yolo26n__detect__dml", "model": "yolo26n.pt", "task": "detect", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "task_status": "PASS_TASK", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": true}

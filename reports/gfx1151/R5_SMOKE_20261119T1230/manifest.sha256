@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "run_id": "R5_SMOKE_20261119T1230",
+  "created_utc": "2026-11-19T04:47:55Z",
+  "generator": "publish/prune",
+  "entries": [
+    {
+      "path": "logs/r1_pipeline.log",
+      "sha256": "ee025801c71e856a1f4ee1193b78e061bc2641eba39dae8011d7b18036593cd6",
+      "bytes": 387
+    },
+    {
+      "path": "MATRIX_EXIT.json",
+      "sha256": "d7d611140b0da14b8dd805e5f555c24dae2a62b653a9fc0c50ad049362a03c29",
+      "bytes": 1297
+    },
+    {
+      "path": "negative_gray.png",
+      "sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "bytes": 687455
+    },
+    {
+      "path": "PIPELINE_EXIT.json",
+      "sha256": "9e299abbc0b6b4bf482617a093767384ea25d84529ea3191808f0ad52e66e6c9",
+      "bytes": 258
+    },
+    {
+      "path": "PUBLICATION.json",
+      "sha256": "d31bf2ff1b72724528140cc5fe845fc629342f0ed9ab62c68e515d9288e25bc7",
+      "bytes": 220
+    },
+    {
+      "path": "R1_CASE_LEDGER.jsonl",
+      "sha256": "a86c2aee019f5e67057543fb6bd2997477b5efc77c2e8608b1c3b5b8a06fc24e",
+      "bytes": 436
+    },
+    {
+      "path": "raw/case_yolo26n__detect_amdgpu.json",
+      "sha256": "64741d5891b2bee82cf578a225befe14a29de7db68d772aa2086d54e38feabd3",
+      "bytes": 865
+    },
+    {
+      "path": "raw/case_yolo26n__detect_cpu.json",
+      "sha256": "35e456a1ecd9c857d4afb785e4555be345c6c48e6fb1d8cea6f2ce5af441d9e9",
+      "bytes": 649
+    },
+    {
+      "path": "raw/case_yolo26n__detect_dml.json",
+      "sha256": "cf3f10162bae68c94941b51cadc1576dbbe12fc0eca7a39bac82ac85a2913aae",
+      "bytes": 856
+    },
+    {
+      "path": "raw/caseneg_yolo26n__detect_amdgpu.json",
+      "sha256": "2d5551634454684f6d12df15c1688e734d954da3e6e79ff2233a3f5f345c57d5",
+      "bytes": 669
+    },
+    {
+      "path": "raw/caseneg_yolo26n__detect_dml.json",
+      "sha256": "c64d693b7e971f9d88162b75efc4dc600a3936ec20701fcfbff2c30191ae0dec",
+      "bytes": 660
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_amdgpu.json",
+      "sha256": "6d92628401ec9c06b57e79237c4f331d9c58af7c5db72b8a484052650ca9e9c9",
+      "bytes": 381
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_cpu.json",
+      "sha256": "f05eda2725ab9d3accfe0e7b640baeb72d9b02afc4d3d595bbf6958548f1efce",
+      "bytes": 783
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_dml.json",
+      "sha256": "2d24410f285d7cd3017e5ca434533678db5804c3654e45a7f21999d3bca14e3e",
+      "bytes": 3119
+    },
+    {
+      "path": "raw/fragneg_yolo26n__detect_amdgpu.json",
+      "sha256": "831e72ee58a8bc6a42a34706a6f19c7f2331378ff99352de95bea5111f6f79cc",
+      "bytes": 381
+    },
+    {
+      "path": "raw/fragneg_yolo26n__detect_dml.json",
+      "sha256": "2b96fd641213e8a1f201c396b53ecc346688138d40c5c73b0030ed020b1f9ea2",
+      "bytes": 2269
+    },
+    {
+      "path": "raw/log_cpu_yolo26n__detect.txt",
+      "sha256": "91f49ede03804e16842adec7a1d0ec4f6d6a8c94e0a08f7c7de7692b8393ade7",
+      "bytes": 597
+    },
+    {
+      "path": "raw/log_post_yolo26n__detect_dml.txt",
+      "sha256": "a4751b605bc5bee67151b2d301865214c86bbe61fa1a753add512e3160bd25f4",
+      "bytes": 660
+    },
+    {
+      "path": "raw/log_pt_yolo26n__detect.txt",
+      "sha256": "48a82994baf719f25b82ffecf08c4d30a9aad4e6d448b9ebe5274a9106eb845e",
+      "bytes": 1259
+    },
+    {
+      "path": "raw/log_ptneg_yolo26n__detect.txt",
+      "sha256": "323d71df70fa41641d034642dc7db4308cbba264ace93910296af278b4c41d7e",
+      "bytes": 728
+    },
+    {
+      "path": "raw/log_tp_yolo26n__detect_dml.txt",
+      "sha256": "ad08134992e9b85878af127cfae1546afaa73d927d59190b09861d466e305b6d",
+      "bytes": 1337
+    },
+    {
+      "path": "raw/log_yolo26n__detect_amdgpu.txt",
+      "sha256": "e777570a29fe60fa4ba4fa1c4392bee847a9929e21e7a1de28d68190cc3ad047",
+      "bytes": 673
+    },
+    {
+      "path": "raw/log_yolo26n__detect_dml.txt",
+      "sha256": "c23c4e09607d1dc5aadc330c113dbd380b9b01cd607797560a1b2d9c89ec937c",
+      "bytes": 831
+    },
+    {
+      "path": "raw/logneg_yolo26n__detect_amdgpu.txt",
+      "sha256": "e52a1f7480dc26e5b0a4170da2788ba27e3234696630e7c3b1fcfa04cdb20b4c",
+      "bytes": 679
+    },
+    {
+      "path": "raw/logneg_yolo26n__detect_dml.txt",
+      "sha256": "9a6f273c9a394a38f71eab4b47698a723a4cb3c6c424135d2dc1d358eb90d602",
+      "bytes": 837
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.json",
+      "sha256": "e26be77ef8fcba9e8fbef953048a4b328d5d98ba47fe4331f9620f8357c44712",
+      "bytes": 593
+    },
+    {
+      "path": "raw/postneg_yolo26n__detect_dml.json",
+      "sha256": "af32932f201fa129751a678048fc32d3e91899c258f8e926c78780853bbf74d8",
+      "bytes": 88
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-19_12-27-21_597.json",
+      "sha256": "c8eb270486a92ce84af8189ee7faa9101b4d597a047cf5ae6d01e44cc0cb4b74",
+      "bytes": 400912
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_dml_2026-11-19_12-27-37_181.json",
+      "sha256": "609c5784a85ed4805646ab9899ee0159cf6d148aa8bb0afd8200d2752104d7a5",
+      "bytes": 1675
+    },
+    {
+      "path": "raw/profneg_yolo26n__detect_dml_2026-11-19_12-27-42_184.json",
+      "sha256": "7879dfcb27dc9533723de0f8d4c0da1c62c28fb8ab29afcaeb938ec014e7fd62",
+      "bytes": 1676
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.json",
+      "sha256": "d45a771fc020d8af34d03213b92f8bc0f91a00faad567df7c55f560e090ebecf",
+      "bytes": 609
+    },
+    {
+      "path": "raw/ptneg_yolo26n__detect.json",
+      "sha256": "dd939fee914b06e3ba553791372d1af07c8565bbf6785a715bf7e01965628697",
+      "bytes": 107
+    },
+    {
+      "path": "raw/tp_yolo26n__detect_dml.json",
+      "sha256": "ec4b3368305bd7aca697fc5953ed8b0d4f540e62028be130b51a2b74463b9fcf",
+      "bytes": 723
+    },
+    {
+      "path": "raw/tpneg_yolo26n__detect_dml.json",
+      "sha256": "c086cb0fa4658df23b2d1d40ede4d722c58693cc132d8ea2ab19be64a2ed7002",
+      "bytes": 896
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__amdgpu.json",
+      "sha256": "963992cf1808ff5840e5000268459aaa58ebb1beb51b11595952a82ae91eb69d",
+      "bytes": 10002
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__dml.json",
+      "sha256": "e6f8a5331b579bf09ff259f96c2e097b2e806277eb157e81acee605b9d45fac7",
+      "bytes": 13869
+    },
+    {
+      "path": "RUN_CONTRACT.json",
+      "sha256": "7dd049423828eb622905076c12d8fed544df0a11ad4681a8055a38bf903d7eb3",
+      "bytes": 3390
+    },
+    {
+      "path": "thresholds_snapshot.json",
+      "sha256": "fe13bfaf4074b2e5b7d97297d197596db2455dda4884cf719abacb4482634cce",
+      "bytes": 1099
+    }
+  ]
+}

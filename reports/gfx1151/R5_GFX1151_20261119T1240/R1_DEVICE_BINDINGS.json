@@ -1,0 +1,317 @@
+{
+  "yolo11n__detect__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo11n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-cls__classify__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-cls__classify__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-depth__depth__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-depth__depth__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-obb__obb__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-obb__obb__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-pose__pose__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-pose__pose__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-seg__segment__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-seg__segment__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n-sem__semantic__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n-sem__semantic__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolo26n__detect__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolo26n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  },
+  "yolov8n__detect__amdgpu": {
+    "attribution": null,
+    "candidates_tried": null,
+    "compiled_twice": null,
+    "dxgi_corroboration": null,
+    "ep": null,
+    "final_counts": null,
+    "probe_amdgpu_nodes": null,
+    "selected_candidate_index": null,
+    "state": null
+  },
+  "yolov8n__detect__dml": {
+    "attribution": "fused_single_node",
+    "candidates_tried": 1,
+    "compiled_twice": null,
+    "dxgi_corroboration": {
+      "adapter_index": 0,
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "device_id": "0x1586",
+      "did_match": true,
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "luid": "0x00000000:0x000154E4",
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal",
+      "vendor_id": "0x1002"
+    },
+    "ep": "DML",
+    "final_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "probe_amdgpu_nodes": 0,
+    "selected_candidate_index": 0,
+    "state": "EP_DEVICE_SELECTED"
+  }
+}

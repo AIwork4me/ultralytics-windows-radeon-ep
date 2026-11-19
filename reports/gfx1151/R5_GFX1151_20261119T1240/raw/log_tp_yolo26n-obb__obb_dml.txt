@@ -1,0 +1,6 @@
+$ .venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\pt_yolo26n-obb__obb.json --pt-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\pt_yolo26n-obb__obb.npz --cand-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-obb__obb_dml.json --cand-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-obb__obb_dml.npz --task obb --imgsz 1024 --thresholds-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\thresholds_snapshot.json --cand-source DML_POST --image-sha256 83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a --input-id 84817e527945840a7c9dd9eff00280a747aa57b3712ec4c63b863a9ba61baa20 --out C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\tp_yolo26n-obb__obb_dml.json
+rc=0 elapsed=0.4s
+--- stdout ---
+{"ok": true, "task": "obb", "passed": true, "metrics_keys": ["angle_absdiff_mean_deg", "fn", "fp", "matched", "precision", "recall", "ref_entities", "rotated_iou_mean"]}
+
+--- stderr ---

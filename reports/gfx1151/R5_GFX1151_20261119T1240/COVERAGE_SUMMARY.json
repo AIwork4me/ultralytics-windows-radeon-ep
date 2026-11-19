@@ -1,0 +1,29 @@
+{
+  "catalog_entries": 0,
+  "eligible_entries": 0,
+  "target_cases_both_eps": 0,
+  "receipts": 18,
+  "covered_checkpoints": 9,
+  "eligible_attempted_both_eps": 0,
+  "eligible_full_pass_both_eps": 0,
+  "not_run_count": 0,
+  "not_run_sample": [],
+  "status_histogram": {
+    "amdgpu=BLOCKED_EP|dml=NOT_RUN": 9,
+    "amdgpu=NOT_RUN|dml=PASS_GPU_EXECUTED_FULL": 9
+  },
+  "amdgpu_status_counts": {},
+  "dml_status_counts": {},
+  "amdgpu_pass_full": 0,
+  "amdgpu_pass_partial": 0,
+  "amdgpu_fail": 0,
+  "amdgpu_blocked": 0,
+  "amdgpu_not_run": 0,
+  "dml_pass_full": 0,
+  "dml_pass_partial": 0,
+  "dml_fail": 0,
+  "dml_blocked": 0,
+  "dml_not_run": 0,
+  "full_coverage_claim_allowed": false,
+  "physical_gpu_full_pass_allowed": false
+}

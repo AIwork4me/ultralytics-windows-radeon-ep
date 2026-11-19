@@ -1,0 +1,1 @@
+{"session": {"ep": "AMDGPU", "routing_notes": "BLOCKED_EP: BLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps"}, "parity": null, "benchmark_data": null, "worker_pid": 23160, "parent_pid": 14988, "input_tensor_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9", "input_id": "753bbd6032dadfbf898a59ee469d8d583d354fb98fceba398eda604b0dd1bbae"}

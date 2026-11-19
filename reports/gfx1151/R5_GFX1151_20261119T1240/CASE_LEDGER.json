@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "case_id": "yolo11n__detect__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo11n__detect__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-cls__classify__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-cls__classify__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-depth__depth__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-depth__depth__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-obb__obb__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-obb__obb__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-pose__pose__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-pose__pose__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-seg__segment__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-seg__segment__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-sem__semantic__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n-sem__semantic__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n__detect__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolo26n__detect__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolov8n__detect__amdgpu",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "BLOCKED_EP",
+        "dml": "NOT_RUN",
+        "task_oracle": "TASK_ORACLE_BLOCKED",
+        "benchmark": "NOT_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    },
+    {
+      "case_id": "yolov8n__detect__dml",
+      "run_id": "R5_GFX1151_20261119T1240",
+      "status": {
+        "model_asset": "AVAILABLE",
+        "export": "PASS_ONNX_EXPORT",
+        "cpu_oracle": "PASS_CPU_REFERENCE",
+        "amdgpu": "NOT_RUN",
+        "dml": "PASS_GPU_EXECUTED_FULL",
+        "task_oracle": "PASS_TASK",
+        "benchmark": "PASS_MEASURED",
+        "host": "VERIFIED_GFX1151"
+      },
+      "receipt_sha256_note": "see manifest"
+    }
+  ]
+}

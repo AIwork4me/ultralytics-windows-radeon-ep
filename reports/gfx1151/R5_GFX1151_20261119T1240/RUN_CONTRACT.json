@@ -1,0 +1,214 @@
+{
+  "cases": [
+    "yolo26n__detect",
+    "yolo26n-seg__segment",
+    "yolo26n-sem__semantic",
+    "yolo26n-depth__depth",
+    "yolo26n-cls__classify",
+    "yolo26n-pose__pose",
+    "yolo26n-obb__obb",
+    "yolo11n__detect",
+    "yolov8n__detect"
+  ],
+  "code": {
+    "git_head_sha": "ed60ed47cbfb51e5232abc47ceded5f932e479db",
+    "harness_dirs": [
+      "runner",
+      "src/radeon_ort",
+      "configs",
+      "schemas"
+    ],
+    "harness_file_count": 67,
+    "harness_sha256": "17b0c8fcebda59b462c68cd6ae512e2ad297b6a6a732179f0095875d07f58a9d",
+    "worktree_dirty": false
+  },
+  "contract_sha256": "018d661809522c8fc48e16245c14467210963704f71bdebc9f786bed971a2001",
+  "created_utc": "2026-11-19T04:28:06Z",
+  "device_identity": {
+    "device_id": "0x1586",
+    "did_match": true,
+    "gfx": "gfx1151",
+    "host_id": "host_53f62d2ac2c6",
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+    "luid": "0x00000000:0x000154E4",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "vendor_id": "0x1002"
+  },
+  "environment": {
+    "ort_distribution": "onnxruntime-windowsml",
+    "ort_providers": [
+      "CPUExecutionProvider",
+      "DmlExecutionProvider"
+    ],
+    "ort_version": "1.25.2",
+    "os_build": "10.0.26200",
+    "python_executable_name": "python.exe",
+    "python_version": "3.12.10",
+    "windowsml_version": "2.5.96"
+  },
+  "eps": [
+    "amdgpu",
+    "dml"
+  ],
+  "gfx": "gfx1151",
+  "images": {
+    "obb": {
+      "name": "dota_p1053.jpg",
+      "sha256": "83e3ae1f20298ad8defc6da4dc14a20afe48960b66cf0edb93d95b75d451192a"
+    },
+    "primary": {
+      "name": "bus.jpg",
+      "sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63"
+    }
+  },
+  "models": [
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "pt_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "task": "detect"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-seg.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "3364a99eba063e67acf41db17732fe4bcebe2fb9e43a520493f7e9d8c41008bc",
+      "pt_sha256": "361fbfabab285c3237700b6bb91d7ecfa602cd945fffda8dbe1242829b71e73f",
+      "task": "segment"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-sem.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "a71fdf47e77f80d9727038914a127b069ace7718fdf650c58e2deefd8507637d",
+      "pt_sha256": "f3f293cca764de1f93044030d8d5612de9c5ffbf37c9c8ea1b69418b73038999",
+      "task": "semantic"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-depth.pt",
+      "gfx": "gfx1151",
+      "imgsz": 768,
+      "onnx_sha256": "e8e452359bb3cec3ac9d4ab2a0fa536b63eb0cf74ae41ca81fb543557493b678",
+      "pt_sha256": "befed1b8561d8b2eaa66274b070cdfc9c44853bda6d6d62a04759f9383af74e9",
+      "task": "depth"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-cls.pt",
+      "gfx": "gfx1151",
+      "imgsz": 224,
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+      "pt_sha256": "0dd6f8dbc448870ac98a3cbb7156f923f7ce21fed3755d4019169ffffd279e81",
+      "task": "classify"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-pose.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "pt_sha256": "eb3bb8268828aeaf515cec23a4bfafd793944a86fe9af94ba7823609c14522a9",
+      "task": "pose"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo26n-obb.pt",
+      "gfx": "gfx1151",
+      "imgsz": 1024,
+      "onnx_sha256": "1f3ff9f7336aa02182485ad7b8dd93b220438688d9976621c1c89e437a3cedb6",
+      "pt_sha256": "6f51c78197aacda4a33be77294065a9001675fb893f56227a179731b53dbd2b0",
+      "task": "obb"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolo11n.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "38abf93397d9dcf84ed3f0eb9ae18be8d13c1c87b2267488d7fdeb3d96f9ed24",
+      "pt_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "task": "detect"
+    },
+    {
+      "asset_available": true,
+      "checkpoint": "yolov8n.pt",
+      "gfx": "gfx1151",
+      "imgsz": 640,
+      "onnx_sha256": "b7cdc47aba455347c37fb4c338dd18a64bfb449fa95a0a0c2c51b53835ede1b7",
+      "pt_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "task": "detect"
+    }
+  ],
+  "options": {
+    "benchmark": true,
+    "with_negative": true
+  },
+  "run_id": "R5_GFX1151_20261119T1240",
+  "schema_version": 1,
+  "thresholds": {
+    "benchmark": {
+      "repetitions": 3,
+      "samples": 30,
+      "warmup_iters": 5
+    },
+    "numeric_parity": {
+      "canary": {
+        "atol": 0.0002,
+        "rtol": 0.0002
+      },
+      "fp16_or_quantize16": {
+        "atol": 0.05,
+        "rtol": 0.05
+      },
+      "fp32": {
+        "atol": 0.005,
+        "rtol": 0.005
+      },
+      "int8": {
+        "atol": null
+      },
+      "int_outputs": {
+        "min_exact_agreement": 0.999
+      }
+    },
+    "soak": {
+      "duration_minutes": 15,
+      "heartbeat_s": 30,
+      "no_progress_timeout_s": 180
+    },
+    "task_oracle": {
+      "classify": {
+        "max_score_drift": 0.05,
+        "require_top1_match": true
+      },
+      "depth": {
+        "max_rel_mae_vs_pt": 0.15
+      },
+      "detection": {
+        "iou_thres": 0.5,
+        "min_matches": 1,
+        "min_precision": 0.9,
+        "min_recall": 0.9
+      },
+      "obb": {
+        "min_rotated_iou": 0.7
+      },
+      "pose": {
+        "min_oks": 0.8
+      },
+      "segmentation": {
+        "min_mask_iou": 0.7
+      },
+      "semantic": {
+        "min_miou": 0.7,
+        "min_pixel_agreement": 0.9
+      }
+    }
+  },
+  "thresholds_sha256": "e9a159fbb665471344340f63a125725afc65fd30d96118f7c03c03f1d3987c17"
+}

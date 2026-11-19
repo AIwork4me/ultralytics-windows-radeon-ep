@@ -13,9 +13,15 @@ fail-closed（失败即关闭）的验证。首个硬件目标：**AMD Radeon 80
 
 | 主机 | AMDGPU EP | DirectML | 证据 |
 |---|---|---|---|
-| gfx1151 — Radeon 8060S | 验证中（Tier A 进行中） | 验证中 | `reports/gfx1151/` |
-| gfx1100 — RX 7900 XTX | NOT_RUN | NOT_RUN | 未来主机 |
-| gfx1201 — RX 9070 XT | NOT_RUN | NOT_RUN | 未来主机（见 gfx1201 issue） |
+| gfx1151 — Radeon 8060S | `BLOCKED_EP`：本机 Windows ML 目录不提供 AMD GPU EP | **9/9 Tier A 物理 PASS** | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` |
+| gfx1100 — RX 7900 XTX | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | 交接：`docs/cross_host/GFX1100_HANDOFF.md` |
+| gfx1201 — RX 9070 XT | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | 交接：`docs/cross_host/GFX1201_HANDOFF.md` |
+
+本机实测（2026-11-19）：Windows 11 25H2 build 26200.9974，Radeon 8060S
+DID `0x1586` / LUID `0x00000000:0x000154E4`，驱动 32.0.22018.5，
+`windowsml 2.5.96`、`onnxruntime-windowsml 1.25.2`。官方 Catalog 返回
+`S_OK` 但 **0 个 provider**，所以 AMDGPU 是外部阻塞，不是代码缺陷，也不是单靠升级驱动
+就能解决。
 
 `CPU_CI_DOES_NOT_ATTEST_GPU`：GitHub CPU CI 只验证契约与对抗性防伪造测试，
 不证明任何 GPU 执行。
@@ -34,6 +40,27 @@ python -m venv .venv-winml
 # 严格 receipt 校验：
 .venv-winml\Scripts\python -m runner.verify_receipts --run-dir reports\gfx1151\<run_id>
 ```
+
+## 统一 API（一个入口，四种策略）
+
+```python
+from radeon_ort.unified_runtime import predict
+
+result = predict(
+    model_path="models/onnx/yolo26n.raw_b1_fp32_static.onnx",
+    inputs={"images": tensor},          # 名称 -> ndarray；按名称/dtype/shape/字节哈希
+    policy="prefer_amdgpu_allow_dml",   # require_amdgpu | prefer_amdgpu_allow_dml | gpu_first_allow_cpu | cpu_opt_in
+    target_gfx="gfx1151",               # 省略时按 DXGI DID 推断，绝不默认架构
+    allow_cpu=False,                    # 只有显式同意才允许 CPU
+    require_full_gpu=True,
+)
+print(result["runtime_status"])         # GPU_FULL | GPU_FULL_DML | CPU_ONLY_USER_AUTHORIZED | BLOCKED | FAIL
+print(result["attempted_eps"], result["fallback_reason"])
+```
+
+GPU 结论要求：目标 EP profiler 节点 > 0、CPU 节点 = 0、与独立 CPU ORT 的按输出名逐元素
+parity 通过、设备绑定标签在白名单内；`gpu_full` 与 `task_verified` 分开报告。
+命令行：`python -m runner.unified_predict --help`；契约见 `docs/unified/CONTRACTS.md`。
 
 三 venv 布局（winml / export / cpu）、8060S 集成显卡的设备身份规则
 （绝不要求 `Discrete=True`）、严格禁止静默 CPU 回退的策略，分别见

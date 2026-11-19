@@ -1,0 +1,6 @@
+$ .venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\task_parity.py --pt-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\pt_yolo26n-depth__depth.json --pt-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\pt_yolo26n-depth__depth.npz --cand-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-depth__depth_dml.json --cand-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\post_yolo26n-depth__depth_dml.npz --task depth --imgsz 768 --thresholds-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\thresholds_snapshot.json --cand-source DML_POST --image-sha256 c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63 --input-id 3b636e00741f017fcee2b71c95f043b6b221cc314e699bc597abb1a1e3f255c7 --out C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\R5_GFX1151_20261119T1240\raw\tp_yolo26n-depth__depth_dml.json
+rc=0 elapsed=0.4s
+--- stdout ---
+{"ok": true, "task": "depth", "passed": true, "metrics_keys": ["mae", "ref_entities", "ref_mean_depth", "rel_mae", "rmse", "valid_px"]}
+
+--- stderr ---

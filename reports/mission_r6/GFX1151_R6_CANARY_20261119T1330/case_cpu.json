@@ -1,0 +1,8 @@
+{
+  "ep": "cpu",
+  "gfx": "gfx1151",
+  "onnx_path": "models\\onnx\\yolo26n.raw_b1_fp32_static.onnx",
+  "feeds_npz": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1330\\inputs.npz",
+  "outputs_npz": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1330\\out_cpu.npz",
+  "profile_prefix": "reports\\mission_r6\\GFX1151_R6_CANARY_20261119T1330\\prof_cpu"
+}

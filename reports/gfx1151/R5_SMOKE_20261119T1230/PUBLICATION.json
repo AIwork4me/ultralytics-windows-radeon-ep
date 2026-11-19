@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "reason": "interim smoke run: raw tensors kept in local_evidence/",
+  "pruned_npz": 7,
+  "pruned_bytes": 5746623,
+  "note": "receipts/profilers/logs published unchanged; manifest recomputed"
+}

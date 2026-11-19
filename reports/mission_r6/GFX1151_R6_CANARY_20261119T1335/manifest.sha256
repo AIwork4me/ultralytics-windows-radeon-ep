@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_R6_CANARY_20261119T1335",
+  "created_utc": "2026-11-19T04:47:41Z",
+  "generator": "publish/prune",
+  "entries": [
+    {
+      "path": "case_amdgpu.json",
+      "sha256": "68a7c616bcb9b2ee6aee1ba8eeaf080decca201bfea99270f76bf5f1f9fb98f4",
+      "bytes": 497
+    },
+    {
+      "path": "case_cpu.json",
+      "sha256": "28290bbb9684fe52a1ad1a00401486c904362cd00d38cb1b66002d89278a9c16",
+      "bytes": 363
+    },
+    {
+      "path": "case_dml.json",
+      "sha256": "50f8257194db4f5173771dee2ca649336217f28a64dc1a88dd559c5863373aaf",
+      "bytes": 488
+    },
+    {
+      "path": "frag_amdgpu.json",
+      "sha256": "a6848facab72f43ec8444b09fe67b4a0550098ffa4dc7ef03666086d068afa11",
+      "bytes": 346
+    },
+    {
+      "path": "frag_cpu.json",
+      "sha256": "dfc01ceec1407c0faf7718314e7df55a190edccb11e5e3d5c2f9c2c6e5630824",
+      "bytes": 724
+    },
+    {
+      "path": "frag_dml.json",
+      "sha256": "3881629502bde4c1c3afc9ffa666d72a71c856d212731c3455d38d7fc667da4a",
+      "bytes": 2828
+    },
+    {
+      "path": "logs/worker_amdgpu.log",
+      "sha256": "c7094cd3cf98c523eacc8a652ed357eddc5456af5b8e46990847dc9822059593",
+      "bytes": 228
+    },
+    {
+      "path": "logs/worker_cpu.log",
+      "sha256": "03b1afb38e278437b8ddde74ed8c40cfd2ad9de97a5073dceb2eeb7d1e327320",
+      "bytes": 159
+    },
+    {
+      "path": "logs/worker_dml.log",
+      "sha256": "9293813115412693cbe0a8213f67e15b994e827a13bcc37e88ae6e183429b668",
+      "bytes": 393
+    },
+    {
+      "path": "prof_cpu_2026-11-19_12-32-29_955.json",
+      "sha256": "fe0263d669c6e01d8235a5034d2908b182a18ed5027ef32c693545cabec1c2aa",
+      "bytes": 400071
+    },
+    {
+      "path": "prof_dml_2026-11-19_12-32-31_408.json",
+      "sha256": "77a2675c04f0096e63a0f8d03c1f7ed4fd44646aa35c69dce436b5cd459a68d6",
+      "bytes": 1662
+    },
+    {
+      "path": "PUBLICATION.json",
+      "sha256": "7780c1d450a06e327534f2a0abb008950bcfc86dff79d899b092d62c6db6633c",
+      "bytes": 260
+    },
+    {
+      "path": "receipt_GFX1151_R6_CANARY_20261119T1335.json",
+      "sha256": "a120833f691eefb7a750088eabc78e9beb2af424fa511b87d4056d06377b06f1",
+      "bytes": 2468
+    },
+    {
+      "path": "RESULT.json",
+      "sha256": "ae90d0b527d9fdaa09ae760faf3a4f0e3395b3f81e1f294e4596d2dcdfe95b84",
+      "bytes": 5645
+    }
+  ]
+}
