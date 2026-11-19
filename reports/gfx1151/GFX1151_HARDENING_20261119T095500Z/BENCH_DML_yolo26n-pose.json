@@ -1,0 +1,240 @@
+{
+  "schema_version": 2,
+  "ep": "dml",
+  "onnx": "yolo26n-pose.raw_b1_fp32_static.onnx",
+  "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+  "input_npy": "input_f7c35eeba4193cb8.npy",
+  "input_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+  "input_dtype": "float32",
+  "input_shape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "gfx": "gfx1151",
+  "device": {
+    "state": "EP_DEVICE_SELECTED",
+    "luid": "0x00000000:0x000154E4",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586",
+    "dxgi_corroboration_only": true,
+    "note": "DML/AMDGPU expose no EP-reported LUID on this build; the LUID above is host-side DXGI evidence, not EP-reported"
+  },
+  "memory": {
+    "schema_version": 1,
+    "sources": {
+      "dedicated_video_mb": {
+        "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "driver/BIOS-reported dedicated segment; on an integrated APU this is a carve-out, NOT independent physical VRAM"
+      },
+      "dedicated_system_mb": {
+        "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "system memory dedicated to the adapter segment"
+      },
+      "shared_system_mb": {
+        "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+        "unit": "MiB (rounded down)",
+        "meaning": "system RAM the GPU is allowed to share; not VRAM"
+      },
+      "wmi_adapter_ram_bytes": {
+        "source": "WMI Win32_VideoController.AdapterRAM",
+        "unit": "bytes",
+        "meaning": "uint32 field; saturates near 4 GiB and is unreliable for >4 GiB devices; do NOT use as VRAM capacity"
+      }
+    },
+    "values": {
+      "dedicated_video_mb": 32589,
+      "dedicated_system_mb": 0,
+      "shared_system_mb": 78459,
+      "wmi_adapter_ram_bytes": null
+    },
+    "wmi_adapter_ram_saturated": false,
+    "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, bandwidth, temperature and power are NOT_MEASURED"
+  },
+  "warmup": 5,
+  "samples_per_rep": 30,
+  "repetitions": 3,
+  "pre_post_processing": "NOT_MEASURED (separate pipeline phases)",
+  "timer": "time.perf_counter_ns",
+  "reps": [
+    {
+      "rep": 0,
+      "session_create_ms": 720.8078,
+      "first_run_ms": 9.252,
+      "cold_start_total_ms": 730.0598,
+      "warm_ms": {
+        "p50": 11.862549999999999,
+        "p95": 12.307605,
+        "p99": 12.595111000000001,
+        "mean": 11.788253333333333,
+        "std": 0.4200284940598938,
+        "samples": 30
+      },
+      "throughput_img_s": 84.83020950799609,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "dml_device_id": 0,
+      "kernel_time_ms": 7.096,
+      "wall_minus_kernel_ms": 4.766549999999999,
+      "profile_sha256": "9dfd4e1cf29ec08e99ad4eb9b47c520fec08324849fa40b28f175ce0029c5c92",
+      "ep_devices": [
+        {
+          "ep_name": "CPUExecutionProvider",
+          "ep_options": {},
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        },
+        {
+          "ep_name": "DmlExecutionProvider",
+          "ep_options": {
+            "device_id": "0"
+          },
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        }
+      ]
+    },
+    {
+      "rep": 1,
+      "session_create_ms": 669.2839,
+      "first_run_ms": 9.8119,
+      "cold_start_total_ms": 679.0958,
+      "warm_ms": {
+        "p50": 12.018699999999999,
+        "p95": 12.594315,
+        "p99": 12.740478,
+        "mean": 11.947836666666666,
+        "std": 0.5368744896673298,
+        "samples": 30
+      },
+      "throughput_img_s": 83.69716023905026,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "dml_device_id": 0,
+      "kernel_time_ms": 6.221,
+      "wall_minus_kernel_ms": 5.797699999999999,
+      "profile_sha256": "9b2d105bebbf16f280cc5cb850296e5a1477097bf8481b0c217bb07cb9fd4452",
+      "ep_devices": [
+        {
+          "ep_name": "CPUExecutionProvider",
+          "ep_options": {},
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        },
+        {
+          "ep_name": "DmlExecutionProvider",
+          "ep_options": {
+            "device_id": "0"
+          },
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        }
+      ]
+    },
+    {
+      "rep": 2,
+      "session_create_ms": 743.7943,
+      "first_run_ms": 9.3007,
+      "cold_start_total_ms": 753.095,
+      "warm_ms": {
+        "p50": 11.97305,
+        "p95": 14.330834999999993,
+        "p99": 17.146526,
+        "mean": 12.368403333333333,
+        "std": 1.2962751928720828,
+        "samples": 30
+      },
+      "throughput_img_s": 80.85117965913682,
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "target_ep_nodes": 1,
+      "cpu_nodes": 0,
+      "dml_device_id": 0,
+      "kernel_time_ms": 6.174,
+      "wall_minus_kernel_ms": 5.79905,
+      "profile_sha256": "bed6069f632e92f9f5df4d2409937cd47e6d6ddd0ec962abd83b12c59079460a",
+      "ep_devices": [
+        {
+          "ep_name": "CPUExecutionProvider",
+          "ep_options": {},
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        },
+        {
+          "ep_name": "DmlExecutionProvider",
+          "ep_options": {
+            "device_id": "0"
+          },
+          "ep_metadata": {
+            "version": "1.25.2"
+          }
+        }
+      ]
+    }
+  ],
+  "aggregate_warm_p50": {
+    "mean": 11.951433333333332,
+    "min": 11.862549999999999,
+    "max": 12.018699999999999
+  },
+  "aggregate_warm_p95": {
+    "mean": 13.077585,
+    "min": 12.307605,
+    "max": 14.330834999999993
+  },
+  "gpu_attested_all_reps": true,
+  "evidence_contract": {
+    "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+    "input_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+    "gfx": "gfx1151",
+    "ep": "dml",
+    "note": "a benchmark without these hashes is unbound and cannot be compared against another run"
+  },
+  "telemetry": {
+    "clocks": {
+      "samples": 7,
+      "available": true,
+      "core_mhz_min": 2900,
+      "core_mhz_max": 2900,
+      "core_mhz_unique": [
+        2900
+      ],
+      "mem_mhz_min": 1000,
+      "mem_mhz_max": 1000,
+      "mem_mhz_unique": [
+        1000
+      ],
+      "first": {
+        "available": true,
+        "error": null,
+        "adapter_index": 0,
+        "core_mhz": 2900,
+        "mem_mhz": 1000,
+        "sources": {
+          "core_mhz": "ADL2_Adapter_ObservedClockInfo_Get",
+          "mem_mhz": "ADL2_Adapter_ObservedClockInfo_Get",
+          "temperature": "NOT_EXPOSED_BY_ADL_ON_THIS_APU",
+          "power": "NOT_EXPOSED_BY_ADL_ON_THIS_APU",
+          "activity": "NOT_EXPOSED_BY_ADL_ON_THIS_APU"
+        }
+      },
+      "limitation": "clocks only; APU ADL temperature/power/activity are NOT_SUPPORTED on this host, so they remain NOT_MEASURED"
+    },
+    "temperature_power_activity": "NOT_MEASURED"
+  }
+}

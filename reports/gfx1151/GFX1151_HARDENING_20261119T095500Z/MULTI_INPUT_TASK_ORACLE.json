@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T02:40:10Z",
+  "gfx": "gfx1151",
+  "ep": "dml",
+  "scope": "multi-input task-oracle smoke: detect and pose, 4 deterministic image variants each; NOT dataset-level accuracy",
+  "variants_per_model": 4,
+  "host_identity": {
+    "gfx": "gfx1151",
+    "host_id": "host_53f62d2ac2c6",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586"
+  },
+  "aggregate": {
+    "detect": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    },
+    "pose": {
+      "inputs": 4,
+      "passed": 4,
+      "all_passed": true,
+      "variants": [
+        "orig",
+        "flip",
+        "bright",
+        "crop90"
+      ]
+    }
+  },
+  "results": [
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "variant": "orig",
+      "input_id": "f668aed252b4853c240ed3cdd2484318be435d6005e1f1952fe995e7ffc7107b",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999993908558663
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "variant": "flip",
+      "input_id": "c785e143f53d94e51c939654ff8dd798765d9ae05289c258707d726e192357bc",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999996061978692
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "variant": "bright",
+      "input_id": "151a439e73d1fc886176a98d1031273c4c8ae301dd34f2826f998bc2d06fa8b7",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 5,
+        "matched": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999995036705174
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n.pt",
+      "task": "detect",
+      "variant": "crop90",
+      "input_id": "a58c5f2b64298f9574b2b800b8579b57e14be32bdfea214d1ff58783277c7a2c",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "3c41cbde3fb22007e4b55c939e6c292e4c50c4108f930699a715a3f1f42a99bd",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999990175914506
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "variant": "orig",
+      "input_id": "501c33730e62607803d1ad19aec4d8d605fd39c4c0da4ee0a34459f77cec3da8",
+      "image_sha256": "26b0ec2433832330b828da66f3b7e382692e319fb4a46191ba572561cfb9dc56",
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999991631161762,
+        "oks_mean": 0.9999999999999967
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "variant": "flip",
+      "input_id": "5f4f52132a7198b3a8da30e33b3a34a536022d167fce8ccd0edbff8b0eb7f169",
+      "image_sha256": "90beb1f4a9e3fecdb44016f2cb71d6ae027d7c12f64ca1e1296855afdd8248ac",
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999995140200291,
+        "oks_mean": 0.999999999999996
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "variant": "bright",
+      "input_id": "c7f1c56434d5aed1293de1c76910dbfd04bab0499f4e68070ba7852ac47111ec",
+      "image_sha256": "3136c76bf87b82dff6a616fd6db4498192e135cabd2bf0000491dabce2d4431d",
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 4,
+        "matched": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999994218823924,
+        "oks_mean": 0.9999999999999911
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    },
+    {
+      "model": "yolo26n-pose.pt",
+      "task": "pose",
+      "variant": "crop90",
+      "input_id": "221f72f7ee32829990d3ed51d2ba9c12a12cf8497dcaeaa7009f94511435a2f9",
+      "image_sha256": "b03d7b5c8bdd0683864ac7ab3e9521f69308bf29f438be42cd1ee8d1d5cf3e88",
+      "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+      "status": "PASS",
+      "metrics": {
+        "ref_entities": 3,
+        "matched": 3,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "iou_mean": 0.9999990061545665,
+        "oks_mean": 0.9999999999999698
+      },
+      "oracle_kind": "TASK_PARITY",
+      "dml_nodes": 1
+    }
+  ],
+  "not_run": "seg/sem/depth/cls/obb multi-input smoke not completed (the 7-task run stalled in the segment PT-oracle subprocess); these remain single-image evidence in PR #8"
+}

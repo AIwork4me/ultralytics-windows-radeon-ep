@@ -115,7 +115,20 @@ in its case JSON; `_ep_worker.py` refuses a case without `gfx`.
   a carve-out, not soldered VRAM. None of these is used as a runtime/temperature
   metric.
 
-## 7. Commands
+## 7. Benchmark evidence is hash-bound
+
+`runner.bench_repeats.py` now records `evidence_contract.onnx_sha256` and
+`evidence_contract.input_sha256` plus the DXGI device identity. A benchmark that
+only records a basename is **unbound**: it cannot be compared with another run
+and cannot support a performance claim. `--telemetry-out` samples ADL observed
+core/memory clocks during the measurement; on the 8060S APU ADL exposes clocks
+only, so temperature/power/activity remain `NOT_MEASURED`.
+
+The PR #8 Pose 2.56 ms benchmark predates this requirement and has no model/input
+SHA; it is retained as historical evidence but marked `UNBOUND_LEGACY_OUTLIER`,
+not as a performance fact.
+
+## 8. Commands
 
 ```powershell
 # New contract run (gfx inferred; use --gfx to pin)

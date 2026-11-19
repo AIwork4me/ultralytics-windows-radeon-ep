@@ -116,6 +116,12 @@ def main() -> int:
         },
         "amd_gpu_ep_packages": amd_gpu_pkg,
         "verdict": "BLOCKED_EP",
+        "blocked_status": "BLOCKED_ADMIN_DEPENDENCY",
+        "admin_dependency": True,
+        "required_approval_actions": ["A1 windowsml>=2.5.96 Python bindings",
+                                      "A2 AMD GPU driver >= 25.10.13.09",
+                                      "A3 official dynamic AMDGPU EP MSIX",
+                                      "A4 BYO official signed EP (fallback)"],
         "verdict_reasons": [],
     }
     reasons = report["verdict_reasons"]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "captured_utc": "2026-11-19T01:51:24Z",
+  "captured_utc": "2026-11-19T02:40:23Z",
   "scope": "READ_ONLY (no install / no driver change / no MSIX change)",
   "gfx": "gfx1151",
   "host": {
@@ -74,6 +74,14 @@
   },
   "amd_gpu_ep_packages": [],
   "verdict": "BLOCKED_EP",
+  "blocked_status": "BLOCKED_ADMIN_DEPENDENCY",
+  "admin_dependency": true,
+  "required_approval_actions": [
+    "A1 windowsml>=2.5.96 Python bindings",
+    "A2 AMD GPU driver >= 25.10.13.09",
+    "A3 official dynamic AMDGPU EP MSIX",
+    "A4 BYO official signed EP (fallback)"
+  ],
   "verdict_reasons": [
     "amdgpu-ep.dll not found in site-packages or WindowsApps",
     "no AMD GPU EP AppX/MSIX package installed",

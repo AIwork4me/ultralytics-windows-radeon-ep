@@ -116,6 +116,20 @@ def test_verify_run_contract_rejects_changed_code_and_thresholds(tmp_path, monke
     assert any("DEVICE_IDENTITY_CHANGED" in p for p in problems)
 
 
+def test_contract_for_gfx1201_cannot_be_resumed_on_gfx1151(tmp_path, monkeypatch):
+    run = tmp_path / "RUN_TEST"
+    run.mkdir()
+    dev1201 = dict(DEV, gfx="gfx1201", device_id="0x7550",
+                   physical_gpu_name="AMD Radeon RX 9070")
+    contract = _contract(tmp_path, gfx="gfx1201", device_identity=dev1201)
+    monkeypatch.setattr(c, "code_state", lambda root: dict(CODE))
+    problems = c.verify_run_contract(
+        contract, repo_root=tmp_path, run_dir=run, thresholds=TH,
+        host_block=_host(), models=["yolo26n.pt"], eps=["amdgpu", "dml"],
+        images=IMAGES, options=OPTIONS)
+    assert any("DEVICE_IDENTITY_CHANGED" in p for p in problems)
+
+
 def test_receipt_contract_matches_then_rejects_tampered_model_and_input():
     contract = _contract(Path("."))
     receipt = make_receipt_v2(ep="dml", ep_nodes=1)
@@ -184,6 +198,18 @@ def test_run_matrix_audit_blocks_when_second_ep_receipt_missing(tmp_path):
     assert rc == 2, audit
     assert audit["counts"]["PASS_FULL"] == 1
     assert audit["expected"] == 2
+
+
+def test_bench_kernel_time_extraction_is_ms(tmp_path):
+    from runner.bench_repeats import _kernel_time_ms
+    p = tmp_path / "prof.json"
+    p.write_text(json.dumps([
+        {"cat": "Node", "name": "DmlFusedNode_0_0_kernel_time", "dur": 6200},
+        {"cat": "Node", "name": "DmlFusedNode_0_0_kernel_time", "dur": 7100},
+        {"cat": "Session", "name": "model_run", "dur": 99999},
+    ]), encoding="utf-8")
+    assert _kernel_time_ms(p) == 7.1
+    assert _kernel_time_ms(None) is None
 
 
 def test_run_matrix_audit_rejects_dirty_contract(tmp_path):

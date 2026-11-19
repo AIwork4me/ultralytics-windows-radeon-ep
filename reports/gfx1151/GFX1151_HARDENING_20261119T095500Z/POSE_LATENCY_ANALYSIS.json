@@ -140,5 +140,88 @@
     "Record whether the session is local console or RDP, and display power state.",
     "Use one fresh session per sample and report per-sample distribution; do not compare different methods as if identical.",
     "Keep all runs under new run_ids; never rewrite the historical benchmark receipts."
-  ]
+  ],
+  "hash_bound_benchmark": {
+    "source": "BENCH_DML_yolo26n-pose.json (schema 2)",
+    "onnx_sha256": "f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656",
+    "input_sha256": "00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9",
+    "warm_p50_ms": [
+      11.862549999999999,
+      12.018699999999999,
+      11.97305
+    ],
+    "kernel_time_ms": [
+      7.096,
+      6.221,
+      6.174
+    ],
+    "wall_minus_kernel_ms": [
+      4.766549999999999,
+      5.797699999999999,
+      5.79905
+    ],
+    "clocks": {
+      "samples": 7,
+      "available": true,
+      "core_mhz_min": 2900,
+      "core_mhz_max": 2900,
+      "core_mhz_unique": [
+        2900
+      ],
+      "mem_mhz_min": 1000,
+      "mem_mhz_max": 1000,
+      "mem_mhz_unique": [
+        1000
+      ],
+      "first": {
+        "available": true,
+        "error": null,
+        "adapter_index": 0,
+        "core_mhz": 2900,
+        "mem_mhz": 1000,
+        "sources": {
+          "core_mhz": "ADL2_Adapter_ObservedClockInfo_Get",
+          "mem_mhz": "ADL2_Adapter_ObservedClockInfo_Get",
+          "temperature": "NOT_EXPOSED_BY_ADL_ON_THIS_APU",
+          "power": "NOT_EXPOSED_BY_ADL_ON_THIS_APU",
+          "activity": "NOT_EXPOSED_BY_ADL_ON_THIS_APU"
+        }
+      },
+      "limitation": "clocks only; APU ADL temperature/power/activity are NOT_SUPPORTED on this host, so they remain NOT_MEASURED"
+    },
+    "temperature_power_activity": "NOT_MEASURED (APU ADL returns NOT_SUPPORTED)"
+  },
+  "controlled_variants": {
+    "normal_priority_p50_ms": [
+      11.82235,
+      11.78105,
+      11.99055
+    ],
+    "high_priority_p50_ms": [
+      11.89225,
+      11.9281,
+      11.89765
+    ],
+    "no_profiling_p50_ms": [
+      8.9847,
+      9.48045,
+      10.37085
+    ],
+    "profiling_active_p50_ms": [
+      10.43355,
+      10.96435,
+      10.9368
+    ],
+    "conclusion": "priority/profiling changes do not reproduce 2.56 ms; clocks stay 2900/1000 MHz"
+  },
+  "legacy_binding": {
+    "074700Z_benchmark_has_onnx_sha": false,
+    "081900Z_benchmark_has_onnx_sha": false,
+    "note": "benchmark JSON recorded only basenames; the 2.56 ms value cannot be tied to the audited ONNX/input bytes and is an UNBOUND_LEGACY_OUTLIER, not a performance fact"
+  },
+  "risk_resolution": {
+    "evidence_risk": "RESOLVED: only hash-bound benchmarks are admissible; new bench includes onnx/input SHA + clocks",
+    "physical_cause_of_legacy_2_56ms": "UNKNOWN",
+    "thermal_hypothesis": "UNSUPPORTED_BY_DATA (ADL clocks constant 2900/1000; no temp/power data)"
+  }
 }

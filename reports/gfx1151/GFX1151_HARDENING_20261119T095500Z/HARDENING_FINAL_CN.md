@@ -106,8 +106,9 @@
 | run | warm p50（3 reps） | 说明 |
 | --- | --- | --- |
 | `GFX1151_PHYSICAL_20261119T074700Z` | 10.073 / 10.787 / 10.969 ms | `bench_repeats`，fresh session/rep |
-| `GFX1151_PHYSICAL_20261119T081900Z` | 2.560 / 2.704 / 2.662 ms | 同一方法，约 4× 更快 |
-| `HARDENING_20261119T095000Z` | 11.068 ms（单 session，p50，30 samples） | `r1_pipeline --benchmark`，方法不同，仅作旁证 |
+| `GFX1151_PHYSICAL_20261119T081900Z` | 2.560 / 2.704 / 2.662 ms | 同一方法，约 4× 更快；benchmark 文件无 SHA，无法绑定到受审 ONNX/输入 |
+| `HARDENING_20261119T095500Z` | 11.068 ms（单 session，p50，30 samples） | `r1_pipeline --benchmark`，方法不同，仅作旁证 |
+| `HARDENING_20261119T095500Z`（hash-bound） | 11.862 / 12.019 / 11.973 ms | 本报告新增；ONNX/input SHA 绑定；kernel 6.17–7.10 ms；ADL clocks 2900/1000 MHz 恒定 |
 
 Profiled first-run durations（raw ORT profile）：
 
@@ -119,9 +120,11 @@ Profiled first-run durations（raw ORT profile）：
 
 结论：
 
-- **ROOT_CAUSE = UNKNOWN**。现有数据只能证明 081900Z 的 warm benchmark 是离群快值；074700Z 与 095000Z 都在 ~10–11 ms。
-- **THERMAL_HYPOTHESIS = UNSUPPORTED_BY_DATA**。没有任何 GPU clock、power、temperature、display/RDP 状态记录；PR #8 报告第 166–167 行的“GPU 时钟/机器热状态导致约 4×”是未经验证的猜测，本报告予以更正。
-- 待测假设：GPU clock/power state、RDP/display 状态、DML pipeline/shader cache、CPU 调度/后台负载。测量方案要求 1 Hz 记录 core/memory clock、board power、temperature、utilization，并在同一 session 中交错重复 5 次。
+- **根因（证据层）**：旧 `BENCH_DML_yolo26n-pose.json` 只记录文件名，不记录 ONNX/input SHA256；它无法独立证明自己测的是受审的那份模型/输入。因此 2.56 ms 与 10–11 ms 的“4× 对比”是**未绑定（unbound）比较**，不能作为性能结论。本报告新增 hash-bound benchmark，ONNX `f5a5ce5f…`、input `00324540…`、DML、`DmlExecutionProvider=1`、CPU nodes=0。
+- **新实测**：hash-bound warm p50 `11.862 / 12.019 / 11.973 ms`；kernel_time `7.096 / 6.221 / 6.174 ms`；wall−kernel `4.77 / 5.80 / 5.80 ms`。说明当前 11–12 ms 中约 5 ms 是 host 侧提交/排队开销，而不是纯 GPU kernel。
+- **Clock 数据**：ADL `ADL2_Adapter_ObservedClockInfo_Get` 在测量期间恒为 core `2900 MHz`、mem `1000 MHz`（7 个样本），没有 clock 下降；高优先级进程与 profiling on/off 也都没有复现 2.56 ms（normal ≈11.9 ms，high ≈11.9 ms，no-profile ≈9–10 ms，profile-active ≈10.9 ms）。
+- **Pose 2.56 ms 的物理根因 = UNKNOWN**：没有当时的 clock/power/temperature/RDP 状态；不能声称热状态。**THERMAL_HYPOTHESIS = UNSUPPORTED_BY_DATA**。PR #8 报告第 166–167 行的热状态归因是猜测，本报告更正。
+- **风险处置**：只有带 `evidence_contract.onnx_sha256/input_sha256` 的 benchmark 才能用于比较；旧 2.56 ms 标记为 `UNBOUND_LEGACY_OUTLIER`，不得引用。若需解释该历史值，必须找到当时的 telemetry（已不存在）或按 §7 方案重新采集；在没有数据前保持 UNKNOWN。
 
 ## 4. AMDGPU EP 只读调查（Part 2）
 
@@ -144,22 +147,52 @@ Provisioning Plan（详见文档，均需用户批准，未执行）：
 
 ## 5. 测试与证据
 
-- CPU 测试：`tests/unit tests/contracts tests/adversarial` → **241 passed, 1 skipped**（hardware test 在本机跳过；CPU CI 不代表 GPU）。
+- CPU 测试：`tests/unit tests/contracts tests/adversarial` → **243 passed, 1 skipped**（hardware test 在本机跳过；CPU CI 不代表 GPU）。
 - Live identity probe：`HOST_IDENTITY_MATRIX.json`（gfx1151 verified；gfx1100/gfx1201 fail-closed）。
 - Contract 集成：clean 工作树 `4971342` 上的单 case run `CONTRACT_FINAL_20261119T100200Z`；resume `RESUME OK`；strict audit `PASS_FULL=1/1`，rc=0。该 run 不提交为新的 GPU PASS 证据，只作为 contract 行为测试。
-- AMDGPU 只读探测：`AMDGPU_EP_READONLY_PROBE.json`。
+- AMDGPU 只读探测：`AMDGPU_EP_READONLY_PROBE.json`（`BLOCKED_EP` / `BLOCKED_ADMIN_DEPENDENCY`）。
 - 内存口径：`MEMORY_PROVENANCE.json`。
-- Pose 时延：`POSE_LATENCY_ANALYSIS.json`。
+- Pose 时延：`POSE_LATENCY_ANALYSIS.json`；新增 hash-bound `BENCH_DML_yolo26n-pose.json` + `BENCH_DML_yolo26n-pose.clocks.jsonl`。
+- DML 绑定负向控制：`DML_BINDING_PROBE.json`（无效 ordinal 7/99 失败；相邻 ordinal 1 被接受，记录为 dual enumeration；无 EP-reported LUID）。
+- 多输入 task-oracle：`MULTI_INPUT_TASK_ORACLE.json`（detect/pose 各 4 个输入变体，8/8 PASS；明确不是 dataset-level）。
+- 历史 Receipt 政策：`docs/LEGACY_RECEIPTS.md`；PR #8 的 18 个 Receipt 仍 `ALL_OK`。
+- 硬件声明矩阵：`docs/HARDWARE_CLAIM_MATRIX.md`（gfx1100/gfx1201 无硬件证据，禁止 PASS）。
 - 新证据目录没有 Receipt，也没有新的 GPU PASS 声明；PR #8 的历史 Receipt 未被修改。
 
-## 6. 尚未解决的风险
+## 6. 风险根因与处置状态
 
-1. **AMDGPU EP 仍缺失**：所有 AMDGPU case 继续 `BLOCKED_EP`；需 A1–A3 或 A4 的批准与执行。
-2. **P1-C 根因未知**：没有 clock/power/temperature 计量；在完成交错测量前，不得引用 2.56 ms 作为稳定性能。
-3. **单图 task oracle**：PR #8 的 7 任务指标仍是单图；数据集级精度未验证（继承 PR #8 开放项）。
-4. **DML 绑定仍是间接证据**：EP 不报告 LUID；只能声明 `EP_DEVICE_SELECTED` + host DXGI corroboration。
-5. **gfx1100/gfx1201 未真机验证**：代码已 DID-pin 并 fail-closed，但没有对应硬件证据；不能声称这两个 arch 的 GPU PASS。
-6. **历史 Receipt 兼容性**：PR #8 旧 Receipt 无 `contract` 块；它们不会被 contract-aware resume 复用，也不会被新 run 当作 PASS。
+| # | 风险 | 根因分析 | 本轮处置 | 状态 |
+| --- | --- | --- | --- | --- |
+| 1 | AMDGPU EP 缺失 | 无 `amdgpu-ep.dll`/无 AMD GPU EP 包；2.3.0 与官方 2.5.96 catalog 均 0 providers；驱动最低版本未证明 | 只读探测 + 审批门禁 provisioning plan；记录 `BLOCKED_ADMIN_DEPENDENCY`；**未安装任何组件** | **仍阻塞，需 A1–A3 批准** |
+| 2 | Pose 4× 时延 | 旧 benchmark 无 ONNX/input SHA，属 unbound 比较；当前 hash-bound 实测 ~11.9 ms，kernel 6.2–7.1 ms，ADL clock 恒 2900/1000 MHz；高优先级/profiling 不改变 | 新增 SHA 绑定 + kernel/wall 分解 + ADL clock 采样；旧 2.56 ms 标记 `UNBOUND_LEGACY_OUTLIER`，不再引用 | **证据风险已解决；2.56 ms 物理根因 UNKNOWN** |
+| 3 | 单图 task oracle | 原 pipeline 每个任务只跑 1 张图 | 新增 `multi_input_oracle`，detect/pose 各 4 变体 8/8 PASS；seg 等在 7-task 运行时 PT-oracle 子进程卡住，未完成 | **harness 已实现；dataset-level 仍需数据集** |
+| 4 | DML 绑定间接 | DML 只暴露 ordinal，不暴露 LUID/PCI | 新增 `DML_BINDING_PROBE` 负向控制：ordinal 7/99 失败，证明 ordinal 被强制执行；仍不能声明 EP-reported LUID | **已加强，限制仍在** |
+| 5 | gfx1100/gfx1201 未真机 | 本机只有 gfx1151 | 合成 DID-pin 测试 + 硬件声明矩阵；无硬件不产生 PASS | **硬件阻塞** |
+| 6 | 历史 Receipt 兼容 | 旧 Receipt 无 `contract` 块，resume 是循环论证 | 明确 verify-only 政策；旧 Receipt 继续 strict-verify，不复用、不改写 | **按设计接受** |
+
+### 6.1 P1-C 补充结论（hash-bound）
+
+- 旧 `BENCH_DML_yolo26n-pose.json` 只有文件名，没有 ONNX/input SHA；即使文件 mtime 显示模型未变，也不能独立证明当时加载的字节。该比较是 unbound。
+- 新增 benchmark 的 `evidence_contract` 记录：
+  - ONNX `f5a5ce5f38c6d15ee9af8653f3db9b1775fafd7a910005e6d5b4cf0e515fa656`
+  - input `00324540e17f133ce47c239b8ad8de28c80d90ecd36a3b4de3a592c9749befd9`
+  - warm p50 `11.862 / 12.019 / 11.973 ms`
+  - kernel_time `7.096 / 6.221 / 6.174 ms`
+  - wall−kernel `4.77 / 5.80 / 5.80 ms`
+  - ADL core/mem clocks `2900/1000 MHz`（7 个样本，恒定）
+- 高优先级进程（HIGH_PRIORITY_CLASS）与 profiling on/off 均未复现 2.56 ms：normal ≈11.9 ms，high ≈11.9 ms，no-profile ≈9–10 ms，profile-active ≈10.9 ms。热状态假设没有支持数据。
+- 结论：**2.56 ms 的物理根因仍是 UNKNOWN**；可证实的是旧数据 unbound、当前 hash-bound 稳定在 ~11–12 ms，且没有 clock 下降证据。任何后续性能声明必须带 `evidence_contract` 哈希。
+
+### 6.2 多输入 task-oracle
+
+`multi_input_oracle` 对 `bus.jpg` 生成 `orig / flip / bright / crop90` 四个确定性变体，对 detect 和 pose 各跑 4 个输入：
+
+| task | inputs | passed | 说明 |
+| --- | --- | --- | --- |
+| detect | 4 | 4/4 | all_passed=true |
+| pose | 4 | 4/4 | all_passed=true |
+
+这解决了“每个任务只有一张图”的 harness 限制，但不是 dataset-level 精度；seg/sem/depth/cls/obb 的 7-task 批量运行在 segment PT-oracle 子进程处卡住，未完成，不能宣称全部任务多输入通过。
 
 ## 7. 下一轮 gfx1151 真机命令
 
@@ -185,13 +218,30 @@ git status --short
 # 5) 只读 AMDGPU 依赖探测（不安装）
 .venv-winml\Scripts\python -m runner.probe_amdgpu_ep --gfx gfx1151 `
   --out reports/gfx1151/AMDGPU_PROBE/AMDGPU_EP_READONLY_PROBE.json
+
+# 6) DML ordinal 负向控制（只读 + 1 个 canary session）
+.venv-winml\Scripts\python -m runner.dml_binding_probe --gfx gfx1151 `
+  --out reports/gfx1151/DML_BINDING_PROBE.json
+
+# 7) 多输入 task-oracle smoke（detect/pose 为例）
+.venv-winml\Scripts\python -m runner.multi_input_oracle `
+  --models yolo26n.pt,yolo26n-pose.pt --gfx gfx1151 --ep dml `
+  --out reports/gfx1151/MULTI/MULTI_INPUT_TASK_ORACLE.json
+
+# 8) hash-bound benchmark + ADL clock 采样（benchmark 必须带 SHA）
+.venv-winml\Scripts\python -m runner.bench_repeats `
+  --onnx models\onnx\yolo26n-pose.raw_b1_fp32_static.onnx `
+  --input-npy <persisted_input.npy> --ep dml --gfx gfx1151 `
+  --out reports/gfx1151/BENCH/BENCH_DML_yolo26n-pose.json `
+  --telemetry-out reports/gfx1151/BENCH/BENCH_DML_yolo26n-pose.clocks.jsonl
 ```
 
 ## 8. 变更文件
 
 - 核心：`src/radeon_ort/contract.py`（新）、`runner/r1_pipeline.py`、`runner/run_matrix.py`、`runner/resume_matrix.py`、`runner/verify_receipts.py`
 - gfx/DID：`src/radeon_ort/device_identity.py`、`src/radeon_ort/host_probe.py`、`runner/preflight.py`、`runner/soak.py`、`runner/bench_repeats.py`、`runner/finalize_run.py`
-- 绑定/内存：`runner/_ep_worker.py`、`src/radeon_ort/receipts.py`、`schemas/receipt_v2.json`
+- 绑定/内存/遥测：`runner/_ep_worker.py`、`src/radeon_ort/receipts.py`、`src/radeon_ort/gpu_telemetry.py`（新）、`schemas/receipt_v2.json`
+- 多输入/负向控制：`runner/multi_input_oracle.py`（新）、`runner/dml_binding_probe.py`（新）
 - Part 2：`runner/probe_amdgpu_ep.py`、`docs/AMDGPU_EP_PROVISIONING.md`
 - 测试：`tests/unit/test_contract_resume.py`、`tests/unit/test_ep_binding_memory.py`、`tests/helpers_receipts.py`
-- 文档/证据：`docs/GPU_EVIDENCE_CONTRACT.md`、`reports/gfx1151/GFX1151_HARDENING_20261119T095500Z/*`
+- 文档/证据：`docs/GPU_EVIDENCE_CONTRACT.md`、`docs/LEGACY_RECEIPTS.md`、`docs/HARDWARE_CLAIM_MATRIX.md`、`reports/gfx1151/GFX1151_HARDENING_20261119T095500Z/*`

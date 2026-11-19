@@ -205,3 +205,16 @@ A successful provisioning must produce, on a new `run_id`:
 5. strict receipt validation and run-contract verification both pass.
 
 If only (1)/(2) are true, the verdict is still not a GPU PASS.
+
+## 8. Current status (2026-11-19 re-probe)
+
+`runner.probe_amdgpu_ep` re-ran read-only after the hardening work:
+
+- `verdict`: `BLOCKED_EP`
+- `blocked_status`: `BLOCKED_ADMIN_DEPENDENCY`
+- `admin_dependency`: `true`
+- `amdgpu_dlls`: `[]`
+- `catalog_provider_count`: `{"wasdk_projection": 0, "windowsml_flat_c": 0}`
+
+No driver, MSIX, Windows optional update or Python package was installed. The
+required approval actions are A1–A4 above; without them AMDGPU remains blocked.
