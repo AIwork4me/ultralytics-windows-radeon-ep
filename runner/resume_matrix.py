@@ -15,6 +15,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--host", default=None, help="gfx target; inferred from contract/report path")
+    ap.add_argument("--gfx", default=None, help="alias of --host")
     ap.add_argument("--tier", default="core")
     ap.add_argument("--ep", choices=["amdgpu", "dml", "both"], default="both")
     ap.add_argument("--winml-python", default=None)
@@ -23,9 +24,13 @@ def main() -> int:
     ap.add_argument("--benchmark", action="store_true")
     ap.add_argument("--with-negative", action="store_true")
     a, extra = ap.parse_known_args()
+    if a.gfx and a.host and a.gfx != a.host:
+        print("resume_matrix: --gfx conflicts with --host")
+        return 2
+    host = a.gfx or a.host
     argv = ["--tier", a.tier, "--ep", a.ep, "--run-id", a.run_id, "--resume"]
-    if a.host:
-        argv += ["--host", a.host]
+    if host:
+        argv += ["--host", host]
     if a.winml_python:
         argv += ["--winml-python", a.winml_python]
     if a.export_python:

@@ -182,6 +182,8 @@ def _audit(out_dir: Path, contract: dict, *, run_id: str) -> tuple[int, dict]:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--host", default=None,
+                    help="deprecated alias of --gfx (gfx1100/gfx1151/gfx1201)")
+    ap.add_argument("--gfx", default=None,
                     help="gfx target (gfx1100/gfx1151/gfx1201); inferred from DXGI "
                          "DID when omitted")
     ap.add_argument("--gpu-name-needle", default=None)
@@ -207,7 +209,11 @@ def main(argv: list[str] | None = None) -> int:
 
     reports_root = Path(a.reports_root)
     run_id = a.run_id or ("RUN_" + utc_now_iso().replace("-", "").replace(":", "").replace("T", "_").replace("Z", ""))
-    host_block = _resolve_host(a.host, a.gpu_name_needle)
+    if a.gfx and a.host and a.gfx != a.host:
+        print(f"[matrix] FAIL: --gfx={a.gfx!r} conflicts with --host={a.host!r}")
+        return 2
+    requested_host = a.gfx or a.host
+    host_block = _resolve_host(requested_host, a.gpu_name_needle)
     if not host_block.get("verified_device_identity"):
         print(f"[matrix] FAIL: target device not verified: {host_block.get('identity_method')}")
         return 2
@@ -226,9 +232,9 @@ def main(argv: list[str] | None = None) -> int:
         except contract_mod.ContractError as e:
             print(f"[matrix] CONTRACT FAIL: {e}")
             return 2
-        if a.host and a.host != contract.get("gfx"):
-            print(f"[matrix] CONTRACT FAIL: --host={a.host!r} != contract gfx="
-                  f"{contract.get('gfx')!r}")
+        if requested_host and requested_host != contract.get("gfx"):
+            print(f"[matrix] CONTRACT FAIL: --gfx/--host={requested_host!r} != "
+                  f"contract gfx={contract.get('gfx')!r}")
             return 2
         gfx = contract["gfx"]
         models = [m["checkpoint"] for m in contract.get("models") or []]
