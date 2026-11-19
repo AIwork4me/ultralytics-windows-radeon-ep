@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "tool": "runner.cross_host_validate",
+  "generated_utc": "2026-11-19T14:07:53Z",
+  "mode": "execute",
+  "plan": {
+    "gfx": "gfx1100",
+    "tier": "smoke",
+    "policy": "dml-only",
+    "run_id": "R8_REFUSAL_20261119T220753",
+    "run_id_is_placeholder": false,
+    "eps": [
+      "dml"
+    ],
+    "run_matrix_ep": "dml",
+    "report_root_redacted": "%USERPROFILE%/Desktop/YOLO/ultralytics-windows-radeon-ep/reports",
+    "run_dir_redacted": "%USERPROFILE%/Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1100/R8_REFUSAL_20261119T220753",
+    "winml_python_name": "python.exe",
+    "export_python_name": "python.exe",
+    "timeout_s": 900,
+    "skip_soak": false,
+    "soak_minutes": null,
+    "bench_reps": 3,
+    "bench_samples": 50
+  },
+  "physical_gate": {
+    "requested_gfx": "gfx1100",
+    "status": "BLOCKED",
+    "reason": "WRONG_PHYSICAL_DEVICE",
+    "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+    "live_gfx": "gfx1151",
+    "expected_device_ids": [
+      "0x7448",
+      "0x744C"
+    ],
+    "observed_device_ids": [
+      "0x1586"
+    ],
+    "observed_adapters": [
+      {
+        "index": 0,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "is_software": false,
+        "luid_corroboration_only": "0x00000000:0x000154E4"
+      },
+      {
+        "index": 1,
+        "description": "AMD Radeon(TM) 8060S Graphics",
+        "vendor_id": "0x1002",
+        "device_id": "0x1586",
+        "is_software": false,
+        "luid_corroboration_only": "0x00000000:0x08D5FD5C"
+      },
+      {
+        "index": 2,
+        "description": "Microsoft Basic Render Driver",
+        "vendor_id": "0x1414",
+        "device_id": "0x008C",
+        "is_software": true,
+        "luid_corroboration_only": "0x00000000:0x000174B5"
+      }
+    ],
+    "selected_device_id": null,
+    "selected_luid": null,
+    "did_match": null
+  },
+  "stages": [
+    {
+      "stage": "detect_host",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "check_dependencies",
+      "status": "NOT_RUN",
+      "reason": "PHYSICAL_GATE_REFUSED",
+      "detail": null,
+      "commands": []
+    },
+    {
+      "stage": "ep_probe",
+      "status": "SKIPPED",
+      "reason": "PHYSICAL_GATE_REFUSED",
+      "detail": null,
+      "commands": []
+    },
+    {
+      "stage": "device_canary",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "tier_a",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "multi_input_oracle",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "benchmarks",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "soak",
+      "status": "BLOCKED",
+      "reason": "WRONG_PHYSICAL_DEVICE",
+      "detail": "requested gfx1100 (DID ['0x7448', '0x744C']) but live DXGI-derived gfx is gfx1151 (observed DID ['0x1586']); refusing before any GPU work",
+      "commands": []
+    },
+    {
+      "stage": "evidence_freeze",
+      "status": "SKIPPED",
+      "reason": "NO_PHYSICAL_EVIDENCE",
+      "detail": null,
+      "commands": []
+    },
+    {
+      "stage": "final_verdict",
+      "status": "PASS",
+      "reason": null,
+      "detail": "GFX1100_CROSS_HOST_HARNESS_READY",
+      "commands": [],
+      "verdict": "GFX1100_CROSS_HOST_HARNESS_READY"
+    }
+  ],
+  "final_verdict": "GFX1100_CROSS_HOST_HARNESS_READY",
+  "exit_code": 34,
+  "notes": [
+    "WRONG_PHYSICAL_DEVICE is never converted into a GPU claim"
+  ]
+}

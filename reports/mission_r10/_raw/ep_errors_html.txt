@@ -1,0 +1,89 @@
+Troubleshoot execution provider download issues with Windows ML | Microsoft Learn
+Skip to main content
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try signing in or changing directories.
+Access to this page requires authorization. You can try changing directories.
+Troubleshoot execution provider download issues with Windows ML
+Feedback
+Summarize this article for me
+In this article
+The mechanism that Windows ML uses to acquire execution providers changed in version 2.5.96 and greater of Windows ML. We highly recommend developers update to the latest version of Windows ML, or at least use version 2.5.96 or greater to ensure the most reliable EP acquisition experience.
+Windows ML 2.5.96 or greater
+Windows ML 2.4.89 or earlier
+With Windows ML 2.5.96 or greater, execution providers are acquired through the Microsoft Store.
+There are currently no known issues acquiring execution providers in Windows ML 2.5.96 and greater. If you find an issue, please report it as described in the How to file feedback section below.
+In versions 2.4.89 and earlier of Windows ML, execution providers were acquired through Windows Update.
+With these versions of Windows ML, there are some known cases where you may see an error downloading and registering execution providers to use with Windows ML. This page covers common issues and potential ways you can resolve the issue.
+If you can't resolve the issue, then please see the How to file feedback section below. A Feedback Hub will automatically capture the logs that our team needs in order to investigate your issue.
+Upstream updates
+In some cases, upstream Windows Updates will require a device reboot to resume EP download. If you encounter download errors, check if your device has pending updates that require a restart.
+Solution: Restart your device to complete any pending Windows Updates, then try downloading the execution providers again.
+Windows updates paused
+Devices with Windows Updates paused will not be able to download execution providers. Execution provider downloads rely on the Windows Update infrastructure to deliver components.
+Solution: To resume Windows Updates, navigate to Settings > Windows Update > Resume Updates.
+Managed devices
+In some cases, enterprise policies may prevent execution providers from being downloaded on managed devices. IT administrators may have configured policies that restrict component downloads or limit access to Windows Update.
+Solution: Contact your IT administrator to verify whether enterprise policies are blocking execution provider downloads. They may need to adjust policies to allow these components.
+How to file feedback
+If your issue wasn't resolved with the above suggestions, then you can file a report through Feedback Hub.
+Launch Feedback Hub.
+Select Start, enter Feedback Hub in the search bar, and select the Feedback Hub app from the list.
+Select "Report a problem".
+Describe your issue.
+Select Developer Platform > Windows Machine Learning for the category.
+Follow the steps to reproduce your problem and submit your issue.
+See also
+Install Windows ML EPs
+Get started with Windows ML
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Additional resources
+Last updated on
+2026-11-07
+In this article
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+&copy; Microsoft 2026

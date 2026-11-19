@@ -15,7 +15,23 @@ five distinct states (R3-C) instead of one ambiguous BLOCKED_EP label:
 API diagnostics and EP readiness are recorded in separate fields so a broken
 binding cannot be reported as a healthy-but-empty catalog (and vice versa).
 
-Exit codes: 0 = EP_REGISTERED or GPU_EXECUTED, 2 = blocked/not installed.
+R10 additions, none of which relax the fail-closed semantics:
+
+- EP_REFERENCE now cites the *published* Microsoft Learn page with its access
+  timestamp and the sha256 of the fetched body. The R3-D entry that claimed
+  AMDGPUExecutionProvider was "NOT listed" was read from the docs-branch
+  markdown, which is a stale snapshot; it is kept as a superseded note.
+- `update_state()` records Windows Update policy / pending-reboot / Store
+  state read-only, and which acquisition channel the installed Windows ML
+  version uses.
+- `stable_digest()` makes idempotency checkable: two runs whose observation is
+  unchanged produce the same digest.
+- `--diff PREVIOUS.json` reports catalog changes, version drift and HRESULT
+  changes between two probe runs.
+
+Exit codes: 0 = EP_REGISTERED or GPU_EXECUTED, 2 = blocked/not installed. A
+`--diff` input that cannot be read is recorded in the report as an auxiliary
+error and never changes the exit code, so exit 2 keeps meaning "blocked".
 """
 
 from __future__ import annotations
@@ -39,25 +55,70 @@ OK_STATES = (EP_REGISTERED, GPU_EXECUTED)
 EXIT_OK = 0
 EXIT_BLOCKED = 2
 
-# Documented (Microsoft Learn, checked 2026-11-19) AMD EP requirements. These
-# are recorded as references, never as a proven driver-compatibility verdict:
-# the Windows WDDM driver version (32.0.x.y) and the AMD software/Adrenalin
-# numbering do not share a scale.
+# Verified against the PUBLISHED Microsoft Learn page (fetched with web_fetch on
+# 2026-11-19, page "Last updated on 2026-11-18"). These are recorded as
+# references, never as a proven driver-compatibility verdict: the Windows WDDM
+# driver version (32.0.x.y) and the AMD software/Adrenalin numbering do not
+# share a scale, so a numeric comparison is not evidence in either direction.
+EP_DOC_SOURCE = ("https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/"
+                 "supported-execution-providers")
+EP_DOC_SOURCE_PAGE_UPDATED = "2026-11-18"
+EP_DOC_SOURCE_ACCESSED_UTC = "2026-11-19T13:52:29Z"
+EP_DOC_SOURCE_SHA256 = ("67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013")
+
+# The R3-D revision of this table claimed AMDGPUExecutionProvider was absent from
+# the live page. That reading came from the docs-branch markdown snapshot
+# (ms.date 2026-04-28, zero AMDGPU mentions), NOT from the published page: the
+# published page and the main-branch markdown both list the EP. The R3-D claim is
+# therefore superseded, and it is kept here on purpose instead of being deleted.
+EP_REFERENCE_SUPERSEDES = {
+    "superseded_claim": ("AMDGPUExecutionProvider: 'NOT listed in the live catalog table "
+                         "on 2026-11-19'"),
+    "superseded_because": ("the docs-branch markdown used for that reading is a stale "
+                           "snapshot; the published page lists the EP"),
+    "stale_source": ("https://raw.githubusercontent.com/MicrosoftDocs/windows-ai-docs/"
+                     "docs/docs/new-windows-ml/supported-execution-providers.md"),
+    "stale_source_ms_date": "2026-04-28",
+    "superseded_on_utc": "2026-11-19",
+}
+
 EP_REFERENCE = {
+    "AMDGPUExecutionProvider": {
+        "role": ("AMD GPU EP; the vendor-recommended successor to MIGraphX for all "
+                 "AMD GPU devices"),
+        "listed_for": "Windows ML 2.x only",
+        "min_windows_ml_version": "Microsoft.Windows.AI.MachineLearning 2.5.96",
+        "documented_requirement": "Adrenalin Edition 24.12.1 or later",
+        "documented_os": "Windows 11 24H2 (build 26100) or greater",
+        "acquisition": ("ExecutionProviderCatalog / EnsureReadyAsync; Microsoft Store for "
+                        "Windows ML >= 2.5.96, Windows Update for earlier versions"),
+        "gpu_generation_matrix": ("NOT published on that page: it states no gfx target list "
+                                  "for this EP, so gfx1151 support cannot be read from docs"),
+        "source": EP_DOC_SOURCE,
+        "source_page_updated": EP_DOC_SOURCE_PAGE_UPDATED,
+        "source_accessed_utc": EP_DOC_SOURCE_ACCESSED_UTC,
+        "source_sha256": EP_DOC_SOURCE_SHA256,
+    },
     "MIGraphXExecutionProvider": {
-        "role": "AMD GPU EP offered by the Windows ML 1.8/2.x catalog",
-        "documented_requirement": "GPU with driver version 25.10.13.09 (exactly)",
-        "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+        "role": "AMD GPU EP, deprecated in Windows ML 2.x (still listed for 2.x and 1.8.x)",
+        "status": ("Deprecated in Windows ML 2.x; AMD recommends transitioning to "
+                   "AMDGPUExecutionProvider; retired with a future major release"),
+        "documented_requirement": ("AMD RDNA 3 or later GPU and AMD GPU driver version "
+                                   "25.10.13.09 or later"),
+        "documented_limitation": "not supported for GenAI scenarios",
+        "source": EP_DOC_SOURCE,
+        "source_page_updated": EP_DOC_SOURCE_PAGE_UPDATED,
+        "source_accessed_utc": EP_DOC_SOURCE_ACCESSED_UTC,
+        "source_sha256": EP_DOC_SOURCE_SHA256,
     },
     "VitisAIExecutionProvider": {
         "role": "AMD NPU EP (not an AMD GPU EP)",
-        "documented_requirement": "Adrenalin 25.6.3..25.9.1 with NPU driver 32.00.0203.280..297",
-        "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
-    },
-    "AMDGPUExecutionProvider": {
-        "role": "AMD GPU EP referenced by the mission/R3-D",
-        "documented_requirement": "NOT listed in the live catalog table on 2026-11-19",
-        "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+        "documented_requirement": ("Adrenalin Edition 25.6.3 or later with NPU driver "
+                                   "version 32.00.0203.280 or later"),
+        "source": EP_DOC_SOURCE,
+        "source_page_updated": EP_DOC_SOURCE_PAGE_UPDATED,
+        "source_accessed_utc": EP_DOC_SOURCE_ACCESSED_UTC,
+        "source_sha256": EP_DOC_SOURCE_SHA256,
     },
 }
 
@@ -137,6 +198,227 @@ def system_state() -> dict:
                "caption": platform.platform()},
         "video": _display_adapters(),
         "packages": _appx_packages(),
+    }
+
+
+_PENDING_REBOOT_KEYS = (
+    r"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired",
+    r"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending",
+    r"SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\PackagesPending",
+    r"SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\PostRebootReporting",
+)
+_WU_AU_KEY = r"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
+_WU_KEY = r"SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+_WU_POLICY_VALUES = ("NoAutoUpdate", "AUOptions", "DisableWindowsUpdateAccess",
+                    "DoNotConnectToWindowsUpdateInternetLocations", "TargetReleaseVersion")
+_VERSION_KEY = r"SOFTWARE\Microsoft\Windows NT\CurrentVersion"
+_EP_STORE_VERSION = (2, 5, 96)
+
+
+def _version_tuple(text: str | None) -> tuple[int, ...]:
+    """Parse '2.5.96' -> (2, 5, 96); non-numeric parts are dropped, never guessed."""
+    if not text:
+        return ()
+    parts: list[int] = []
+    for chunk in str(text).split("."):
+        digits = "".join(ch for ch in chunk if ch.isdigit())
+        if not digits:
+            break
+        parts.append(int(digits))
+    return tuple(parts)
+
+
+def update_state(windowsml_version: str | None = None) -> dict:
+    """Read-only Windows Update / servicing / Store state, plus EP acquisition channel.
+
+    No Win32 WU API, no Get-WindowsUpdateLog, no file writes: the probe must stay
+    safe to run on a machine that is being diagnosed.
+    """
+    out: dict = {"source": "registry (read-only)", "available": False, "errors": []}
+    try:
+        import winreg
+    except ImportError as e:  # non-Windows interpreter: keep the report shape
+        out["errors"].append({"stage": "import_winreg", "message": str(e)})
+        return out
+    out["available"] = True
+
+    def _value(path: str, name: str):
+        try:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, path) as key:
+                return winreg.QueryValueEx(key, name)[0]
+        except OSError:
+            return None
+
+    pending: dict[str, bool] = {}
+    for path in _PENDING_REBOOT_KEYS:
+        try:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, path):
+                pending[path.rsplit("\\", 1)[-1]] = True
+        except OSError:
+            pending[path.rsplit("\\", 1)[-1]] = False
+    renames = _value(r"SYSTEM\CurrentControlSet\Control\Session Manager",
+                     "PendingFileRenameOperations")
+    out["pending_reboot"] = {
+        "servicing_reboot_keys": pending,
+        "any_servicing_reboot_key": any(pending.values()),
+        "pending_file_rename_operations": len(renames or []),
+        "note": ("PendingFileRenameOperations is a soft signal: installers leave entries "
+                 "without a servicing reboot being required"),
+    }
+    out["windows_update_policy"] = {name: _value(_WU_AU_KEY, name) or _value(_WU_KEY, name)
+                                    for name in _WU_POLICY_VALUES}
+    out["os"] = {"build": _value(_VERSION_KEY, "CurrentBuildNumber"),
+                 "ubr": _value(_VERSION_KEY, "UBR"),
+                 "display_version": _value(_VERSION_KEY, "DisplayVersion")}
+    out["store_package"] = next((f"{p['Name']} {p['Version']}" for p in _appx_packages()
+                                if p["Name"] == "Microsoft.WindowsStore"), "missing")
+    version = _version_tuple(windowsml_version)
+    channel = "unknown"
+    if version:
+        channel = "microsoft_store" if version >= _EP_STORE_VERSION else "windows_update"
+    out["ep_acquisition_channel"] = {
+        "channel": channel,
+        "windowsml_python": windowsml_version,
+        "rule": ("Microsoft Learn: for Windows ML 2.5.96+ EPs are acquired through the "
+                 "Microsoft Store; earlier versions used Windows Update"),
+        "windows_update_pause_is_a_documented_cause": channel == "windows_update",
+    }
+    return out
+
+
+def _catalog_view(report: dict) -> dict:
+    api = report.get("api_diagnostic") or {}
+    official = api.get("official") or {}
+    legacy = api.get("legacy_projection") or {}
+    return {
+        "official_version": official.get("version"),
+        "official_api_ok": official.get("api_ok"),
+        "providers": sorted(f"{p.get('name')}:{p.get('ready_state')}"
+                            for p in official.get("providers") or []),
+        "legacy_api_ok": legacy.get("api_ok"),
+        "legacy_providers": sorted(f"{p.get('name')}:{p.get('ready_state')}"
+                                   for p in legacy.get("providers") or []),
+        "raw": official.get("raw") or {},
+    }
+
+
+def _readiness_view(report: dict) -> dict:
+    ep = report.get("ep_readiness") or {}
+    return {
+        "ort_providers": sorted(ep.get("ort_providers") or []),
+        "ort_ep_devices": sorted(str(d.get("ep_name")) for d in ep.get("ort_ep_devices") or []),
+        "amd_gpu_ep_dll_sha256": sorted(d.get("sha256") or "" for d in ep.get("amd_gpu_ep_dlls") or []),
+        "amd_gpu_ep_packages": sorted(f"{p.get('Name')} {p.get('Version')}"
+                                      for p in ep.get("amd_gpu_ep_packages") or []),
+    }
+
+
+def _versions_view(report: dict) -> dict:
+    deps = {d.get("name"): d.get("observed") for d in report.get("system_dependencies") or []}
+    video = ((report.get("system") or {}).get("video") or [])
+    amd = next((v for v in video if "radeon" in str(v.get("Name", "")).lower()), None)
+    return {
+        "os_build": ((report.get("system") or {}).get("os") or {}).get("build"),
+        "amd_driver": (amd or {}).get("DriverVersion"),
+        "python_windowsml": deps.get("python_windowsml"),
+        "onnxruntime_windowsml": deps.get("onnxruntime_windowsml"),
+        "windows_ml_shared_runtime": deps.get("windows_ml_shared_runtime"),
+        "amd_gpu_ep_package_or_dll": deps.get("amd_gpu_ep_package_or_dll"),
+    }
+
+
+_OBSERVATION_KEYS = ("state", "verdict", "blocked_status", "gfx_requested")
+
+
+def observation(report: dict) -> dict:
+    """The part of a probe report that must be identical when nothing changed."""
+    return {
+        "fields": {k: report.get(k) for k in _OBSERVATION_KEYS},
+        "catalog": _catalog_view(report),
+        "readiness": _readiness_view(report),
+        "versions": _versions_view(report),
+        "api_errors": report.get("error_codes") or [],
+    }
+
+
+def stable_digest(report: dict) -> str:
+    """sha256 over observation(): equal digests mean an idempotent re-probe."""
+    import hashlib
+
+    blob = json.dumps(observation(report), sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()
+
+
+def diff_reports(previous: dict, current: dict) -> dict:
+    """What changed between two probe reports (catalog, HRESULTs, versions, packages)."""
+    prev_cat, cur_cat = _catalog_view(previous), _catalog_view(current)
+    prev_ready, cur_ready = _readiness_view(previous), _readiness_view(current)
+    prev_ver, cur_ver = _versions_view(previous), _versions_view(current)
+    added = sorted(set(cur_cat["providers"]) - set(prev_cat["providers"]))
+    removed = sorted(set(prev_cat["providers"]) - set(cur_cat["providers"]))
+    prev_raw, cur_raw = prev_cat["raw"] or {}, cur_cat["raw"] or {}
+    hresult = {
+        "create": {"previous": prev_raw.get("create_hresult"),
+                   "current": cur_raw.get("create_hresult")},
+        "enum": {"previous": prev_raw.get("enum_hresult"),
+                 "current": cur_raw.get("enum_hresult")},
+    }
+    hresult["changed"] = any(hresult[k]["previous"] != hresult[k]["current"]
+                            for k in ("create", "enum"))
+    drift = {name: [prev_ver.get(name), cur_ver.get(name)]
+             for name in cur_ver if prev_ver.get(name) != cur_ver.get(name)}
+    summary: list[str] = []
+    if previous.get("state") != current.get("state"):
+        summary.append(f"state: {previous.get('state')} -> {current.get('state')}")
+    if len(prev_cat["providers"]) != len(cur_cat["providers"]):
+        summary.append(f"catalog provider count: {len(prev_cat['providers'])} -> "
+                       f"{len(cur_cat['providers'])}")
+    for name in added:
+        summary.append(f"catalog provider added: {name}")
+    for name in removed:
+        summary.append(f"catalog provider removed: {name}")
+    if hresult["changed"]:
+        summary.append(f"HRESULT change: create {hresult['create']['previous']} -> "
+                       f"{hresult['create']['current']}, enum "
+                       f"{hresult['enum']['previous']} -> {hresult['enum']['current']}")
+    for name, (old, new) in sorted(drift.items()):
+        summary.append(f"version drift {name}: {old} -> {new}")
+    for name in sorted(set(cur_ready["amd_gpu_ep_dll_sha256"]) -
+                       set(prev_ready["amd_gpu_ep_dll_sha256"])):
+        summary.append(f"AMD GPU EP dll added: sha256 {name[:16]}...")
+    for name in sorted(set(prev_ready["amd_gpu_ep_dll_sha256"]) -
+                       set(cur_ready["amd_gpu_ep_dll_sha256"])):
+        summary.append(f"AMD GPU EP dll removed: sha256 {name[:16]}...")
+    for name in sorted(set(cur_ready["ort_ep_devices"]) - set(prev_ready["ort_ep_devices"])):
+        summary.append(f"ORT EP device added: {name}")
+    for name in sorted(set(prev_ready["ort_ep_devices"]) - set(cur_ready["ort_ep_devices"])):
+        summary.append(f"ORT EP device removed: {name}")
+    if not summary:
+        summary.append("no observable change (same state, catalog, HRESULTs and versions)")
+    return {
+        "ok": True,
+        "identical": stable_digest(previous) == stable_digest(current),
+        "stable_digest": {"previous": stable_digest(previous),
+                          "current": stable_digest(current)},
+        "state": {"previous": previous.get("state"), "current": current.get("state")},
+        "catalog": {"provider_count": {"previous": len(prev_cat["providers"]),
+                                       "current": len(cur_cat["providers"])},
+                    "added": added, "removed": removed},
+        "hresult": hresult,
+        "version_drift": drift,
+        "packages": {"added": sorted(set(cur_ready["amd_gpu_ep_packages"]) -
+                                     set(prev_ready["amd_gpu_ep_packages"])),
+                     "removed": sorted(set(prev_ready["amd_gpu_ep_packages"]) -
+                                       set(cur_ready["amd_gpu_ep_packages"]))},
+        "ort": {"providers_added": sorted(set(cur_ready["ort_providers"]) -
+                                          set(prev_ready["ort_providers"])),
+                "providers_removed": sorted(set(prev_ready["ort_providers"]) -
+                                            set(cur_ready["ort_providers"])),
+                "devices_added": sorted(set(cur_ready["ort_ep_devices"]) -
+                                        set(prev_ready["ort_ep_devices"])),
+                "devices_removed": sorted(set(prev_ready["ort_ep_devices"]) -
+                                          set(cur_ready["ort_ep_devices"]))},
+        "summary": summary,
     }
 
 
@@ -371,9 +653,11 @@ def recommended_actions(state: str) -> list[str]:
                 "re-run this probe and confirm ort.get_ep_devices() lists AMDGPU"]
     if state == CATALOG_EMPTY:
         return ["no Windows ML EP is offered for this device/OS state",
-                "confirm the device is serviced (Windows Update optional preview)",
+                ("for Windows ML >= 2.5.96 EPs are acquired through the Microsoft "
+                 "Store (Windows Update only for earlier versions)"),
                 "do not install an EP from an untrusted source",
-                "record BLOCKED_EXTERNAL with this probe as evidence"]
+                "record BLOCKED_EXTERNAL with this probe as evidence",
+                "re-run the probe with --diff PREVIOUS.json to detect a change"]
     return ["install the official windowsml Python bindings (pip install windowsml)",
             "install onnxruntime-windowsml in the same interpreter",
             "re-run the probe before attempting any EP registration"]
@@ -387,6 +671,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--canary-onnx", default=None,
                     help="optional ONNX for an in-process AMDGPU canary; the "
                          "default probe never creates a session")
+    ap.add_argument("--diff", default=None, metavar="PREVIOUS_JSON",
+                    help="compare this run against an earlier probe report and "
+                         "record new/gone providers, version drift and HRESULT "
+                         "changes; never changes the exit code")
     a = ap.parse_args(argv)
 
     state = system_state()
@@ -416,8 +704,10 @@ def main(argv: list[str] | None = None) -> int:
         for err in engine.get("errors") or []:
             error_codes.append({"engine": engine.get("engine"), **err})
 
+    update = update_state(windowsml_version=official.get("version"))
+
     report = {
-        "schema_version": 2,
+        "schema_version": 3,
         "captured_utc": utc_now_iso(),
         "scope": "READ_ONLY (no install / no driver change / no MSIX change)",
         "gfx_requested": a.gfx,
@@ -441,8 +731,31 @@ def main(argv: list[str] | None = None) -> int:
         "system_dependencies": system_dependencies(state, official, ort),
         "error_codes": error_codes,
         "ep_reference": EP_REFERENCE,
+        "ep_reference_superseded": EP_REFERENCE_SUPERSEDES,
+        "ep_reference_sources": {
+            "published_page": EP_DOC_SOURCE,
+            "published_page_last_updated": EP_DOC_SOURCE_PAGE_UPDATED,
+            "accessed_utc": EP_DOC_SOURCE_ACCESSED_UTC,
+            "sha256": EP_DOC_SOURCE_SHA256,
+        },
+        "update_state": update,
         "recommended_actions": recommended_actions(ep_state),
     }
+    report["stable_digest"] = stable_digest(report)
+    report["observation"] = observation(report)
+    diff = None
+    if a.diff:
+        try:
+            previous = json.loads(Path(a.diff).read_text(encoding="utf-8"))
+        except Exception as e:  # noqa: BLE001
+            diff = {"ok": False, "error": f"{type(e).__name__}: {e}",
+                    "path": Path(a.diff).name}
+            print(f"[probe] WARNING: --diff input unreadable: {diff['error']}",
+                  file=sys.stderr)
+        else:
+            diff = diff_reports(previous, report)
+    report["diff_vs_previous"] = diff
+
     out = Path(a.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n",
@@ -450,7 +763,10 @@ def main(argv: list[str] | None = None) -> int:
     print(json.dumps({"state": ep_state, "verdict": report["verdict"],
                       "providers": len(report["ep_readiness"]["catalog_providers"]),
                       "amd_devices": len(ort.get("amd_devices") or []),
+                      "stable_digest": report["stable_digest"],
                       "out": str(out)}, indent=2))
+    for line in ((diff or {}).get("summary") if diff and diff.get("ok") else []) or []:
+        print(f"[diff] {line}")
     return EXIT_OK if ep_state in OK_STATES else EXIT_BLOCKED
 
 

@@ -1,0 +1,104 @@
+Bring your own EPs to Windows ML | Microsoft Learn
+Skip to main content
+Skip to Ask Learn chat experience
+This browser is no longer supported.
+Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+Download Microsoft Edge
+More info about Internet Explorer and Microsoft Edge
+Table of contents
+Exit editor mode
+Ask Learn
+Ask Learn
+Reading mode
+Table of contents
+Read in English
+Add
+Add to Plans
+Edit
+Copy Markdown
+Print
+Note
+Access to this page requires authorization. You can try signing in or changing directories.
+Access to this page requires authorization. You can try changing directories.
+Bring your own EPs to Windows ML
+Feedback
+Summarize this article for me
+In this article
+When you cannot rely on Windows ML EPs — for example, in offline environments, or when you need strict version control — you can carry execution provider binaries directly in your project.
+For guidance on choosing between the Windows ML EPs and the bring-your-own approach, see Windows ML EPs vs. bring-your-own.
+Prerequisites
+The execution provider you reference must be compatible with the ORT version that ships with the Windows ML version your app targets. See ONNX Runtime versions in Windows ML to know which version of ORT is in Windows ML.
+Important
+Windows ML doesn't guarantee that an EP you bring will remain compatible with future Windows ML or ONNX Runtime (ORT) releases. When you update Windows ML, confirm that the EP supports the included ORT version, then test EP registration, session creation, and representative inference workloads before releasing your app.
+Known EP packages
+EP |
+Package |
+AMDGPU (AMD) |
+onnxruntime/onnxruntime-ep-amdgpu (must be built from source) |
+NvTensorRtRtx (NVIDIA) |
+NVIDIA/TensorRT-RTX-EP-ABI |
+OpenVINO (Intel) |
+Intel.ML.OnnxRuntime.EP.OpenVINO |
+QNN (Qualcomm) |
+Qualcomm.ML.OnnxRuntime.QNN |
+Register the EP with Windows ML ONNX Runtime
+For execution providers you brought yourself, you will simply register the execution provider using the existing ONNX APIs, pointing to your execution provider DLL path.
+C#
+C++
+// Point ORT at the EP library you shipped
+// The path depends on how you package and ship the EP
+OrtEnv.Instance().RegisterExecutionProviderLibrary("XYZExecutionProvider", "XYZ.EP.dll");
+// And then inference using ORT
+...
+// Point ORT at the EP library you shipped
+// The path depends on how you package and ship the EP
+env.RegisterExecutionProviderLibrary("XYZExecutionProvider", L"XYZ.EP.dll");
+// And then inference using ORT
+...
+App distribution considerations
+When bundling EP packages:
+Each EP package adds approximately 80 MB or more to your app package size.
+You are responsible for updating EP packages when new versions are released.
+You are responsible for validating each combination of your Windows ML, ORT, and EP versions.
+EP binaries must be included in your app package or installer — they are not downloaded at runtime.
+For a comparison of the bundle-vs-Windows ML EP tradeoffs, see Windows ML EPs vs. bring-your-own.
+See also
+Windows ML EPs vs. bring-your-own
+ONNX Runtime versions in Windows ML
+Accelerate AI models
+Windows ML execution providers
+Feedback
+Was this page helpful?
+Yes
+No
+No
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+Additional resources
+Last updated on
+2026-11-10
+In this article
+Was this page helpful?
+Need help with this topic?
+Want to try using Ask Learn to clarify or guide you through this topic?
+Ask Learn
+Ask Learn
+Suggest a fix?
+en-us
+Your Privacy Choices
+Theme
+Light
+Dark
+High contrast
+AI Disclaimer
+Previous Versions
+Blog
+Contribute
+Privacy
+Consumer Health Privacy
+Terms of Use
+Trademarks
+&copy; Microsoft 2026

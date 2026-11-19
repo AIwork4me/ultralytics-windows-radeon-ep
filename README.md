@@ -12,15 +12,20 @@ starting on the **AMD Radeon 8060S (gfx1151, Ryzen AI MAX APU)**.
 
 | Host | AMDGPU EP | DirectML | Evidence |
 |---|---|---|---|
-| gfx1151 — Radeon 8060S | `BLOCKED_EP` — Windows ML catalog offers no AMD GPU EP on this host | **9/9 Tier A PASS** (physical) | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` |
+| gfx1151 — Radeon 8060S | `BLOCKED_EP` — `AMDGPUExecutionProvider` is documented for Windows ML 2.x (`Microsoft.Windows.AI.MachineLearning` 2.5.96+, Adrenalin 24.12.1+), but this host's EP catalog lists **no provider at all** | **9/9 Tier A PASS** (physical) | `reports/gfx1151/R5_GFX1151_20261119T1240/` + `reports/mission_r4/PROBE_AFTER_A1.json` + `reports/mission_r10/PROBE_*.json` |
 | gfx1100 — RX 7900 XTX | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | handoff: `docs/cross_host/GFX1100_HANDOFF.md` |
 | gfx1201 — RX 9070 XT | PENDING_PHYSICAL_HOST | PENDING_PHYSICAL_HOST | handoff: `docs/cross_host/GFX1201_HANDOFF.md` |
 
 Verified on this host (2026-11-19): Windows 11 25H2 build 26200.9974, Radeon 8060S
 DID `0x1586` / LUID `0x00000000:0x000154E4`, driver 32.0.22018.5,
-`windowsml 2.5.96`, `onnxruntime-windowsml 1.25.2`. The official catalog answers
-`S_OK` with **zero** providers, so AMDGPU is an external block — not a code bug,
-and not something a driver bump alone can fix.
+`windowsml 2.5.96`, `onnxruntime-windowsml 1.25.2`. Microsoft documents
+`AMDGPUExecutionProvider` for Windows ML 2.x (minimum
+`Microsoft.Windows.AI.MachineLearning` 2.5.96, Adrenalin Edition 24.12.1 or
+later; MIGraphX is deprecated). On this host the official catalog nevertheless
+answers `S_OK` with **zero** providers — the EP package is not offered — so
+AMDGPU remains an external block: not a code bug, and not something a driver
+bump alone can fix. Citations and hashes: `docs/AMDGPU_EP_PROVISIONING.md` §2,
+`reports/mission_r10/DOC_CITATIONS.json`.
 
 `CPU_CI_DOES_NOT_ATTEST_GPU`: GitHub CPU CI validates contracts and adversarial
 anti-forgery tests only.
@@ -147,7 +152,7 @@ CPU policy.
 ## Repository layout
 
 - `src/radeon_ort/` — harness modules (device identity, EP catalog, sessions, receipts, oracles, benchmark, manifest, redaction)
-- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix` (v2), `r1_pipeline`, `resume_matrix`, `bench_repeats`, `soak`, `negative_injection`, `analyze_profiles`, `finalize_run`, `build_compatibility_matrix`, `redact_evidence`, `prepare_evidence`, `verify_receipts`, `unified_predict`, `unified_task_matrix`, `bench_e2e`, `stability`, `job_fault_evidence`
+- `runner/` — CLI: `preflight`, `generate_catalog`, `export_models`, `smoke`, `run_matrix` (v2), `r1_pipeline`, `resume_matrix`, `bench_repeats`, `soak`, `negative_injection`, `analyze_profiles`, `finalize_run`, `build_compatibility_matrix`, `redact_evidence`, `prepare_evidence`, `verify_receipts`, `unified_predict`, `unified_task_matrix`, `bench_e2e`, `stability`, `job_fault_evidence`, `cross_host_validate`, `probe_amdgpu_ep`
 - `schemas/` — versioned JSON contracts for receipts / manifest / host / catalog
 - `catalog/` — pinned upstream snapshot + generated model catalog
 - `configs/` — gfx1151 profile, numeric thresholds (fixed before runs), provider policy

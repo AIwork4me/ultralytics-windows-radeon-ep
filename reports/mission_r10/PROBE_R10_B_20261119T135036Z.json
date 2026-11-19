@@ -1,0 +1,836 @@
+{
+  "schema_version": 3,
+  "captured_utc": "2026-11-19T13:50:37Z",
+  "scope": "READ_ONLY (no install / no driver change / no MSIX change)",
+  "gfx_requested": "gfx1151",
+  "state": "CATALOG_EMPTY",
+  "verdict": "BLOCKED_EP",
+  "blocked_status": "BLOCKED_EXTERNAL",
+  "api_diagnostic": {
+    "official": {
+      "engine": "windowsml_flat_c",
+      "installed": true,
+      "version": "2.5.96",
+      "api_ok": true,
+      "providers": [],
+      "errors": [],
+      "raw": {
+        "available": true,
+        "create_hresult": "0x00000000",
+        "enum_hresult": "0x00000000",
+        "provider_count": 0
+      }
+    },
+    "legacy_projection": {
+      "engine": "wasdk_projection",
+      "installed": true,
+      "api_ok": true,
+      "providers": [],
+      "errors": [],
+      "version": "2.3.0"
+    }
+  },
+  "ep_readiness": {
+    "catalog_providers": [],
+    "legacy_projection_providers": [],
+    "amd_gpu_ep_dlls": [],
+    "amd_gpu_ep_packages": [],
+    "ort_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "ort_ep_devices": [
+      {
+        "ep_name": "CPUExecutionProvider",
+        "ep_vendor": "Microsoft"
+      },
+      {
+        "ep_name": "DmlExecutionProvider",
+        "ep_vendor": "Microsoft"
+      }
+    ],
+    "ort_registration": null,
+    "canary": null
+  },
+  "system": {
+    "source": "registry+platform",
+    "os": {
+      "version": "10.0.26200",
+      "build": "26200",
+      "caption": "Windows-11-10.0.26200-SP0"
+    },
+    "video": [
+      {
+        "Name": "AMD Radeon(TM) 8060S Graphics",
+        "DriverVersion": "32.0.22018.5"
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818"
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818"
+      }
+    ],
+    "packages": [
+      {
+        "Name": "1527c705-839a-4832-9118-54d4Bd6a0c89",
+        "Version": "10.0.19640.1000"
+      },
+      {
+        "Name": "AD2F1837.HPSystemInformation",
+        "Version": "8.10.53.0"
+      },
+      {
+        "Name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+        "Version": "10.25.20179.0"
+      },
+      {
+        "Name": "Clipchamp.Clipchamp",
+        "Version": "4.7.10220.0"
+      },
+      {
+        "Name": "E2A4F912-2574-4A75-9BB0-0D023378592B",
+        "Version": "10.0.19640.1000"
+      },
+      {
+        "Name": "F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.AAD.BrokerPlugin",
+        "Version": "1000.19580.1000.2"
+      },
+      {
+        "Name": "Microsoft.AIFabric.CBS.1.6",
+        "Version": "1.6.955.100"
+      },
+      {
+        "Name": "Microsoft.AV1VideoExtension",
+        "Version": "2.0.35.0"
+      },
+      {
+        "Name": "Microsoft.AVCEncoderVideoExtension",
+        "Version": "1.1.57.0"
+      },
+      {
+        "Name": "Microsoft.AccountsControl",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.ApplicationCompatibilityEnhancements",
+        "Version": "1.2511.9.0"
+      },
+      {
+        "Name": "Microsoft.AsyncTextService",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.BingNews",
+        "Version": "4.1.24002.0"
+      },
+      {
+        "Name": "Microsoft.BingSearch",
+        "Version": "2022.2.162.0"
+      },
+      {
+        "Name": "Microsoft.BingWeather",
+        "Version": "4.54.63045.0"
+      },
+      {
+        "Name": "Microsoft.BioEnrollment",
+        "Version": "10.0.19587.1000"
+      },
+      {
+        "Name": "Microsoft.CredDialogHost",
+        "Version": "10.0.19595.1001"
+      },
+      {
+        "Name": "Microsoft.DesktopAppInstaller",
+        "Version": "2026.917.151.0"
+      },
+      {
+        "Name": "Microsoft.ECApp",
+        "Version": "10.0.26100.9818"
+      },
+      {
+        "Name": "Microsoft.GamingApp",
+        "Version": "2612.1001.25.0"
+      },
+      {
+        "Name": "Microsoft.GetHelp",
+        "Version": "10.2409.42652.0"
+      },
+      {
+        "Name": "Microsoft.HEIFImageExtension",
+        "Version": "1.2.65.0"
+      },
+      {
+        "Name": "Microsoft.HEVCVideoExtension",
+        "Version": "2.5.48.0"
+      },
+      {
+        "Name": "Microsoft.LockApp",
+        "Version": "10.0.26100.9818"
+      },
+      {
+        "Name": "Microsoft.MPEG2VideoExtension",
+        "Version": "1.2.32.0"
+      },
+      {
+        "Name": "Microsoft.MicrosoftEdge.Stable",
+        "Version": "157.0.4341.60"
+      },
+      {
+        "Name": "Microsoft.MicrosoftEdgeDevToolsClient",
+        "Version": "1000.25128.1000.0"
+      },
+      {
+        "Name": "Microsoft.MicrosoftOfficeHub",
+        "Version": "2026.1113.1351.0"
+      },
+      {
+        "Name": "Microsoft.MicrosoftSolitaireCollection",
+        "Version": "4.27.9181.0"
+      },
+      {
+        "Name": "Microsoft.MicrosoftStickyNotes",
+        "Version": "6.1.5.0"
+      },
+      {
+        "Name": "Microsoft.NET.Native.Framework.2.2",
+        "Version": "2.2.29512.0"
+      },
+      {
+        "Name": "Microsoft.NET.Native.Runtime.2.2",
+        "Version": "2.2.28604.0"
+      },
+      {
+        "Name": "Microsoft.OutlookForWindows",
+        "Version": "1.2026.1026.100"
+      },
+      {
+        "Name": "Microsoft.Paint",
+        "Version": "11.2609.441.0"
+      },
+      {
+        "Name": "Microsoft.PowerAutomateDesktop",
+        "Version": "11.2611.191.0"
+      },
+      {
+        "Name": "Microsoft.RawImageExtension",
+        "Version": "2.5.42.0"
+      },
+      {
+        "Name": "Microsoft.ScreenSketch",
+        "Version": "2022.2609.15.0"
+      },
+      {
+        "Name": "Microsoft.SecHealthUI",
+        "Version": "1000.29680.1000.0"
+      },
+      {
+        "Name": "Microsoft.StartExperiencesApp",
+        "Version": "1.398.9.0"
+      },
+      {
+        "Name": "Microsoft.StorePurchaseApp",
+        "Version": "22609.1401.1.0"
+      },
+      {
+        "Name": "Microsoft.Todos",
+        "Version": "2.179.8901.0"
+      },
+      {
+        "Name": "Microsoft.UI.Xaml.2.8",
+        "Version": "8.2511.26001.0"
+      },
+      {
+        "Name": "Microsoft.UI.Xaml.CBS",
+        "Version": "9.2603.18001.0"
+      },
+      {
+        "Name": "Microsoft.VCLibs.140.00",
+        "Version": "14.0.33519.0"
+      },
+      {
+        "Name": "Microsoft.VCLibs.140.00.UWPDesktop",
+        "Version": "14.0.33728.0"
+      },
+      {
+        "Name": "Microsoft.VP9VideoExtensions",
+        "Version": "1.2.20.0"
+      },
+      {
+        "Name": "Microsoft.WebMediaExtensions",
+        "Version": "2.1.51.0"
+      },
+      {
+        "Name": "Microsoft.WebpImageExtension",
+        "Version": "1.2.47.0"
+      },
+      {
+        "Name": "Microsoft.WidgetsPlatformRuntime",
+        "Version": "1.6.19.0"
+      },
+      {
+        "Name": "Microsoft.Win32WebViewHost",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.Apprep.ChxApp",
+        "Version": "1000.25128.1000.0"
+      },
+      {
+        "Name": "Microsoft.Windows.AssignedAccessLockApp",
+        "Version": "1000.25128.1000.0"
+      },
+      {
+        "Name": "Microsoft.Windows.AugLoop.CBS",
+        "Version": "1.1126.2131.0"
+      },
+      {
+        "Name": "Microsoft.Windows.CapturePicker",
+        "Version": "10.0.19580.1000"
+      },
+      {
+        "Name": "Microsoft.Windows.CloudExperienceHost",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.ContentDeliveryManager",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.DevHome",
+        "Version": "0.1701.597.0"
+      },
+      {
+        "Name": "Microsoft.Windows.NarratorQuickStart",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.OOBENetworkCaptivePortal",
+        "Version": "10.0.26569.1000"
+      },
+      {
+        "Name": "Microsoft.Windows.OOBENetworkConnectionFlow",
+        "Version": "10.0.26569.1000"
+      },
+      {
+        "Name": "Microsoft.Windows.ParentalControls",
+        "Version": "1000.25128.1000.0"
+      },
+      {
+        "Name": "Microsoft.Windows.PeopleExperienceHost",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.Photos",
+        "Version": "2026.11090.22001.0"
+      },
+      {
+        "Name": "Microsoft.Windows.PinningConfirmationDialog",
+        "Version": "1000.25140.1001.0"
+      },
+      {
+        "Name": "Microsoft.Windows.PrintQueueActionCenter",
+        "Version": "1.0.2.0"
+      },
+      {
+        "Name": "Microsoft.Windows.SecureAssessmentBrowser",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.Windows.ShellExperienceHost",
+        "Version": "10.0.26100.9818"
+      },
+      {
+        "Name": "Microsoft.Windows.StartMenuExperienceHost",
+        "Version": "10.0.26100.4768"
+      },
+      {
+        "Name": "Microsoft.Windows.XGpuEjectDialog",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Microsoft.WindowsAlarms",
+        "Version": "2021.2607.20.0"
+      },
+      {
+        "Name": "Microsoft.WindowsAppRuntime.1.7",
+        "Version": "7000.785.2325.0"
+      },
+      {
+        "Name": "Microsoft.WindowsAppRuntime.1.8",
+        "Version": "8000.994.2142.0"
+      },
+      {
+        "Name": "Microsoft.WindowsAppRuntime.2",
+        "Version": "2.7.0.0"
+      },
+      {
+        "Name": "Microsoft.WindowsAppRuntime.CBS.1.6",
+        "Version": "6000.900.156.100"
+      },
+      {
+        "Name": "Microsoft.WindowsAppRuntime.CBS.2",
+        "Version": "2.5.1.100"
+      },
+      {
+        "Name": "Microsoft.WindowsCalculator",
+        "Version": "2021.2607.0.0"
+      },
+      {
+        "Name": "Microsoft.WindowsCamera",
+        "Version": "2026.2608.1.0"
+      },
+      {
+        "Name": "Microsoft.WindowsFeedbackHub",
+        "Version": "2.2609.102.0"
+      },
+      {
+        "Name": "Microsoft.WindowsNotepad",
+        "Version": "11.2609.11.0"
+      },
+      {
+        "Name": "Microsoft.WindowsSoundRecorder",
+        "Version": "2021.2607.1.0"
+      },
+      {
+        "Name": "Microsoft.WindowsStore",
+        "Version": "22610.1401.8.0"
+      },
+      {
+        "Name": "Microsoft.WindowsTerminal",
+        "Version": "3001.25.3131.0"
+      },
+      {
+        "Name": "Microsoft.Winget.Source",
+        "Version": "2026.1118.2316.10"
+      },
+      {
+        "Name": "Microsoft.Xbox.TCUI",
+        "Version": "1.24.10001.0"
+      },
+      {
+        "Name": "Microsoft.XboxGameCallableUI",
+        "Version": "1000.25128.1000.0"
+      },
+      {
+        "Name": "Microsoft.XboxGamingOverlay",
+        "Version": "7.326.11042.0"
+      },
+      {
+        "Name": "Microsoft.XboxIdentityProvider",
+        "Version": "12.130.16001.0"
+      },
+      {
+        "Name": "Microsoft.XboxSpeechToTextOverlay",
+        "Version": "1.117.15001.0"
+      },
+      {
+        "Name": "Microsoft.YourPhone",
+        "Version": "1.26101.118.0"
+      },
+      {
+        "Name": "Microsoft.ZuneMusic",
+        "Version": "11.2609.11.0"
+      },
+      {
+        "Name": "MicrosoftCorporationII.QuickAssist",
+        "Version": "2025.331.2057.0"
+      },
+      {
+        "Name": "MicrosoftWindows.61869720.Voiess",
+        "Version": "1000.26100.9818.0"
+      },
+      {
+        "Name": "MicrosoftWindows.61869721.Livtop",
+        "Version": "1000.26100.9818.0"
+      },
+      {
+        "Name": "MicrosoftWindows.61869722.Speion",
+        "Version": "1000.26100.9818.0"
+      },
+      {
+        "Name": "MicrosoftWindows.61869836.InpApp",
+        "Version": "1000.26100.9818.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.AIX",
+        "Version": "1000.26100.9974.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.CBS",
+        "Version": "1000.26100.385.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.Core",
+        "Version": "1000.26100.84.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.CoreAI",
+        "Version": "1000.26100.9974.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.FileExp",
+        "Version": "1000.26100.4.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.OOBE",
+        "Version": "1000.26100.60.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.Photon",
+        "Version": "1000.26100.10.0"
+      },
+      {
+        "Name": "MicrosoftWindows.Client.WebExperience",
+        "Version": "526.28801.60.0"
+      },
+      {
+        "Name": "MicrosoftWindows.CrossDevice",
+        "Version": "1.26101.77.0"
+      },
+      {
+        "Name": "MicrosoftWindows.UndockedDevKit",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "Windows.CBSPreview",
+        "Version": "10.0.19580.1000"
+      },
+      {
+        "Name": "Windows.PrintDialog",
+        "Version": "6.2.3.0"
+      },
+      {
+        "Name": "WindowsWorkload.Data.Analysis.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.Data.ContentExtraction.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.Data.ImageSearch.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+        "Version": "1.8.80.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageContentModeration.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageContentModeration.Data.1",
+        "Version": "1.2605.851.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageSearch.Data.3",
+        "Version": "1.2511.1196.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageSearch.Stx.3",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageTextSearch.Data.3",
+        "Version": "1.2511.1196.0"
+      },
+      {
+        "Name": "WindowsWorkload.ImageTextSearch.Stx.3",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.Manager.1",
+        "Version": "1.2511.1196.0"
+      },
+      {
+        "Name": "WindowsWorkload.PSTokenizer.Stx.2.7",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.PSTokenizerShared.Data.7.0",
+        "Version": "1.2610.1050.0"
+      },
+      {
+        "Name": "WindowsWorkload.PSTokenizerShared.Stx.7.0",
+        "Version": "1.2610.1050.0"
+      },
+      {
+        "Name": "WindowsWorkload.QueryBlockList.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.QueryProcessor.Data.1",
+        "Version": "1.2605.851.0"
+      },
+      {
+        "Name": "WindowsWorkload.QueryProcessor.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.ScrRegDetection.Data.2.0",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.ScrRegDetection.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.SemanticText.Data.1",
+        "Version": "1.2511.1196.0"
+      },
+      {
+        "Name": "WindowsWorkload.SemanticText.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.SessionManager.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.TextRecognition.Data.OPT.1",
+        "Version": "1.2606.719.0"
+      },
+      {
+        "Name": "WindowsWorkload.TextRecognition.Stx.1",
+        "Version": "1.2610.1063.0"
+      },
+      {
+        "Name": "WindowsWorkload.WinMLShared.7.0",
+        "Version": "1.2610.1050.0"
+      },
+      {
+        "Name": "c5e2524a-ea46-4f67-841f-6a9465d9d515",
+        "Version": "10.0.26100.1"
+      },
+      {
+        "Name": "windows.immersivecontrolpanel",
+        "Version": "10.0.8.1000"
+      }
+    ],
+    "amd_ep_packages": [],
+    "dlls": []
+  },
+  "system_dependencies": [
+    {
+      "name": "windows_11_24h2_or_later",
+      "required": "build >= 26100",
+      "observed": "26200",
+      "status": "OK"
+    },
+    {
+      "name": "windows_ml_shared_runtime",
+      "required": "WindowsWorkload.WinMLShared",
+      "observed": "WindowsWorkload.WinMLShared.7.0 1.2610.1050.0",
+      "status": "OK"
+    },
+    {
+      "name": "windows_app_runtime",
+      "required": "1.8 or 2.x",
+      "observed": "Microsoft.WindowsAppRuntime.1.7 7000.785.2325.0",
+      "status": "OK"
+    },
+    {
+      "name": "python_windowsml",
+      "required": ">= 2.5.96 (official C API)",
+      "observed": "2.5.96",
+      "status": "OK"
+    },
+    {
+      "name": "onnxruntime_windowsml",
+      "required": "importable in this venv",
+      "observed": "1.25.2",
+      "status": "OK"
+    },
+    {
+      "name": "amd_gpu_ep_package_or_dll",
+      "required": "AMD GPU EP artifact",
+      "observed": "0 package(s)",
+      "status": "MISSING"
+    }
+  ],
+  "error_codes": [],
+  "ep_reference": {
+    "AMDGPUExecutionProvider": {
+      "role": "AMD GPU EP; the vendor-recommended successor to MIGraphX for all AMD GPU devices",
+      "listed_for": "Windows ML 2.x only",
+      "min_windows_ml_version": "Microsoft.Windows.AI.MachineLearning 2.5.96",
+      "documented_requirement": "Adrenalin Edition 24.12.1 or later",
+      "documented_os": "Windows 11 24H2 (build 26100) or greater",
+      "acquisition": "ExecutionProviderCatalog / EnsureReadyAsync; Microsoft Store for Windows ML >= 2.5.96, Windows Update for earlier versions",
+      "gpu_generation_matrix": "NOT published on that page: it states no gfx target list for this EP, so gfx1151 support cannot be read from docs",
+      "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+      "source_page_updated": "2026-11-18",
+      "source_accessed_utc": "2026-11-19T13:52:29Z",
+      "source_sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+    },
+    "MIGraphXExecutionProvider": {
+      "role": "AMD GPU EP, deprecated in Windows ML 2.x (still listed for 2.x and 1.8.x)",
+      "status": "Deprecated in Windows ML 2.x; AMD recommends transitioning to AMDGPUExecutionProvider; retired with a future major release",
+      "documented_requirement": "AMD RDNA 3 or later GPU and AMD GPU driver version 25.10.13.09 or later",
+      "documented_limitation": "not supported for GenAI scenarios",
+      "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+      "source_page_updated": "2026-11-18",
+      "source_accessed_utc": "2026-11-19T13:52:29Z",
+      "source_sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+    },
+    "VitisAIExecutionProvider": {
+      "role": "AMD NPU EP (not an AMD GPU EP)",
+      "documented_requirement": "Adrenalin Edition 25.6.3 or later with NPU driver version 32.00.0203.280 or later",
+      "source": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+      "source_page_updated": "2026-11-18",
+      "source_accessed_utc": "2026-11-19T13:52:29Z",
+      "source_sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+    }
+  },
+  "ep_reference_superseded": {
+    "superseded_claim": "AMDGPUExecutionProvider: 'NOT listed in the live catalog table on 2026-11-19'",
+    "superseded_because": "the docs-branch markdown used for that reading is a stale snapshot; the published page lists the EP",
+    "stale_source": "https://raw.githubusercontent.com/MicrosoftDocs/windows-ai-docs/docs/docs/new-windows-ml/supported-execution-providers.md",
+    "stale_source_ms_date": "2026-04-28",
+    "superseded_on_utc": "2026-11-19"
+  },
+  "ep_reference_sources": {
+    "published_page": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+    "published_page_last_updated": "2026-11-18",
+    "accessed_utc": "2026-11-19T13:52:29Z",
+    "sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+  },
+  "update_state": {
+    "source": "registry (read-only)",
+    "available": true,
+    "errors": [],
+    "pending_reboot": {
+      "servicing_reboot_keys": {
+        "RebootRequired": false,
+        "RebootPending": false,
+        "PackagesPending": false,
+        "PostRebootReporting": false
+      },
+      "any_servicing_reboot_key": false,
+      "pending_file_rename_operations": 22,
+      "note": "PendingFileRenameOperations is a soft signal: installers leave entries without a servicing reboot being required"
+    },
+    "windows_update_policy": {
+      "NoAutoUpdate": null,
+      "AUOptions": null,
+      "DisableWindowsUpdateAccess": null,
+      "DoNotConnectToWindowsUpdateInternetLocations": null,
+      "TargetReleaseVersion": null
+    },
+    "os": {
+      "build": "26200",
+      "ubr": 9974,
+      "display_version": "25H2"
+    },
+    "store_package": "Microsoft.WindowsStore 22610.1401.8.0",
+    "ep_acquisition_channel": {
+      "channel": "microsoft_store",
+      "windowsml_python": "2.5.96",
+      "rule": "Microsoft Learn: for Windows ML 2.5.96+ EPs are acquired through the Microsoft Store; earlier versions used Windows Update",
+      "windows_update_pause_is_a_documented_cause": false
+    }
+  },
+  "recommended_actions": [
+    "no Windows ML EP is offered for this device/OS state",
+    "for Windows ML >= 2.5.96 EPs are acquired through the Microsoft Store (Windows Update only for earlier versions)",
+    "do not install an EP from an untrusted source",
+    "record BLOCKED_EXTERNAL with this probe as evidence",
+    "re-run the probe with --diff PREVIOUS.json to detect a change"
+  ],
+  "stable_digest": "c9f7ed5e5cd394aa49c3cb38a8e21e107938263166396a8e4bc2cb2b2f06b492",
+  "observation": {
+    "fields": {
+      "state": "CATALOG_EMPTY",
+      "verdict": "BLOCKED_EP",
+      "blocked_status": "BLOCKED_EXTERNAL",
+      "gfx_requested": "gfx1151"
+    },
+    "catalog": {
+      "official_version": "2.5.96",
+      "official_api_ok": true,
+      "providers": [],
+      "legacy_api_ok": true,
+      "legacy_providers": [],
+      "raw": {
+        "available": true,
+        "create_hresult": "0x00000000",
+        "enum_hresult": "0x00000000",
+        "provider_count": 0
+      }
+    },
+    "readiness": {
+      "ort_providers": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ],
+      "ort_ep_devices": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ],
+      "amd_gpu_ep_dll_sha256": [],
+      "amd_gpu_ep_packages": []
+    },
+    "versions": {
+      "os_build": "26200",
+      "amd_driver": "32.0.22018.5",
+      "python_windowsml": "2.5.96",
+      "onnxruntime_windowsml": "1.25.2",
+      "windows_ml_shared_runtime": "WindowsWorkload.WinMLShared.7.0 1.2610.1050.0",
+      "amd_gpu_ep_package_or_dll": "0 package(s)"
+    },
+    "api_errors": []
+  },
+  "diff_vs_previous": {
+    "ok": true,
+    "identical": true,
+    "stable_digest": {
+      "previous": "c9f7ed5e5cd394aa49c3cb38a8e21e107938263166396a8e4bc2cb2b2f06b492",
+      "current": "c9f7ed5e5cd394aa49c3cb38a8e21e107938263166396a8e4bc2cb2b2f06b492"
+    },
+    "state": {
+      "previous": "CATALOG_EMPTY",
+      "current": "CATALOG_EMPTY"
+    },
+    "catalog": {
+      "provider_count": {
+        "previous": 0,
+        "current": 0
+      },
+      "added": [],
+      "removed": []
+    },
+    "hresult": {
+      "create": {
+        "previous": "0x00000000",
+        "current": "0x00000000"
+      },
+      "enum": {
+        "previous": "0x00000000",
+        "current": "0x00000000"
+      },
+      "changed": false
+    },
+    "version_drift": {},
+    "packages": {
+      "added": [],
+      "removed": []
+    },
+    "ort": {
+      "providers_added": [],
+      "providers_removed": [],
+      "devices_added": [],
+      "devices_removed": []
+    },
+    "summary": [
+      "no observable change (same state, catalog, HRESULTs and versions)"
+    ]
+  }
+}
