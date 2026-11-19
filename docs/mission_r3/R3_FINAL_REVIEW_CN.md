@@ -186,8 +186,7 @@ Adrenalin 版本号不做大小推导。
 
 ## 8. 提交与合并门禁
 
-- 新提交：`ff1499e`（R3-A/B/C 代码 + 测试）、`<docs commit>`（AGENTS 例外、契约文档、
-  R4 证据与报告）。
+- 新提交：`ff1499e`（R3-A/B/C 代码 + 测试）、`ed60ed4`（AGENTS 例外、契约文档、R4 证据与报告）。
 - 合并顺序遵守任务书：先 PR #8，再重定 PR #9 base/diff，最后 PR #9；不使用 force-push，
   不删除失败历史。
 - 精确 HEAD 的 Windows CPU CI 与 Secret Scan 结果记录在 `reports/mission_r3_r6/EXECUTION_LEDGER.json`。

@@ -81,8 +81,9 @@ Pose OKS、OBB Rotated IoU）。该文件同时声明：这不是数据集级精
   `GFX1151_HARDENING_20261119T095500Z/BENCH_DML_yolo26n-pose.json`：
   `gpu_attested_all_reps=true`、onnx_sha256 `f5a5ce5f...`、input_sha256 `00324540...`。
 - PR #8 的 Pose 2.56 ms 仍然只能作为 `UNBOUND_LEGACY_OUTLIER`，不作为加速结论。
-- 15 分钟 DML Detect soak：见 `reports/gfx1151/GFX1151_R5_SOAK_DML_20261119T1340/`
-  （心跳、no-progress watchdog、有界时长；结果以该目录的报告为准，本文件不预判）。
+- 15 分钟 DML Detect soak：**181,112 runs**，p50 **2.7882 ms**，DML profiler 节点 = 1、CPU 节点 = 0、
+  `errors=[]`，心跳 30s、no-progress watchdog 180s、时长有界。证据：
+  `reports/gfx1151/GFX1151_R5_SOAK_DML_20261119T1340/SOAK_dml__yolo26n_detect.json`。
 - AMDGPU 性能：`NOT_MEASURED`（EP 未就绪，无法执行）。
 
 ## 6. Negative Injection
