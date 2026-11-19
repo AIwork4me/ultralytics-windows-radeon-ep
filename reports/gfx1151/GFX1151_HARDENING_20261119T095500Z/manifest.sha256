@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "run_id": "GFX1151_HARDENING_20261119T095500Z",
+  "created_utc": "2026-11-19T02:48:08Z",
+  "generator": "GFX1151 independent hardening read-only evidence",
+  "entries": [
+    {
+      "path": "AMDGPU_EP_READONLY_PROBE.json",
+      "sha256": "3fb0efda4a8c48ae3ef27772fa697d241b1ee3480fdd1e2ba6e66ed3ef4a67f3",
+      "bytes": 2534
+    },
+    {
+      "path": "BENCH_DML_yolo26n-pose.clocks.jsonl",
+      "sha256": "9aca1f4dc96a96ffb69f962dfb450f6f70d8849b4a31a695fcb6432272c969ee",
+      "bytes": 602
+    },
+    {
+      "path": "BENCH_DML_yolo26n-pose.json",
+      "sha256": "7a27bae64ef7de7f86c045aa6de5e360db729881a1283de59c82301e96fa10ef",
+      "bytes": 7135
+    },
+    {
+      "path": "BENCH_DML_yolo26n-pose.rep0.prof_2026-11-19_10-35-38_239.json",
+      "sha256": "4f2396f974cbae6df7d4897c1a85293b8e0a772bd21a1e09995f39078fede262",
+      "bytes": 1667
+    },
+    {
+      "path": "BENCH_DML_yolo26n-pose.rep1.prof_2026-11-19_10-35-39_202.json",
+      "sha256": "d104fdc8a23a5d01e2518a821261296135dfab985949cd24831248178b5b0db2",
+      "bytes": 1664
+    },
+    {
+      "path": "BENCH_DML_yolo26n-pose.rep2.prof_2026-11-19_10-35-40_284.json",
+      "sha256": "657da51feaebaecfdd45f76419048d4b107ce28d11be51eab5dd0c5122c3bcfb",
+      "bytes": 1662
+    },
+    {
+      "path": "DML_BINDING_PROBE.json",
+      "sha256": "b44423b263468448eb1df683c2868a2d6310729d8dd4c39d0de4651f82a6bb3b",
+      "bytes": 1657
+    },
+    {
+      "path": "dml_binding_valid_2026-11-19_10-35-55_581.json",
+      "sha256": "62f46c9ad4f443e790849d1d87a1e795adcffb0cda01145bfafa9e57a56c7ce6",
+      "bytes": 1677
+    },
+    {
+      "path": "dml_binding_valid_2026-11-19_10-36-07_558.json",
+      "sha256": "8e39070fe56ef738f09ab98d43531fe96ab451c9b07abedc853f1e527a38ffe6",
+      "bytes": 1663
+    },
+    {
+      "path": "HARDENING_FINAL_CN.md",
+      "sha256": "ce2cc2d7890b80c420b158624c1e4b1cd57d0cb5da1676231bd0908447e5679e",
+      "bytes": 21274
+    },
+    {
+      "path": "HOST_IDENTITY_MATRIX.json",
+      "sha256": "11bcf55d901da3456e36fdafcda66773c335709a36fb4e0c47e46ced027f577f",
+      "bytes": 1870
+    },
+    {
+      "path": "MEMORY_PROVENANCE.json",
+      "sha256": "a84173266791c290aa7fe698ac21c90bf8df6366cd44bfda8f44013419803457",
+      "bytes": 1662
+    },
+    {
+      "path": "MULTI_INPUT_TASK_ORACLE.json",
+      "sha256": "574fb2699310296f10c7b92dc738624830572fb2da93183a26ea6c1a803186d2",
+      "bytes": 20927
+    },
+    {
+      "path": "POSE_LATENCY_ANALYSIS.json",
+      "sha256": "75ae41c7ced02c8d61e17b2402a670a56ad94c89c17b3e02f42745fce106541a",
+      "bytes": 7460
+    }
+  ]
+}

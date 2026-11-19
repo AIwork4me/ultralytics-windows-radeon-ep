@@ -17,6 +17,8 @@ downloads/
 reports/**/raw_large/
 # local state
 *.log
+pytest-of-*/
+.cache/
 .run_state/
 ledger.local.json
 # OS

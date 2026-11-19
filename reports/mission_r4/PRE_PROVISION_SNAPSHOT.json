@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T04:26:31.003Z",
+  "host": {
+    "host_id": "host_53f62d2ac2c6",
+    "os": {
+      "caption": "Windows 11 专业版",
+      "display_version": "25H2",
+      "build": "26200.9974",
+      "arch": "x64"
+    },
+    "gpu": {
+      "name": "AMD Radeon(TM) 8060S Graphics",
+      "gfx": "gfx1151",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+      "dxgi_luid_selected": "0x00000000:0x000154E4",
+      "dxgi_luid_aliases": [
+        "0x00000000:0x000154E4",
+        "0x00000000:0x00CA17CF"
+      ],
+      "host_id": "host_53f62d2ac2c6",
+      "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+      "verified_device_identity": true,
+      "dedicated_vram_mb": 32589,
+      "shared_memory_mb": 78459,
+      "note": "dedicated segment on an APU is a carve-out, not independent VRAM"
+    },
+    "driver": {
+      "version": "32.0.22018.5",
+      "date": "2025-09-17",
+      "inf": "oem21.inf",
+      "amd_software_package": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware 10.25.20179.0",
+      "adrenalin_version": "NOT_EXPOSED",
+      "compatibility_assertion": "NONE - WDDM driver numbering and Adrenalin numbering are not comparable"
+    },
+    "amd_software_package": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware 10.25.20179.0"
+  },
+  "pre_change_state": {
+    "windowsml_python": "not installed (.venv-winml before A1; verified with pip list)",
+    "onnxruntime": "onnxruntime-windowsml 1.25.2.202605110140",
+    "ort_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "catalog_state_before": "CATALOG_EMPTY (both 2.3.0 projection and 2.5.96 flat C API, per docs/AMDGPU_EP_PROVISIONING.md section 1)",
+    "amd_gpu_ep_package": null
+  },
+  "planned_actions": [
+    {
+      "id": "A1",
+      "component": "windowsml python package",
+      "version": "2.5.96",
+      "source": "PyPI",
+      "scope": "user venv",
+      "rollback": "pip uninstall -y windowsml",
+      "executed": true
+    },
+    {
+      "id": "A2",
+      "component": "AMD display driver",
+      "version": "not selected",
+      "source": "HP/AMD only",
+      "rollback": "restore oem21.inf package",
+      "executed": false,
+      "reason": "no documented requirement and no proven blocker"
+    },
+    {
+      "id": "A3",
+      "component": "official AMD GPU EP MSIX via catalog",
+      "version": "n/a",
+      "source": "Windows Update",
+      "rollback": "Remove-AppxPackage",
+      "executed": false,
+      "reason": "catalog offers no provider"
+    },
+    {
+      "id": "A4",
+      "component": "BYO signed AMD GPU EP MSIX",
+      "version": "n/a",
+      "source": "official signed artifact only",
+      "rollback": "delete copied folder",
+      "executed": false,
+      "reason": "BLOCKED_OFFICIAL_EP_ARTIFACT"
+    },
+    {
+      "id": "A5",
+      "component": "Windows servicing",
+      "version": "n/a",
+      "source": "Windows Update",
+      "rollback": "n/a",
+      "executed": false,
+      "reason": "no evidence servicing is the blocker; nothing pending"
+    }
+  ],
+  "post_a1_state": {
+    "windowsml_python": "2.5.96",
+    "catalog_state": "CATALOG_EMPTY",
+    "official_catalog_hresult": "0x00000000",
+    "providers": 0,
+    "evidence": "reports/mission_r4/PROBE_AFTER_A1.json"
+  },
+  "recovery": {
+    "session_resilience": "No reboot performed; no pending reboot transaction. RDP session remains usable.",
+    "git_state_at_capture": "ff1499e0b9277eb8664acb82d1a8ba468dc32b41",
+    "restore_commands": [
+      ".venv-winml\\Scripts\\python.exe -m pip uninstall -y windowsml",
+      "git -C <repo> status --porcelain"
+    ]
+  }
+}

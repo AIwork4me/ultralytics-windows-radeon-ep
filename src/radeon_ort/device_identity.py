@@ -162,6 +162,103 @@ GFX_DEVICE_IDS = {
     "gfx1201": {0x7550, 0x7551},
 }
 
+# Reverse map used ONLY to infer a requested gfx when the caller omits --gfx.
+# An ambiguous DID (none here) or an uncatalogued AMD adapter fails closed; the
+# harness never guesses a gfx from a generic "Radeon" name.
+GFX_BY_DEVICE_ID = {did: gfx for gfx, dids in GFX_DEVICE_IDS.items() for did in dids}
+
+
+def target_device_ids(gfx: str) -> tuple[int, ...]:
+    """DIDs accepted for a gfx target, sorted for deterministic contracts."""
+    return tuple(sorted(GFX_DEVICE_IDS.get(gfx, ())))
+
+
+def gfx_for_device_id(device_id: int) -> str | None:
+    return GFX_BY_DEVICE_ID.get(int(device_id))
+
+
+def infer_gfx_from_adapters(adapters: list["DxgiAdapter"],
+                            expect_vendor_id: int = AMD_VENDOR_ID) -> dict:
+    """Infer the gfx target from live DXGI adapters, failing closed.
+
+    Used only when the operator omits --gfx. More than one distinct supported
+    gfx among the physical AMD adapters is ambiguous: never pick one silently.
+    """
+    found = []
+    for a in adapters:
+        if a.vendor_id != expect_vendor_id or a.is_software:
+            continue
+        gfx = gfx_for_device_id(a.device_id)
+        found.append((a.device_id, gfx, a.description))
+    if not found:
+        return {"ok": False, "reason":
+                "UNSUPPORTED_GFX_TARGET: no non-software AMD adapter with a "
+                "catalogued gfx DID; pass --gfx explicitly after verifying hardware"}
+    gfxs = sorted({f[1] for f in found if f[1]})
+    if not gfxs:
+        return {"ok": False, "reason":
+                f"UNSUPPORTED_GFX_TARGET: AMD adapter DID(s) "
+                f"{sorted(hex(f[0]) for f in found)} are not gfx-catalogued"}
+    if len(gfxs) > 1:
+        return {"ok": False, "reason":
+                f"AMBIGUOUS_GFX_TARGET: multiple supported gfx present {gfxs}; "
+                "pass --gfx explicitly"}
+    return {"ok": True, "gfx": gfxs[0],
+            "reason": f"inferred from DXGI DID 0x{found[0][0]:04X}"}
+
+
+def memory_provenance(adapter: "DxgiAdapter",
+                      wmi_adapter_ram_bytes: int | None = None) -> dict:
+    """Audit the two independent GPU-memory sources without conflating them.
+
+    DXGI AdapterDesc1 reports driver/BIOS memory *segments*. On an integrated
+    APU, DedicatedVideoMemory is a carve-out segment (not soldered VRAM) and
+    SharedSystemMemory is system RAM the GPU may use. WMI Win32_VideoController
+    AdapterRAM is a uint32 byte count and saturates near 4 GiB on large-memory
+    GPUs, so it must never be presented as physical VRAM.
+
+    This function only labels the sources/units; it performs no measurement and
+    does not turn any of them into a temperature/power/BW metric.
+    """
+    wmi_saturated = (wmi_adapter_ram_bytes is not None
+                     and int(wmi_adapter_ram_bytes) >= 0xFFF00000)
+    return {
+        "schema_version": 1,
+        "sources": {
+            "dedicated_video_mb": {
+                "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+                "unit": "MiB (rounded down)",
+                "meaning": "driver/BIOS-reported dedicated segment; on an integrated "
+                           "APU this is a carve-out, NOT independent physical VRAM",
+            },
+            "dedicated_system_mb": {
+                "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+                "unit": "MiB (rounded down)",
+                "meaning": "system memory dedicated to the adapter segment",
+            },
+            "shared_system_mb": {
+                "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+                "unit": "MiB (rounded down)",
+                "meaning": "system RAM the GPU is allowed to share; not VRAM",
+            },
+            "wmi_adapter_ram_bytes": {
+                "source": "WMI Win32_VideoController.AdapterRAM",
+                "unit": "bytes",
+                "meaning": "uint32 field; saturates near 4 GiB and is unreliable "
+                           "for >4 GiB devices; do NOT use as VRAM capacity",
+            },
+        },
+        "values": {
+            "dedicated_video_mb": adapter.dedicated_video_mb,
+            "dedicated_system_mb": adapter.dedicated_system_mb,
+            "shared_system_mb": adapter.shared_sys_mb,
+            "wmi_adapter_ram_bytes": wmi_adapter_ram_bytes,
+        },
+        "wmi_adapter_ram_saturated": wmi_saturated,
+        "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, "
+                              "bandwidth, temperature and power are NOT_MEASURED",
+    }
+
 # gfx-arch-SPECIFIC name needles for the legacy pre-DID fallback. The generic
 # 'Radeon' needle is deliberately excluded: it matches every AMD card and would
 # let e.g. a gfx1151 request silently select a 7900 XTX (live-discovered hole).
@@ -180,7 +277,7 @@ def _describe_found(adapters: list[DxgiAdapter]) -> str:
 
 def resolve_target_adapter(adapters: list[DxgiAdapter], *, gfx: str,
                            expect_vendor_id: int = AMD_VENDOR_ID,
-                           name_needles: tuple[str, ...] = ("8060S", "Radeon"),
+                           name_needles: tuple[str, ...] = (),
                            allow_unverified_name_fallback: bool = False) -> dict:
     """Select the intended physical GPU. Fail WRONG_OR_AMBIGUOUS_DEVICE on ambiguity.
 

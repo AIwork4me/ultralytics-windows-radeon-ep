@@ -36,7 +36,8 @@ def main() -> int:
     ap.add_argument("--minutes", type=float, default=15)
     ap.add_argument("--heartbeat-s", type=int, default=30)
     ap.add_argument("--no-progress-timeout-s", type=int, default=180)
-    ap.add_argument("--gfx", default="gfx1151")
+    ap.add_argument("--gfx", default=None,
+                    help="gfx target; inferred from DXGI DID when omitted")
     ap.add_argument("--reports-root", default=str(REPO_ROOT / "reports"))
     ap.add_argument("--run-id", default="SOAK")
     ap.add_argument("--tag", default=None, help="unique case tag (default: onnx stem)")
@@ -44,6 +45,15 @@ def main() -> int:
                     help="deterministic persisted input tensor (R1 bundle); "
                          "default legacy: seeded random tensor rng(777)")
     a = ap.parse_args()
+
+    if a.gfx is None:
+        from radeon_ort.device_identity import (enum_dxgi_adapters,
+                                                infer_gfx_from_adapters)
+        inf = infer_gfx_from_adapters(enum_dxgi_adapters())
+        if not inf.get("ok"):
+            print(f"[soak] FAIL: {inf.get('reason')}")
+            return 2
+        a.gfx = inf["gfx"]
 
     tag = a.tag or Path(a.onnx).stem
     out_dir = Path(a.reports_root) / a.gfx / a.run_id

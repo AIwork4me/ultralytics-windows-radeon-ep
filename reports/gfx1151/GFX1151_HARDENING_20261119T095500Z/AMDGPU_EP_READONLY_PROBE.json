@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-19T02:40:23Z",
+  "scope": "READ_ONLY (no install / no driver change / no MSIX change)",
+  "gfx": "gfx1151",
+  "host": {
+    "video": [
+      {
+        "Name": "AMD Radeon(TM) 8060S Graphics",
+        "DriverVersion": "32.0.22018.5",
+        "DriverDate": "/Date(1758067200000)/"
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818",
+        "DriverDate": "/Date(1150848000000)/"
+      }
+    ],
+    "packages": [],
+    "packages_note": "Get-AppxPackage returned 0 rows from this non-interactive powershell context; the interactive host package table is recorded in docs/AMDGPU_EP_PROVISIONING.md"
+  },
+  "python_packages": {
+    "windowsml": "not-installed",
+    "wasdk-Microsoft.Windows.AI.MachineLearning": "2.3.0",
+    "wasdk-Microsoft.Windows.ApplicationModel.DynamicDependency.Bootstrap": "2.3.0",
+    "onnxruntime-windowsml": "1.25.2.202605110140"
+  },
+  "ort": {
+    "providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "ep_devices": [
+      {
+        "ep_name": "CPUExecutionProvider",
+        "ep_vendor": "Microsoft",
+        "ep_options": {},
+        "ep_metadata": {
+          "version": "1.25.2"
+        }
+      },
+      {
+        "ep_name": "DmlExecutionProvider",
+        "ep_vendor": "Microsoft",
+        "ep_options": {
+          "device_id": "0"
+        },
+        "ep_metadata": {
+          "version": "1.25.2"
+        }
+      }
+    ]
+  },
+  "catalog": {
+    "engines": [
+      {
+        "engine": "wasdk_projection",
+        "providers": 0
+      }
+    ],
+    "wasdk_projection_providers": [],
+    "windowsml_flat_c": {
+      "installed": false
+    },
+    "counts": {
+      "wasdk_projection": 0,
+      "windowsml_flat_c": 0
+    }
+  },
+  "amd_gpu_ep": {
+    "dlls": [],
+    "register_attempt": "amdgpu-ep.dll not found (BLOCKED_EP)",
+    "provider_registered": false
+  },
+  "amd_gpu_ep_packages": [],
+  "verdict": "BLOCKED_EP",
+  "blocked_status": "BLOCKED_ADMIN_DEPENDENCY",
+  "admin_dependency": true,
+  "required_approval_actions": [
+    "A1 windowsml>=2.5.96 Python bindings",
+    "A2 AMD GPU driver >= 25.10.13.09",
+    "A3 official dynamic AMDGPU EP MSIX",
+    "A4 BYO official signed EP (fallback)"
+  ],
+  "verdict_reasons": [
+    "amdgpu-ep.dll not found in site-packages or WindowsApps",
+    "no AMD GPU EP AppX/MSIX package installed",
+    "all EP catalog engines returned zero providers",
+    "official windowsml>=2.5.96 Python bindings are not installed"
+  ]
+}

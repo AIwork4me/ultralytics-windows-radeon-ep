@@ -12,7 +12,6 @@ No DML result can ever overwrite an AMDGPU failure; no silent CPU fallback.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import subprocess
 import sys
@@ -24,10 +23,11 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from radeon_ort import redaction  # noqa: E402
+from radeon_ort import contract as contract_mod  # noqa: E402
 from radeon_ort.manifest import sha256_file  # noqa: E402
 from radeon_ort.receipts import (  # noqa: E402
     ReceiptStatus, build_receipt_v2, combine_v2_to_status, derive_verdicts,
-    save_receipt, validate_receipt_strict)
+    save_receipt, utc_now_iso, validate_receipt_strict)
 from runner import REPO_ROOT  # noqa: E402
 
 TASK_OF = {}  # filled from catalog
@@ -88,7 +88,7 @@ def build_bundle(export_python: str, image: Path, imgsz: int, task: str, model: 
     out_dir.mkdir(parents=True, exist_ok=True)
     marker = out_dir / f".bundle_{variant}_{model}_{task}.done"
     if marker.is_file():
-        cands = list(out_dir.glob(f"manifest_*.json"))
+        cands = list(out_dir.glob("manifest_*.json"))
         # reuse manifest for this exact input: find by recomputing id lazily
         for c in cands:
             m = json.loads(c.read_text(encoding="utf-8"))
@@ -122,8 +122,8 @@ def run_worker(winml_python: str, ep: str, case: dict, case_path: Path,
 
 
 def _save_meta_receipt(run_dir: Path, run_id: str, model: str, entry: dict,
-                        host_block: dict, host_status: str, *, model_asset: str,
-                        export: str, error: dict) -> None:
+                       host_block: dict, host_status: str, *, model_asset: str,
+                       export: str, error: dict, run_contract: dict) -> None:
     """Persist an honest non-executed case receipt (missing asset / export failure).
 
     These receipts are explicitly NOT GPU passes; they make catalog disposition
@@ -135,20 +135,89 @@ def _save_meta_receipt(run_dir: Path, run_id: str, model: str, entry: dict,
     st = ReceiptStatus(model_asset=model_asset, export=export, cpu_oracle="NOT_RUN",
                        amdgpu="NOT_RUN", dml="NOT_RUN", task_oracle="NOT_RUN",
                        benchmark="NOT_MEASURED", host=host_status)
+    model_block = {"family": entry.get("family"), "task": entry.get("task"), "checkpoint": model,
+                   "size": entry.get("size"), "pt_sha256": None, "onnx_sha256": None,
+                   "onnx_path_redacted": None,
+                   "export": {"imgsz": entry.get("imgsz_default"), "nms_mode": entry.get("nms_mode", "raw"),
+                              "quantize": "fp32", "batch": 1, "dynamic": False}}
+    contract_block = contract_mod.build_receipt_contract(
+        run_contract, ep="dml", model=model_block, input_block={})
     receipt = build_receipt_v2(
         run_id=run_id, case_id=f"{Path(model).stem}__{entry['task']}__asset", status=st,
         verdicts={}, host=host_block,
-        model={"family": entry.get("family"), "task": entry.get("task"), "checkpoint": model,
-               "size": entry.get("size"), "pt_sha256": None, "onnx_sha256": None,
-               "onnx_path_redacted": None,
-               "export": {"imgsz": entry.get("imgsz_default"), "nms_mode": entry.get("nms_mode", "raw"),
-                          "quantize": "fp32", "batch": 1, "dynamic": False}},
+        model=model_block,
         input_block={}, expected_outputs=[], worker={"exit_code": 0, "python": sys.version.split()[0]},
         session=None, device_binding=None, parity=None, task=None, task_parity=None,
         benchmark_data=None, errors=[error], rca_issue_ids=[],
         provenance={"script_head_sha": "git:r1", "command": "runner.r1_pipeline meta receipt",
-                    "seed": 0})
+                    "seed": 0},
+        contract=contract_block)
     save_receipt(receipt, run_dir / "receipts")
+
+
+def _host_status(host_block: dict) -> str:
+    """Status label derived from the live gfx target, never hardcoded."""
+    gfx = (host_block or {}).get("gfx")
+    if host_block.get("verified_device_identity") and gfx in ("gfx1100", "gfx1151", "gfx1201"):
+        return "VERIFIED_" + gfx.upper()
+    return "BLOCKED_ENV"
+
+
+def _model_contract_entries(models: list[str], catalog: dict, *, pt_dir: Path,
+                            onnx_dir: Path, gfx: str) -> list[dict]:
+    out = []
+    for model in models:
+        entry = catalog["entries"].get(model) or {}
+        pt = pt_dir / model
+        onnx = onnx_dir / f"{Path(model).stem}.raw_b1_fp32_static.onnx"
+        out.append({
+            "checkpoint": model,
+            "task": entry.get("task"),
+            "imgsz": entry.get("imgsz_default") or 640,
+            "pt_sha256": sha256_file(pt) if pt.is_file() else None,
+            "onnx_sha256": sha256_file(onnx) if onnx.is_file() else None,
+            "asset_available": pt.is_file(),
+            "gfx": gfx,
+        })
+    return out
+
+
+def _images_contract(a) -> dict:
+    out = {}
+    primary = Path(a.image)
+    if primary.is_file():
+        out["primary"] = {"name": primary.name, "sha256": sha256_file(primary)}
+    obb = Path(a.obb_image)
+    if obb.is_file():
+        out["obb"] = {"name": obb.name, "sha256": sha256_file(obb)}
+    return out
+
+
+def _case_contract_problems(receipt: dict, *, ep: str, onnx_sha256: str,
+                            pt_sha256: str | None, input_id: str,
+                            image_sha256: str, tensor_sha256: dict) -> list[str]:
+    """Current files/input vs the receipt's own contract (stale/tamper gate)."""
+    problems: list[str] = []
+    rc = receipt.get("contract") or {}
+    cm = rc.get("model") or {}
+    if cm.get("onnx_sha256") != onnx_sha256:
+        problems.append(
+            f"MODEL_ONNX_CHANGED: receipt={cm.get('onnx_sha256')!r} current={onnx_sha256!r}")
+    if cm.get("pt_sha256") != pt_sha256:
+        problems.append(
+            f"MODEL_PT_CHANGED: receipt={cm.get('pt_sha256')!r} current={pt_sha256!r}")
+    ci = rc.get("input") or {}
+    if ci.get("input_id") != input_id:
+        problems.append(
+            f"INPUT_ID_CHANGED: receipt={ci.get('input_id')!r} current={input_id!r}")
+    if ci.get("image_sha256") != image_sha256:
+        problems.append(
+            f"INPUT_IMAGE_CHANGED: receipt={ci.get('image_sha256')!r} current={image_sha256!r}")
+    if dict(ci.get("tensor_sha256") or {}) != dict(tensor_sha256 or {}):
+        problems.append("INPUT_TENSOR_CHANGED: receipt tensor hashes differ from current bundle")
+    if rc.get("ep") != ep:
+        problems.append(f"EP_CHANGED: receipt={rc.get('ep')!r} expected={ep!r}")
+    return problems
 
 
 def main() -> int:
@@ -157,6 +226,11 @@ def main() -> int:
     ap.add_argument("--catalog", default=str(REPO_ROOT / "catalog" / "model_catalog.json"))
     ap.add_argument("--models", default="yolo26n.pt,yolo26n-seg.pt,yolo26n-sem.pt,yolo26n-depth.pt,yolo26n-cls.pt,yolo26n-pose.pt,yolo26n-obb.pt")
     ap.add_argument("--eps", default="amdgpu,dml")
+    ap.add_argument("--gfx", default=None,
+                    help="gfx target (gfx1100/gfx1151/gfx1201); auto-detected from "
+                         "DXGI DID when omitted, never defaulted to gfx1151")
+    ap.add_argument("--gpu-name-needle", default=None,
+                    help="optional WMI name needle; DID matching is the default")
     ap.add_argument("--image", default=str(REPO_ROOT / "data" / "fixtures" / "bus.jpg"))
     ap.add_argument("--obb-image", default=str(REPO_ROOT / "data" / "fixtures" / "dota_p1053.jpg"))
     ap.add_argument("--negative", default=None, help="path for the generated negative image")
@@ -166,6 +240,9 @@ def main() -> int:
                     help="run the expected-empty negative control per task (GPU too)")
     ap.add_argument("--case-timeout-s", type=int, default=1500)
     ap.add_argument("--benchmark", action="store_true")
+    ap.add_argument("--resume", action="store_true",
+                    help="reuse ONLY receipts whose code/model/input/EP/threshold/"
+                         "device contract is identical; never clobber")
     a = ap.parse_args()
 
     run_dir = Path(a.run_dir)
@@ -175,19 +252,127 @@ def main() -> int:
     for d in (raw, receipts_dir, inputs_dir):
         d.mkdir(parents=True, exist_ok=True)
 
-    thresholds = yaml.safe_load((REPO_ROOT / "configs" / "thresholds.yaml").read_text(encoding="utf-8"))
-    th_path = run_dir / "thresholds_snapshot.json"
-    if not th_path.is_file():
-        th_path.write_text(json.dumps(thresholds, indent=2), encoding="utf-8")
-
     catalog = json.loads(Path(a.catalog).read_text(encoding="utf-8"))
     models = [m.strip() for m in a.models.split(",") if m.strip()]
     eps = [e.strip() for e in a.eps.split(",") if e.strip()]
+    if not models or not eps:
+        print("[r1] FAIL: empty model/EP selection")
+        return 2
+
+    live_thresholds = yaml.safe_load(
+        (REPO_ROOT / "configs" / "thresholds.yaml").read_text(encoding="utf-8"))
+    # Runtime environment is part of the contract: an ORT/Windows ML change
+    # changes what a PASS means and therefore forbids resuming the old run id.
+    environment = contract_mod.environment_state(a.winml_python)
+    if environment.get("probe_error"):
+        print("[r1] WARN: environment probe incomplete: "
+              + str(environment.get("probe_error")))
+    try:
+        thresholds, th_sha = contract_mod.ensure_thresholds(
+            run_dir, live_thresholds, resume=a.resume)
+    except contract_mod.ContractError as e:
+        print(f"[r1] CONTRACT FAIL: {e}")
+        return 2
+    th_path = contract_mod.thresholds_snapshot_path(run_dir)
+
+    # Identify the live target before any GPU work. gfx is never defaulted to
+    # gfx1151: an omitted --gfx is inferred from the DXGI DID (fail-closed).
+    host_block0 = _host_block(a.gfx, name_needle=a.gpu_name_needle)
+    gfx = host_block0.get("gfx")
+    if not host_block0.get("verified_device_identity"):
+        print(f"[r1] FAIL: target device not verified for gfx={a.gfx!r}: "
+              f"{host_block0.get('identity_method')}")
+        return 2
+    if gfx not in ("gfx1100", "gfx1151", "gfx1201"):
+        print(f"[r1] FAIL: unsupported/unresolved gfx={gfx!r}")
+        return 2
+    print(f"[r1] target gfx={gfx} host={host_block0.get('host_id')} "
+          f"luid={host_block0.get('device_luid')}")
+
+    images = _images_contract(a)
+    model_contract = _model_contract_entries(
+        models, catalog, pt_dir=REPO_ROOT / "models" / "pt",
+        onnx_dir=REPO_ROOT / "models" / "onnx", gfx=gfx)
+    cases = []
+    for m in model_contract:
+        entry = catalog["entries"].get(m["checkpoint"]) or {}
+        if entry.get("task"):
+            cases.append(f"{Path(m['checkpoint']).stem}__{entry['task']}")
+
+    if a.resume:
+        try:
+            run_contract = contract_mod.load_run_contract(run_dir)
+        except contract_mod.ContractError as e:
+            print(f"[r1] CONTRACT FAIL: {e}")
+            return 2
+        problems = contract_mod.verify_run_contract(
+            run_contract, repo_root=REPO_ROOT, run_dir=run_dir,
+            thresholds=thresholds, host_block=host_block0, models=models, eps=eps,
+            images=images,
+            environment=environment,
+            options={"benchmark": bool(a.benchmark),
+                     "with_negative": bool(a.with_negative)})
+        for p in problems:
+            print(f"[r1] CONTRACT FAIL: {p}")
+        if problems:
+            return 2
+        # Contract is authoritative: a resume may not silently change scope.
+        gfx = run_contract["gfx"]
+        host_block0 = _host_block(gfx, name_needle=a.gpu_name_needle)
+        host_status = _host_status(host_block0)
+        cmodels = {m["checkpoint"]: m for m in run_contract.get("models") or []}
+        for m in model_contract:
+            cm = cmodels.get(m["checkpoint"]) or {}
+            if cm.get("asset_available") != m["asset_available"]:
+                print(f"[r1] CONTRACT FAIL: ASSET_STATE_CHANGED for "
+                      f"{m['checkpoint']} (contract={cm.get('asset_available')}, "
+                      f"now={m['asset_available']}); create a new run_id")
+                return 2
+    else:
+        if (run_dir / contract_mod.RUN_CONTRACT_NAME).exists():
+            print("[r1] FAIL: RUN_CONTRACT.json already exists but --resume was not "
+                  "given; refusing to reuse a run_id")
+            return 2
+        if any(receipts_dir.glob("receipt_*.json")):
+            print("[r1] FAIL: immutable receipts already exist but no run contract; "
+                  "create a new run_id")
+            return 2
+        run_contract = contract_mod.build_run_contract(
+            run_id=run_dir.name, gfx=gfx, eps=eps, models=model_contract,
+            cases=cases, thresholds=thresholds,
+            code=contract_mod.code_state(REPO_ROOT),
+            device_identity={
+                "gfx": gfx,
+                "host_id": host_block0.get("host_id"),
+                "vendor_id": host_block0.get("vendor_id"),
+                "device_id": host_block0.get("device_id"),
+                "physical_gpu_name": host_block0.get("physical_gpu_name"),
+                "luid": host_block0.get("device_luid"),
+                "identity_method": host_block0.get("identity_method"),
+                "did_match": bool(host_block0.get("did_match")),
+            },
+            images=images,
+            environment=environment,
+            options={"benchmark": bool(a.benchmark),
+                     "with_negative": bool(a.with_negative)},
+            created_utc=utc_now_iso())
+        try:
+            contract_mod.write_run_contract(run_dir, run_contract)
+        except contract_mod.ContractError as e:
+            print(f"[r1] CONTRACT FAIL: {e}")
+            return 2
+        print(f"[r1] contract={run_contract['contract_sha256'][:16]} "
+              f"thresholds={th_sha[:16]} code={run_contract['code']['git_head_sha'][:12]}")
+
     neg_path = Path(a.negative) if a.negative else run_dir / "negative_gray.png"
-    neg_sha = make_negative_image(a.export_python, neg_path)
+    make_negative_image(a.export_python, neg_path)
 
     ledger_path = run_dir / "R1_CASE_LEDGER.jsonl"
     n_ok = 0
+    n_pass = 0
+    n_fail = 0
+    n_blocked = 0
+    run_problems: list[str] = []
     for model in models:
         entry = catalog["entries"].get(model)
         if not entry:
@@ -196,14 +381,14 @@ def main() -> int:
         imgsz = entry.get("imgsz_default") or 640
         onnx = REPO_ROOT / "models" / "onnx" / f"{Path(model).stem}.raw_b1_fp32_static.onnx"
         pt = REPO_ROOT / "models" / "pt" / model
-        host_block0 = _host_block()
-        host_status = ("VERIFIED_GFX1151" if host_block0.get("verified_device_identity")
-                       else "BLOCKED_ENV")
+        host_block0 = _host_block(gfx, name_needle=a.gpu_name_needle)
+        host_status = _host_status(host_block0)
         if not pt.is_file():
             _save_meta_receipt(run_dir, run_dir.name, model, entry, host_block0, host_status,
                                model_asset="MISSING_WITH_REASON", export="NOT_APPLICABLE",
                                error={"stage": "ASSET", "type": "MISSING_ASSET",
-                                      "message": f"{model} not present under models/pt (asset gate)"})
+                                      "message": f"{model} not present under models/pt (asset gate)"},
+                               run_contract=run_contract)
             print(f"[r1] MISSING_ASSET {model}"); continue
         if not onnx.is_file():
             print(f"[r1] export {model} -> onnx")
@@ -213,7 +398,8 @@ def main() -> int:
                 _save_meta_receipt(run_dir, run_dir.name, model, entry, host_block0, host_status,
                                    model_asset="AVAILABLE", export="FAIL_EXPORT",
                                    error={"stage": "EXPORT", "type": "EXPORT",
-                                          "message": er["stderr_tail"][-800:]})
+                                          "message": er["stderr_tail"][-800:]},
+                                   run_contract=run_contract)
                 print(f"[r1] EXPORT_FAILED {model}: {er['stderr_tail'][-300:]}"); continue
         onnx_sha = sha256_file(onnx)
         image = Path(a.obb_image if task == "obb" else a.image)
@@ -228,7 +414,7 @@ def main() -> int:
         ref_npz = raw / f"ref_{case_key}.npz"
         cpu_frag, cpu_rc = run_worker(
             a.winml_python, "cpu",
-            {"ep": "cpu", "gfx": "gfx1151", "onnx_path": str(onnx),
+            {"ep": "cpu", "gfx": gfx, "onnx_path": str(onnx),
              "input_manifest": str(inputs_dir / f"manifest_{pos_bundle['input_id'][:16]}.json"),
              "input_name": "images", "profile_prefix": str(raw / f"prof_cpu_{case_key}"),
              "outputs_npz": str(ref_npz)},
@@ -253,12 +439,37 @@ def main() -> int:
             ep_name = "AMDGPU" if ep == "amdgpu" else "DML"
             receipt_path = receipts_dir / f"receipt_{case_key}__{ep}.json"
             if receipt_path.exists():
-                print(f"[r1] SKIP {case_key}/{ep} (receipt exists, immutable)")
+                if not a.resume:
+                    print(f"[r1] FAIL: immutable receipt already exists for "
+                          f"{case_key}/{ep}; use --resume with an identical contract "
+                          "or create a new run_id")
+                    return 2
+                try:
+                    existing = json.loads(receipt_path.read_text(encoding="utf-8"))
+                except json.JSONDecodeError as e:
+                    print(f"[r1] FAIL: corrupt receipt {receipt_path.name}: {e}")
+                    return 2
+                ev = validate_receipt_strict(
+                    existing, expected_thresholds=contract_mod.expected_thresholds_for_receipt(
+                        existing, thresholds))
+                cps = contract_mod.validate_receipt_contract(existing, run_contract)
+                cps += _case_contract_problems(
+                    existing, ep=ep, onnx_sha256=onnx_sha,
+                    pt_sha256=sha256_file(pt) if pt.is_file() else None,
+                    input_id=pos_bundle["input_id"], image_sha256=image_sha,
+                    tensor_sha256={"images": pos_bundle["tensor_sha256"]})
+                if not ev["ok"] or cps:
+                    for p in (ev.get("problems") or []) + cps:
+                        print(f"[r1] RESUME CONTRACT FAIL {case_key}/{ep}: {p}")
+                    print("[r1] FAIL: refusing to reuse a stale/tampered receipt; "
+                          "create a new run_id")
+                    return 2
+                print(f"[r1] RESUME OK {case_key}/{ep} (contract-identical)")
                 continue
             cand_npz = raw / f"cand_{case_key}_{ep}.npz"
             frag, rc = run_worker(
                 a.winml_python, ep,
-                {"ep": ep, "gfx": "gfx1151", "onnx_path": str(onnx),
+                {"ep": ep, "gfx": gfx, "onnx_path": str(onnx),
                  "input_manifest": str(inputs_dir / f"manifest_{pos_bundle['input_id'][:16]}.json"),
                  "input_name": "images", "reference_npz": str(ref_npz),
                  "atol": thresholds["numeric_parity"]["fp32"]["atol"],
@@ -302,7 +513,7 @@ def main() -> int:
                 neg_npz = raw / f"candneg_{case_key}_{ep}.npz"
                 nfrag, nrc = run_worker(
                     a.winml_python, ep,
-                    {"ep": ep, "gfx": "gfx1151", "onnx_path": str(onnx),
+                    {"ep": ep, "gfx": gfx, "onnx_path": str(onnx),
                      "input_manifest": str(inputs_dir / f"manifest_{neg_bundle['input_id'][:16]}.json"),
                      "input_name": "images",
                      "profile_prefix": str(raw / f"profneg_{case_key}_{ep}"),
@@ -340,15 +551,14 @@ def main() -> int:
                             neg_block = json.loads(ntp.read_text(encoding="utf-8"))
 
             # ---------- receipt assembly ----------
-            host_block = _host_block()
+            host_block = _host_block(gfx, name_needle=a.gpu_name_needle)
             st = ReceiptStatus(
                 model_asset="AVAILABLE" if pt.is_file() else "MISSING_WITH_REASON",
                 export="PASS_ONNX_EXPORT" if onnx.is_file() else "NOT_APPLICABLE",
                 cpu_oracle="PASS_CPU_REFERENCE" if cpu_ok else "FAIL_CPU_REFERENCE",
                 amdgpu="NOT_RUN", dml="NOT_RUN",
                 task_oracle="NOT_RUN", benchmark="PASS_MEASURED" if (a.benchmark and frag and frag.get("benchmark_data")) else "NOT_MEASURED",
-                host=("VERIFIED_GFX1151" if host_block.get("verified_device_identity")
-                      else "BLOCKED_ENV"),
+                host=_host_status(host_block),
             )
             errors: list[dict] = []
             ep_key = ep
@@ -451,7 +661,9 @@ def main() -> int:
                             "ultralytics_version": "8.4.215",
                             **_git_state(),
                             "raw_log_path_redacted": redaction.redact_path(
-                                raw / f"log_{case_key}_{ep}.txt")})
+                                raw / f"log_{case_key}_{ep}.txt")},
+                contract=contract_mod.build_receipt_contract(
+                    run_contract, ep=ep, model=model_block, input_block=input_block))
             # honest status derivation: recompute from evidence
             v = derive_verdicts(receipt)
             for e in ("amdgpu", "dml"):
@@ -462,101 +674,186 @@ def main() -> int:
                 receipt["status"]["task_oracle"] = (
                     "PASS_TASK" if tp_block["passed"] else "FAIL_TASK")
 
-            yaml_task_key = {"detect": "detection", "segment": "segmentation"}.get(task, task)
-            verdict = validate_receipt_strict(receipt, expected_thresholds={
-                "atol": thresholds["numeric_parity"]["fp32"]["atol"],
-                "rtol": thresholds["numeric_parity"]["fp32"]["rtol"],
-                "task": thresholds.get("task_oracle", {}).get(yaml_task_key, {})})
+            verdict = validate_receipt_strict(
+                receipt, expected_thresholds=contract_mod.expected_thresholds_for_receipt(
+                    receipt, thresholds))
             if not verdict["ok"]:
                 receipt["errors"].append({"stage": "validate", "type": "FORGED_OR_STALE",
                                           "message": "; ".join(verdict["problems"])})
+                run_problems.append(f"{case_key}/{ep}: {verdict['problems']}")
                 print(f"[r1] VALIDATION PROBLEMS {case_key}/{ep}: {verdict['problems']}")
             try:
                 save_receipt(receipt, receipts_dir)
                 n_ok += 1
                 status_ep = receipt["status"][ep_key]
+                if str(status_ep).startswith("PASS"):
+                    n_pass += 1
+                elif str(status_ep).startswith("FAIL"):
+                    n_fail += 1
+                else:
+                    n_blocked += 1
                 tp_s = receipt["status"]["task_oracle"]
                 with ledger_path.open("a", encoding="utf-8") as lf:
                     lf.write(json.dumps({
                         "case": f"{case_key}__{ep}", "model": model, "task": task, "ep": ep,
-                        "exec": status_ep, "task": tp_s,
+                        "exec": status_ep, "task_status": tp_s,
                         "parity": bool(((frag or {}).get("parity") or {}).get("all_outputs_allclose")),
                         "rc": rc, "secs": 0, "problems": verdict["problems"],
                         "neg": (neg_block or {}).get("passed") if neg_block else None,
                     }) + "\n")
                 print(f"[r1] {case_key}/{ep}: exec={status_ep} task={tp_s}")
             except Exception as e:  # noqa: BLE001
+                run_problems.append(f"{case_key}/{ep}: receipt save failed: {e}")
                 print(f"[r1] receipt save failed {case_key}/{ep}: {e}")
-    print(f"[r1] DONE {n_ok} receipts")
-    return 0
+    rc, classification = classify_exit(n_pass, n_fail, run_problems)
+    print(f"[r1] DONE {n_ok} receipts pass={n_pass} fail={n_fail} "
+          f"blocked_or_not_run={n_blocked}")
+    if run_problems:
+        print(f"[r1] FAIL: {len(run_problems)} validation/contract problem(s)")
+    if rc == 2:
+        print("[r1] BLOCKED/NOT_RUN: no case produced a full GPU PASS")
+    print(f"[r1] EXIT classification={classification} code={rc}")
+    try:
+        (run_dir / "PIPELINE_EXIT.json").write_text(json.dumps({
+            "schema_version": 1,
+            "attempt_utc": utc_now_iso(),
+            "exit_code": rc,
+            "classification": classification,
+            "receipts_written": n_ok,
+            "pass": n_pass,
+            "fail": n_fail,
+            "blocked_or_not_run": n_blocked,
+            "run_problems": run_problems[:50],
+            "environment_probe_error": environment.get("probe_error"),
+        }, indent=2) + "\n", encoding="utf-8")
+    except OSError as e:  # noqa: BLE001 - never mask the real exit code
+        print(f"[r1] WARN: could not write PIPELINE_EXIT.json: {e}")
+    return rc
+
+
+def classify_exit(n_pass: int, n_fail: int, run_problems: list[str]) -> tuple[int, str]:
+    """Map per-case outcomes to the documented exit code (R3-A).
+
+    1 = evidence invalid / real case failure, 2 = classified external block or
+    nothing executed, 0 = at least one full PASS and no failure.
+    """
+    if run_problems:
+        return 1, "EVIDENCE_INVALID"
+    if n_fail:
+        return 1, "CASE_FAILED"
+    if n_pass == 0:
+        return 2, "NO_GPU_PASS"
+    return 0, "OK"
 
 
 def _git_state() -> dict:
     """Exact code provenance for receipts (base SHA alone is not enough)."""
-    def run(*args):
-        try:
-            return subprocess.check_output(["git", *args], cwd=str(REPO_ROOT),
-                                           text=True, stderr=subprocess.DEVNULL).strip()
-        except Exception:  # noqa: BLE001
-            return ""
-    head = run("rev-parse", "HEAD")
-    tracked_dirty = bool(run("status", "--porcelain", "--untracked-files=no", "--",
-                             "runner", "src", "tests", "schemas", "configs",
-                             "catalog", "pyproject.toml"))
-    return {"git_head_sha": head or "unknown", "worktree_dirty": tracked_dirty}
+    return contract_mod.code_state(REPO_ROOT)
 
 
-def _host_block(gfx: str = "gfx1151") -> dict:
-    """Host evidence from THIS process/host. Never hardcodes a reference host.
+def _host_block(gfx: str | None = None, *, name_needle: str | None = None) -> dict:
+    """Host evidence from THIS process/host, pinned to the requested gfx DID.
 
-    verified_device_identity is true only when the live DXGI DID-pinned
-    resolution succeeded; a failed lookup records the reason and BLOCKED_ENV.
+    gfx=None means "infer from the live DXGI DID", never "assume gfx1151".
+    verified_device_identity is true only when the DID-pinned resolution
+    succeeded for a catalogued gfx target.
     """
-    if _HOST_BLOCK_CACHE:
-        return _HOST_BLOCK_CACHE
+    cache_key = (gfx or "auto", name_needle or "")
+    if cache_key in _HOST_BLOCK_CACHE:
+        return _HOST_BLOCK_CACHE[cache_key]
+
     from radeon_ort import device_identity, host_probe
-    host = host_probe.collect_host(gpu_name_needle="8060S", gfx=gfx)
-    identity_ok = False
-    identity_method = "unresolved"
-    dxgi = {"adapters": [], "selected_luid": None}
+    adapters = []
+    dxgi_error = None
     try:
         adapters = device_identity.enum_dxgi_adapters()
-        dxgi["adapters"] = [
+    except OSError as e:  # DXGI absent/broken is an honest BLOCKED_ENV
+        dxgi_error = f"dxgi-error: {e}"
+
+    identity_ok = False
+    identity_method = "unresolved"
+    res: dict = {}
+    resolved_gfx = gfx
+    if adapters:
+        if resolved_gfx is None:
+            inf = device_identity.infer_gfx_from_adapters(adapters)
+            if inf.get("ok"):
+                resolved_gfx = inf["gfx"]
+                identity_method = inf.get("reason", "inferred from DXGI DID")
+            else:
+                identity_method = inf.get("reason", "gfx inference failed")
+        if resolved_gfx is not None:
+            res = device_identity.resolve_target_adapter(
+                adapters, gfx=resolved_gfx,
+                name_needles=((name_needle,) if name_needle else ()))
+            if res.get("ok"):
+                identity_ok = bool(res.get("did_match"))
+                identity_method = res.get("identity_method", "DXGI vendor+deviceId")
+            else:
+                identity_method = res.get("reason", "resolve failed")
+    else:
+        identity_method = dxgi_error or "no DXGI adapter"
+
+    host: dict = {}
+    try:
+        host = host_probe.collect_host(
+            gpu_name_needle=name_needle,
+            gfx=resolved_gfx or "unknown",
+            gpu_device_ids=(device_identity.target_device_ids(resolved_gfx)
+                            if resolved_gfx else None))
+    except Exception as e:  # noqa: BLE001 - WMI failure must not crash the audit
+        host = {"error": f"{type(e).__name__}: {e}", "gpu_target": {}, "os": {}}
+
+    gt = host.get("gpu_target", {}) or {}
+    adapter = res.get("adapter") if res.get("ok") else None
+    dxgi = {
+        "adapters": [
             {"i": a.index, "desc": a.description, "vid": f"0x{a.vendor_id:04X}",
              "did": f"0x{a.device_id:04X}", "luid": a.luid_str,
-             "software": a.is_software} for a in adapters]
-        res = device_identity.resolve_target_adapter(adapters, gfx=gfx)
-        if res.get("ok"):
-            identity_ok = True
-            identity_method = res.get("identity_method", "DXGI vendor+deviceId")
-            host["gpu_target"].update({
-                "verified": True, "luid": res["adapter"].luid_str,
-                "identity_method": identity_method,
-                "dedicated_vram_mb": res["adapter"].dedicated_video_mb,
-                "shared_memory_mb": res["adapter"].shared_sys_mb,
-            })
-            dxgi["selected_luid"] = res["adapter"].luid_str
-        else:
-            identity_method = res.get("reason", "resolve failed")
-    except OSError as e:
-        identity_method = f"dxgi-error: {e}"
-    gt = host.get("gpu_target", {})
+             "software": a.is_software} for a in adapters],
+        "selected_luid": adapter.luid_str if adapter else None,
+        "selected_index": adapter.index if adapter else None,
+        "did_match": bool(res.get("did_match")) if adapter else False,
+        "dedup_note": res.get("dedup_note"),
+    }
+    memory = (device_identity.memory_provenance(
+        adapter, wmi_adapter_ram_bytes=gt.get("adapter_ram_bytes"))
+        if adapter else {"measurement_status": "NOT_MEASURED (no adapter)"})
+    host_id = host.get("host_id") or "unknown"
+    if host_id == "unknown" and adapter is not None:
+        # WMI may transiently miss the exact PNP row; a synthetic public hardware
+        # id (VEN/DEV only) still yields a stable, non-identifying host id.
+        host_id = host_probe.host_id_from_host({
+            "cpu": host.get("cpu") or {},
+            "gpu_target": {"pnp_device_id":
+                           f"PCI\\VEN_{adapter.vendor_id:04X}&DEV_{adapter.device_id:04X}"}})
     block = {
-        "host_id": host.get("host_id", "unknown"),
-        "physical_gpu_name": gt.get("name"),
-        "gfx": gfx, "device_luid": gt.get("luid"),
+        "host_id": host_id,
+        "physical_gpu_name": (gt.get("name") or
+                              (adapter.description if adapter else None)),
+        "gfx": resolved_gfx or "unknown",
+        "vendor_id": (f"0x{adapter.vendor_id:04X}" if adapter else gt.get("vendor_id")),
+        "device_id": (f"0x{adapter.device_id:04X}" if adapter else gt.get("device_id")),
+        "device_luid": adapter.luid_str if adapter else gt.get("luid"),
         "dxgi_evidence": dxgi,
         "pnp_evidence": {"pnp_device_id": gt.get("pnp_device_id")},
         "os_build": (f"{host['os']['build']}.{host['os'].get('ubr', '')}".rstrip(".")
                      if host.get("os") else None),
-        "driver_version": gt.get("driver_version"),
-        "driver_date": gt.get("driver_date"), "wddm_version": gt.get("wddm"),
-        "dedicated_vram_mb": gt.get("dedicated_vram_mb"),
-        "shared_memory_mb": gt.get("shared_memory_mb"),
+        "driver_version": gt.get("driver_version") or "unknown",
+        "driver_date": gt.get("driver_date"),
+        "wddm_version": gt.get("wddm"),
+        "dedicated_vram_mb": (adapter.dedicated_video_mb if adapter
+                              else gt.get("dedicated_vram_mb")),
+        "shared_memory_mb": (adapter.shared_sys_mb if adapter
+                             else gt.get("shared_memory_mb")),
+        "memory": memory,
         "verified_device_identity": identity_ok,
         "identity_method": identity_method,
+        "did_match": bool(res.get("did_match")) if adapter else False,
     }
-    _HOST_BLOCK_CACHE.update(block)
+    _HOST_BLOCK_CACHE[cache_key] = block
+    if resolved_gfx:
+        _HOST_BLOCK_CACHE[(resolved_gfx, name_needle or "")] = block
     return block
 
 

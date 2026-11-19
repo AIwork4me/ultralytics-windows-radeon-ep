@@ -5,3 +5,7 @@
 *.yaml text eol=lf
 *.md text eol=lf
 *.py text eol=lf
+
+# Evidence under reports/ is byte-exact: never apply line-ending conversion.
+# Hash-bound manifests must match the committed bytes on every platform.
+reports/** -text

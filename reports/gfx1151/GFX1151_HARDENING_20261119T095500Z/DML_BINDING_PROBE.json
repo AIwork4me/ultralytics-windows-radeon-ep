@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "gfx": "gfx1151",
+  "dxgi": {
+    "index": 0,
+    "luid": "0x00000000:0x000154E4",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586",
+    "note": "host-side DXGI enumeration; NOT EP-reported"
+  },
+  "dml_ep_devices": [
+    {
+      "ep_name": "DmlExecutionProvider",
+      "ep_vendor": "Microsoft",
+      "ep_options": {
+        "device_id": "0"
+      },
+      "ep_metadata": {
+        "version": "1.25.2"
+      }
+    }
+  ],
+  "selected_device_id": 0,
+  "valid_session": {
+    "created": true,
+    "providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "dml_nodes": 1
+  },
+  "invalid_device_attempts": [
+    {
+      "attempted_device_id": 1,
+      "failed": false,
+      "error": null,
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "kind": "adjacent_enumeration"
+    },
+    {
+      "attempted_device_id": 7,
+      "failed": true,
+      "error": "RuntimeError: DML_FAILED: wrapper fell back to CPU; providers=['CPUExecutionProvider'], requested device_id=7",
+      "providers": null,
+      "kind": "out_of_range"
+    },
+    {
+      "attempted_device_id": 99,
+      "failed": true,
+      "error": "RuntimeError: DML_FAILED: wrapper fell back to CPU; providers=['CPUExecutionProvider'], requested device_id=99",
+      "providers": null,
+      "kind": "out_of_range"
+    }
+  ],
+  "limitation": "DML exposes only an ordinal; no EP-reported LUID/PCI id",
+  "verdict": "EP_DEVICE_SELECTED_ORDINAL_ENFORCED",
+  "negative_control_enforced": true,
+  "adjacent_ordinal_accepted": true
+}

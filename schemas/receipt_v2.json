@@ -79,6 +79,7 @@
       }
     },
     "rca_issue_ids": { "type": "array", "items": { "type": "string" } },
+    "contract": { "$ref": "#/definitions/receipt_contract" },
     "provenance": { "$ref": "#/definitions/provenance_block" }
   },
   "definitions": {
@@ -368,6 +369,72 @@
         "raw_log_path_redacted": { "type": ["string", "null"] },
         "raw_log_sha256": { "type": ["string", "null"] },
         "env_fingerprint": { "type": "object" }
+      }
+    },
+    "receipt_contract": {
+      "type": "object",
+      "required": ["run_contract_sha256", "code", "thresholds_sha256",
+                   "device_identity", "ep", "model", "input"],
+      "properties": {
+        "run_contract_sha256": { "$ref": "#/definitions/sha256_hex" },
+        "code": {
+          "type": "object",
+          "required": ["git_head_sha", "harness_sha256", "worktree_dirty"],
+          "properties": {
+            "git_head_sha": { "type": "string" },
+            "harness_sha256": { "$ref": "#/definitions/sha256_hex" },
+            "worktree_dirty": { "type": "boolean" }
+          }
+        },
+        "thresholds_sha256": { "$ref": "#/definitions/sha256_hex" },
+        "device_identity": {
+          "type": "object",
+          "required": ["gfx", "host_id", "vendor_id", "device_id"],
+          "properties": {
+            "gfx": { "type": "string" },
+            "host_id": { "type": "string" },
+            "vendor_id": { "type": "string" },
+            "device_id": { "type": "string" },
+            "physical_gpu_name": { "type": ["string", "null"] },
+            "luid": { "type": ["string", "null"] },
+            "identity_method": { "type": ["string", "null"] },
+            "did_match": { "type": "boolean" }
+          }
+        },
+        "environment": {
+          "type": "object",
+          "description": "Runtime binding (python/ORT/Windows ML versions) captured with the run contract; drift forbids resume.",
+          "properties": {
+            "python_executable_name": { "type": ["string", "null"] },
+            "python_version": { "type": ["string", "null"] },
+            "os_build": { "type": ["string", "null"] },
+            "ort_version": { "type": ["string", "null"] },
+            "ort_distribution": { "type": ["string", "null"] },
+            "ort_providers": { "type": "array", "items": { "type": "string" } },
+            "windowsml_version": { "type": ["string", "null"] },
+            "probe_error": { "type": ["string", "null"] }
+          }
+        },
+        "ep": { "enum": ["amdgpu", "dml"] },
+        "model": {
+          "type": "object",
+          "properties": {
+            "checkpoint": { "type": ["string", "null"] },
+            "pt_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] },
+            "onnx_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] }
+          }
+        },
+        "input": {
+          "type": "object",
+          "properties": {
+            "input_id": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] },
+            "image_sha256": { "anyOf": [ { "$ref": "#/definitions/sha256_hex" }, { "type": "null" } ] },
+            "tensor_sha256": {
+              "type": "object",
+              "additionalProperties": { "$ref": "#/definitions/sha256_hex" }
+            }
+          }
+        }
       }
     }
   }
