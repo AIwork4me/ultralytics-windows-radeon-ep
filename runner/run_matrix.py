@@ -60,6 +60,10 @@ def _audit(out_dir: Path, contract: dict, *, run_id: str) -> tuple[int, dict]:
     notes: list[str] = []
     if contract.get("contract_sha256") != contract_mod.contract_sha256(contract):
         return 1, {"problems": ["RUN_CONTRACT_TAMPERED"], "counts": {}}
+    if (contract.get("code") or {}).get("worktree_dirty"):
+        return 1, {"problems": [
+            "CODE_STATE_DIRTY: a run created from a dirty harness worktree "
+            "cannot attest a GPU PASS"], "counts": {}}
 
     try:
         thresholds = contract_mod.load_thresholds_snapshot(out_dir)

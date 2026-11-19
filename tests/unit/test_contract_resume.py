@@ -186,6 +186,20 @@ def test_run_matrix_audit_blocks_when_second_ep_receipt_missing(tmp_path):
     assert audit["expected"] == 2
 
 
+def test_run_matrix_audit_rejects_dirty_contract(tmp_path):
+    from runner.run_matrix import _audit
+
+    run = tmp_path / "RUN_TEST"
+    run.mkdir()
+    dirty_code = dict(CODE, worktree_dirty=True)
+    contract = _contract(tmp_path, code=dirty_code)
+    c.write_thresholds_snapshot(run, TH)
+    c.write_run_contract(run, contract)
+    rc, audit = _audit(run, contract, run_id="RUN_TEST")
+    assert rc == 1
+    assert any("CODE_STATE_DIRTY" in p for p in audit["problems"])
+
+
 def test_run_matrix_audit_rejects_forged_status_label(tmp_path):
     from runner.run_matrix import _audit
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "GFX1151_HARDENING_20261119T095500Z",
-  "created_utc": "2026-11-19T01:58:47Z",
+  "created_utc": "2026-11-19T02:06:04Z",
   "generator": "GFX1151 independent hardening read-only evidence",
   "entries": [
     {
@@ -11,8 +11,8 @@
     },
     {
       "path": "HARDENING_FINAL_CN.md",
-      "sha256": "93da17f756ff522b09754fa8767d0119fb1d3abb1ec3527fd505e5a9ab9fc152",
-      "bytes": 15611
+      "sha256": "dcf80df554f64eabb05a7041354e6088803cc9ac5d6cabbc13b40d16bcfb4dbc",
+      "bytes": 15703
     },
     {
       "path": "HOST_IDENTITY_MATRIX.json",

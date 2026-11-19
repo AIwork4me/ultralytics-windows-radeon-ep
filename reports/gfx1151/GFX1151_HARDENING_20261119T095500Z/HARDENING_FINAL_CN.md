@@ -74,7 +74,7 @@
 4. 缺失 Receipt / `BLOCKED_*` / `NOT_RUN` / PARTIAL → exit 2；伪造、stale、contract/threshold mismatch、额外 Receipt、任何 `FAIL_*` → exit 1；
 5. exit 0 仅当全部 expected case strict-validate 为 `PASS_GPU_EXECUTED_FULL`。
 
-回归测试覆盖：伪造 `status` 但 DML nodes=0 → audit rc=1；少一个 EP 的 Receipt → rc=2；合法 Receipt → rc=0。
+回归测试覆盖：伪造 `status` 但 DML nodes=0 → audit rc=1；少一个 EP 的 Receipt → rc=2；合法 Receipt → rc=0；contract 记录 `worktree_dirty=true` → audit rc=1（dirty run 不能认证 GPU PASS）。
 
 ## 3. P1 证据复核
 
@@ -144,7 +144,7 @@ Provisioning Plan（详见文档，均需用户批准，未执行）：
 
 ## 5. 测试与证据
 
-- CPU 测试：`tests/unit tests/contracts tests/adversarial` → **240 passed, 1 skipped**（hardware test 在本机跳过；CPU CI 不代表 GPU）。
+- CPU 测试：`tests/unit tests/contracts tests/adversarial` → **241 passed, 1 skipped**（hardware test 在本机跳过；CPU CI 不代表 GPU）。
 - Live identity probe：`HOST_IDENTITY_MATRIX.json`（gfx1151 verified；gfx1100/gfx1201 fail-closed）。
 - Contract 集成：clean 工作树 `4971342` 上的单 case run `CONTRACT_FINAL_20261119T100200Z`；resume `RESUME OK`；strict audit `PASS_FULL=1/1`，rc=0。该 run 不提交为新的 GPU PASS 证据，只作为 contract 行为测试。
 - AMDGPU 只读探测：`AMDGPU_EP_READONLY_PROBE.json`。

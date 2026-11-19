@@ -78,6 +78,10 @@ def main() -> int:
                     "threshold snapshot body != run contract thresholds body")
             if run_contract.get("run_id") != run_dir.name:
                 problems_all.append("run contract run_id != directory name")
+            if (run_contract.get("code") or {}).get("worktree_dirty"):
+                problems_all.append(
+                    "run contract was created from a dirty harness worktree; "
+                    "it cannot attest a GPU PASS")
     else:
         print("[verify] NOTE: no RUN_CONTRACT.json (legacy run); contract checks skipped")
 
