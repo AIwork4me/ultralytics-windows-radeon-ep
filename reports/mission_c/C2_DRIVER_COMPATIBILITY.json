@@ -1,7 +1,7 @@
 {
  "schema": "mission_c_driver_compatibility_v1",
  "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
- "captured_utc": "2026-11-20T14:13:55Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
  "host": {
   "gpu": "AMD Radeon(TM) 8060S Graphics",
   "gfx": "gfx1151",

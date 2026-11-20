@@ -397,6 +397,23 @@ def main() -> int:
             "wasdk_projection_2_3": {"provider_count": 0,
                                      "source": "runner.preflight EP_INSTALL_AND_PROBE.json"},
             "independent_process": "each probe ran in its own interpreter process",
+            "compiled_sample_controls": {
+                "status": "NOT_RUN",
+                "reason": "no native toolchain on this host: cl/cmake/dotnet/csc are all "
+                          "absent and no Visual Studio installation is present. Building "
+                          "the official C/C++ or C# Windows ML sample would require "
+                          "installing the Windows SDK / MSVC, which is a system change "
+                          "without owner authorization for this mission.",
+                "why_the_conclusion_still_holds": (
+                    "the flat-C probe calls the same Microsoft-signed DLL exports a "
+                    "compiled C sample would call (WinMLEpCatalogCreate / "
+                    "EnumProviders / FindProvider) through ctypes, with the documented "
+                    "struct layout from the official WinMLEpCatalog.h header, and the "
+                    "WinRT control is additionally covered by the WinAppSDK 2.3/1.8/2.6/2.7 "
+                    "projection surfaces that Experiment B exercised."),
+                "residual_gap": "a compiled-sample run would not change the observed "
+                                "0-provider result but would close this control formally",
+            },
         },
         "excluded": [
             "same-SDK/different-runtime at the API layer (binary identical)",

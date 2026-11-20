@@ -139,6 +139,8 @@ C_CATALOG_BLOCKER_CONFIRMED_ROOT_CAUSE_UNVERIFIED
 
 > `WinMLEpCatalogCreateWithMode` **未出现在公开发布的 `WinMLEpCatalog.h` 头文件**中，却存在于同一份微软签名二进制内 —— 这是一个可提给微软的诊断缺口。
 
+> **残差缺口（如实记录）：** 任务要求的"官方 C/C++ 与 C# 最小样例"控制**未构建**：本机 `cl`/`cmake`/`dotnet`/`csc` 全部不存在，也没有 Visual Studio；安装 Windows SDK/MSVC 属于系统变更且未获授权。因此该项为 `NOT_RUN`（见 `C1_API_RUNTIME_DIFFERENTIAL.json:native_controls.compiled_sample_controls`）。flat-C 探针直接调用的是与 C 样例**同一组导出函数**（结构体布局取自官方头文件），WinRT 一侧另有 4 套 WinAppSDK 投影覆盖，但严格来说这一控制项仍未闭合。
+
 ### E.2 元数据来源（本 Mission 的核心新发现）
 
 官方 2.5.96 运行时 DLL 内部**内嵌了一张 EP 目录表**（28 条），每条包含：

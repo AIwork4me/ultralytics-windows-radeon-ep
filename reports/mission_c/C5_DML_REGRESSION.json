@@ -1,7 +1,7 @@
 {
  "schema": "mission_c_dml_regression_v1",
  "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
- "captured_utc": "2026-11-20T14:13:55Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
  "purpose": "prove the DirectML path on this host was not harmed by mission C",
  "status": "PASS_DML_ONLY",
  "canary": {
