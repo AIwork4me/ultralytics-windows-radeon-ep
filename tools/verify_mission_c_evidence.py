@@ -31,6 +31,9 @@ FORBIDDEN_SUFFIXES = {".pt", ".onnx", ".etl", ".pth", ".ckpt"}
 # local-only identifiers that must never reach a published evidence file
 LEAK_PATTERNS = [
     re.compile(r"[A-Za-z]:[\\/]Users[\\/][^\\/\s\"]+", re.IGNORECASE),
+    # JSON-escaped variants ("C:\\\\Users\\\\name") defeat the pattern above
+    re.compile(r"[A-Za-z]:(?:\\{1,2}|/)(?:Users|Documents and Settings)"
+               r"(?:\\{1,2}|/)", re.IGNORECASE),
     re.compile(r"\bS-1-5-21-\d+-\d+-\d+-\d+\b"),
     re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"),
     re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,})\b"),

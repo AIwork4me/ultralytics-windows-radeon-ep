@@ -8,7 +8,7 @@ UNDERLYING_ROOT_CAUSE       = UNVERIFIED
 ```
 
 Machine-readable counterpart: [`reports/mission_c/C6_ROOT_CAUSE_MATRIX.json`](../../reports/mission_c/C6_ROOT_CAUSE_MATRIX.json)
-(validated by `tools/verify_mission_c_evidence.py`, 219 checks, `ALL_OK`).
+(validated by `tools/verify_mission_c_evidence.py`, 245 checks, `ALL_OK`).
 
 ---
 

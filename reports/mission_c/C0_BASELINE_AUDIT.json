@@ -2,7 +2,7 @@
  "schema": "mission_c_baseline_audit_v1",
  "mission": "C_GFX1151_AMDGPU_EP_ROOT_CAUSE_CLOSURE",
  "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
- "captured_utc": "2026-11-20T14:10:45Z",
+ "captured_utc": "2026-11-20T14:13:55Z",
  "host": {
   "host_id": "host_53f62d2ac2c6",
   "os_build": "26200.9974",

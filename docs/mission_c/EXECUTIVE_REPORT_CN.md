@@ -4,7 +4,7 @@
 **Run ID:** `C_GFX1151_AMDGPU_20261120T2153Z`
 **Host:** HP ZBook Ultra G1a 14 · Ryzen AI MAX+ PRO 395 · Radeon 8060S (gfx1151) · DID `0x1586` · `host_id=host_53f62d2ac2c6`
 **设备证据:** `PCI\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1` · Driver `32.0.22018.5` · Windows 11 25H2 `26200.9974`
-**证据包:** [`reports/mission_c/`](../../reports/mission_c/)（`MANIFEST.sha256` + 220 项 verifier 检查 `ALL_OK`）
+**证据包:** [`reports/mission_c/`](../../reports/mission_c/)（`MANIFEST.sha256` + 245 项 verifier 检查 `ALL_OK`）
 
 ---
 
@@ -39,12 +39,14 @@ C_CATALOG_BLOCKER_CONFIRMED_ROOT_CAUSE_UNVERIFIED
 
 | 项 | 值 |
 | --- | --- |
-| Base（main） | `767efd71d6106be2fe63895743be8ff6bf652b2f` |
+| 共同祖先（main） | `767efd71d6106be2fe63895743be8ff6bf652b2f` |
+| **本 PR 的 base** | `mission/experiment-b-gfx1151-amdgpu-root-cause` @ `24e4d22`（**stacked PR**：A/B 比较器与 Experiment B 证据只存在于该分支；#14 合入后可 retarget 到 `main`） |
 | Branch | `mission/c-gfx1151-amdgpu-root-cause-closure` |
-| HEAD | 见本文件所在提交（`git log -1`）与 PR 页面 |
-| PR | Draft PR（见 §K 与 PR 页面；不使用 force-push） |
-| CPU CI | `.github/workflows/cpu-ci.yml`（`CPU_CI_DOES_NOT_ATTEST_GPU=1`） |
-| 历史 PR | #14（Experiment B，base 冲突已记录）、#15（Experiment A，`CONFLICTING`，证据冻结未改写） |
+| HEAD | `git log -1` 与 [PR #16](https://github.com/AIwork4me/ultralytics-windows-radeon-ep/pull/16) 的 head SHA（本文件随该提交一同发布） |
+| PR | **Draft PR #16** — <https://github.com/AIwork4me/ultralytics-windows-radeon-ep/pull/16> |
+| CPU CI | PR #16 的 `cpu-ci` checks（compile / ruff 非阻断 / 434 tests / Mission C 证据自检 `verify_mission_c_evidence.py`）；结论以 checks 页面为准。`CPU_CI_DOES_NOT_ATTEST_GPU=1` |
+| 历史 PR | #14（Experiment B，本 PR 的 base）、#15（Experiment A，`CONFLICTING`，证据冻结未改写） |
+| 禁止动作 | 未 force-push、未重写历史、未编辑任何既有 receipt |
 
 **本 Mission 未做：** force-push、历史重写、编辑任何既有 receipt、跨主机搬运证据。
 

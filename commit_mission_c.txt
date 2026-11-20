@@ -1,0 +1,44 @@
+﻿fix(mission-c): gfx1151 AMDGPU EP catalog root cause closure + fail-closed fixes
+
+P0 fixes
+- select_amdgpu_ep_device(): an explicit target_luid now requires EXACTLY one
+  matching EP device. Zero or multiple matches return (None, basis) instead of
+  falling back to another physical GPU. Experiment A's `luid_pin_fail` case had
+  proved the old code silently returned a different adapter while reporting a
+  basis that claimed no LUID was given.
+- runner/_ep_worker.py: explicit input-source contract -> exit 36
+  HARNESS_CONTRACT_VIOLATION. A case declaring neither feeds_npz nor
+  input_manifest used to raise an uncaught KeyError, i.e. a harness error was
+  indistinguishable from a GPU/EP failure.
+- tools/experiment_b_ab_compare.py: added Extractors for Experiment A's real
+  schemas plus numeric coercion. The tool had only ever run with zero A
+  artifacts and crashed (str > int) on the first real A input, so PR #14 shipped
+  A_EVIDENCE_PENDING without a genuine A/B diff.
+
+Evidence (run_id C_GFX1151_AMDGPU_20261120T2153Z)
+- reports/mission_c/: baseline audit, real A/B reconciliation, catalog internals
+  (28-entry provider table recovered from the Microsoft-signed runtime binary,
+  Store product ids for the AMD GPU EP, undocumented WinMLEpCatalogCreateWithMode
+  probe, direct FindProvider lookup), store/driver eligibility, ETW capture plan
+  (BLOCKED_ADMIN_DEPENDENCY), provisioning ledger, DML regression, RCA matrix,
+  escalation status, MANIFEST.sha256.
+- tools/verify_mission_c_evidence.py: 219 checks, ALL_OK (manifest, run-id
+  uniqueness, identity, catalog claims vs probe, redaction, no verdict exceeds
+  its evidence).
+- runner.preflight on this host: DML canary PASS (1 node, allclose, max_abs
+  2.86e-06), AMDGPU worker rc=34 BLOCKED_EP.
+
+Docs (Chinese executive report + English upstream material)
+- docs/mission_c/EXECUTIVE_REPORT_CN.md (A-L), A_B_FINAL_DIFFERENTIAL_CN.md,
+  ROOT_CAUSE_ANALYSIS.md, OFFICIAL_EP_COMPATIBILITY.md,
+  UPSTREAM_MICROSOFT_ISSUE_EN.md, FEEDBACK_HUB_SUBMISSION_GUIDE.md,
+  NEXT_ACTIONS.md
+
+Verdict: C_CATALOG_BLOCKER_CONFIRMED_ROOT_CAUSE_UNVERIFIED
+  CONFIRMED_PROXIMATE_BLOCKER = CATALOG_EMPTY
+  UNDERLYING_ROOT_CAUSE       = UNVERIFIED
+Escalation: https://github.com/microsoft/WindowsAppSDK/issues/6994
+
+CPU_CI_DOES_NOT_ATTEST_GPU: no AMDGPU GPU execution is claimed; the DML canary
+is a safety regression, not AMDGPU evidence. No system component, driver, MSIX
+or WindowsApps content was changed.

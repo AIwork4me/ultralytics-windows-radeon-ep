@@ -2,7 +2,7 @@
  "schema_version": "AMD_GPU_EP_AB_COMPARISON_V1",
  "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
  "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
- "captured_utc": "2026-11-20T14:01:45Z",
+ "captured_utc": "2026-11-20T14:13:54Z",
  "status_vocabulary": [
   "A_EVIDENCE_PENDING",
   "BLOCKED",
@@ -12,13 +12,13 @@
   "UNKNOWN"
  ],
  "a_artifact_inputs": [
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\EXPERIMENT_A_RESULT.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\HOST_ENVIRONMENT.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\CATALOG_PROBE.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\EP_PACKAGE_INVENTORY.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\DIRECT_REGISTRATION_CANARY.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\CATALOG_REGISTRATION_CANARY.json",
-  "C:\\Users\\AMD\\AppData\\Local\\Temp\\a_worktree_c\\reports\\experiment_a\\NEGATIVE_TESTS.json"
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/EXPERIMENT_A_RESULT.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/HOST_ENVIRONMENT.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/CATALOG_PROBE.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/EP_PACKAGE_INVENTORY.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/DIRECT_REGISTRATION_CANARY.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/CATALOG_REGISTRATION_CANARY.json",
+  "%USERPROFILE%/AppData/Local/Temp/a_worktree_c/reports/experiment_a/NEGATIVE_TESTS.json"
  ],
  "hosts": {
   "gfx1100": {
@@ -158,7 +158,7 @@
     "source": "constant"
    },
    "git_sha": {
-    "value": "24e4d2258ce025c59cfd5f5aaefc8bbb9cc381b9",
+    "value": "8523263a4de290d82de7fa21cd30e6445fa09ac6",
     "status": "PASS",
     "source": "git"
    },
@@ -309,7 +309,7 @@
     "source": "experiment A artifact"
    },
    "gfx1151": {
-    "value": "24e4d2258ce025c59cfd5f5aaefc8bbb9cc381b9",
+    "value": "8523263a4de290d82de7fa21cd30e6445fa09ac6",
     "status": "PASS",
     "source": "git"
    },

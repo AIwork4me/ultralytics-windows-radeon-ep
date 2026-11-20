@@ -1,7 +1,7 @@
 {
  "schema": "mission_c_api_runtime_differential_v1",
  "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
- "captured_utc": "2026-11-20T14:10:45Z",
+ "captured_utc": "2026-11-20T14:13:55Z",
  "question": "do the two hosts actually activate the same Windows ML runtime?",
  "answer": "At the API layer yes: the official `windowsml` 2.5.96 wheel ships its own Microsoft.Windows.AI.MachineLearning.dll and that binary is byte-identical on both hosts. The catalog decision is therefore made by the same code from different system inputs.",
  "api_binary": {

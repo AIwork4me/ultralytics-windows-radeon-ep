@@ -483,6 +483,19 @@ def decide(a: dict, b: dict, a_pending: bool) -> dict:
     }
 
 
+def _redact_path(value: str) -> str:
+    """Replace the local user profile with %USERPROFILE% (AGENTS.md rule 4).
+
+    Absolute host paths must never reach a committed evidence file, and JSON
+    escaping (`C:\\\\Users\\\\...`) defeats naive regex leak scanners, so the
+    redaction happens at write time rather than in a later pass.
+    """
+    home = str(Path.home())
+    if home and home in value:
+        return value.replace(home, "%USERPROFILE%").replace("\\", "/")
+    return value
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-id", required=True)
@@ -520,7 +533,7 @@ def main() -> int:
         "run_id": a.run_id,
         "captured_utc": utc_now(),
         "status_vocabulary": sorted(STATUSES),
-        "a_artifact_inputs": [str(p) for p in a.a_json],
+        "a_artifact_inputs": [_redact_path(str(p)) for p in a.a_json],
         "hosts": {f"{a.a_gfx}": a_out, "gfx1151": b_out},
         "comparison": rows,
         "diff": {
