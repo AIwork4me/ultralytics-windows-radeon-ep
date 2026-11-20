@@ -1,0 +1,101 @@
+{
+ "schema": "experiment_b_official_artifact_probe_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:41:11Z",
+ "read_only": true,
+ "note": "Nothing was downloaded for installation, extracted or registered; only public index metadata and bodies were read to decide whether an official signed Windows artifact exists.",
+ "targets": [
+  {
+   "name": "ep_repo_readme_json",
+   "url": "https://api.github.com/repos/onnxruntime/onnxruntime-ep-amdgpu/readme",
+   "accessed_utc": "2026-11-20T03:41:01Z",
+   "ok": true,
+   "status": 200,
+   "bytes": 8870,
+   "sha256_raw": "6677215140d442b3fbbc9e9ed8c71b0b9ea4ebd4b94cd6f8e611948abee7cd74",
+   "content_type": "application/vnd.github.raw+json; charset=utf-8",
+   "raw_file": "reports/experiment_b/_raw/artifacts/ep_repo_readme_json.body"
+  },
+  {
+   "name": "ep_repo_releases_json",
+   "url": "https://api.github.com/repos/onnxruntime/onnxruntime-ep-amdgpu/releases",
+   "accessed_utc": "2026-11-20T03:41:02Z",
+   "ok": true,
+   "status": 200,
+   "bytes": 2,
+   "sha256_raw": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "content_type": "application/json; charset=utf-8",
+   "raw_file": "reports/experiment_b/_raw/artifacts/ep_repo_releases_json.body"
+  },
+  {
+   "name": "ep_repo_meta_json",
+   "url": "https://api.github.com/repos/onnxruntime/onnxruntime-ep-amdgpu",
+   "accessed_utc": "2026-11-20T03:41:06Z",
+   "ok": true,
+   "status": 200,
+   "bytes": 6954,
+   "sha256_raw": "a035230d95add1762b41764130738bab5f9eb586febde4aafdcb215d19d712ca",
+   "content_type": "application/json; charset=utf-8",
+   "raw_file": "reports/experiment_b/_raw/artifacts/ep_repo_meta_json.body"
+  },
+  {
+   "name": "ep_repo_contents_json",
+   "url": "https://api.github.com/repos/onnxruntime/onnxruntime-ep-amdgpu/contents",
+   "accessed_utc": "2026-11-20T03:41:07Z",
+   "ok": true,
+   "status": 200,
+   "bytes": 13598,
+   "sha256_raw": "268e8fb9b59c620f0521043a4e35d8a7a764c39cea93e757b69b9d97722855c3",
+   "content_type": "application/json; charset=utf-8",
+   "raw_file": "reports/experiment_b/_raw/artifacts/ep_repo_contents_json.body"
+  },
+  {
+   "name": "nuget_ep_index",
+   "url": "https://api.nuget.org/v3-flatcontainer/onnxruntime-ep-amdgpu/index.json",
+   "accessed_utc": "2026-11-20T03:41:08Z",
+   "ok": false,
+   "status": 404,
+   "bytes": 215,
+   "sha256_raw": "7f4457d6f582323832349a6c03285857597bc94af1bd1fb36ff495dc20c92d79",
+   "error": "HTTPError 404: \ufeff<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:1459502c-401e-003c-6ba0-789430000000\nTime:2026-11-20T03:41:04.9644464Z</M",
+   "raw_file": "reports/experiment_b/_raw/artifacts/nuget_ep_index.body"
+  },
+  {
+   "name": "nuget_search_ep",
+   "url": "https://azuresearch-usnc.nuget.org/query?q=onnxruntime-ep-amdgpu&prerelease=true",
+   "accessed_utc": "2026-11-20T03:41:10Z",
+   "ok": true,
+   "status": 200,
+   "bytes": 139,
+   "sha256_raw": "42f446a3946301c25daec0e4a3ce482175a66b6100554c8ce9a733621db6315b",
+   "content_type": "application/json; charset=utf-8",
+   "raw_file": "reports/experiment_b/_raw/artifacts/nuget_search_ep.body"
+  },
+  {
+   "name": "nuget_ep_amd_pkg",
+   "url": "https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime.ep.amdgpu/index.json",
+   "accessed_utc": "2026-11-20T03:41:11Z",
+   "ok": false,
+   "status": 404,
+   "bytes": 215,
+   "sha256_raw": "9722520f4f8ed65459c17f6856ca4e06208cd79a00d03f33559d82b36902d683",
+   "error": "HTTPError 404: \ufeff<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>BlobNotFound</Code><Message>The specified blob does not exist.\nRequestId:067c180c-801e-006e-0ca0-78e8d8000000\nTime:2026-11-20T03:41:07.5452874Z</M",
+   "raw_file": "reports/experiment_b/_raw/artifacts/nuget_ep_amd_pkg.body"
+  }
+ ],
+ "summary": {
+  "github_releases_count": 0,
+  "github_releases": [],
+  "repo": {
+   "full_name": "onnxruntime/onnxruntime-ep-amdgpu",
+   "default_branch": "main",
+   "created_at": "2026-05-11T18:50:04Z",
+   "pushed_at": "2026-11-19T17:04:53Z",
+   "license": "MIT",
+   "description": "ONNX Runtime plugin Execution Providers for AMD ML hardware"
+  },
+  "nuget_search_total": 0,
+  "nuget_search_ids": []
+ }
+}

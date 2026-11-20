@@ -1,0 +1,99 @@
+{
+ "schema": "experiment_b_negative_tests_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:50:22Z",
+ "test_definition_revision": 2,
+ "revision_note": "rev2 (2026-11-20): N3/N4 originally expected an exception; the observed behaviour is a silent CPU fallback, so the assertion is now on get_providers(). The rev1 expectation was wrong, not the runtime.",
+ "ort_version": "1.25.2",
+ "ort_providers_at_start": [
+  "DmlExecutionProvider",
+  "CPUExecutionProvider"
+ ],
+ "tests": [
+  {
+   "test": "register_missing_amdgpu_dll",
+   "expectation": "raise (DLL_LOAD_ERROR)",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "exception_type": "Fail",
+    "message": "Fail: [ONNXRuntimeError] : 1 : FAIL : Error loading \"%USERPROFILE%\\\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\amdgpu-ep-does-not-exist.dll\" which is missing. (Error 126: \"\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6a21\u5757\u3002\")",
+    "kind": "DLL_LOAD_ERROR"
+   },
+   "elapsed_s": 0.032
+  },
+  {
+   "test": "register_non_ep_dll_as_amdgpu",
+   "expectation": "raise (DLL_LOAD_ERROR)",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "exception_type": "Fail",
+    "message": "Fail: [ONNXRuntimeError] : 1 : FAIL : Failed to find symbol CreateEpFactories in library, error code: 127 \"\"",
+    "kind": "OTHER"
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "test": "amdgpu_session_without_registration_silently_falls_back_to_cpu",
+   "expectation": "no exception; session providers == ['CPUExecutionProvider'] (silent fallback)",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "requested": "AMDGPUExecutionProvider",
+    "session_providers": [
+     "CPUExecutionProvider"
+    ],
+    "classification": "SILENT_CPU_FALLBACK_OBSERVED"
+   },
+   "elapsed_s": 0.016
+  },
+  {
+   "test": "unknown_provider_silently_falls_back_to_cpu",
+   "expectation": "no exception; session providers == ['CPUExecutionProvider'] (silent fallback)",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "requested": "NoSuchExecutionProvider",
+    "session_providers": [
+     "CPUExecutionProvider"
+    ],
+    "classification": "SILENT_CPU_FALLBACK_OBSERVED"
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "test": "gfx1100_request_on_gfx1151_host",
+   "expectation": "raise (WRONG_OR_AMBIGUOUS_DEVICE)",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "exception_type": "RuntimeError",
+    "message": "RuntimeError: WRONG_OR_AMBIGUOUS_DEVICE: WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1100 DeviceId(s) ['0x7448', '0x744c']; found: 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'; 0x1586 (gfx1151 (Radeon 8060S, Ryzen AI MAX)) 'AMD Radeon(TM) 8060S Graphics'",
+    "kind": "WRONG_OR_AMBIGUOUS_DEVICE"
+   },
+   "elapsed_s": 0.0
+  },
+  {
+   "test": "dml_session_binds_dml_ep",
+   "expectation": "session providers include DmlExecutionProvider",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "detail": {
+    "providers": [
+     "DmlExecutionProvider",
+     "CPUExecutionProvider"
+    ],
+    "output_shape": [
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "elapsed_s": 0.078
+  }
+ ],
+ "all_fail_closed": true
+}

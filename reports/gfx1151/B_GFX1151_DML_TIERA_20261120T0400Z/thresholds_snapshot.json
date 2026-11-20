@@ -1,0 +1,60 @@
+{
+  "benchmark": {
+    "repetitions": 3,
+    "samples": 30,
+    "warmup_iters": 5
+  },
+  "numeric_parity": {
+    "canary": {
+      "atol": 0.0002,
+      "rtol": 0.0002
+    },
+    "fp16_or_quantize16": {
+      "atol": 0.05,
+      "rtol": 0.05
+    },
+    "fp32": {
+      "atol": 0.005,
+      "rtol": 0.005
+    },
+    "int8": {
+      "atol": null
+    },
+    "int_outputs": {
+      "min_exact_agreement": 0.999
+    }
+  },
+  "soak": {
+    "duration_minutes": 15,
+    "heartbeat_s": 30,
+    "no_progress_timeout_s": 180
+  },
+  "task_oracle": {
+    "classify": {
+      "max_score_drift": 0.05,
+      "require_top1_match": true
+    },
+    "depth": {
+      "max_rel_mae_vs_pt": 0.15
+    },
+    "detection": {
+      "iou_thres": 0.5,
+      "min_matches": 1,
+      "min_precision": 0.9,
+      "min_recall": 0.9
+    },
+    "obb": {
+      "min_rotated_iou": 0.7
+    },
+    "pose": {
+      "min_oks": 0.8
+    },
+    "segmentation": {
+      "min_mask_iou": 0.7
+    },
+    "semantic": {
+      "min_miou": 0.7,
+      "min_pixel_agreement": 0.9
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+ "schema": "experiment_b_dependency_hypotheses_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:49:48Z",
+ "status_vocabulary": [
+  "SUPPORTED_BY_EVIDENCE",
+  "REFUTED_BY_EVIDENCE",
+  "UNVERIFIED"
+ ],
+ "hypotheses": [
+  {
+   "id": "H1",
+   "category": "WINDOWS_ML_API_SDK",
+   "statement": "The Windows ML 2.x API/SDK surface is broken or too old, so the catalog cannot list providers.",
+   "status": "REFUTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/CATALOG_PROBE.json (S_OK create + S_OK enum, three repeats)",
+    "reports/experiment_b/CATALOG_SURFACE_MATRIX.json (5 usable surfaces, all 0 providers, incl. official 2.5.96)",
+    "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json:runtime (windowsml 2.5.96 = documented minimum)"
+   ],
+   "what_would_settle_it": "a surface returning S_OK with >=1 provider, or an HRESULT failure",
+   "owner": "Microsoft (Windows ML team)"
+  },
+  {
+   "id": "H2",
+   "category": "EP_CATALOG_AND_STORE_DISTRIBUTION",
+   "statement": "The ExecutionProviderCatalog serves no EP entry to this device, so there is nothing to ensure_ready.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/CATALOG_SURFACE_MATRIX.json",
+    "reports/experiment_b/MSIX_INVENTORY.json:deployment_events (0 AMD.GPU events; workload machinery active for the NPU EP)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json:execution_provider_errors"
+   ],
+   "what_would_settle_it": "a catalog listing AMDGPUExecutionProvider with ReadyState=NotPresent on this host",
+   "owner": "Microsoft (Catalog/Store targeting)"
+  },
+  {
+   "id": "H3",
+   "category": "EP_MSIX_DLL_DEPENDENCY",
+   "statement": "The AMD GPU EP MSIX/DLL is not installed and no DLL exists anywhere on the host.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/MSIX_INVENTORY.json:amdgpu_ep (absent in current-user and machine scope)",
+    "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json:ep_dll (0 DLLs)",
+    "reports/experiment_b/NEGATIVE_TESTS.json (registering a missing DLL fails with a DLL_LOAD_ERROR)"
+   ],
+   "what_would_settle_it": "the package appearing in HKLM AppxAllUserStore or an amdgpu-ep.dll being found",
+   "owner": "Microsoft/AMD (package publication + targeting)"
+  },
+  {
+   "id": "H4",
+   "category": "HP_OEM_DRIVER_INCOMPATIBILITY",
+   "statement": "The HP OEM display driver blocks the AMD GPU EP (Adrenalin minimum not met, or OEM packaging unsupported).",
+   "status": "UNVERIFIED",
+   "evidence": [
+    "reports/experiment_b/DRIVER_COMPATIBILITY.json (Adrenalin version UNKNOWN; DML works)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json (only an Adrenalin minimum is documented)"
+   ],
+   "what_would_settle_it": "an AMD/HP statement mapping 32.0.22018.5 to an Adrenalin version, or the EP loading on this driver",
+   "owner": "HP + AMD (driver qualification)"
+  },
+  {
+   "id": "H5",
+   "category": "GFX1151_GPU_KERNEL_OPERATOR_SUPPORT",
+   "statement": "gfx1151 kernels/operators are unsupported by the AMD GPU EP build.",
+   "status": "UNVERIFIED",
+   "evidence": [
+    "reports/experiment_b/CATALOG_PROBE.json (no EP to test against)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json (no gfx/DID list published)",
+    "docs/experiment_b/OFFICIAL_EP_DEPENDENCY_MATRIX.md"
+   ],
+   "what_would_settle_it": "an AMDGPU EP DLL on this host plus a kernel-level session failure, or an official gfx list",
+   "owner": "AMD (EP kernel coverage)"
+  },
+  {
+   "id": "H6",
+   "category": "SILENT_CPU_FALLBACK_MASQUERADING",
+   "statement": "An AMDGPU request appears to succeed while running on CPU, so a green result is not proof.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/NEGATIVE_TESTS.json:amdgpu_session_without_registration_silently_falls_back_to_cpu"
+   ],
+   "what_would_settle_it": "n/a - this is a measurement hazard, mitigation is the get_providers() + profiler assertion",
+   "owner": "this repository (harness)"
+  }
+ ],
+ "summary": {
+  "supported": [
+   "H2",
+   "H3",
+   "H6"
+  ],
+  "refuted": [
+   "H1"
+  ],
+  "unverified": [
+   "H4",
+   "H5"
+  ]
+ }
+}

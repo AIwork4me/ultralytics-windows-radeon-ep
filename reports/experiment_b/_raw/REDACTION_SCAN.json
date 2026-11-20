@@ -1,0 +1,11 @@
+{
+ "schema": "experiment_b_redaction_scan_v1",
+ "captured_utc": "2026-11-20T03:56:12Z",
+ "roots": [
+  "reports/experiment_b",
+  "docs/experiment_b"
+ ],
+ "files_scanned": 56,
+ "violations": [],
+ "ok": true
+}

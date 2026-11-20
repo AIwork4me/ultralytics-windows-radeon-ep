@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+  "created_utc": "2026-11-20T03:56:15Z",
+  "generator": "tools/experiment_b_result.py",
+  "entries": [
+    {
+      "path": "_quick/canary_dml.onnx",
+      "sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+      "bytes": 2378
+    },
+    {
+      "path": "_quick/dml_canary_quick.json",
+      "sha256": "eea508abf3acd9d17e7ae5f8ac7d90be4dc33f8f6be227b527d8f8896621020c",
+      "bytes": 807
+    },
+    {
+      "path": "_quick/ort_profile_dml_2026-11-20_11-36-45_939.json",
+      "sha256": "d90a0a117aa2d012ce157e2630fac98223d095813327501b8a944ab63bfa491c",
+      "bytes": 1649
+    },
+    {
+      "path": "_raw/appx_cmdlet.json",
+      "sha256": "00e7815290fdf63c9fddf7323c370dfacfe8c2cb1db6da38e2050ef8966166ae",
+      "bytes": 6523
+    },
+    {
+      "path": "_raw/artifacts/ep_repo_contents_json.body",
+      "sha256": "268e8fb9b59c620f0521043a4e35d8a7a764c39cea93e757b69b9d97722855c3",
+      "bytes": 13598
+    },
+    {
+      "path": "_raw/artifacts/ep_repo_meta_json.body",
+      "sha256": "a035230d95add1762b41764130738bab5f9eb586febde4aafdcb215d19d712ca",
+      "bytes": 6954
+    },
+    {
+      "path": "_raw/artifacts/ep_repo_readme_json.body",
+      "sha256": "6677215140d442b3fbbc9e9ed8c71b0b9ea4ebd4b94cd6f8e611948abee7cd74",
+      "bytes": 8870
+    },
+    {
+      "path": "_raw/artifacts/ep_repo_releases_json.body",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    {
+      "path": "_raw/artifacts/nuget_ep_amd_pkg.body",
+      "sha256": "9722520f4f8ed65459c17f6856ca4e06208cd79a00d03f33559d82b36902d683",
+      "bytes": 215
+    },
+    {
+      "path": "_raw/artifacts/nuget_ep_index.body",
+      "sha256": "7f4457d6f582323832349a6c03285857597bc94af1bd1fb36ff495dc20c92d79",
+      "bytes": 215
+    },
+    {
+      "path": "_raw/artifacts/nuget_search_ep.body",
+      "sha256": "42f446a3946301c25daec0e4a3ce482175a66b6100554c8ce9a733621db6315b",
+      "bytes": 139
+    },
+    {
+      "path": "_raw/b4_appx_events_redacted.json",
+      "sha256": "fbfea05f230a9f1389ce890109540b93964987c192b7ec5267d1ea4c45ce63ee",
+      "bytes": 32637
+    },
+    {
+      "path": "_raw/b4_connectivity.json",
+      "sha256": "42ec9d5d42e6ac9cd8a67787ac4fe42b21ae77da80b45afa610b591a9c18a0f7",
+      "bytes": 1520
+    },
+    {
+      "path": "_raw/b4_driver_inf.json",
+      "sha256": "4a24000e463f41110307b5a88fa26401833abd1013b4f6c7429d4e01366fb2fb",
+      "bytes": 29984
+    },
+    {
+      "path": "_raw/b4_services.json",
+      "sha256": "f797f73339fb05be57bfb9a0ff6226a51117264147f0568eb584e59045c13199",
+      "bytes": 1540
+    },
+    {
+      "path": "_raw/b4_store_events.json",
+      "sha256": "4e5a1b7787d833e9799b12abf3fdbc4ee15f3c52d6ec954a8a690bf083519de1",
+      "bytes": 142
+    },
+    {
+      "path": "_raw/b4_winml_packages.json",
+      "sha256": "9b60af6918851f73fbdc45ad6389813f56973462d075efbf10227f169ab21f23",
+      "bytes": 6129
+    },
+    {
+      "path": "_raw/b4_wu_search.json",
+      "sha256": "08a06c0fcbab265dd4667319ab9d89dbae032a00356e4236e1780dfabb95fee6",
+      "bytes": 2376
+    },
+    {
+      "path": "_raw/CATALOG_PROBE_run1.json",
+      "sha256": "6b827d0aa7ed448e28b1403763b7a953a8e1b72a9f68cd88b4cf67a9f91cdfb6",
+      "bytes": 23443
+    },
+    {
+      "path": "_raw/CATALOG_PROBE_run2.json",
+      "sha256": "887d552226345167ca42a8d9e13a45a63c3878fb4a7de9b800979c9388a87d42",
+      "bytes": 23443
+    },
+    {
+      "path": "_raw/CATALOG_PROBE_run3.json",
+      "sha256": "a402d4c441a7a5c67285869d42b2b70b9c9675eed04473befe0a3c0c93cc45a2",
+      "bytes": 23443
+    },
+    {
+      "path": "_raw/docs/bring_your_own_eps.html",
+      "sha256": "10bbdf7bfb543a179cfd585636ffb3abe6da7e9617815f6fa6075515f46886c2",
+      "bytes": 51036
+    },
+    {
+      "path": "_raw/docs/ep_releases_wiki_html.html",
+      "sha256": "a0bb2a2ba55a70b9b4d0ed05f1a4fecc3c3d7b7e50465b60af12243428c4e337",
+      "bytes": 163881
+    },
+    {
+      "path": "_raw/docs/ep_releases_wiki_md.md",
+      "sha256": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4",
+      "bytes": 9164
+    },
+    {
+      "path": "_raw/docs/execution_provider_errors.html",
+      "sha256": "bd1380dd347f0e0b7486fcaa5b2ea9463e48eb9da0aed2fa4dfd851fb93888ec",
+      "bytes": 51153
+    },
+    {
+      "path": "_raw/docs/initialize_execution_providers.html",
+      "sha256": "fc082bf4d5de54f3b9b71969916f355dfa3df292cd639bf7a6c324302d82e5cf",
+      "bytes": 77825
+    },
+    {
+      "path": "_raw/docs/register_execution_providers.html",
+      "sha256": "a1cc215371db02e68a2b998ed819e5bc648e636e73cb4838549ca3f8ce2a7d77",
+      "bytes": 63455
+    },
+    {
+      "path": "_raw/docs/supported_execution_providers.html",
+      "sha256": "bcfda0c49c8799aa296272131cdac3500bae7a0e0b78b2e818f18766854b9d58",
+      "bytes": 66463
+    },
+    {
+      "path": "_raw/docs/supported_execution_providers_md.md",
+      "sha256": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+      "bytes": 13194
+    },
+    {
+      "path": "_raw/exitcodes.json",
+      "sha256": "e8cea55dc1280e2412b3bfe6fdb65045be6c1c28a0a0ab27871016c46c51885e",
+      "bytes": 164
+    },
+    {
+      "path": "_raw/JOB_OBJECT_RECLAIM.json",
+      "sha256": "25cb5f8459cad515ccde1edbe34b7800546746f6d5cf6f1ff3dc23633bd7e15a",
+      "bytes": 3431
+    },
+    {
+      "path": "_raw/POST_EXPERIMENT_SNAPSHOT.json",
+      "sha256": "a9b218240772ba5679b214953fdbe92c5948244d15baa76e104fbf53ae287e54",
+      "bytes": 31652
+    },
+    {
+      "path": "_raw/REDACTION_SCAN.json",
+      "sha256": "cc3152b04d61a0593fe8c65be9e94acc3bbe893220cbcb55e34f57a560adeeb3",
+      "bytes": 218
+    },
+    {
+      "path": "_raw/STANDALONE_run1.json",
+      "sha256": "89288514b57fa4b1188bfad7965f892432a961dab309f4848fa3d5cf0a20178a",
+      "bytes": 2831
+    },
+    {
+      "path": "_raw/STANDALONE_run2.json",
+      "sha256": "82cfa9694461e78a4ca0f231e7828892345f89671ac34cf40372ffc9c78959ee",
+      "bytes": 2831
+    },
+    {
+      "path": "_raw/STANDALONE_run3.json",
+      "sha256": "433cadaca6c11d8bc7b0f6b9f95f40728ac70779043fd2c1a4febcb7c75ffe4d",
+      "bytes": 2831
+    },
+    {
+      "path": "AB_COMPARISON.json",
+      "sha256": "eb6fa9ae3d47f1a36c6666f8de4bacca53ab1d95e7051d0f49e7f58a3de89d2d",
+      "bytes": 19611
+    },
+    {
+      "path": "CATALOG_PROBE.json",
+      "sha256": "63134d908188e9e5a7b1a4f1c3eb9f35e360f5917435fcb5f6205536f13e7b0a",
+      "bytes": 24177
+    },
+    {
+      "path": "CATALOG_SURFACE_MATRIX.json",
+      "sha256": "fd36c55949f244510ab12b5b8e4c769dd35f0b920001b690d22f291fe2880e97",
+      "bytes": 2436
+    },
+    {
+      "path": "DEPENDENCY_HYPOTHESES.json",
+      "sha256": "2918eb70d77dd32b52bac2b72c01ba6844b35c24080339c4739903fc31e7853f",
+      "bytes": 4291
+    },
+    {
+      "path": "DML_SAFETY_REGRESSION.json",
+      "sha256": "22ccb5fd3f2c45915728a47e45e2d20ce9d1ffe908fb34007ffd3e4d656f4237",
+      "bytes": 16204
+    },
+    {
+      "path": "DRIVER_COMPATIBILITY.json",
+      "sha256": "faaaadc8a5fa1ddd18a87b95a25644cae266afa2748182cf1ea740691b9d0ba8",
+      "bytes": 5017
+    },
+    {
+      "path": "EXPERIMENT_B_RESULT.json",
+      "sha256": "e8ea987b05cc6294849a2cd2231d8ea03bddfd73452e2d0fd9195df07b3b76f5",
+      "bytes": 19942
+    },
+    {
+      "path": "MSIX_INVENTORY.json",
+      "sha256": "1b1509dfb68c48fc4e365c35690354dd9af82f41eb717c7f4395d45cca4cee77",
+      "bytes": 8033
+    },
+    {
+      "path": "NEGATIVE_TESTS.json",
+      "sha256": "4f0073353347d233c606a83b5b4fce4724094cd4c162619688822771ad370590",
+      "bytes": 3361
+    },
+    {
+      "path": "OFFICIAL_ARTIFACT_PROBE.json",
+      "sha256": "ae5a24be7765b80aa32845bdb8b1ed7af82cee145b5c05f39b2b201e05e1385c",
+      "bytes": 4370
+    },
+    {
+      "path": "OFFICIAL_DOC_CITATIONS.json",
+      "sha256": "de161d9fa055dbc14bd9e793d04dbd21679ef0b456eef962afaca50b5bbb7342",
+      "bytes": 31061
+    },
+    {
+      "path": "POST_EXPERIMENT_STATE_DIFF.json",
+      "sha256": "659049d77720d9fa4a83735e413fcf147b7977d127157b6778cb8f88dfa23819",
+      "bytes": 2920
+    },
+    {
+      "path": "PRE_EXPERIMENT_SNAPSHOT.json",
+      "sha256": "b9c5ae316d538c2defb1053cb2d8cefacf4dfe9a3b7a563d26d7d410d4f90b99",
+      "bytes": 28890
+    },
+    {
+      "path": "PROVISIONING_ATTEMPT.json",
+      "sha256": "0cbec8ba1d56509c7768dc3f8c71902d4e30f511a78ef87469547859ab1da871",
+      "bytes": 9440
+    },
+    {
+      "path": "STANDALONE_CATALOG.json",
+      "sha256": "5a41156942b26ae73f4f2cbb347694aa5939e5387cd1fb412b06e9861a827a2d",
+      "bytes": 5107
+    }
+  ]
+}

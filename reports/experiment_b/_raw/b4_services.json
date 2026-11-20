@@ -1,0 +1,45 @@
+﻿{
+    "captured":  "2026-11-20T11:42:41.3550288+08:00",
+    "services":  [
+                     {
+                         "Name":  "AppXSvc",
+                         "Status":  4,
+                         "StartType":  2
+                     },
+                     {
+                         "Name":  "ClipSVC",
+                         "Status":  1,
+                         "StartType":  3
+                     },
+                     {
+                         "Name":  "DoSvc",
+                         "Status":  4,
+                         "StartType":  2
+                     },
+                     {
+                         "Name":  "InstallService",
+                         "Status":  4,
+                         "StartType":  3
+                     },
+                     {
+                         "Name":  "LicenseManager",
+                         "Status":  4,
+                         "StartType":  3
+                     },
+                     {
+                         "Name":  "StateRepository",
+                         "Status":  4,
+                         "StartType":  2
+                     },
+                     {
+                         "Name":  "StorSvc",
+                         "Status":  4,
+                         "StartType":  2
+                     },
+                     {
+                         "Name":  "wuauserv",
+                         "Status":  4,
+                         "StartType":  3
+                     }
+                 ]
+}

@@ -1,0 +1,1 @@
+{"case": "yolo26n__detect__dml", "model": "yolo26n.pt", "task": "detect", "ep": "dml", "exec": "PASS_GPU_EXECUTED_FULL", "task_status": "TASK_ORACLE_BLOCKED", "parity": true, "rc": 0, "secs": 0, "problems": [], "neg": null}

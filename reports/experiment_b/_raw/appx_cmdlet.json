@@ -1,0 +1,133 @@
+﻿{
+    "captured_local":  "2026-11-20T11:38:59.2444076+08:00",
+    "engine":  "5.1.26100.9818",
+    "total_current_user":  129,
+    "items":  [
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.2",
+                      "Version":  "2.6.5.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.1.7",
+                      "Version":  "7000.785.2325.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x86__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.1.7",
+                      "Version":  "7000.785.2325.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.StorePurchaseApp",
+                      "Version":  "22609.1401.1.0",
+                      "PackageFullName":  "Microsoft.StorePurchaseApp_22609.1401.1.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  false
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.1.8",
+                      "Version":  "8000.994.2142.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.1.8",
+                      "Version":  "8000.994.2142.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x86__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+                      "Version":  "10.25.20179.0",
+                      "PackageFullName":  "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+                      "PublisherId":  "0a9344xs7nr4m",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  false
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.CBS.1.6",
+                      "Version":  "6000.900.156.100",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.CBS.1.6_6000.900.156.100_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  4,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.CBS.2",
+                      "Version":  "2.5.1.100",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.CBS.2_2.5.1.100_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  4,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+                      "Version":  "1.8.80.0",
+                      "PackageFullName":  "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  1,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "WindowsWorkload.WinMLShared.7.0",
+                      "Version":  "1.2610.1050.0",
+                      "PackageFullName":  "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  1,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.2",
+                      "Version":  "2.7.0.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsAppRuntime.2",
+                      "Version":  "2.7.0.0",
+                      "PackageFullName":  "Microsoft.WindowsAppRuntime.2_2.7.0.0_x86__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  true
+                  },
+                  {
+                      "Name":  "Microsoft.WindowsStore",
+                      "Version":  "22610.1401.8.0",
+                      "PackageFullName":  "Microsoft.WindowsStore_22610.1401.8.0_x64__8wekyb3d8bbwe",
+                      "PublisherId":  "8wekyb3d8bbwe",
+                      "SignatureKind":  3,
+                      "Status":  0,
+                      "IsFramework":  false
+                  }
+              ]
+}

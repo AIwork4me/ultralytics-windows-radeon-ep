@@ -1,0 +1,534 @@
+{
+ "schema": "experiment_b_result_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "generated_utc": "2026-11-20T03:56:12Z",
+ "git": {
+  "head_sha": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+  "branch": "main",
+  "describe": "767efd7",
+  "remote": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep.git",
+  "log_head5": [
+   "767efd7 Merge pull request #13 from AIwork4me/mission/r8-r10-cross-host-readiness",
+   "d819d18 Merge remote-tracking branch 'origin/main' into mission/r8-r10-cross-host-readiness",
+   "8ce1d59 [R7][gfx1151] Product hardening: task oracle, Job Object lifecycle, attempt isolation, E2E (#12)",
+   "d1e183a Merge branch 'mission/r7-gfx1151-product-hardening' into mission/r8-r10-cross-host-readiness",
+   "b329321 fix(bench): write the E2E summary and regenerate the R7 evidence"
+  ],
+  "worktree_clean": false,
+  "dirty_paths": [
+   "?? reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json",
+   "?? reports/experiment_b/_quick/dml_canary_quick.json",
+   "?? reports/experiment_b/_quick/ort_profile_dml_2026-11-20_11-36-45_939.json",
+   "?? reports/experiment_b/_raw/appx_cmdlet.json",
+   "?? tools/_t.ps1",
+   "?? tools/_t2.ps1",
+   "?? tools/_t3.py",
+   "?? tools/_t4.py",
+   "?? tools/_t5.py",
+   "?? tools/_t6.py",
+   "?? tools/experiment_b_preflight.py"
+  ],
+  "harness_scope_clean": true,
+  "harness_dirty_paths": [],
+  "tracked_files": 2256
+ },
+ "host": {
+  "os": {
+   "caption": "Microsoft Windows 11 \u4e13\u4e1a\u7248",
+   "version": "10.0.26200",
+   "build": "26200",
+   "ubr": 9974,
+   "display_version": "25H2",
+   "product_name": "Windows 10 Pro",
+   "edition": "Professional",
+   "install_date": "11/16/2026 09:05:59",
+   "last_boot": "11/18/2026 16:42:58",
+   "architecture": "64 \u4f4d",
+   "locale": "zh-CN",
+   "ps_version": "5.1.26100.9818"
+  },
+  "device_id": "0x1586",
+  "luid": "0x00000000:0x000154E4",
+  "gfx": "gfx1151",
+  "driver": "32.0.22018.5"
+ },
+ "stage_matrix": [
+  {
+   "stage": "S0",
+   "name": "device_identity",
+   "expectation": "DID 0x1586 + DXGI LUID pinned to gfx1151",
+   "status": "PASS",
+   "observed": {
+    "device_id": "0x1586",
+    "luid": "0x00000000:0x000154E4",
+    "description": "AMD Radeon(TM) 8060S Graphics",
+    "did_match": true
+   }
+  },
+  {
+   "stage": "S1",
+   "name": "os_and_windows_ml_runtime",
+   "expectation": "OS build / Windows ML binding / shared runtime",
+   "status": "PASS",
+   "observed": {
+    "build": "26200",
+    "ubr": 9974,
+    "windowsml_python": "2.5.96",
+    "winml_shared_runtime": "WindowsWorkload.WinMLShared.7.0 1.2610.1050.0",
+    "ort": "1.25.2.202605110140"
+   }
+  },
+  {
+   "stage": "S2",
+   "name": "catalog_enumerate",
+   "expectation": "ExecutionProviderCatalog.find_all_providers()",
+   "status": "BLOCKED",
+   "observed": {
+    "provider_count": 0,
+    "create_hresult": "0x00000000",
+    "enum_hresult": "0x00000000",
+    "surfaces_probed": 7,
+    "surfaces_usable": 5,
+    "conclusion": "NO_CATALOG_SURFACE_ON_THIS_HOST_LISTS_ANY_EXECUTION_PROVIDER",
+    "repeats_stable": true
+   }
+  },
+  {
+   "stage": "S3",
+   "name": "catalog_ensure_ready",
+   "expectation": "provider.ensure_ready_async()",
+   "status": "BLOCKED",
+   "observed": {
+    "reason": "no provider object exists to call ensure_ready_async() on",
+    "api_surface": [
+     "close",
+     "find_all_providers"
+    ]
+   }
+  },
+  {
+   "stage": "S4",
+   "name": "official_artifact_acquire",
+   "expectation": "official signed MSIX or BYO artifact",
+   "status": "BLOCKED",
+   "observed": {
+    "catalog_channel": "EMPTY",
+    "github_releases": 0,
+    "nuget_search_total": 0,
+    "official_byo_statement": "must be built from source",
+    "verdict": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE"
+   }
+  },
+  {
+   "stage": "S5",
+   "name": "ep_dll_present",
+   "expectation": "amdgpu-ep.dll on disk",
+   "status": "BLOCKED",
+   "observed": {
+    "msix_status": "ABSENT_MACHINE_WIDE",
+    "dll_count": 0
+   }
+  },
+  {
+   "stage": "S6",
+   "name": "ort_register_library",
+   "expectation": "ort.register_execution_provider_library('AMDGPU', ...)",
+   "status": "NOT_RUN",
+   "observed": {
+    "note": "registration is reachable and fails closed; nothing to register",
+    "negative_test": "register_missing_amdgpu_dll -> DLL_LOAD_ERROR"
+   }
+  },
+  {
+   "stage": "S7",
+   "name": "session_create",
+   "expectation": "AMDGPU session creation",
+   "status": "NOT_RUN",
+   "observed": {
+    "note": "no AMDGPU provider registered"
+   }
+  },
+  {
+   "stage": "S8",
+   "name": "gpu_execute_and_parity",
+   "expectation": "profiled GPU execution + numeric/task parity",
+   "status": "NOT_RUN",
+   "observed": {
+    "note": "no AMDGPU session; no nodes, parity or task oracle"
+   }
+  }
+ ],
+ "first_failing_stage": "S2",
+ "catalog": {
+  "provider_count": 0,
+  "hresults": {
+   "create": "0x00000000",
+   "enum": "0x00000000"
+  },
+  "label": "B_CATALOG_EMPTY_REPRODUCED",
+  "surfaces": [
+   {
+    "surface": "wasdk_projection__no_bootstrap",
+    "exit_code": 0,
+    "ok": false,
+    "provider_count": null,
+    "providers": null,
+    "error": "OSError: [WinError -2147009196] \u8be5\u8fdb\u7a0b\u6ca1\u6709\u7a0b\u5e8f\u5305\u6807\u8bc6\u7b26\u3002",
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   },
+   {
+    "surface": "wasdk_projection__bootstrap_1_7",
+    "exit_code": 0,
+    "ok": false,
+    "provider_count": null,
+    "providers": null,
+    "error": "AttributeError: method overload with 0 arg(s) is not available in this version of Windows",
+    "terminated_without_payload": false,
+    "stderr_tail": "%USERPROFILE%\\\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\tools\\experiment_b_catalog_surfaces.py:73: RuntimeWarning: Shutdown object was not called before being garbage collected.\n  res = {\"surface\": a.surface, \"bootstrap_version\": a.bootstrap_version or None,\n"
+   },
+   {
+    "surface": "wasdk_projection__bootstrap_1_8",
+    "exit_code": 0,
+    "ok": true,
+    "provider_count": 0,
+    "providers": [],
+    "error": null,
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   },
+   {
+    "surface": "wasdk_projection__bootstrap_2_3",
+    "exit_code": 0,
+    "ok": true,
+    "provider_count": 0,
+    "providers": [],
+    "error": null,
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   },
+   {
+    "surface": "wasdk_projection__bootstrap_2_6",
+    "exit_code": 0,
+    "ok": true,
+    "provider_count": 0,
+    "providers": [],
+    "error": null,
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   },
+   {
+    "surface": "wasdk_projection__bootstrap_2_7",
+    "exit_code": 0,
+    "ok": true,
+    "provider_count": 0,
+    "providers": [],
+    "error": null,
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   },
+   {
+    "surface": "windowsml_flat_c_2_5_96",
+    "exit_code": 0,
+    "ok": true,
+    "provider_count": 0,
+    "providers": [],
+    "error": null,
+    "terminated_without_payload": false,
+    "stderr_tail": ""
+   }
+  ]
+ },
+ "msix": {
+  "amdgpu_ep_status": "ABSENT_MACHINE_WIDE",
+  "amd_npu_ep_present": {
+   "name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+   "version": "1.8.80.0",
+   "package_full_name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+   "publisher_id": "8wekyb3d8bbwe",
+   "signature_kind": 1,
+   "is_framework": true,
+   "role": "AMD_NPU_EXECUTION_PROVIDER_PACKAGE"
+  },
+  "winml_shared_runtime": {
+   "name": "WindowsWorkload.WinMLShared.7.0",
+   "version": "1.2610.1050.0",
+   "package_full_name": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+   "publisher_id": "8wekyb3d8bbwe",
+   "signature_kind": 1,
+   "is_framework": true,
+   "role": "WINDOWS_ML_SHARED_RUNTIME"
+  },
+  "deployment_event_keyword_counts": {
+   "VitisAI": 137,
+   "AMD_GPU_EP": 0,
+   "amdgpu_lower": 0,
+   "WinMLShared": 112
+  }
+ },
+ "provisioning": {
+  "verdict": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE",
+  "system_components_installed_or_changed": 0,
+  "forbidden_actions_not_taken": [
+   "copy amdgpu-ep.dll from another machine's WindowsApps",
+   "install the 1.8.65.0 MSIX from an unverified source",
+   "update the HP OEM display driver",
+   "disable Defender / Secure Boot / signature enforcement"
+  ]
+ },
+ "amdgpu_gpu_go": {
+  "physical_device": "VERIFIED_GFX1151",
+  "actual_ep": null,
+  "target_ep_profile_nodes": 0,
+  "cpu_profile_nodes": null,
+  "numeric_parity": "NOT_RUN",
+  "task_parity": "NOT_RUN",
+  "receipt_verifier": "NOT_RUN",
+  "all_required": false
+ },
+ "verdict": {
+  "label": "GFX1151_BLOCKED_OFFICIAL_EP_ARTIFACT",
+  "blocker": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE",
+  "statement": "the OS catalog offers no execution provider at all on this host and no official AMD GPU EP artifact is published for it; therefore the AMDGPU EP can be neither installed nor registered, and no GPU execution claim is made",
+  "not_claimed": [
+   "B_GFX1151_AMDGPU_GPU_EXECUTED",
+   "AMDGPU provider registered",
+   "gfx1151 kernel support",
+   "catalog path works"
+  ]
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "category": "WINDOWS_ML_API_SDK",
+   "statement": "The Windows ML 2.x API/SDK surface is broken or too old, so the catalog cannot list providers.",
+   "status": "REFUTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/CATALOG_PROBE.json (S_OK create + S_OK enum, three repeats)",
+    "reports/experiment_b/CATALOG_SURFACE_MATRIX.json (5 usable surfaces, all 0 providers, incl. official 2.5.96)",
+    "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json:runtime (windowsml 2.5.96 = documented minimum)"
+   ],
+   "what_would_settle_it": "a surface returning S_OK with >=1 provider, or an HRESULT failure",
+   "owner": "Microsoft (Windows ML team)"
+  },
+  {
+   "id": "H2",
+   "category": "EP_CATALOG_AND_STORE_DISTRIBUTION",
+   "statement": "The ExecutionProviderCatalog serves no EP entry to this device, so there is nothing to ensure_ready.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/CATALOG_SURFACE_MATRIX.json",
+    "reports/experiment_b/MSIX_INVENTORY.json:deployment_events (0 AMD.GPU events; workload machinery active for the NPU EP)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json:execution_provider_errors"
+   ],
+   "what_would_settle_it": "a catalog listing AMDGPUExecutionProvider with ReadyState=NotPresent on this host",
+   "owner": "Microsoft (Catalog/Store targeting)"
+  },
+  {
+   "id": "H3",
+   "category": "EP_MSIX_DLL_DEPENDENCY",
+   "statement": "The AMD GPU EP MSIX/DLL is not installed and no DLL exists anywhere on the host.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/MSIX_INVENTORY.json:amdgpu_ep (absent in current-user and machine scope)",
+    "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json:ep_dll (0 DLLs)",
+    "reports/experiment_b/NEGATIVE_TESTS.json (registering a missing DLL fails with a DLL_LOAD_ERROR)"
+   ],
+   "what_would_settle_it": "the package appearing in HKLM AppxAllUserStore or an amdgpu-ep.dll being found",
+   "owner": "Microsoft/AMD (package publication + targeting)"
+  },
+  {
+   "id": "H4",
+   "category": "HP_OEM_DRIVER_INCOMPATIBILITY",
+   "statement": "The HP OEM display driver blocks the AMD GPU EP (Adrenalin minimum not met, or OEM packaging unsupported).",
+   "status": "UNVERIFIED",
+   "evidence": [
+    "reports/experiment_b/DRIVER_COMPATIBILITY.json (Adrenalin version UNKNOWN; DML works)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json (only an Adrenalin minimum is documented)"
+   ],
+   "what_would_settle_it": "an AMD/HP statement mapping 32.0.22018.5 to an Adrenalin version, or the EP loading on this driver",
+   "owner": "HP + AMD (driver qualification)"
+  },
+  {
+   "id": "H5",
+   "category": "GFX1151_GPU_KERNEL_OPERATOR_SUPPORT",
+   "statement": "gfx1151 kernels/operators are unsupported by the AMD GPU EP build.",
+   "status": "UNVERIFIED",
+   "evidence": [
+    "reports/experiment_b/CATALOG_PROBE.json (no EP to test against)",
+    "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json (no gfx/DID list published)",
+    "docs/experiment_b/OFFICIAL_EP_DEPENDENCY_MATRIX.md"
+   ],
+   "what_would_settle_it": "an AMDGPU EP DLL on this host plus a kernel-level session failure, or an official gfx list",
+   "owner": "AMD (EP kernel coverage)"
+  },
+  {
+   "id": "H6",
+   "category": "SILENT_CPU_FALLBACK_MASQUERADING",
+   "statement": "An AMDGPU request appears to succeed while running on CPU, so a green result is not proof.",
+   "status": "SUPPORTED_BY_EVIDENCE",
+   "evidence": [
+    "reports/experiment_b/NEGATIVE_TESTS.json:amdgpu_session_without_registration_silently_falls_back_to_cpu"
+   ],
+   "what_would_settle_it": "n/a - this is a measurement hazard, mitigation is the get_providers() + profiler assertion",
+   "owner": "this repository (harness)"
+  }
+ ],
+ "negative_tests": [
+  {
+   "test": "register_missing_amdgpu_dll",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "kind": "DLL_LOAD_ERROR"
+  },
+  {
+   "test": "register_non_ep_dll_as_amdgpu",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "kind": "OTHER"
+  },
+  {
+   "test": "amdgpu_session_without_registration_silently_falls_back_to_cpu",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "kind": null
+  },
+  {
+   "test": "unknown_provider_silently_falls_back_to_cpu",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "kind": null
+  },
+  {
+   "test": "gfx1100_request_on_gfx1151_host",
+   "outcome": "FAILED_AS_EXPECTED",
+   "ok": true,
+   "kind": "WRONG_OR_AMBIGUOUS_DEVICE"
+  },
+  {
+   "test": "dml_session_binds_dml_ep",
+   "outcome": "SUCCEEDED_AS_EXPECTED",
+   "ok": true,
+   "kind": null
+  }
+ ],
+ "dml_regression": {
+  "verdict": "DML_PATH_HEALTHY",
+  "run": "B_GFX1151_DML_SAFETY_20261120T0352Z",
+  "checks_ok": true,
+  "detail": "reports/experiment_b/DML_SAFETY_REGRESSION.json"
+ },
+ "ab_comparison": {
+  "a_evidence_state": "A_EVIDENCE_PENDING",
+  "verdict": "GFX1151_BLOCKED_OFFICIAL_EP_ARTIFACT",
+  "detail": "reports/experiment_b/AB_COMPARISON.json"
+ },
+ "answers": {
+  "q1_can_amdgpu_register_and_execute_on_8060s": "NO - not on this host today. The provider is not offered by the catalog and the EP package/DLL is absent, so there is nothing to register.",
+  "q2_exact_stage_where_it_stops": "S2/S3: the ExecutionProviderCatalog enumerates zero providers (S_OK), so ensure_ready cannot be addressed and no artifact is installed (S4/S5).",
+  "q3_direct_evidence_for_that_stage": "CATALOG_PROBE.json / STANDALONE_CATALOG.json (3/3 stable, HRESULT 0x00000000, 0 providers), CATALOG_SURFACE_MATRIX.json (6 usable surfaces, all 0), MSIX_INVENTORY.json (absent in HKCU + HKLM scopes, 0 AMD.GPU deployment events), PROVISIONING_ATTEMPT.json.",
+  "q4_excluded_causes": "Windows ML API/SDK breakage (H1: refuted), Python-projection artifact (6 surfaces), missing shared runtime/OS version (both MET), Store-side acquisition failure (no Store errors recorded), unprivileged-enumeration error (registry cross-check).",
+  "q5_causes_still_without_evidence": "H4 HP OEM driver incompatibility (Adrenalin version not derivable), H5 gfx1151 kernel/operator coverage (no EP to test), and the exact reason the Store/WU targeting does not offer the AMD GPU EP package to this DID.",
+  "q6_what_microsoft_amd_must_supply": "Either (a) publish/target the AMD GPU EP MSIX (Microsoft.WinML.AMD.GPU.EP.Framework.*) to DID 0x1586 via the Store/WU channel so the catalog lists it, or (b) publish an official signed redistributable of onnxruntime-ep-amdgpu with a supported gfx list and driver requirement; plus a statement of which Adrenalin version corresponds to OEM WDDM 32.0.22018.5.",
+  "q7_how_to_upgrade_from_blocked_to_gpu_go": "The moment the catalog lists AMDGPUExecutionProvider with ReadyState=NotPresent: ensure_ready -> verify amdgpu-ep.dll hash -> register -> run the AMDGPU canary with AMDGPU profiler nodes > 0, CPU nodes = 0, by-name numeric parity and a PT task oracle PASS -> strict receipt verifier ALL_OK."
+ },
+ "next_actions": [
+  {
+   "owner": "Microsoft (Windows ML)",
+   "action": "state why WebGpu/VitisAI/AMDGPU are all absent from the 2.x catalog on DID 0x1586 and what targeted the catalog to this device"
+  },
+  {
+   "owner": "AMD",
+   "action": "state gfx1151 support for the AMDGPU EP and the Adrenalin version behind OEM WDDM 32.0.22018.5"
+  },
+  {
+   "owner": "HP",
+   "action": "state whether the OEM display driver package 25.20.18 is qualified for Windows ML 2.x GPU EPs"
+  },
+  {
+   "owner": "this repo",
+   "action": "re-run experiment B unchanged once the catalog lists the provider; import experiment A evidence with tools/experiment_b_ab_compare.py"
+  }
+ ],
+ "closure_gate": {
+  "current": "BLOCKED_EXTERNAL (official artifact unavailable)",
+  "unblocks_on": [
+   "catalog lists AMDGPUExecutionProvider for DID 0x1586",
+   "or an official signed AMDGPU EP artifact with a published gfx1151 statement"
+  ],
+  "evidence_files": [
+   {
+    "path": "reports/experiment_b/AB_COMPARISON.json",
+    "bytes": 19611,
+    "sha256": "eb6fa9ae3d47f1a36c6666f8de4bacca53ab1d95e7051d0f49e7f58a3de89d2d"
+   },
+   {
+    "path": "reports/experiment_b/CATALOG_PROBE.json",
+    "bytes": 24177,
+    "sha256": "63134d908188e9e5a7b1a4f1c3eb9f35e360f5917435fcb5f6205536f13e7b0a"
+   },
+   {
+    "path": "reports/experiment_b/CATALOG_SURFACE_MATRIX.json",
+    "bytes": 2436,
+    "sha256": "fd36c55949f244510ab12b5b8e4c769dd35f0b920001b690d22f291fe2880e97"
+   },
+   {
+    "path": "reports/experiment_b/DEPENDENCY_HYPOTHESES.json",
+    "bytes": 4291,
+    "sha256": "2918eb70d77dd32b52bac2b72c01ba6844b35c24080339c4739903fc31e7853f"
+   },
+   {
+    "path": "reports/experiment_b/DML_SAFETY_REGRESSION.json",
+    "bytes": 16204,
+    "sha256": "22ccb5fd3f2c45915728a47e45e2d20ce9d1ffe908fb34007ffd3e4d656f4237"
+   },
+   {
+    "path": "reports/experiment_b/DRIVER_COMPATIBILITY.json",
+    "bytes": 5017,
+    "sha256": "faaaadc8a5fa1ddd18a87b95a25644cae266afa2748182cf1ea740691b9d0ba8"
+   },
+   {
+    "path": "reports/experiment_b/MSIX_INVENTORY.json",
+    "bytes": 8033,
+    "sha256": "1b1509dfb68c48fc4e365c35690354dd9af82f41eb717c7f4395d45cca4cee77"
+   },
+   {
+    "path": "reports/experiment_b/NEGATIVE_TESTS.json",
+    "bytes": 3361,
+    "sha256": "4f0073353347d233c606a83b5b4fce4724094cd4c162619688822771ad370590"
+   },
+   {
+    "path": "reports/experiment_b/OFFICIAL_ARTIFACT_PROBE.json",
+    "bytes": 4370,
+    "sha256": "ae5a24be7765b80aa32845bdb8b1ed7af82cee145b5c05f39b2b201e05e1385c"
+   },
+   {
+    "path": "reports/experiment_b/OFFICIAL_DOC_CITATIONS.json",
+    "bytes": 31061,
+    "sha256": "de161d9fa055dbc14bd9e793d04dbd21679ef0b456eef962afaca50b5bbb7342"
+   },
+   {
+    "path": "reports/experiment_b/POST_EXPERIMENT_STATE_DIFF.json",
+    "bytes": 2920,
+    "sha256": "659049d77720d9fa4a83735e413fcf147b7977d127157b6778cb8f88dfa23819"
+   },
+   {
+    "path": "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json",
+    "bytes": 28890,
+    "sha256": "b9c5ae316d538c2defb1053cb2d8cefacf4dfe9a3b7a563d26d7d410d4f90b99"
+   },
+   {
+    "path": "reports/experiment_b/PROVISIONING_ATTEMPT.json",
+    "bytes": 9440,
+    "sha256": "0cbec8ba1d56509c7768dc3f8c71902d4e30f511a78ef87469547859ab1da871"
+   },
+   {
+    "path": "reports/experiment_b/STANDALONE_CATALOG.json",
+    "bytes": 5107,
+    "sha256": "5a41156942b26ae73f4f2cbb347694aa5939e5387cd1fb412b06e9861a827a2d"
+   }
+  ]
+ },
+ "redaction_note": "contains no user paths, machine name, serial or MAC; verified by radeon_ort.redaction.scan_for_leaks over every evidence file"
+}

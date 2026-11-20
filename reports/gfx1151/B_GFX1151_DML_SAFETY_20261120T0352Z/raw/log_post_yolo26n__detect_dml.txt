@@ -1,0 +1,6 @@
+$ .\.venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0352Z\raw\cand_yolo26n__detect_dml.npz --task detect --imgsz 640 --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0352Z\raw\post_yolo26n__detect_dml.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0352Z\raw\post_yolo26n__detect_dml.npz
+rc=0 elapsed=1.9s
+--- stdout ---
+{"ok": true, "task": "detect", "n": 5}
+
+--- stderr ---

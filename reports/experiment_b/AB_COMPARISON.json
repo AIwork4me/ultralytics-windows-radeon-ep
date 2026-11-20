@@ -1,0 +1,751 @@
+{
+ "schema_version": "AMD_GPU_EP_AB_COMPARISON_V1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:56:04Z",
+ "status_vocabulary": [
+  "A_EVIDENCE_PENDING",
+  "BLOCKED",
+  "FAIL",
+  "NOT_RUN",
+  "PASS",
+  "UNKNOWN"
+ ],
+ "a_artifact_inputs": [],
+ "hosts": {
+  "gfx1100": {
+   "schema_version": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "git_sha": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "run_id": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "host_gfx": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "device_did": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "driver_wddm": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "driver_adrenalin": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "windows_build": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "windowsml_version": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "ort_version": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "catalog_api_hresult": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "catalog_provider_count": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "catalog_amdgpu_state": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "ep_package_identity": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "ep_package_version": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "ep_dll_sha256": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "direct_registration_status": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "catalog_registration_status": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gpu_executed": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gpu_ep_profile_nodes": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "cpu_ep_profile_nodes": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "numeric_parity": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "task_parity": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "blocker_reason": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "evidence_manifest_sha256": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   }
+  },
+  "gfx1151": {
+   "schema_version": {
+    "value": "AMD_GPU_EP_AB_COMPARISON_V1",
+    "status": "PASS",
+    "source": "constant"
+   },
+   "git_sha": {
+    "value": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+    "status": "PASS",
+    "source": "git"
+   },
+   "run_id": {
+    "value": "B_GFX1151_AMDGPU_20261120T0336Z",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.run_id"
+   },
+   "host_gfx": {
+    "value": "gfx1151",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.gpu.resolve + DID 0x1586"
+   },
+   "device_did": {
+    "value": "0x1586",
+    "status": "PASS",
+    "source": "DXGI device_id"
+   },
+   "driver_wddm": {
+    "value": "32.0.22018.5",
+    "status": "PASS",
+    "source": "DRIVER_COMPATIBILITY.driver_package"
+   },
+   "driver_adrenalin": {
+    "value": "UNKNOWN",
+    "status": "UNKNOWN",
+    "source": "DRIVER_COMPATIBILITY.adrenalin_software_version",
+    "note": "WDDM 32.0.22018.5 / INF build 25.20.18 do not map to an Adrenalin marketing version"
+   },
+   "windows_build": {
+    "value": "26200.9974",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.os"
+   },
+   "windowsml_version": {
+    "value": "2.5.96",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.runtime"
+   },
+   "ort_version": {
+    "value": "1.25.2",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.runtime.ort"
+   },
+   "catalog_api_hresult": {
+    "value": {
+     "create": "0x00000000",
+     "enum": "0x00000000"
+    },
+    "status": "PASS",
+    "source": "CATALOG_PROBE.primary_report.api_diagnostic.official.raw"
+   },
+   "catalog_provider_count": {
+    "value": 0,
+    "status": "PASS",
+    "source": "CATALOG_PROBE.primary_report.ep_readiness"
+   },
+   "catalog_amdgpu_state": {
+    "value": "NOT_LISTED",
+    "status": "BLOCKED",
+    "source": "CATALOG_SURFACE_MATRIX (all surfaces 0 providers)"
+   },
+   "ep_package_identity": {
+    "value": "ABSENT_MACHINE_WIDE",
+    "status": "BLOCKED",
+    "source": "MSIX_INVENTORY.amdgpu_ep"
+   },
+   "ep_package_version": {
+    "value": "ABSENT",
+    "status": "BLOCKED",
+    "source": "MSIX_INVENTORY.amdgpu_ep"
+   },
+   "ep_dll_sha256": {
+    "value": "ABSENT",
+    "status": "BLOCKED",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.ep_dll"
+   },
+   "direct_registration_status": {
+    "value": "BLOCKED_NO_DLL",
+    "status": "BLOCKED",
+    "source": "NEGATIVE_TESTS.register_missing_amdgpu_dll",
+    "note": "registration is reachable and fails closed with a DLL_LOAD_ERROR"
+   },
+   "catalog_registration_status": {
+    "value": "BLOCKED_CATALOG_EMPTY",
+    "status": "BLOCKED",
+    "source": "PROVISIONING_ATTEMPT.path_1_official_catalog"
+   },
+   "gpu_executed": {
+    "value": false,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session was created (no provider, no DLL)"
+   },
+   "gpu_ep_profile_nodes": {
+    "value": 0,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "cpu_ep_profile_nodes": {
+    "value": null,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "numeric_parity": {
+    "value": "NOT_RUN",
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "task_parity": {
+    "value": "NOT_RUN",
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "blocker_reason": {
+    "value": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE",
+    "status": "BLOCKED",
+    "source": "PROVISIONING_ATTEMPT.verdict"
+   },
+   "evidence_manifest_sha256": {
+    "value": "1237592ef79f5ec302e2f6f5cc2ca602bd7c07c0471a9787260eb51beedf9535",
+    "status": "PASS",
+    "source": "sha256 over the sorted sibling evidence list",
+    "note": "excludes AB_COMPARISON.json, EXPERIMENT_B_RESULT.json and MANIFEST.sha256"
+   }
+  }
+ },
+ "comparison": [
+  {
+   "field": "schema_version",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "AMD_GPU_EP_AB_COMPARISON_V1",
+    "status": "PASS",
+    "source": "constant"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "git_sha",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+    "status": "PASS",
+    "source": "git"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "run_id",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "B_GFX1151_AMDGPU_20261120T0336Z",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.run_id"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "host_gfx",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "gfx1151",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.gpu.resolve + DID 0x1586"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "device_did",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "0x1586",
+    "status": "PASS",
+    "source": "DXGI device_id"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "driver_wddm",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "32.0.22018.5",
+    "status": "PASS",
+    "source": "DRIVER_COMPATIBILITY.driver_package"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "driver_adrenalin",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "UNKNOWN",
+    "status": "UNKNOWN",
+    "source": "DRIVER_COMPATIBILITY.adrenalin_software_version",
+    "note": "WDDM 32.0.22018.5 / INF build 25.20.18 do not map to an Adrenalin marketing version"
+   },
+   "same_value": false,
+   "note": "WDDM 32.0.22018.5 / INF build 25.20.18 do not map to an Adrenalin marketing version"
+  },
+  {
+   "field": "windows_build",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "26200.9974",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.os"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "windowsml_version",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "2.5.96",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.runtime"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "ort_version",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "1.25.2",
+    "status": "PASS",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.runtime.ort"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "catalog_api_hresult",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": {
+     "create": "0x00000000",
+     "enum": "0x00000000"
+    },
+    "status": "PASS",
+    "source": "CATALOG_PROBE.primary_report.api_diagnostic.official.raw"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "catalog_provider_count",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": 0,
+    "status": "PASS",
+    "source": "CATALOG_PROBE.primary_report.ep_readiness"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "catalog_amdgpu_state",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "NOT_LISTED",
+    "status": "BLOCKED",
+    "source": "CATALOG_SURFACE_MATRIX (all surfaces 0 providers)"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "ep_package_identity",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "ABSENT_MACHINE_WIDE",
+    "status": "BLOCKED",
+    "source": "MSIX_INVENTORY.amdgpu_ep"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "ep_package_version",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "ABSENT",
+    "status": "BLOCKED",
+    "source": "MSIX_INVENTORY.amdgpu_ep"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "ep_dll_sha256",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "ABSENT",
+    "status": "BLOCKED",
+    "source": "PRE_EXPERIMENT_SNAPSHOT.ep_dll"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "direct_registration_status",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "BLOCKED_NO_DLL",
+    "status": "BLOCKED",
+    "source": "NEGATIVE_TESTS.register_missing_amdgpu_dll",
+    "note": "registration is reachable and fails closed with a DLL_LOAD_ERROR"
+   },
+   "same_value": false,
+   "note": "registration is reachable and fails closed with a DLL_LOAD_ERROR"
+  },
+  {
+   "field": "catalog_registration_status",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "BLOCKED_CATALOG_EMPTY",
+    "status": "BLOCKED",
+    "source": "PROVISIONING_ATTEMPT.path_1_official_catalog"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "gpu_executed",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": false,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session was created (no provider, no DLL)"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "gpu_ep_profile_nodes",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": 0,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "cpu_ep_profile_nodes",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": null,
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "numeric_parity",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "NOT_RUN",
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "task_parity",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "NOT_RUN",
+    "status": "NOT_RUN",
+    "source": "no AMDGPU session"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "blocker_reason",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE",
+    "status": "BLOCKED",
+    "source": "PROVISIONING_ATTEMPT.verdict"
+   },
+   "same_value": false,
+   "note": null
+  },
+  {
+   "field": "evidence_manifest_sha256",
+   "gfx1100": {
+    "value": "A_EVIDENCE_PENDING",
+    "status": "A_EVIDENCE_PENDING",
+    "source": "no A artifact supplied"
+   },
+   "gfx1151": {
+    "value": "1237592ef79f5ec302e2f6f5cc2ca602bd7c07c0471a9787260eb51beedf9535",
+    "status": "PASS",
+    "source": "sha256 over the sorted sibling evidence list",
+    "note": "excludes AB_COMPARISON.json, EXPERIMENT_B_RESULT.json and MANIFEST.sha256"
+   },
+   "same_value": false,
+   "note": "excludes AB_COMPARISON.json, EXPERIMENT_B_RESULT.json and MANIFEST.sha256"
+  }
+ ],
+ "diff": {
+  "fields_compared": 25,
+  "fields_equal": 0,
+  "fields_different": [
+   "schema_version",
+   "git_sha",
+   "run_id",
+   "host_gfx",
+   "device_did",
+   "driver_wddm",
+   "driver_adrenalin",
+   "windows_build",
+   "windowsml_version",
+   "ort_version",
+   "catalog_api_hresult",
+   "catalog_provider_count",
+   "catalog_amdgpu_state",
+   "ep_package_identity",
+   "ep_package_version",
+   "ep_dll_sha256",
+   "direct_registration_status",
+   "catalog_registration_status",
+   "gpu_executed",
+   "gpu_ep_profile_nodes",
+   "cpu_ep_profile_nodes",
+   "numeric_parity",
+   "task_parity",
+   "blocker_reason",
+   "evidence_manifest_sha256"
+  ],
+  "fields_a_unknown": [
+   "schema_version",
+   "git_sha",
+   "run_id",
+   "host_gfx",
+   "device_did",
+   "driver_wddm",
+   "driver_adrenalin",
+   "windows_build",
+   "windowsml_version",
+   "ort_version",
+   "catalog_api_hresult",
+   "catalog_provider_count",
+   "catalog_amdgpu_state",
+   "ep_package_identity",
+   "ep_package_version",
+   "ep_dll_sha256",
+   "direct_registration_status",
+   "catalog_registration_status",
+   "gpu_executed",
+   "gpu_ep_profile_nodes",
+   "cpu_ep_profile_nodes",
+   "numeric_parity",
+   "task_parity",
+   "blocker_reason",
+   "evidence_manifest_sha256"
+  ]
+ },
+ "decision": {
+  "matched_cases": [
+   {
+    "case": "B5",
+    "verdict": "GFX1151_BLOCKED_OFFICIAL_EP_ARTIFACT"
+   }
+  ],
+  "primary_case": "B5",
+  "verdict": "GFX1151_BLOCKED_OFFICIAL_EP_ARTIFACT",
+  "a_evidence_state": "A_EVIDENCE_PENDING",
+  "reasoning": [
+   "B catalog_provider_count=0 (state=NOT_LISTED)",
+   "B direct registration=BLOCKED_NO_DLL, gpu_executed=False",
+   "B official artifact available=False",
+   "A evidence not supplied: no A/B diff is asserted, and no case that needs an A fact (B1/B2) is claimed"
+  ]
+ },
+ "evidence_manifest_sha256": "1237592ef79f5ec302e2f6f5cc2ca602bd7c07c0471a9787260eb51beedf9535",
+ "evidence_manifest_inputs": [
+  "CATALOG_PROBE.json",
+  "CATALOG_SURFACE_MATRIX.json",
+  "DEPENDENCY_HYPOTHESES.json",
+  "DML_SAFETY_REGRESSION.json",
+  "DRIVER_COMPATIBILITY.json",
+  "MSIX_INVENTORY.json",
+  "NEGATIVE_TESTS.json",
+  "OFFICIAL_ARTIFACT_PROBE.json",
+  "OFFICIAL_DOC_CITATIONS.json",
+  "POST_EXPERIMENT_STATE_DIFF.json",
+  "PRE_EXPERIMENT_SNAPSHOT.json",
+  "PROVISIONING_ATTEMPT.json",
+  "STANDALONE_CATALOG.json"
+ ]
+}

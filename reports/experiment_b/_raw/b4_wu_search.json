@@ -1,0 +1,39 @@
+﻿{
+    "captured":  "2026-11-20T11:42:37.5377088+08:00",
+    "windows_update":  {
+                           "searched":  true,
+                           "online":  true,
+                           "result_code":  2,
+                           "update_count":  2,
+                           "updates":  [
+                                           {
+                                               "title":  "Microsoft Defender Antivirus 的安全智能更新 - KB2267602（版本 1.463.379.0）- 当前频道（广泛）",
+                                               "is_driver":  false,
+                                               "type":  1,
+                                               "driver_class":  null,
+                                               "driver_hardware_id":  [
+                                                                          null
+                                                                      ],
+                                               "kb":  [
+                                                          "2267602"
+                                                      ],
+                                               "is_hidden":  false,
+                                               "reboot_required":  false
+                                           },
+                                           {
+                                               "title":  "Microsoft Corporation AudioProcessingObject Driver Update (1.0.4.55794)",
+                                               "is_driver":  true,
+                                               "type":  2,
+                                               "driver_class":  "OtherHardware",
+                                               "driver_hardware_id":  [
+                                                                          "swc\\ven_msft\u0026audio_effectpack_voiceclarity"
+                                                                      ],
+                                               "kb":  [
+
+                                                      ],
+                                               "is_hidden":  false,
+                                               "reboot_required":  false
+                                           }
+                                       ]
+                       }
+}

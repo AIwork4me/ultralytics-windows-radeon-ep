@@ -1,0 +1,483 @@
+{
+ "schema": "experiment_b_dml_safety_regression_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:56:00Z",
+ "purpose": "prove that the AMDGPU investigation did not damage the working DirectML path on this host",
+ "dml_run": {
+  "run_id": "B_GFX1151_DML_SAFETY_20261120T0352Z",
+  "run_dir": "reports/gfx1151/B_GFX1151_DML_SAFETY_20261120T0352Z",
+  "case": "yolo26n__detect__dml",
+  "receipt": "reports/gfx1151/B_GFX1151_DML_SAFETY_20261120T0352Z/receipts/receipt_yolo26n__detect__dml.json",
+  "receipt_sha256": "1046d6f6e337432b7a5a0d44cc230f71a89ec286111039da7b19f1aa30d676a4",
+  "manifest_sha256": "76a65501743109f4e742d6aae8fe21ca5d875ea376d27b6d4a63c6fe77b4b6e0",
+  "matrix_exit": {
+   "argv_redacted": [
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/.venv-winml/Scripts/python.exe",
+    "-m",
+    "runner.r1_pipeline",
+    "--run-dir",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_SAFETY_20261120T0352Z",
+    "--catalog",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/catalog/model_catalog.json",
+    "--gfx",
+    "gfx1151",
+    "--models",
+    "yolo26n.pt",
+    "--eps",
+    "dml",
+    "--winml-python",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/.venv-winml/Scripts/python.exe",
+    "--export-python",
+    ".\\.venv-export\\Scripts\\python.exe",
+    "--case-timeout-s",
+    "1200"
+   ],
+   "audit_counts": {
+    "BLOCKED": 0,
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "PASS_FULL": 1,
+    "PASS_PARTIAL": 0
+   },
+   "audit_expected": 1,
+   "audit_passed": 1,
+   "audit_problems": [],
+   "classification": "PIPELINE_REPORTED",
+   "log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_SAFETY_20261120T0352Z/logs/r1_pipeline.log",
+   "matrix_exit_code": 0,
+   "pipeline_exit_code": 0,
+   "reasons": [
+    "[r1] EXIT classification=OK code=0"
+   ],
+   "schema_version": 1,
+   "stage": "r1_pipeline",
+   "started_utc": "2026-11-20T03:46:11Z"
+  },
+  "pipeline_exit": {
+   "schema_version": 1,
+   "attempt_utc": "2026-11-20T03:46:11Z",
+   "exit_code": 0,
+   "classification": "OK",
+   "receipts_written": 1,
+   "pass": 1,
+   "fail": 0,
+   "blocked_or_not_run": 0,
+   "run_problems": [],
+   "environment_probe_error": null
+  },
+  "contract_sha256": "1eadebf57ed09ddbbba720c66653dc5f99ffa15b864233530b62650d1ce815cd",
+  "contract_git_head": "767efd71d6106be2fe63895743be8ff6bf652b2f"
+ },
+ "quick_canary_preflight": {
+  "ep": "dml",
+  "gfx": "gfx1151",
+  "schema": "unified_canary_v1",
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+  "versions": {
+   "python": "3.12.10",
+   "ort": "1.25.2",
+   "numpy": "2.5.5"
+  },
+  "physical": {
+   "description": "AMD Radeon(TM) 8060S Graphics",
+   "vendor_id": 4098,
+   "device_id": 5510,
+   "luid": "0x00000000:0x000154E4",
+   "dxgi_index": 0,
+   "did_match": true
+  },
+  "confidence": "DML_DXGI_ORDINAL_CORROBORATED;EP_LUID_UNPROVEN",
+  "session_create_s": 0.172,
+  "parity": {
+   "allclose": true,
+   "max_abs": 7.450580596923828e-09,
+   "reason": null
+  },
+  "profile": {
+   "target_ep_nodes": 1,
+   "cpu_nodes": 0
+  },
+  "status": "GPU_PASS_VALIDATED"
+ },
+ "prior_attempt": {
+  "run_id": "B_GFX1151_DML_SAFETY_20261120T0345Z",
+  "status": {
+   "model_asset": "AVAILABLE",
+   "export": "PASS_ONNX_EXPORT",
+   "cpu_oracle": "PASS_CPU_REFERENCE",
+   "amdgpu": "NOT_RUN",
+   "dml": "PASS_GPU_EXECUTED_FULL",
+   "task_oracle": "TASK_ORACLE_BLOCKED",
+   "benchmark": "NOT_MEASURED",
+   "host": "VERIFIED_GFX1151"
+  },
+  "receipt_sha256": "833666b93c40e7fb9eec9e2edf82c4fbcf69f69f26a422c8cead4ee0da43d7ea",
+  "note": "first attempt: execution PASS but the PT task oracle was TASK_ORACLE_BLOCKED because torch was missing from the interpreter the matrix passed as --export-python; preserved as failure evidence and corrected in the run below"
+ },
+ "extended_tier_a_matrix": {
+  "run_id": "B_GFX1151_DML_TIERA_20261120T0400Z",
+  "run_dir": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z",
+  "case_count": 9,
+  "cases": [
+   {
+    "case": "yolo11n__detect__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo11n__detect__dml.json",
+    "receipt_sha256": "e0dbbb3ab19e93604fde4a8ffe82f3260ab2fba3e2269b2b2f861250adeffa70"
+   },
+   {
+    "case": "yolo26n-cls__classify__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-cls__classify__dml.json",
+    "receipt_sha256": "a54e6331fcbd3f85654a51bca6fe9fb86fe5a8288cc647e864fb1464ca708219"
+   },
+   {
+    "case": "yolo26n-depth__depth__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-depth__depth__dml.json",
+    "receipt_sha256": "776c7263eae939bbb1543e0965144598dee4692d0f3dde5aefa352fde7ca6015"
+   },
+   {
+    "case": "yolo26n-obb__obb__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-obb__obb__dml.json",
+    "receipt_sha256": "2da27c3985707042ee8b2b179a40c8f7d6f37ec383785ce689c9e4c1a40d92ef"
+   },
+   {
+    "case": "yolo26n-pose__pose__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-pose__pose__dml.json",
+    "receipt_sha256": "bca20686695953c7d0b20bf56bf680f62af17ee8e0ebbc69318b8e5ddcf04593"
+   },
+   {
+    "case": "yolo26n-seg__segment__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-seg__segment__dml.json",
+    "receipt_sha256": "dee3e5888d2e62eb368acaacf04f85251ee5310d31e9ca68cd3d73d4af018d34"
+   },
+   {
+    "case": "yolo26n-sem__semantic__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n-sem__semantic__dml.json",
+    "receipt_sha256": "0066540ed93bbc6de8df0723b2433850b5af7fbe732f11bdb8a6656c12317056"
+   },
+   {
+    "case": "yolo26n__detect__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolo26n__detect__dml.json",
+    "receipt_sha256": "b303c783cc1d734aea9399b4810bd2a84039c885229fa7d280c0ab5a11bc7b2a"
+   },
+   {
+    "case": "yolov8n__detect__dml",
+    "dml_status": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "dml_nodes": 1,
+    "cpu_nodes": 0,
+    "parity_allclose": true,
+    "task_passed": true,
+    "receipt": "reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/receipts/receipt_yolov8n__detect__dml.json",
+    "receipt_sha256": "57e360862c8d7146b3d6638aae06508837a808d429762ed3ecb4a847a897ab38"
+   }
+  ],
+  "all_ok": true,
+  "matrix_exit": {
+   "argv_redacted": [
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/.venv-winml/Scripts/python.exe",
+    "-m",
+    "runner.r1_pipeline",
+    "--run-dir",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z",
+    "--catalog",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/catalog/model_catalog.json",
+    "--gfx",
+    "gfx1151",
+    "--models",
+    "yolo26n.pt,yolo26n-seg.pt,yolo26n-sem.pt,yolo26n-depth.pt,yolo26n-cls.pt,yolo26n-pose.pt,yolo26n-obb.pt,yolo11n.pt,yolov8n.pt",
+    "--eps",
+    "dml",
+    "--winml-python",
+    "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/.venv-winml/Scripts/python.exe",
+    "--export-python",
+    ".\\.venv-export\\Scripts\\python.exe",
+    "--case-timeout-s",
+    "1200"
+   ],
+   "audit_counts": {
+    "BLOCKED": 0,
+    "FAIL": 0,
+    "NOT_RUN": 0,
+    "PASS_FULL": 9,
+    "PASS_PARTIAL": 0
+   },
+   "audit_expected": 9,
+   "audit_passed": 9,
+   "audit_problems": [],
+   "classification": "PIPELINE_REPORTED",
+   "log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/logs/r1_pipeline.log",
+   "matrix_exit_code": 0,
+   "pipeline_exit_code": 0,
+   "reasons": [
+    "[r1] EXIT classification=OK code=0"
+   ],
+   "schema_version": 1,
+   "stage": "r1_pipeline",
+   "started_utc": "2026-11-20T03:48:29Z"
+  },
+  "manifest_entries": 207,
+  "verifier": {
+   "exit_code": 0,
+   "verdict": "ALL_OK",
+   "stdout_tail": "[verify] thresholds source: thresholds_snapshot.json\n[verify] 9 receipt(s) under %USERPROFILE%\\\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\expb_verify_zg9wi8ug\\B_GFX1151_DML_TIERA_20261120T0400Z\nOK   receipt_yolo11n__detect__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-cls__classify__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-depth__depth__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-obb__obb__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-pose__pose__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-seg__segment__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n-sem__semantic__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolo26n__detect__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\nOK   receipt_yolov8n__detect__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\n[verify] manifest OK (207 entries)\n[verify] verdict: ALL_OK\n",
+   "stderr_tail": "",
+   "layout": "fresh_checkout_layout",
+   "excluded_git_ignored_files": 27
+  }
+ },
+ "checks": [
+  {
+   "check": "tier_a_dml_matrix_all_pass",
+   "ok": true,
+   "observed": {
+    "case_count": 9,
+    "cases": [
+     {
+      "case": "yolo11n__detect__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-cls__classify__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-depth__depth__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-obb__obb__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-pose__pose__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-seg__segment__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n-sem__semantic__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolo26n__detect__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     },
+     {
+      "case": "yolov8n__detect__dml",
+      "dml": "PASS_GPU_EXECUTED_FULL",
+      "task": "PASS_TASK",
+      "nodes": 1,
+      "cpu_nodes": 0
+     }
+    ],
+    "verifier": "ALL_OK"
+   }
+  },
+  {
+   "check": "yolo26n_detect_ran_on_dml",
+   "ok": true,
+   "observed": "PASS_GPU_EXECUTED_FULL"
+  },
+  {
+   "check": "gpu_full_dml_requested_and_bound",
+   "ok": true,
+   "observed": {
+    "session_ep": "DML",
+    "verdict_execution": "PASS_FULL"
+   }
+  },
+  {
+   "check": "target_ep_nodes_positive",
+   "ok": true,
+   "observed": 1
+  },
+  {
+   "check": "cpu_profile_nodes_zero",
+   "ok": true,
+   "observed": 0
+  },
+  {
+   "check": "numeric_parity_by_name",
+   "ok": true,
+   "observed": {
+    "all_outputs_allclose": true,
+    "by_name_matching": true,
+    "outputs": [
+     {
+      "name": "output0",
+      "allclose": true,
+      "max_abs_diff": 0.001911163330078125,
+      "threshold": 0.005
+     }
+    ]
+   }
+  },
+  {
+   "check": "task_oracle_pass",
+   "ok": true,
+   "observed": {
+    "status": "PASS_TASK",
+    "passed": true,
+    "metrics": {
+     "ref_entities": 5,
+     "matched": 5,
+     "fp": 0,
+     "fn": 0,
+     "precision": 1.0,
+     "recall": 1.0,
+     "iou_mean": 0.9999993533816468
+    }
+   }
+  },
+  {
+   "check": "device_identity_verified_gfx1151",
+   "ok": true,
+   "observed": {
+    "status_host": "VERIFIED_GFX1151",
+    "device_id": "0x1586",
+    "luid": "0x00000000:0x000154E4",
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)"
+   }
+  },
+  {
+   "check": "manifest_integrity",
+   "ok": true,
+   "observed": {
+    "manifest_entries": 31,
+    "verifier": {
+     "exit_code": 0,
+     "verdict": "ALL_OK",
+     "stdout_tail": "[verify] thresholds source: thresholds_snapshot.json\n[verify] 1 receipt(s) under %USERPROFILE%\\\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\expb_verify_8lsawf_7\\B_GFX1151_DML_SAFETY_20261120T0352Z\nOK   receipt_yolo26n__detect__dml.json derived=NOT_RUN|PASS_GPU_EXECUTED_FULL\n[verify] manifest OK (31 entries)\n[verify] verdict: ALL_OK\n",
+     "stderr_tail": "",
+     "layout": "fresh_checkout_layout",
+     "excluded_git_ignored_files": 3
+    }
+   }
+  },
+  {
+   "check": "job_object_reclaim",
+   "ok": true,
+   "observed": {
+    "source": "reports/experiment_b/_raw/JOB_OBJECT_RECLAIM.json",
+    "passed": 8,
+    "total": 8
+   }
+  },
+  {
+   "check": "receipt_not_reused",
+   "ok": true,
+   "observed": {
+    "run_id": "B_GFX1151_DML_SAFETY_20261120T0352Z",
+    "rerun_of": null,
+    "created_utc": "2026-11-20T03:46:11Z"
+   }
+  },
+  {
+   "check": "contract_clean_worktree",
+   "ok": true,
+   "observed": {
+    "git_head": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+    "harness_sha256": "0b663961416ce7c3abc48b9a8047f96476201bb2a2476790e679cc9a43bde6bb",
+    "worktree_dirty": false
+   }
+  }
+ ],
+ "all_ok": true,
+ "verdict": "DML_PATH_HEALTHY",
+ "evidence_summary": {
+  "providers_requested": [
+   "DmlExecutionProvider",
+   "CPUExecutionProvider"
+  ],
+  "provider_node_counts": {
+   "DmlExecutionProvider": 1
+  },
+  "graph_node_total": 1,
+  "fallback_signals": {
+   "stdout": [],
+   "stderr": []
+  },
+  "device_binding_state": "EP_DEVICE_SELECTED",
+  "numeric_parity": "PASS",
+  "task_parity": "PASS_TASK_PARITY",
+  "backend_routing": "BACKEND_UNVERIFIED",
+  "note": "backend_routing BACKEND_UNVERIFIED and benchmark NOT_MEASURED are the documented limits of a fused single-node DML profile on this host; they are not regressions"
+ },
+ "scope_note": "one Tier-A case (YOLO26n detect) was re-verified end-to-end in this mission; the historical 9/9 Tier-A DML matrix is referenced, not re-claimed"
+}

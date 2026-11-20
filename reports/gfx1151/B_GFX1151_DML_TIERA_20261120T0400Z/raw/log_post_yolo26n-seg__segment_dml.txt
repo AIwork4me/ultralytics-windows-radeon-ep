@@ -1,0 +1,6 @@
+$ .\.venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\onnx_postprocess.py --npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\cand_yolo26n-seg__segment_dml.npz --task segment --imgsz 640 --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\post_yolo26n-seg__segment_dml.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\post_yolo26n-seg__segment_dml.npz
+rc=0 elapsed=2.0s
+--- stdout ---
+{"ok": true, "task": "segment", "n": 5}
+
+--- stderr ---

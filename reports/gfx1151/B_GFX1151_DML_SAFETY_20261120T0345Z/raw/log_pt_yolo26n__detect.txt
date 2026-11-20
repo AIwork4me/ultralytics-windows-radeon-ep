@@ -1,0 +1,12 @@
+$ C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\.venv-winml\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\models\pt\yolo26n.pt --task detect --tensor-npy C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0345Z\inputs\input_1bfe5fe9dfe2d25a.npy --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0345Z\raw\pt_yolo26n__detect.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_SAFETY_20261120T0345Z\raw\pt_yolo26n__detect.npz
+rc=1 elapsed=0.2s
+--- stdout ---
+
+--- stderr ---
+Traceback (most recent call last):
+  File "C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py", line 126, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py", line 38, in main
+    import torch
+ModuleNotFoundError: No module named 'torch'

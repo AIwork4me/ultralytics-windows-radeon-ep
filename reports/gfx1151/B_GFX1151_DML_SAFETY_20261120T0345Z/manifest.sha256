@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "run_id": "B_GFX1151_DML_SAFETY_20261120T0345Z",
+  "created_utc": "2026-11-20T03:55:38Z",
+  "generator": "tools/run_manifest.py",
+  "entries": [
+    {
+      "path": "DISPOSITION_LEDGER.csv",
+      "sha256": "972b63e61e1429ae71c835e2c48fa0cc3c794e0c16ee0f047fd8ca956073c495",
+      "bytes": 20363
+    },
+    {
+      "path": "DISPOSITION_LEDGER.json",
+      "sha256": "dae9c05a7b52fd07690f79c50ae0c469e40f73f537173a7f5e3a14d96730ebad",
+      "bytes": 70379
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n_detect.done",
+      "sha256": "128f4c7f97c337569fc36a21c6be32a6a8b24c45c4fde917bbb7fea5b5432615",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/input_1bfe5fe9dfe2d25a.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/manifest_1bfe5fe9dfe2d25a.json",
+      "sha256": "72e981098939acf7f748c10a92c2acbef1e0afecbce30403b85a53e8afe112ed",
+      "bytes": 1502
+    },
+    {
+      "path": "logs/r1_pipeline.log",
+      "sha256": "9dda313a879ead2f364a03a863da0ebf7275c4ef4d551cc5d64c7271f07b791a",
+      "bytes": 677
+    },
+    {
+      "path": "MATRIX_EXIT.json",
+      "sha256": "377380ab28b2b670622206840d29ab7fca7a52c9c8adaf78113222a5b1c7e8ba",
+      "bytes": 1530
+    },
+    {
+      "path": "negative_gray.png",
+      "sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "bytes": 687455
+    },
+    {
+      "path": "PIPELINE_EXIT.json",
+      "sha256": "201ad682962d32760572079d09f5d10d593e08d0af613b6f5c5a00fdc027d40e",
+      "bytes": 258
+    },
+    {
+      "path": "R1_CASE_LEDGER.jsonl",
+      "sha256": "5faee5aaebd1c3674a94153d13303b1a23a937ffdfa2d49cbb542bd63b9ed167",
+      "bytes": 225
+    },
+    {
+      "path": "raw/cand_yolo26n__detect_dml.npz",
+      "sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
+      "bytes": 2607655
+    },
+    {
+      "path": "raw/case_yolo26n__detect_cpu.json",
+      "sha256": "064cd94afa0a8812ced84f020ad426cbf724932e5974d52fd3aab6b4f2fe7c48",
+      "bytes": 688
+    },
+    {
+      "path": "raw/case_yolo26n__detect_dml.json",
+      "sha256": "13bdbdd107774e3bf6bfd2d953a02d348fa913228bb19cdecf76643617bfe2d0",
+      "bytes": 909
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_cpu.json",
+      "sha256": "0d9a41cdb722c041b18fe0a228eb8a653f7eaf07f989b6768c2f8b4aad4ffaf7",
+      "bytes": 802
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_dml.json",
+      "sha256": "f38c851e5fb95f2eee1e855324efb26702ba42c066fde8aa940cc70f9181976e",
+      "bytes": 2908
+    },
+    {
+      "path": "raw/log_cpu_yolo26n__detect.txt",
+      "sha256": "6d562fd5999cb1c1f2de237b774f6d4c9bd6d9d318ad02bce2a2e5f9acc2f0d2",
+      "bytes": 679
+    },
+    {
+      "path": "raw/log_pt_yolo26n__detect.txt",
+      "sha256": "e78aeaa44e7891b397a1aaabdb44eeb40dfd3d4d412d78fb7c8a4c1362cf9a14",
+      "bytes": 1154
+    },
+    {
+      "path": "raw/log_yolo26n__detect_dml.txt",
+      "sha256": "4947a39034acd65185e5b6e184d35ca1bc9db8e46c4db7d3931e0c1b500b1ef4",
+      "bytes": 913
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-20_11-45-39_761.json",
+      "sha256": "e8abebe13a4895b6ac0e142e55aa67954dbf86e7ba61c36c0602d244b1eec276",
+      "bytes": 400249
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_dml_2026-11-20_11-45-40_607.json",
+      "sha256": "05c0cd20c26abd7cd78064b4361f213467a6822268af40c106cb5ecb6ae60234",
+      "bytes": 1671
+    },
+    {
+      "path": "raw/ref_yolo26n__detect.npz",
+      "sha256": "09f1e064de6692e7254c1662b6b6d2046516c68004b6da3cb1bc37966d08fc1d",
+      "bytes": 612126
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__dml.json",
+      "sha256": "833666b93c40e7fb9eec9e2edf82c4fbcf69f69f26a422c8cead4ee0da43d7ea",
+      "bytes": 12555
+    },
+    {
+      "path": "RUN_CONTRACT.json",
+      "sha256": "3fc91a8cd6caadd14b46f143801d3ad94b35a5c6d18d16167bb88daa032df660",
+      "bytes": 3390
+    },
+    {
+      "path": "thresholds_snapshot.json",
+      "sha256": "fe13bfaf4074b2e5b7d97297d197596db2455dda4884cf719abacb4482634cce",
+      "bytes": 1099
+    }
+  ],
+  "excluded_git_ignored": [
+    "\"inputs/.bundle_real_image_v1_yolo26n_detect.done\\r\"",
+    "\"inputs/input_1bfe5fe9dfe2d25a.npy\\r\"",
+    "\"inputs/manifest_1bfe5fe9dfe2d25a.json\\r\""
+  ],
+  "excluded_note": "git-ignored raw payloads are not listed: a fresh checkout does not contain them, and their hashes live in the receipts / input manifests"
+}

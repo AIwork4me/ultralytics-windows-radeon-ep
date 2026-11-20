@@ -1,0 +1,144 @@
+{
+ "schema": "experiment_b_state_diff_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:49:11Z",
+ "inputs": {
+  "before": "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json",
+  "after": "reports/experiment_b/_raw/POST_EXPERIMENT_SNAPSHOT.json"
+ },
+ "compared_fields": 18,
+ "changed_fields": [],
+ "rows": [
+  {
+   "field": "git_head",
+   "before": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+   "after": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+   "unchanged": true
+  },
+  {
+   "field": "git_branch",
+   "before": "main",
+   "after": "main",
+   "unchanged": true
+  },
+  {
+   "field": "os_build",
+   "before": "26200",
+   "after": "26200",
+   "unchanged": true
+  },
+  {
+   "field": "os_ubr",
+   "before": 9974,
+   "after": 9974,
+   "unchanged": true
+  },
+  {
+   "field": "device_id",
+   "before": "0x1586",
+   "after": "0x1586",
+   "unchanged": true
+  },
+  {
+   "field": "dxgi_luid",
+   "before": "0x00000000:0x000154E4",
+   "after": "0x00000000:0x000154E4",
+   "unchanged": true
+  },
+  {
+   "field": "driver_version",
+   "before": "32.0.22018.5",
+   "after": "32.0.22018.5",
+   "unchanged": true
+  },
+  {
+   "field": "windowsml_python",
+   "before": "2.5.96",
+   "after": "2.5.96",
+   "unchanged": true
+  },
+  {
+   "field": "onnxruntime_windowsml",
+   "before": "1.25.2.202605110140",
+   "after": "1.25.2.202605110140",
+   "unchanged": true
+  },
+  {
+   "field": "ort_available_providers",
+   "before": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+   ],
+   "after": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+   ],
+   "unchanged": true
+  },
+  {
+   "field": "ort_ep_devices",
+   "before": [
+    "CPUExecutionProvider",
+    "DmlExecutionProvider"
+   ],
+   "after": [
+    "CPUExecutionProvider",
+    "DmlExecutionProvider"
+   ],
+   "unchanged": true
+  },
+  {
+   "field": "appx_relevant_count",
+   "before": 15,
+   "after": 15,
+   "unchanged": true
+  },
+  {
+   "field": "appx_amdgpu_ep_current_user",
+   "before": [],
+   "after": [],
+   "unchanged": true
+  },
+  {
+   "field": "appx_amdgpu_ep_machine",
+   "before": [],
+   "after": [],
+   "unchanged": true
+  },
+  {
+   "field": "appx_machine_total",
+   "before": 74,
+   "after": 74,
+   "unchanged": true
+  },
+  {
+   "field": "ep_dll_count",
+   "before": 0,
+   "after": 0,
+   "unchanged": true
+  },
+  {
+   "field": "catalog_providers_flat_c",
+   "before": 0,
+   "after": 0,
+   "unchanged": true
+  },
+  {
+   "field": "catalog_providers_projection",
+   "before": 0,
+   "after": 0,
+   "unchanged": true
+  }
+ ],
+ "excluded_volatile_fields": [
+  "captured_utc",
+  "captured_local",
+  "install_date",
+  "last_boot",
+  "memory counters",
+  "process counts",
+  "PendingFileRenameOperations"
+ ],
+ "verdict": "SYSTEM_STATE_UNCHANGED"
+}

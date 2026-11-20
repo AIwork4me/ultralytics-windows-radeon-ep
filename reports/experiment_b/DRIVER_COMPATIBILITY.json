@@ -1,0 +1,124 @@
+{
+ "schema": "experiment_b_driver_compatibility_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:49:48Z",
+ "read_only": true,
+ "host_gpu": {
+  "description": "AMD Radeon(TM) 8060S Graphics",
+  "pnp_hardware_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+  "device_id": "0x1586",
+  "subsys_id": "0x8D01103C",
+  "revision": "0xD1",
+  "gfx": "gfx1151 (Radeon 8060S, Strix Halo)",
+  "dxgi_luid": "0x00000000:0x000154E4"
+ },
+ "driver_package": {
+  "wddm_driver_version": "32.0.22018.5",
+  "driver_date": "09/17/2025",
+  "provider": "Advanced Micro Devices, Inc.",
+  "signer": "Microsoft Windows Hardware Compatibility Publisher",
+  "published_inf_names": [
+   "oem21.inf"
+  ],
+  "original_inf_names": [
+   "u0419920.inf"
+  ],
+  "driver_store_package": "u0419920.inf_amd64_ae7f00e4c80f4590",
+  "inf_driver_ver_line": "DriverVer=09/17/2025, 32.0.22018.5",
+  "inf_banner_internal_build": ";----------2510081301-25.20.18-250917a-419920C-HP",
+  "inf_banner_all": [
+   ";-----------------------------------------------",
+   ";----------2510081301-25.20.18-250917a-419920C-HP",
+   ";----------06ddca8aabb2239f129ff9de54aaddf22d96650d",
+   ";-----------------------------------------------"
+  ],
+  "amd_driver_package_records_total": 35,
+  "amd_display_class_records": [
+   {
+    "Published Name": "oem21.inf",
+    "Original Name": "u0419920.inf",
+    "Provider Name": "Advanced Micro Devices, Inc.",
+    "Class Name": "Display",
+    "Class GUID": "{4d36e968-e325-11ce-bfc1-08002be10318}",
+    "Driver Version": "09/17/2025 32.0.22018.5",
+    "Signer Name": "Microsoft Windows Hardware Compatibility Publisher",
+    "Attributes": "Declarative",
+    "WHCP Version": "Unknown"
+   }
+  ],
+  "oem_note": "the INF banner ends in -HP and was published by the Microsoft Windows Hardware Compatibility Publisher, i.e. it is an HP-packaged OEM driver rather than a retail AMD Adrenalin installer"
+ },
+ "os": {
+  "build": "26200",
+  "version": "10.0.26200",
+  "display_version": "25H2",
+  "ubr": 9974
+ },
+ "documented_requirement": {
+  "ep": "AMDGPUExecutionProvider",
+  "source_url": "https://raw.githubusercontent.com/MicrosoftDocs/windows-ai-docs/main/docs/new-windows-ml/supported-execution-providers.md",
+  "accessed_utc": "2026-11-20T03:48:11Z",
+  "sha256_raw": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+  "last_updated_marker": {
+   "front_matter_ms_date": "11/18/2026"
+  },
+  "minimum_windows_ml": "2.5.96",
+  "driver": "Adrenalin Edition 24.12.1 or later",
+  "gpu_target_list_documented": false,
+  "statement": "the published page states a Windows ML minimum and an Adrenalin minimum; it states no gfx/DID list, so gfx1151 eligibility cannot be read from it"
+ },
+ "adrenalin_software_version": {
+  "value": "UNKNOWN",
+  "reason": "the installed AMD software package reports 10.25.20179.0 and the INF banner reports the driver-package build 25.20.18; neither is the Adrenalin marketing version and no documented mapping exists, so the documented Adrenalin minimum can be neither confirmed nor refuted from read-only telemetry",
+  "installed_amd_software_package": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware 10.25.20179.0",
+  "corroboration_only": "the driver date 2025-09-17 is later than the Adrenalin 24.12.1 release window; this is consistent with, not proof of, meeting the minimum"
+ },
+ "compatibility_findings": [
+  {
+   "id": "DRV-1",
+   "statement": "OS build 26200.9974 satisfies the documented 24H2 (26100+) requirement",
+   "status": "MET"
+  },
+  {
+   "id": "DRV-2",
+   "statement": "Windows ML binding 2.5.96 satisfies the documented 2.5.96 minimum",
+   "status": "MET"
+  },
+  {
+   "id": "DRV-3",
+   "statement": "Adrenalin 24.12.1-or-later requirement",
+   "status": "UNVERIFIED",
+   "why": "no documented mapping from 32.0.22018.5 or 25.20.18 to an Adrenalin marketing version"
+  },
+  {
+   "id": "DRV-4",
+   "statement": "gfx1151 / DID 0x1586 explicitly supported by AMDGPU EP",
+   "status": "UNVERIFIED",
+   "why": "no official gfx/DID list is published; cannot be tested without the EP"
+  },
+  {
+   "id": "DRV-5",
+   "statement": "the installed display driver can run GPU inference at all",
+   "status": "MET_FOR_DML",
+   "why": "the DirectML canary executes on this adapter with positive DML profiler nodes"
+  },
+  {
+   "id": "DRV-6",
+   "statement": "HP OEM packaging blocks the AMDGPU EP",
+   "status": "UNVERIFIED",
+   "why": "no official statement ties the AMDGPU EP to a retail AMD installer"
+  }
+ ],
+ "dml_functional_baseline": {
+  "status": "GPU_PASS_VALIDATED",
+  "target_ep_nodes": 1,
+  "cpu_nodes": 0,
+  "parity": {
+   "allclose": true,
+   "max_abs": 7.450580596923828e-09,
+   "reason": null
+  }
+ },
+ "verdict": "DRIVER_REQUIREMENT_NEITHER_PROVEN_NOR_REFUTED; the driver stack is functional for DirectML and no evidence ties the empty catalog to the HP OEM driver"
+}

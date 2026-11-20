@@ -1,0 +1,388 @@
+{
+  "schema_version": 2,
+  "receipt_version": 2,
+  "run_id": "B_GFX1151_DML_TIERA_20261120T0400Z",
+  "case_id": "yolo26n-cls__classify__dml",
+  "created_utc": "2026-11-20T03:47:58Z",
+  "rerun_of": null,
+  "status": {
+    "model_asset": "AVAILABLE",
+    "export": "PASS_ONNX_EXPORT",
+    "cpu_oracle": "PASS_CPU_REFERENCE",
+    "amdgpu": "NOT_RUN",
+    "dml": "PASS_GPU_EXECUTED_FULL",
+    "task_oracle": "PASS_TASK",
+    "benchmark": "NOT_MEASURED",
+    "host": "VERIFIED_GFX1151"
+  },
+  "status_reasons": {},
+  "host": {
+    "host_id": "host_53f62d2ac2c6",
+    "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586",
+    "device_luid": "0x00000000:0x000154E4",
+    "dxgi_evidence": {
+      "adapters": [
+        {
+          "i": 0,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x000154E4",
+          "software": false
+        },
+        {
+          "i": 1,
+          "desc": "AMD Radeon(TM) 8060S Graphics",
+          "vid": "0x1002",
+          "did": "0x1586",
+          "luid": "0x00000000:0x08D5FD5C",
+          "software": false
+        },
+        {
+          "i": 2,
+          "desc": "Microsoft Basic Render Driver",
+          "vid": "0x1414",
+          "did": "0x008C",
+          "luid": "0x00000000:0x000174B5",
+          "software": true
+        }
+      ],
+      "selected_luid": "0x00000000:0x000154E4",
+      "selected_index": 0,
+      "did_match": true,
+      "dedup_note": "same physical gfx1151 enumerated 2x (LUIDs: ['0x00000000:0x000154E4', '0x00000000:0x08D5FD5C']); selected index 0"
+    },
+    "pnp_evidence": {
+      "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1"
+    },
+    "os_build": "26200.9974",
+    "driver_version": "32.0.22018.5",
+    "driver_date": "09/17/2025",
+    "wddm_version": null,
+    "dedicated_vram_mb": 32589,
+    "shared_memory_mb": 78459,
+    "memory": {
+      "schema_version": 1,
+      "sources": {
+        "dedicated_video_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedVideoMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "driver/BIOS-reported dedicated segment; on an integrated APU this is a carve-out, NOT independent physical VRAM"
+        },
+        "dedicated_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.DedicatedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system memory dedicated to the adapter segment"
+        },
+        "shared_system_mb": {
+          "source": "DXGI_ADAPTER_DESC1.SharedSystemMemory // 1048576",
+          "unit": "MiB (rounded down)",
+          "meaning": "system RAM the GPU is allowed to share; not VRAM"
+        },
+        "wmi_adapter_ram_bytes": {
+          "source": "WMI Win32_VideoController.AdapterRAM",
+          "unit": "bytes",
+          "meaning": "uint32 field; saturates near 4 GiB and is unreliable for >4 GiB devices; do NOT use as VRAM capacity"
+        }
+      },
+      "values": {
+        "dedicated_video_mb": 32589,
+        "dedicated_system_mb": 0,
+        "shared_system_mb": 78459,
+        "wmi_adapter_ram_bytes": 4293918720
+      },
+      "wmi_adapter_ram_saturated": true,
+      "measurement_status": "DXGI_STATIC_ENUMERATION_ONLY; runtime VRAM usage, bandwidth, temperature and power are NOT_MEASURED"
+    },
+    "verified_device_identity": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+    "did_match": true
+  },
+  "model": {
+    "family": "YOLO26",
+    "task": "classify",
+    "checkpoint": "yolo26n-cls.pt",
+    "size": "n",
+    "pt_sha256": "0dd6f8dbc448870ac98a3cbb7156f923f7ce21fed3755d4019169ffffd279e81",
+    "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e",
+    "onnx_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/models/onnx/yolo26n-cls.raw_b1_fp32_static.onnx",
+    "export": {
+      "imgsz": 224,
+      "nms_mode": "raw",
+      "quantize": "fp32",
+      "batch": 1,
+      "dynamic": false,
+      "ultralytics_version": "8.4.215"
+    },
+    "input_names": [
+      "images"
+    ],
+    "output_names": [
+      "output0"
+    ],
+    "inputs_sha256": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+  },
+  "session": {
+    "ep": "DML",
+    "requested_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "provider_node_counts": {
+      "DmlExecutionProvider": 1
+    },
+    "graph_node_total": 1,
+    "profile_available": true,
+    "profile_fused_event_present": true,
+    "ort_version": "1.25.2",
+    "ort_distribution": "onnxruntime",
+    "device_luid": "0x00000000:0x000154E4",
+    "routing_notes": "",
+    "stderr_fallback_signals": [],
+    "stdout_fallback_signals": [],
+    "worker_pid": 9240
+  },
+  "parity": {
+    "outputs": [
+      {
+        "name": "output0",
+        "shape": [
+          1,
+          1000
+        ],
+        "dtype": "float32",
+        "finite": true,
+        "max_abs_diff": 4.76837158203125e-07,
+        "mean_abs_diff": 1.017549123016881e-09,
+        "max_rel_diff": 1.3092297757098159e-05,
+        "p99_abs_diff": 3.903987817466255e-09,
+        "allclose": true,
+        "threshold_used": 0.005,
+        "candidate_sha256": "6ad5350f94e5eb416fef3408d6a29ca028eed43eef27f3eed0e8155c4e57249d",
+        "ref_sha256": "544a28121ada6bd2213bfb5b6ef3aacc866ab2d369263f757ed1039a12c8b130"
+      }
+    ],
+    "all_outputs_allclose": true,
+    "by_name_matching": true,
+    "thresholds": {
+      "atol": 0.005,
+      "rtol": 0.005,
+      "source": "configs/thresholds.yaml",
+      "int_min_agreement": 0.999
+    }
+  },
+  "task": null,
+  "benchmark_data": null,
+  "errors": [],
+  "provenance": {
+    "script_head_sha": "git:see-git_head_sha",
+    "command": "python -m runner.r1_pipeline --models yolo26n-cls.pt --eps dml",
+    "seed": 0,
+    "python_version": "3.12.10",
+    "ultralytics_version": "8.4.215",
+    "git_head_sha": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+    "worktree_dirty": false,
+    "harness_sha256": "0b663961416ce7c3abc48b9a8047f96476201bb2a2476790e679cc9a43bde6bb",
+    "harness_file_count": 79,
+    "harness_dirs": [
+      "runner",
+      "src/radeon_ort",
+      "configs",
+      "schemas"
+    ],
+    "raw_log_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/raw/log_yolo26n-cls__classify_dml.txt"
+  },
+  "verdicts": {
+    "identity": "EP_DEVICE_SELECTED",
+    "amdgpu": {
+      "execution": "NOT_RUN",
+      "numeric_parity": "PASS",
+      "task_parity": "NOT_RUN",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "NOT_MEASURED"
+    },
+    "dml": {
+      "execution": "PASS_FULL",
+      "numeric_parity": "PASS",
+      "task_parity": "PASS_TASK_PARITY",
+      "pt_app_smoke": "NOT_RUN",
+      "backend_routing": "BACKEND_UNVERIFIED",
+      "benchmark": "NOT_MEASURED"
+    }
+  },
+  "input": {
+    "input_id": "987789f38c39ecb17fa8081e5e5f2d78168bd54a0b908a2aaf99bde175e469a6",
+    "kind": "real_image",
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "tensor_sha256": {
+      "images": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+    },
+    "preprocess": {
+      "method": "resize_short+centercrop",
+      "params": {
+        "resize_h": 299,
+        "resize_w": 224,
+        "crop_top": 37,
+        "crop_left": 0,
+        "imgsz": 224
+      },
+      "pt_equivalence": "PT oracle consumes the SAME persisted tensor bytes",
+      "tensor_dtype": "float32",
+      "tensor_shape": [
+        1,
+        3,
+        224,
+        224
+      ]
+    },
+    "npy_path_redacted": "%USERPROFILE%//Desktop/YOLO/ultralytics-windows-radeon-ep/reports/gfx1151/B_GFX1151_DML_TIERA_20261120T0400Z/inputs/input_987789f38c39ecb1.npy",
+    "generation": {
+      "script": "radeon_ort.input_contract.build_input_bundle",
+      "canonical_config": "{\"export_params\":{},\"image_sha256\":\"c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63\",\"imgsz\":224,\"model_name\":\"yolo26n-cls\",\"onnx_sha256\":\"4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e\",\"task\":\"classify\",\"variant\":\"real_image_v1\"}"
+    }
+  },
+  "expected_outputs": [
+    {
+      "name": "output0",
+      "dtype": "float32",
+      "shape": [
+        1,
+        1000
+      ]
+    }
+  ],
+  "worker": {
+    "exit_code": 0,
+    "pid": 9240,
+    "parent_pid": 9648,
+    "python": "3.12.10"
+  },
+  "device_binding": {
+    "ep": "DML",
+    "state": "EP_DEVICE_SELECTED",
+    "selected_candidate_index": 0,
+    "candidates_tried": 1,
+    "selected_ep_device": {
+      "ep_vendor": "Microsoft",
+      "ep_metadata": {
+        "device_id": 0
+      },
+      "ep_options": {}
+    },
+    "probe": {
+      "amdgpu_nodes": 0,
+      "cpu_nodes": 0,
+      "profile": null
+    },
+    "final_profile": {
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      }
+    },
+    "attribution": "fused_single_node",
+    "dxgi_corroboration": {
+      "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+      "is_ep_reported": false,
+      "adapter_index": 0,
+      "luid": "0x00000000:0x000154E4",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "description": "AMD Radeon(TM) 8060S Graphics",
+      "did_match": true,
+      "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+      "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal"
+    },
+    "ep_reported_identity": {
+      "source": "OrtEpDevice.ep_metadata",
+      "exposes_luid": false,
+      "exposes_pci_id": false,
+      "reported": {
+        "device_id": 0
+      },
+      "note": "DML exposes only an adapter ordinal; it does not report a LUID or PCI identity"
+    },
+    "identity_basis": "EP_DEVICE_ORDINAL + PROFILE_NODE_ATTESTATION + HOST_DXGI_INDIRECT_CORROBORATION",
+    "notes": "DML device_id = DXGI adapter ordinal (host-side assumption, not EP-reported LUID); profile revalidated on the final session's first run"
+  },
+  "task_parity": {
+    "oracle_kind": "TASK_PARITY",
+    "task": "classify",
+    "ref_source": "PT_ULTRALYTICS",
+    "cand_source": "DML_POST",
+    "ref_fingerprint_sha256": "3643d95f301abdf9ec33af55717143a3",
+    "cand_fingerprint_sha256": "f8db3f2052c8bd256d1a9ede2f89e5e4",
+    "metrics": {
+      "ref_entities": 0,
+      "ref_top1": 654,
+      "cand_top1": 654,
+      "top1_match": true,
+      "top5_overlap": 5,
+      "score_drift": 5.364418029785156e-07
+    },
+    "thresholds_declared": {
+      "max_score_drift": 0.05,
+      "require_top1_match": true
+    },
+    "thresholds_source": "configs/thresholds.yaml",
+    "passed": true,
+    "not_implemented_reason": null,
+    "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+    "input_id": "987789f38c39ecb17fa8081e5e5f2d78168bd54a0b908a2aaf99bde175e469a6"
+  },
+  "rca_issue_ids": [],
+  "contract": {
+    "run_contract_sha256": "8c3304ae36ba70cd806870987bdbc895c45b23f5a5a96b93c782a8ad8a1779fe",
+    "code": {
+      "git_head_sha": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+      "worktree_dirty": false,
+      "harness_sha256": "0b663961416ce7c3abc48b9a8047f96476201bb2a2476790e679cc9a43bde6bb",
+      "harness_file_count": 79,
+      "harness_dirs": [
+        "runner",
+        "src/radeon_ort",
+        "configs",
+        "schemas"
+      ]
+    },
+    "thresholds_sha256": "e9a159fbb665471344340f63a125725afc65fd30d96118f7c03c03f1d3987c17",
+    "device_identity": {
+      "gfx": "gfx1151",
+      "host_id": "host_53f62d2ac2c6",
+      "vendor_id": "0x1002",
+      "device_id": "0x1586",
+      "physical_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+      "luid": "0x00000000:0x000154E4",
+      "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+      "did_match": true
+    },
+    "environment": {
+      "python_executable_name": "python.exe",
+      "ort_distribution": "onnxruntime-windowsml",
+      "ort_providers": [
+        "CPUExecutionProvider",
+        "DmlExecutionProvider"
+      ],
+      "ort_version": "1.25.2",
+      "os_build": "10.0.26200",
+      "python_version": "3.12.10",
+      "windowsml_version": "2.5.96"
+    },
+    "ep": "dml",
+    "model": {
+      "checkpoint": "yolo26n-cls.pt",
+      "pt_sha256": "0dd6f8dbc448870ac98a3cbb7156f923f7ce21fed3755d4019169ffffd279e81",
+      "onnx_sha256": "4a4033a4409eaa2a0621f7f0bf9b9622fbd6aa66b98d8c842db016675dc7409e"
+    },
+    "input": {
+      "input_id": "987789f38c39ecb17fa8081e5e5f2d78168bd54a0b908a2aaf99bde175e469a6",
+      "image_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+      "tensor_sha256": {
+        "images": "5c7c2101e161a62f72e97e36fecb5359763381499c6837ca597ef5cb806b39b8"
+      }
+    }
+  }
+}

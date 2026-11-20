@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "run_id": "B_GFX1151_DML_SAFETY_20261120T0352Z",
+  "created_utc": "2026-11-20T03:55:37Z",
+  "generator": "tools/run_manifest.py",
+  "entries": [
+    {
+      "path": "DISPOSITION_LEDGER.csv",
+      "sha256": "972b63e61e1429ae71c835e2c48fa0cc3c794e0c16ee0f047fd8ca956073c495",
+      "bytes": 20363
+    },
+    {
+      "path": "DISPOSITION_LEDGER.json",
+      "sha256": "e134d7f12e9ade291ab93f99a0671e062fe260167930da37a7add5071e5fa813",
+      "bytes": 70379
+    },
+    {
+      "path": "inputs/.bundle_real_image_v1_yolo26n_detect.done",
+      "sha256": "128f4c7f97c337569fc36a21c6be32a6a8b24c45c4fde917bbb7fea5b5432615",
+      "bytes": 64
+    },
+    {
+      "path": "inputs/input_1bfe5fe9dfe2d25a.npy",
+      "sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+      "bytes": 4915328
+    },
+    {
+      "path": "inputs/manifest_1bfe5fe9dfe2d25a.json",
+      "sha256": "72e981098939acf7f748c10a92c2acbef1e0afecbce30403b85a53e8afe112ed",
+      "bytes": 1502
+    },
+    {
+      "path": "logs/r1_pipeline.log",
+      "sha256": "840d8c12eb338506b58d88f1291cc8a4d3fa4cff4bd94221bd45434c21ceb787",
+      "bytes": 316
+    },
+    {
+      "path": "MATRIX_EXIT.json",
+      "sha256": "43b95a650721a4d3dab818da50f19ddc91c2de61c783992795b2e9929dee1fab",
+      "bytes": 1340
+    },
+    {
+      "path": "negative_gray.png",
+      "sha256": "94e6f0cb218aeffff4772f5bf95dfbdd17abf977e49028116fa4438d9af44fea",
+      "bytes": 687455
+    },
+    {
+      "path": "PIPELINE_EXIT.json",
+      "sha256": "bfd0d184c6691c9c3a2422bea6ff7d88780e95762139a9881e2be80b44d14904",
+      "bytes": 258
+    },
+    {
+      "path": "R1_CASE_LEDGER.jsonl",
+      "sha256": "3fe90926f685114461476942ebb850f0af05509a3eddb7f57b4e375b6d172ce9",
+      "bytes": 215
+    },
+    {
+      "path": "raw/cand_yolo26n__detect_dml.npz",
+      "sha256": "a4f928583146010af431fbc88d9bf7432f07ce91c353cbd5161dcebe00f5a4f6",
+      "bytes": 2607655
+    },
+    {
+      "path": "raw/case_yolo26n__detect_cpu.json",
+      "sha256": "3910cc079c9aeec16a3adc6b065c3237d1fcfd6bc2139a22ee0e493ff8aaf1f7",
+      "bytes": 688
+    },
+    {
+      "path": "raw/case_yolo26n__detect_dml.json",
+      "sha256": "c5628636fa272ba38d2b4a7e84b1ef3765f9403f6ae5c5b1fd68e865ddeb821f",
+      "bytes": 909
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_cpu.json",
+      "sha256": "9f47edcd9705f942e86b40656ee372e4c6078dc16b99d3bccc6b81d8445c125e",
+      "bytes": 803
+    },
+    {
+      "path": "raw/frag_yolo26n__detect_dml.json",
+      "sha256": "1834cb2658be6ece2a7bdbaca9d4f3c40d0fadf859c878bcaeb43686abde6da1",
+      "bytes": 2910
+    },
+    {
+      "path": "raw/log_cpu_yolo26n__detect.txt",
+      "sha256": "9a6ea956275b9bb1de9a06efb7a651b15e1db0c72d000e929c20791ebf86388d",
+      "bytes": 679
+    },
+    {
+      "path": "raw/log_post_yolo26n__detect_dml.txt",
+      "sha256": "685e6b4653970514715ba8e6a35805c1803d33f8183b8afa077323a369bc9840",
+      "bytes": 701
+    },
+    {
+      "path": "raw/log_pt_yolo26n__detect.txt",
+      "sha256": "ab7cb8ae61d597e801c6a94f9ce321733d921570cb9b159a8e5ae11cf7e7c389",
+      "bytes": 763
+    },
+    {
+      "path": "raw/log_tp_yolo26n__detect_dml.txt",
+      "sha256": "15347b1a7a2a81fce7356d89d242a0f3f3f664b35d95929b5095f49c79595d4d",
+      "bytes": 1417
+    },
+    {
+      "path": "raw/log_yolo26n__detect_dml.txt",
+      "sha256": "ac28dc0d44fd44156088c6d62e557a07d26b7d7cbc64f4f78abba553d2ab6512",
+      "bytes": 913
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.json",
+      "sha256": "e26be77ef8fcba9e8fbef953048a4b328d5d98ba47fe4331f9620f8357c44712",
+      "bytes": 593
+    },
+    {
+      "path": "raw/post_yolo26n__detect_dml.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/prof_cpu_yolo26n__detect_2026-11-20_11-46-02_718.json",
+      "sha256": "d7724c7d28ef6b7191cee44c0cfba9bdf88bae5fcdd3a82175665f86d796bb5e",
+      "bytes": 401153
+    },
+    {
+      "path": "raw/prof_yolo26n__detect_dml_2026-11-20_11-46-08_723.json",
+      "sha256": "8a6036f4d932649523a1b1a1f0cdab93c155c9f1e26794c23bc8eac3029603e7",
+      "bytes": 1669
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.json",
+      "sha256": "d45a771fc020d8af34d03213b92f8bc0f91a00faad567df7c55f560e090ebecf",
+      "bytes": 609
+    },
+    {
+      "path": "raw/pt_yolo26n__detect.npz",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "bytes": 22
+    },
+    {
+      "path": "raw/ref_yolo26n__detect.npz",
+      "sha256": "09f1e064de6692e7254c1662b6b6d2046516c68004b6da3cb1bc37966d08fc1d",
+      "bytes": 612126
+    },
+    {
+      "path": "raw/tp_yolo26n__detect_dml.json",
+      "sha256": "ec4b3368305bd7aca697fc5953ed8b0d4f540e62028be130b51a2b74463b9fcf",
+      "bytes": 723
+    },
+    {
+      "path": "receipts/receipt_yolo26n__detect__dml.json",
+      "sha256": "1046d6f6e337432b7a5a0d44cc230f71a89ec286111039da7b19f1aa30d676a4",
+      "bytes": 13437
+    },
+    {
+      "path": "RUN_CONTRACT.json",
+      "sha256": "70a3722165b666c8e153dba38bec5d17040a2456173561bd7ad164827c6d3307",
+      "bytes": 3390
+    },
+    {
+      "path": "thresholds_snapshot.json",
+      "sha256": "fe13bfaf4074b2e5b7d97297d197596db2455dda4884cf719abacb4482634cce",
+      "bytes": 1099
+    }
+  ],
+  "excluded_git_ignored": [
+    "\"inputs/.bundle_real_image_v1_yolo26n_detect.done\\r\"",
+    "\"inputs/input_1bfe5fe9dfe2d25a.npy\\r\"",
+    "\"inputs/manifest_1bfe5fe9dfe2d25a.json\\r\""
+  ],
+  "excluded_note": "git-ignored raw payloads are not listed: a fresh checkout does not contain them, and their hashes live in the receipts / input manifests"
+}

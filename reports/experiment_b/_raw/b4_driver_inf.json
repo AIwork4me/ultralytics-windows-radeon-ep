@@ -1,0 +1,433 @@
+﻿{
+    "captured":  "2026-11-20T11:44:37.1053465+08:00",
+    "engine":  "5.1.26100.9818",
+    "inf":  {
+                "path":  "C:/Windows/INF/oem21.inf",
+                "exists":  true,
+                "driver_ver_line":  "DriverVer=09/17/2025, 32.0.22018.5",
+                "banner_comments":  [
+                                        ";-----------------------------------------------",
+                                        ";----------2510081301-25.20.18-250917a-419920C-HP",
+                                        ";----------06ddca8aabb2239f129ff9de54aaddf22d96650d",
+                                        ";-----------------------------------------------"
+                                    ],
+                "lines_read":  25
+            },
+    "pnputil_amd_records":  [
+                                {
+                                    "Published Name":  "oem50.inf",
+                                    "Original Name":  "amdcamera_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{788eb7e3-7d3b-4f2f-ae2c-de214a8a8890}",
+                                    "Driver Version":  "12/25/2024 11.4.2.734",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem53.inf",
+                                    "Original Name":  "amdcamera_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{87dcbcb3-e8ac-4596-a051-e4ada1b0bedc}",
+                                    "Driver Version":  "08/08/2025 11.4.2.1159",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem51.inf",
+                                    "Original Name":  "amdcamera_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{67b38179-39ec-4acc-872c-f5b6716da338}",
+                                    "Driver Version":  "03/28/2025 11.4.2.950",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem49.inf",
+                                    "Original Name":  "amdcamera_ext_mep.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{2970a3e6-2b01-4381-87bb-bd6c2bbd31fe}",
+                                    "Driver Version":  "09/24/2024 11.4.2.390",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem36.inf",
+                                    "Original Name":  "amddrtm.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "08/26/2026 1.0.20.0",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem38.inf",
+                                    "Original Name":  "amddrtm.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "10/16/2026 1.0.20.1",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem76.inf",
+                                    "Original Name":  "amdfendr.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "09/05/2025 25.20.0.3",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem26.inf",
+                                    "Original Name":  "amdfendr.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "06/11/2025 25.20.0.2",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem72.inf",
+                                    "Original Name":  "amdgpio2.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "03/22/2026 2.2.0.137",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem19.inf",
+                                    "Original Name":  "amdi2c.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "09/09/2025 1.2.0.126",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem37.inf",
+                                    "Original Name":  "amdinterface.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "12/04/2025 2.0.0.26",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem13.inf",
+                                    "Original Name":  "amdisp.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "12/17/2024 11.4.2.734",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem45.inf",
+                                    "Original Name":  "amdmicropep.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "12/17/2025 1.0.47.1",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem32.inf",
+                                    "Original Name":  "amdpmf.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "07/24/2026 26.10.15.0",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem56.inf",
+                                    "Original Name":  "amdppkg.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "02/19/2026 8.0.0.62",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem30.inf",
+                                    "Original Name":  "amdpsp.inf",
+                                    "Provider Name":  "Advanced Micro Devices Inc.",
+                                    "Class Name":  "SecurityDevices",
+                                    "Class GUID":  "{d94ee5d8-d189-4994-83d2-f68d7d41b0e6}",
+                                    "Driver Version":  "06/04/2026 5.46.0.0",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem33.inf",
+                                    "Original Name":  "amdsfhkmdf.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "01/09/2026 1.1.0.37",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem20.inf",
+                                    "Original Name":  "amduw23e.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{07a2a561-d001-4503-b239-ef2fe0379efb}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem40.inf",
+                                    "Original Name":  "amdwirelessbutton.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "HIDClass",
+                                    "Class GUID":  "{745a17a0-74d3-11d0-b6fe-00a0c90f57da}",
+                                    "Driver Version":  "09/09/2025 1.0.0.6",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem2.inf",
+                                    "Original Name":  "sensorhm1092.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "08/22/2025 11.4.2.1159",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem3.inf",
+                                    "Original Name":  "sensorhm1092_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{87dcbcb3-e8ac-4596-a051-e4ada1b0bedc}",
+                                    "Driver Version":  "08/08/2025 11.4.2.1159",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem1.inf",
+                                    "Original Name":  "sensorhm1092_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{9870367d-5ed1-46a7-bac7-2ab7fce3ee98}",
+                                    "Driver Version":  "03/28/2025 11.4.2.950",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem12.inf",
+                                    "Original Name":  "sensorov05c.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "System",
+                                    "Class GUID":  "{4d36e97d-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "12/17/2024 11.4.2.734",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem31.inf",
+                                    "Original Name":  "sensorov05c_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{87dcbcb3-e8ac-4596-a051-e4ada1b0bedc}",
+                                    "Driver Version":  "08/08/2025 11.4.2.1159",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem14.inf",
+                                    "Original Name":  "sensorov05c_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{4d7811a0-3ff1-4ef2-a540-148302e7f431}",
+                                    "Driver Version":  "12/25/2024 11.4.2.734",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem16.inf",
+                                    "Original Name":  "sensorov05c_ext_chiron.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Extension",
+                                    "Class GUID":  "{e2f84ce7-8efa-411c-aa69-97454ca4cb57}",
+                                    "Extension ID":  "{bb4a800c-e752-4011-9fd8-14c88febee42}",
+                                    "Driver Version":  "03/28/2025 11.4.2.950",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem52.inf",
+                                    "Original Name":  "amdcamera.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc",
+                                    "Class Name":  "Camera",
+                                    "Class GUID":  "{ca3e7ab9-b4c3-4ae6-8251-579ef933890f}",
+                                    "Driver Version":  "08/22/2025 11.4.2.1159",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem22.inf",
+                                    "Original Name":  "amdocl.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "SoftwareComponent",
+                                    "Class GUID":  "{5c4c3332-344d-483c-8739-259e934c9cc8}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem23.inf",
+                                    "Original Name":  "amdogl.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "SoftwareComponent",
+                                    "Class GUID":  "{5c4c3332-344d-483c-8739-259e934c9cc8}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem46.inf",
+                                    "Original Name":  "amdsfhumdf.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "Sensor",
+                                    "Class GUID":  "{5175d334-c371-4806-b3ba-71fd53c9258d}",
+                                    "Driver Version":  "01/09/2026 1.1.0.37",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem24.inf",
+                                    "Original Name":  "amdvlk.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "SoftwareComponent",
+                                    "Class GUID":  "{5c4c3332-344d-483c-8739-259e934c9cc8}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem25.inf",
+                                    "Original Name":  "amdwin-u0419920.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "SoftwareComponent",
+                                    "Class GUID":  "{5c4c3332-344d-483c-8739-259e934c9cc8}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem18.inf",
+                                    "Original Name":  "atihdwt6.inf",
+                                    "Provider Name":  "Advanced Micro Devices",
+                                    "Class Name":  "MEDIA",
+                                    "Class GUID":  "{4d36e96c-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "05/26/2025 10.0.1.41",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Universal",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem21.inf",
+                                    "Original Name":  "u0419920.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "Display",
+                                    "Class GUID":  "{4d36e968-e325-11ce-bfc1-08002be10318}",
+                                    "Driver Version":  "09/17/2025 32.0.22018.5",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                },
+                                {
+                                    "Published Name":  "oem43.inf",
+                                    "Original Name":  "uwppair.inf",
+                                    "Provider Name":  "Advanced Micro Devices, Inc.",
+                                    "Class Name":  "SoftwareComponent",
+                                    "Class GUID":  "{5c4c3332-344d-483c-8739-259e934c9cc8}",
+                                    "Driver Version":  "03/05/2025 32.2520.0.0",
+                                    "Signer Name":  "Microsoft Windows Hardware Compatibility Publisher",
+                                    "Attributes":  "Declarative",
+                                    "WHCP Version":  "Unknown"
+                                }
+                            ],
+    "pnputil_record_count":  77,
+    "video_controller":  [
+                             {
+                                 "Name":  "AMD Radeon(TM) 8060S Graphics",
+                                 "DriverVersion":  "32.0.22018.5",
+                                 "DriverDate":  "09/17/2025 08:00:00",
+                                 "InfFilename":  "oem21.inf",
+                                 "PNPDeviceID":  "PCI\\VEN_1002\u0026DEV_1586\u0026SUBSYS_8D01103C\u0026REV_D1",
+                                 "Status":  "OK",
+                                 "AdapterRAM":  "4293918720"
+                             }
+                         ],
+    "driver_store_packages":  [
+                                  "u0419920.inf_amd64_ae7f00e4c80f4590"
+                              ],
+    "os":  {
+               "caption":  "Microsoft Windows 11 专业版",
+               "version":  "10.0.26200",
+               "build":  "26200"
+           }
+}

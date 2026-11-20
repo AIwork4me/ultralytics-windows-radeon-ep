@@ -1,0 +1,6 @@
+$ .\.venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\models\pt\yolo26n-pose.pt --task pose --tensor-npy C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\inputs\input_f7c35eeba4193cb8.npy --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\pt_yolo26n-pose__pose.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\pt_yolo26n-pose__pose.npz
+rc=0 elapsed=4.2s
+--- stdout ---
+{"ok": true, "task": "pose", "n": 4}
+
+--- stderr ---

@@ -1,0 +1,255 @@
+{
+ "schema": "experiment_b_provisioning_attempt_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:45:42Z",
+ "read_only": true,
+ "system_components_installed_or_changed": 0,
+ "authorization": {
+  "policy": "AGENTS.md Owner-Authorized Provisioning Exception",
+  "scope": "one named physical validation host; one component per step; read-only probe before/after; rollback path recorded",
+  "owner_authorized_components": [
+   "pip install windowsml==2.5.96 (Python binding only, no system component) - already performed in mission R4/A1, not repeated here"
+  ],
+  "not_authorized_here": [
+   "installing an MSIX signed by Microsoft without a matching catalog entry",
+   "replacing or upgrading the HP OEM display driver",
+   "copying a DLL out of C:/Program Files/WindowsApps",
+   "disabling Defender / Secure Boot / driver signature enforcement"
+  ],
+  "host": {
+   "named_host": "HP ZBook Ultra G1a 14 (Ryzen AI MAX+ PRO 395 / Radeon 8060S)",
+   "host_id": "host_53f62d2ac2c6",
+   "gfx": "gfx1151",
+   "device_id": "0x1586",
+   "os_build": "26200",
+   "elevated": false
+  }
+ },
+ "path_1_official_catalog": {
+  "documented_flow": "ExecutionProviderCatalog.find_all_providers() -> find AMDGPUExecutionProvider -> ensure_ready_async() -> register the returned library_path with ORT",
+  "observed": {
+   "provider_count": 0,
+   "provider_names": [],
+   "amdgpu_provider_found": false,
+   "amdgpu_provider": null,
+   "ensure_ready_addressed": false,
+   "ensure_ready_reason": "ensure_ready is an instance method on a provider returned by find_all_providers(); with zero providers there is no object to address, so no download/install was attempted"
+  },
+  "catalog_surfaces_probed": 7,
+  "surfaces_with_any_provider": [],
+  "outcome": "NOT_ADDRESSABLE_CATALOG_EMPTY",
+  "conclusion": "the catalog does not list AMDGPUExecutionProvider on any surface, so the official dynamic-install path cannot be started"
+ },
+ "path_2_official_signed_byo": {
+  "documented_flow": "obtain an official signed Windows artifact for this device and ORT ABI, verify publisher and hash, register amdgpu-ep.dll",
+  "artifact_probe": {
+   "repo": {
+    "full_name": "onnxruntime/onnxruntime-ep-amdgpu",
+    "default_branch": "main",
+    "created_at": "2026-05-11T18:50:04Z",
+    "pushed_at": "2026-11-19T17:04:53Z",
+    "license": "MIT",
+    "description": "ONNX Runtime plugin Execution Providers for AMD ML hardware"
+   },
+   "github_releases": 0,
+   "github_release_assets": [],
+   "nuget_search_total": 0,
+   "nuget_package_404": [
+    "https://api.nuget.org/v3-flatcontainer/onnxruntime-ep-amdgpu/index.json",
+    "https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime.ep.amdgpu/index.json"
+   ]
+  },
+  "binding_api_surface": {
+   "windowsml_version": "2.5.96",
+   "module_members": [
+    "AsyncBlock",
+    "AsyncCompletionCallback",
+    "AsyncOperation",
+    "AsyncProgressCallback",
+    "Callable",
+    "CatalogModelInfo",
+    "CatalogModelInfoEnumCallback",
+    "CatalogModelInfoHandle",
+    "CatalogModelInstance",
+    "CatalogModelInstanceHandle",
+    "CatalogModelInstanceResult",
+    "CatalogModelInstanceStatus",
+    "CatalogModelStatus",
+    "EpCatalog",
+    "EpCatalogHandle",
+    "EpCertification",
+    "EpEnumCallback",
+    "EpReadyState",
+    "ExecutionProvider",
+    "ModelCatalog",
+    "ModelCatalogHandle",
+    "ModelCatalogSource",
+    "ModelCatalogSourceHandle",
+    "Optional",
+    "StringEnumCallback",
+    "WinMLAsyncCancel",
+    "WinMLAsyncClose",
+    "WinMLAsyncGetStatus",
+    "WinMLCatalogModelInfoEnumExecutionProviders",
+    "WinMLCatalogModelInfoGetId",
+    "WinMLCatalogModelInfoGetIdSize",
+    "WinMLCatalogModelInfoGetInstanceAsync",
+    "WinMLCatalogModelInfoGetInstanceResult",
+    "WinMLCatalogModelInfoGetInstanceWithHeadersAsync",
+    "WinMLCatalogModelInfoGetLicense",
+    "WinMLCatalogModelInfoGetLicenseSize",
+    "WinMLCatalogModelInfoGetLicenseText",
+    "WinMLCatalogModelInfoGetLicenseTextSize",
+    "WinMLCatalogModelInfoGetLicenseUri",
+    "WinMLCatalogModelInfoGetLicenseUriSize",
+    "WinMLCatalogModelInfoGetModelSizeInBytes",
+    "WinMLCatalogModelInfoGetName",
+    "WinMLCatalogModelInfoGetNameSize",
+    "WinMLCatalogModelInfoGetPublisher",
+    "WinMLCatalogModelInfoGetPublisherSize",
+    "WinMLCatalogModelInfoGetSourceId",
+    "WinMLCatalogModelInfoGetSourceIdSize",
+    "WinMLCatalogModelInfoGetStatus",
+    "WinMLCatalogModelInfoGetUri",
+    "WinMLCatalogModelInfoGetUriSize",
+    "WinMLCatalogModelInfoGetVersion",
+    "WinMLCatalogModelInfoGetVersionSize",
+    "WinMLCatalogModelInfoRelease",
+    "WinMLCatalogModelInstanceClose",
+    "WinMLCatalogModelInstanceEnumModelPaths",
+    "WinMLCatalogModelInstanceGetModelInfo",
+    "WinMLCatalogModelInstanceRelease",
+    "WinMLEpCatalogCreate",
+    "WinMLEpCatalogEnumProviders",
+    "WinMLEpCatalogRelease",
+    "WinMLEpEnsureReady",
+    "WinMLEpEnsureReadyAsync",
+    "WinMLEpGetCertification",
+    "WinMLEpGetLibraryPath",
+    "WinMLEpGetLibraryPathSize",
+    "WinMLEpGetName",
+    "WinMLEpGetNameSize",
+    "WinMLEpGetPackageFamilyName",
+    "WinMLEpGetPackageFamilyNameSize",
+    "WinMLEpGetPackageRootPath",
+    "WinMLEpGetPackageRootPathSize",
+    "WinMLEpGetReadyState",
+    "WinMLEpGetVersion",
+    "WinMLEpGetVersionSize",
+    "WinMLModelCatalogCreate",
+    "WinMLModelCatalogEnumExecutionProviders",
+    "WinMLModelCatalogFindAllModels",
+    "WinMLModelCatalogFindAllModelsAsync",
+    "WinMLModelCatalogFindAllModelsGetResult",
+    "WinMLModelCatalogFindModel",
+    "WinMLModelCatalogFindModelAsync",
+    "WinMLModelCatalogFindModelGetResult",
+    "WinMLModelCatalogGetAvailableModel",
+    "WinMLModelCatalogGetAvailableModels",
+    "WinMLModelCatalogRelease",
+    "WinMLModelCatalogSetExecutionProviders",
+    "WinMLModelCatalogSourceCreateFromUri",
+    "WinMLModelCatalogSourceCreateFromUriAsync",
+    "WinMLModelCatalogSourceCreateFromUriWithHeaders",
+    "WinMLModelCatalogSourceCreateFromUriWithHeadersAsync",
+    "WinMLModelCatalogSourceGetId",
+    "WinMLModelCatalogSourceGetIdSize",
+    "WinMLModelCatalogSourceGetResult",
+    "WinMLModelCatalogSourceGetUri",
+    "WinMLModelCatalogSourceGetUriSize",
+    "WinMLModelCatalogSourceRelease",
+    "annotations",
+    "ctypes"
+   ],
+   "EpCatalog_methods": [
+    "close",
+    "find_all_providers"
+   ],
+   "EpCatalog_signatures": {
+    "close": "(self) -> 'None'",
+    "find_all_providers": "(self) -> 'list[ExecutionProvider]'"
+   }
+  },
+  "outcome": "NO_OFFICIAL_REDISTRIBUTABLE_ARTIFACT",
+  "conclusion": "the official repository publishes zero releases and zero packages, and the official BYO page states the AMDGPU EP must be built from source; building it would require a ROCm toolchain and ORT source on this host, which is out of scope for a read-only mission and would not resolve the catalog-side blocker"
+ },
+ "forbidden_actions_not_taken": [
+  {
+   "action": "copy amdgpu-ep.dll from another machine's WindowsApps",
+   "reason": "AGENTS.md rule 2/6 and the mission's BYO prohibition; a copied binary cannot be attested as official for this host"
+  },
+  {
+   "action": "install the 1.8.65.0 MSIX from an unverified source",
+   "reason": "no signed artifact is published and the package identity for this device generation is not offered"
+  },
+  {
+   "action": "update the HP OEM display driver",
+   "reason": "no evidence ties the empty catalog to the driver, and a driver change would destroy the working DML baseline (rule 6)"
+  },
+  {
+   "action": "disable Defender / Secure Boot / signature enforcement",
+   "reason": "explicitly forbidden by AGENTS.md"
+  }
+ ],
+ "provisioning_exception_checklist": [
+  {
+   "item": "named physical host",
+   "recorded": true,
+   "value": "HP ZBook Ultra G1a 14 (Ryzen AI MAX+ PRO 395 / Radeon 8060S)"
+  },
+  {
+   "item": "exact official component and version",
+   "recorded": false,
+   "value": "NONE - no component was installed"
+  },
+  {
+   "item": "official download source",
+   "recorded": false,
+   "value": "NONE AVAILABLE (0 releases, no NuGet package)"
+  },
+  {
+   "item": "signature and hash",
+   "recorded": false,
+   "value": "N/A"
+  },
+  {
+   "item": "supported dependencies",
+   "recorded": true,
+   "value": "Windows ML 2.5.96 + WindowsWorkload.WinMLShared.7.0 1.2610.1050.0 present"
+  },
+  {
+   "item": "pre-change state",
+   "recorded": true,
+   "value": "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json"
+  },
+  {
+   "item": "rollback path",
+   "recorded": false,
+   "value": "N/A (nothing installed)"
+  },
+  {
+   "item": "administrator rights",
+   "recorded": true,
+   "value": "not elevated"
+  },
+  {
+   "item": "isolated environment",
+   "recorded": true,
+   "value": ".venv-winml (user scope); no system-wide change"
+  },
+  {
+   "item": "post-change state",
+   "recorded": true,
+   "value": "reports/experiment_b/_raw/POST_EXPERIMENT_SNAPSHOT.json"
+  }
+ ],
+ "verdict": {
+  "label": "B_BLOCKED_OFFICIAL_ARTIFACT_UNAVAILABLE",
+  "statement": "no catalog entry to install and no official redistributable to bring; the system was left unchanged",
+  "escalation_targets": [
+   "Microsoft (Windows ML EP catalog / Store targeting)",
+   "AMD (AMDGPU EP gfx1151 support statement)"
+  ]
+ }
+}
