@@ -1,0 +1,32 @@
+{
+ "schema": "mission_c_driver_compatibility_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
+ "host": {
+  "gpu": "AMD Radeon(TM) 8060S Graphics",
+  "gfx": "gfx1151",
+  "device_id": "0x1586",
+  "wddm": "32.0.22018.5",
+  "driver_date": "09/17/2025",
+  "oem_subsys": "8D01103C",
+  "pnp": "PCI/VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1"
+ },
+ "documented_requirement": {
+  "text": "Adrenalin Edition 24.12.1 or later",
+  "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers"
+ },
+ "determination": "DRIVER_COMPATIBILITY_UNVERIFIED",
+ "why": [
+  "WDDM 32.0.22018.5 and the AMD/HP INF packaging version do not share a scale with Adrenalin marketing versions",
+  "no AMD/HP public document maps 32.0.22018.5 to an Adrenalin release",
+  "the AMD GPU EP never loads here, so there is no runtime driver-compat event to read"
+ ],
+ "counter_evidence_against_driver_as_sole_cause": [
+  "DirectML executes on the same driver right now (DML canary 1 node, parity allclose, max_abs 2.86e-06)",
+  "the catalog also omits WebGPU, whose documented requirement is only 'any DX12-capable GPU', so a GPU-driver-only filter does not explain a zero-length list"
+ ],
+ "driver_change": {
+  "performed": false,
+  "reason": "no verifiable incompatibility evidence + no owner authorization; AGENTS.md rule 6"
+ }
+}

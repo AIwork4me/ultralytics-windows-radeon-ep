@@ -1,0 +1,29 @@
+{
+ "schema": "mission_c_dml_regression_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
+ "purpose": "prove the DirectML path on this host was not harmed by mission C",
+ "status": "PASS_DML_ONLY",
+ "canary": {
+  "model_sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+  "inputs_sha256": "98dfd841e2e753ccda6d7de2e34696288fa44a5d7f0df5c3e7dbbc6c82d09538",
+  "dml_provider_node_counts": {
+   "DmlExecutionProvider": 1
+  },
+  "dml_parity_allclose": true,
+  "dml_max_abs_diff": 2.86102294921875e-06,
+  "cpu_provider_node_counts": {
+   "CPUExecutionProvider": 1
+  }
+ },
+ "amdgpu_control": {
+  "returncode": 34,
+  "expectation": "34 = BLOCKED_EP (never a CPU fallback)"
+ },
+ "device_identity": {
+  "gfx": "gfx1151",
+  "device_id": "0x1586",
+  "luid": "0x00000000:0x000154E4"
+ },
+ "verdict": "DML_PATH_HEALTHY_AMDGPU_BLOCKED_EP"
+}

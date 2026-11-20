@@ -1,0 +1,125 @@
+{
+  "run_utc": "2026-11-20T14:04:34Z",
+  "status": "PASS_DML_ONLY",
+  "model_sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+  "inputs_sha256": "98dfd841e2e753ccda6d7de2e34696288fa44a5d7f0df5c3e7dbbc6c82d09538",
+  "results": {
+    "cpu": {
+      "returncode": 0,
+      "providers": [
+        "CPUExecutionProvider"
+      ],
+      "provider_node_counts": {
+        "CPUExecutionProvider": 1
+      },
+      "parity": null,
+      "input_tensor_sha256": "98dfd841e2e753ccda6d7de2e34696288fa44a5d7f0df5c3e7dbbc6c82d09538",
+      "device_binding": null,
+      "stderr_tail": "\u001b[0;93m2026-11-20 22:04:34.6323842 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\n",
+      "stdout_tail": ""
+    },
+    "amdgpu": {
+      "returncode": 34,
+      "providers": null,
+      "provider_node_counts": null,
+      "parity": null,
+      "input_tensor_sha256": "98dfd841e2e753ccda6d7de2e34696288fa44a5d7f0df5c3e7dbbc6c82d09538",
+      "device_binding": null,
+      "stderr_tail": "\u001b[0;93m2026-11-20 22:04:35.0679700 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\nBLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps\n",
+      "stdout_tail": ""
+    },
+    "dml": {
+      "returncode": 0,
+      "providers": [
+        "DmlExecutionProvider",
+        "CPUExecutionProvider"
+      ],
+      "provider_node_counts": {
+        "DmlExecutionProvider": 1
+      },
+      "parity": {
+        "outputs": [
+          {
+            "name": "y",
+            "shape": [
+              256,
+              256
+            ],
+            "dtype": "float32",
+            "finite": true,
+            "max_abs_diff": 2.86102294921875e-06,
+            "mean_abs_diff": 1.9168521703250008e-07,
+            "max_rel_diff": 0.0036181678214010776,
+            "p99_abs_diff": 9.5367431640625e-07,
+            "allclose": true,
+            "threshold_used": 0.0002,
+            "candidate_sha256": "8e3bcdf25359935fe868020aa9d30919022105c9ac5e26a299c2b9e030abe243",
+            "ref_sha256": "f805c5a10d09526e7ade2fddcc3fa4e17856de57763028caea68d1ffeaa4d0a5"
+          }
+        ],
+        "all_outputs_allclose": true,
+        "by_name_matching": true,
+        "thresholds": {
+          "atol": 0.0002,
+          "rtol": 0.0002,
+          "source": "configs/thresholds.yaml",
+          "int_min_agreement": 0.999
+        }
+      },
+      "input_tensor_sha256": "98dfd841e2e753ccda6d7de2e34696288fa44a5d7f0df5c3e7dbbc6c82d09538",
+      "device_binding": {
+        "ep": "DML",
+        "state": "EP_DEVICE_SELECTED",
+        "selected_candidate_index": 0,
+        "candidates_tried": 1,
+        "selected_ep_device": {
+          "ep_vendor": "Microsoft",
+          "ep_metadata": {
+            "device_id": 0
+          },
+          "ep_options": {}
+        },
+        "probe": {
+          "amdgpu_nodes": 0,
+          "cpu_nodes": 0,
+          "profile": null
+        },
+        "final_profile": {
+          "provider_node_counts": {
+            "DmlExecutionProvider": 1
+          }
+        },
+        "attribution": "fused_single_node",
+        "dxgi_corroboration": {
+          "evidence_kind": "HOST_DXGI_ENUMERATION_INDIRECT",
+          "is_ep_reported": false,
+          "adapter_index": 0,
+          "luid": "0x00000000:0x000154E4",
+          "vendor_id": "0x1002",
+          "device_id": "0x1586",
+          "description": "AMD Radeon(TM) 8060S Graphics",
+          "did_match": true,
+          "mapping_assumption": "DXGI enumerates the host adapters; the EP exposes no LUID/PCI identity on this build, so EP-device -> DXGI-LUID is an ordinal assumption, not an EP-reported LUID (AMDGPU-RCA-004)",
+          "note": "host-side corroboration only; DO NOT read this as an EP-reported LUID/ordinal"
+        },
+        "ep_reported_identity": {
+          "source": "OrtEpDevice.ep_metadata",
+          "exposes_luid": false,
+          "exposes_pci_id": false,
+          "reported": {
+            "device_id": 0
+          },
+          "note": "DML exposes only an adapter ordinal; it does not report a LUID or PCI identity"
+        },
+        "identity_basis": "EP_DEVICE_ORDINAL + PROFILE_NODE_ATTESTATION + HOST_DXGI_INDIRECT_CORROBORATION",
+        "notes": "DML device_id = DXGI adapter ordinal (host-side assumption, not EP-reported LUID); profile revalidated on the final session's first run"
+      },
+      "stderr_tail": "\u001b[0;93m2026-11-20 22:04:36.0484433 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\n\u001b[0;93m2026-11-20 22:04:36.1890659 [W:onnxruntime:Default, config_options.cc:45 onnxruntime::ConfigOptions::AddConfigEntry] Config with key [ep.dmlexecutionprovider.device_id] already exists with value [0]. It will be overwritten\u001b[m\n",
+      "stdout_tail": ""
+    }
+  },
+  "amdgpu_nodes": 0,
+  "dml_nodes": 1,
+  "amdgpu_ok": false,
+  "dml_ok": true
+}

@@ -30,6 +30,11 @@ jobs:
           ruff check src runner || echo "ruff findings present (non-blocking)"
       - name: Unit + contracts + adversarial tests
         run: python -m pytest tests/unit tests/contracts tests/adversarial -q
+      - name: Mission C evidence self-check
+        # Validates reports/mission_c/: manifest hashes, run-id uniqueness,
+        # device identity, catalogue claims vs probe output, redaction, and that
+        # no root-cause verdict exceeds its evidence. CPU only, no GPU access.
+        run: python tools/verify_mission_c_evidence.py --run-id C_GFX1151_AMDGPU_20261120T2153Z
       - name: Catalog policy check
         shell: pwsh
         run: |

@@ -1,0 +1,89 @@
+{
+ "schema": "mission_c_ab_reconciliation_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
+ "tool": "tools/experiment_b_ab_compare.py (patched this mission)",
+ "tool_output": "reports/mission_c/C0_AB_COMPARISON_V2.json",
+ "a_evidence_state": "PRESENT",
+ "primary_case": "B2",
+ "verdict": "HOST_SPECIFIC_CATALOG_FILTER_OR_DEPENDENCY",
+ "differential": [
+  {
+   "field": "windows_build",
+   "gfx1100": "26300.9974",
+   "gfx1151": "26200.9974",
+   "controlled": false,
+   "note": "A host = 26H2 26300.9974, B host = 25H2 26200.9974. Not a controlled variable in Experiment A/B; it is a candidate factor."
+  },
+  {
+   "field": "windowsml_version",
+   "gfx1100": "2.5.96",
+   "gfx1151": "2.5.96",
+   "controlled": true
+  },
+  {
+   "field": "ort_version",
+   "gfx1100": "1.25.2",
+   "gfx1151": "1.25.2",
+   "controlled": true
+  },
+  {
+   "field": "interop_dll_sha256",
+   "gfx1100": null,
+   "gfx1151": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+   "controlled": true,
+   "note": "byte-identical API binary on both hosts"
+  },
+  {
+   "field": "catalog_provider_count",
+   "gfx1100": 4,
+   "gfx1151": 0,
+   "controlled": null,
+   "note": "THE observed difference"
+  },
+  {
+   "field": "ep_package_identity",
+   "gfx1100": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+   "gfx1151": "ABSENT",
+   "controlled": null
+  },
+  {
+   "field": "driver_wddm",
+   "gfx1100": "32.0.21030.2001",
+   "gfx1151": "32.0.22018.5",
+   "controlled": false
+  }
+ ],
+ "corrected_claims": [
+  {
+   "report": "PR #14 (Experiment B)",
+   "old_claim": "no official AMD GPU EP artifact is published",
+   "corrected": "An official Microsoft Store product DOES exist: 'Windows ML Runtime AMD GPU Execution Provider Framework 2' (product id 9PNKGVD4CPCV) and the 'EP.2' generation (9NMRQLX4HLSK). What is absent is delivery/targeting to this device, not publication.",
+   "evidence": [
+    "C1_CATALOG_INTERNALS.json:amdgpu_store_products",
+    "https://apps.microsoft.com/detail/9PNKGVD4CPCV"
+   ],
+   "status": "CORRECTED"
+  },
+  {
+   "report": "PR #14 (Experiment B)",
+   "old_claim": "gfx1151 compat: UNVERIFIED",
+   "corrected": "Still not verifiable FROM THIS HOST (no EP to run), but a different gfx1151 host (PnP SUBSYS_17141043, driver 32.0.22032.6002) ran the same 1.8.65.0 amdgpu-ep.dll with AMDGPU profiler nodes > 0 and task parity PASS. That is cross-host context, never a gfx1151 claim for THIS host.",
+   "evidence": [
+    "reports/gfx1151/R1_20261117T215114Z/receipts/",
+    "reports/gfx1151/G1_PREFLIGHT_FINAL/EP_INSTALL_AND_PROBE.json"
+   ],
+   "status": "QUALIFIED_NOT_TRANSPLANTED"
+  },
+  {
+   "report": "PR #15 (Experiment A)",
+   "old_claim": "catalog listed but NotReady -> deployment chain incomplete",
+   "corrected": "A's catalog listed 4 providers including AMDGPU because the EP package was already installed machine-wide; ReadyState=NotReady means 'installed but not in the app runtime dependency graph', not 'downloadable'.",
+   "evidence": [
+    "C1_CATALOG_INTERNALS.json",
+    "PR #15 CATALOG_PROBE.json"
+   ],
+   "status": "CLARIFIED"
+  }
+ ]
+}

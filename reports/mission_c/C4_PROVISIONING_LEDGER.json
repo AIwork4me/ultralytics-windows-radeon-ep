@@ -1,0 +1,52 @@
+{
+ "schema": "mission_c_provisioning_ledger_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
+ "system_components_installed_or_changed": 0,
+ "paths": [
+  {
+   "id": "P1",
+   "path": "official catalog -> ensure_ready_async",
+   "precondition": "catalog lists AMDGPUExecutionProvider",
+   "result": "BLOCKED",
+   "reason": "catalog returns 0 providers in all modes",
+   "evidence": "C1_CATALOG_INTERNALS.json"
+  },
+  {
+   "id": "P2",
+   "path": "Microsoft Store product install (9PNKGVD4CPCV)",
+   "precondition": "owner authorization for a component install",
+   "result": "NOT_AUTHORIZED",
+   "reason": "installing a system EP package is a system change; no component-level owner authorization exists for this host"
+  },
+  {
+   "id": "P3",
+   "path": "official BYO (onnxruntime-ep-amdgpu sources)",
+   "precondition": "official signed redistributable",
+   "result": "BLOCKED_OFFICIAL_PROVISIONING",
+   "reason": "official BYO page states the EP must be built from source; a self-built binary is a development artifact, not a signed Windows ML EP"
+  },
+  {
+   "id": "P4",
+   "path": "copy amdgpu-ep.dll from another host",
+   "precondition": "n/a",
+   "result": "FORBIDDEN_NOT_ATTEMPTED",
+   "reason": "AGENTS.md rule 2/6 and the mission's system-safety rules"
+  },
+  {
+   "id": "P5",
+   "path": "driver replacement/rollback",
+   "precondition": "verified driver incompatibility + authorization",
+   "result": "NOT_ATTEMPTED",
+   "reason": "C2_DRIVER_COMPATIBILITY_UNVERIFIED"
+  },
+  {
+   "id": "P6",
+   "path": "user-scope Python/runtime repair",
+   "precondition": "a measurable user-scope defect",
+   "result": "NOT_NEEDED",
+   "reason": "the API binary is byte-identical to the working host's and the wheel is already the documented minimum 2.5.96"
+  }
+ ],
+ "rollback": "no change was made, so no rollback is required"
+}

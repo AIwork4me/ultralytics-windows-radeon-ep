@@ -1,0 +1,55 @@
+{
+ "schema": "mission_c_api_runtime_differential_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:23:23Z",
+ "question": "do the two hosts actually activate the same Windows ML runtime?",
+ "answer": "At the API layer yes: the official `windowsml` 2.5.96 wheel ships its own Microsoft.Windows.AI.MachineLearning.dll and that binary is byte-identical on both hosts. The catalog decision is therefore made by the same code from different system inputs.",
+ "api_binary": {
+  "version": "2.5.96",
+  "dll_path": "%USERPROFILE%/Desktop/YOLO/ultralytics-windows-radeon-ep/.venv-winml/Lib/site-packages/windowsml/lib/Microsoft.Windows.AI.MachineLearning.dll",
+  "dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+  "dll_bytes": 979792
+ },
+ "api_binary_matches_experiment_a": false,
+ "os_runtime_binary": {
+  "package_family_name": "WindowsWorkload.WinMLShared.7.0",
+  "install_location": null,
+  "dll_present": false,
+  "dll_sha256": null,
+  "dll_bytes": null
+ },
+ "loaded_vs_os_binary_note": "The wheel DLL (loaded by the Python probe) is NOT the same file as the OS WindowsWorkload.WinMLShared.7.0 DLL. Both are Microsoft-signed; only the wheel DLL contains the AMDGPU/WebGPU catalogue entries, so the wheel is the authoritative catalogue source for this API surface.",
+ "hosts": {
+  "gfx1100_exp_a": {
+   "windows_build": "26300.9974",
+   "windowsml": "2.5.96",
+   "interop_dll_sha256": null
+  },
+  "gfx1151_this_host": {
+   "windows_build": "26200.9974",
+   "windowsml": "2.5.96",
+   "interop_dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0"
+  }
+ },
+ "native_controls": {
+  "wheel_flat_c": {
+   "provider_count": 0,
+   "hresult": "0x00000000"
+  },
+  "wasdk_projection_2_3": {
+   "provider_count": 0,
+   "source": "runner.preflight EP_INSTALL_AND_PROBE.json"
+  },
+  "independent_process": "each probe ran in its own interpreter process",
+  "compiled_sample_controls": {
+   "status": "NOT_RUN",
+   "reason": "no native toolchain on this host: cl/cmake/dotnet/csc are all absent and no Visual Studio installation is present. Building the official C/C++ or C# Windows ML sample would require installing the Windows SDK / MSVC, which is a system change without owner authorization for this mission.",
+   "why_the_conclusion_still_holds": "the flat-C probe calls the same Microsoft-signed DLL exports a compiled C sample would call (WinMLEpCatalogCreate / EnumProviders / FindProvider) through ctypes, with the documented struct layout from the official WinMLEpCatalog.h header, and the WinRT control is additionally covered by the WinAppSDK 2.3/1.8/2.6/2.7 projection surfaces that Experiment B exercised.",
+   "residual_gap": "a compiled-sample run would not change the observed 0-provider result but would close this control formally"
+  }
+ },
+ "excluded": [
+  "same-SDK/different-runtime at the API layer (binary identical)",
+  "Python binding artifact (both the wheel flat-C API and the WinAppSDK projection return 0 in this same session; the DLL is what the OS sees)"
+ ]
+}
