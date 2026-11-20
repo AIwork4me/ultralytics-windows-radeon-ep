@@ -1,0 +1,507 @@
+{
+ "schema": "experiment_b_appx_events_redacted_v1",
+ "captured_utc": "2026-11-20T03:49:44Z",
+ "source": "Microsoft-Windows-AppXDeploymentServer/Operational and Microsoft-Windows-AppXDeployment/Operational",
+ "raw_event_count": 2464,
+ "keyword_counts_over_full_dump": {
+  "VitisAI": 137,
+  "AMD_GPU_EP": 0,
+  "amdgpu_lower": 0,
+  "WinMLShared": 112
+ },
+ "vitisai_registration_first": "2026-11-18T16:25:38.1838208+08:00",
+ "vitisai_registration_last": "2026-11-18T16:43:31.5294237+08:00",
+ "filter": "VitisAI|WinMLShared|AMD\\.GPU|AMDGPU|amdgpu|EP\\.AMD",
+ "kept_events": 80,
+ "redactions": {
+  "sids_masked": 26,
+  "paths_masked": 0
+ },
+ "note": "the raw dump is not committed: it carries account SIDs and per-user install paths; the counts in MSIX_INVENTORY.json are derived from the full dump, and the rows below are the events the report cites",
+ "events": [
+  {
+   "time": "2026-11-18T16:43:31.5294237+08:00",
+   "id": 8101,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u9a8c\u8bc1\u548c\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:31.5294170+08:00",
+   "id": 8106,
+   "level": "\u8be6\u7ec6",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u5df2\u6709\u4fe1\u4efb\u6807\u7b7e\u3002\u6807\u5fd7: 0x122"
+  },
+  {
+   "time": "2026-11-18T16:43:31.5270387+08:00",
+   "id": 8100,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u5f00\u59cb\u9a8c\u8bc1\uff0c\u5e76\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:30.0068484+08:00",
+   "id": 8101,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u9a8c\u8bc1\u548c\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:30.0068313+08:00",
+   "id": 8106,
+   "level": "\u8be6\u7ec6",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u5df2\u6709\u4fe1\u4efb\u6807\u7b7e\u3002\u6807\u5fd7: 0x122"
+  },
+  {
+   "time": "2026-11-18T16:43:29.9882562+08:00",
+   "id": 8100,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u5f00\u59cb\u9a8c\u8bc1\uff0c\u5e76\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3708138+08:00",
+   "id": 822,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684\u6ce8\u518c\u8868\u66f4\u65b0\uff0c\u7ed3\u679c: 0x0\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3704756+08:00",
+   "id": 821,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5728\u767b\u5f55\u65f6\u4e3a\u7528\u6237 <SID-redacted> \u8fdb\u884c\u7684\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u6ce8\u518c\u5df2\u5b8c\u6210\uff0c\u7ed3\u679c: 0x0\uff1b\u6b63\u5728\u66f4\u65b0\u6ce8\u518c\u8868..."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3687100+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Overall time: 94 ms (Active time: 47 ms) Enqueue cost: 0 ms Dequeue delay: 47 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 0 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms Stage required cost: 0 ms Flushing and closing files cost: 0 ms Ga"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3606903+08:00",
+   "id": 400,
+   "level": "\u4fe1\u606f",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5df2\u6210\u529f\u5b8c\u6210\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3594789+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x300\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3594505+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x10000C00\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3567279+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x20\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3566979+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x20\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3384068+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x0\uff0cSet=0x20)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3290674+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x0\uff0cSet=0x20)."
+  },
+  {
+   "time": "2026-11-18T16:43:28.3219254+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3191407+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3186164+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:28.3179120+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\0844a16c-918c-4dfd-aae4-7cb91e2fc7f4_<SID-redacted>_29.rslc\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.8406396+08:00",
+   "id": 822,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684\u6ce8\u518c\u8868\u66f4\u65b0\uff0c\u7ed3\u679c: 0x0\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.8401503+08:00",
+   "id": 821,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5728\u767b\u5f55\u65f6\u4e3a\u7528\u6237 <SID-redacted> \u8fdb\u884c\u7684\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u6ce8\u518c\u5df2\u5b8c\u6210\uff0c\u7ed3\u679c: 0x0\uff1b\u6b63\u5728\u66f4\u65b0\u6ce8\u518c\u8868..."
+  },
+  {
+   "time": "2026-11-18T16:43:26.8374670+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Overall time: 125 ms (Active time: 62 ms) Gap: 15 ms Enqueue cost: 0 ms Dequeue delay: 63 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 0 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms Stage required cost: 0 ms Flushing and closing"
+  },
+  {
+   "time": "2026-11-18T16:43:26.8285197+08:00",
+   "id": 400,
+   "level": "\u4fe1\u606f",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5df2\u6210\u529f\u5b8c\u6210\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.8270439+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x300\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.8270066+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x10000C00\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.8235901+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x20\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.8235591+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x20\uff0cSet=0x0)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.8039727+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x0\uff0cSet=0x20)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.7903943+08:00",
+   "id": 617,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u6210\u529f\u66f4\u65b0\u7a0b\u5e8f\u5305WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u548c\u7528\u6237\u7684\u72b6\u6001<SID-redacted> (Clear=0x0\uff0cSet=0x20)."
+  },
+  {
+   "time": "2026-11-18T16:43:26.7827301+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.7789665+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.7783654+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:26.7772635+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\0844a16c-918c-4dfd-aae4-7cb91e2fc7f4_<SID-redacted>_7.rslc\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:25.9953726+08:00",
+   "id": 684,
+   "level": "\u4fe1\u606f",
+   "message": "OnDemandRegisterPackage WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\uff0c\u627e\u5230 OnDemandRegister \u64cd\u4f5c\u4e0d\u652f\u6301\u7684\u6846\u67b6\u3002\u6211\u4eec\u5c06\u5728\u7a0d\u540e\u6ce8\u518c\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:25.9880419+08:00",
+   "id": 684,
+   "level": "\u4fe1\u606f",
+   "message": "OnDemandRegisterPackage WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\uff0c\u627e\u5230 OnDemandRegister \u64cd\u4f5c\u4e0d\u652f\u6301\u7684\u6846\u67b6\u3002\u6211\u4eec\u5c06\u5728\u7a0d\u540e\u6ce8\u518c\u3002"
+  },
+  {
+   "time": "2026-11-18T16:43:25.9568447+08:00",
+   "id": 679,
+   "level": "\u4fe1\u606f",
+   "message": "OnDemandRegisterPackageList WindowsWorkload.Data.Analysis.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ContentExtraction.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ImageSearch.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe WindowsWorkload.ImageContentModeration.1_1.2610.1063.0_x64__8wekyb3d8bbwe Window"
+  },
+  {
+   "time": "2026-11-18T16:43:25.7926231+08:00",
+   "id": 819,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5c06\u5b89\u88c5\u4ee5\u4e0b\u7a0b\u5e8f\u5305: WindowsWorkload.Data.Analysis.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ContentExtraction.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ImageSearch.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe WindowsWorkload.ImageContentModeration.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.ImageCon"
+  },
+  {
+   "time": "2026-11-18T16:43:24.4961231+08:00",
+   "id": 819,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5c06\u5b89\u88c5\u4ee5\u4e0b\u7a0b\u5e8f\u5305: WindowsWorkload.Data.Analysis.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ContentExtraction.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.Data.ImageSearch.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe WindowsWorkload.ImageContentModeration.1_1.2610.1063.0_x64__8wekyb3d8bbwe WindowsWorkload.ImageCon"
+  },
+  {
+   "time": "2026-11-18T16:29:02.2272287+08:00",
+   "id": 8101,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u9a8c\u8bc1\u548c\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:29:02.2272156+08:00",
+   "id": 8106,
+   "level": "\u8be6\u7ec6",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u5df2\u6709\u4fe1\u4efb\u6807\u7b7e\u3002\u6807\u5fd7: 0x122"
+  },
+  {
+   "time": "2026-11-18T16:29:02.2237821+08:00",
+   "id": 8100,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u5f00\u59cb\u9a8c\u8bc1\uff0c\u5e76\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.9053238+08:00",
+   "id": 8101,
+   "level": "\u8be6\u7ec6",
+   "message": "\u5df2\u5b8c\u6210\u9a8c\u8bc1\u548c\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.9053101+08:00",
+   "id": 8106,
+   "level": "\u8be6\u7ec6",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u5df2\u6709\u4fe1\u4efb\u6807\u7b7e\u3002\u6807\u5fd7: 0x122"
+  },
+  {
+   "time": "2026-11-18T16:27:58.9026494+08:00",
+   "id": 8100,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u5f00\u59cb\u9a8c\u8bc1\uff0c\u5e76\u4f7f\u7528\u6807\u5fd7 0x122 \u5728\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u8bbe\u7f6e\u4fe1\u4efb\u6807\u7b7e\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7696644+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Failed to reach state DynamicDependenciesInUse Overall time: 31 ms (Active time: 31 ms) Enqueue cost: 15 ms Dequeue delay: 0 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 16 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms Stage requ"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7689586+08:00",
+   "id": 404,
+   "level": "\u9519\u8bef",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684 AppX \u90e8\u7f72\u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6b64\u5931\u8d25\u7684\u5177\u4f53\u9519\u8bef\u6587\u672c\u662f: \u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:58.7653892+08:00",
+   "id": 401,
+   "level": "\u9519\u8bef",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7563430+08:00",
+   "id": 664,
+   "level": "\u9519\u8bef",
+   "message": "\u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:58.7527931+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7469618+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7457308+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7442593+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\bcd07ece-d29e-4ba8-b78c-26d5ea8434f7_<SID-redacted>_137.rslc\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7267084+08:00",
+   "id": 603,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4f7f\u7528\u4e3b\u53c2\u6570 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_8wekyb3d8bbwe \u4ee5\u53ca\u9009\u9879 0 \u548c 0 \u5f00\u59cb\u5bf9\u7a0b\u5e8f\u5305\u6267\u884c\u90e8\u7f72 RegisterByPackageFamilyName \u64cd\u4f5c\u3002\u8981\u83b7\u53d6\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7255662+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Failed to reach state DynamicDependenciesInUse Overall time: 47 ms (Active time: 47 ms) Enqueue cost: 16 ms Dequeue delay: 0 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 0 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms Stage required cost"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7250985+08:00",
+   "id": 404,
+   "level": "\u9519\u8bef",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684 AppX \u90e8\u7f72\u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6b64\u5931\u8d25\u7684\u5177\u4f53\u9519\u8bef\u6587\u672c\u662f: \u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:58.7211305+08:00",
+   "id": 401,
+   "level": "\u9519\u8bef",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.7073611+08:00",
+   "id": 664,
+   "level": "\u9519\u8bef",
+   "message": "\u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:58.7045420+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.6992153+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.6979981+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.6965002+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\bcd07ece-d29e-4ba8-b78c-26d5ea8434f7_<SID-redacted>_136.rslc\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:58.6776229+08:00",
+   "id": 603,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4f7f\u7528\u4e3b\u53c2\u6570 WindowsWorkload.WinMLShared.7.0_8wekyb3d8bbwe \u4ee5\u53ca\u9009\u9879 0 \u548c 0 \u5f00\u59cb\u5bf9\u7a0b\u5e8f\u5305\u6267\u884c\u90e8\u7f72 RegisterByPackageFamilyName \u64cd\u4f5c\u3002\u8981\u83b7\u53d6\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.4245034+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Failed to reach state DynamicDependenciesInUse Overall time: 47 ms (Active time: 47 ms) Enqueue cost: 16 ms Dequeue delay: 0 ms Gap: 16 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 0 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms "
+  },
+  {
+   "time": "2026-11-18T16:27:57.4239886+08:00",
+   "id": 404,
+   "level": "\u9519\u8bef",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684 AppX \u90e8\u7f72\u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6b64\u5931\u8d25\u7684\u5177\u4f53\u9519\u8bef\u6587\u672c\u662f: \u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:57.4201136+08:00",
+   "id": 401,
+   "level": "\u9519\u8bef",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.4070093+08:00",
+   "id": 664,
+   "level": "\u9519\u8bef",
+   "message": "\u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:57.4034571+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3969733+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3956739+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3940368+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\bcd07ece-d29e-4ba8-b78c-26d5ea8434f7_<SID-redacted>_124.rslc\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3768670+08:00",
+   "id": 603,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4f7f\u7528\u4e3b\u53c2\u6570 WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_8wekyb3d8bbwe \u4ee5\u53ca\u9009\u9879 0 \u548c 0 \u5f00\u59cb\u5bf9\u7a0b\u5e8f\u5305\u6267\u884c\u90e8\u7f72 RegisterByPackageFamilyName \u64cd\u4f5c\u3002\u8981\u83b7\u53d6\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3757491+08:00",
+   "id": 613,
+   "level": "\u4fe1\u606f",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u7684\u6027\u80fd\u6458\u8981: Failed to reach state DynamicDependenciesInUse Overall time: 31 ms (Active time: 31 ms) Enqueue cost: 15 ms Dequeue delay: 0 ms Bundle processing cost: 0 ms Indexing cost: 0 ms Resolve dependency cost: 0 ms Check approval cost: 16 ms Evaluation cost: 0 ms Hardlinking evaluation cost: 0 ms Stage required cos"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3752151+08:00",
+   "id": 404,
+   "level": "\u9519\u8bef",
+   "message": "\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684 AppX \u90e8\u7f72\u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6b64\u5931\u8d25\u7684\u5177\u4f53\u9519\u8bef\u6587\u672c\u662f: \u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:57.3710732+08:00",
+   "id": 401,
+   "level": "\u9519\u8bef",
+   "message": "\u4ece (AppxManifest.xml) \u4f7f\u7528\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e2d\u7684\u76ee\u6807\u5377 C: \u6267\u884c\u7684\u90e8\u7f72 Register \u64cd\u4f5c\u5931\u8d25\uff0c\u9519\u8bef\u4e3a 0x80073D02\u3002\u6709\u5173\u8bca\u65ad\u5e94\u7528\u90e8\u7f72\u95ee\u9898\u7684\u5e2e\u52a9\uff0c\u8bf7\u53c2\u9605 http://go.microsoft.com/fwlink/?LinkId=235160\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3619590+08:00",
+   "id": 664,
+   "level": "\u9519\u8bef",
+   "message": "\u9519\u8bef 0x80073D02\uff1a\u65e0\u6cd5\u5904\u7406\u8bf7\u6c42\uff0c\u56e0\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u6b63\u5728\u4f7f\u7528\u4e2d\u3002 "
+  },
+  {
+   "time": "2026-11-18T16:27:57.3574139+08:00",
+   "id": 855,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u5b8c\u6210\u89e3\u51b3\u64cd\u4f5c\u5217\u8868\u3002DeploymentRequest \u64cd\u4f5c\u5217\u8868: addPackageList: WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3511695+08:00",
+   "id": 854,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u6210\u529f\u6dfb\u52a0\u4ee5\u4e0b\u5f85\u5904\u7406\u7684 URI: C:\\Program Files\\WindowsApps\\WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe\\AppxManifest.xml\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3498731+08:00",
+   "id": 607,
+   "level": "\u4fe1\u606f",
+   "message": "\u5df2\u4ece\u961f\u5217\u4e2d\u53d6\u6d88\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u7684\u90e8\u7f72 Register \u64cd\u4f5c\uff0c\u5e76\u4e14\u6b63\u5728\u4e3a\u7528\u6237 <SID-redacted> \u8fd0\u884c\u8be5\u90e8\u7f72\u3002"
+  },
+  {
+   "time": "2026-11-18T16:27:57.3487496+08:00",
+   "id": 10002,
+   "level": "\u8be6\u7ec6",
+   "message": "\u6b63\u5728\u4e3a\u7a0b\u5e8f\u5305 WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe \u4e0a\u7684 Register \u64cd\u4f5c\u521b\u5efa\u590d\u539f\u6587\u4ef6 C:\\ProgramData\\Microsoft\\Windows\\AppRepository\\bcd07ece-d29e-4ba8-b78c-26d5ea8434f7_<SID-redacted>_123.rslc\u3002"
+  }
+ ],
+ "redaction_scan": {
+  "ok": true,
+  "leaks": []
+ }
+}

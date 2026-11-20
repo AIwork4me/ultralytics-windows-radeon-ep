@@ -1,0 +1,238 @@
+{
+ "schema": "experiment_b_msix_inventory_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:49:48Z",
+ "read_only": true,
+ "sources": {
+  "appx_current_user": "reports/experiment_b/_raw/appx_cmdlet.json (Get-AppxPackage via the agent shell)",
+  "appx_registry": "reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json:appx",
+  "deployment_events": "reports/experiment_b/_raw/b4_appx_events_redacted.json (aggregates over the full 2464-event dump; the raw dump carries account SIDs and is intentionally not committed)",
+  "store_events": "reports/experiment_b/_raw/b4_store_events.json",
+  "services": "reports/experiment_b/_raw/b4_services.json"
+ },
+ "windowsapps_directory": {
+  "path": "C:/Program Files/WindowsApps",
+  "listable_by_this_account": null,
+  "error": null,
+  "impact": "an unprivileged process cannot enumerate the package directory; the absence finding therefore rests on the registry package stores, which are the authority AppX itself uses, in both per-user and machine scope"
+ },
+ "inventory": {
+  "current_user_total_packages": 129,
+  "current_user_repository_total": 140,
+  "machine_allusers_total": 74,
+  "relevant_packages": [
+   {
+    "name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+    "version": "10.25.20179.0",
+    "package_full_name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+    "publisher_id": "0a9344xs7nr4m",
+    "signature_kind": 3,
+    "is_framework": false,
+    "role": "OTHER"
+   },
+   {
+    "name": "WindowsWorkload.Data.Analysis.Stx.1",
+    "version": "1.2610.1063.0",
+    "package_full_name": "WindowsWorkload.Data.Analysis.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+    "version": "1.8.80.0",
+    "package_full_name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "AMD_NPU_EXECUTION_PROVIDER_PACKAGE"
+   },
+   {
+    "name": "WindowsWorkload.Manager.1",
+    "version": "1.2511.1196.0",
+    "package_full_name": "WindowsWorkload.Manager.1_1.2511.1196.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": false,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.PSTokenizer.Stx.2.7",
+    "version": "1.2610.1063.0",
+    "package_full_name": "WindowsWorkload.PSTokenizer.Stx.2.7_1.2610.1063.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.PSTokenizerShared.Data.7.0",
+    "version": "1.2610.1050.0",
+    "package_full_name": "WindowsWorkload.PSTokenizerShared.Data.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.PSTokenizerShared.Stx.7.0",
+    "version": "1.2610.1050.0",
+    "package_full_name": "WindowsWorkload.PSTokenizerShared.Stx.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.SessionManager.1",
+    "version": "1.2610.1063.0",
+    "package_full_name": "WindowsWorkload.SessionManager.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.WinMLShared.7.0",
+    "version": "1.2610.1050.0",
+    "package_full_name": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_ML_SHARED_RUNTIME"
+   },
+   {
+    "name": "WindowsWorkload.Data.ContentExtraction.Stx.1",
+    "version": "1.2610.1063.0",
+    "package_full_name": "WindowsWorkload.Data.ContentExtraction.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   },
+   {
+    "name": "WindowsWorkload.Data.ImageSearch.Stx.1",
+    "version": "1.2610.1063.0",
+    "package_full_name": "WindowsWorkload.Data.ImageSearch.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+    "publisher_id": "8wekyb3d8bbwe",
+    "signature_kind": 1,
+    "is_framework": true,
+    "role": "WINDOWS_WORKLOAD_OTHER"
+   }
+  ],
+  "relevant_count": 11,
+  "registry_vs_cmdlet_agree_on_amd_gpu_ep_absence": true
+ },
+ "amdgpu_ep": {
+  "candidate_identities": [
+   "Microsoft.WinML.AMD.GPU.EP.Framework.*",
+   "Microsoft.WinML.AMD.GPU.EP.*",
+   "MicrosoftCorporationII.WinML.AMD.GPU.EP.*"
+  ],
+  "found_current_user": [],
+  "found_machine_all_users": [],
+  "found_relevant_packages": [],
+  "dll_scan": {
+   "dlls": [],
+   "searched_pattern_kinds": [
+    "*AMDGPU*EP*.dll",
+    "*amdgpu*ep*.dll",
+    "AMDGPUExecutionProvider*.dll",
+    "amdgpu-ep.dll"
+   ]
+  },
+  "status": "ABSENT_MACHINE_WIDE",
+  "note": "the only AMD execution-provider package on the host is the VitisAI NPU framework (1.8.80.0); it is not an AMD GPU EP and cannot serve an AMDGPU session"
+ },
+ "windows_ml_shared_runtime": {
+  "name": "WindowsWorkload.WinMLShared.7.0",
+  "version": "1.2610.1050.0",
+  "package_full_name": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+  "publisher_id": "8wekyb3d8bbwe",
+  "signature_kind": 1,
+  "is_framework": true,
+  "role": "WINDOWS_ML_SHARED_RUNTIME"
+ },
+ "amd_npu_ep_present": {
+  "name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+  "version": "1.8.80.0",
+  "package_full_name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+  "publisher_id": "8wekyb3d8bbwe",
+  "signature_kind": 1,
+  "is_framework": true,
+  "role": "AMD_NPU_EXECUTION_PROVIDER_PACKAGE"
+ },
+ "deployment_events": {
+  "logs": [
+   "Microsoft-Windows-AppXDeploymentServer/Operational",
+   "Microsoft-Windows-AppXDeployment/Operational"
+  ],
+  "events_matched": 2464,
+  "keyword_counts": {
+   "VitisAI": 137,
+   "AMD_GPU_EP": 0,
+   "amdgpu_lower": 0,
+   "WinMLShared": 112
+  },
+  "quoted_events_in_redacted_dump": 80,
+  "vitisai_registration_first": "2026-11-18T16:25:38.1838208+08:00",
+  "vitisai_registration_last": "2026-11-18T16:43:31.5294237+08:00",
+  "amdgpu_ep_installation_events": 0,
+  "interpretation": "the workload EP delivery machinery is demonstrably active on this host (the AMD NPU EP framework was registered on 2026-11-18), yet no AMD GPU EP package was ever staged, registered or mentioned in the deployment logs"
+ },
+ "store_events": {
+  "scanned": 4000,
+  "kept": 0,
+  "acquisition_failures_found": false,
+  "note": "no Store-side acquisition error, retry or denial is recorded for this host in the scanned window"
+ },
+ "services": [
+  {
+   "Name": "AppXSvc",
+   "Status": 4,
+   "StartType": 2
+  },
+  {
+   "Name": "ClipSVC",
+   "Status": 1,
+   "StartType": 3
+  },
+  {
+   "Name": "DoSvc",
+   "Status": 4,
+   "StartType": 2
+  },
+  {
+   "Name": "InstallService",
+   "Status": 4,
+   "StartType": 3
+  },
+  {
+   "Name": "LicenseManager",
+   "Status": 4,
+   "StartType": 3
+  },
+  {
+   "Name": "StateRepository",
+   "Status": 4,
+   "StartType": 2
+  },
+  {
+   "Name": "StorSvc",
+   "Status": 4,
+   "StartType": 2
+  },
+  {
+   "Name": "wuauserv",
+   "Status": 4,
+   "StartType": 3
+  }
+ ],
+ "verdict": {
+  "ep_package_state": "NOT_INSTALLED_MACHINE_WIDE",
+  "catalog_state": "EMPTY_ALL_SURFACES",
+  "label": "B_CATALOG_EMPTY_REPRODUCED"
+ }
+}

@@ -1,0 +1,1080 @@
+{
+ "schema": "experiment_b_official_doc_citations_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:48:26Z",
+ "method": "raw HTTPS GET, no auth, no cookies; sha256 over the raw response body; each page fetched twice to record byte stability",
+ "probe_notes": {
+  "presence_is_not_proof": "a statement being present in a fetched page is a citation input, not a device capability proof"
+ },
+ "pages": [
+  {
+   "name": "supported_execution_providers",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/supported-execution-providers",
+   "accessed_utc": "2026-11-20T03:48:10Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html",
+   "last_modified": "Wed, 18 Nov 2026 18:10:39 GMT",
+   "etag": "\"uGjScs6F5kxy6M3q6rGi2YVLttg=\"",
+   "bytes": 66463,
+   "sha256_raw": "bcfda0c49c8799aa296272131cdac3500bae7a0e0b78b2e818f18766854b9d58",
+   "raw_file": "reports/experiment_b/_raw/docs/supported_execution_providers.html",
+   "bytes_text": 9226,
+   "sha256_text": "a5bf6a3d395b3bf4d4a4e02b286b96648ddbd3cd2a7e8aec4de2b6b096cb464f",
+   "markers": {
+    "meta_ms_date": "2026-11-18T00:00:00Z",
+    "title": "Windows ML execution providers | Microsoft Learn"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 4,
+     "present": true
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 2,
+     "present": true
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 1,
+     "present": true
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 1,
+     "present": true
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 1,
+     "present": true
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 2,
+     "present": true
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 2,
+     "present": true
+    },
+    "_amd_context_strings": [
+     "AMD GPU",
+     "AMDGPUExecutionProvider",
+     "AMD",
+     "AMD GPU (AMD)",
+     "AMD GPU Execution Provider (",
+     "AMD GPUs. It provides a unified interface that automatically selects the most appro",
+     "AMD acceleration backend based on the available hardware and workload, delivering o",
+     "AMD GPU platforms.",
+     "AMDGPUExecutionProvider\"",
+     "AMD)",
+     "AMD recommends transitioning to",
+     "AMD GPU devices.",
+     "AMD RDNA 3 or later GPU",
+     "AMD GPU driver version 25.10.13.09 or later",
+     "AMDMIGraphX/issues\" data-linktype=\"external\">Support"
+    ]
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "bcfda0c49c8799aa296272131cdac3500bae7a0e0b78b2e818f18766854b9d58",
+    "byte_stable": true,
+    "sha256_text": "a5bf6a3d395b3bf4d4a4e02b286b96648ddbd3cd2a7e8aec4de2b6b096cb464f",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:01Z",
+    "sha256_body_then": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013",
+    "sha256_body_now": "bcfda0c49c8799aa296272131cdac3500bae7a0e0b78b2e818f18766854b9d58",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "supported_execution_providers_md",
+   "url": "https://raw.githubusercontent.com/MicrosoftDocs/windows-ai-docs/main/docs/new-windows-ml/supported-execution-providers.md",
+   "accessed_utc": "2026-11-20T03:48:11Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/plain; charset=utf-8",
+   "last_modified": null,
+   "etag": "\"f1623f9c12a06aff6ebcc42643500a29bec9b28f4621f5e476e2731709bc3270\"",
+   "bytes": 13194,
+   "sha256_raw": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+   "raw_file": "reports/experiment_b/_raw/docs/supported_execution_providers_md.md",
+   "bytes_text": 13046,
+   "sha256_text": "e22f0aecc7c24c46a775b7ecb31187f605cb3d1bfd5594f364fd26d26695628e",
+   "markers": {
+    "front_matter_ms_date": "11/18/2026"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 4,
+     "present": true
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 2,
+     "present": true
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 1,
+     "present": true
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 1,
+     "present": true
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 1,
+     "present": true
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 2,
+     "present": true
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 2,
+     "present": true
+    },
+    "_amd_context_strings": [
+     "AMD GPU](#amd-gpu-amd) | `AMDGPUExecutionProvider` | AMD |",
+     "AMD |",
+     "AMD GPU (AMD)",
+     "AMD GPU Execution Provider (`AMDGPUExecutionProvider`) enables hardware-accelerated",
+     "AMD GPUs. It provides a unified interface that automatically selects the most appro",
+     "AMD acceleration backend based on the available hardware and workload, delivering o",
+     "AMD GPU platforms.",
+     "AMDGPUExecutionProvider\"`",
+     "AMD)",
+     "AMD recommends transitioning to `AMDGPUExecutionProvider` for all AMD GPU devices.",
+     "AMD RDNA 3 or later GPU",
+     "AMD GPU driver version 25.10.13.09 or later",
+     "AMDMIGraphX/issues)"
+    ]
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+    "byte_stable": true,
+    "sha256_text": "e22f0aecc7c24c46a775b7ecb31187f605cb3d1bfd5594f364fd26d26695628e",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:08Z",
+    "sha256_body_then": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+    "sha256_body_now": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71",
+    "raw_body_identical_to_r10": true,
+    "comparison_note": "markdown sources are byte-comparable across tools and are the authoritative content hash",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "initialize_execution_providers",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/initialize-execution-providers",
+   "accessed_utc": "2026-11-20T03:48:14Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html",
+   "last_modified": "Wed, 26 Aug 2026 17:41:55 GMT",
+   "etag": "\"RS7Tw9eMQ6zqBtqCn699A1CS8wQ=\"",
+   "bytes": 77825,
+   "sha256_raw": "fc082bf4d5de54f3b9b71969916f355dfa3df292cd639bf7a6c324302d82e5cf",
+   "raw_file": "reports/experiment_b/_raw/docs/initialize_execution_providers.html",
+   "bytes_text": 21229,
+   "sha256_text": "43475e11e5583ba4dfd539bebd17654422a53e8b7e9ebd940712444f8194de6a",
+   "markers": {
+    "meta_ms_date": "2026-05-30T00:00:00Z",
+    "title": "Install Windows ML execution providers | Microsoft Learn"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": []
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "fc082bf4d5de54f3b9b71969916f355dfa3df292cd639bf7a6c324302d82e5cf",
+    "byte_stable": true,
+    "sha256_text": "43475e11e5583ba4dfd539bebd17654422a53e8b7e9ebd940712444f8194de6a",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:02Z",
+    "sha256_body_then": "eded821c77bdfb20bc05e340a6fcd11a7be06673bb6ea6eed23d2d602b825ed6",
+    "sha256_body_now": "fc082bf4d5de54f3b9b71969916f355dfa3df292cd639bf7a6c324302d82e5cf",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "register_execution_providers",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/register-execution-providers",
+   "accessed_utc": "2026-11-20T03:48:16Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html",
+   "last_modified": "Wed, 26 Aug 2026 17:41:55 GMT",
+   "etag": "\"FyDci0W7rqmT4PhTZmeTAq8faOs=\"",
+   "bytes": 63455,
+   "sha256_raw": "a1cc215371db02e68a2b998ed819e5bc648e636e73cb4838549ca3f8ce2a7d77",
+   "raw_file": "reports/experiment_b/_raw/docs/register_execution_providers.html",
+   "bytes_text": 10640,
+   "sha256_text": "18ecf175be85dc473e7758872a0a6958d5aea4cff03aa200edc1a399287fb624",
+   "markers": {
+    "meta_ms_date": "2026-02-13T00:00:00Z",
+    "title": "Register Windows ML execution providers | Microsoft Learn"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": []
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "a1cc215371db02e68a2b998ed819e5bc648e636e73cb4838549ca3f8ce2a7d77",
+    "byte_stable": true,
+    "sha256_text": "18ecf175be85dc473e7758872a0a6958d5aea4cff03aa200edc1a399287fb624",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:03Z",
+    "sha256_body_then": "56a5a3fa9ab2d29176b116e0566c0affff28aa558fa322656cc9a82e2f9d2b51",
+    "sha256_body_now": "a1cc215371db02e68a2b998ed819e5bc648e636e73cb4838549ca3f8ce2a7d77",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "execution_provider_errors",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/execution-provider-errors",
+   "accessed_utc": "2026-11-20T03:48:18Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html",
+   "last_modified": "Sat, 07 Nov 2026 00:38:28 GMT",
+   "etag": "\"YOVKsj45xN0a0jVRtCgoZTpftfA=\"",
+   "bytes": 51153,
+   "sha256_raw": "bd1380dd347f0e0b7486fcaa5b2ea9463e48eb9da0aed2fa4dfd851fb93888ec",
+   "raw_file": "reports/experiment_b/_raw/docs/execution_provider_errors.html",
+   "bytes_text": 4098,
+   "sha256_text": "9aa0ce0146ca4fc8ce7f491f5d43da45e3be0240eeb87e6dcddaa39529c178a4",
+   "markers": {
+    "meta_ms_date": "2026-11-02T00:00:00Z",
+    "title": "Troubleshoot execution provider download issues with Windows ML | Microsoft Learn"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 7,
+     "present": true
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 1,
+     "present": true
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 8,
+     "present": true
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": []
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "bd1380dd347f0e0b7486fcaa5b2ea9463e48eb9da0aed2fa4dfd851fb93888ec",
+    "byte_stable": true,
+    "sha256_text": "9aa0ce0146ca4fc8ce7f491f5d43da45e3be0240eeb87e6dcddaa39529c178a4",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:04Z",
+    "sha256_body_then": "5cda77adde0d59d4336fdee130ace28bbb33ce69c003f0d47245ef2438204730",
+    "sha256_body_now": "bd1380dd347f0e0b7486fcaa5b2ea9463e48eb9da0aed2fa4dfd851fb93888ec",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "bring_your_own_eps",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/bring-your-own-eps",
+   "accessed_utc": "2026-11-20T03:48:20Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html",
+   "last_modified": "Tue, 10 Nov 2026 22:50:58 GMT",
+   "etag": "\"waDJm49b9+qsRYmCTD5SLZQw17M=\"",
+   "bytes": 51036,
+   "sha256_raw": "10bbdf7bfb543a179cfd585636ffb3abe6da7e9617815f6fa6075515f46886c2",
+   "raw_file": "reports/experiment_b/_raw/docs/bring_your_own_eps.html",
+   "bytes_text": 3733,
+   "sha256_text": "3606604175e3f69ead6b8bc6a616d8981c1b62c5581a1c76dbebff7cd24c97cc",
+   "markers": {
+    "meta_ms_date": "2026-11-10T00:00:00Z",
+    "title": "Bring your own EPs to Windows ML | Microsoft Learn"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 0,
+     "present": false
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 1,
+     "present": true
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 2,
+     "present": true
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": [
+     "AMDGPU (AMD)"
+    ]
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "10bbdf7bfb543a179cfd585636ffb3abe6da7e9617815f6fa6075515f46886c2",
+    "byte_stable": true,
+    "sha256_text": "3606604175e3f69ead6b8bc6a616d8981c1b62c5581a1c76dbebff7cd24c97cc",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:05Z",
+    "sha256_body_then": "b71117180358241fca9b9ef1c9a1ba417effd3a9d7f6035081cd62982220d55f",
+    "sha256_body_now": "10bbdf7bfb543a179cfd585636ffb3abe6da7e9617815f6fa6075515f46886c2",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "ep_releases_wiki_html",
+   "url": "https://github.com/microsoft/WindowsML/wiki/Windows-ML-Execution-Provider-Releases",
+   "accessed_utc": "2026-11-20T03:48:22Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/html; charset=utf-8",
+   "last_modified": null,
+   "etag": "W/\"79e7d3911cc2275514ed29ff50ec3ca2\"",
+   "bytes": 163881,
+   "sha256_raw": "a0bb2a2ba55a70b9b4d0ed05f1a4fecc3c3d7b7e50465b60af12243428c4e337",
+   "raw_file": "reports/experiment_b/_raw/docs/ep_releases_wiki_html.html",
+   "bytes_text": 9172,
+   "sha256_text": "8d860a5e7be74f10dfb1670bee7aada5341c0981a5e5542383cd86a9f7f3740f",
+   "markers": {
+    "title": "Windows ML Execution Provider Releases \u00b7 microsoft/WindowsML Wiki \u00b7 GitHub"
+   },
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 2,
+     "present": true
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 3,
+     "present": true
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 2,
+     "present": true
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 2,
+     "present": true
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": [
+     "AMD GPU and MIGraphX (AMD)",
+     "AMD)",
+     "AMD GPU and MIGraphX (AMD)\" href=\"#amd-gpu-and-migraphx-amd\">",
+     "AMD GPU EP and MIGraphX EP are shipped in the same package, but the AMD GPU EP is o",
+     "AMD GPU.",
+     "AMD GPU EP added",
+     "AMD)\" href=\"#vitisai-amd\">"
+    ]
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "d2272594729a55c6486e720d2efa9206c270e3ef5ca37148cd843caea90e3032",
+    "byte_stable": false,
+    "sha256_text": "8d860a5e7be74f10dfb1670bee7aada5341c0981a5e5542383cd86a9f7f3740f",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:17Z",
+    "sha256_body_then": "0ca85dacc4910905548a9548c6e6a4acdc6f02a5bcfdea786b1cff982166ecba",
+    "sha256_body_now": "a0bb2a2ba55a70b9b4d0ed05f1a4fecc3c3d7b7e50465b60af12243428c4e337",
+    "raw_body_identical_to_r10": false,
+    "comparison_note": "Learn HTML embeds per-request dynamic chrome (asset nonces), so a raw-body difference is expected and is NOT a content change; the content hash of record for these pages is the main-branch markdown",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  },
+  {
+   "name": "ep_releases_wiki_md",
+   "url": "https://raw.githubusercontent.com/wiki/microsoft/WindowsML/Windows-ML-Execution-Provider-Releases.md",
+   "accessed_utc": "2026-11-20T03:48:24Z",
+   "ok": true,
+   "status": 200,
+   "content_type": "text/plain; charset=utf-8",
+   "last_modified": null,
+   "etag": "\"7f918d3c2017465472f7496ce7feb84ca663167bfa5587ba9d0cb7aecbc90391\"",
+   "bytes": 9164,
+   "sha256_raw": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4",
+   "raw_file": "reports/experiment_b/_raw/docs/ep_releases_wiki_md.md",
+   "bytes_text": 9032,
+   "sha256_text": "61b803189a7bf7e55f11b763db70df5799c84340fe5169f77cd68438a2738114",
+   "markers": {},
+   "statements": {
+    "amdgpu_ep_name": {
+     "kind": "ep",
+     "count": 0,
+     "present": false
+    },
+    "windowsml_min_2_5_96": {
+     "kind": "version",
+     "count": 2,
+     "present": true
+    },
+    "adrenalin_24_12_1": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "adrenalin_25_6_3": {
+     "kind": "driver",
+     "count": 0,
+     "present": false
+    },
+    "migraphx_deprecated": {
+     "kind": "deprecation",
+     "count": 0,
+     "present": false
+    },
+    "gfx1151": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "gfx1100": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "strix_halo": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "did_0x1586": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "rdna3_5_or_rdna": {
+     "kind": "arch",
+     "count": 0,
+     "present": false
+    },
+    "ep_msix_1_8_65_0": {
+     "kind": "package",
+     "count": 3,
+     "present": true
+    },
+    "ep_msix_2_2611_67_0": {
+     "kind": "package",
+     "count": 2,
+     "present": true
+    },
+    "microsoft_store_channel": {
+     "kind": "channel",
+     "count": 0,
+     "present": false
+    },
+    "windows_update_channel": {
+     "kind": "channel",
+     "count": 2,
+     "present": true
+    },
+    "byo_build_from_source": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "onnxruntime_ep_amdgpu_pkg": {
+     "kind": "byo",
+     "count": 0,
+     "present": false
+    },
+    "hp_oem_driver": {
+     "kind": "oem",
+     "count": 0,
+     "present": false
+    },
+    "windows_11_24h2_26100": {
+     "kind": "os",
+     "count": 0,
+     "present": false
+    },
+    "_amd_context_strings": [
+     "AMD GPU and MIGraphX (AMD)](#amd-gpu-and-migraphx-amd) | MSIX: `1.8.65.0`",
+     "AMD)](#vitisai-amd) | MSIX: `1.8.80.0`",
+     "AMD)](#amd-gpu-and-migraphx-amd) | MSIX: `1.8.65.0`",
+     "AMD GPU and MIGraphX (AMD)",
+     "AMD GPU EP and MIGraphX EP are shipped in the same package, but the AMD GPU EP is o",
+     "AMD GPU.",
+     "AMD GPU EP added |",
+     "AMD)"
+    ]
+   },
+   "refetch": {
+    "ok": true,
+    "sha256_raw": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4",
+    "byte_stable": true,
+    "sha256_text": "61b803189a7bf7e55f11b763db70df5799c84340fe5169f77cd68438a2738114",
+    "text_stable": true
+   },
+   "mission_r10": {
+    "accessed_utc": "2026-11-19T13:49:10Z",
+    "sha256_body_then": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4",
+    "sha256_body_now": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4",
+    "raw_body_identical_to_r10": true,
+    "comparison_note": "markdown sources are byte-comparable across tools and are the authoritative content hash",
+    "text_hash_comparable": false,
+    "text_hash_reason": "sha256_text depends on the extractor; R10 and B use different extractors, so text hashes are not compared"
+   }
+  }
+ ]
+}

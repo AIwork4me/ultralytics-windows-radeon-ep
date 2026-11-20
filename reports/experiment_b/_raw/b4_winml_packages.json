@@ -1,0 +1,115 @@
+﻿{
+    "captured":  "2026-11-20T11:49:44.3594880+08:00",
+    "packages":  [
+                     {
+                         "Name":  "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+                         "Version":  "10.25.20179.0",
+                         "PackageFullName":  "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+                         "PublisherId":  "0a9344xs7nr4m",
+                         "SignatureKind":  3,
+                         "Status":  0,
+                         "IsFramework":  false,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.Data.Analysis.Stx.1",
+                         "Version":  "1.2610.1063.0",
+                         "PackageFullName":  "WindowsWorkload.Data.Analysis.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+                         "Version":  "1.8.80.0",
+                         "PackageFullName":  "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.Manager.1",
+                         "Version":  "1.2511.1196.0",
+                         "PackageFullName":  "WindowsWorkload.Manager.1_1.2511.1196.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  false,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.PSTokenizer.Stx.2.7",
+                         "Version":  "1.2610.1063.0",
+                         "PackageFullName":  "WindowsWorkload.PSTokenizer.Stx.2.7_1.2610.1063.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.PSTokenizerShared.Data.7.0",
+                         "Version":  "1.2610.1050.0",
+                         "PackageFullName":  "WindowsWorkload.PSTokenizerShared.Data.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.PSTokenizerShared.Stx.7.0",
+                         "Version":  "1.2610.1050.0",
+                         "PackageFullName":  "WindowsWorkload.PSTokenizerShared.Stx.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.SessionManager.1",
+                         "Version":  "1.2610.1063.0",
+                         "PackageFullName":  "WindowsWorkload.SessionManager.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.WinMLShared.7.0",
+                         "Version":  "1.2610.1050.0",
+                         "PackageFullName":  "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.Data.ContentExtraction.Stx.1",
+                         "Version":  "1.2610.1063.0",
+                         "PackageFullName":  "WindowsWorkload.Data.ContentExtraction.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     },
+                     {
+                         "Name":  "WindowsWorkload.Data.ImageSearch.Stx.1",
+                         "Version":  "1.2610.1063.0",
+                         "PackageFullName":  "WindowsWorkload.Data.ImageSearch.Stx.1_1.2610.1063.0_x64__8wekyb3d8bbwe",
+                         "PublisherId":  "8wekyb3d8bbwe",
+                         "SignatureKind":  1,
+                         "Status":  0,
+                         "IsFramework":  true,
+                         "IsResourcePackage":  false
+                     }
+                 ]
+}

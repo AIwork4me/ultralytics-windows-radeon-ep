@@ -1,0 +1,83 @@
+{
+ "schema": "experiment_b_catalog_surface_matrix_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:50:22Z",
+ "read_only": true,
+ "surfaces_probed": 7,
+ "surfaces_usable": 5,
+ "surfaces_with_any_provider": [],
+ "conclusion": "NO_CATALOG_SURFACE_ON_THIS_HOST_LISTS_ANY_EXECUTION_PROVIDER",
+ "rows": [
+  {
+   "surface": "wasdk_projection__no_bootstrap",
+   "exit_code": 0,
+   "ok": false,
+   "provider_count": null,
+   "providers": null,
+   "error": "OSError: [WinError -2147009196] \u8be5\u8fdb\u7a0b\u6ca1\u6709\u7a0b\u5e8f\u5305\u6807\u8bc6\u7b26\u3002",
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  },
+  {
+   "surface": "wasdk_projection__bootstrap_1_7",
+   "exit_code": 0,
+   "ok": false,
+   "provider_count": null,
+   "providers": null,
+   "error": "AttributeError: method overload with 0 arg(s) is not available in this version of Windows",
+   "terminated_without_payload": false,
+   "stderr_tail": "%USERPROFILE%\\\\Desktop\\YOLO\\ultralytics-windows-radeon-ep\\tools\\experiment_b_catalog_surfaces.py:73: RuntimeWarning: Shutdown object was not called before being garbage collected.\n  res = {\"surface\": a.surface, \"bootstrap_version\": a.bootstrap_version or None,\n"
+  },
+  {
+   "surface": "wasdk_projection__bootstrap_1_8",
+   "exit_code": 0,
+   "ok": true,
+   "provider_count": 0,
+   "providers": [],
+   "error": null,
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  },
+  {
+   "surface": "wasdk_projection__bootstrap_2_3",
+   "exit_code": 0,
+   "ok": true,
+   "provider_count": 0,
+   "providers": [],
+   "error": null,
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  },
+  {
+   "surface": "wasdk_projection__bootstrap_2_6",
+   "exit_code": 0,
+   "ok": true,
+   "provider_count": 0,
+   "providers": [],
+   "error": null,
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  },
+  {
+   "surface": "wasdk_projection__bootstrap_2_7",
+   "exit_code": 0,
+   "ok": true,
+   "provider_count": 0,
+   "providers": [],
+   "error": null,
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  },
+  {
+   "surface": "windowsml_flat_c_2_5_96",
+   "exit_code": 0,
+   "ok": true,
+   "provider_count": 0,
+   "providers": [],
+   "error": null,
+   "terminated_without_payload": false,
+   "stderr_tail": ""
+  }
+ ]
+}

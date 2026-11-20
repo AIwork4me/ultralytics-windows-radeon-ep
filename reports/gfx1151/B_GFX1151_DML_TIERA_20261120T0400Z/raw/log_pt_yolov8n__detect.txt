@@ -1,0 +1,6 @@
+$ .\.venv-export\Scripts\python.exe -I C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\src\radeon_ort\pt_oracle_v2.py --pt C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\models\pt\yolov8n.pt --task detect --tensor-npy C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\inputs\input_7288cbed03310a8c.npy --out-json C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\pt_yolov8n__detect.json --out-npz C:\Users\AMD\Desktop\YOLO\ultralytics-windows-radeon-ep\reports\gfx1151\B_GFX1151_DML_TIERA_20261120T0400Z\raw\pt_yolov8n__detect.npz
+rc=0 elapsed=3.9s
+--- stdout ---
+{"ok": true, "task": "detect", "n": 5}
+
+--- stderr ---

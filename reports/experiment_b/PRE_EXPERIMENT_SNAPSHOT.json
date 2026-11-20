@@ -1,0 +1,895 @@
+{
+ "schema": "experiment_b_preflight_v1",
+ "mission": "B_GFX1151_AMDGPU_EP_ROOT_CAUSE",
+ "run_id": "B_GFX1151_AMDGPU_20261120T0336Z",
+ "captured_utc": "2026-11-20T03:39:14Z",
+ "captured_local": "2026-11-20T11:39:14+08:00",
+ "host_os_timezone": "\u4e2d\u56fd\u6807\u51c6\u65f6\u95f4",
+ "gfx": "gfx1151",
+ "read_only": true,
+ "git": {
+  "head_sha": "767efd71d6106be2fe63895743be8ff6bf652b2f",
+  "branch": "main",
+  "describe": "767efd7",
+  "remote": "https://github.com/AIwork4me/ultralytics-windows-radeon-ep.git",
+  "log_head5": [
+   "767efd7 Merge pull request #13 from AIwork4me/mission/r8-r10-cross-host-readiness",
+   "d819d18 Merge remote-tracking branch 'origin/main' into mission/r8-r10-cross-host-readiness",
+   "8ce1d59 [R7][gfx1151] Product hardening: task oracle, Job Object lifecycle, attempt isolation, E2E (#12)",
+   "d1e183a Merge branch 'mission/r7-gfx1151-product-hardening' into mission/r8-r10-cross-host-readiness",
+   "b329321 fix(bench): write the E2E summary and regenerate the R7 evidence"
+  ],
+  "worktree_clean": false,
+  "dirty_paths": [
+   "?? reports/experiment_b/PRE_EXPERIMENT_SNAPSHOT.json",
+   "?? reports/experiment_b/_quick/dml_canary_quick.json",
+   "?? reports/experiment_b/_quick/ort_profile_dml_2026-11-20_11-36-45_939.json",
+   "?? reports/experiment_b/_raw/appx_cmdlet.json",
+   "?? tools/_t.ps1",
+   "?? tools/_t2.ps1",
+   "?? tools/_t3.py",
+   "?? tools/_t4.py",
+   "?? tools/_t5.py",
+   "?? tools/_t6.py",
+   "?? tools/experiment_b_preflight.py"
+  ],
+  "harness_scope_clean": true,
+  "harness_dirty_paths": [],
+  "tracked_files": 2256
+ },
+ "os": {
+  "platform": "Windows-11-10.0.26200-SP0",
+  "machine": "AMD64",
+  "python": "3.12.10",
+  "python_executable_basename": "python.exe",
+  "windows": {
+   "caption": "Microsoft Windows 11 \u4e13\u4e1a\u7248",
+   "version": "10.0.26200",
+   "build": "26200",
+   "ubr": 9974,
+   "display_version": "25H2",
+   "product_name": "Windows 10 Pro",
+   "edition": "Professional",
+   "install_date": "11/16/2026 09:05:59",
+   "last_boot": "11/18/2026 16:42:58",
+   "architecture": "64 \u4f4d",
+   "locale": "zh-CN",
+   "ps_version": "5.1.26100.9818"
+  },
+  "probe": {
+   "ok": true
+  }
+ },
+ "gpu": {
+  "gfx_requested": "gfx1151",
+  "expected_device_ids": [
+   "0x1586"
+  ],
+  "host_fingerprint": {
+   "schema_version": 1,
+   "captured_utc": "2026-11-20T03:39:19Z",
+   "os": {
+    "os_edition": "Professional",
+    "display_version": "25H2",
+    "build": "26200",
+    "ubr": 9974
+   },
+   "cpu": {
+    "cpu_name": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      ",
+    "ram_gb": 95.8,
+    "model": "HP ZBook Ultra G1a 14 inch Mobile Workstation PC"
+   },
+   "gpu_target": {
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "vendor_id": "0x1002",
+    "device_id": "0x1586",
+    "driver_version": "32.0.22018.5",
+    "driver_date": "09/17/2025",
+    "pnp_device_id": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+    "status": "OK",
+    "adapter_ram_bytes": 4293918720,
+    "wmi_adapter_ram_saturated": true,
+    "verified": false,
+    "identity_method": "wmi-did-match (pending DXGI cross-check)"
+   },
+   "other_adapters": [
+    {
+     "name": "Microsoft Remote Display Adapter",
+     "driver_version": "10.0.26100.9818",
+     "pnp_device_id": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+     "status": "OK",
+     "adapter_ram": null,
+     "vendor_id": null,
+     "device_id": null,
+     "adapter_ram_bytes": null,
+     "wmi_adapter_ram_saturated": false
+    }
+   ],
+   "windows_app_runtime_versions": [],
+   "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "executable_basename": "python.exe"
+   },
+   "tooling": {},
+   "host_id": "host_53f62d2ac2c6"
+  },
+  "dxgi_adapters": [
+   {
+    "index": 0,
+    "description": "AMD Radeon(TM) 8060S Graphics",
+    "vendor_id": 4098,
+    "vendor_id_hex": "0x1002",
+    "device_id": 5510,
+    "device_id_hex": "0x1586",
+    "sub_sys_id": 2365657148,
+    "revision": 209,
+    "luid_high": 0,
+    "luid_low": 87268,
+    "luid_str": "0x00000000:0x000154E4",
+    "is_software": false,
+    "dedicated_video_mb": 32589,
+    "shared_sys_mb": 78459
+   },
+   {
+    "index": 1,
+    "description": "AMD Radeon(TM) 8060S Graphics",
+    "vendor_id": 4098,
+    "vendor_id_hex": "0x1002",
+    "device_id": 5510,
+    "device_id_hex": "0x1586",
+    "sub_sys_id": 2365657148,
+    "revision": 209,
+    "luid_high": 0,
+    "luid_low": 148241756,
+    "luid_str": "0x00000000:0x08D5FD5C",
+    "is_software": false,
+    "dedicated_video_mb": 32589,
+    "shared_sys_mb": 78459
+   },
+   {
+    "index": 2,
+    "description": "Microsoft Basic Render Driver",
+    "vendor_id": 5140,
+    "vendor_id_hex": "0x1414",
+    "device_id": 140,
+    "device_id_hex": "0x008C",
+    "sub_sys_id": 0,
+    "revision": 0,
+    "luid_high": 0,
+    "luid_low": 95413,
+    "luid_str": "0x00000000:0x000174B5",
+    "is_software": true,
+    "dedicated_video_mb": 0,
+    "shared_sys_mb": 78459
+   }
+  ],
+  "resolve": {
+   "ok": true,
+   "did_match": true,
+   "luid_valid": true,
+   "reason": null,
+   "selected_index": 0,
+   "selected_description": "AMD Radeon(TM) 8060S Graphics",
+   "selected_luid": "0x00000000:0x000154E4",
+   "selected_device_id_hex": "0x1586"
+  }
+ },
+ "driver": {
+  "records": [
+   {
+    "kind": "video_controller",
+    "data": {
+     "Name": "AMD Radeon(TM) 8060S Graphics",
+     "DriverVersion": "32.0.22018.5",
+     "DriverDate": "/Date(1758067200000)/",
+     "DriverProviderName": null,
+     "InfFilename": "oem21.inf",
+     "Status": "OK",
+     "PNPDeviceID": "PCI\\VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1\\4&85C8329&0&0041",
+     "AdapterRAM": 4293918720
+    }
+   },
+   {
+    "kind": "video_controller",
+    "data": {
+     "Name": "Microsoft Remote Display Adapter",
+     "DriverVersion": "10.0.26100.9818",
+     "DriverDate": "/Date(1150848000000)/",
+     "DriverProviderName": null,
+     "InfFilename": "rdpidd.inf",
+     "Status": "OK",
+     "PNPDeviceID": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+     "AdapterRAM": null
+    }
+   },
+   {
+    "kind": "signed_driver",
+    "data": {
+     "DeviceName": "Microsoft Remote Display Adapter",
+     "DriverVersion": "10.0.26100.9818",
+     "DriverDate": "/Date(1150848000000)/",
+     "DriverProviderName": "Microsoft",
+     "InfName": "rdpidd.inf",
+     "IsSigned": true,
+     "Signer": "Microsoft Windows"
+    }
+   },
+   {
+    "kind": "signed_driver",
+    "data": {
+     "DeviceName": "AMD Radeon(TM) 8060S Graphics",
+     "DriverVersion": "32.0.22018.5",
+     "DriverDate": "/Date(1758067200000)/",
+     "DriverProviderName": "Advanced Micro Devices, Inc.",
+     "InfName": "oem21.inf",
+     "IsSigned": true,
+     "Signer": "Microsoft Windows Hardware Compatibility Publisher"
+    }
+   }
+  ],
+  "probe_ok": true
+ },
+ "appx": {
+  "method": "registry-stores",
+  "current_user_repository_total": 140,
+  "machine_allusers_total": 74,
+  "inbox_total": 50,
+  "current_user": [
+   {
+    "name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+    "version": "10.25.20179.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.StorePurchaseApp",
+    "version": "22609.1401.1.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.StorePurchaseApp_22609.1401.1.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.1.7",
+    "version": "7000.785.2325.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.1.7",
+    "version": "7000.785.2325.0",
+    "arch": "x86",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x86__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.1.8",
+    "version": "8000.994.2142.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.1.8",
+    "version": "8000.994.2142.0",
+    "arch": "x86",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x86__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.2",
+    "version": "2.6.5.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.2",
+    "version": "2.7.0.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.2",
+    "version": "2.7.0.0",
+    "arch": "x86",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x86__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.CBS.1.6",
+    "version": "6000.708.357.100",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.CBS.1.6_6000.708.357.100_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.CBS.1.6",
+    "version": "6000.900.156.100",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.CBS.1.6_6000.900.156.100_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsAppRuntime.CBS.2",
+    "version": "2.5.1.100",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsAppRuntime.CBS.2_2.5.1.100_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "Microsoft.WindowsStore",
+    "version": "22610.1401.8.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "Microsoft.WindowsStore_22610.1401.8.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+    "version": "1.8.80.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   },
+   {
+    "name": "WindowsWorkload.WinMLShared.7.0",
+    "version": "1.2610.1050.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+    "source": "HKCU_AppModel_Repository"
+   }
+  ],
+  "machine_allusers": [
+   {
+    "name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+    "version": "10.25.20179.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+    "source": "HKLM_AppxAllUserStore_Applications"
+   },
+   {
+    "name": "Microsoft.StorePurchaseApp",
+    "version": "22609.1401.1.0",
+    "arch": "neutral",
+    "publisher_id": "~",
+    "package_full_name": "Microsoft.StorePurchaseApp_22609.1401.1.0_neutral_~_8wekyb3d8bbwe",
+    "source": "HKLM_AppxAllUserStore_Applications"
+   },
+   {
+    "name": "Microsoft.WindowsStore",
+    "version": "22610.1401.8.0",
+    "arch": "neutral",
+    "publisher_id": "~",
+    "package_full_name": "Microsoft.WindowsStore_22610.1401.8.0_neutral_~_8wekyb3d8bbwe",
+    "source": "HKLM_AppxAllUserStore_Applications"
+   },
+   {
+    "name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+    "version": "1.8.80.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+    "source": "HKLM_AppxAllUserStore_Applications"
+   },
+   {
+    "name": "WindowsWorkload.WinMLShared.7.0",
+    "version": "1.2610.1050.0",
+    "arch": "x64",
+    "publisher_id": "",
+    "package_full_name": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+    "source": "HKLM_AppxAllUserStore_Applications"
+   }
+  ],
+  "amdgpu_ep_packages_current_user": [],
+  "amdgpu_ep_packages_machine": [],
+  "cmdlet_cross_check": {
+   "captured_local": "2026-11-20T11:38:59.2444076+08:00",
+   "engine": "5.1.26100.9818",
+   "total_current_user": 129,
+   "items": [
+    {
+     "Name": "Microsoft.WindowsAppRuntime.2",
+     "Version": "2.6.5.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.2_2.6.5.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.1.7",
+     "Version": "7000.785.2325.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x86__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.1.7",
+     "Version": "7000.785.2325.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.StorePurchaseApp",
+     "Version": "22609.1401.1.0",
+     "PackageFullName": "Microsoft.StorePurchaseApp_22609.1401.1.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": false
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.1.8",
+     "Version": "8000.994.2142.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.1.8",
+     "Version": "8000.994.2142.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.1.8_8000.994.2142.0_x86__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+     "Version": "10.25.20179.0",
+     "PackageFullName": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.25.20179.0_x64__0a9344xs7nr4m",
+     "PublisherId": "0a9344xs7nr4m",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": false
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.CBS.1.6",
+     "Version": "6000.900.156.100",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.CBS.1.6_6000.900.156.100_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 4,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.CBS.2",
+     "Version": "2.5.1.100",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.CBS.2_2.5.1.100_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 4,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8",
+     "Version": "1.8.80.0",
+     "PackageFullName": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8_1.8.80.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 1,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "WindowsWorkload.WinMLShared.7.0",
+     "Version": "1.2610.1050.0",
+     "PackageFullName": "WindowsWorkload.WinMLShared.7.0_1.2610.1050.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 1,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.2",
+     "Version": "2.7.0.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsAppRuntime.2",
+     "Version": "2.7.0.0",
+     "PackageFullName": "Microsoft.WindowsAppRuntime.2_2.7.0.0_x86__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": true
+    },
+    {
+     "Name": "Microsoft.WindowsStore",
+     "Version": "22610.1401.8.0",
+     "PackageFullName": "Microsoft.WindowsStore_22610.1401.8.0_x64__8wekyb3d8bbwe",
+     "PublisherId": "8wekyb3d8bbwe",
+     "SignatureKind": 3,
+     "Status": 0,
+     "IsFramework": false
+    }
+   ]
+  },
+  "cmdlet_note": "Get-AppxPackage is unusable from a python-spawned child on this host; the cmdlet inventory is ingested from reports/experiment_b/_raw/appx_cmdlet.json when present"
+ },
+ "ep_dll": {
+  "scan": {
+   "dlls": [],
+   "searched_pattern_kinds": [
+    "*AMDGPU*EP*.dll",
+    "*amdgpu*ep*.dll",
+    "AMDGPUExecutionProvider*.dll",
+    "amdgpu-ep.dll"
+   ]
+  },
+  "windowsapps_listable": false,
+  "windowsapps_error": "PermissionError: \u62d2\u7edd\u8bbf\u95ee\u3002",
+  "windowsapps_path_note": "C:/Program Files/WindowsApps (system path, not user data)"
+ },
+ "runtime": {
+  "packages": {
+   "onnxruntime-windowsml": "1.25.2.202605110140",
+   "onnxruntime": null,
+   "windowsml": "2.5.96",
+   "numpy": "2.5.5",
+   "onnx": "1.23.2",
+   "wasdk-Microsoft.Windows.AI.MachineLearning": "2.3.0",
+   "wasdk-Microsoft.Windows.ApplicationModel.DynamicDependency.Bootstrap": "2.3.0",
+   "wasdk-Microsoft.Windows.Applications": null,
+   "pytest": "9.2.0",
+   "ruff": "0.17.5",
+   "ultralytics": null
+  },
+  "ort": {
+   "version": "1.25.2",
+   "available_providers": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+   ],
+   "ep_devices": [
+    {
+     "ep_name": "CPUExecutionProvider",
+     "ep_vendor": "Microsoft",
+     "ep_options": {},
+     "ep_metadata": {
+      "version": "1.25.2"
+     }
+    },
+    {
+     "ep_name": "DmlExecutionProvider",
+     "ep_vendor": "Microsoft",
+     "ep_options": {
+      "device_id": "0"
+     },
+     "ep_metadata": {
+      "version": "1.25.2"
+     }
+    }
+   ],
+   "has_register_api": true,
+   "module_file_basename": "__init__.py"
+  }
+ },
+ "catalog_preflight": {
+  "projection_module": "winui3.microsoft.windows.ai.machinelearning",
+  "types_found": [
+   "ExecutionProviderCatalog",
+   "ExecutionProvider",
+   "ExecutionProviderReadyResultState"
+  ],
+  "errors": [],
+  "bootstrap": "initialized (version=2.3)",
+  "catalog_providers": [],
+  "windowsml": {
+   "version": "2.5.96",
+   "providers": []
+  },
+  "catalog_probes": [
+   {
+    "engine": "wasdk_projection",
+    "providers": 0
+   },
+   {
+    "engine": "windowsml_flat_c",
+    "version": "2.5.96",
+    "providers": 0
+   }
+  ]
+ },
+ "store": {
+  "probe_ok": true,
+  "data": {
+   "policies": [],
+   "reboot_pending_keys": [],
+   "proxy": "{\"ProxyEnable\":1,\"ProxyServer\":\"127.0.0.1:7897\",\"AutoConfigURL\":null}",
+   "wu_service": "[{\"Name\":\"AppXSvc\",\"Status\":4,\"StartType\":2},{\"Name\":\"ClipSVC\",\"Status\":1,\"StartType\":3},{\"Name\":\"DoSvc\",\"Status\":4,\"StartType\":2},{\"Name\":\"InstallService\",\"Status\":4,\"StartType\":3},{\"Name\":\"wuauserv\",\"Status\":1,\"StartType\":3}]"
+  }
+ },
+ "r10_evidence": {
+  "dir": "reports/mission_r10",
+  "file_count": 44,
+  "files": [
+   {
+    "path": "reports/mission_r10/_raw/byo_eps_html.html",
+    "bytes": 50656,
+    "sha256": "b71117180358241fca9b9ef1c9a1ba417effd3a9d7f6035081cd62982220d55f"
+   },
+   {
+    "path": "reports/mission_r10/_raw/byo_eps_html.txt",
+    "bytes": 3760,
+    "sha256": "8a0dcadfbef45546ea2a52e22c66fa31a97cc4ea9631727f27529b207142b71c"
+   },
+   {
+    "path": "reports/mission_r10/_raw/ep_errors_html.html",
+    "bytes": 50773,
+    "sha256": "5cda77adde0d59d4336fdee130ace28bbb33ce69c003f0d47245ef2438204730"
+   },
+   {
+    "path": "reports/mission_r10/_raw/ep_errors_html.txt",
+    "bytes": 4098,
+    "sha256": "ef4608cd92310011e23d6f6a970b32941a2e7a41a8458a397aabcfd310343214"
+   },
+   {
+    "path": "reports/mission_r10/_raw/eps_vs_byo_html.html",
+    "bytes": 50449,
+    "sha256": "05b4de87219b20ba6a709af94ba876c250bba9d59480c185d05b0c7626c5ad18"
+   },
+   {
+    "path": "reports/mission_r10/_raw/eps_vs_byo_html.txt",
+    "bytes": 4167,
+    "sha256": "115306d50aeabbe915c53e43f7b69908a3c3982e7120aebaa455cb5e5519f991"
+   },
+   {
+    "path": "reports/mission_r10/_raw/initialize_ep_html.html",
+    "bytes": 77445,
+    "sha256": "eded821c77bdfb20bc05e340a6fcd11a7be06673bb6ea6eed23d2d602b825ed6"
+   },
+   {
+    "path": "reports/mission_r10/_raw/initialize_ep_html.txt",
+    "bytes": 21245,
+    "sha256": "e6fc81b5ba400c8651bf974b055c36954a91113a5a3ee527cae36a6a57c46f2f"
+   },
+   {
+    "path": "reports/mission_r10/_raw/initialize_ep_md_main.text",
+    "bytes": 22562,
+    "sha256": "8389303dfe087dc036ed69e993469a21731caf5b3194fd3f8ffed67eeece9e30"
+   },
+   {
+    "path": "reports/mission_r10/_raw/initialize_ep_md_main.txt",
+    "bytes": 22562,
+    "sha256": "8389303dfe087dc036ed69e993469a21731caf5b3194fd3f8ffed67eeece9e30"
+   },
+   {
+    "path": "reports/mission_r10/_raw/onnxruntime_repo_html.html",
+    "bytes": 100006,
+    "sha256": "3525629ce84bc12061d5ffda2e14d67255187f378e405142abd919ecef438ff9"
+   },
+   {
+    "path": "reports/mission_r10/_raw/onnxruntime_repo_html.txt",
+    "bytes": 2618,
+    "sha256": "6b17ba4044d48b8ab503bd415742837b8d18a5e7afee2e50c334787a635fb712"
+   },
+   {
+    "path": "reports/mission_r10/_raw/ort_ep_amdgpu_readme.text",
+    "bytes": 8870,
+    "sha256": "6677215140d442b3fbbc9e9ed8c71b0b9ea4ebd4b94cd6f8e611948abee7cd74"
+   },
+   {
+    "path": "reports/mission_r10/_raw/ort_ep_amdgpu_readme.txt",
+    "bytes": 8870,
+    "sha256": "6677215140d442b3fbbc9e9ed8c71b0b9ea4ebd4b94cd6f8e611948abee7cd74"
+   },
+   {
+    "path": "reports/mission_r10/_raw/register_ep_html.html",
+    "bytes": 63075,
+    "sha256": "56a5a3fa9ab2d29176b116e0566c0affff28aa558fa322656cc9a82e2f9d2b51"
+   },
+   {
+    "path": "reports/mission_r10/_raw/register_ep_html.txt",
+    "bytes": 10663,
+    "sha256": "d613220aa0f5b23b52e611b94a4a7ab90ca695a05f4e0fb51f9c10b44c10ccd6"
+   },
+   {
+    "path": "reports/mission_r10/_raw/register_ep_md_main.text",
+    "bytes": 10249,
+    "sha256": "d665d7a7da1d32e80ed575756b69e871d9eee97c8fdf3d679c4709320a87eb35"
+   },
+   {
+    "path": "reports/mission_r10/_raw/register_ep_md_main.txt",
+    "bytes": 10249,
+    "sha256": "d665d7a7da1d32e80ed575756b69e871d9eee97c8fdf3d679c4709320a87eb35"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_html.html",
+    "bytes": 66083,
+    "sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_html.txt",
+    "bytes": 9271,
+    "sha256": "ba1657f1b7902dcaf4fc1a9ec6d0eac2363647209b9b7848bbd796bd006e1b87"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_md_docsbranch.text",
+    "bytes": 10492,
+    "sha256": "8fdc3cf4bcfb5021c868c5fa4a557df68167933600c846b10b1530439a7b3404"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_md_docsbranch.txt",
+    "bytes": 10492,
+    "sha256": "8fdc3cf4bcfb5021c868c5fa4a557df68167933600c846b10b1530439a7b3404"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_md_main.text",
+    "bytes": 13194,
+    "sha256": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_md_main.txt",
+    "bytes": 13194,
+    "sha256": "306bb2472107fb804412ae03c95025c42f73da95ff730f6b8a705e5193d34e71"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_view_pinned.html",
+    "bytes": 66083,
+    "sha256": "67b29c82899ef522791f482da5f1b6845a6d86f3a02eb43ec71e745a27fdb013"
+   },
+   {
+    "path": "reports/mission_r10/_raw/supported_ep_view_pinned.txt",
+    "bytes": 9271,
+    "sha256": "ba1657f1b7902dcaf4fc1a9ec6d0eac2363647209b9b7848bbd796bd006e1b87"
+   },
+   {
+    "path": "reports/mission_r10/_raw/windows-ml-ep-releases.html",
+    "bytes": 17593,
+    "sha256": "3b49f919ecbd6cc2fe9d946f34ed87e51ea40e2dd54997ebc07cc1a066c2f6b8"
+   },
+   {
+    "path": "reports/mission_r10/_raw/windowsappsdk_readme.text",
+    "bytes": 6023,
+    "sha256": "0d67f8c4804617ad8f60bc91225d6f82c433198be366cf182c69b282b45dda6d"
+   },
+   {
+    "path": "reports/mission_r10/_raw/windowsappsdk_readme.txt",
+    "bytes": 6023,
+    "sha256": "0d67f8c4804617ad8f60bc91225d6f82c433198be366cf182c69b282b45dda6d"
+   },
+   {
+    "path": "reports/mission_r10/_raw/windowsappsdk_repo_html.html",
+    "bytes": 100005,
+    "sha256": "5eaa3dae355625c7d33dc23cc1acbc6f0b8f0032bb941dcd89a85aca38a22d4d"
+   },
+   {
+    "path": "reports/mission_r10/_raw/windowsappsdk_repo_html.txt",
+    "bytes": 1939,
+    "sha256": "b83463aeb50c1b7c54514dab4c1e48d2a8b1bdd07d256b992bdf1282f42f2226"
+   },
+   {
+    "path": "reports/mission_r10/_raw/winml_ep_releases_wiki.text",
+    "bytes": 9164,
+    "sha256": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4"
+   },
+   {
+    "path": "reports/mission_r10/_raw/winml_ep_releases_wiki.txt",
+    "bytes": 9164,
+    "sha256": "153355aae9bdf7f407d77fe5873849489cb52d964ad74177694bf516a473e6b4"
+   },
+   {
+    "path": "reports/mission_r10/_raw/winml_wiki_html.html",
+    "bytes": 100007,
+    "sha256": "0ca85dacc4910905548a9548c6e6a4acdc6f02a5bcfdea786b1cff982166ecba"
+   },
+   {
+    "path": "reports/mission_r10/_raw/winml_wiki_html.txt",
+    "bytes": 1924,
+    "sha256": "a1a4f117b3a3eb9d5e441def26606b676e9a48d7be888c59f82e1ca6686d0693"
+   },
+   {
+    "path": "reports/mission_r10/DOC_CITATIONS.json",
+    "bytes": 15867,
+    "sha256": "c90d08deb6e009a9b96f437ad0dd304c9c19dc5bc2fe3b5f5fec2af593ae5345"
+   },
+   {
+    "path": "reports/mission_r10/PROBE_20261119T134753Z.json",
+    "bytes": 18596,
+    "sha256": "f3c86c33973de642a474591e48299b5cda6ac4f0b63bb388ba1e670ace417b2c"
+   },
+   {
+    "path": "reports/mission_r10/PROBE_R10_A_20261119T135033Z.json",
+    "bytes": 23443,
+    "sha256": "e31073d307224acb11c977790718ccc7be9e1e38cfaab29f4676cc8e12ff3672"
+   },
+   {
+    "path": "reports/mission_r10/PROBE_R10_B_20261119T135036Z.json",
+    "bytes": 24511,
+    "sha256": "9b374435327155e5c6788a954c8bfa56eec3f261fd001080cb5e66ead537c59a"
+   },
+   {
+    "path": "reports/mission_r10/PROBE_R10_VS_R4_20261119T135041Z.json",
+    "bytes": 24511,
+    "sha256": "b363771ddacd40183387fdd0cf2c2a353e5ada31d2c8f3e85f03f6dec9719c1e"
+   },
+   {
+    "path": "reports/mission_r10/PROBE_REVIEW_20261119.json",
+    "bytes": 23443,
+    "sha256": "55c6c6809c2d9f4c59c06cac4cc51f6473cb17d1d7d71f42157fa90274952af9"
+   },
+   {
+    "path": "reports/mission_r10/REPRO_RUN1.json",
+    "bytes": 2831,
+    "sha256": "8112864ad51eeb97176f153c367989db0da26a76e46d10c3a310d7e9a55c33e4"
+   },
+   {
+    "path": "reports/mission_r10/REPRO_RUN2.json",
+    "bytes": 2831,
+    "sha256": "83bd6b3fdada540813b6d5137b6f1c6081e67a2102da3eec6437f7ace4406222"
+   },
+   {
+    "path": "reports/mission_r10/REPRO_RUN3.json",
+    "bytes": 2831,
+    "sha256": "e0cd79c056c1681244586f5472676e152bc343f21e9257160ca4da6b502a2601"
+   }
+  ]
+ },
+ "dml_canary_quick": {
+  "ep": "dml",
+  "gfx": "gfx1151",
+  "schema": "unified_canary_v1",
+  "onnx_sha256": "13f66ddefc31737db8ce14acd3c6a4e37da4b2060f07adf51bf9adc7478f8210",
+  "input_sha256": "800f6348b26540aaccfd65c0002abb49877edbe1b986daa688db78a7fed9c64f",
+  "versions": {
+   "python": "3.12.10",
+   "ort": "1.25.2",
+   "numpy": "2.5.5"
+  },
+  "physical": {
+   "description": "AMD Radeon(TM) 8060S Graphics",
+   "vendor_id": 4098,
+   "device_id": 5510,
+   "luid": "0x00000000:0x000154E4",
+   "dxgi_index": 0,
+   "did_match": true
+  },
+  "confidence": "DML_DXGI_ORDINAL_CORROBORATED;EP_LUID_UNPROVEN",
+  "session_create_s": 0.172,
+  "parity": {
+   "allclose": true,
+   "max_abs": 7.450580596923828e-09,
+   "reason": null
+  },
+  "profile": {
+   "target_ep_nodes": 1,
+   "cpu_nodes": 0
+  },
+  "status": "GPU_PASS_VALIDATED"
+ },
+ "redaction_scan": {
+  "ok": true,
+  "leaks": []
+ }
+}
