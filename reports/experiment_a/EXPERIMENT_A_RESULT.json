@@ -1,0 +1,46 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "captured_utc": "2026-11-20T08:14:16Z",
+  "final_classification": "A_DIRECT_GPU_GO_CATALOG_NOT_READY",
+  "state_ladder": {
+    "EP_PACKAGE_INSTALLED": true,
+    "EP_DLL_PRESENT": true,
+    "DIRECT_EP_REGISTERED": true,
+    "DIRECT_AMDGPU_GPU_EXECUTED": true,
+    "CATALOG_AMDGPU_LISTED": true,
+    "CATALOG_AMDGPU_READY": false,
+    "CATALOG_AMDGPU_REGISTERED": false,
+    "CATALOG_AMDGPU_GPU_EXECUTED": false
+  },
+  "verdict_matrix": {
+    "direct_gpu": "PASS",
+    "catalog_gpu": "BLOCKED",
+    "catalog_state": "CATALOG_LISTED_NOT_READY",
+    "note": "BLOCKED != FAIL: catalog deployment chain incomplete, not a DLL/driver/device failure"
+  },
+  "evidence_files": [
+    "CATALOG_PROBE.json",
+    "EP_PACKAGE_INVENTORY.json",
+    "DIRECT_REGISTRATION_CANARY.json",
+    "CATALOG_REGISTRATION_CANARY.json",
+    "NEGATIVE_TESTS.json",
+    "HOST_ENVIRONMENT.json"
+  ],
+  "negative_tests": {
+    "case_count": 12,
+    "all_fail_closed": true
+  },
+  "key_hashes": {
+    "onnx_sha256": "7c75d8b919c3f81ddd8dad1f699a98130e4f80b91798f8fcd2b3b2bc40c1e042",
+    "input_npy_sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+    "pt_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "ep_dll_sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+    "catalog_digest": "40158b8824c0e2d24921a6f29cac366bdcc956d8f66e4efe5a85fc0174604082"
+  },
+  "git": {
+    "head_sha": "d24f7377813cddcab744c14c82733e890b881234",
+    "branch": "mission/experiment-a-catalog-vs-direct",
+    "dirty_files": 44,
+    "origin_main_sha": "d24f7377813cddcab744c14c82733e890b881234"
+  }
+}

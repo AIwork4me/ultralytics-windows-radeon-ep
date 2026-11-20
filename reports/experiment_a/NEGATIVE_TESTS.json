@@ -1,0 +1,132 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "experiment": "A8_NEGATIVE_AND_CONTROL_TESTS",
+  "gfx": "gfx1100",
+  "captured_utc": "2026-11-20T08:09:21Z",
+  "cases": [
+    {
+      "case": "wrong_did",
+      "exit_code": 0,
+      "refused_all": true,
+      "detail": {
+        "gfx1201": {
+          "ok": false,
+          "reason": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1201 DeviceId(s) ['0x7550', '0x7551']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'"
+        },
+        "gfx1151": {
+          "ok": false,
+          "reason": "WRONG_OR_AMBIGUOUS_DEVICE: no adapter with gfx1151 DeviceId(s) ['0x1586']; found: 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'; 0x744C (gfx1100 (Navi 31, RX 7900 XTX)) 'AMD Radeon RX 7900 XTX'"
+        }
+      },
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "wrong_dll",
+      "exit_code": 0,
+      "register_error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Failed to find symbol CreateEpFactories in library, error code: 127 \"\"",
+      "amdgpu_ep_device_present": false,
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "unregistered",
+      "exit_code": 0,
+      "session_created": true,
+      "provider_node_counts": {
+        "CPUExecutionProvider": 346
+      },
+      "target_ep_nodes": 0,
+      "cpu_nodes": 0,
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "luid_pin_fail",
+      "exit_code": 0,
+      "pinned_luid": 999999,
+      "selection_basis": "Discrete=1 unique among AMDGPU EP devices (no LUID given)",
+      "library_raised": false,
+      "provider_node_counts": {
+        "AMDGPUExecutionProvider": 1
+      },
+      "ep_device_luid_matches_for_999999": 0,
+      "gates_would_grant_gpu_pass": false,
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "bad_path",
+      "exit_code": 0,
+      "register_error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Error loading \"C:\\nonexistent\\amdgpu-ep.dll\" which is missing. (Error 126: \"找不到指定的模块。\")",
+      "amdgpu_ep_device_present": false,
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "cpu_impersonate",
+      "exit_code": 0,
+      "provider_node_counts": {
+        "CPUExecutionProvider": 346
+      },
+      "gates_would_grant_gpu_pass": false,
+      "fail_closed": true,
+      "expected": "fail_closed=True; no GPU-PASS evidence"
+    },
+    {
+      "case": "input_mismatch",
+      "parity_allclose": false,
+      "fail_closed": true
+    },
+    {
+      "case": "sha_mismatch",
+      "claimed_onnx_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "real_onnx_sha256": "7c75d8b919c3f81ddd8dad1f699a98130e4f80b91798f8fcd2b3b2bc40c1e042",
+      "fail_closed": true
+    },
+    {
+      "case": "provider_list_no_gpu_node",
+      "synthetic": {
+        "providers": [
+          "AMDGPUExecutionProvider",
+          "CPUExecutionProvider"
+        ],
+        "provider_node_counts": {
+          "CPU": 7
+        }
+      },
+      "gate_target_nodes_positive": false,
+      "gate_cpu_nodes_zero": false,
+      "fail_closed": true
+    },
+    {
+      "case": "catalog_empty_dll_present",
+      "classifier": {
+        "direct": "DIRECT_GPU_EXECUTED",
+        "catalog": "CATALOG_EMPTY",
+        "final": "A_DIRECT_GPU_GO_CATALOG_EMPTY"
+      },
+      "fail_closed": true
+    },
+    {
+      "case": "catalog_entry_dll_missing",
+      "classifier": {
+        "direct": "DIRECT_FAILED",
+        "catalog": "CATALOG_READY_NO_LIBRARY_PATH",
+        "final": "A_UNCLASSIFIED_COMBINATION"
+      },
+      "fail_closed": true
+    },
+    {
+      "case": "direct_pass_catalog_fail",
+      "real_evidence": {
+        "direct": "DIRECT_GPU_EXECUTED",
+        "catalog": "CATALOG_LISTED_NOT_READY",
+        "final": "A_DIRECT_GPU_GO_CATALOG_NOT_READY"
+      },
+      "fail_closed": true
+    }
+  ],
+  "all_fail_closed": true,
+  "case_count": 12
+}

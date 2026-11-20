@@ -1,0 +1,33 @@
+{
+  "run_utc": "2026-11-20T08:11:21Z",
+  "status": "FAIL_NO_GPU_COMPUTE",
+  "model_sha256": "2860aeed261822c8a2c4b14eeeee520a89a6a74d78d1437bbeb2387f79b53508",
+  "results": {
+    "cpu": {
+      "returncode": 3,
+      "providers": null,
+      "provider_node_counts": null,
+      "parity": null,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\Users\\Rocm\\Desktop\\YOLO\\m21_m31_m4\\ultralytics-windows-radeon-ep\\runner\\_ep_worker.py\", line 67, in main\n    manifest, tensor = load_input_bundle(case[\"input_manifest\"])\n                                         ~~~~^^^^^^^^^^^^^^^^^^\nKeyError: 'input_manifest'\nCPU_FAILED: KeyError: 'input_manifest'\n",
+      "stdout_tail": ""
+    },
+    "amdgpu": {
+      "returncode": 31,
+      "providers": null,
+      "provider_node_counts": null,
+      "parity": null,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\Users\\Rocm\\Desktop\\YOLO\\m21_m31_m4\\ultralytics-windows-radeon-ep\\runner\\_ep_worker.py\", line 67, in main\n    manifest, tensor = load_input_bundle(case[\"input_manifest\"])\n                                         ~~~~^^^^^^^^^^^^^^^^^^\nKeyError: 'input_manifest'\nAMDGPU_FAILED: KeyError: 'input_manifest'\n",
+      "stdout_tail": ""
+    },
+    "dml": {
+      "returncode": 32,
+      "providers": null,
+      "provider_node_counts": null,
+      "parity": null,
+      "stderr_tail": "Traceback (most recent call last):\n  File \"C:\\Users\\Rocm\\Desktop\\YOLO\\m21_m31_m4\\ultralytics-windows-radeon-ep\\runner\\_ep_worker.py\", line 67, in main\n    manifest, tensor = load_input_bundle(case[\"input_manifest\"])\n                                         ~~~~^^^^^^^^^^^^^^^^^^\nKeyError: 'input_manifest'\nDML_FAILED: KeyError: 'input_manifest'\n",
+      "stdout_tail": ""
+    }
+  },
+  "amdgpu_nodes": 0,
+  "dml_nodes": 0
+}

@@ -1,0 +1,18 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "experiment": "A4_CATALOG_REGISTRATION_CANARY",
+  "gfx": "gfx1100",
+  "captured_utc": "2026-11-20T08:06:38Z",
+  "catalog_evidence_source": "CATALOG_PROBE.json",
+  "authorization_boundary": "AGENTS.md rule 6: no system changes. ensure_ready / ensure_ready_async / try_register are NOT called on this host; a NotReady provider is recorded, never installed.",
+  "catalog_amdgpu": {
+    "ready_state": 1,
+    "ready_state_name": "NotReady",
+    "library_path_redacted": {
+      "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+    }
+  },
+  "verdict": "CATALOG_NOT_READY",
+  "gpu_attempted": false,
+  "detail": "AMDGPUExecutionProvider listed with ready_state=1 (NotReady); making it ready requires ensure_ready → a download/install system change that is not authorized on this host. library_path read: 'PermissionError: [WinError -2147024875] 设备未就绪。'."
+}

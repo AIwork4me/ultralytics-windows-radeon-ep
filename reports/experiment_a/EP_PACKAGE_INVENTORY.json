@@ -1,0 +1,264 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "experiment": "A2_INSTALLED_MSIX_AND_DLL_PROVENANCE",
+  "gfx": "gfx1100",
+  "captured_utc": "2026-11-20T03:45:44Z",
+  "readonly": "Get-AppxPackage / signature / hash / PE parse only",
+  "install_channel": "UNKNOWN unless proven below (no guessing)",
+  "appx": {
+    "query": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+    "packages_matching_winml_amd": [
+      {
+        "queried_name": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+        "Name": "Microsoft.WinML.AMD.GPU.EP.Framework.2",
+        "Version": "1.8.65.0",
+        "PackageFamilyName": "Microsoft.WinML.AMD.GPU.EP.Framework.2_8wekyb3d8bbwe",
+        "Publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "PublisherId": "8wekyb3d8bbwe",
+        "SignatureKind": "Store",
+        "IsFramework": "True",
+        "IsResourcePackage": "False",
+        "NonRemovable": "False"
+      }
+    ],
+    "package_count": 1,
+    "all_versions_installed": [
+      "1.8.65.0"
+    ],
+    "dependencies": [],
+    "windows_app_runtime_versions": [
+      "Microsoft.WindowsAppRuntime.CBS.1.6 6000.900.156.100",
+      "Microsoft.WindowsAppRuntime.1.3 3000.934.1904.0",
+      "Microsoft.WindowsAppRuntime.2 2.6.4.0",
+      "Microsoft.WindowsAppRuntime.1.8 8000.994.2142.0",
+      "Microsoft.WindowsAppRuntime.1.7 7000.785.2325.0",
+      "Microsoft.WindowsAppRuntime.1.7 7000.785.2325.0",
+      "Microsoft.WindowsAppRuntime.1.8 8000.994.2142.0",
+      "Microsoft.WindowsAppRuntime.CBS.2 2.5.1.100",
+      "Microsoft.WindowsAppRuntime.2 2.6.5.0",
+      "Microsoft.WindowsAppRuntime.2 2.7.0.0"
+    ]
+  },
+  "ep_package_files": {
+    "install_location_redacted": "C:/Program Files/WindowsApps/Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__8wekyb3d8bbwe",
+    "files": [
+      {
+        "name": "amd_comgr0714.dll",
+        "bytes": 119743968,
+        "sha256": "1c976c95a2eaf92dca029a3a6cf9f43bd22efe50c2e2249e40d929e4b34c68ea",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "amdgpu-ep.dll",
+        "bytes": 548304,
+        "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "amdhip64_7.dll",
+        "bytes": 16153096,
+        "sha256": "714990f5b64a767c467882fa5d8165da3cb6861942a834a602803387e533d6cc",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "amdmlss.dll",
+        "bytes": 15505968,
+        "sha256": "249cae143b0695ec22ce3a28f09df4050ce30535095e15ec50153ec042f633ec",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "custom_kernels_gfx1151.dll",
+        "bytes": 13397984,
+        "sha256": "a3488ccd4213a3e6800fac6ef9988b8f537eb84899de3ced23f44ac2d16b9f84",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "directx-backend.dll",
+        "bytes": 11124184,
+        "sha256": "0292084948042fe19a6ddc8e074002d05ad0aa5be1fa10aeaf7c8035a7c7a73f",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hip-backend.dll",
+        "bytes": 295384,
+        "sha256": "9a50da9ad7b50e1b38cfa3767afb79ae0651f8703bcc500977862190b2938807",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hip-compiler.dll",
+        "bytes": 59566088,
+        "sha256": "8f98b6c251c46fac03b04244eb1efe70fdac8fa92c8b3583daefee46074855d4",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hipblaslt.dll",
+        "bytes": 6979080,
+        "sha256": "d0c7b29697878f49bd3a2ac86651c011b916717e1f978c76e705fd4d7641eff2",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hipgpu.dll",
+        "bytes": 34693600,
+        "sha256": "620251081765b963dd2cac62185c98ad3b788db1b3a1cc84c69bf3fd56e03de0",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hiprtc-builtins0714.dll",
+        "bytes": 937944,
+        "sha256": "e7ee5bdd4f3f174f14037063fce93ff00765ded812cf47ca7d848b43c81b871d",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "hiprtc0714.dll",
+        "bytes": 1275840,
+        "sha256": "0531f03da26c0f9a6f1133ace3c32acc2fcfa4055d566fb973ef04c29fad2077",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx-backend.dll",
+        "bytes": 2353112,
+        "sha256": "db3b66941d77a43a96ace7078d664e5ca3852473f90f77d44a1c00300d9e7264",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx-hiprtc-driver.exe",
+        "bytes": 423912,
+        "sha256": "338ef7166ee717454d9502bf8ad89761a71e63a1c4aaa73f7383f356c1942f34",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx.dll",
+        "bytes": 50775560,
+        "sha256": "1b14623bbc2b9ae1e328511d1b078b358cad2a3d5b01d9246cb97638c1d987fe",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx_c.dll",
+        "bytes": 632784,
+        "sha256": "ce8da09995ce26a76b76f7cf436b30a949e50b2d721851c107682beb714e08f5",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx_device.dll",
+        "bytes": 14666712,
+        "sha256": "75f36b1466837361fa5ddae6cd87b5ca6b50004259924b3901b65ffe5d608f9a",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx_gpu.dll",
+        "bytes": 99254280,
+        "sha256": "d6e842770a8a8c0ae8237faf3fa7f7b06b6ef3a0f522baa868b40a6537bd96ef",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "migraphx_onnx.dll",
+        "bytes": 3767240,
+        "sha256": "a25c0707f5bdc8499db5ca94998b173d9384aa4c16d60d43164d2e317ba713ca",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "MIOpen.dll",
+        "bytes": 69436896,
+        "sha256": "102a42d8a9c27b4247242fc8773db8e3a49fe5e9e726f4dd24aa407d8daa94d2",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "onnxruntime_providers_migraphx.dll",
+        "bytes": 658904,
+        "sha256": "27cd82550a25b6c5aeeaa1dc91bdfeeec1ccc70e35bbd4aa54222c335c89e449",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "onnxruntime_providers_shared.dll",
+        "bytes": 139728,
+        "sha256": "3623c4a5e1ec6f0d70298e99862bcba2734ee40b2fe5748571482366a7185182",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "problem_cache.json",
+        "bytes": 1094108,
+        "sha256": "d1f3be0380d84015e74fd162ff3cabf0e3cc801e7f64c844f590bf07c5edfbc9",
+        "authenticode_status": "UnknownError",
+        "signer": "",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      },
+      {
+        "name": "rocblas.dll",
+        "bytes": 26196488,
+        "sha256": "ea2ef86e753268f9aac4e7541dc44ee5bf974b09877bf273490de43dc0404a99",
+        "authenticode_status": "Valid",
+        "signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "version_info": "ProductVersion FileVersion FileName -------------- ----------- -------- 7.14.2610.2.80 7.14.2610.2.80 C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__..."
+      }
+    ],
+    "file_count": 24,
+    "arch_targeting_files": [
+      "custom_kernels_gfx1151.dll"
+    ],
+    "migraphx_colocated": true,
+    "manifest_excerpt": {
+      "identity": "<Identity Name=\"Microsoft.WinML.AMD.GPU.EP.Framework.2\" Publisher=\"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US\" Version=\"1.8.65.0\" ProcessorArchitecture=\"x64\" />"
+    }
+  },
+  "amdgpu_ep_dll": {
+    "dll_name": "amdgpu-ep.dll",
+    "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+    "bytes": 548304,
+    "pe_imports": [
+      "KERNEL32.dll"
+    ]
+  },
+  "ort_compat": {
+    "ort_version": "1.25.2",
+    "has_register_execution_provider_library": true,
+    "has_get_ep_devices": true,
+    "available_providers": [
+      "DmlExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  }
+}

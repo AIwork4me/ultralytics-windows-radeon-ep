@@ -172,6 +172,25 @@ def _get_ort():
         return None
 
 
+def _appx_ep_dll_fallback() -> list[str]:
+    """RCA1-proven Get-AppxPackage resolver (globs of C:\\Program Files\\
+    WindowsApps are ACL-blocked for normal processes and silently return
+    nothing — live-observed again 2026-11-20 on the preflight path)."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-Command",
+             "(Get-AppxPackage Microsoft.WinML.AMD.GPU.EP.Framework.2).InstallLocation"],
+            capture_output=True, text=True, timeout=30).stdout.strip()
+        if out:
+            p = Path(out) / "ExecutionProvider" / "amdgpu-ep.dll"
+            if p.is_file():
+                return [str(p)]
+    except Exception:  # noqa: BLE001
+        return []
+    return []
+
+
 def _rederive_real_paths() -> list[str]:
     import glob
     import site
@@ -185,6 +204,7 @@ def _rederive_real_paths() -> list[str]:
         out.extend(glob.glob(str(wa / "*AMDGPU*EP*.dll")))
     for pat in _machine_windowsapps_patterns():
         out.extend(glob.glob(pat))
+    out.extend(_appx_ep_dll_fallback())
     # dedupe; the machine-wide vendor EP package is the canonical real path
     return sorted(set(out))
 

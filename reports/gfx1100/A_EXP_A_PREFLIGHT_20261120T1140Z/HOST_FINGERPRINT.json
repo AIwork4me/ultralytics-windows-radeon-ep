@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-20T03:33:25Z",
+  "os": {
+    "os_edition": "Professional",
+    "display_version": "26H2",
+    "build": "26300",
+    "ubr": 9974
+  },
+  "cpu": {
+    "cpu_name": "13th Gen Intel(R) Core(TM) i7-13700K",
+    "ram_gb": 31.8,
+    "model": "B760M AORUS ELITE"
+  },
+  "gpu_target": {
+    "name": null,
+    "gfx": "gfx1100",
+    "verified": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed); PnP cross-check pending canary",
+    "driver_version": "unknown",
+    "luid": "0x00000000:0x00011A9A",
+    "dedicated_vram_mb": 24560,
+    "shared_memory_mb": 16267
+  },
+  "other_adapters": [
+    {
+      "name": "GameViewer Virtual Display Adapter",
+      "driver_version": "15.6.5.199",
+      "pnp_device_id": "ROOT\\DISPLAY\\0000",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "name": "AMD Radeon RX 7900 XTX",
+      "driver_version": "32.0.21030.2001",
+      "pnp_device_id": "PCI\\VEN_1002&DEV_744C&SUBSYS_0E3B1002&REV_C8\\6&13FD3BF3&0&00000008",
+      "status": "OK",
+      "adapter_ram": 4293918720
+    },
+    {
+      "name": "Intel(R) UHD Graphics 770",
+      "driver_version": "32.0.101.6129",
+      "pnp_device_id": "PCI\\VEN_8086&DEV_A780&SUBSYS_D0001458&REV_04\\3&11583659&0&10",
+      "status": "OK",
+      "adapter_ram": 2147479552
+    },
+    {
+      "name": "Microsoft Remote Display Adapter",
+      "driver_version": "10.0.26100.9818",
+      "pnp_device_id": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "device_name": "Microsoft Remote Display Adapter",
+      "drv": "10.0.26100.9818",
+      "drv_date": "06/21/2006 08:00:00"
+    },
+    {
+      "device_name": "Intel(R) UHD Graphics 770",
+      "drv": "32.0.101.6129",
+      "drv_date": "10/18/2024 08:00:00"
+    },
+    {
+      "device_name": "AMD Radeon RX 7900 XTX",
+      "drv": "32.0.21030.2001",
+      "drv_date": "09/25/2025 08:00:00"
+    },
+    {
+      "device_name": "GameViewer Virtual Display Adapter",
+      "drv": "15.6.5.199",
+      "drv_date": "02/28/2026 08:00:00"
+    }
+  ],
+  "windows_app_runtime_versions": [
+    "2.5.1.100",
+    "2.6.4.0",
+    "2.6.5.0",
+    "2.7.0.0",
+    "3000.934.1904.0",
+    "6000.900.156.100",
+    "7000.785.2325.0",
+    "8000.994.2142.0"
+  ],
+  "python": {
+    "version": "3.12.16",
+    "implementation": "CPython",
+    "executable_basename": "python.exe"
+  },
+  "tooling": {},
+  "_gpu_list": [
+    {
+      "name": "GameViewer Virtual Display Adapter",
+      "driver_version": "15.6.5.199",
+      "pnp_device_id": "ROOT\\DISPLAY\\0000",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "name": "AMD Radeon RX 7900 XTX",
+      "driver_version": "32.0.21030.2001",
+      "pnp_device_id": "PCI\\VEN_1002&DEV_744C&SUBSYS_0E3B1002&REV_C8\\6&13FD3BF3&0&00000008",
+      "status": "OK",
+      "adapter_ram": 4293918720
+    },
+    {
+      "name": "Intel(R) UHD Graphics 770",
+      "driver_version": "32.0.101.6129",
+      "pnp_device_id": "PCI\\VEN_8086&DEV_A780&SUBSYS_D0001458&REV_04\\3&11583659&0&10",
+      "status": "OK",
+      "adapter_ram": 2147479552
+    },
+    {
+      "name": "Microsoft Remote Display Adapter",
+      "driver_version": "10.0.26100.9818",
+      "pnp_device_id": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0004",
+      "status": "OK",
+      "adapter_ram": null
+    },
+    {
+      "device_name": "Microsoft Remote Display Adapter",
+      "drv": "10.0.26100.9818",
+      "drv_date": "06/21/2006 08:00:00"
+    },
+    {
+      "device_name": "Intel(R) UHD Graphics 770",
+      "drv": "32.0.101.6129",
+      "drv_date": "10/18/2024 08:00:00"
+    },
+    {
+      "device_name": "AMD Radeon RX 7900 XTX",
+      "drv": "32.0.21030.2001",
+      "drv_date": "09/25/2025 08:00:00"
+    },
+    {
+      "device_name": "GameViewer Virtual Display Adapter",
+      "drv": "15.6.5.199",
+      "drv_date": "02/28/2026 08:00:00"
+    }
+  ]
+}

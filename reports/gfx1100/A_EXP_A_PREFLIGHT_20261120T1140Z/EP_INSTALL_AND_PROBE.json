@@ -1,0 +1,49 @@
+{
+  "captured_utc": "2026-11-20T03:33:27Z",
+  "api": {
+    "projection_module": "winui3.microsoft.windows.ai.machinelearning",
+    "types_found": [
+      "ExecutionProviderCatalog",
+      "ExecutionProvider",
+      "ExecutionProviderReadyResultState"
+    ],
+    "errors": [],
+    "bootstrap": "initialized (version=2.3)",
+    "catalog_providers": [
+      {
+        "name": "MIGraphXExecutionProvider",
+        "ready_state": 1,
+        "certification": 1,
+        "library_path": "",
+        "package_id": ""
+      },
+      {
+        "name": "OpenVINOExecutionProvider",
+        "ready_state": 2,
+        "certification": 1,
+        "library_path": "",
+        "package_id": ""
+      },
+      {
+        "name": "WebGpuExecutionProvider",
+        "ready_state": 2,
+        "certification": 2,
+        "library_path": "",
+        "package_id": ""
+      },
+      {
+        "name": "AMDGPUExecutionProvider",
+        "ready_state": 1,
+        "certification": 2,
+        "library_path": "",
+        "package_id": ""
+      }
+    ]
+  },
+  "amdgpu_dlls": [],
+  "register_attempt": "amdgpu-ep.dll not found (BLOCKED_EP)",
+  "available_providers": [
+    "DmlExecutionProvider",
+    "CPUExecutionProvider"
+  ]
+}

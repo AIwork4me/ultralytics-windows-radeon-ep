@@ -1,0 +1,13 @@
+{
+ "scanned_utc": "2026-11-20T16:20:00Z",
+ "files": {
+  "CATALOG_PROBE.json": [],
+  "CATALOG_REGISTRATION_CANARY.json": [],
+  "DIRECT_REGISTRATION_CANARY.json": [],
+  "EP_PACKAGE_INVENTORY.json": [],
+  "EXPERIMENT_A_RESULT.json": [],
+  "HOST_ENVIRONMENT.json": [],
+  "NEGATIVE_TESTS.json": [],
+  "REDACTION_SCAN.json": []
+ }
+}

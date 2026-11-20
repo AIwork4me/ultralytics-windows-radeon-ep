@@ -1,0 +1,1 @@
+{"session": {"ep": "CPU", "routing_notes": "exception: KeyError: 'input_manifest'"}, "parity": null, "benchmark_data": null, "worker_pid": 11228, "parent_pid": 17044, "input_tensor_sha256": null}

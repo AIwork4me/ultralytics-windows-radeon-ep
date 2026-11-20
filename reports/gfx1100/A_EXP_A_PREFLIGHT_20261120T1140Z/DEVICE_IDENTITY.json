@@ -1,0 +1,76 @@
+{
+  "adapters": [
+    {
+      "index": 0,
+      "description": "AMD Radeon RX 7900 XTX",
+      "vendor_id": "0x1002",
+      "device_id": "0x744C",
+      "dedicated_video_mb": 24560,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0x00011A9A",
+      "is_software": false
+    },
+    {
+      "index": 1,
+      "description": "AMD Radeon RX 7900 XTX",
+      "vendor_id": "0x1002",
+      "device_id": "0x744C",
+      "dedicated_video_mb": 24560,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0x0001CD1D",
+      "is_software": false
+    },
+    {
+      "index": 2,
+      "description": "Intel(R) UHD Graphics 770",
+      "vendor_id": "0x8086",
+      "device_id": "0xA780",
+      "dedicated_video_mb": 128,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0x000138E3",
+      "is_software": false
+    },
+    {
+      "index": 3,
+      "description": "AMD Radeon RX 7900 XTX",
+      "vendor_id": "0x1002",
+      "device_id": "0x744C",
+      "dedicated_video_mb": 24560,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0xA707F1FB",
+      "is_software": false
+    },
+    {
+      "index": 4,
+      "description": "Microsoft Basic Render Driver",
+      "vendor_id": "0x1414",
+      "device_id": "0x008C",
+      "dedicated_video_mb": 0,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0x00013878",
+      "is_software": true
+    }
+  ],
+  "resolved": {
+    "ok": true,
+    "adapter": {
+      "index": 0,
+      "description": "AMD Radeon RX 7900 XTX",
+      "vendor_id": "0x1002",
+      "device_id": "0x744C",
+      "dedicated_video_mb": 24560,
+      "shared_sys_mb": 16267,
+      "luid_str": "0x00000000:0x00011A9A",
+      "is_software": false
+    },
+    "did_match": true,
+    "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)",
+    "corroboration": [
+      "DeviceId 0x744C -> gfx1100 (Navi 31, RX 7900 XTX)",
+      "description contains 'Radeon'"
+    ],
+    "note": "LUID is boot-local; recorded as session corroboration only",
+    "luid_valid": true,
+    "dedup_note": "same physical gfx1100 enumerated 3x (LUIDs: ['0x00000000:0x00011A9A', '0x00000000:0x0001CD1D', '0x00000000:0xA707F1FB']); selected index 0"
+  }
+}

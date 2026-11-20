@@ -1,0 +1,294 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "experiment": "A1_OFFICIAL_CATALOG_READ_ONLY_PROBE",
+  "gfx": "gfx1100",
+  "probe": "windowsml (official PyPI package, flat-C WinML EP Catalog API)",
+  "readonly_guarantee": "no ensure_ready/ensure_ready_async/try_register call sites in this script; catalog handles released",
+  "state_ladder_reference": [
+    "EP_PACKAGE_INSTALLED",
+    "EP_DLL_PRESENT",
+    "DIRECT_EP_REGISTERED",
+    "DIRECT_AMDGPU_GPU_EXECUTED",
+    "CATALOG_AMDGPU_LISTED",
+    "CATALOG_AMDGPU_READY",
+    "CATALOG_AMDGPU_REGISTERED",
+    "CATALOG_AMDGPU_GPU_EXECUTED"
+  ],
+  "runs": [
+    {
+      "sampled_utc": "2026-11-20T03:39:31Z",
+      "windowsml_version": "unknown",
+      "interop_dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+      "winml_ep_catalog_create_hresult": "0x00000000",
+      "winml_ep_catalog_enum_providers_hresult": "0x00000000",
+      "providers": [
+        {
+          "name": "AMDGPUExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "MIGraphXExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "OpenVINOExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "WebGpuExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 2,
+          "certification_name": "Uncertified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        }
+      ],
+      "provider_count": 4,
+      "amdgpu_listed": true,
+      "amdgpu_entry": {
+        "name": "AMDGPUExecutionProvider",
+        "version": "",
+        "ready_state": 1,
+        "ready_state_name": "NotReady",
+        "certification": 1,
+        "certification_name": "Certified",
+        "package_family_name": "",
+        "library_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        },
+        "package_root_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        }
+      }
+    },
+    {
+      "sampled_utc": "2026-11-20T03:39:33Z",
+      "windowsml_version": "unknown",
+      "interop_dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+      "winml_ep_catalog_create_hresult": "0x00000000",
+      "winml_ep_catalog_enum_providers_hresult": "0x00000000",
+      "providers": [
+        {
+          "name": "AMDGPUExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "MIGraphXExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "OpenVINOExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "WebGpuExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 2,
+          "certification_name": "Uncertified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        }
+      ],
+      "provider_count": 4,
+      "amdgpu_listed": true,
+      "amdgpu_entry": {
+        "name": "AMDGPUExecutionProvider",
+        "version": "",
+        "ready_state": 1,
+        "ready_state_name": "NotReady",
+        "certification": 1,
+        "certification_name": "Certified",
+        "package_family_name": "",
+        "library_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        },
+        "package_root_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        }
+      }
+    },
+    {
+      "sampled_utc": "2026-11-20T03:39:37Z",
+      "windowsml_version": "unknown",
+      "interop_dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+      "winml_ep_catalog_create_hresult": "0x00000000",
+      "winml_ep_catalog_enum_providers_hresult": "0x00000000",
+      "providers": [
+        {
+          "name": "AMDGPUExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "MIGraphXExecutionProvider",
+          "version": "",
+          "ready_state": 1,
+          "ready_state_name": "NotReady",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "OpenVINOExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 1,
+          "certification_name": "Certified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        },
+        {
+          "name": "WebGpuExecutionProvider",
+          "version": "",
+          "ready_state": 2,
+          "ready_state_name": "NotPresent",
+          "certification": 2,
+          "certification_name": "Uncertified",
+          "package_family_name": "",
+          "library_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          },
+          "package_root_path_redacted": {
+            "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+          }
+        }
+      ],
+      "provider_count": 4,
+      "amdgpu_listed": true,
+      "amdgpu_entry": {
+        "name": "AMDGPUExecutionProvider",
+        "version": "",
+        "ready_state": 1,
+        "ready_state_name": "NotReady",
+        "certification": 1,
+        "certification_name": "Certified",
+        "package_family_name": "",
+        "library_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        },
+        "package_root_path_redacted": {
+          "error": "PermissionError: [WinError -2147024875] 设备未就绪。"
+        }
+      }
+    }
+  ],
+  "digests_per_run": [
+    "40158b8824c0e2d24921a6f29cac366bdcc956d8f66e4efe5a85fc0174604082",
+    "40158b8824c0e2d24921a6f29cac366bdcc956d8f66e4efe5a85fc0174604082",
+    "40158b8824c0e2d24921a6f29cac366bdcc956d8f66e4efe5a85fc0174604082"
+  ],
+  "digest_stable_across_runs": true,
+  "amdgpu_listed_all_runs": true,
+  "amdgpu_listed_any_run": true,
+  "amdgpu_ready_state_interpretation": {
+    "0": "Ready",
+    "1": "NotReady",
+    "2": "NotPresent",
+    "source": "windowsml._bindings.EpReadyState (Microsoft-signed interop)"
+  },
+  "amdgpu_ready_all_runs": false,
+  "captured_utc": "2026-11-20T03:39:38Z",
+  "classification": "CATALOG_AMDGPU_LISTED_NOT_READY"
+}

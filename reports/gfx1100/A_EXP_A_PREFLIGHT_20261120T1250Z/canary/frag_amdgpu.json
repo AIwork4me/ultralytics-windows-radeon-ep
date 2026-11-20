@@ -1,0 +1,1 @@
+{"session": {"ep": "AMDGPU", "routing_notes": "exception: KeyError: 'input_manifest'"}, "parity": null, "benchmark_data": null, "worker_pid": 19016, "parent_pid": 16572, "input_tensor_sha256": null}

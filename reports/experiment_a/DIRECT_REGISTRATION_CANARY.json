@@ -1,0 +1,175 @@
+{
+  "mission": "A_GFX1100_CATALOG_VS_DIRECT_REGISTRATION",
+  "experiment": "A3_DIRECT_REGISTRATION_CANARY",
+  "gfx": "gfx1100",
+  "captured_utc": "2026-11-20T08:05:12Z",
+  "model": {
+    "onnx_name": "yolo26n_a3.onnx",
+    "onnx_sha256": "7c75d8b919c3f81ddd8dad1f699a98130e4f80b91798f8fcd2b3b2bc40c1e042",
+    "input_npy_sha256": "e2fedaeae6235bc04c0b962fea3120dbc3bd2bc263b181213ef98c8a8140f522",
+    "pt_name": "yolo26n.pt",
+    "pt_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef"
+  },
+  "registration_mode": "DIRECT (ort.register_execution_provider_library with MSIX-resolved amdgpu-ep.dll; NOT catalog)",
+  "steps": [
+    {
+      "step": "gpu_worker",
+      "cmd_python": "python.exe",
+      "cmd_script": "experiment_a_canary_worker.py",
+      "exit_code": 0,
+      "wall_s": 42.24,
+      "timeout": false
+    },
+    {
+      "step": "cpu_reference",
+      "cmd_python": "python.exe",
+      "cmd_script": "experiment_a_cpu_worker.py",
+      "exit_code": 0,
+      "wall_s": 0.3,
+      "timeout": false
+    },
+    {
+      "step": "gpu_postprocess",
+      "cmd_python": "python.exe",
+      "cmd_script": "onnx_postprocess.py",
+      "exit_code": 0,
+      "wall_s": 1.41,
+      "timeout": false
+    },
+    {
+      "step": "pt_oracle",
+      "cmd_python": "python.exe",
+      "cmd_script": "pt_oracle_v2.py",
+      "exit_code": 0,
+      "wall_s": 2.8,
+      "timeout": false
+    }
+  ],
+  "ep_dll": {
+    "name": "amdgpu-ep.dll",
+    "sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+    "path_redacted": "C:/Program Files/WindowsApps/Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__8wekyb3d8bbwe/ExecutionProvider/amdgpu-ep.dll",
+    "resolution": "Get-AppxPackage InstallLocation (read-only)"
+  },
+  "gpu_worker": {
+    "worker": "experiment_a_canary_worker",
+    "bootstrap": "byo_msix",
+    "bootstrap_note": "MSIX DLL registered directly in-process",
+    "alias": "AMDGPUExecutionProvider",
+    "gfx": "gfx1100",
+    "onnx_sha256": "7c75d8b919c3f81ddd8dad1f699a98130e4f80b91798f8fcd2b3b2bc40c1e042",
+    "dll_sha256": "cb7496b3ab8f9daf2948b6030db5ec795596072ffcb25d3c55a28e4c0df7f8ab",
+    "dll_name": "amdgpu-ep.dll",
+    "ep_devices_after_register": [
+      {
+        "ep_name": "AMDGPUExecutionProvider",
+        "ep_vendor": "AMD",
+        "ep_metadata": {
+          "library_path": "C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll",
+          "version": "0.1.0"
+        },
+        "device_metadata": {
+          "Description": "AMD Radeon RX 7900 XTX",
+          "Discrete": "1",
+          "DxgiAdapterNumber": "0",
+          "DxgiHighPerformanceIndex": "0",
+          "DxgiVideoMemory": "24560 MB",
+          "LUID": "72623"
+        }
+      },
+      {
+        "ep_name": "AMDGPUExecutionProvider",
+        "ep_vendor": "AMD",
+        "ep_metadata": {
+          "library_path": "C:\\Program Files\\WindowsApps\\Microsoft.WinML.AMD.GPU.EP.Framework.2_1.8.65.0_x64__8wekyb3d8bbwe\\ExecutionProvider\\amdgpu-ep.dll",
+          "version": "0.1.0"
+        },
+        "device_metadata": {
+          "Description": "AMD Radeon RX 7900 XTX",
+          "DxgiAdapterNumber": "1",
+          "DxgiHighPerformanceIndex": "1",
+          "DxgiVideoMemory": "24560 MB",
+          "LUID": "123265"
+        }
+      }
+    ],
+    "direct_ep_registered": true,
+    "device_identity": {
+      "ok": true,
+      "gfx": "gfx1100",
+      "description": "AMD Radeon RX 7900 XTX",
+      "vendor_id": "0x1002",
+      "device_id": "0x744C",
+      "luid_str": "0x00000000:0x00011BAF",
+      "luid_key": 72623,
+      "identity_method": "DXGI vendor+deviceId per-gfx pinning (integrated allowed)"
+    },
+    "ep_device_luid_match": {
+      "wanted": "72623",
+      "matches": 1,
+      "ep_device_luids": [
+        "72623",
+        "123265"
+      ],
+      "verified_gfx1100": true
+    },
+    "session_providers_metadata_only": [
+      "AMDGPUExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "profile": {
+      "provider_node_counts": {
+        "AMDGPUExecutionProvider": 2
+      },
+      "op_samples": [
+        "AMDGPUExecutionProvider_AMDGPUExecutionProvider_6136108426344932312_0_0_kernel_time@AMDGPUExecutionProvider",
+        "AMDGPUExecutionProvider_AMDGPUExecutionProvider_6136108426344932312_0_0_kernel_time@AMDGPUExecutionProvider"
+      ],
+      "total_events": 8
+    },
+    "target_ep_profile_nodes": 2,
+    "cpu_profile_nodes": 0,
+    "status": "GPU_RUN_COMPLETE"
+  },
+  "numeric_parity": {
+    "allclose": true,
+    "max_abs": 0.000244140625,
+    "reason": null
+  },
+  "task_parity": {
+    "oracle_kind": "TASK_PARITY",
+    "task": "detect",
+    "ref_source": "PT_ULTRALYTICS",
+    "cand_source": "EP_POST",
+    "ref_fingerprint_sha256": "2a9713f2c8b9c674aa822dd02ee04661",
+    "cand_fingerprint_sha256": "8e112adb675b7fbc5948bdcedcf68dbd",
+    "metrics": {
+      "ref_entities": 5,
+      "matched": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "iou_mean": 0.9708513432487151
+    },
+    "thresholds_declared": {
+      "iou_thres": 0.5,
+      "min_precision": 0.9,
+      "min_recall": 0.9,
+      "min_matches": 1
+    },
+    "thresholds_source": "configs/thresholds.yaml",
+    "passed": true,
+    "not_implemented_reason": null
+  },
+  "gates": {
+    "actual_ep": true,
+    "target_ep_profile_nodes": true,
+    "cpu_profile_nodes": true,
+    "numeric_parity": true,
+    "task_parity": true,
+    "device_identity": true
+  },
+  "input_sha256": "7c75d8b919c3f81ddd8dad1f699a98130e4f80b91798f8fcd2b3b2bc40c1e042",
+  "verdict": "GFX1100_DIRECT_AMDGPU_GPU_EXECUTED"
+}
