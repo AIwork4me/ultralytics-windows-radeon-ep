@@ -1,0 +1,133 @@
+{
+ "schema": "mission_c_baseline_audit_v1",
+ "mission": "C_GFX1151_AMDGPU_EP_ROOT_CAUSE_CLOSURE",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "host": {
+  "host_id": "host_53f62d2ac2c6",
+  "os_build": "26200.9974",
+  "display_version": "25H2",
+  "gpu": "AMD Radeon(TM) 8060S Graphics",
+  "gfx": "gfx1151",
+  "vendor_id": "0x1002",
+  "device_id": "0x1586",
+  "pnp_device_id": "PCI/VEN_1002&DEV_1586&SUBSYS_8D01103C&REV_D1",
+  "driver_version": "32.0.22018.5",
+  "driver_date": "09/17/2025",
+  "luid": "0x00000000:0x000154E4",
+  "python": "3.12.10",
+  "distinct_pnp_subsys_from_other_gfx1151_host": "8D01103C vs 17141043"
+ },
+ "software_stack": {
+  "windowsml_binding": "2.5.96",
+  "ort": "1.25.2 (onnxruntime-windowsml 1.25.2.202605110140)",
+  "os_winml_shared_runtime": null,
+  "ort_providers": [
+   "DmlExecutionProvider",
+   "CPUExecutionProvider"
+  ],
+  "ort_ep_devices": [
+   "CPUExecutionProvider",
+   "DmlExecutionProvider"
+  ]
+ },
+ "recomputed": {
+  "interop_dll_sha256": "8205a572b36423860a7a584e67d6c4f2dd2ece497ab8a3c82129c114fb6d7be0",
+  "catalog_create_hresult": "0x00000000",
+  "catalog_enum_hresult": "0x00000000",
+  "catalog_provider_count": 0,
+  "find_provider": [
+   {
+    "packageFamilyName": null,
+    "hresult": "0x80070490",
+    "found": false,
+    "winerror_text": "[WinError -2147023728] \u627e\u4e0d\u5230\u5143\u7d20\u3002"
+   },
+   {
+    "packageFamilyName": "Microsoft.WinML.AMD.GPU.EP.Framework.2_8wekyb3d8bbwe",
+    "hresult": "0x80070490",
+    "found": false,
+    "winerror_text": "[WinError -2147023728] \u627e\u4e0d\u5230\u5143\u7d20\u3002"
+   },
+   {
+    "packageFamilyName": "MicrosoftCorporationII.WinML.AMD.GPU.EP.1.8_8wekyb3d8bbwe",
+    "hresult": "0x80070490",
+    "found": false,
+    "winerror_text": "[WinError -2147023728] \u627e\u4e0d\u5230\u5143\u7d20\u3002"
+   }
+  ],
+  "create_with_mode": [
+   {
+    "mode": 0,
+    "hresult": "0x00000000",
+    "provider_count": 0,
+    "enum_hresult": "0x00000000",
+    "providers": []
+   },
+   {
+    "mode": 1,
+    "hresult": "0x00000000",
+    "provider_count": 0,
+    "enum_hresult": "0x00000000",
+    "providers": []
+   },
+   {
+    "mode": 2,
+    "hresult": "0x00000000",
+    "provider_count": 0,
+    "enum_hresult": "0x00000000",
+    "providers": []
+   },
+   {
+    "mode": 3,
+    "hresult": "0x80070057",
+    "exception": "[WinError -2147024809] \u53c2\u6570\u9519\u8bef\u3002"
+   },
+   {
+    "mode": 4,
+    "hresult": "0x80070057",
+    "exception": "[WinError -2147024809] \u53c2\u6570\u9519\u8bef\u3002"
+   },
+   {
+    "mode": 5,
+    "hresult": "0x80070057",
+    "exception": "[WinError -2147024809] \u53c2\u6570\u9519\u8bef\u3002"
+   }
+  ],
+  "catalog_table_digest": "b7341392947dbe80cf09245249ce79b968e4fe189959a975525dfb264df379a5",
+  "catalog_table_entry_count": 28
+ },
+ "a_side_import": {
+  "pr": "15",
+  "branch": "mission/experiment-a-catalog-vs-direct",
+  "head_sha": "22a45ee69a479ae28d73134c51abb379ab619830",
+  "import_method": "detached git worktree (no force-push, no history rewrite)",
+  "a_evidence_manifest_state": "NOT_PRESENT_IN_THIS_WORKTREE",
+  "a_evidence_manifest_detail": "Experiment A's artifacts live on the PR #15 branch, not on this branch. They were imported through a detached git worktree and re-hashed there; see C0_AB_RECONCILIATION.json / a_artifact_inputs in C0_AB_COMPARISON_V2.json.",
+  "a_manifest_validation": "FAILED (all 8 entries mismatched the committed blobs)",
+  "a_manifest_consequence": "Experiment A's MANIFEST.sha256 does not validate against its own committed artifacts. Every A number used in this mission is therefore re-read from the committed JSON bodies, not from the manifest, and A-side values that require the A host (e.g. the EP DLL hash) are labelled single-host-reported and are NOT re-verified here."
+ },
+ "integrity_findings": [
+  {
+   "id": "C-INT-1",
+   "severity": "P1",
+   "finding": "Experiment A MANIFEST.sha256 does not match any of its 8 committed artifacts when hashed from the raw git blobs.",
+   "impact": "A's evidence chain is not reproducible as published; the numbers survive only because they are internal to the JSON.",
+   "action": "recorded, not fixed (frozen evidence); re-derivation documented"
+  },
+  {
+   "id": "C-INT-2",
+   "severity": "P2",
+   "finding": "Experiment A CATALOG_REGISTRATION_CANARY.json contains mojibake (UTF-8 Chinese read as GBK) in its detail strings.",
+   "impact": "cosmetic only; the numeric fields are intact",
+   "action": "recorded"
+  },
+  {
+   "id": "C-INT-3",
+   "severity": "P0",
+   "finding": "tools/experiment_b_ab_compare.py crashed on the first real A artifacts (TypeError: '>' not supported between str and int) and had no extractor for Experiment A's schemas.",
+   "impact": "the A/B comparison had never actually run; PR #14 shipped A_EVIDENCE_PENDING.",
+   "action": "fixed in this mission (schema extractors + numeric coercion) with CPU-only tests"
+  }
+ ]
+}

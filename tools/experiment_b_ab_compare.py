@@ -215,21 +215,50 @@ def _a_from_probe(doc: dict) -> dict:
 
 
 def _a_from_canary(doc: dict) -> dict:
+    """Extract from a direct-registration canary (both known A shapes)."""
     out = {}
+    worker = doc.get("gpu_worker") or {}
+    prof = doc.get("profile") or (worker.get("profile") if isinstance(worker, dict) else {}) or {}
+    # shape 2 (Experiment A): the counts sit inside the gpu_worker block
+    nodes = doc.get("target_ep_profile_nodes")
+    cpu_nodes = doc.get("cpu_profile_nodes")
+    if nodes is None and isinstance(worker, dict):
+        nodes = worker.get("target_ep_profile_nodes")
+        cpu_nodes = worker.get("cpu_profile_nodes")
+        if doc.get("status") is None and worker.get("status"):
+            doc = {**doc, "status": worker["status"]}
+    if nodes is not None:
+        out["gpu_ep_profile_nodes"] = nodes
+        out["cpu_ep_profile_nodes"] = cpu_nodes
+        out["gpu_executed"] = bool(nodes)
+    elif prof.get("target_ep_nodes") is not None:
+        out["gpu_ep_profile_nodes"] = prof["target_ep_nodes"]
+        out["cpu_ep_profile_nodes"] = prof.get("cpu_nodes")
+        out["gpu_executed"] = bool(prof.get("target_ep_nodes"))
+    if doc.get("status"):
+        out["direct_registration_status"] = doc["status"]
+    if doc.get("verdict"):
+        out["blocker_reason"] = doc["verdict"]
+
     phys = doc.get("physical") or {}
     if phys.get("device_id") is not None:
         out["device_did"] = f"0x{int(phys['device_id']):04X}"
     if doc.get("gfx"):
         out["host_gfx"] = doc["gfx"]
-    prof = doc.get("profile") or {}
-    if prof.get("target_ep_nodes") is not None:
-        out["gpu_ep_profile_nodes"] = prof["target_ep_nodes"]
-        out["cpu_ep_profile_nodes"] = prof.get("cpu_nodes")
-        out["gpu_executed"] = bool(prof.get("target_ep_nodes"))
-    par = doc.get("parity") or {}
-    if par.get("allclose") is not None:
-        out["numeric_parity"] = "PASS" if par["allclose"] else "FAIL"
-    out.setdefault("direct_registration_status", doc.get("status") or "UNKNOWN")
+
+    par = doc.get("parity") or doc.get("numeric_parity") or {}
+    if isinstance(par, dict):
+        if par.get("allclose") is not None:
+            out["numeric_parity"] = "PASS" if par["allclose"] else "FAIL"
+        elif par.get("passed") is not None:
+            out["numeric_parity"] = "PASS" if par["passed"] else "FAIL"
+    task = doc.get("task_parity")
+    if isinstance(task, dict) and task.get("passed") is not None:
+        out["task_parity"] = "PASS_TASK" if task["passed"] else "FAIL_TASK"
+
+    ep_dll = doc.get("ep_dll")
+    if isinstance(ep_dll, dict) and ep_dll.get("sha256"):
+        out["ep_dll_sha256"] = ep_dll["sha256"]
     return out
 
 
@@ -256,6 +285,121 @@ def _a_from_smoke(doc: dict) -> dict:
     return out
 
 
+def _as_int(value):
+    """Best-effort integer coercion for comparison fields.
+
+    Catalogue counts arrive from heterogeneous evidence documents. A TypeError
+    here used to abort the whole comparison (a real defect: this tool had only
+    ever been run with zero A artifacts, so the A branch was never exercised).
+    """
+    if isinstance(value, bool):
+        return int(value)
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        return int(value)
+    if isinstance(value, str):
+        try:
+            return int(value.strip(), 0)
+        except ValueError:
+            return None
+    return None
+
+
+def _a_from_experiment_a(doc: dict) -> dict:
+    """Extract fields from the *actual* Experiment A artifact schemas.
+
+    Recognised shapes (all produced by the gfx1100 host):
+      EXPERIMENT_A_RESULT.json   state_ladder / key_hashes / git
+      HOST_ENVIRONMENT.json      os / gpu_target / onnxruntime / ep_msix
+      CATALOG_PROBE.json         runs[] / digests_per_run / classification
+      EP_PACKAGE_INVENTORY.json  appx / ep_package_files
+    """
+    out: dict = {}
+
+    # --- EXPERIMENT_A_RESULT.json ---
+    ladder = doc.get("state_ladder")
+    if isinstance(ladder, dict):
+        if "DIRECT_AMDGPU_GPU_EXECUTED" in ladder:
+            out["gpu_executed"] = bool(ladder["DIRECT_AMDGPU_GPU_EXECUTED"])
+        if "CATALOG_AMDGPU_LISTED" in ladder:
+            out["catalog_amdgpu_state"] = ("LISTED" if ladder["CATALOG_AMDGPU_LISTED"]
+                                          else "NOT_LISTED")
+        if "CATALOG_AMDGPU_REGISTERED" in ladder:
+            out["catalog_registration_status"] = (
+                "REGISTERED" if ladder["CATALOG_AMDGPU_REGISTERED"] else "NOT_REGISTERED")
+        if "DIRECT_EP_REGISTERED" in ladder:
+            out["direct_registration_status"] = (
+                "PASS" if ladder["DIRECT_EP_REGISTERED"] else "NOT_REGISTERED")
+    hashes = doc.get("key_hashes")
+    if isinstance(hashes, dict) and hashes.get("ep_dll_sha256"):
+        out["ep_dll_sha256"] = hashes["ep_dll_sha256"]
+    git = doc.get("git")
+    if isinstance(git, dict) and git.get("head_sha"):
+        out["git_sha"] = git["head_sha"]
+    if doc.get("final_classification"):
+        out["blocker_reason"] = doc["final_classification"]
+
+    # --- HOST_ENVIRONMENT.json ---
+    os_win = doc.get("os")
+    if isinstance(os_win, dict) and os_win.get("build"):
+        ubr = os_win.get("ubr")
+        out["windows_build"] = f"{os_win['build']}.{ubr}" if ubr else str(os_win["build"])
+    gpu = doc.get("gpu_target")
+    if isinstance(gpu, dict):
+        if gpu.get("driver_version"):
+            out["driver_wddm"] = gpu["driver_version"]
+        if gpu.get("gfx"):
+            out["host_gfx"] = gpu["gfx"]
+        pnp = str(gpu.get("pnp_device_id") or "")
+        for token in pnp.split("&"):
+            if token.upper().startswith("DEV_"):
+                out["device_did"] = "0x" + token[4:].upper()
+                break
+    ort = doc.get("onnxruntime")
+    if isinstance(ort, dict) and ort.get("version"):
+        out["ort_version"] = ort["version"]
+    probe_pkg = doc.get("windowsml_probe_package")
+    if isinstance(probe_pkg, dict) and probe_pkg.get("version"):
+        out["windowsml_version"] = probe_pkg["version"]
+    ep_msix = doc.get("ep_msix")
+    if isinstance(ep_msix, dict) and ep_msix.get("Name"):
+        out["ep_package_identity"] = ep_msix["Name"]
+        if ep_msix.get("Version"):
+            out["ep_package_version"] = ep_msix["Version"]
+
+    # --- CATALOG_PROBE.json ---
+    runs = doc.get("runs")
+    if isinstance(runs, list) and runs:
+        first = runs[0] if isinstance(runs[0], dict) else {}
+        providers = first.get("providers")
+        if isinstance(providers, list):
+            out["catalog_provider_count"] = len(providers)
+            if any("AMDGPU" in str(p.get("name")) for p in providers
+                   if isinstance(p, dict)):
+                out["catalog_amdgpu_state"] = "LISTED"
+        create_hr = first.get("winml_ep_catalog_create_hresult")
+        enum_hr = first.get("winml_ep_catalog_enum_providers_hresult")
+        if create_hr or enum_hr:
+            out["catalog_api_hresult"] = {"create": create_hr, "enum": enum_hr}
+
+    # --- EP_PACKAGE_INVENTORY.json ---
+    appx = doc.get("appx")
+    if isinstance(appx, dict):
+        pkgs = appx.get("packages_matching_winml_amd")
+        if isinstance(pkgs, list) and pkgs and isinstance(pkgs[0], dict):
+            out.setdefault("ep_package_identity", pkgs[0].get("Name"))
+            out.setdefault("ep_package_version", pkgs[0].get("Version"))
+    files = (doc.get("ep_package_files") or {}).get("files")
+    if isinstance(files, list):
+        for entry in files:
+            if isinstance(entry, dict) and entry.get("name") == "amdgpu-ep.dll":
+                out.setdefault("ep_dll_sha256", entry.get("sha256"))
+                break
+
+    return out
+
+
 def normalize_a(docs: list[dict], gfx: str) -> dict:
     merged: dict = {}
     for doc in docs:
@@ -265,7 +409,8 @@ def normalize_a(docs: list[dict], gfx: str) -> dict:
                 if f in block:
                     merged[f] = block[f]
             continue
-        for extractor in (_a_from_probe, _a_from_canary, _a_from_smoke):
+        for extractor in (_a_from_experiment_a, _a_from_probe, _a_from_canary,
+                          _a_from_smoke):
             try:
                 part = extractor(doc)
             except Exception:  # noqa: BLE001
@@ -299,10 +444,10 @@ def decide(a: dict, b: dict, a_pending: bool) -> dict:
     b_catalog_amdgpu = val(b, "catalog_amdgpu_state")
     b_direct = str(val(b, "direct_registration_status"))
     b_gpu = bool(val(b, "gpu_executed"))
-    a_cat_empty = (val(a, "catalog_provider_count") == 0) if not a_pending else None
+    a_cat_empty = (_as_int(val(a, "catalog_provider_count")) == 0) if not a_pending else None
     a_direct = str(val(a, "direct_registration_status")) if not a_pending else None
     a_listed = ("amdgpu" in str(val(a, "catalog_amdgpu_state")).lower()
-                or (val(a, "catalog_provider_count") or 0) > 0) if not a_pending else None
+                or (_as_int(val(a, "catalog_provider_count")) or 0) > 0) if not a_pending else None
     b_artifact_unavailable = "ARTIFACT_UNAVAILABLE" in str(val(b, "blocker_reason"))
 
     cases = []

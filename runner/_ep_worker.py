@@ -11,7 +11,13 @@ v2 changes (R1-B/R1-C):
   - exit codes remain the fail-closed contract (rc!=0 can never become PASS).
 
 Exit codes: 0 OK; 31 AMDGPU_FAILED; 32 DML_FAILED; 34 BLOCKED_EP;
-35 BLOCKED_IDENTITY; 3 usage/invalid.
+35 BLOCKED_IDENTITY; 36 HARNESS_CONTRACT_VIOLATION; 3 usage/invalid.
+
+Mission C (36): an input-source contract violation is NOT a GPU result. Before
+this guard, a case that declared neither `feeds_npz` nor `input_manifest` raised
+an uncaught KeyError and the worker died with a traceback, which is
+indistinguishable from an EP/session failure in the parent's rc!=0 handling.
+The caller can now separate "our harness was mis-wired" from "the GPU failed".
 """
 
 from __future__ import annotations
@@ -29,7 +35,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from radeon_ort import device_identity, profiler_audit
 from radeon_ort.cpu_reference import compare_outputs, create_cpu_session
-from radeon_ort.input_contract import load_input_bundle, tensor_sha256
+from radeon_ort.input_contract import (
+    load_input_bundle,
+    tensor_sha256,
+    validate_case_input_source,
+)
 
 ORT_TYPE_MAP = {
     "tensor(float)": "float32", "tensor(float16)": "float16",
@@ -64,6 +74,15 @@ def main() -> int:
     atol = case.get("atol", 5e-3)
     rtol = case.get("rtol", 5e-3)
     bench = case.get("benchmark", False)
+
+    # --- input-source contract (mission C) -------------------------------
+    # Exactly one input source must be declared, and a declared bundle must
+    # exist on disk. Both checks run BEFORE any session/EP work, so a
+    # mis-wired harness can never be reported as a GPU failure.
+    contract_error = validate_case_input_source(case)
+    if contract_error:
+        print("HARNESS_CONTRACT_VIOLATION: " + contract_error, file=sys.stderr)
+        return 36
 
     frag = {"session": {"ep": ep.upper()}, "parity": None, "benchmark_data": None,
             "worker_pid": os.getpid(), "parent_pid": os.getppid(),

@@ -1,0 +1,55 @@
+{
+ "schema": "mission_c_etw_capture_manifest_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "status": "BLOCKED_ADMIN_DEPENDENCY",
+ "blocker": "ETW capture requires Administrator; this session is Medium integrity (Administrators group is deny-only) and approval prompts are disabled",
+ "privilege_evidence": {
+  "is_admin": false,
+  "integrity": "Medium (S-1-16-8192)",
+  "administrators": "deny only"
+ },
+ "tooling_present": {
+  "wpr": true,
+  "wpa": false,
+  "logman": true,
+  "tracerpt": true
+ },
+ "wpaexporter_present": false,
+ "official_artifacts_to_obtain": [
+  {
+   "file": "WinML.wprp",
+   "url": "https://github.com/microsoft/WindowsML/blob/main/Tools/capture-logs/WinML.wprp",
+   "sha256": "RECORD_BEFORE_USE"
+  },
+  {
+   "file": "Get-WinMLRundown.ps1",
+   "url": "https://github.com/microsoft/WindowsML/blob/main/Tools/capture-logs/Get-WinMLRundown.ps1",
+   "sha256": "RECORD_BEFORE_USE"
+  },
+  {
+   "file": "WindowsMLProfile.wpaProfile",
+   "url": "https://github.com/microsoft/WindowsML/blob/main/Tools/capture-logs/WindowsMLProfile.wpaProfile",
+   "sha256": "RECORD_BEFORE_USE"
+  }
+ ],
+ "official_procedure": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/logs",
+ "planned_capture": {
+  "step_1": "record pre-state (packages, catalog probe output, package log tail)",
+  "step_2": "wpr -start ./WinML.wprp -filemode",
+  "step_3": "run tools/mission_c_catalog_internals.py once (single catalog probe)",
+  "step_4": "run the native flat-C probe (C1) once",
+  "step_5": "wpr -stop winml_trace.etl",
+  "step_6": "Get-WinMLRundown.ps1 -EtlFilePath winml_trace.etl -WpaProfilePath ./WindowsMLProfile.wpaProfile -OutputFolder ./rundown",
+  "step_7": "redact and attach; keep the raw ETL local (never commit)",
+  "bounded": "target < 20 s of trace per attempt, one GPU process at a time"
+ },
+ "events_that_would_discriminate": [
+  "FindAllProvidersTest with reason=no_store vs reason=failure",
+  "DownloadExecutionProvidersTest with reason=no_target_package vs not_acquirable",
+  "Driver Info (GPU class) presence/absence",
+  "EP Library Registration success/failure",
+  "WinML Runtime State (registered EP count) - Windows ML 2.8+ only"
+ ],
+ "if_insufficient": "CATALOG_INTERNAL_DECISION_NOT_INSTRUMENTED"
+}

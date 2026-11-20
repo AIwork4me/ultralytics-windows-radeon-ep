@@ -1,0 +1,179 @@
+{
+ "schema": "mission_c_root_cause_matrix_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "verdict_vocabulary": [
+  "CONFIRMED_ROOT_CAUSE",
+  "CONFIRMED_PROXIMATE_BLOCKER",
+  "SUPPORTED_HYPOTHESIS",
+  "REFUTED",
+  "UNVERIFIED"
+ ],
+ "overall": {
+  "CONFIRMED_PROXIMATE_BLOCKER": "CATALOG_EMPTY",
+  "UNDERLYING_ROOT_CAUSE": "UNVERIFIED",
+  "statement": "The confirmed, reproducible blocker is that the Windows ML 2.x provider catalogue returns S_OK with zero entries on this device in every accepted mode and rejects a direct provider lookup, so no EP can be acquired through the official path. Why the catalogue decides that is not observable without ETW/elevation and is therefore UNVERIFIED."
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "name": "SDK / runtime activation",
+   "status": "REFUTED",
+   "supporting": [
+    "windowsml 2.5.96 is the documented minimum and is installed",
+    "the API binary is byte-identical to the working host's"
+   ],
+   "contradicting": [
+    "catalog calls return S_OK, so activation succeeded"
+   ],
+   "independent_reproduction": "3 probe runs + preflight in separate processes",
+   "negative_control": "same binary on gfx1100 returns 4 providers",
+   "confidence": "HIGH",
+   "owner": "Microsoft (Windows ML)"
+  },
+  {
+   "id": "H2",
+   "name": "Python projection",
+   "status": "REFUTED",
+   "supporting": [],
+   "contradicting": [
+    "wheel flat-C API and WinAppSDK 2.3 projection both return 0",
+    "the native DLL exports are exercised directly via ctypes"
+   ],
+   "independent_reproduction": "two independent API surfaces",
+   "negative_control": "gfx1100 wheel returns 4 with the same surface",
+   "confidence": "HIGH",
+   "owner": "this repo"
+  },
+  {
+   "id": "H3",
+   "name": "WinRT package identity / bootstrap",
+   "status": "REFUTED",
+   "supporting": [
+    "unpackaged processes can be denied some WinRT surfaces"
+   ],
+   "contradicting": [
+    "7 bootstrap surfaces in Experiment B all returned 0 with no identity error once bootstrapped",
+    "the wheel flat-C path requires no package identity and still returns 0"
+   ],
+   "independent_reproduction": "reports/experiment_b/CATALOG_SURFACE_MATRIX.json",
+   "negative_control": "gfx1100 unpackaged Python returned 4",
+   "confidence": "HIGH",
+   "owner": "Microsoft (WindowsAppSDK)"
+  },
+  {
+   "id": "H4",
+   "name": "Catalog provider metadata source",
+   "status": "SUPPORTED_HYPOTHESIS",
+   "supporting": [
+    "the metadata is an embedded Store/UUP table in the runtime",
+    "the runtime references Store InstallControl and DXCore",
+    "internal reasons no_store / no_target_package / not_acquirable exist as distinct outcomes",
+    "FindProvider returns 0x80070490, i.e. the entry never materialised"
+   ],
+   "contradicting": [
+    "Store APIs are alive on this host (AppInstallManager OK)"
+   ],
+   "independent_reproduction": "C1_CATALOG_INTERNALS.json",
+   "negative_control": "same table produces 4 entries on gfx1100",
+   "confidence": "MEDIUM",
+   "owner": "Microsoft (catalog/Store targeting)",
+   "missing_official_information": [
+    "authoritative inputs to the catalogue filter"
+   ]
+  },
+  {
+   "id": "H5",
+   "name": "Microsoft Store targeting / flighting",
+   "status": "SUPPORTED_HYPOTHESIS",
+   "supporting": [
+    "EP acquisition is Store-based since 2.5.96",
+    "public Store products exist but nothing is offered here"
+   ],
+   "contradicting": [
+    "WebGPU is broadly targeted and is also absent"
+   ],
+   "independent_reproduction": "C2_STORE_PACKAGE_ELIGIBILITY.json",
+   "negative_control": "gfx1100 lists 4 including WebGPU",
+   "confidence": "MEDIUM",
+   "owner": "Microsoft (Store)"
+  },
+  {
+   "id": "H6",
+   "name": "EP MSIX acquisition",
+   "status": "REFUTED",
+   "supporting": [
+    "package absent on this host"
+   ],
+   "contradicting": [
+    "absence is a consequence of an empty catalogue, not a cause: ensure_ready cannot even be addressed"
+   ],
+   "independent_reproduction": "C4_PROVISIONING_LEDGER.json",
+   "negative_control": "gfx1100: package present and listed",
+   "confidence": "HIGH",
+   "owner": "Microsoft/AMD"
+  },
+  {
+   "id": "H7",
+   "name": "OEM driver compatibility",
+   "status": "UNVERIFIED",
+   "supporting": [
+    "AMD documents an Adrenalin minimum that cannot be mapped to this WDDM version"
+   ],
+   "contradicting": [
+    "DML runs on the same driver",
+    "WebGPU's requirement is only DX12 and it is also absent"
+   ],
+   "independent_reproduction": "C2_DRIVER_COMPATIBILITY.json",
+   "negative_control": "none possible without a driver change",
+   "confidence": "LOW",
+   "owner": "HP + AMD"
+  },
+  {
+   "id": "H8",
+   "name": "gfx1151 device compatibility",
+   "status": "SUPPORTED_HYPOTHESIS",
+   "supporting": [
+    "1.8.65.0 ships custom_kernels_gfx1151.dll and a different gfx1151 host executed it"
+   ],
+   "contradicting": [
+    "0x1586 is not on the published unsupported list",
+    "vendor 0x1002 is supported"
+   ],
+   "independent_reproduction": "C1_CATALOG_INTERNALS.json device_1586_analysis",
+   "negative_control": "cross-host execution evidence",
+   "confidence": "MEDIUM",
+   "owner": "AMD",
+   "note": "compatibility is NOT the same question as catalogue delivery"
+  },
+  {
+   "id": "H9",
+   "name": "DLL ABI / dependency",
+   "status": "REFUTED",
+   "supporting": [],
+   "contradicting": [
+    "no DLL exists on this host",
+    "on the other gfx1151 host the same DLL loaded into ORT 1.25.2 fine"
+   ],
+   "independent_reproduction": "C5 cross-host context",
+   "negative_control": "n/a",
+   "confidence": "HIGH",
+   "owner": "AMD"
+  },
+  {
+   "id": "H10",
+   "name": "GPU kernel / operator support",
+   "status": "REFUTED",
+   "note": "refuted as the cause of the blocker, not as a property: kernels never run because no EP exists here, and the other gfx1151 host executed them successfully",
+   "supporting": [],
+   "contradicting": [
+    "the blocker occurs before any kernel runs",
+    "cross-host gfx1151 execution passed"
+   ],
+   "independent_reproduction": "C5",
+   "negative_control": "n/a",
+   "confidence": "HIGH",
+   "owner": "AMD"
+  }
+ ]
+}

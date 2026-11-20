@@ -191,3 +191,27 @@ def load_input_bundle(manifest_path: str | Path, npy_dir: str | Path | None = No
         raise ValueError(f"input tensor mutated: sha {got} != manifest "
                          f"{manifest['tensor_sha256']}")
     return manifest, arr
+
+
+def validate_case_input_source(case: dict) -> str | None:
+    """Return a contract-violation message, or None when the case is well formed.
+
+    Mission C: a case must declare EXACTLY ONE input source — an inline
+    `feeds_npz` bundle (multi-input canary) or an `input_manifest` (persisted
+    single-input bundle) — and a declared manifest must exist. Before this
+    validator the worker raised an uncaught KeyError for neither/both, so a
+    mis-wired harness looked exactly like an EP or session failure (rc != 0).
+
+    Pure function: no ONNX Runtime, no numpy import, safe for CPU CI.
+    """
+    if not isinstance(case, dict):
+        return f"case must be a JSON object, got {type(case).__name__}"
+    declared = [k for k in ("feeds_npz", "input_manifest") if case.get(k)]
+    if len(declared) != 1:
+        return ("case must declare exactly one of feeds_npz|input_manifest "
+                f"(declared={declared or 'none'})")
+    if declared[0] == "input_manifest" and not Path(case["input_manifest"]).is_file():
+        return f"input_manifest does not exist: {case['input_manifest']}"
+    if declared[0] == "feeds_npz" and not Path(case["feeds_npz"]).is_file():
+        return f"feeds_npz does not exist: {case['feeds_npz']}"
+    return None

@@ -120,29 +120,51 @@ def select_amdgpu_ep_device(target_luid: int | str | None = None):
     gfx1100 host measured 2026-11-17 (RCA1): TWO 'Radeon RX 7900 XTX' devices —
     LUID 72346 (Discrete=1, owns the desktop output) and LUID 118045 (mirror,
     no outputs). target_luid pins the physical one; without it we prefer
-    Discrete=1 and record the basis (never silently accept a mirror)."""
+    Discrete=1 and record the basis (never silently accept a mirror).
+
+    Mission C (fail-closed hardening): when the caller supplies an explicit
+    `target_luid`, the selected EP device MUST be the one and only device whose
+    metadata LUID equals it. Before this fix, a *non-matching* LUID fell through
+    to the "Discrete=1" / "take first" fallbacks and returned a DIFFERENT
+    physical GPU while reporting a basis that claimed no LUID had been given
+    (Experiment A `luid_pin_fail` case). A pinned request must never be silently
+    satisfied by another adapter, so zero or multiple matches now return
+    (None, basis) and the caller fails closed.
+    """
     import onnxruntime as ort
     _ensure_amdgpu_registered()
     devs = [d for d in ort.get_ep_devices()
             if d.ep_name == "AMDGPUExecutionProvider"]
     if not devs:
         return None, {"basis": "no AMDGPU EP device registered"}
-    want = str(target_luid) if target_luid is not None else None
-    hits = [d for d in devs if want is not None
-            and str(_ep_device_metadata(d).get("LUID", "")) == want]
-    if len(hits) == 1:
-        return hits[0], {"basis": "LUID match with physical adapter", "luid": want,
-                         "candidates": [_ep_device_metadata(d) for d in devs]}
-    if len(hits) > 1:
-        return hits[0], {"basis": "LUID matched multiple EP devices (took first, flagged)",
-                         "luid": want, "candidates": [_ep_device_metadata(d) for d in devs]}
+
+    candidates = [_ep_device_metadata(d) for d in devs]
+
+    # --- pinned path: exactly-one-match or fail closed -------------------
+    if target_luid is not None:
+        want = str(target_luid)
+        hits = [d for d in devs
+                if str(_ep_device_metadata(d).get("LUID", "")) == want]
+        if len(hits) == 1:
+            return hits[0], {"basis": "LUID match with physical adapter",
+                             "luid": want, "candidates": candidates}
+        return None, {
+            "basis": ("FAIL_CLOSED: an explicit target_luid was supplied and "
+                      f"{len(hits)} AMDGPU EP device(s) matched it; refusing to "
+                      "fall back to a different physical GPU"),
+            "luid": want,
+            "matched": len(hits),
+            "candidates": candidates,
+        }
+
+    # --- unpinned path: documented preference, never a silent mirror -----
     discrete = [d for d in devs
                 if str(_ep_device_metadata(d).get("Discrete", "0")) == "1"]
     if len(discrete) == 1:
         return discrete[0], {"basis": "Discrete=1 unique among AMDGPU EP devices (no LUID given)",
-                             "candidates": [_ep_device_metadata(d) for d in devs]}
+                             "candidates": candidates}
     return devs[0], {"basis": "AMBIGUOUS: took first AMDGPU EP device; caller must canary-verify",
-                     "candidates": [_ep_device_metadata(d) for d in devs]}
+                     "candidates": candidates}
 
 
 def create_amdgpu_session(onnx_path: str | Path, *, enable_profiling: bool = True,
@@ -167,7 +189,8 @@ def create_amdgpu_session(onnx_path: str | Path, *, enable_profiling: bool = Tru
         dev, device_selection = select_amdgpu_ep_device(target_luid)
         if dev is None:
             raise RuntimeError(
-                f"AMDGPU EP device for physical LUID {target_luid} not found: {device_selection}")
+                f"AMDGPU EP device for physical LUID {target_luid} not found "
+                f"(fail-closed: no fallback to another adapter): {device_selection}")
         so.add_provider_for_devices([dev], {})
         return ort.InferenceSession(str(onnx_path), sess_options=so)
 

@@ -1,0 +1,54 @@
+{
+ "schema": "mission_c_store_eligibility_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "four_independent_states": {
+  "OFFICIAL_MSIX_RELEASED": {
+   "state": "TRUE",
+   "evidence": [
+    "wiki release matrix: AMD GPU EP added in 1.8.65.0, 2026-10-28",
+    "wheel catalogue table contains AMDGPUExecutionProvider"
+   ]
+  },
+  "OFFICIAL_PACKAGE_TARGETED_TO_HOST": {
+   "state": "UNVERIFIED",
+   "detail": "0x1586 is not blacklisted and vendor 0x1002 is supported, but the runtime returns no entry. Targeting may be keyed on Store flighting, OS build, OEM/subsystem or driver branch; none of that is publicly documented."
+  },
+  "OFFICIAL_PACKAGE_ACQUIRABLE_ON_HOST": {
+   "state": "FALSE_OBSERVED",
+   "detail": "catalog returns 0 providers in all 3 accepted modes; direct FindProvider returns 0x80070490; no EP MSIX in any scope; 0 AMD GPU EP deployment events"
+  },
+  "OFFICIAL_INDEPENDENT_BYO_ARTIFACT_AVAILABLE": {
+   "state": "FALSE",
+   "detail": "official BYO page: onnxruntime-ep-amdgpu must be built from source",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/new-windows-ml/bring-your-own-eps"
+  }
+ },
+ "amdgpu_store_products": [
+  {
+   "package_family_name": "Microsoft.WinML.AMD.GPU.EP.2_8wekyb3d8bbwe",
+   "product_id": "9NMRQLX4HLSK",
+   "minimum_package_version": "1.8.64.0"
+  },
+  {
+   "package_family_name": "Microsoft.WinML.AMD.GPU.EP.Framework.2_8wekyb3d8bbwe",
+   "product_id": "9PNKGVD4CPCV",
+   "minimum_package_version": "1.8.64.0"
+  }
+ ],
+ "store_runtime_state": {
+  "microsoft_store_package": "Microsoft.WindowsStore_22610.1401.10.0_x64__8wekyb3d8bbwe",
+  "store_api_activation": "AppInstallManager instantiates; StoreContext.GetDefault OK",
+  "store_blocked_by_policy": "no policy key present",
+  "conclusion": "the Store API surface the catalogue depends on is alive on this host, so 'the Store app is missing/blocked' is refuted as the sole cause"
+ },
+ "installed_ep_packages": {
+  "amd_gpu_ep": "ABSENT (current-user and machine scope)",
+  "other_amd_ep": "WindowsWorkload.EP.AMD.VitisAI.Framework.1.8 1.8.80.0 (NPU)"
+ },
+ "ensure_ready_boundary": {
+  "attempted": false,
+  "reason": "no provider object exists to call ensure_ready_async() on, and a download/install would be a system change; no owner authorization is recorded for this host",
+  "status": "BLOCKED_AUTHORIZATION_FOR_ENSURE_READY_UNNECESSARY"
+ }
+}

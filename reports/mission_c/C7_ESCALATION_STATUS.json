@@ -1,0 +1,46 @@
+{
+ "schema": "mission_c_escalation_status_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "duplicate_search": {
+  "repos_checked": [
+   "microsoft/WindowsML",
+   "microsoft/WindowsAppSDK",
+   "onnxruntime/onnxruntime-ep-amdgpu",
+   "microsoft/onnxruntime"
+  ],
+  "queries": [
+   "ExecutionProviderCatalog zero providers",
+   "FindAllProviders empty",
+   "AMDGPUExecutionProvider not listed",
+   "0x80073B0C",
+   "Radeon 8060S",
+   "gfx1151",
+   "9PNKGVD4CPCV"
+  ],
+  "result": "NONE_FOUND",
+  "closest": [
+   "microsoft/WindowsAppSDK#6072 (closed): catalogue-listed EP failed EnsureReadyAsync",
+   "microsoft/WindowsML#21 (open): MIGraphX driver requirements / no GPU list",
+   "onnxruntime/onnxruntime-ep-amdgpu#151 (open): MIGraphX CPU-only on a Radeon 8060S (Linux/ROCm path, not the Windows catalogue)"
+  ]
+ },
+ "channel_decision": {
+  "primary": "microsoft/WindowsAppSDK issues (bug-report.yaml)",
+  "why": "microsoft/WindowsML's own issue template explicitly routes Windows ML runtime/API issues to the WindowsAppSDK repo",
+  "secondary": "Feedback Hub (Developer Platform > Windows Machine Learning) \u2014 maintainers request it for EP download/install failures"
+ },
+ "status": "ESCALATION_POSTED",
+ "posted": {
+  "url": "https://github.com/microsoft/WindowsAppSDK/issues/6994",
+  "repo": "microsoft/WindowsAppSDK",
+  "posted_utc": "2026-11-20T14:20:00Z",
+  "posted_by": "AIwork4me",
+  "title": "[Bug]: [Windows ML 2.x][AMDGPU EP] ExecutionProviderCatalog returns S_OK with 0 providers on Radeon 8060S (gfx1151); same runtime lists 4 on RX 7900 XTX",
+  "acknowledged": false
+ },
+ "follow_up": [
+  "attach a WinML ETW trace if maintainers ask (see C3 for the plan)",
+  "answer follow-up questions from the same account; do not open duplicates"
+ ]
+}

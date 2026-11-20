@@ -1,0 +1,36 @@
+{
+ "schema": "mission_c_amdgpu_physical_validation_v1",
+ "run_id": "C_GFX1151_AMDGPU_20261120T2153Z",
+ "captured_utc": "2026-11-20T14:10:45Z",
+ "status": "NOT_RUN",
+ "reason": "no AMDGPU EP library exists on this host, so no session can be created; a CPU session is never substituted",
+ "gates": {
+  "did_0x1586": true,
+  "gfx_gfx1151": true,
+  "ep_dll_verified": false,
+  "ep_signature_valid": false,
+  "ep_runtime_device_matched": false,
+  "actual_provider": null,
+  "target_ep_profile_nodes": 0,
+  "cpu_profile_nodes": null,
+  "numeric_parity": "NOT_RUN",
+  "task_parity": "NOT_RUN",
+  "receipt_verifier": "NOT_RUN"
+ },
+ "canary_attempt": {
+  "command": "python -m runner.preflight --gfx gfx1151",
+  "amdgpu_worker_returncode": 34,
+  "amdgpu_worker_stderr": "\u001b[0;93m2026-11-20 22:04:35.0679700 [W:onnxruntime:Default, onnxruntime_pybind_module.cc:45 onnxruntime::python::CreateOrtEnv] Init provider bridge failed.\u001b[m\nBLOCKED_EP: amdgpu-ep.dll not found in site-packages or WindowsApps\n",
+  "classification": "BLOCKED_EP"
+ },
+ "cross_host_context_not_a_claim": {
+  "what": "on a DIFFERENT gfx1151 host (PnP SUBSYS_17141043, driver 32.0.22032.6002, python 3.13.13) the same amdgpu-ep.dll (sha256 cb7496b3...) executed with AMDGPU profiler nodes and task parity PASS",
+  "why_it_is_not_transplanted": "AGENTS.md rule 2: no gfx1100/gfx1201-style claims without that hardware; this host is a different machine with a different subsystem id",
+  "what_it_does_prove": "1.8.65.0 contains working gfx1151 kernels",
+  "evidence": [
+   "reports/gfx1151/R1_20261117T215114Z/receipts/receipt_yolo26n__detect__amdgpu.json",
+   "reports/gfx1151/G1_PREFLIGHT_FINAL/EP_INSTALL_AND_PROBE.json"
+  ]
+ },
+ "verdict_vocabulary_note": "this file can only ever be NOT_RUN until an EP exists"
+}
